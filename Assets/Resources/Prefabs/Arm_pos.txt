@@ -1,0 +1,77 @@
+cube
+UnityEditor.TransformWorldPlacementJSON:{"position":{"x":4.201000213623047,"y":1.672700047492981,"z":-0.32690000534057619},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"scale":{"x":0.05000000074505806,"y":0.05000000074505806,"z":0.05000000074505806}}
+UnityEditor.TransformWorldPlacementJSON:{"position":{"x":4.201000213623047,"y":1.6456999778747559,"z":-0.32690000534057619},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"scale":{"x":0.05000000074505806,"y":0.10000000149011612,"z":0.05000000074505806}}
+
+thumb
+UnityEditor.TransformWorldPlacementJSON:{"position":{"x":4.191400051116943,"y":1.6721999645233155,"z":-0.27410000562667849},"rotation":{"x":-0.016950981691479684,"y":0.3644796907901764,"z":0.1859217882156372,"w":0.9123049974441528},"scale":{"x":1.0,"y":1.0,"z":1.0}}
+Vector3(350.41803,41.9167709,19.3600311)
+
+UnityEditor.TransformWorldPlacementJSON:{"position":{"x":4.185999870300293,"y":1.674399971961975,"z":-0.2696000039577484},"rotation":{"x":-0.02796231210231781,"y":-0.07395365089178086,"z":-0.14751911163330079,"w":-0.9858940839767456},"scale":{"x":1.0,"y":1.0,"z":1.0}}
+Vector3(1.90925407,8.86787701,17.1680984)
+
+UnityEditor.TransformWorldPlacementJSON:{"position":{"x":4.183700084686279,"y":1.673799991607666,"z":-0.2703000009059906},"rotation":{"x":0.04091007262468338,"y":-0.06072385981678963,"z":0.2457892894744873,"w":0.9665539860725403},"scale":{"x":1.0,"y":1.0,"z":1.0}}
+Vector3(6.25387669,354.384186,28.2281399)
+
+arm
+UnityEditor.TransformWorldPlacementJSON:{"position":{"x":4.13100004196167,"y":1.6526999473571778,"z":-0.38690000772476199},"rotation":{"x":0.0,"y":0.0,"z":-0.7071068286895752,"w":0.7071068286895752},"scale":{"x":1.0,"y":1.0,"z":1.0}}
+Vector3(0,0,270)
+
+UnityEditor.TransformWorldPlacementJSON:{"position":{"x":4.1458001136779789,"y":1.6526999473571778,"z":-0.4092999994754791},"rotation":{"x":0.1414274424314499,"y":-0.14142750203609467,"z":-0.6928190588951111,"w":0.6928190588951111},"scale":{"x":1.0,"y":1.0,"z":1.0}}
+Vector3(0,336.925079,270)
+
+UnityEditor.TransformWorldPlacementJSON:{"position":{"x":4.135900020599365,"y":1.6526999473571778,"z":-0.4120999872684479},"rotation":{"x":0.09539520740509033,"y":-0.09539519995450974,"z":-0.7006424069404602,"w":0.7006424069404602},"scale":{"x":1.0,"y":1.0,"z":1.0}}
+Vector3(8.53773656e-07,344.493256,270)
+
+index
+UnityEditor.TransformWorldPlacementJSON:{"position":{"x":4.2230000495910648,"y":1.6857999563217164,"z":-0.2872999906539917},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}
+UnityEditor.TransformWorldPlacementJSON:{"position":{"x":4.210999965667725,"y":1.6783000230789185,"z":-0.29420000314712527},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}
+UnityEditor.TransformWorldPlacementJSON:{"position":{"x":4.220999717712402,"y":1.6857999563217164,"z":-0.29250001907348635},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}
+
+middle
+UnityEditor.TransformWorldPlacementJSON:{"position":{"x":4.210299968719482,"y":1.6561000347137452,"z":-0.2928999960422516},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}
+
+ring
+UnityEditor.TransformWorldPlacementJSON:{"position":{"x":4.214399814605713,"y":1.6295000314712525,"z":-0.2936999797821045},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}
+
+pinky
+UnityEditor.TransformWorldPlacementJSON:{"position":{"x":4.228099822998047,"y":1.6055999994277955,"z":-0.29600000381469729},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}
+
+
+// variant 1
+/*
+cubeAnim.armMapping = new TargetMapping(new Vector3(4.131f, 1.65269f, -0.3869f), new Vector3(0f, 0f, 270f)); // armTarget
+cubeAnim.thumbMapping = new TargetMapping(new Vector3(4.1914f, 1.67219f, -0.2741f), new Vector3(350.41803f, 41.9167709f, 19.3600311f)); // thumbTarget
+cubeAnim.indexMapping = new TargetMapping(new Vector3(4.223f, 1.6857999f, -0.28729999f), new Vector3(0f, 0f, 0f)); // indexTarget
+*/
+
+// variant 2 - hand should look more natural
+/*
+animationMappings.cubeMapping.armMapping = new TargetMapping(new Vector3(4.1458f, 1.6527f, -0.4093f), new Vector3(0, 336.925079f, 270f)); // armTarget
+animationMappings.cubeMapping.thumbMapping = new TargetMapping(new Vector3(4.186f, 1.6744f, -0.2696f), new Vector3(1.90925407f, 8.86787701f, 17.1680984f)); // thumbTarget
+animationMappings.cubeMapping.indexMapping = new TargetMapping(new Vector3(4.211f, 1.6783f, -0.2942f), new Vector3(0f, 0f, 0f)); // indexTarget
+animationMappings.cubeMapping.middleMapping = new TargetMapping(new Vector3(4.2103f, 1.6561f, -0.2929f), new Vector3(0f, 0f, 0f)); // middleTarget
+animationMappings.cubeMapping.ringMapping = new TargetMapping(new Vector3(4.214399f, 1.6295f, -0.2937f), new Vector3(0f, 0f, 0f)); // ringTarget
+animationMappings.cubeMapping.pinkyMapping = new TargetMapping(new Vector3(4.2281f, 1.6056f, -0.296f), new Vector3(0f, 0f, 0f)); // pinkyTarget
+*/
+
+// variant 3 - using relative values
+animationMappings.cubeMapping.armMapping = new TargetMapping(new Vector3(-0.0552001f, 0.007f, -0.08239999f), new Vector3(0, 336.925079f, 270f)); // armTarget
+animationMappings.cubeMapping.thumbMapping = new TargetMapping(new Vector3(-0.01500034f, 0.02869999f, 0.0573f), new Vector3(1.90925407f, 8.86787701f, 17.1680984f)); // thumbTarget
+animationMappings.cubeMapping.indexMapping = new TargetMapping(new Vector3(0.01f, 0.0326f, 0.0327f), new Vector3(0f, 0f, 0f)); // indexTarget
+animationMappings.cubeMapping.middleMapping = new TargetMapping(new Vector3(0.0093f, 0.0104f, 0.034f), new Vector3(0f, 0f, 0f)); // middleTarget
+animationMappings.cubeMapping.ringMapping = new TargetMapping(new Vector3(0.01339865f, -0.0162f, 0.0332f), new Vector3(0f, 0f, 0f)); // ringTarget
+animationMappings.cubeMapping.pinkyMapping = new TargetMapping(new Vector3(0.02709961f, -0.0401f,0.0309f), new Vector3(0f, 0f, 0f)); // pinkyTarget
+
+
+
+
+// calculations for relative positions
+/*
+Vector3 cube = new Vector3(4.201f, 1.6457f, -0.3269f);
+PrintVector3(animationMappings.cubeMapping.armMapping.position - cube); // X: -0.0552001  Y: 0.007  Z:-0.08239999
+PrintVector3(animationMappings.cubeMapping.thumbMapping.position - cube); // X: -0.01500034  Y: 0.02869999  Z:0.0573
+PrintVector3(animationMappings.cubeMapping.indexMapping.position - cube); // X: 0.01  Y: 0.0326  Z:0.0327
+PrintVector3(animationMappings.cubeMapping.middleMapping.position - cube); // X: 0.0093  Y: 0.0104  Z:0.034
+PrintVector3(animationMappings.cubeMapping.ringMapping.position - cube); // X: 0.01339865  Y: -0.0162  Z:0.0332
+PrintVector3(animationMappings.cubeMapping.pinkyMapping.position - cube); // X: 0.02709961  Y: -0.0401  Z:0.0309
+*/
