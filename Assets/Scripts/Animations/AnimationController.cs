@@ -7,7 +7,6 @@ using UnityEngine.Animations.Rigging;
 public class AnimationController : MonoBehaviour
 {
 	// no need to Serialize public fields, those are serialized automatically
-	public AnimationType animType = AnimationType.Off;
 	public GameObject targetObject;
 	public bool isFakeArm = false;
 
@@ -27,7 +26,7 @@ public class AnimationController : MonoBehaviour
 
 	private Renderer figureRenderer;
 
-	public AnimationTimingManager animationTimingManager;
+	public AnimationSettingsManager animationSettingsManager;
 
 	void Start() {
 		if(isFakeArm) {
@@ -38,17 +37,7 @@ public class AnimationController : MonoBehaviour
 		animationMappings = new AnimationMapping();
 
 		if (GameObject.Find("AnimationTimers") != null) {
-			animationTimingManager = GameObject.Find("AnimationTimers").GetComponent<AnimationTimingManager>();
-		}
-
-		GameObject therapistMenu = GameObject.Find("TherapistMenu");
-		if (therapistMenu != null) {
-			TherapistMenuManager therapistMenuManager = therapistMenu.GetComponent<TherapistMenuManager>();
-			if (isFakeArm) {
-				therapistMenuManager.setupFakeArmButtons(this);
-			}else {
-				therapistMenuManager.setupArmButtons(this);
-			}
+			animationSettingsManager = GameObject.Find("AnimationTimers").GetComponent<AnimationSettingsManager>();
 		}
 
 		armRig = transform.Find("ArmRig").GetComponent<Rig>();
@@ -130,23 +119,23 @@ public class AnimationController : MonoBehaviour
 			if (currentLerpValue == endLerpValue) {
 				// This is the end of animation
 				// we check if we're releasing animation (AnimyType.Off), if yes, we first release Hand, then move Arm to relaxed position
-				if (animType == AnimationType.Off) {
+				if (animationSettingsManager.animType == AnimationType.Off) {
 					if (animPart == AnimationPart.Hand) {
 						lerpTimeElapsed = 0f;
 						startLerpValue = 1f;
 						endLerpValue = 0f;
-						animationLength = animationTimingManager.armMoveDuration;
+						animationLength = animationSettingsManager.armMoveDuration;
 						animPart = AnimationPart.Arm;
 					} else {
 						animState = Enums.AnimationState.Stopped;
 					}
-				} else if(animType == AnimationType.Block) {
+				} else if(animationSettingsManager.animType == AnimationType.Block) {
 					blockAnimHandler();
-				} else if(animType == AnimationType.Cube) {
+				} else if(animationSettingsManager.animType == AnimationType.Cube) {
 					cubeAnimHandler();
-				} else if(animType == AnimationType.Key) {
+				} else if(animationSettingsManager.animType == AnimationType.Key) {
 					keyAnimHandler();
-				} else if(animType == AnimationType.Cup) {
+				} else if(animationSettingsManager.animType == AnimationType.Cup) {
 					cupAnimHandler();
 				}
 			}
@@ -158,7 +147,7 @@ public class AnimationController : MonoBehaviour
 
 	private void LateUpdate() {
 		if(currentLerpValue == endLerpValue) {
-			if(animType == AnimationType.Block) {
+			if(animationSettingsManager.animType == AnimationType.Block) {
 				if(animPart == AnimationPart.Moving) {
 					animationMappings.alignTargetTransforms();
 					return; // do nothing else for now
@@ -173,10 +162,10 @@ public class AnimationController : MonoBehaviour
 			lerpTimeElapsed = 0f;
 			startLerpValue = 0f;
 			endLerpValue = 1f;
-			animationLength = animationTimingManager.handMoveDuration;
+			animationLength = animationSettingsManager.handMoveDuration;
 			animPart = AnimationPart.Hand;
 		} else if(animPart == AnimationPart.Hand) {
-			animationLength = animationTimingManager.moveDuration;
+			animationLength = animationSettingsManager.moveDuration;
 			animPart = AnimationPart.Moving;
 		} else if(animPart == AnimationPart.Moving) {
 			return; // do nothing for now, refer to LateUpdate for more code
@@ -198,10 +187,13 @@ public class AnimationController : MonoBehaviour
 	}
 	
 	public void startAnimation() {
-		if(animType == AnimationType.Off) return;
+		if(animationSettingsManager.animType == AnimationType.Off) {
+			Debug.LogError("No animation type specified");
+			return;
+		}
 
-		string targetObjectName = "";
-		switch (animType)
+		string targetObjectName = ""; // TODO animationSettingsManager.animType.toString();
+		switch (animationSettingsManager.animType)
 		{
 			case AnimationType.Block:
 				targetObjectName = "Block";
@@ -245,11 +237,11 @@ public class AnimationController : MonoBehaviour
 		lerpTimeElapsed = 0f;
 		startLerpValue = 0f;
 		endLerpValue = 1f;
-		animationLength = animationTimingManager.armMoveDuration;
+		animationLength = animationSettingsManager.armMoveDuration;
 
 		// Setting position + rotation
 		// TODO calculate for any target position
-		animationMappings.setAllTargetMappings(animType);
+		animationMappings.setAllTargetMappings(animationSettingsManager.animType);
 		animationMappings.alignTargetTransforms();
 
 		animState = Enums.AnimationState.Playing;
@@ -264,7 +256,7 @@ public class AnimationController : MonoBehaviour
 		lerpTimeElapsed = 0f;
 		startLerpValue = 1f;
 		endLerpValue = 0f;
-		animationLength = animationTimingManager.handMoveDuration;
+		animationLength = animationSettingsManager.handMoveDuration;
 
 		// Setting position + rotation
 		// We don't have to set the positions of targets here, because we're simply releasing the hand grip + moving arm to relaxed position
@@ -273,26 +265,13 @@ public class AnimationController : MonoBehaviour
 		animPart = AnimationPart.Hand;
 
 		// here we set it in code, since release of hand is the same state after every type of animation
-		animType = AnimationType.Off;
+		animationSettingsManager.changeAnimTypeValue(animationSettingsManager.animType, AnimationType.Off);
 
 		if(isFakeArm) {
 			targetObject.GetComponent<Renderer>().enabled = false;
 			figureRenderer.enabled = false;
 		} else {
 			targetObject.GetComponent<Rigidbody>().useGravity = true;
-		}
-		
-	}
-
-	public void dropdownChanged(TMP_Dropdown dropdown) {
-		switch (dropdown.options[dropdown.value].text)
-		{
-			case "Off": animType = AnimationType.Off; break;
-			case "Cube": animType = AnimationType.Cube; break;
-			case "Cup": animType = AnimationType.Cup; break;
-			case "Key": animType = AnimationType.Key; break;
-			case "Block": animType = AnimationType.Block; break;
-			default: break;
 		}
 	}
 

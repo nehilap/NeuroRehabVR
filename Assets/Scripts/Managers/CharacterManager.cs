@@ -7,6 +7,8 @@ using UnityEngine.InputSystem.XR;
 
 public class CharacterManager : NetworkBehaviour
 {
+	public static CharacterManager localCharacter;
+
 	public GameObject[] items;
 
 	public ActionBasedController[] XRControllers;
@@ -17,8 +19,11 @@ public class CharacterManager : NetworkBehaviour
 
 	public InputActionManager inputActionManager;
 
-	public override void OnStartLocalPlayer()
-	{
+	public GameObject arm;
+	public GameObject armFake;
+		
+
+	public override void OnStartLocalPlayer() {
 		base.OnStartLocalPlayer();
 		Debug.Log("Local Character started");
 
@@ -55,10 +60,25 @@ public class CharacterManager : NetworkBehaviour
 		canvas.worldCamera = mainCam;
 		canvas.planeDistance = 1;
         */
+
+		RoleManager roleManager = GameObject.Find("GameManager").GetComponent<RoleManager>();
+		if (roleManager.characterRole == Enums.UserRole.Patient) {
+			GameObject therapistMenu = GameObject.Find("TherapistMenu");
+			if (therapistMenu != null) {
+				TherapistMenuManager therapistMenuManager = therapistMenu.GetComponent<TherapistMenuManager>();
+				therapistMenuManager.setupPatientIdentity(GetComponent<NetworkIdentity>());
+			}
+		}
 	}
 
-	void Start()
-	{
+	public override void OnStartClient () {
+            if (isLocalPlayer) {
+                localCharacter = this;
+            }
+        }
+
+
+	void Start() {
 		// if non local character prefab is loaded we have to disable components such as camera, etc. otherwise Multiplayer aspect wouldn't work properly 
 		if (!isLocalPlayer)	{
 			if(head.GetComponent<Camera>() != null) {
@@ -73,12 +93,6 @@ public class CharacterManager : NetworkBehaviour
 
 			for (int i = 0; i < XRControllers.Length; i++) {
 				XRControllers[i].enabled = false;
-			}
-		} else { // isLocalPlayer == true
-			// if we are local player, we call method to setup visibility of the menu in OUR view only
-			Debug.Log(GameObject.Find("TherapistMenu"));
-			if (GameObject.Find("TherapistMenu") != null) {
-				// GameObject.Find("TherapistMenu").GetComponent<RoleBasedVisibility>().setupVisibility();
 			}
 		}
 	}
@@ -152,4 +166,40 @@ public class CharacterManager : NetworkBehaviour
     public void CmdReleaseAuthority(NetworkIdentity itemID) {
         ReleaseAuthority(itemID);
     }
+
+	/**
+	*
+	* CALLING ANIMATIONS ON CLIENTS
+	*
+	*/
+
+	[Command]
+	public void CmdStartAnimationShowcase(NetworkIdentity _patientIdentity) {
+		TargetStartActualAnimation(_patientIdentity.connectionToClient, true);
+	}
+
+	[Command]
+	public void CmdStartAnimation(NetworkIdentity _patientIdentity) {
+		TargetStartActualAnimation(_patientIdentity.connectionToClient, false);
+	}
+
+	[Command]
+	public void CmdStopAnimation(NetworkIdentity _patientIdentity) {
+		TargetStopActualAnimation(_patientIdentity.connectionToClient);
+	}
+
+	[TargetRpc]
+	public void TargetStartActualAnimation(NetworkConnection target, bool isShowcase) {
+		if(isShowcase) {
+			localCharacter.armFake.GetComponent<AnimationController>().startAnimation();
+		} else {
+			localCharacter.arm.GetComponent<AnimationController>().startAnimation();
+		}
+	}
+
+	[TargetRpc]
+	public void TargetStopActualAnimation(NetworkConnection target) {
+		localCharacter.armFake.GetComponent<AnimationController>().stopAnimation();
+		localCharacter.arm.GetComponent<AnimationController>().stopAnimation();
+	}
 }

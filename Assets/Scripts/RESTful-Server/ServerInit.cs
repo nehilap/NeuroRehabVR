@@ -31,7 +31,7 @@ public class ServerInit : NetworkBehaviour
 {
 	private const string TAG = "Server Init";
 
-	public int port = 8080;
+	public int port = 7777;
 	public string username = "";
 	public string password = "";
 

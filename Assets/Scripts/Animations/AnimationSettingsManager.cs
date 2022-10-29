@@ -2,8 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Mirror;
+using Enums;
 
-public class AnimationTimingManager : NetworkBehaviour
+public class AnimationSettingsManager : NetworkBehaviour
 {
 	[SyncVar(hook = nameof(changeArmMoveDurationElements))] [Range(0.5f, 5f)]
 	public float armMoveDuration = 1.5f;
@@ -17,6 +18,9 @@ public class AnimationTimingManager : NetworkBehaviour
 	[SyncVar(hook = nameof(changeMoveDurationElements))] [Range(0.5f, 10f)]
 	public float moveDuration = 4f;
 
+	[SyncVar(hook = nameof(changeAnimTypeValue))]
+	public AnimationType animType;
+
 	public TMP_Text armMoveTextValue;
 	public Slider armMoveSlider;
 
@@ -28,6 +32,8 @@ public class AnimationTimingManager : NetworkBehaviour
 
 	public TMP_Text moveDurTextValue;
 	public Slider moveDurSlider;
+
+	public TMP_Dropdown animTypeDropdown;
 
 	void Start() {
 		changeArmMoveDurationElements(0, 0);
@@ -63,6 +69,13 @@ public class AnimationTimingManager : NetworkBehaviour
 		moveDurSlider.value = (int) (moveDuration * 2);
 	}
 
+	public void changeAnimTypeValue(AnimationType _old, AnimationType _new) {
+		animType = _new;
+
+		animTypeDropdown.value = animTypeDropdown.options.FindIndex(option => option.text == _new.ToString());
+		CMDUpdateAnimType(animType);
+	}
+
 	/*
 	* HANDLERS for assigning them in editor
 	*/
@@ -95,6 +108,19 @@ public class AnimationTimingManager : NetworkBehaviour
 		CMDUpdateMoveDuration(moveDuration);
 	}
 
+	public void animationTypeDropdownHandler(TMP_Dropdown dropdown) {
+		switch (dropdown.options[dropdown.value].text)
+		{
+			case "Off": animType = AnimationType.Off; break;
+			case "Cube": animType = AnimationType.Cube; break;
+			case "Cup": animType = AnimationType.Cup; break;
+			case "Key": animType = AnimationType.Key; break;
+			case "Block": animType = AnimationType.Block; break;
+			default: break;
+		}
+		CMDUpdateAnimType(animType);
+	}
+
 	/*
 	* COMMANDS FOR SERVER
 	* requires authority is off because we are firing off these commands from object, not 'player'
@@ -118,5 +144,12 @@ public class AnimationTimingManager : NetworkBehaviour
 	[Command(requiresAuthority = false)]
 	public void CMDUpdateMoveDuration(float value) {
 		moveDuration = value;
+	}
+
+	[Command(requiresAuthority = false)]
+	public void CMDUpdateAnimType(AnimationType _animType) {
+		if (animType != _animType) {
+			animType = _animType;
+		}
 	}
 }
