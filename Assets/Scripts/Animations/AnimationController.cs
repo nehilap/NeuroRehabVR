@@ -36,9 +36,7 @@ public class AnimationController : MonoBehaviour
 
 		animationMappings = new AnimationMapping();
 
-		if (GameObject.Find("AnimationTimers") != null) {
-			animationSettingsManager = GameObject.Find("AnimationTimers").GetComponent<AnimationSettingsManager>();
-		}
+		animationSettingsManager = GameObject.Find("AnimationSettingsObject")?.GetComponent<AnimationSettingsManager>();
 
 		armRig = transform.Find("ArmRig").GetComponent<Rig>();
 		handRig = transform.Find("HandRig").GetComponent<Rig>();
@@ -126,8 +124,15 @@ public class AnimationController : MonoBehaviour
 						endLerpValue = 0f;
 						animationLength = animationSettingsManager.armMoveDuration;
 						animPart = AnimationPart.Arm;
-					} else {
+					} else { // Animation is over!! OVER!!!
 						animState = Enums.AnimationState.Stopped;
+
+						if(isFakeArm) {
+							targetObject.GetComponent<Renderer>().enabled = false;
+							figureRenderer.enabled = false;
+						} else {
+							targetObject.GetComponent<Rigidbody>().useGravity = true;
+						}
 					}
 				} else if(animationSettingsManager.animType == AnimationType.Block) {
 					blockAnimHandler();
@@ -140,8 +145,8 @@ public class AnimationController : MonoBehaviour
 				}
 			}
 			
-			Debug.Log(animPart);
-			Debug.Log(animState);
+			// Debug.Log(animPart);
+			// Debug.Log(animState);
 		}
 	}
 
@@ -265,14 +270,7 @@ public class AnimationController : MonoBehaviour
 		animPart = AnimationPart.Hand;
 
 		// here we set it in code, since release of hand is the same state after every type of animation
-		animationSettingsManager.changeAnimTypeValue(animationSettingsManager.animType, AnimationType.Off);
-
-		if(isFakeArm) {
-			targetObject.GetComponent<Renderer>().enabled = false;
-			figureRenderer.enabled = false;
-		} else {
-			targetObject.GetComponent<Rigidbody>().useGravity = true;
-		}
+		animationSettingsManager.setAnimType(AnimationType.Off);
 	}
 
 	private GameObject findChildByName(string name) {

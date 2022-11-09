@@ -61,6 +61,7 @@ public class CustomNetworkManager : NetworkManager
     void OnCreateCharacter(NetworkConnectionToClient conn, CharacterMessage message)
     {
         string hmdPostfix = "";
+        Debug.Log(hmdInfoManager.hmdType.ToString());
         if(hmdInfoManager.hmdType == HMDType.Mock) {
             hmdPostfix = "Simulated";
         }

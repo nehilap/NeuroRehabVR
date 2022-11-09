@@ -19,7 +19,7 @@ public class AnimationSettingsManager : NetworkBehaviour
 	public float moveDuration = 4f;
 
 	[SyncVar(hook = nameof(changeAnimTypeValue))]
-	public AnimationType animType;
+	public AnimationType animType = AnimationType.Block;
 
 	public TMP_Text armMoveTextValue;
 	public Slider armMoveSlider;
@@ -39,7 +39,20 @@ public class AnimationSettingsManager : NetworkBehaviour
 		changeArmMoveDurationElements(0, 0);
 		changeHandMoveDurationElements(0, 0);
 		changeWaitDurationElements(0, 0);
-		changeMoveDurationElements(0, 0);
+		changeMoveDurationElements(0f, 0f);
+
+		changeAnimTypeValue(AnimationType.Off, AnimationType.Off);
+
+		if (isServer) {
+			setAnimType(AnimationType.Block);
+		}
+	}
+
+	public void setAnimType(AnimationType _animType) {
+		animType =_animType;
+		CMDUpdateAnimType(_animType);
+		
+		changeAnimTypeValue(AnimationType.Off, AnimationType.Off);
 	}
 
 	/*
@@ -69,11 +82,8 @@ public class AnimationSettingsManager : NetworkBehaviour
 		moveDurSlider.value = (int) (moveDuration * 2);
 	}
 
-	public void changeAnimTypeValue(AnimationType _old, AnimationType _new) {
-		animType = _new;
-
-		animTypeDropdown.value = animTypeDropdown.options.FindIndex(option => option.text == _new.ToString());
-		CMDUpdateAnimType(animType);
+	private void changeAnimTypeValue(AnimationType _old, AnimationType _new) {
+		animTypeDropdown.value = animTypeDropdown.options.FindIndex(option => option.text == animType.ToString());
 	}
 
 	/*
@@ -148,8 +158,6 @@ public class AnimationSettingsManager : NetworkBehaviour
 
 	[Command(requiresAuthority = false)]
 	public void CMDUpdateAnimType(AnimationType _animType) {
-		if (animType != _animType) {
-			animType = _animType;
-		}
+		animType = _animType;
 	}
 }

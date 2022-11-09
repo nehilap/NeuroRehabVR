@@ -7241,6 +7241,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1173649893461978357, guid: b0f16b31c8f0ff64592deb525149f2f8, type: 3}
+      propertyPath: animType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1173649893461978357, guid: b0f16b31c8f0ff64592deb525149f2f8, type: 3}
       propertyPath: armMoveText
       value: 
       objectReference: {fileID: 317794877}
@@ -7256,6 +7260,10 @@ PrefabInstance:
       propertyPath: handMoveText
       value: 
       objectReference: {fileID: 44071855}
+    - target: {fileID: 1173649893461978357, guid: b0f16b31c8f0ff64592deb525149f2f8, type: 3}
+      propertyPath: moveDuration
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1173649893461978357, guid: b0f16b31c8f0ff64592deb525149f2f8, type: 3}
       propertyPath: armMoveSlider
       value: 
@@ -7294,7 +7302,7 @@ PrefabInstance:
       objectReference: {fileID: 44071855}
     - target: {fileID: 1173649893461978359, guid: b0f16b31c8f0ff64592deb525149f2f8, type: 3}
       propertyPath: m_Name
-      value: AnimationTimers
+      value: AnimationSettingsObject
       objectReference: {fileID: 0}
     - target: {fileID: 4344473024364349043, guid: b0f16b31c8f0ff64592deb525149f2f8, type: 3}
       propertyPath: sceneId

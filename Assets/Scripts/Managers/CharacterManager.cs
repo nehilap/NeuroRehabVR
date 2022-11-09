@@ -9,6 +9,8 @@ public class CharacterManager : NetworkBehaviour
 {
 	public static CharacterManager localCharacter;
 
+	public static CharacterManager localPatient;
+
 	public GameObject[] items;
 
 	public ActionBasedController[] XRControllers;
@@ -21,7 +23,7 @@ public class CharacterManager : NetworkBehaviour
 
 	public GameObject arm;
 	public GameObject armFake;
-		
+
 
 	public override void OnStartLocalPlayer() {
 		base.OnStartLocalPlayer();
@@ -34,8 +36,7 @@ public class CharacterManager : NetworkBehaviour
 
 		// We find all canvases and set them up to work correctly with the VR camera settings
 		GameObject[] menus = FindGameObjectsInLayer(6); // 6 = Canvas
-		for (int i = 0; i < menus.Length; i++)
-		{
+		for (int i = 0; i < menus.Length; i++) {
 			Canvas canvas = menus[i].GetComponent<Canvas>();
 			canvas.renderMode = RenderMode.WorldSpace;
 			canvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -66,7 +67,6 @@ public class CharacterManager : NetworkBehaviour
 			GameObject therapistMenu = GameObject.Find("TherapistMenu");
 			if (therapistMenu != null) {
 				TherapistMenuManager therapistMenuManager = therapistMenu.GetComponent<TherapistMenuManager>();
-				therapistMenuManager.setupPatientIdentity(GetComponent<NetworkIdentity>());
 			}
 		}
 	}
@@ -95,10 +95,14 @@ public class CharacterManager : NetworkBehaviour
 				XRControllers[i].enabled = false;
 			}
 		}
+
+		if ((arm != null && armFake != null) && localPatient == null) {
+			localPatient = this;
+		}
 	}
 
-	// We search through all object loaded in scene in certain layer
-	// ideally shouldn't be used too much when there are many objects
+	// We search through all objects loaded in scene in certain layer
+	// ideally shouldn't be used too much when there are too many objects
 	GameObject[] FindGameObjectsInLayer(int layer) {
 		var goArray = FindObjectsOfType(typeof(GameObject)) as GameObject[];
 		var goList = new System.Collections.Generic.List<GameObject>();
@@ -174,20 +178,33 @@ public class CharacterManager : NetworkBehaviour
 	*/
 
 	[Command]
-	public void CmdStartAnimationShowcase(NetworkIdentity _patientIdentity) {
-		TargetStartActualAnimation(_patientIdentity.connectionToClient, true);
+	public void CmdStartAnimationShowcase() {
+		RpcStartActualAnimation(true);
 	}
 
 	[Command]
-	public void CmdStartAnimation(NetworkIdentity _patientIdentity) {
-		TargetStartActualAnimation(_patientIdentity.connectionToClient, false);
+	public void CmdStartAnimation() {
+		RpcStartActualAnimation(false);
 	}
 
 	[Command]
-	public void CmdStopAnimation(NetworkIdentity _patientIdentity) {
-		TargetStopActualAnimation(_patientIdentity.connectionToClient);
+	public void CmdStopAnimation() {
+		RpcStopActualAnimation();
 	}
 
+	[ClientRpc]
+	public void RpcStartActualAnimation(bool isShowcase) {
+		if (localPatient == null) {
+			return;
+		}
+
+		if(isShowcase) {
+			localPatient.armFake.GetComponent<AnimationController>().startAnimation();
+		} else {
+			localPatient.arm.GetComponent<AnimationController>().startAnimation();
+		}
+	}
+/*
 	[TargetRpc]
 	public void TargetStartActualAnimation(NetworkConnection target, bool isShowcase) {
 		if(isShowcase) {
@@ -196,10 +213,14 @@ public class CharacterManager : NetworkBehaviour
 			localCharacter.arm.GetComponent<AnimationController>().startAnimation();
 		}
 	}
+*/
+	[ClientRpc]
+	public void RpcStopActualAnimation() {
+		if (localPatient == null) {
+			return;
+		}
 
-	[TargetRpc]
-	public void TargetStopActualAnimation(NetworkConnection target) {
-		localCharacter.armFake.GetComponent<AnimationController>().stopAnimation();
-		localCharacter.arm.GetComponent<AnimationController>().stopAnimation();
+		localPatient.armFake.GetComponent<AnimationController>().stopAnimation();
+		localPatient.arm.GetComponent<AnimationController>().stopAnimation();
 	}
 }
