@@ -33,8 +33,7 @@ public class CustomNetworkManager : NetworkManager
     }
 
     // Called on SERVER only when SERVER starts
-    public override void OnStartServer()
-    {
+    public override void OnStartServer() {
         base.OnStartServer();
         Setup();
 
@@ -42,8 +41,7 @@ public class CustomNetworkManager : NetworkManager
     }
 
     // Called on CLIENT only when CLIENT connects
-    public override void OnClientConnect()
-    {
+    public override void OnClientConnect() {
         base.OnClientConnect();
         Setup();
         
@@ -58,8 +56,7 @@ public class CustomNetworkManager : NetworkManager
     }
 
     // https://mirror-networking.gitbook.io/docs/guides/gameobjects/custom-character-spawning
-    void OnCreateCharacter(NetworkConnectionToClient conn, CharacterMessage message)
-    {
+    void OnCreateCharacter(NetworkConnectionToClient conn, CharacterMessage message) {
         string hmdPostfix = "";
         Debug.Log(hmdInfoManager.hmdType.ToString());
         if(hmdInfoManager.hmdType == HMDType.Mock) {
@@ -68,5 +65,18 @@ public class CustomNetworkManager : NetworkManager
 
         GameObject gameobject = Instantiate(characterPrefabs[message.role + hmdPostfix]);
         NetworkServer.AddPlayerForConnection(conn, gameobject);
+    }
+
+    public override void OnServerDisconnect(NetworkConnectionToClient conn) {
+        NetworkIdentity[] ownedObjects = new NetworkIdentity[conn.clientOwnedObjects.Count];
+        conn.clientOwnedObjects.CopyTo(ownedObjects);
+        foreach (NetworkIdentity networkIdentity in ownedObjects) {
+            if (networkIdentity.gameObject.layer == 7) {
+                continue;
+            }
+            networkIdentity.RemoveClientAuthority();
+        }
+
+        base.OnServerDisconnect(conn);
     }
 }

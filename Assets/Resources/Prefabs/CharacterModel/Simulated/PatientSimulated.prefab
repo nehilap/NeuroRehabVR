@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 705702135395090861}
   - component: {fileID: 2123785252732695288}
   - component: {fileID: 8951165763945285648}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PatientSimulated
   m_TagString: Untagged
   m_Icon: {fileID: 0}

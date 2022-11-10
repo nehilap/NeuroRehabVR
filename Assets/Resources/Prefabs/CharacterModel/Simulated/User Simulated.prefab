@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 3474524541955631110}
   - component: {fileID: 7856864271151161278}
   - component: {fileID: 705702135395090861}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: User Simulated
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,11 +351,14 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   items: []
+  XRControllers: []
   interactors:
   - {fileID: 1841910511505662567}
   - {fileID: 5754200158560209038}
   head: {fileID: 1878698787931433297}
   inputActionManager: {fileID: 1878698789788651961}
+  arm: {fileID: 0}
+  armFake: {fileID: 0}
 --- !u!114 &3474524541955631110
 MonoBehaviour:
   m_ObjectHideFlags: 0

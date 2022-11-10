@@ -4,6 +4,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation;
 using UnityEngine.InputSystem.XR;
+using System.Collections.Generic;
 
 public class CharacterManager : NetworkBehaviour
 {
@@ -24,6 +25,7 @@ public class CharacterManager : NetworkBehaviour
 	public GameObject arm;
 	public GameObject armFake;
 
+	private List<Transform> interactedObjects;
 
 	public override void OnStartLocalPlayer() {
 		base.OnStartLocalPlayer();
@@ -53,7 +55,7 @@ public class CharacterManager : NetworkBehaviour
 		// interactors should contain all hands (controllers) that are to be used to interact with items
 		for (int i = 0; i < interactors.Length; i++) {
         	interactors[i].selectEntered.AddListener(itemPickUp);
-			interactors[i].selectExited.AddListener(itemRelease);
+			// interactors[i].selectExited.AddListener(itemRelease);
 		}
         /*
 		Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
@@ -72,13 +74,15 @@ public class CharacterManager : NetworkBehaviour
 	}
 
 	public override void OnStartClient () {
-            if (isLocalPlayer) {
-                localCharacter = this;
-            }
-        }
+		if (isLocalPlayer) {
+			localCharacter = this;
+		}
+	}
 
 
 	void Start() {
+		interactedObjects = new List<Transform>();
+
 		// if non local character prefab is loaded we have to disable components such as camera, etc. otherwise Multiplayer aspect wouldn't work properly 
 		if (!isLocalPlayer)	{
 			if(head.GetComponent<Camera>() != null) {
@@ -139,17 +143,6 @@ public class CharacterManager : NetworkBehaviour
 		}
 	}
 
-	void itemRelease(SelectExitEventArgs args) {
-		if (hasAuthority) {
-			// if not server, we ask server to release authority
-			NetworkIdentity itemNetIdentity = args.interactableObject.transform.GetComponent<NetworkIdentity>();
-			if (isServer)
-				ReleaseAuthority(itemNetIdentity);
-			else
-				CmdReleaseAuthority(itemNetIdentity);
-		}
-	}
- 
     void SetItemAuthority(NetworkIdentity item, NetworkIdentity newPlayerOwner) {
 		Debug.Log("Granting authority:" + item.netId + " to:" + newPlayerOwner.netId);
 		item.RemoveClientAuthority();
@@ -160,6 +153,20 @@ public class CharacterManager : NetworkBehaviour
     public void CmdSetItemAuthority(NetworkIdentity itemID, NetworkIdentity newPlayerOwner) {
         SetItemAuthority(itemID, newPlayerOwner);
     }
+
+    /* ITEM RELEASE CURRENTLY NOT USED DUE TO HOW BUGGY IT WAS */
+	// Instead it's handled in CustomNetworkManager.cs
+	void itemRelease(Transform interactedObject) {
+		// if not server, we ask server to release authority
+		NetworkIdentity itemNetIdentity = interactedObject.GetComponent<NetworkIdentity>();
+		if (!itemNetIdentity.hasAuthority) {
+			return;
+		}
+		if (isServer)
+			ReleaseAuthority(itemNetIdentity);
+		else
+			CmdReleaseAuthority(itemNetIdentity);
+	}
 
 	void ReleaseAuthority(NetworkIdentity item) {
 		Debug.Log("Releasing authority:" + item.netId);
