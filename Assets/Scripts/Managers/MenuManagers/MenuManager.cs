@@ -11,8 +11,7 @@ public class MenuManager : MonoBehaviour
 
     private JoinManager joinManager;
 
-    void Start()
-    {
+    void Start() {
         joinManager = new JoinManager();
         /*
         Canvas canvas = gameObject.GetComponent<Canvas>();
@@ -40,7 +39,7 @@ public class MenuManager : MonoBehaviour
 
     public void QuitApp() {
         Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false; // TODO remove later
+        // UnityEditor.EditorApplication.isPlaying = false; // TODO remove later
     }
 
     public void SendSync() => StartCoroutine(PostData_Coroutine());
