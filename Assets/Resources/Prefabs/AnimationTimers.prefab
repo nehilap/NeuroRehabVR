@@ -45,13 +45,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050fbbe02664d0049a9a5e28ff1c4b05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   armMoveDuration: 1.5
   handMoveDuration: 1.5
-  moveDuration: 1.5
-  armMoveText: {fileID: 0}
+  waitDuration: 10
+  moveDuration: 4
+  animType: 3
+  armMoveTextValue: {fileID: 0}
   armMoveSlider: {fileID: 0}
-  handMoveText: {fileID: 0}
+  handMoveTextValue: {fileID: 0}
   handMoveSlider: {fileID: 0}
+  waitDurTextValue: {fileID: 0}
+  waitDurSlider: {fileID: 0}
+  moveDurTextValue: {fileID: 0}
+  moveDurSlider: {fileID: 0}
+  animTypeDropdown: {fileID: 0}
 --- !u!114 &4344473024364349043
 MonoBehaviour:
   m_ObjectHideFlags: 0

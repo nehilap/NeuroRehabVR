@@ -38,10 +38,7 @@ public class CustomNetworkManager : NetworkManager
         // we load character models from Resources folder (Prefabs folder is inside Resources)
         string[] roles = System.Enum.GetNames(typeof(UserRole));
         for (int i = 0; i < roles.Length; i++) {
-            characterPrefabs.Add(roles[i], Resources.Load<GameObject>("Prefabs/CharacterModel/Normal/" + roles[i]));
-        }
-        for (int i = 0; i < roles.Length; i++) {
-            characterPrefabs.Add(roles[i]+ "Simulated", Resources.Load<GameObject>("Prefabs/CharacterModel/Simulated/" + roles[i] + "Simulated"));
+            characterPrefabs.Add(roles[i], Resources.Load<GameObject>("Prefabs/CharacterModel/" + roles[i]));
         }
     }
 
@@ -73,13 +70,15 @@ public class CustomNetworkManager : NetworkManager
 
     // https://mirror-networking.gitbook.io/docs/guides/gameobjects/custom-character-spawning
     void OnCreateCharacter(NetworkConnectionToClient conn, CharacterMessage message) {
+        /*
         string hmdPostfix = "";
         
         if(hmdInfoManager.hmdType == HMDType.Mock) {
             hmdPostfix = "Simulated";
         }
+        */
 
-        GameObject gameobject = Instantiate(characterPrefabs[message.role + hmdPostfix]);
+        GameObject gameobject = Instantiate(characterPrefabs[message.role.ToString()]);
         NetworkServer.AddPlayerForConnection(conn, gameobject);
     }
 

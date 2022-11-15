@@ -36,16 +36,7 @@ public class AnimationSettingsManager : NetworkBehaviour
 	public TMP_Dropdown animTypeDropdown;
 
 	void Start() {
-		changeArmMoveDurationElements(0, 0);
-		changeHandMoveDurationElements(0, 0);
-		changeWaitDurationElements(0, 0);
-		changeMoveDurationElements(0f, 0f);
-
-		changeAnimTypeValue(AnimationType.Off, AnimationType.Off);
-
-		if (isServer) {
-			setAnimType(AnimationType.Block);
-		}
+		setAllElements();
 	}
 
 	public void setAnimType(AnimationType _animType) {
@@ -83,6 +74,22 @@ public class AnimationSettingsManager : NetworkBehaviour
 	}
 
 	private void changeAnimTypeValue(AnimationType _old, AnimationType _new) {
+		animTypeDropdown.value = animTypeDropdown.options.FindIndex(option => option.text == animType.ToString());
+	}
+
+	private void setAllElements() {
+		armMoveTextValue.text = (Mathf.Round(armMoveDuration * 10) / 10).ToString("F1") + " s";
+		armMoveSlider.value = (int) (armMoveDuration * 2);
+
+		handMoveTextValue.text = (Mathf.Round(handMoveDuration * 10) / 10).ToString("F1") + " s";
+		handMoveSlider.value = (int) (handMoveDuration * 2);
+
+		waitDurTextValue.text = (Mathf.Round(waitDuration * 10) / 10).ToString("F1") + " s";
+		waitDurSlider.value = (int) (waitDuration * 2);
+
+		moveDurTextValue.text = (Mathf.Round(moveDuration * 10) / 10).ToString("F1") + " s";
+		moveDurSlider.value = (int) (moveDuration * 2);
+
 		animTypeDropdown.value = animTypeDropdown.options.FindIndex(option => option.text == animType.ToString());
 	}
 
@@ -138,26 +145,36 @@ public class AnimationSettingsManager : NetworkBehaviour
 
 	[Command(requiresAuthority = false)]
 	public void CMDUpdateArmDuration(float value) {
+		if (armMoveDuration == value) return;
+
 		armMoveDuration = value;
 	}
 
 	[Command(requiresAuthority = false)]
 	public void CMDUpdateHandDuration(float value) {
+		if (handMoveDuration == value) return;
+
 		handMoveDuration = value;
 	}
 
 	[Command(requiresAuthority = false)]
 	public void CMDUpdateWaitDuration(float value) {
+		if (waitDuration == value) return;
+		
 		waitDuration = value;
 	}
 	
 	[Command(requiresAuthority = false)]
 	public void CMDUpdateMoveDuration(float value) {
+		if (moveDuration == value) return;
+		
 		moveDuration = value;
 	}
 
 	[Command(requiresAuthority = false)]
 	public void CMDUpdateAnimType(AnimationType _animType) {
+		if (animType == _animType) return;
+		
 		animType = _animType;
 	}
 }

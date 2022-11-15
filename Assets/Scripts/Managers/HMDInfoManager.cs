@@ -22,7 +22,7 @@ public class HMDInfoManager : MonoBehaviour
             hmdType = HMDType.Other;
             if(XRSettings.loadedDeviceName.Equals("MockHMD Display")) { 
                 // if MockHMD, we make the game view render only using one eye
-                XRSettings.gameViewRenderMode = GameViewRenderMode.LeftEye;
+                // XRSettings.gameViewRenderMode = GameViewRenderMode.LeftEye;
                 hmdType = HMDType.Mock;
             }
         }

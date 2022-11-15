@@ -57,12 +57,10 @@ public class CharacterManager : NetworkBehaviour
         	interactors[i].selectEntered.AddListener(itemPickUp);
 			// interactors[i].selectExited.AddListener(itemRelease);
 		}
-        /*
-		Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-		canvas.renderMode = RenderMode.ScreenSpaceCamera;
-		canvas.worldCamera = mainCam;
-		canvas.planeDistance = 1;
-        */
+        for (int i = 0; i < XRControllers.Length; i++) {
+			XRControllers[i].enableInputTracking = true;
+			XRControllers[i].enableInputActions = true;
+		}
 
 		RoleManager roleManager = GameObject.Find("GameManager").GetComponent<RoleManager>();
 		if (roleManager.characterRole == Enums.UserRole.Patient) {
