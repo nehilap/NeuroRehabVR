@@ -14,7 +14,7 @@ public class CharacterManager : NetworkBehaviour
 
 	public GameObject[] items;
 
-	public ActionBasedController[] XRControllers;
+	public XRBaseController[] XRControllers;
 
 	public XRBaseControllerInteractor[] interactors;
 
@@ -131,6 +131,9 @@ public class CharacterManager : NetworkBehaviour
 		
 		// we get net identity from current object of character
 		NetworkIdentity identity = base.GetComponent<NetworkIdentity>();
+
+		if (identity == null) return;
+
 		if (hasAuthority) {
 			// if not server, we ask server to grant us authority
 			NetworkIdentity itemNetIdentity = args.interactableObject.transform.GetComponent<NetworkIdentity>();
