@@ -5,17 +5,20 @@ using UnityEngine.XR.Interaction.Toolkit.Inputs;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation;
 using UnityEngine.InputSystem.XR;
 using System.Collections.Generic;
+using Mappings;
+using Enums;
+using UnityEditor;
 
 public class CharacterManager : NetworkBehaviour
 {
-	public static CharacterManager localCharacter;
+	public static CharacterManager localClient;
+	public static CharacterManager activePatient;
 
-	public static CharacterManager localPatient;
+	public List<GameObject> targetPrefabs = new List<GameObject>();
 
-	public GameObject[] items;
-
+	// Items is array of components that may need to be enabled / activated  only locally
+	public GameObject[] itemsToActivate;
 	public XRBaseController[] XRControllers;
-
 	public XRBaseControllerInteractor[] interactors;
 
 	public GameObject head;
@@ -27,13 +30,15 @@ public class CharacterManager : NetworkBehaviour
 
 	private List<Transform> interactedObjects;
 
+	private GameObject spawnArea;
+
 	public override void OnStartLocalPlayer() {
 		base.OnStartLocalPlayer();
 		Debug.Log("Local Character started");
 
-		// Items is array of components that may need to be enabled / activated  only locally (currently not used)
-		for (int i = 0; i < items.Length; i++) {
-			items[i].SetActive(true);
+		// Items is array of components that may need to be enabled / activated  only locally
+		for (int i = 0; i < itemsToActivate.Length; i++) {
+			itemsToActivate[i].SetActive(true);
 		}
 
 		// We find all canvases and set them up to work correctly with the VR camera settings
@@ -52,7 +57,7 @@ public class CharacterManager : NetworkBehaviour
 		GameObject.Find("XR Device Simulator").GetComponent<XRDeviceSimulator>().cameraTransform = head.transform;
 
 		// We add listeners on item pick up / release
-		// interactors should contain all hands (controllers) that are to be used to interact with items
+		// interactors should contain all hands (XRcontrollers and interactors) that are to be used to interact with items
 		for (int i = 0; i < interactors.Length; i++) {
         	interactors[i].selectEntered.AddListener(itemPickUp);
 			// interactors[i].selectExited.AddListener(itemRelease);
@@ -72,11 +77,20 @@ public class CharacterManager : NetworkBehaviour
 	}
 
 	public override void OnStartClient () {
+		base.OnStartClient();
+
 		if (isLocalPlayer) {
-			localCharacter = this;
+			localClient = this;
 		}
 	}
 
+	public override void OnStopClient() {
+		base.OnStopClient();
+
+		if ((arm != null && armFake != null) && activePatient != null) {
+			activePatient = null;
+		}
+	}
 
 	void Start() {
 		interactedObjects = new List<Transform>();
@@ -98,9 +112,11 @@ public class CharacterManager : NetworkBehaviour
 			}
 		}
 
-		if ((arm != null && armFake != null) && localPatient == null) {
-			localPatient = this;
+		if ((arm != null && armFake != null) && activePatient == null) {
+			activePatient = this;
 		}
+
+		spawnArea = GameObject.Find("SpawnArea");
 	}
 
 	// We search through all objects loaded in scene in certain layer
@@ -127,7 +143,7 @@ public class CharacterManager : NetworkBehaviour
 	* this is used for certain VR functions to work as intended in multiplayer space such as grabbing an item
 	* 
 	*/
-	void itemPickUp(SelectEnterEventArgs args) {
+	private void itemPickUp(SelectEnterEventArgs args) {
 		
 		// we get net identity from current object of character
 		NetworkIdentity identity = base.GetComponent<NetworkIdentity>();
@@ -144,7 +160,7 @@ public class CharacterManager : NetworkBehaviour
 		}
 	}
 
-    void SetItemAuthority(NetworkIdentity item, NetworkIdentity newPlayerOwner) {
+    private void SetItemAuthority(NetworkIdentity item, NetworkIdentity newPlayerOwner) {
 		Debug.Log("Granting authority:" + item.netId + " to:" + newPlayerOwner.netId);
 		item.RemoveClientAuthority();
         item.AssignClientAuthority(newPlayerOwner.connectionToClient);
@@ -155,8 +171,13 @@ public class CharacterManager : NetworkBehaviour
         SetItemAuthority(itemID, newPlayerOwner);
     }
 
-    /* ITEM RELEASE CURRENTLY NOT USED DUE TO HOW BUGGY IT WAS */
+    /* 
+	*
+	* ITEM RELEASE 
+	* CURRENTLY NOT USED DUE TO HOW BUGGY IT WAS 
+	*/
 	// Instead it's handled in CustomNetworkManager.cs
+	/*
 	void itemRelease(Transform interactedObject) {
 		// if not server, we ask server to release authority
 		NetworkIdentity itemNetIdentity = interactedObject.GetComponent<NetworkIdentity>();
@@ -178,7 +199,7 @@ public class CharacterManager : NetworkBehaviour
     public void CmdReleaseAuthority(NetworkIdentity itemID) {
         ReleaseAuthority(itemID);
     }
-
+	*/
 	/**
 	*
 	* CALLING ANIMATIONS ON CLIENTS
@@ -202,33 +223,137 @@ public class CharacterManager : NetworkBehaviour
 
 	[ClientRpc]
 	public void RpcStartActualAnimation(bool isShowcase) {
-		if (localPatient == null) {
+		if (activePatient == null) {
 			return;
 		}
 
 		if(isShowcase) {
-			localPatient.armFake.GetComponent<AnimationController>().startAnimation();
+			activePatient.armFake.GetComponent<AnimationController>().startAnimation();
 		} else {
-			localPatient.arm.GetComponent<AnimationController>().startAnimation();
+			activePatient.arm.GetComponent<AnimationController>().startAnimation();
 		}
 	}
-/*
-	[TargetRpc]
-	public void TargetStartActualAnimation(NetworkConnection target, bool isShowcase) {
-		if(isShowcase) {
-			localCharacter.armFake.GetComponent<AnimationController>().startAnimation();
-		} else {
-			localCharacter.arm.GetComponent<AnimationController>().startAnimation();
-		}
-	}
-*/
+
 	[ClientRpc]
 	public void RpcStopActualAnimation() {
-		if (localPatient == null) {
+		if (activePatient == null) {
 			return;
 		}
 
-		localPatient.armFake.GetComponent<AnimationController>().stopAnimation();
-		localPatient.arm.GetComponent<AnimationController>().stopAnimation();
+		activePatient.armFake.GetComponent<AnimationController>().stopAnimation();
+		activePatient.arm.GetComponent<AnimationController>().stopAnimation();
+	}
+
+	/**
+	*
+	* TARGET OBJECT SPAWNING
+	*
+	*/
+
+	[Command]
+	public void CmdSpawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType) {
+		List<GameObject> targetsInScene = GetAllTargetsOnlyInScene();
+		bool foundTarget = false;
+		for (int i = 0; i < targetsInScene.Count; i++) {
+			if (targetsInScene[i].name.Equals(_newAnimType.ToString())) {
+				foundTarget = true;
+				break;
+			}
+		}
+
+		RpcSpawnCorrectTarget(_oldAnimType, _newAnimType, !foundTarget);
+
+		if (isServer) {
+			spawnCorrectTarget(_oldAnimType, _newAnimType, !foundTarget);
+		}
+	}
+
+	[ClientRpc]
+	public void RpcSpawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType, bool spawnNew) {
+		spawnCorrectTarget(_oldAnimType, _newAnimType, spawnNew);
+	}
+
+	// https://gamedevbeginner.com/how-to-spawn-an-object-in-unity-using-instantiate/
+	private void spawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType, bool spawnNew) {
+		if (spawnNew) {
+			for (int i = 0; i < targetPrefabs.Count; i++) {
+				if (targetPrefabs[i].name.Equals(_newAnimType.ToString()) || targetPrefabs[i].name.Equals(_newAnimType.ToString() + "_fake")) {
+					Instantiate(targetPrefabs[i], spawnArea.transform.position, spawnArea.transform.rotation);
+					setAnimationStartPosition();
+				}
+			}
+		} else {
+			List<GameObject> targetsInScene = GetAllTargetsOnlyInScene();
+			for (int i = 0; i < targetsInScene.Count; i++) {
+				if (targetsInScene[i].name.Equals(_newAnimType.ToString()) || targetsInScene[i].name.Equals(_newAnimType.ToString() + "_fake")) {
+					targetsInScene[i].SetActive(true);
+				}
+			}
+		}
+		GameObject.Find(_oldAnimType.ToString())?.SetActive(false);
+		GameObject.Find(_oldAnimType.ToString() + "_fake")?.SetActive(false);
+	}
+
+	// https://docs.unity3d.com/ScriptReference/Resources.FindObjectsOfTypeAll.html
+	private List<GameObject> GetAllTargetsOnlyInScene() {
+        List<GameObject> objectsInScene = new List<GameObject>();
+
+        foreach (Utility.TargetUtility go in Resources.FindObjectsOfTypeAll(typeof(Utility.TargetUtility)) as Utility.TargetUtility[]) {
+            if (!EditorUtility.IsPersistent(go.transform.root.gameObject) && !(go.hideFlags == HideFlags.NotEditable || go.hideFlags == HideFlags.HideAndDontSave))
+                objectsInScene.Add(go.gameObject);
+        }
+
+        return objectsInScene;
+    }
+
+	/*
+	*
+	* SYNCING START / END POSITIONS
+	*
+	*/
+
+	[ClientRpc]
+	public void setAnimationStartPosition() {
+		if (activePatient == null) {
+			return;
+		}
+
+		activePatient.arm.GetComponent<AnimationController>().setAnimationStartPosition();
+		activePatient.armFake.GetComponent<AnimationController>().setAnimationStartPosition();
+	}
+
+	[ClientRpc]
+	public void setAnimationEndPosition() {
+		if (activePatient == null) {
+			return;
+		}
+
+		activePatient.arm.GetComponent<AnimationController>().setAnimationEndPosition();
+		activePatient.armFake.GetComponent<AnimationController>().setAnimationEndPosition();
+	}
+
+	[ClientRpc]
+	public void clearAnimationEndPosition() {
+		if (activePatient == null) {
+			return;
+		}
+
+		activePatient.arm.GetComponent<AnimationController>().clearAnimationEndPosition();
+		activePatient.armFake.GetComponent<AnimationController>().clearAnimationEndPosition();
+	}
+	
+	[Command]
+	public void CmdSetAnimationStartPosition() {
+		setAnimationStartPosition();
+	}
+
+	[Command]
+	public void CmdSetAnimationEndPosition() {
+		setAnimationEndPosition();
+	}
+
+	[Command]
+	public void CmdClearAnimationEndPosition() {
+		clearAnimationEndPosition();
 	}
 }

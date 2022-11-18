@@ -4,14 +4,38 @@ using Mirror;
 public class TherapistMenuManager : NetworkBehaviour
 {
 	public void playAnimationShowcaseHandler() {
-		CharacterManager.localCharacter.CmdStartAnimationShowcase();
+		CharacterManager.localClient.CmdStartAnimationShowcase();
 	}
 
 	public void playAnimationHandler() {
-		CharacterManager.localCharacter.CmdStartAnimation();
+		CharacterManager.localClient.CmdStartAnimation();
 	}
 
 	public void stopAnimationHandler() {
-		CharacterManager.localCharacter.CmdStopAnimation();
+		CharacterManager.localClient.CmdStopAnimation();
+	}
+
+	public void setAnimationStartPositionHandler() {
+		if (CharacterManager.activePatient == null) {
+			Debug.LogError("No active patient found");
+		}
+
+		CharacterManager.localClient.CmdSetAnimationStartPosition();
+	}
+
+	public void setAnimationEndPositionHandler() {
+		if (CharacterManager.activePatient == null) {
+			Debug.LogError("No active patient found");
+		}
+
+		CharacterManager.localClient.CmdSetAnimationEndPosition();
+	}
+
+	public void clearAnimationEndPositionHandler() {
+		if (CharacterManager.activePatient == null) {
+			Debug.LogError("No active patient found");
+		}
+
+		CharacterManager.localClient.CmdClearAnimationEndPosition();
 	}
 }

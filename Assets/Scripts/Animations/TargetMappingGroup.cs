@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mappings
@@ -12,17 +13,24 @@ namespace Mappings
         public TargetMapping ringMapping;
         public TargetMapping pinkyMapping;
 
+        public TargetMapping startPositionRotation;
+        public List<TargetMapping> movePositions; // last one will be endPosition
+
         public TargetMappingGroup(TargetMapping _armMapping, TargetMapping _thumbMapping, TargetMapping _indexMapping, 
-                TargetMapping _middleMapping, TargetMapping _ringMapping, TargetMapping _pinkyMapping)
-        {
+                TargetMapping _middleMapping, TargetMapping _ringMapping, TargetMapping _pinkyMapping, TargetMapping _startPositionRotation) {
             armMapping = _armMapping;
             thumbMapping = _thumbMapping;
             indexMapping = _indexMapping;
             middleMapping = _middleMapping;
             ringMapping = _ringMapping;
             pinkyMapping = _pinkyMapping;
+
+            startPositionRotation = _startPositionRotation;
+            movePositions = new List<TargetMapping>();
         }
 
-        public TargetMappingGroup() {}
+        public TargetMappingGroup() {
+            movePositions = new List<TargetMapping>();
+        }
     }
 }

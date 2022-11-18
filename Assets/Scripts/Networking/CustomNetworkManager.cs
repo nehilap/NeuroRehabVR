@@ -10,7 +10,7 @@ public class CustomNetworkManager : NetworkManager
 {   
     // public bool isServer;
     // usable prefabs for character (first non-simulated, then simulated prefabs)
-    public Dictionary<string, GameObject> characterPrefabs;
+    public List<GameObject> characterPrefabs = new List<GameObject>();
 
     // 2 persistent components holding information
     private HMDInfoManager hmdInfoManager;
@@ -33,13 +33,13 @@ public class CustomNetworkManager : NetworkManager
         hmdInfoManager = gameObject.GetComponent<HMDInfoManager>();
         characterManager = gameObject.GetComponent<RoleManager>();
 
-        characterPrefabs = new Dictionary<string, GameObject>();
+        /*characterPrefabs = new Dictionary<string, GameObject>();
 
         // we load character models from Resources folder (Prefabs folder is inside Resources)
         string[] roles = System.Enum.GetNames(typeof(UserRole));
         for (int i = 0; i < roles.Length; i++) {
             characterPrefabs.Add(roles[i], Resources.Load<GameObject>("Prefabs/CharacterModel/" + roles[i]));
-        }
+        }*/
     }
 
     // Called on SERVER only when SERVER starts
@@ -78,7 +78,15 @@ public class CustomNetworkManager : NetworkManager
         }
         */
 
-        GameObject gameobject = Instantiate(characterPrefabs[message.role.ToString()]);
+        int indexToSpawn = -1;
+        for (int i = 0; i < characterPrefabs.Count; i++) {
+            if (characterPrefabs[i].name == message.role.ToString()) {
+                indexToSpawn = i;
+                break;
+            }
+        }
+
+        GameObject gameobject = Instantiate(characterPrefabs[indexToSpawn]);
         NetworkServer.AddPlayerForConnection(conn, gameobject);
     }
 

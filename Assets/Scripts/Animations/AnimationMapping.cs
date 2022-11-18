@@ -9,6 +9,8 @@ namespace Mappings
         // order: armTarget; thumbTarget; indexFingerTarget; middleFingerTarget; ringFingerTarget; pinkyFingerTarget;
         public TargetMappingGroup cubeMapping;
 
+        public TargetMappingGroup blockMapping;
+
         public TargetMappingGroup cupMapping;
 
         public TargetMappingGroup keyMapping;
@@ -34,6 +36,7 @@ namespace Mappings
                  GameObject _armTargetFake, GameObject _thumbTargetFake, GameObject _indexTargetFake, 
                  GameObject _middleTargetFake, GameObject _ringTargetFake, GameObject _pinkyTargetFake) {
             cubeMapping = new TargetMappingGroup();
+            blockMapping = new TargetMappingGroup();
             cupMapping = new TargetMappingGroup();
             keyMapping = new TargetMappingGroup();
             
@@ -52,12 +55,13 @@ namespace Mappings
             pinkyTargetFake = _pinkyTargetFake;
         }
 
-        public AnimationMapping(TargetMappingGroup _cubeMapping, TargetMappingGroup _cupMapping, TargetMappingGroup _keyMapping, 
+        public AnimationMapping(TargetMappingGroup _cubeMapping, TargetMappingGroup _blockMapping, TargetMappingGroup _cupMapping, TargetMappingGroup _keyMapping, 
                  GameObject _armTarget, GameObject _thumbTarget, GameObject _indexTarget,
                  GameObject _middleTarget, GameObject _ringTarget, GameObject _pinkyTarget,
                  GameObject _armTargetFake, GameObject _thumbTargetFake, GameObject _indexTargetFake, 
                  GameObject _middleTargetFake, GameObject _ringTargetFake, GameObject _pinkyTargetFake) {  
             cubeMapping = _cubeMapping;
+            blockMapping = _blockMapping;
             cupMapping = _cupMapping;
             keyMapping = _keyMapping;
 
@@ -78,6 +82,7 @@ namespace Mappings
 
         public AnimationMapping() {
             cubeMapping = new TargetMappingGroup();
+            blockMapping = new TargetMappingGroup();
             cupMapping = new TargetMappingGroup();
             keyMapping = new TargetMappingGroup();
         }
@@ -97,22 +102,16 @@ namespace Mappings
         }
 
         public void setAllTargetMappings(AnimationType animType) {
-            TargetMappingGroup currentAnimMapping;
-            switch (animType)
-            {
-                case AnimationType.Block:
-                    currentAnimMapping = cubeMapping;
-                    break;
-                case AnimationType.Cube: 
-                    currentAnimMapping = cubeMapping;
-                    break;
-                case AnimationType.Cup: 
-                    currentAnimMapping = cupMapping;
-                    break;
-                case AnimationType.Key: 
-                    currentAnimMapping = keyMapping;
-                    break;
-                default: return; // AnimType.Off
+            TargetMappingGroup currentAnimMapping = getTargetMappingByType(animType);
+
+            if (currentAnimMapping == null) {
+                return;
+            }
+            Debug.Log(currentAnimMapping.startPositionRotation);
+            Debug.Log(currentAnimMapping.movePositions);
+            if (currentAnimMapping.startPositionRotation == null || currentAnimMapping.movePositions.Count <= 0) {
+                Debug.LogError("Start or End animation position not set");
+                throw new System.Exception("Start or End animation position not set");
             }
 
             // arm
@@ -133,6 +132,7 @@ namespace Mappings
             // pinky
             setTargetMapping(pinkyTargetFake, currentAnimMapping.pinkyMapping);
         }
+
         public void alignTargetTransforms() {
             armTarget.transform.position = armTargetFake.transform.position;
             armTarget.transform.rotation = armTargetFake.transform.rotation;
@@ -151,6 +151,20 @@ namespace Mappings
             
             pinkyTarget.transform.position = pinkyTargetFake.transform.position;
             pinkyTarget.transform.rotation = pinkyTargetFake.transform.rotation;
+        }
+
+        public TargetMappingGroup getTargetMappingByType(AnimationType animType) {
+            switch (animType) {
+                case AnimationType.Block:
+                    return blockMapping;
+                case AnimationType.Cube: 
+                    return cubeMapping;
+                case AnimationType.Cup: 
+                    return cupMapping;
+                case AnimationType.Key: 
+                    return keyMapping;
+                default: return null; // AnimType.Off
+            }
         }
     }
 }

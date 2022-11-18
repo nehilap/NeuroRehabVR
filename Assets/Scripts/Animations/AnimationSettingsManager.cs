@@ -18,6 +18,9 @@ public class AnimationSettingsManager : NetworkBehaviour
 	[SyncVar(hook = nameof(changeMoveDurationElements))] [Range(0.5f, 10f)]
 	public float moveDuration = 4f;
 
+	[SyncVar(hook = nameof(changeRepetitionsElements))] [Range(1, 20)]
+	public int repetitions = 5;
+
 	[SyncVar(hook = nameof(changeAnimTypeValue))]
 	public AnimationType animType = AnimationType.Block;
 
@@ -32,6 +35,9 @@ public class AnimationSettingsManager : NetworkBehaviour
 
 	public TMP_Text moveDurTextValue;
 	public Slider moveDurSlider;
+
+	public TMP_Text repetitionsTextValue;
+	public Slider repetitionsSlider;
 
 	public TMP_Dropdown animTypeDropdown;
 
@@ -72,6 +78,12 @@ public class AnimationSettingsManager : NetworkBehaviour
 
 		moveDurSlider.value = (int) (moveDuration * 2);
 	}
+	
+	private void changeRepetitionsElements(int _old, int _new) {
+		repetitionsTextValue.text = repetitions + " x";
+
+		repetitionsSlider.value = repetitions;
+	}
 
 	private void changeAnimTypeValue(AnimationType _old, AnimationType _new) {
 		animTypeDropdown.value = animTypeDropdown.options.FindIndex(option => option.text == animType.ToString());
@@ -89,6 +101,9 @@ public class AnimationSettingsManager : NetworkBehaviour
 
 		moveDurTextValue.text = (Mathf.Round(moveDuration * 10) / 10).ToString("F1") + " s";
 		moveDurSlider.value = (int) (moveDuration * 2);
+
+		repetitionsTextValue.text = repetitions + " x";
+		repetitionsSlider.value = repetitions;
 
 		animTypeDropdown.value = animTypeDropdown.options.FindIndex(option => option.text == animType.ToString());
 	}
@@ -125,7 +140,17 @@ public class AnimationSettingsManager : NetworkBehaviour
 		CMDUpdateMoveDuration(moveDuration);
 	}
 
+	// We have to take in float values, because that's default type that slider works with
+	public void repetitionsSliderHandler(float value) {
+		repetitions = (int) value;
+
+		changeRepetitionsElements(0, 0);
+		CMDUpdateRepetitions(repetitions);
+	}
+
 	public void animationTypeDropdownHandler(TMP_Dropdown dropdown) {
+		AnimationType oldAnimType = animType;
+
 		switch (dropdown.options[dropdown.value].text)
 		{
 			case "Off": animType = AnimationType.Off; break;
@@ -136,6 +161,10 @@ public class AnimationSettingsManager : NetworkBehaviour
 			default: break;
 		}
 		CMDUpdateAnimType(animType);
+
+		if (CharacterManager.localClient != null) {
+			CharacterManager.localClient.CmdSpawnCorrectTarget(oldAnimType, animType);
+		}
 	}
 
 	/*
@@ -169,6 +198,13 @@ public class AnimationSettingsManager : NetworkBehaviour
 		if (moveDuration == value) return;
 		
 		moveDuration = value;
+	}
+	
+	[Command(requiresAuthority = false)]
+	public void CMDUpdateRepetitions(int value) {
+		if (repetitions == value) return;
+		
+		repetitions = value;
 	}
 
 	[Command(requiresAuthority = false)]
