@@ -1,30 +1,33 @@
 using UnityEngine;
 using Mirror;
 
-public class JoinManager
-{
+public class JoinManager {
     public string hostIP;
-    public void Join()
-    {
-        string host = hostIP;
-        if (host == null || host.Trim() == "")
-        {
-            host = "localhost";
+    public void Join(string ip) {
+        if (ip == null || ip.Trim() == "") {
+            hostIP = "localhost";
         }
-        else
-        {
-            if (!CheckIPValid(host))
-            {
+        else {
+            if (!CheckIPValid(hostIP)) {
                 return;
             }
         }
-        NetworkManager manager = GameObject.Find("GameManager").GetComponent<NetworkManager>();
-        manager.networkAddress = host;
+
+        NetworkManager.singleton.networkAddress = hostIP;
         NetworkManager.singleton.StartClient();
     }
 
-    public bool CheckIPValid(string strIP)
-    {
+    public void Join() {
+        if (!NetworkManager.singleton.networkAddress.Equals("localhost")) {
+            if (!CheckIPValid(NetworkManager.singleton.networkAddress)) {
+                return;
+            }   
+        }
+
+        NetworkManager.singleton.StartClient();
+    }
+
+    public bool CheckIPValid(string strIP) {
         //  Split string by ".", check that array length is 4
         string[] arrOctets = strIP.Split('.');
         if (arrOctets.Length != 4)

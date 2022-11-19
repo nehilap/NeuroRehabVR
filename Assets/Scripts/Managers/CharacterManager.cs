@@ -5,9 +5,9 @@ using UnityEngine.XR.Interaction.Toolkit.Inputs;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation;
 using UnityEngine.InputSystem.XR;
 using System.Collections.Generic;
-using Mappings;
 using Enums;
-using UnityEditor;
+using UnityEngine.SceneManagement;
+using Utility;
 
 public class CharacterManager : NetworkBehaviour
 {
@@ -150,7 +150,7 @@ public class CharacterManager : NetworkBehaviour
 
 		if (identity == null) return;
 
-		if (hasAuthority) {
+		if (isOwned) {
 			// if not server, we ask server to grant us authority
 			NetworkIdentity itemNetIdentity = args.interactableObject.transform.GetComponent<NetworkIdentity>();
 			if (isServer)
@@ -161,6 +161,7 @@ public class CharacterManager : NetworkBehaviour
 	}
 
     private void SetItemAuthority(NetworkIdentity item, NetworkIdentity newPlayerOwner) {
+		item.gameObject.GetComponent<NetworkTransform>().syncDirection = SyncDirection.ClientToServer;
 		Debug.Log("Granting authority:" + item.netId + " to:" + newPlayerOwner.netId);
 		item.RemoveClientAuthority();
         item.AssignClientAuthority(newPlayerOwner.connectionToClient);
@@ -252,7 +253,7 @@ public class CharacterManager : NetworkBehaviour
 
 	[Command]
 	public void CmdSpawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType) {
-		List<GameObject> targetsInScene = GetAllTargetsOnlyInScene();
+		List<GameObject> targetsInScene = FindTargetsOfTypeAll();
 		bool foundTarget = false;
 		for (int i = 0; i < targetsInScene.Count; i++) {
 			if (targetsInScene[i].name.Equals(_newAnimType.ToString())) {
@@ -278,12 +279,14 @@ public class CharacterManager : NetworkBehaviour
 		if (spawnNew) {
 			for (int i = 0; i < targetPrefabs.Count; i++) {
 				if (targetPrefabs[i].name.Equals(_newAnimType.ToString()) || targetPrefabs[i].name.Equals(_newAnimType.ToString() + "_fake")) {
-					Instantiate(targetPrefabs[i], spawnArea.transform.position, spawnArea.transform.rotation);
-					setAnimationStartPosition();
+					GameObject newObject = Instantiate(targetPrefabs[i], spawnArea.transform.position, spawnArea.transform.rotation);
+					newObject.gameObject.name = targetPrefabs[i].name;
+
+					setAnimationStartPositionWrapped();
 				}
 			}
 		} else {
-			List<GameObject> targetsInScene = GetAllTargetsOnlyInScene();
+			List<GameObject> targetsInScene = FindTargetsOfTypeAll();
 			for (int i = 0; i < targetsInScene.Count; i++) {
 				if (targetsInScene[i].name.Equals(_newAnimType.ToString()) || targetsInScene[i].name.Equals(_newAnimType.ToString() + "_fake")) {
 					targetsInScene[i].SetActive(true);
@@ -294,17 +297,23 @@ public class CharacterManager : NetworkBehaviour
 		GameObject.Find(_oldAnimType.ToString() + "_fake")?.SetActive(false);
 	}
 
-	// https://docs.unity3d.com/ScriptReference/Resources.FindObjectsOfTypeAll.html
-	private List<GameObject> GetAllTargetsOnlyInScene() {
-        List<GameObject> objectsInScene = new List<GameObject>();
-
-        foreach (Utility.TargetUtility go in Resources.FindObjectsOfTypeAll(typeof(Utility.TargetUtility)) as Utility.TargetUtility[]) {
-            if (!EditorUtility.IsPersistent(go.transform.root.gameObject) && !(go.hideFlags == HideFlags.NotEditable || go.hideFlags == HideFlags.HideAndDontSave))
-                objectsInScene.Add(go.gameObject);
-        }
-
-        return objectsInScene;
-    }
+	public static List<GameObject> FindTargetsOfTypeAll() {
+		List<GameObject> results = new List<GameObject>();
+		for(int i = 0; i< SceneManager.sceneCount; i++) {
+			var s = SceneManager.GetSceneAt(i);
+			if (s.isLoaded) {
+				var allGameObjects = s.GetRootGameObjects();
+				for (int j = 0; j < allGameObjects.Length; j++) {
+					var go = allGameObjects[j];
+					TargetUtility[] items = go.GetComponentsInChildren<TargetUtility>(true);
+					foreach (TargetUtility item in items) {
+						results.Add(item.gameObject);
+					}
+				}
+			}
+		}
+		return results;
+	}
 
 	/*
 	*
@@ -312,14 +321,18 @@ public class CharacterManager : NetworkBehaviour
 	*
 	*/
 
-	[ClientRpc]
-	public void setAnimationStartPosition() {
+	private void setAnimationStartPositionWrapped() {
 		if (activePatient == null) {
 			return;
 		}
 
 		activePatient.arm.GetComponent<AnimationController>().setAnimationStartPosition();
 		activePatient.armFake.GetComponent<AnimationController>().setAnimationStartPosition();
+	}
+
+	[ClientRpc]
+	public void setAnimationStartPosition() {
+		setAnimationStartPositionWrapped();
 	}
 
 	[ClientRpc]

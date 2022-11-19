@@ -16,17 +16,24 @@ public class CustomNetworkManager : NetworkManager
     private HMDInfoManager hmdInfoManager;
     private RoleManager characterManager;
     
-    // THIS IS NOT NEEDED
     // the reason is because NetworkManager (parent class) already starts server if this is server build
     // in case you still need to use Start(), don't forget to call base.Start(); 
-    /*
+    
     public override void Start() {
-        base.Start();
-        if (isServer) {
-            NetworkManager.singleton.StartServer();
+        string[] args = System.Environment.GetCommandLineArgs ();
+        string input = "";
+        for (int i = 0; i < args.Length; i++) {
+            // Debug.Log ("ARG " + i + ": " + args [i]);
+            if (args [i] == "-serverip") {
+                input = args [i + 1];
+                NetworkManager.singleton.networkAddress = input;
+                break;
+            }
         }
+
+        base.Start();
     }
-    */
+    
 
     // Fake Start method, since this is not traditional MonoBehaviour and Methods listed below are called on certain events
     private void Setup() {
@@ -91,13 +98,15 @@ public class CustomNetworkManager : NetworkManager
     }
 
     public override void OnServerDisconnect(NetworkConnectionToClient conn) {
-        NetworkIdentity[] ownedObjects = new NetworkIdentity[conn.clientOwnedObjects.Count];
-        conn.clientOwnedObjects.CopyTo(ownedObjects);
+        NetworkIdentity[] ownedObjects = new NetworkIdentity[conn.owned.Count];
+        conn.owned.CopyTo(ownedObjects);
         foreach (NetworkIdentity networkIdentity in ownedObjects) {
             if (networkIdentity.gameObject.layer == 7) {
                 continue;
             }
+            networkIdentity.gameObject.GetComponent<NetworkTransform>().syncDirection = SyncDirection.ServerToClient;
             networkIdentity.RemoveClientAuthority();
+            Debug.Log("Object with netID '" + networkIdentity.netId + "' released authority.");
         }
 
         base.OnServerDisconnect(conn);

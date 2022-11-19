@@ -3752,6 +3752,7 @@ GameObject:
   - component: {fileID: 1751045510}
   - component: {fileID: 1751045513}
   - component: {fileID: 1751045515}
+  - component: {fileID: 1751045516}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3844,11 +3845,12 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   runInBackground: 1
   autoStartServerBuild: 1
-  serverTickRate: 30
+  autoConnectClientBuild: 0
+  sendRate: 15
   offlineScene: Assets/Scenes/MenuScene.unity
   onlineScene: Assets/Scenes/MainScene.unity
   transport: {fileID: 1751045511}
-  networkAddress: 192.168.1.209
+  networkAddress: localhost
   maxConnections: 100
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 1878698789788651940, guid: b7308db629d8e5a4194f532e445a1308, type: 3}
@@ -3856,6 +3858,7 @@ MonoBehaviour:
   playerSpawnMethod: 0
   spawnPrefabs:
   - {fileID: 1878698789788651940, guid: 3bcc8871f4eb7ee4bb9043fe85ed3405, type: 3}
+  timeInterpolationGui: 0
   characterPrefabs:
   - {fileID: 1878698789788651940, guid: b7308db629d8e5a4194f532e445a1308, type: 3}
   - {fileID: 1878698789788651940, guid: 3bcc8871f4eb7ee4bb9043fe85ed3405, type: 3}
@@ -3872,6 +3875,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterRole: 0
+--- !u!114 &1751045516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751045504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffd1e63c32225c24b884406a0d316e59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1810516831
 GameObject:
   m_ObjectHideFlags: 0
