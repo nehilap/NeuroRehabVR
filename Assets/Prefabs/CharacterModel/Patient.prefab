@@ -111,14 +111,6 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings:
       - m_Name: 
-        m_Id: 41111941-3b17-4481-907b-18c522a781f6
-        m_Path: <XRSimulatedHMD>/centerEyePosition
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Position
-        m_Flags: 0
-      - m_Name: 
         m_Id: 472fbcc0-a6cc-4598-8b37-38cfe728b0b1
         m_Path: <OpenXRHmd>/centerEyePosition
         m_Interactions: 
@@ -138,14 +130,6 @@ MonoBehaviour:
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: f6f28556-8ca2-46c3-9847-1f70045f0b66
-        m_Path: <XRSimulatedHMD>/centerEyeRotation
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Rotation
-        m_Flags: 0
       - m_Name: 
         m_Id: f2456389-8fc5-4626-a149-7729c38a28ca
         m_Path: <OpenXRHmd>/centerEyeRotation
@@ -199,7 +183,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1878698788340855187}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.4, z: 0}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -369,6 +353,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
+  controllerType: 0
   targetPrefabs:
   - {fileID: 4585951089911290167, guid: 187b5e0706a658c41807f396198c9070, type: 3}
   - {fileID: 2118952973532061121, guid: 83818a48cdb0cc24b9dadcdf5207209b, type: 3}
@@ -391,6 +376,7 @@ MonoBehaviour:
   - {fileID: 3957652242156794993}
   - {fileID: 4829553120487303934}
   head: {fileID: 1878698787931433297}
+  body: {fileID: 2219837312219082846}
   inputActionManager: {fileID: 1878698789788651961}
   arm: {fileID: 4989450719017684380}
   armFake: {fileID: 5922372694931940209}
@@ -616,7 +602,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2219837312219082846}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children: []

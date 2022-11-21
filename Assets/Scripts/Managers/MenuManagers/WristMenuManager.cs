@@ -36,7 +36,7 @@ public class WristMenuManager : MonoBehaviour
 
             therapistMenu.transform.localScale = new Vector3(0.02f, 0.02f, 1f);
             therapistMenu.transform.localRotation = Quaternion.identity;
-            therapistMenu.transform.localPosition = new Vector3(0, 0, 0f);
+            therapistMenu.transform.localPosition = new Vector3(0.5f, 0.5f, 0f);
         } else {
             therapistMenu.transform.SetParent(originalTherapistMenuParent);
 

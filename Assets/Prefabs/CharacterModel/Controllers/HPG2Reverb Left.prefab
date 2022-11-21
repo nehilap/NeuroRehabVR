@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2037255451192600474}
   m_Layer: 0
-  m_Name: HP G2 Reverb Left
+  m_Name: HPG2Reverb Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

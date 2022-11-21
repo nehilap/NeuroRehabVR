@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6659256293031526112}
   m_Layer: 0
-  m_Name: Vive Focus Plus Right
+  m_Name: ViveFocusPlus Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

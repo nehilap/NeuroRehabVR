@@ -9,6 +9,8 @@ public class MenuManager : MonoBehaviour
 
     public RoleManager characterManager;
 
+    public Canvas settingsCanvas;
+
     private JoinManager joinManager;
 
     void Start() {
@@ -34,7 +36,8 @@ public class MenuManager : MonoBehaviour
     }
 
     public void OpenSettings() {
-        Debug.Log("Does nothing for now");
+        settingsCanvas.enabled = true;
+        gameObject.GetComponent<Canvas>().enabled = false;
     }
 
     public void QuitApp() {

@@ -14,6 +14,9 @@ public class CharacterManager : NetworkBehaviour
 	public static CharacterManager localClient;
 	public static CharacterManager activePatient;
 
+	[SyncVar(hook = nameof(changeControllerType))]
+	public ControllerType controllerType;
+
 	public List<GameObject> targetPrefabs = new List<GameObject>();
 
 	// Items is array of components that may need to be enabled / activated  only locally
@@ -22,6 +25,7 @@ public class CharacterManager : NetworkBehaviour
 	public XRBaseControllerInteractor[] interactors;
 
 	public GameObject head;
+	public GameObject body;
 
 	public InputActionManager inputActionManager;
 
@@ -74,6 +78,8 @@ public class CharacterManager : NetworkBehaviour
 				TherapistMenuManager therapistMenuManager = therapistMenu.GetComponent<TherapistMenuManager>();
 			}
 		}
+
+		body.SetActive(false);
 	}
 
 	public override void OnStartClient () {
@@ -117,6 +123,8 @@ public class CharacterManager : NetworkBehaviour
 		}
 
 		spawnArea = GameObject.Find("SpawnArea");
+
+		changeControllerType(controllerType, controllerType);
 	}
 
 	// We search through all objects loaded in scene in certain layer
@@ -368,5 +376,37 @@ public class CharacterManager : NetworkBehaviour
 	[Command]
 	public void CmdClearAnimationEndPosition() {
 		clearAnimationEndPosition();
+	}
+
+	public void changeControllerType(ControllerType _old, ControllerType _new) {
+		// Debug.Log("Change controller called "  +  _new.ToString());
+        
+		XRBaseController rightC =  transform.Find("Camera Offset/RightHand Controller").GetComponent<XRBaseController>();
+        XRBaseController leftC =  transform.Find("Camera Offset/LeftHand Controller").GetComponent<XRBaseController>();
+
+        foreach (GameObject item in HMDInfoManager.instance.controllerPrefabs) {
+            if (item.name.Contains(_new.ToString())) {
+                if (item.name.Contains("Left")) {
+                    leftC.modelPrefab = item.transform;
+                }else if (item.name.Contains("Right")) {
+                    rightC.modelPrefab = item.transform;
+                }
+            }
+        }
+
+		if (rightC.model != null) {
+			rightC.model.gameObject.SetActive(false);
+		}
+
+		if (leftC.model != null) {
+			leftC.model.gameObject.SetActive(false);
+		}
+
+		if (leftC.modelParent != null) {
+        	leftC.model = Instantiate(leftC.modelPrefab, leftC.modelParent.transform.position, leftC.modelParent.transform.rotation, leftC.modelParent.transform);
+		}
+		if (rightC.modelParent != null) {
+        	rightC.model = Instantiate(rightC.modelPrefab, rightC.modelParent.transform.position, rightC.modelParent.transform.rotation, rightC.modelParent.transform);
+		}
 	}
 }

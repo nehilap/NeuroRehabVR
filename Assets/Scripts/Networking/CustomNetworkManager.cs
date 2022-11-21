@@ -3,6 +3,7 @@ using UnityEngine;
 using Mirror;
 using Enums;
 using Structs;
+using UnityEngine.XR.Interaction.Toolkit;
 
 // Class overriding default NetworkManager from Mirror
 // used for spawning custom character models
@@ -13,8 +14,7 @@ public class CustomNetworkManager : NetworkManager
     public List<GameObject> characterPrefabs = new List<GameObject>();
 
     // 2 persistent components holding information
-    private HMDInfoManager hmdInfoManager;
-    private RoleManager characterManager;
+    private RoleManager roleManager;
     
     // the reason is because NetworkManager (parent class) already starts server if this is server build
     // in case you still need to use Start(), don't forget to call base.Start(); 
@@ -37,8 +37,7 @@ public class CustomNetworkManager : NetworkManager
 
     // Fake Start method, since this is not traditional MonoBehaviour and Methods listed below are called on certain events
     private void Setup() {
-        hmdInfoManager = gameObject.GetComponent<HMDInfoManager>();
-        characterManager = gameObject.GetComponent<RoleManager>();
+        roleManager = gameObject.GetComponent<RoleManager>();
 
         /*characterPrefabs = new Dictionary<string, GameObject>();
 
@@ -68,8 +67,9 @@ public class CustomNetworkManager : NetworkManager
         // you can send the message here
         CharacterMessage characterMessage = new CharacterMessage
         {
-            role = characterManager.characterRole,
-            hmdType = hmdInfoManager.hmdType
+            role = roleManager.characterRole,
+            hmdType = HMDInfoManager.instance.hmdType,
+            controllerType = HMDInfoManager.instance.controllerType
         };
 
         NetworkClient.Send(characterMessage);
@@ -77,13 +77,7 @@ public class CustomNetworkManager : NetworkManager
 
     // https://mirror-networking.gitbook.io/docs/guides/gameobjects/custom-character-spawning
     void OnCreateCharacter(NetworkConnectionToClient conn, CharacterMessage message) {
-        /*
-        string hmdPostfix = "";
-        
-        if(hmdInfoManager.hmdType == HMDType.Mock) {
-            hmdPostfix = "Simulated";
-        }
-        */
+        Debug.Log(message.hmdType.ToString());
 
         int indexToSpawn = -1;
         for (int i = 0; i < characterPrefabs.Count; i++) {
@@ -92,9 +86,17 @@ public class CustomNetworkManager : NetworkManager
                 break;
             }
         }
+        if (indexToSpawn == -1) {
+            Debug.LogError("Cannot Instantiate character prefab - not found!!");
+            return;
+        }
 
-        GameObject gameobject = Instantiate(characterPrefabs[indexToSpawn]);
-        NetworkServer.AddPlayerForConnection(conn, gameobject);
+        GameObject newCharacterModel = Instantiate(characterPrefabs[indexToSpawn]);
+        CharacterManager characterManager = newCharacterModel.GetComponent<CharacterManager>();
+        characterManager.controllerType = message.controllerType;
+        characterManager.changeControllerType(message.controllerType, message.controllerType);
+
+        NetworkServer.AddPlayerForConnection(conn, newCharacterModel);
     }
 
     public override void OnServerDisconnect(NetworkConnectionToClient conn) {

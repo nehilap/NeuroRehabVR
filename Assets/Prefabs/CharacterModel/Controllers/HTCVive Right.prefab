@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3409484013258593158
+--- !u!1 &4156734583016229769
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5901620807405715645}
-  - component: {fileID: 8733020119302339063}
-  - component: {fileID: 5193866045784972643}
+  - component: {fileID: 3667162343952077107}
+  - component: {fileID: 381604398259560086}
+  - component: {fileID: 2499300311683574364}
   m_Layer: 0
-  m_Name: default
+  m_Name: HTC Vive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5901620807405715645
+--- !u!4 &3667162343952077107
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3409484013258593158}
-  m_LocalRotation: {x: 0, y: 0.97629607, z: -0.2164396, w: 0}
-  m_LocalPosition: {x: 0, y: 0.0391, z: 0.0694}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 4156734583016229769}
+  m_LocalRotation: {x: -0.27059805, y: 0.27059805, z: 0.6532815, w: 0.6532815}
+  m_LocalPosition: {x: 0, y: -0.015, z: 0}
+  m_LocalScale: {x: 0.08188994, y: 0.08188994, z: 0.08188994}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6455612001664496101}
+  m_Father: {fileID: 7374771519285975066}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 25, y: 180, z: 0}
---- !u!33 &8733020119302339063
+  m_LocalEulerAnglesHint: {x: -45, y: 0, z: 90}
+--- !u!33 &381604398259560086
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3409484013258593158}
-  m_Mesh: {fileID: -2432090755550338912, guid: 44013ce93499475419ffd653a64e57ca, type: 3}
---- !u!23 &5193866045784972643
+  m_GameObject: {fileID: 4156734583016229769}
+  m_Mesh: {fileID: -6150326042995890324, guid: 77c9dd96d6be24f42b1ea0618f34c75c, type: 3}
+--- !u!23 &2499300311683574364
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3409484013258593158}
+  m_GameObject: {fileID: 4156734583016229769}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -61,7 +61,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1908307147321104190, guid: 44013ce93499475419ffd653a64e57ca, type: 3}
+  - {fileID: 2100000, guid: 6f978c76fd7e0814c80aaf2c3641321c, type: 2}
+  - {fileID: 2100000, guid: 6c40540b542b54f49a02328900bcac54, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &5970964162162305887
+--- !u!1 &7374771519285975065
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,27 +92,27 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6455612001664496101}
+  - component: {fileID: 7374771519285975066}
   m_Layer: 0
-  m_Name: Touch Controller Left
+  m_Name: HTCVive Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6455612001664496101
+--- !u!4 &7374771519285975066
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5970964162162305887}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_GameObject: {fileID: 7374771519285975065}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5901620807405715645}
+  - {fileID: 3667162343952077107}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

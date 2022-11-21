@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5761805822249647377}
   m_Layer: 0
-  m_Name: Daydream VR Right
+  m_Name: DaydreamVR Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
