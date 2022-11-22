@@ -17,6 +17,9 @@ public class CharacterManager : NetworkBehaviour
 	[SyncVar(hook = nameof(changeControllerType))]
 	public ControllerType controllerType;
 
+	[SyncVar(hook = nameof(changeHMDType))]
+	public HMDType hmdType;
+
 	public List<GameObject> targetPrefabs = new List<GameObject>();
 
 	// Items is array of components that may need to be enabled / activated  only locally
@@ -79,7 +82,8 @@ public class CharacterManager : NetworkBehaviour
 			}
 		}
 
-		body.SetActive(false);
+		body.GetComponent<UnityEngine.SpatialTracking.TrackedPoseDriver>().enabled = true;
+		body.GetComponent<MeshRenderer>().enabled = false;
 	}
 
 	public override void OnStartClient () {
@@ -124,6 +128,7 @@ public class CharacterManager : NetworkBehaviour
 
 		spawnArea = GameObject.Find("SpawnArea");
 
+		changeHMDType(hmdType, hmdType);
 		changeControllerType(controllerType, controllerType);
 	}
 
@@ -272,35 +277,65 @@ public class CharacterManager : NetworkBehaviour
 
 		RpcSpawnCorrectTarget(_oldAnimType, _newAnimType, !foundTarget);
 
-		if (isServer) {
-			spawnCorrectTarget(_oldAnimType, _newAnimType, !foundTarget);
-		}
+		spawnCorrectTarget(_oldAnimType, _newAnimType, !foundTarget);
 	}
 
 	[ClientRpc]
 	public void RpcSpawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType, bool spawnNew) {
-		spawnCorrectTarget(_oldAnimType, _newAnimType, spawnNew);
+		spawnCorrectTargetFakes(_oldAnimType, _newAnimType, spawnNew);
 	}
 
 	// https://gamedevbeginner.com/how-to-spawn-an-object-in-unity-using-instantiate/
+	// https://mirror-networking.gitbook.io/docs/guides/gameobjects/spawning-gameobjects
 	private void spawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType, bool spawnNew) {
 		if (spawnNew) {
 			for (int i = 0; i < targetPrefabs.Count; i++) {
-				if (targetPrefabs[i].name.Equals(_newAnimType.ToString()) || targetPrefabs[i].name.Equals(_newAnimType.ToString() + "_fake")) {
+				if (targetPrefabs[i].name.Equals(_newAnimType.ToString())) {
 					GameObject newObject = Instantiate(targetPrefabs[i], spawnArea.transform.position, spawnArea.transform.rotation);
 					newObject.gameObject.name = targetPrefabs[i].name;
 
-					setAnimationStartPositionWrapped();
+					NetworkServer.Spawn(newObject);
+					setAnimationStartPosition();
 				}
 			}
 		} else {
 			List<GameObject> targetsInScene = FindTargetsOfTypeAll();
 			for (int i = 0; i < targetsInScene.Count; i++) {
-				if (targetsInScene[i].name.Equals(_newAnimType.ToString()) || targetsInScene[i].name.Equals(_newAnimType.ToString() + "_fake")) {
+				if (targetsInScene[i].name.Equals(_newAnimType.ToString())
+					|| (targetsInScene[i].name).Equals(_newAnimType.ToString() + "(Clone)")) {
 					targetsInScene[i].SetActive(true);
 				}
 			}
 		}
+		
+		GameObject.Find(_oldAnimType.ToString())?.SetActive(false);
+		GameObject.Find(_oldAnimType.ToString() + "(Clone)")?.SetActive(false);
+	}
+
+	private void spawnCorrectTargetFakes(AnimationType _oldAnimType, AnimationType _newAnimType, bool spawnNew) {
+		if (spawnNew) {
+			for (int i = 0; i < targetPrefabs.Count; i++) {
+				if (targetPrefabs[i].name.Equals(_newAnimType.ToString() + "_fake")) {
+					GameObject newObject = Instantiate(targetPrefabs[i], spawnArea.transform.position, spawnArea.transform.rotation);
+					newObject.gameObject.name = targetPrefabs[i].name;
+				}
+			}
+		} else {
+			
+			// We activate both here on client, active state is not synced
+			// we check both names for objects, because server spawned objects have (Clone) in the name
+			List<GameObject> targetsInScene = FindTargetsOfTypeAll();
+			for (int i = 0; i < targetsInScene.Count; i++) {
+				if (targetsInScene[i].name.Equals(_newAnimType.ToString()) 
+					|| (targetsInScene[i].name).Equals(_newAnimType.ToString() + "(Clone)") 
+					|| targetsInScene[i].name.Equals(_newAnimType.ToString() + "_fake")) {
+					targetsInScene[i].SetActive(true);
+				}
+			}
+		}
+
+		// We de-activate both here on client, active state is not synced
+		GameObject.Find(_oldAnimType.ToString() + "(Clone)")?.SetActive(false);
 		GameObject.Find(_oldAnimType.ToString())?.SetActive(false);
 		GameObject.Find(_oldAnimType.ToString() + "_fake")?.SetActive(false);
 	}
@@ -381,8 +416,8 @@ public class CharacterManager : NetworkBehaviour
 	public void changeControllerType(ControllerType _old, ControllerType _new) {
 		// Debug.Log("Change controller called "  +  _new.ToString());
         
-		XRBaseController rightC =  transform.Find("Camera Offset/RightHand Controller").GetComponent<XRBaseController>();
-        XRBaseController leftC =  transform.Find("Camera Offset/LeftHand Controller").GetComponent<XRBaseController>();
+		XRBaseController rightC =  transform.Find("Offset/Camera Offset/RightHand Controller").GetComponent<XRBaseController>();
+        XRBaseController leftC =  transform.Find("Offset/Camera Offset/LeftHand Controller").GetComponent<XRBaseController>();
 
         foreach (GameObject item in HMDInfoManager.instance.controllerPrefabs) {
             if (item.name.Contains(_new.ToString())) {
@@ -407,6 +442,20 @@ public class CharacterManager : NetworkBehaviour
 		}
 		if (rightC.modelParent != null) {
         	rightC.model = Instantiate(rightC.modelPrefab, rightC.modelParent.transform.position, rightC.modelParent.transform.rotation, rightC.modelParent.transform);
+		}
+	}
+
+	public void changeHMDType(HMDType _old, HMDType _new) {
+		if (_new == HMDType.Other) {
+			transform.Find("Offset").position = new Vector3(0f, 0f, 0f);
+			if (!isLocalPlayer) {
+				//Debug.Log(_new);
+				//Debug.Log(head);
+				//Debug.Log(body);
+				head.transform.Find("Head").position = new Vector3(0f, 1.6f, 0f);
+				body.transform.position = new Vector3(0f, 1f, 0f);
+			}
+			
 		}
 	}
 }

@@ -30,6 +30,9 @@ public class CustomNetworkManager : NetworkManager
                 break;
             }
         }
+        #if UNITY_SERVER
+        HMDInfoManager.instance.stopXR();
+        #endif
 
         base.Start();
     }
@@ -94,8 +97,9 @@ public class CustomNetworkManager : NetworkManager
         GameObject newCharacterModel = Instantiate(characterPrefabs[indexToSpawn]);
         CharacterManager characterManager = newCharacterModel.GetComponent<CharacterManager>();
         characterManager.controllerType = message.controllerType;
+        characterManager.hmdType = message.hmdType;
         characterManager.changeControllerType(message.controllerType, message.controllerType);
-
+        
         NetworkServer.AddPlayerForConnection(conn, newCharacterModel);
     }
 

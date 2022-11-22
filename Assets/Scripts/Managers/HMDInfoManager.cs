@@ -3,6 +3,8 @@ using UnityEngine.XR;
 using Enums;
 using System.Collections.Generic;
 using TMPro;
+using System.Collections;
+using UnityEngine.XR.Management;
 
 public class HMDInfoManager : MonoBehaviour {
 
@@ -15,9 +17,7 @@ public class HMDInfoManager : MonoBehaviour {
     
     public List<GameObject> controllerPrefabs = new List<GameObject>();
 
-    public HMDType hmdType {
-        get; private set;
-    }
+    public HMDType hmdType;
 
     void Start() {
         hmdType = HMDType.Other;
@@ -28,7 +28,6 @@ public class HMDInfoManager : MonoBehaviour {
         // NOT WORKING CURRENTLY (MOST LIKELY)
         // seems to only work when using MOCK HMD
         // discovers which type of HMD device is being used
-        // we can use this to decide whether to spawn simulated character or not
         if(!XRSettings.isDeviceActive) {
             Debug.Log("No HMD discovered");
             hmdType = HMDType.NotFound;
@@ -43,13 +42,52 @@ public class HMDInfoManager : MonoBehaviour {
             }
         }
 
-        if (Application.platform == RuntimePlatform.WindowsPlayer) {
-            XRSettings.gameViewRenderMode = GameViewRenderMode.LeftEye;
+        // Debug.Log(Application.platform.ToString());
+        if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor) {
             hmdType = HMDType.Mock;
         } else if (Application.platform == RuntimePlatform.Android) {
             hmdType = HMDType.Other;
+        } else {
+            hmdType = HMDType.Server;
         }
 
-        statusText.text = "HMD type: " + hmdType.ToString() + ", '" + XRSettings.loadedDeviceName + "'";
+        setXRSettings();
     }
+
+    void OnApplicationQuit() {
+        stopXR();
+    }
+
+    public void stopXR() {
+        if (XRGeneralSettings.Instance.Manager.isInitializationComplete) {
+            Debug.Log("Stopping XR...");
+            XRGeneralSettings.Instance.Manager.StopSubsystems();
+            Camera.main.ResetAspect();
+            XRGeneralSettings.Instance.Manager.DeinitializeLoader();
+        }
+    }
+
+    public IEnumerator startXR() {
+        if (XRGeneralSettings.Instance.Manager.activeLoader == null) {
+            yield return XRGeneralSettings.Instance.Manager.InitializeLoader();
+            if (XRGeneralSettings.Instance.Manager.activeLoader == null) {
+                Debug.LogError("Initializing XR Failed. Check Editor or Player log for details.");
+            } else {
+                Debug.Log("Starting XR...");
+                XRGeneralSettings.Instance.Manager.StartSubsystems();
+                
+                yield return null;
+            }
+        }
+
+        setXRSettings();
+    }
+    public void setXRSettings () {
+        XRSettings.gameViewRenderMode = GameViewRenderMode.LeftEye;
+        
+        // We actually have to increase the resolution scaling, to increase the image queality
+        // because 1.0 creates artifacts / jagged lines
+        XRSettings.eyeTextureResolutionScale = 1.5f;
+    }
+
 }

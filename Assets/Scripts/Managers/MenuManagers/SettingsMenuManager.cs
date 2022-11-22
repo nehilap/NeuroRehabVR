@@ -42,4 +42,12 @@ public class SettingsMenuManager : MonoBehaviour
         rightC.model = Instantiate(rightC.modelPrefab, rightC.modelParent.transform.position, rightC.modelParent.transform.rotation, rightC.modelParent.transform);
         leftC.model = Instantiate(leftC.modelPrefab, leftC.modelParent.transform.position, leftC.modelParent.transform.rotation, leftC.modelParent.transform);
     }
+
+    public void startXR() {
+            StartCoroutine(HMDInfoManager.instance.startXR());
+    }
+
+    public void stopXR() {
+            HMDInfoManager.instance.stopXR();
+    }
 }
