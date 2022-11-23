@@ -11,14 +11,13 @@ GameObject:
   - component: {fileID: 645872019997533996}
   - component: {fileID: 7906735541304032727}
   - component: {fileID: 8422331758386680811}
-  - component: {fileID: 6977383059026637412}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &645872019997533996
 Transform:
   m_ObjectHideFlags: 0
@@ -84,24 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6977383059026637412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 281907818653513765}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a2a9c34df4095f47b9ca8f975175f5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Device: 0
-  m_PoseSource: 2
-  m_PoseProviderComponent: {fileID: 0}
-  m_TrackingType: 2
-  m_UpdateType: 0
-  m_UseRelativeTransform: 1
 --- !u!1 &5308743742913101022
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,6 +754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8206c30601a90ae4885b0b1cb7cca353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterManager: {fileID: 0}
 --- !u!1 &5909644037636158247
 GameObject:
   m_ObjectHideFlags: 0

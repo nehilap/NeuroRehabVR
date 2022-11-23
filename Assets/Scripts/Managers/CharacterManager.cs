@@ -82,7 +82,6 @@ public class CharacterManager : NetworkBehaviour
 			}
 		}
 
-		body.GetComponent<UnityEngine.SpatialTracking.TrackedPoseDriver>().enabled = true;
 		body.GetComponent<MeshRenderer>().enabled = false;
 	}
 
@@ -103,6 +102,8 @@ public class CharacterManager : NetworkBehaviour
 	}
 
 	void Start() {
+		spawnArea = GameObject.Find("SpawnArea");
+
 		interactedObjects = new List<Transform>();
 
 		// if non local character prefab is loaded we have to disable components such as camera, etc. otherwise Multiplayer aspect wouldn't work properly 
@@ -110,8 +111,10 @@ public class CharacterManager : NetworkBehaviour
 			if(head.GetComponent<Camera>() != null) {
 				head.GetComponent<Camera>().enabled = false;
 			}
-			if(head.GetComponent<TrackedPoseDriver>() != null) {
-				head.GetComponent<TrackedPoseDriver>().enabled = false;
+			if(head.GetComponents<TrackedPoseDriver>() != null) {
+				foreach (TrackedPoseDriver item in head.GetComponents<TrackedPoseDriver>())	{
+					item.enabled = false;
+				}
 			}
 			if(head.GetComponent<AudioListener>() != null) {
 				head.GetComponent<AudioListener>().enabled = false;
@@ -120,13 +123,16 @@ public class CharacterManager : NetworkBehaviour
 			for (int i = 0; i < XRControllers.Length; i++) {
 				XRControllers[i].enabled = false;
 			}
+		} else {
+			GameObject animationSettingsManager = GameObject.Find("AnimationSettingsObject");
+			if (animationSettingsManager) {
+				spawnCorrectTargetFakes(AnimationType.Off, animationSettingsManager.GetComponent<AnimationSettingsManager>().animType, true);
+			}
 		}
 
 		if ((arm != null && armFake != null) && activePatient == null) {
 			activePatient = this;
 		}
-
-		spawnArea = GameObject.Find("SpawnArea");
 
 		changeHMDType(hmdType, hmdType);
 		changeControllerType(controllerType, controllerType);
@@ -266,6 +272,12 @@ public class CharacterManager : NetworkBehaviour
 
 	[Command]
 	public void CmdSpawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType) {
+		Debug.Log("Spawning object: '"+_newAnimType+"', old object: '"+_oldAnimType+"'");
+		if (_newAnimType == _oldAnimType) {
+			Debug.Log("Animation types equal, cancelling!");
+			return;
+		}
+
 		List<GameObject> targetsInScene = FindTargetsOfTypeAll();
 		bool foundTarget = false;
 		for (int i = 0; i < targetsInScene.Count; i++) {
@@ -302,14 +314,20 @@ public class CharacterManager : NetworkBehaviour
 			List<GameObject> targetsInScene = FindTargetsOfTypeAll();
 			for (int i = 0; i < targetsInScene.Count; i++) {
 				if (targetsInScene[i].name.Equals(_newAnimType.ToString())
-					|| (targetsInScene[i].name).Equals(_newAnimType.ToString() + "(Clone)")) {
+					|| targetsInScene[i].name.Equals(_newAnimType.ToString() + "(Clone)")) {
 					targetsInScene[i].SetActive(true);
 				}
 			}
 		}
 		
-		GameObject.Find(_oldAnimType.ToString())?.SetActive(false);
-		GameObject.Find(_oldAnimType.ToString() + "(Clone)")?.SetActive(false);
+		GameObject obj = GameObject.Find(_oldAnimType.ToString());
+		if (obj) {
+			NetworkServer.Destroy(obj);
+		}
+		obj = GameObject.Find(_oldAnimType.ToString() + "(Clone)");
+		if (obj) {
+			NetworkServer.Destroy(obj);
+		}
 	}
 
 	private void spawnCorrectTargetFakes(AnimationType _oldAnimType, AnimationType _newAnimType, bool spawnNew) {
@@ -321,13 +339,12 @@ public class CharacterManager : NetworkBehaviour
 				}
 			}
 		} else {
-			
 			// We activate both here on client, active state is not synced
 			// we check both names for objects, because server spawned objects have (Clone) in the name
 			List<GameObject> targetsInScene = FindTargetsOfTypeAll();
 			for (int i = 0; i < targetsInScene.Count; i++) {
 				if (targetsInScene[i].name.Equals(_newAnimType.ToString()) 
-					|| (targetsInScene[i].name).Equals(_newAnimType.ToString() + "(Clone)") 
+					|| targetsInScene[i].name.Equals(_newAnimType.ToString() + "(Clone)") 
 					|| targetsInScene[i].name.Equals(_newAnimType.ToString() + "_fake")) {
 					targetsInScene[i].SetActive(true);
 				}
@@ -335,9 +352,10 @@ public class CharacterManager : NetworkBehaviour
 		}
 
 		// We de-activate both here on client, active state is not synced
-		GameObject.Find(_oldAnimType.ToString() + "(Clone)")?.SetActive(false);
-		GameObject.Find(_oldAnimType.ToString())?.SetActive(false);
-		GameObject.Find(_oldAnimType.ToString() + "_fake")?.SetActive(false);
+		GameObject obj = GameObject.Find(_oldAnimType.ToString() + "_fake");
+		if (obj) {
+			Destroy(obj);
+		}
 	}
 
 	public static List<GameObject> FindTargetsOfTypeAll() {
@@ -452,8 +470,8 @@ public class CharacterManager : NetworkBehaviour
 				//Debug.Log(_new);
 				//Debug.Log(head);
 				//Debug.Log(body);
-				head.transform.Find("Head").position = new Vector3(0f, 1.6f, 0f);
-				body.transform.position = new Vector3(0f, 1f, 0f);
+				//head.transform.Find("Head").position = new Vector3(0f, 1.6f, 0f);
+				// body.transform.position = new Vector3(0f, 1f, 0f);
 			}
 			
 		}

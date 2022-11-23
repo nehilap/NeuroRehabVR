@@ -96,13 +96,14 @@ public class AnimationController : MonoBehaviour
 		
 		animPart = AnimationPart.Moving;
 
-		
-		if (!isFakeArm && !GameObject.ReferenceEquals(CharacterManager.localClient.GetInstanceID(), CharacterManager.activePatient.GetInstanceID())) {
+		// Debug.Log(CharacterManager.localClient.GetInstanceID() + ",,," + CharacterManager.activePatient.GetInstanceID());		
+		if (!isFakeArm && !(CharacterManager.localClient.GetInstanceID() == CharacterManager.activePatient.GetInstanceID())) {
+			Debug.Log("Not original patient, aligning transform");
 			yield return StartCoroutine(alignTransformWrapper(animationSettingsManager.moveDuration));
 		} else {
-			
+			Debug.Log("Original patient or FakeArm, moving object");
 			// if Fake Arm, we don't need to gain authority, because it is not using networked object
-			if (!isFakeArm && GameObject.ReferenceEquals(CharacterManager.localClient.GetInstanceID(), CharacterManager.activePatient.GetInstanceID())) {
+			if (!isFakeArm && (CharacterManager.localClient.GetInstanceID() == CharacterManager.activePatient.GetInstanceID())) {
 				// we ask server to grant us authority over target object
 				CharacterManager.localClient.CmdSetItemAuthority(targetObject.GetComponent<NetworkIdentity>(), CharacterManager.localClient.GetComponent<NetworkIdentity>());
 			}
@@ -115,8 +116,8 @@ public class AnimationController : MonoBehaviour
 			}
 		}
 
-		stopAnimation();
 		// do nothing else
+		stopAnimation();
 	}
 
 	IEnumerator armStopAnimationLerp() {
@@ -130,8 +131,6 @@ public class AnimationController : MonoBehaviour
 		animPart = AnimationPart.Arm;
 		
 		yield return StartCoroutine(simpleRigLerp(armRig, animationSettingsManager.handMoveDuration, 1, 0));
-
-		animState = Enums.AnimationState.Stopped;
 
 		if(isFakeArm) {
 			targetObject.GetComponent<Renderer>().enabled = false;
@@ -174,6 +173,7 @@ public class AnimationController : MonoBehaviour
         float time = 0;
         while (time < duration) {
             animationMappings.alignTargetTransforms();
+			time += Time.deltaTime;
             yield return null;
         }
         animationMappings.alignTargetTransforms();
@@ -182,6 +182,10 @@ public class AnimationController : MonoBehaviour
 	public void startAnimation() {
 		if(animationSettingsManager.animType == AnimationType.Off) {
 			Debug.LogError("No animation type specified");
+			return;
+		}
+		if(animState == Enums.AnimationState.Playing) {
+			Debug.LogError("There is an animation running already");
 			return;
 		}
 
@@ -197,6 +201,9 @@ public class AnimationController : MonoBehaviour
 			figureRenderer.enabled = true;
 		}else {
 			targetObject = GameObject.Find(targetObjectName);
+			if (targetObject == null) {
+				targetObject = GameObject.Find(targetObjectName + "(Clone)");
+			}
 			targetObject.GetComponent<Rigidbody>().useGravity = false;
 		}
 
@@ -236,14 +243,17 @@ public class AnimationController : MonoBehaviour
 		}
 
 		// We don't have to set the positions of targets here, because we're simply releasing the hand grip + moving arm to relaxed position
-		animState = Enums.AnimationState.Playing;
 		animPart = AnimationPart.Hand;
 
+		animState = Enums.AnimationState.Stopped;
 		StartCoroutine(armStopAnimationLerp());
 	}
 
 	public void setAnimationStartPosition() {
 		GameObject originalTargetObject = GameObject.Find(animationSettingsManager.animType.ToString());
+		if (!originalTargetObject) {
+			 originalTargetObject = GameObject.Find(animationSettingsManager.animType.ToString() + "(Clone)");
+		}
 
 		TargetMapping _startPositionRotation = new TargetMapping(originalTargetObject.transform.position, originalTargetObject.transform.rotation.eulerAngles);
 		animationMappings.getTargetMappingByType(animationSettingsManager.animType).startPositionRotation = _startPositionRotation;
@@ -251,6 +261,9 @@ public class AnimationController : MonoBehaviour
 
 	public void setAnimationEndPosition() {
 		GameObject originalTargetObject = GameObject.Find(animationSettingsManager.animType.ToString());
+		if (!originalTargetObject) {
+			 originalTargetObject = GameObject.Find(animationSettingsManager.animType.ToString() + "(Clone)");
+		}
 
 		TargetMapping _endPositionRotation = new TargetMapping(originalTargetObject.transform.position, originalTargetObject.transform.rotation.eulerAngles);
 		animationMappings.getTargetMappingByType(animationSettingsManager.animType).movePositions.Add(_endPositionRotation);

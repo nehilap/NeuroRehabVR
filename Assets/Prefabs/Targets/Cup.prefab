@@ -269,7 +269,7 @@ MonoBehaviour:
   clientAuthority: 0
   onlySyncOnChange: 1
   bufferResetMultiplier: 5
-  positionSensitivity: 0.01
+  positionSensitivity: 0.001
   rotationSensitivity: 0.01
   scaleSensitivity: 0.01
   syncPosition: 1

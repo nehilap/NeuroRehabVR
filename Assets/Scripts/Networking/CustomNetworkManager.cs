@@ -80,7 +80,7 @@ public class CustomNetworkManager : NetworkManager
 
     // https://mirror-networking.gitbook.io/docs/guides/gameobjects/custom-character-spawning
     void OnCreateCharacter(NetworkConnectionToClient conn, CharacterMessage message) {
-        Debug.Log(message.hmdType.ToString());
+        Debug.Log("New connection requested, Client using: '" + message.hmdType.ToString() + "'");
 
         int indexToSpawn = -1;
         for (int i = 0; i < characterPrefabs.Count; i++) {

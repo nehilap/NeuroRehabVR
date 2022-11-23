@@ -45,6 +45,7 @@ public class HMDInfoManager : MonoBehaviour {
         // Debug.Log(Application.platform.ToString());
         if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor) {
             hmdType = HMDType.Mock;
+            StartCoroutine(HMDInfoManager.instance.startXR());
         } else if (Application.platform == RuntimePlatform.Android) {
             hmdType = HMDType.Other;
         } else {
@@ -83,11 +84,13 @@ public class HMDInfoManager : MonoBehaviour {
         setXRSettings();
     }
     public void setXRSettings () {
-        XRSettings.gameViewRenderMode = GameViewRenderMode.LeftEye;
+        if(hmdType == HMDType.Mock){
+            XRSettings.gameViewRenderMode = GameViewRenderMode.LeftEye;
+        }
         
         // We actually have to increase the resolution scaling, to increase the image queality
         // because 1.0 creates artifacts / jagged lines
-        XRSettings.eyeTextureResolutionScale = 1.5f;
+        XRSettings.eyeTextureResolutionScale = 1.6f;
     }
 
 }

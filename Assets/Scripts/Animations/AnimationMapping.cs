@@ -107,8 +107,8 @@ namespace Mappings
             if (currentAnimMapping == null) {
                 return;
             }
-            Debug.Log(currentAnimMapping.startPositionRotation);
-            Debug.Log(currentAnimMapping.movePositions);
+            Debug.Log(currentAnimMapping.startPositionRotation.position);
+            Debug.Log(currentAnimMapping.movePositions.Count);
             if (currentAnimMapping.startPositionRotation == null || currentAnimMapping.movePositions.Count <= 0) {
                 Debug.LogError("Start or End animation position not set");
                 throw new System.Exception("Start or End animation position not set");

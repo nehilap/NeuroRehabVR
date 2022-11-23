@@ -3,14 +3,23 @@ using UnityEngine.InputSystem.XR;
 
 public class TrackedPoseDriverManager : MonoBehaviour
 {
+    public CharacterManager characterManager;
     void Start() {
+        bool flag = true;
+        if (characterManager != null) {
+            if (!characterManager.isLocalPlayer) {
+                flag = false;
+            }
+        }
         // We have to be sure HMDInfoManager is setup before this code runs
         // we can do that in "Edit" -> "Project Settings" -> "Script Execution Order"
-        TrackedPoseDriver[] trackedPoseDrivers = GetComponents<TrackedPoseDriver>();
+        if (flag) {
+            TrackedPoseDriver[] trackedPoseDrivers = GetComponents<TrackedPoseDriver>();
 
-        if (HMDInfoManager.instance.hmdType == Enums.HMDType.Mock || HMDInfoManager.instance.hmdType == Enums.HMDType.Server) {
-            for (int i = 0; i < trackedPoseDrivers.Length; i++) {
-                trackedPoseDrivers[i].enabled = !trackedPoseDrivers[i].enabled;
+            if (HMDInfoManager.instance.hmdType == Enums.HMDType.Mock || HMDInfoManager.instance.hmdType == Enums.HMDType.Server) {
+                for (int i = 0; i < trackedPoseDrivers.Length; i++) {
+                    trackedPoseDrivers[i].enabled = !trackedPoseDrivers[i].enabled;
+                }
             }
         }
     }
