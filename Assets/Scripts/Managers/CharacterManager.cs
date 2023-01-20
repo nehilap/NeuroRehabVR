@@ -19,6 +19,11 @@ public class CharacterManager : NetworkBehaviour
 
 	[SyncVar(hook = nameof(changeHMDType))]
 	public HMDType hmdType;
+	
+	[SyncVar] public bool isFemale;
+	[SyncVar] public int avatarNumber;
+    [SerializeField] private List<GameObject> avatarMalePrefabs = new List<GameObject>();
+    [SerializeField] private List<GameObject> avatarFemalePrefabs = new List<GameObject>();
 
 	public List<GameObject> targetPrefabs = new List<GameObject>();
 
@@ -26,9 +31,10 @@ public class CharacterManager : NetworkBehaviour
 	public GameObject[] itemsToActivate;
 	public XRBaseController[] XRControllers;
 	public XRBaseControllerInteractor[] interactors;
+	[SerializeField] private AvatarWalkingController[] avatarWalkingControllers;
+	[SerializeField] private NetworkAvatarWalkingController networkAvatarWalkingController;
 
-	public GameObject head;
-	public GameObject body;
+	[SerializeField] private GameObject cameraTransform;
 
 	public InputActionManager inputActionManager;
 
@@ -39,6 +45,12 @@ public class CharacterManager : NetworkBehaviour
 
 	private GameObject spawnArea;
 
+	[SerializeField]
+	private GameObject[] objectsToCull;
+
+	[SerializeField]
+	private GameObject[] avatars;
+
 	public override void OnStartLocalPlayer() {
 		base.OnStartLocalPlayer();
 		Debug.Log("Local Character started");
@@ -46,6 +58,10 @@ public class CharacterManager : NetworkBehaviour
 		// Items is array of components that may need to be enabled / activated  only locally
 		for (int i = 0; i < itemsToActivate.Length; i++) {
 			itemsToActivate[i].SetActive(true);
+		}
+
+		for (int i = 0; i < avatarWalkingControllers.Length; i++) {
+			avatarWalkingControllers[i].enabled = true;
 		}
 
 		// We find all canvases and set them up to work correctly with the VR camera settings
@@ -61,7 +77,7 @@ public class CharacterManager : NetworkBehaviour
 		inputActionManager.enabled = true;
 
 		// We look for Device simulator and setup the local player camera transform to camera transform
-		GameObject.Find("XR Device Simulator").GetComponent<XRDeviceSimulator>().cameraTransform = head.transform;
+		GameObject.Find("XR Device Simulator").GetComponent<XRDeviceSimulator>().cameraTransform = cameraTransform.transform;
 
 		// We add listeners on item pick up / release
 		// interactors should contain all hands (XRcontrollers and interactors) that are to be used to interact with items
@@ -82,7 +98,10 @@ public class CharacterManager : NetworkBehaviour
 			}
 		}
 
-		body.GetComponent<MeshRenderer>().enabled = false;
+		int LayerCameraCull = LayerMask.NameToLayer("CameraCulled");
+        foreach (GameObject gameObject in objectsToCull) {
+			gameObject.layer = LayerCameraCull;
+		}
 	}
 
 	public override void OnStartClient () {
@@ -108,16 +127,16 @@ public class CharacterManager : NetworkBehaviour
 
 		// if non local character prefab is loaded we have to disable components such as camera, etc. otherwise Multiplayer aspect wouldn't work properly 
 		if (!isLocalPlayer)	{
-			if(head.GetComponent<Camera>() != null) {
-				head.GetComponent<Camera>().enabled = false;
+			if(cameraTransform.GetComponent<Camera>() != null) {
+				cameraTransform.GetComponent<Camera>().enabled = false;
 			}
-			if(head.GetComponents<TrackedPoseDriver>() != null) {
-				foreach (TrackedPoseDriver item in head.GetComponents<TrackedPoseDriver>())	{
+			if(cameraTransform.GetComponents<TrackedPoseDriver>() != null) {
+				foreach (TrackedPoseDriver item in cameraTransform.GetComponents<TrackedPoseDriver>())	{
 					item.enabled = false;
 				}
 			}
-			if(head.GetComponent<AudioListener>() != null) {
-				head.GetComponent<AudioListener>().enabled = false;
+			if(cameraTransform.GetComponent<AudioListener>() != null) {
+				cameraTransform.GetComponent<AudioListener>().enabled = false;
 			}
 
 			for (int i = 0; i < XRControllers.Length; i++) {
@@ -136,6 +155,25 @@ public class CharacterManager : NetworkBehaviour
 
 		changeHMDType(hmdType, hmdType);
 		changeControllerType(controllerType, controllerType);
+
+		// Setting correct avatar, based on which one was chosen in the lobby
+		GameObject avatar;
+		if (isFemale) {
+			avatar = avatarFemalePrefabs[avatarNumber % avatarFemalePrefabs.Count];
+		} else {
+			avatar = avatarMalePrefabs[avatarNumber % avatarMalePrefabs.Count];
+		}
+		transform.GetComponent<AvatarModelManager>().changeModel(isFemale, avatar);
+
+
+		// we disable avatars on Server, pointless calculations
+		if (isServer) {
+			foreach (GameObject avatarObject in avatars) {
+				avatarObject.SetActive(false);
+			}
+		}
+
+		networkAvatarWalkingController.enabled = true;
 	}
 
 	// We search through all objects loaded in scene in certain layer
@@ -466,14 +504,6 @@ public class CharacterManager : NetworkBehaviour
 	public void changeHMDType(HMDType _old, HMDType _new) {
 		if (_new == HMDType.Other) {
 			transform.Find("Offset").position = new Vector3(0f, 0f, 0f);
-			if (!isLocalPlayer) {
-				//Debug.Log(_new);
-				//Debug.Log(head);
-				//Debug.Log(body);
-				//head.transform.Find("Head").position = new Vector3(0f, 1.6f, 0f);
-				// body.transform.position = new Vector3(0f, 1f, 0f);
-			}
-			
 		}
 	}
 }

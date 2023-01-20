@@ -1,8 +1,23 @@
 using UnityEngine;
 
-public class SettingsManager : MonoBehaviour
-{
+[System.Serializable]
+public class AvatarSettings {
+    public bool isFemale;
+    public int avatarNumber;
+    public GameObject currentModel;
+}
+
+public class SettingsManager : MonoBehaviour {
+    public static SettingsManager instance;
+
+    [SerializeField]
+    public AvatarSettings avatarSettings;
+
     void Start() {
-        //Application.targetFrameRate = 30;
+        if (instance == null) {
+            instance = this;
+        }
+
+        Application.targetFrameRate = 60;
 	}
 }

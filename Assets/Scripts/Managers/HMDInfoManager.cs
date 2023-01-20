@@ -8,9 +8,9 @@ using UnityEngine.XR.Management;
 
 public class HMDInfoManager : MonoBehaviour {
 
-    public TMP_Text statusText;
-
     public static HMDInfoManager instance;
+
+    public TMP_Text statusText;
 
     // https://forum.unity.com/threads/openxr-is-it-no-longer-possible-to-get-descriptive-device-names.1051493/
     public ControllerType controllerType = ControllerType.Quest2;
@@ -20,10 +20,11 @@ public class HMDInfoManager : MonoBehaviour {
     public HMDType hmdType;
 
     void Start() {
-        hmdType = HMDType.Other;
         if (instance == null) {
             instance = this;
         }
+        
+        hmdType = HMDType.Other;
 
         // NOT WORKING CURRENTLY (MOST LIKELY)
         // seems to only work when using MOCK HMD
@@ -63,8 +64,8 @@ public class HMDInfoManager : MonoBehaviour {
         if (XRGeneralSettings.Instance.Manager.isInitializationComplete) {
             Debug.Log("Stopping XR...");
             XRGeneralSettings.Instance.Manager.StopSubsystems();
-            Camera.main.ResetAspect();
             XRGeneralSettings.Instance.Manager.DeinitializeLoader();
+            // Camera.main.ResetAspect();
         }
     }
 

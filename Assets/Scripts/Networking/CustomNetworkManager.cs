@@ -11,9 +11,10 @@ public class CustomNetworkManager : NetworkManager
 {   
     // public bool isServer;
     // usable prefabs for character (first non-simulated, then simulated prefabs)
-    public List<GameObject> characterPrefabs = new List<GameObject>();
+    [SerializeField]
+    private List<GameObject> characterPrefabs = new List<GameObject>();
 
-    // 2 persistent components holding information
+    // persistent components holding information
     private RoleManager roleManager;
     
     // the reason is because NetworkManager (parent class) already starts server if this is server build
@@ -72,7 +73,9 @@ public class CustomNetworkManager : NetworkManager
         {
             role = roleManager.characterRole,
             hmdType = HMDInfoManager.instance.hmdType,
-            controllerType = HMDInfoManager.instance.controllerType
+            controllerType = HMDInfoManager.instance.controllerType,
+            isFemale = SettingsManager.instance.avatarSettings.isFemale,
+            avatarNumber = SettingsManager.instance.avatarSettings.avatarNumber
         };
 
         NetworkClient.Send(characterMessage);
@@ -80,7 +83,8 @@ public class CustomNetworkManager : NetworkManager
 
     // https://mirror-networking.gitbook.io/docs/guides/gameobjects/custom-character-spawning
     void OnCreateCharacter(NetworkConnectionToClient conn, CharacterMessage message) {
-        Debug.Log("New connection requested, Client using: '" + message.hmdType.ToString() + "'");
+        Debug.Log("New connection requested, Client using: '" + message.hmdType.ToString() + "'" +
+            ", '" + message.isFemale + "', '" + message.avatarNumber + "'");
 
         int indexToSpawn = -1;
         for (int i = 0; i < characterPrefabs.Count; i++) {
@@ -99,6 +103,11 @@ public class CustomNetworkManager : NetworkManager
         characterManager.controllerType = message.controllerType;
         characterManager.hmdType = message.hmdType;
         characterManager.changeControllerType(message.controllerType, message.controllerType);
+
+        if (message.role == UserRole.Therapist) {
+            characterManager.isFemale = message.isFemale;
+            characterManager.avatarNumber = message.avatarNumber;
+        }
         
         NetworkServer.AddPlayerForConnection(conn, newCharacterModel);
     }
@@ -106,8 +115,10 @@ public class CustomNetworkManager : NetworkManager
     public override void OnServerDisconnect(NetworkConnectionToClient conn) {
         NetworkIdentity[] ownedObjects = new NetworkIdentity[conn.owned.Count];
         conn.owned.CopyTo(ownedObjects);
+
+        int avatarLayer = LayerMask.NameToLayer("Avatar");
         foreach (NetworkIdentity networkIdentity in ownedObjects) {
-            if (networkIdentity.gameObject.layer == 7) {
+            if (networkIdentity.gameObject.layer == avatarLayer) { // Layer 7 = Avatar
                 continue;
             }
             networkIdentity.gameObject.GetComponent<NetworkTransform>().syncDirection = SyncDirection.ServerToClient;

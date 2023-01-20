@@ -7,6 +7,8 @@ using UnityEngine.XR;
 public class StatusTextManager : MonoBehaviour
 {
     void Start() {
-        GetComponent<TMP_Text>().text = "HMD type: " + HMDInfoManager.instance.hmdType.ToString() + ", '" + XRSettings.loadedDeviceName + "'";
+        GetComponent<TMP_Text>().text = "Platform: '" + Application.platform.ToString() 
+            + "', HMD type: '" + HMDInfoManager.instance.hmdType.ToString()
+            + "', Device: '" + XRSettings.loadedDeviceName + "'";
     }
 }
