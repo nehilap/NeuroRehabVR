@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FreezeObject : MonoBehaviour {
+public class FreezeObjectRotation : MonoBehaviour {
     private Quaternion initialRotation;
 
     void Start() {

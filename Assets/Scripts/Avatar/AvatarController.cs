@@ -49,7 +49,9 @@ public class AvatarController : MonoBehaviour {
     }
 
     void LateUpdate() {
-        transform.position = headTarget.position + headOffset;
+        transform.position = headTarget.position + new Vector3(0, headOffset.y, 0);
+        transform.position += new Vector3(transform.forward.x * headOffset.x, 0, transform.forward.z * headOffset.z);
+
         transform.forward = Vector3.Lerp(transform.forward, Vector3.ProjectOnPlane(headTarget.forward, Vector3.up).normalized, Time.deltaTime * turnSmoothness);
 
         head.mapTransforms(sizeMultiplier);

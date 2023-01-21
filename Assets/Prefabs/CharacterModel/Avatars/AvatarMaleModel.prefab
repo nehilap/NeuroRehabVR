@@ -816,7 +816,7 @@ MonoBehaviour:
     applyIk: 1
     vrTarget: {fileID: 0}
     ikTarget: {fileID: 113542620766212077}
-    positionOffset: {x: 0.025, y: -0.12, z: 0.2}
+    positionOffset: {x: 0, y: -0.12, z: 0.2}
     rotationOffset: {x: 0, y: 0, z: 0}
   leftHand:
     applyIk: 1
@@ -832,7 +832,7 @@ MonoBehaviour:
     rotationOffset: {x: 0, y: -90, z: -110}
   turnSmoothness: 2
   headTarget: {fileID: 4862001591054997950}
-  headOffset: {x: 0, y: -1.7104, z: -0.1}
+  headOffset: {x: -0.1, y: -1.7104, z: -0.1}
   referenceHeight: 1.725
 --- !u!114 &7609271394805096690
 MonoBehaviour:
