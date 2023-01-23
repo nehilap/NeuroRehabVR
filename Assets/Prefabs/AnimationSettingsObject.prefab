@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1173649893461978357}
   - component: {fileID: 4344473024364349043}
   m_Layer: 0
-  m_Name: AnimationTimers
+  m_Name: AnimationSettingsObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,12 +45,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050fbbe02664d0049a9a5e28ff1c4b05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  armMoveDuration: 1.5
+  armMoveDuration:
+    duration: 1.5
+    textValue: {fileID: 0}
+    slider: {fileID: 0}
   handMoveDuration: 1.5
   waitDuration: 10
   moveDuration: 4
+  repetitions: 5
   animType: 3
   armMoveTextValue: {fileID: 0}
   armMoveSlider: {fileID: 0}
@@ -60,6 +65,8 @@ MonoBehaviour:
   waitDurSlider: {fileID: 0}
   moveDurTextValue: {fileID: 0}
   moveDurSlider: {fileID: 0}
+  repetitionsTextValue: {fileID: 0}
+  repetitionsSlider: {fileID: 0}
   animTypeDropdown: {fileID: 0}
 --- !u!114 &4344473024364349043
 MonoBehaviour:
@@ -74,7 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
+  _assetId: 3851208649
   serverOnly: 0
   visible: 0
-  m_AssetId: b0f16b31c8f0ff64592deb525149f2f8
   hasSpawned: 0

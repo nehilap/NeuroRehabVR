@@ -147,7 +147,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1878698787931433297}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &1878698787931433299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,6 +371,7 @@ GameObject:
   - component: {fileID: 1878698789788651943}
   - component: {fileID: 1878698789788651961}
   - component: {fileID: 4533198298547071238}
+  - component: {fileID: 7898726773472306906}
   - component: {fileID: 5780283270695576813}
   - component: {fileID: 2172990643908766035}
   - component: {fileID: 5011273826182721927}
@@ -510,6 +511,32 @@ MonoBehaviour:
   avatars:
   - {fileID: 4191707899220304035}
   - {fileID: 6152346352656084148}
+--- !u!114 &7898726773472306906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878698789788651940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e580817d2678e9449817f5ba3a6c0291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
+  animSettingsManager: {fileID: 0}
+  targetPrefabs:
+  - {fileID: 4585951089911290167, guid: 187b5e0706a658c41807f396198c9070, type: 3}
+  - {fileID: 2118952973532061121, guid: 83818a48cdb0cc24b9dadcdf5207209b, type: 3}
+  - {fileID: 1241488487069944307, guid: 40fe8f4a9268b7a4ebe31233411b94ed, type: 3}
+  - {fileID: 1241488487069944307, guid: 5145697b12375a144ae28480da9c0102, type: 3}
+  - {fileID: 1241488487069944307, guid: 2b1054fd8afd78b4f980e73bcf87e511, type: 3}
+  - {fileID: 1241488487069944307, guid: 6477a5d14e4c74a45af9a46af6181bdc, type: 3}
+  - {fileID: 1241488487069944307, guid: 60e5cf70978117c48abdabd14b958b8b, type: 3}
+  - {fileID: 1241488487069944307, guid: f57036f58e9019f41a1816236dfa2aa0, type: 3}
+  spawnArea: {fileID: 0}
 --- !u!114 &5780283270695576813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1838,10 +1865,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1878698789788651942}
     m_Modifications:
-    - target: {fileID: 76353302322133811, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 1094835895749396996, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
       propertyPath: head.vrTarget
       value: 
@@ -1858,14 +1881,6 @@ PrefabInstance:
       propertyPath: rightHand.vrTarget
       value: 
       objectReference: {fileID: 5075809588356192700}
-    - target: {fileID: 1543947783190627638, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1788926235045783101, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2764439475390559081, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
       propertyPath: m_Name
       value: AvatarFemaleModel
@@ -1874,13 +1889,9 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2855427333736969266, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3085427665176584958, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
-      propertyPath: m_Layer
-      value: 10
+    - target: {fileID: 5912082539520979338, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6136325387786580972, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
       propertyPath: m_RootOrder
@@ -1926,10 +1937,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7595492011486562534, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
 --- !u!1 &334737246450546167 stripped
@@ -1973,7 +1980,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 2051023691713680330}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4191707899220304035}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b7a12cadc0a0e54d9439f589c66325f, type: 3}
   m_Name: 
@@ -2171,21 +2178,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: AvatarMaleModel
       objectReference: {fileID: 0}
-    - target: {fileID: 742019550733442806, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1409880515377218552, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3836820864071781625, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057180496366934581, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
-      propertyPath: m_Layer
-      value: 10
+    - target: {fileID: 3482257624152933618, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7634075933599394607, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
       propertyPath: head.vrTarget
@@ -2203,10 +2198,6 @@ PrefabInstance:
       propertyPath: rightHand.vrTarget
       value: 
       objectReference: {fileID: 5075809588356192700}
-    - target: {fileID: 8932678251044810797, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
 --- !u!1 &3388355682701442934 stripped
@@ -2250,7 +2241,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 6121205533115043675}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6152346352656084148}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b7a12cadc0a0e54d9439f589c66325f, type: 3}
   m_Name: 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6671475608009265771}
   - component: {fileID: 4666122438801935427}
   - component: {fileID: 8042864406471461561}
+  - component: {fileID: 5796774195924405427}
   m_Layer: 0
   m_Name: RightRayInteractor
   m_TagString: Untagged
@@ -315,7 +316,7 @@ MonoBehaviour:
   m_SphereCastRadius: 0.1
   m_RaycastMask:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 502
   m_RaycastTriggerInteraction: 1
   m_HitClosestOnly: 0
   m_HoverToSelect: 0
@@ -565,7 +566,29 @@ MonoBehaviour:
   m_SmoothMovement: 0
   m_FollowTightness: 10
   m_SnapThresholdDistance: 10
-  m_Reticle: {fileID: 1784375691252363641, guid: 3ab627d0ae519394daa80d92d4385889, type: 3}
+  m_Reticle: {fileID: 0}
   m_BlockedReticle: {fileID: 0}
   m_StopLineAtFirstRaycastHit: 1
   m_StopLineAtSelection: 0
+--- !u!114 &5796774195924405427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7815606298927097357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6df71824f341bc4897680bb8beb4090, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MaxRaycastDistance: 10
+  m_ReticlePrefab: {fileID: 1784375691252363641, guid: 3ab627d0ae519394daa80d92d4385889, type: 3}
+  m_PrefabScalingFactor: 0.4
+  m_UndoDistanceScaling: 1
+  m_AlignPrefabWithSurfaceNormal: 1
+  m_EndpointSmoothingTime: 0.03
+  m_DrawWhileSelecting: 0
+  m_RaycastMask:
+    serializedVersion: 2
+    m_Bits: 2147483647

@@ -83,7 +83,7 @@ namespace Wolf3D.ReadyPlayerMe.AvatarSDK
                     }
                     else if(allChildren.Count > 1)
                     {
-                        Debug.Log($"ExtensionMethods.GetMeshRenderer: {meshType} not found on {gameObject.name}.");
+                        // Debug.Log($"ExtensionMethods.GetMeshRenderer: {meshType} not found on {gameObject.name}.");
                     }
                 }
             }

@@ -6,8 +6,6 @@ using UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation;
 using UnityEngine.InputSystem.XR;
 using System.Collections.Generic;
 using Enums;
-using UnityEngine.SceneManagement;
-using Utility;
 
 public class CharacterManager : NetworkBehaviour
 {
@@ -42,8 +40,6 @@ public class CharacterManager : NetworkBehaviour
 	public GameObject armFake;
 
 	private List<Transform> interactedObjects;
-
-	private GameObject spawnArea;
 
 	[SerializeField]
 	private GameObject[] objectsToCull;
@@ -121,8 +117,6 @@ public class CharacterManager : NetworkBehaviour
 	}
 
 	void Start() {
-		spawnArea = GameObject.Find("SpawnArea");
-
 		interactedObjects = new List<Transform>();
 
 		// if non local character prefab is loaded we have to disable components such as camera, etc. otherwise Multiplayer aspect wouldn't work properly 
@@ -135,17 +129,12 @@ public class CharacterManager : NetworkBehaviour
 					item.enabled = false;
 				}
 			}
-			if(cameraTransform.GetComponent<AudioListener>() != null) {
-				cameraTransform.GetComponent<AudioListener>().enabled = false;
-			}
-
 			for (int i = 0; i < XRControllers.Length; i++) {
 				XRControllers[i].enabled = false;
 			}
 		} else {
-			GameObject animationSettingsManager = GameObject.Find("AnimationSettingsObject");
-			if (animationSettingsManager) {
-				spawnCorrectTargetFakes(AnimationType.Off, animationSettingsManager.GetComponent<AnimationSettingsManager>().animType, true);
+			if(cameraTransform.GetComponent<AudioListener>() != null) {
+				cameraTransform.GetComponent<AudioListener>().enabled = true;
 			}
 		}
 
@@ -300,173 +289,6 @@ public class CharacterManager : NetworkBehaviour
 
 		activePatient.armFake.GetComponent<AnimationController>().stopAnimation();
 		activePatient.arm.GetComponent<AnimationController>().stopAnimation();
-	}
-
-	/**
-	*
-	* TARGET OBJECT SPAWNING
-	*
-	*/
-
-	[Command]
-	public void CmdSpawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType) {
-		Debug.Log("Spawning object: '"+_newAnimType+"', old object: '"+_oldAnimType+"'");
-		if (_newAnimType == _oldAnimType) {
-			Debug.Log("Animation types equal, cancelling!");
-			return;
-		}
-
-		List<GameObject> targetsInScene = FindTargetsOfTypeAll();
-		bool foundTarget = false;
-		for (int i = 0; i < targetsInScene.Count; i++) {
-			if (targetsInScene[i].name.Equals(_newAnimType.ToString())) {
-				foundTarget = true;
-				break;
-			}
-		}
-
-		RpcSpawnCorrectTarget(_oldAnimType, _newAnimType, !foundTarget);
-
-		spawnCorrectTarget(_oldAnimType, _newAnimType, !foundTarget);
-	}
-
-	[ClientRpc]
-	public void RpcSpawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType, bool spawnNew) {
-		spawnCorrectTargetFakes(_oldAnimType, _newAnimType, spawnNew);
-	}
-
-	// https://gamedevbeginner.com/how-to-spawn-an-object-in-unity-using-instantiate/
-	// https://mirror-networking.gitbook.io/docs/guides/gameobjects/spawning-gameobjects
-	private void spawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType, bool spawnNew) {
-		if (spawnNew) {
-			for (int i = 0; i < targetPrefabs.Count; i++) {
-				if (targetPrefabs[i].name.Equals(_newAnimType.ToString())) {
-					GameObject newObject = Instantiate(targetPrefabs[i], spawnArea.transform.position, spawnArea.transform.rotation);
-					newObject.gameObject.name = targetPrefabs[i].name;
-
-					NetworkServer.Spawn(newObject);
-					setAnimationStartPosition();
-				}
-			}
-		} else {
-			List<GameObject> targetsInScene = FindTargetsOfTypeAll();
-			for (int i = 0; i < targetsInScene.Count; i++) {
-				if (targetsInScene[i].name.Equals(_newAnimType.ToString())
-					|| targetsInScene[i].name.Equals(_newAnimType.ToString() + "(Clone)")) {
-					targetsInScene[i].SetActive(true);
-				}
-			}
-		}
-		
-		GameObject obj = GameObject.Find(_oldAnimType.ToString());
-		if (obj) {
-			NetworkServer.Destroy(obj);
-		}
-		obj = GameObject.Find(_oldAnimType.ToString() + "(Clone)");
-		if (obj) {
-			NetworkServer.Destroy(obj);
-		}
-	}
-
-	private void spawnCorrectTargetFakes(AnimationType _oldAnimType, AnimationType _newAnimType, bool spawnNew) {
-		if (spawnNew) {
-			for (int i = 0; i < targetPrefabs.Count; i++) {
-				if (targetPrefabs[i].name.Equals(_newAnimType.ToString() + "_fake")) {
-					GameObject newObject = Instantiate(targetPrefabs[i], spawnArea.transform.position, spawnArea.transform.rotation);
-					newObject.gameObject.name = targetPrefabs[i].name;
-				}
-			}
-		} else {
-			// We activate both here on client, active state is not synced
-			// we check both names for objects, because server spawned objects have (Clone) in the name
-			List<GameObject> targetsInScene = FindTargetsOfTypeAll();
-			for (int i = 0; i < targetsInScene.Count; i++) {
-				if (targetsInScene[i].name.Equals(_newAnimType.ToString()) 
-					|| targetsInScene[i].name.Equals(_newAnimType.ToString() + "(Clone)") 
-					|| targetsInScene[i].name.Equals(_newAnimType.ToString() + "_fake")) {
-					targetsInScene[i].SetActive(true);
-				}
-			}
-		}
-
-		// We de-activate both here on client, active state is not synced
-		GameObject obj = GameObject.Find(_oldAnimType.ToString() + "_fake");
-		if (obj) {
-			Destroy(obj);
-		}
-	}
-
-	public static List<GameObject> FindTargetsOfTypeAll() {
-		List<GameObject> results = new List<GameObject>();
-		for(int i = 0; i< SceneManager.sceneCount; i++) {
-			var s = SceneManager.GetSceneAt(i);
-			if (s.isLoaded) {
-				var allGameObjects = s.GetRootGameObjects();
-				for (int j = 0; j < allGameObjects.Length; j++) {
-					var go = allGameObjects[j];
-					TargetUtility[] items = go.GetComponentsInChildren<TargetUtility>(true);
-					foreach (TargetUtility item in items) {
-						results.Add(item.gameObject);
-					}
-				}
-			}
-		}
-		return results;
-	}
-
-	/*
-	*
-	* SYNCING START / END POSITIONS
-	*
-	*/
-
-	private void setAnimationStartPositionWrapped() {
-		if (activePatient == null) {
-			return;
-		}
-
-		activePatient.arm.GetComponent<AnimationController>().setAnimationStartPosition();
-		activePatient.armFake.GetComponent<AnimationController>().setAnimationStartPosition();
-	}
-
-	[ClientRpc]
-	public void setAnimationStartPosition() {
-		setAnimationStartPositionWrapped();
-	}
-
-	[ClientRpc]
-	public void setAnimationEndPosition() {
-		if (activePatient == null) {
-			return;
-		}
-
-		activePatient.arm.GetComponent<AnimationController>().setAnimationEndPosition();
-		activePatient.armFake.GetComponent<AnimationController>().setAnimationEndPosition();
-	}
-
-	[ClientRpc]
-	public void clearAnimationEndPosition() {
-		if (activePatient == null) {
-			return;
-		}
-
-		activePatient.arm.GetComponent<AnimationController>().clearAnimationEndPosition();
-		activePatient.armFake.GetComponent<AnimationController>().clearAnimationEndPosition();
-	}
-	
-	[Command]
-	public void CmdSetAnimationStartPosition() {
-		setAnimationStartPosition();
-	}
-
-	[Command]
-	public void CmdSetAnimationEndPosition() {
-		setAnimationEndPosition();
-	}
-
-	[Command]
-	public void CmdClearAnimationEndPosition() {
-		clearAnimationEndPosition();
 	}
 
 	public void changeControllerType(ControllerType _old, ControllerType _new) {

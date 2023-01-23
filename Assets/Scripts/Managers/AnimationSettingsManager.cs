@@ -3,9 +3,10 @@ using UnityEngine.UI;
 using TMPro;
 using Mirror;
 using Enums;
+using Mappings;
 
-public class AnimationSettingsManager : NetworkBehaviour
-{
+[System.Serializable]
+public class AnimationSettingsManager : NetworkBehaviour {
 	[SyncVar(hook = nameof(changeArmMoveDurationElements))] [Range(0.5f, 5f)]
 	public float armMoveDuration = 1.5f;
 	
@@ -41,15 +42,55 @@ public class AnimationSettingsManager : NetworkBehaviour
 
 	public TMP_Dropdown animTypeDropdown;
 
-	void Start() {
-		setAllElements();
+	public readonly SyncList<PosRotMapping> blockSetup = new SyncList<PosRotMapping>();
+	public readonly SyncList<PosRotMapping> cubeSetup = new SyncList<PosRotMapping>();
+	public readonly SyncList<PosRotMapping> cupSetup = new SyncList<PosRotMapping>();
+	public readonly SyncList<PosRotMapping> keySetup = new SyncList<PosRotMapping>();
+
+	public void Start() {
+		if (isClientOnly) {
+			setAllElements();
+			
+			blockSetup.Callback += onAnimationSetupUpdated;
+			cubeSetup.Callback += onAnimationSetupUpdated;
+			cupSetup.Callback += onAnimationSetupUpdated;
+			keySetup.Callback += onAnimationSetupUpdated;
+		}
 	}
 
 	public void setAnimType(AnimationType _animType) {
 		animType =_animType;
-		CMDUpdateAnimType(_animType);
+		NetworkCharacterManager.localNetworkClient.CMDUpdateAnimType(_animType);
 		
 		changeAnimTypeValue(AnimationType.Off, AnimationType.Off);
+	}
+
+	public SyncList<PosRotMapping> getCurrentAnimationSetup() {
+		switch (animType) {
+			case AnimationType.Block:
+				return blockSetup;
+			case AnimationType.Cube: 
+				return cubeSetup;
+			case AnimationType.Cup: 
+				return cupSetup;
+			case AnimationType.Key: 
+				return keySetup;
+			default: return null; // AnimType.Off
+		}
+	}
+
+	public SyncList<PosRotMapping> getAnimationSetupByAnimType(AnimationType _animType) {
+		switch (_animType) {
+			case AnimationType.Block:
+				return blockSetup;
+			case AnimationType.Cube: 
+				return cubeSetup;
+			case AnimationType.Cup: 
+				return cupSetup;
+			case AnimationType.Key: 
+				return keySetup;
+			default: return null; // AnimType.Off
+		}
 	}
 
 	/*
@@ -108,47 +149,99 @@ public class AnimationSettingsManager : NetworkBehaviour
 		animTypeDropdown.value = animTypeDropdown.options.FindIndex(option => option.text == animType.ToString());
 	}
 
+    void onAnimationSetupUpdated(SyncList<PosRotMapping>.Operation op, int index, PosRotMapping oldItem, PosRotMapping newItem) {
+        switch (op) {
+            case SyncList<PosRotMapping>.Operation.OP_ADD:
+                // index is where it was added into the list
+                // newItem is the new item
+				Debug.Log("Item added");
+                break;
+            case SyncList<PosRotMapping>.Operation.OP_INSERT:
+                // index is where it was inserted into the list
+                // newItem is the new item
+                break;
+            case SyncList<PosRotMapping>.Operation.OP_REMOVEAT:
+                // index is where it was removed from the list
+                // oldItem is the item that was removed
+                break;
+            case SyncList<PosRotMapping>.Operation.OP_SET:
+                // index is of the item that was changed
+                // oldItem is the previous value for the item at the index
+                // newItem is the new value for the item at the index
+				Debug.Log("Item changed");
+                break;
+            case SyncList<PosRotMapping>.Operation.OP_CLEAR:
+                // list got cleared
+				Debug.Log("List cleared");
+                break;
+        }
+    }
+
 	/*
 	* HANDLERS for assigning them in editor
 	*/
 
 	public void armDurationSliderHandler(float value) {
+		if (isServer) {
+			return;
+		}
+
 		armMoveDuration = value / 2f;
 
-		changeArmMoveDurationElements(0, 0);
-		CMDUpdateArmDuration(armMoveDuration);
+		changeArmMoveDurationElements(value, value);
+		NetworkCharacterManager.localNetworkClient.CMDUpdateArmDuration(armMoveDuration);
 	}
 
 	public void handDurationSliderHandler(float value) {
+		if (isServer) {
+			return;
+		}
+
 		handMoveDuration = value / 2f;
 
-		changeHandMoveDurationElements(0, 0);
-		CMDUpdateHandDuration(handMoveDuration);
+		changeHandMoveDurationElements(value, value);
+		NetworkCharacterManager.localNetworkClient.CMDUpdateHandDuration(handMoveDuration);
 	}
 
 	public void waitDurationSliderHandler(float value) {
+		if (isServer) {
+			return;
+		}
+
 		waitDuration = value / 2f;
 
-		changeWaitDurationElements(0, 0);
-		CMDUpdateWaitDuration(waitDuration);
+		changeWaitDurationElements(value, value);
+		NetworkCharacterManager.localNetworkClient.CMDUpdateWaitDuration(waitDuration);
 	}
 
 	public void moveDurationSliderHandler(float value) {
+		if (isServer) {
+			return;
+		}
+
 		moveDuration = value / 2f;
 
-		changeMoveDurationElements(0, 0);
-		CMDUpdateMoveDuration(moveDuration);
+		changeMoveDurationElements(value, value);
+		NetworkCharacterManager.localNetworkClient.CMDUpdateMoveDuration(moveDuration);
 	}
 
 	// We have to take in float values, because that's default type that slider works with
 	public void repetitionsSliderHandler(float value) {
+		if (isServer) {
+			return;
+		}
+
 		repetitions = (int) value;
 
-		changeRepetitionsElements(0, 0);
-		CMDUpdateRepetitions(repetitions);
+		changeRepetitionsElements((int) value, (int) value);
+		NetworkCharacterManager.localNetworkClient.CMDUpdateRepetitions(repetitions);
 	}
 
 	public void animationTypeDropdownHandler(TMP_Dropdown dropdown) {
+		if (isServer) {
+			return;
+		}
+
 		AnimationType oldAnimType = animType;
 
 		switch (dropdown.options[dropdown.value].text)
@@ -160,57 +253,12 @@ public class AnimationSettingsManager : NetworkBehaviour
 			case "Block": animType = AnimationType.Block; break;
 			default: break;
 		}
-		CMDUpdateAnimType(animType);
+		NetworkCharacterManager.localNetworkClient.CMDUpdateAnimType(animType);
 
+		
 		if (CharacterManager.localClient != null) {
-			CharacterManager.localClient.CmdSpawnCorrectTarget(oldAnimType, animType);
+			NetworkCharacterManager.localNetworkClient.CMDSpawnCorrectTarget(oldAnimType, animType);
 		}
-	}
-
-	/*
-	* COMMANDS FOR SERVER
-	* requires authority is off because we are firing off these commands from object, not 'player'
-	*/
-
-	[Command(requiresAuthority = false)]
-	public void CMDUpdateArmDuration(float value) {
-		if (armMoveDuration == value) return;
-
-		armMoveDuration = value;
-	}
-
-	[Command(requiresAuthority = false)]
-	public void CMDUpdateHandDuration(float value) {
-		if (handMoveDuration == value) return;
-
-		handMoveDuration = value;
-	}
-
-	[Command(requiresAuthority = false)]
-	public void CMDUpdateWaitDuration(float value) {
-		if (waitDuration == value) return;
 		
-		waitDuration = value;
-	}
-	
-	[Command(requiresAuthority = false)]
-	public void CMDUpdateMoveDuration(float value) {
-		if (moveDuration == value) return;
-		
-		moveDuration = value;
-	}
-	
-	[Command(requiresAuthority = false)]
-	public void CMDUpdateRepetitions(int value) {
-		if (repetitions == value) return;
-		
-		repetitions = value;
-	}
-
-	[Command(requiresAuthority = false)]
-	public void CMDUpdateAnimType(AnimationType _animType) {
-		if (animType == _animType) return;
-		
-		animType = _animType;
 	}
 }

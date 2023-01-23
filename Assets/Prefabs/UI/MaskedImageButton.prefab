@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 7213734564018258237}
   - component: {fileID: 3169407706229672356}
   - component: {fileID: 956035945390711690}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MaskedImageButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -544,6 +544,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   avatarModelManager: {fileID: 0}
+  modelToUse: {fileID: 0}
+  isFemale: 0
+  avatarNumber: 0
 --- !u!1001 &8208345711165878966
 PrefabInstance:
   m_ObjectHideFlags: 0

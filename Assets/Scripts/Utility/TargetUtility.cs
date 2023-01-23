@@ -9,6 +9,7 @@ namespace Utility {
         *
         * SCRIPT USED TO IDENTIFY TARGET OBJECTS
         * this way we can search objects by type without referencing all GameObjects in the scene
+        * has no other purpose
         *
         */
     }

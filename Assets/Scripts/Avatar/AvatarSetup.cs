@@ -1,7 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.Animations.Rigging;
-using System;
 
 public class AvatarSetup : MonoBehaviour {
 
@@ -18,12 +16,6 @@ public class AvatarSetup : MonoBehaviour {
     private string[] excludedNames;
 
     void Awake() {
-        /*
-        if(modelToUse != null) {
-            setupModel(modelToUse);
-        }
-        */
-
         setupAvatarParts();
     }
 
@@ -34,27 +26,19 @@ public class AvatarSetup : MonoBehaviour {
 
         modelToUse = GameObject.Instantiate(model) as GameObject;
 
-        /*
-        currentAvatarObjects.Clear();
-        foreach (Transform item in transform) {
-            if(System.Array.IndexOf(excludedNames, item.name) == -1) {
-                currentAvatarObjects.Add(item);
-            }
-        }
-        */
         Transform newModelTransform = modelToUse.GetComponent<Transform>();
 
         bool flag;
         foreach(Transform bodyPart in currentAvatarObjects) {
-                Debug.Log("bodypart " + bodyPart.name);
+                // Debug.Log("bodypart " + bodyPart.name);
             flag = false;
             bodyPart.gameObject.SetActive(true);
             foreach (Transform item in newModelTransform) {
-                Debug.Log("part " + item.name);
+                // Debug.Log("part " + item.name);
                 if(System.Array.IndexOf(excludedNames, item.name) == -1) {
                     if(bodyPart.name.Equals(item.name) && item.GetComponent<SkinnedMeshRenderer>() != null) {
                         updateMesh(bodyPart.GetComponent<SkinnedMeshRenderer>(), item.GetComponent<SkinnedMeshRenderer>(), rootBone);
-                        flag = true;
+                        flag = item.gameObject.activeSelf;
                         break;
                     }
                 }

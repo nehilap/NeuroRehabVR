@@ -882,6 +882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   XRRig: {fileID: 5308743742952482155}
+  XRRigCharacterController: {fileID: 0}
   collisionOffset: 0.07
 --- !u!1 &5909644037636158247
 GameObject:

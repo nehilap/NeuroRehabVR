@@ -5,10 +5,11 @@ public class HeadCollisionManager : MonoBehaviour {
     [SerializeField]
     private GameObject XRRig;
 
+    [SerializeField]
     private CharacterController XRRigCharacterController;
 
     [SerializeField]
-    private float collisionOffset = 0.07f;    
+    private float collisionOffset = 0.1f;    
 
     void Start() {
         int controllerLayer = LayerMask.NameToLayer("XRController");
@@ -38,10 +39,12 @@ public class HeadCollisionManager : MonoBehaviour {
             float diffX = Mathf.Round((headPosition.x - contact.point.x) * 100) / 100;
             Debug.Log(diffX);
             if (diffX != 0f) {
-                if (diffX < 0f) {
-                    diffX = -collisionOffset;
-                } else {
-                    diffX = collisionOffset;
+                if (Mathf.Abs(diffX) < collisionOffset) {
+                    if (diffX < 0f) {
+                        diffX = -collisionOffset;
+                    } else {
+                        diffX = collisionOffset;
+                    }
                 }
                 
                 XRRig.transform.position += new Vector3(diffX, 0f, 0f);
@@ -51,10 +54,12 @@ public class HeadCollisionManager : MonoBehaviour {
             float diffZ = Mathf.Round((headPosition.z - contact.point.z) * 100) / 100;
             Debug.Log(diffZ);
             if (diffZ != 0f) {
-                if (diffZ < 0f) {
-                    diffZ = -collisionOffset;
-                } else {
-                    diffZ = collisionOffset;
+                if (Mathf.Abs(diffZ) < collisionOffset) {
+                        if (diffZ < 0f) {
+                            diffZ = -collisionOffset;
+                        } else {
+                            diffZ = collisionOffset;
+                        }
                 }
                 
                 XRRig.transform.position += new Vector3(0f, 0f, diffZ);

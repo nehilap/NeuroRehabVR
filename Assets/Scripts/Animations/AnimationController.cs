@@ -18,11 +18,14 @@ public class AnimationController : MonoBehaviour
 	private Rig armRig;
 	private Rig handRig;
 
-	private AnimationMapping animationMappings;
-
 	private Renderer figureRenderer;
 
-	public AnimationSettingsManager animationSettingsManager;
+	[SerializeField]
+	private AnimationSettingsManager animSettingsManager;
+
+	private TargetsHelper targetsHelperObject;
+
+	private AnimationMapping animationMapping;
 
 	void Start() {
 		if(isFakeArm) {
@@ -30,9 +33,9 @@ public class AnimationController : MonoBehaviour
 			figureRenderer.enabled = false;
 		}
 
-		animationMappings = new AnimationMapping();
+		animationMapping = new AnimationMapping();
 
-		animationSettingsManager = GameObject.Find("AnimationSettingsObject")?.GetComponent<AnimationSettingsManager>();
+		animSettingsManager = GameObject.Find("AnimationSettingsObject")?.GetComponent<AnimationSettingsManager>();
 
 		armRig = transform.Find("ArmRig").GetComponent<Rig>();
 		handRig = transform.Find("HandRig").GetComponent<Rig>();
@@ -41,17 +44,17 @@ public class AnimationController : MonoBehaviour
 		Transform[] children = GetComponentsInChildren<Transform>();
 		foreach(Transform child in children) {
 			if(child.gameObject.name.Equals("ArmIK_target")) {
-				animationMappings.armTarget = child.gameObject;
+				targetsHelperObject.armTarget = child.gameObject;
 			} else if(child.gameObject.name.Equals("ThumbIK_target")) {
-				animationMappings.thumbTarget = child.gameObject;
+				targetsHelperObject.thumbTarget = child.gameObject;
 			} else if(child.gameObject.name.Equals("IndexChainIK_target")) {
-				animationMappings.indexTarget = child.gameObject;
+				targetsHelperObject.indexTarget = child.gameObject;
 			} else if(child.gameObject.name.Equals("MiddleChainIK_target")) {
-				animationMappings.middleTarget = child.gameObject;
+				targetsHelperObject.middleTarget = child.gameObject;
 			} else if(child.gameObject.name.Equals("RingChainIK_target")) {
-				animationMappings.ringTarget = child.gameObject;
+				targetsHelperObject.ringTarget = child.gameObject;
 			} else if(child.gameObject.name.Equals("PinkyChainIK_target")) {
-				animationMappings.pinkyTarget = child.gameObject;
+				targetsHelperObject.pinkyTarget = child.gameObject;
 			}
 		}
 
@@ -66,13 +69,12 @@ public class AnimationController : MonoBehaviour
 
 		// BLOCK animation setup - relative values
 		// TODO
-		animationMappings.blockMapping.armMapping = new TargetMapping(new Vector3(-1.104002f, 0.07f, -1.648f), new Vector3(0f, 336.925079f, 270f)); // armTarget
-		animationMappings.blockMapping.thumbMapping = new TargetMapping(new Vector3(-0.300006866f, 0.287f, 1.146f), new Vector3(1.90925431f, 8.86787796f, 17.1680984f)); // thumbTarget
-		animationMappings.blockMapping.indexMapping = new TargetMapping(new Vector3(0.200004578f, 0.326000452f, 0.654f), new Vector3(0f, 0f, 0f)); // indexTarget
-		animationMappings.blockMapping.middleMapping = new TargetMapping(new Vector3(0.186004639f, 0.104000568f, 0.68f), new Vector3(0f, 0f, 0f)); // middleTarget
-		animationMappings.blockMapping.ringMapping = new TargetMapping(new Vector3(0.267972946f, -0.161999464f, 0.664f), new Vector3(0f, 0f, 0f)); // ringTarget
-		animationMappings.blockMapping.pinkyMapping = new TargetMapping(new Vector3(0.541992188f, -0.401f, 0.618f), new Vector3(0f, 0f, 0f)); // pinkyTarget
-		setAnimationStartPosition();
+		animationMapping.blockMapping.armMapping = new PosRotMapping(new Vector3(-1.104002f, 0.07f, -1.648f), new Vector3(0f, 336.925079f, 270f)); // armTarget
+		animationMapping.blockMapping.thumbMapping = new PosRotMapping(new Vector3(-0.300006866f, 0.287f, 1.146f), new Vector3(1.90925431f, 8.86787796f, 17.1680984f)); // thumbTarget
+		animationMapping.blockMapping.indexMapping = new PosRotMapping(new Vector3(0.200004578f, 0.326000452f, 0.654f), new Vector3(0f, 0f, 0f)); // indexTarget
+		animationMapping.blockMapping.middleMapping = new PosRotMapping(new Vector3(0.186004639f, 0.104000568f, 0.68f), new Vector3(0f, 0f, 0f)); // middleTarget
+		animationMapping.blockMapping.ringMapping = new PosRotMapping(new Vector3(0.267972946f, -0.161999464f, 0.664f), new Vector3(0f, 0f, 0f)); // ringTarget
+		animationMapping.blockMapping.pinkyMapping = new PosRotMapping(new Vector3(0.541992188f, -0.401f, 0.618f), new Vector3(0f, 0f, 0f)); // pinkyTarget
 	}
 
 	public static void PrintVector3(Vector3 message, int type = 1) {
@@ -88,18 +90,18 @@ public class AnimationController : MonoBehaviour
 	IEnumerator armStartAnimationLerp() {
 		// Animation control for moving arm and grabbing with hand
 		// we set weight to the corresponding part we're moving
-		yield return StartCoroutine(simpleRigLerp(armRig, animationSettingsManager.armMoveDuration, 0, 1));
+		yield return StartCoroutine(simpleRigLerp(armRig, animSettingsManager.armMoveDuration, 0, 1));
 
 		animPart = AnimationPart.Hand;
 		
-		yield return StartCoroutine(simpleRigLerp(handRig, animationSettingsManager.handMoveDuration, 0, 1));
+		yield return StartCoroutine(simpleRigLerp(handRig, animSettingsManager.handMoveDuration, 0, 1));
 		
 		animPart = AnimationPart.Moving;
 
 		// Debug.Log(CharacterManager.localClient.GetInstanceID() + ",,," + CharacterManager.activePatient.GetInstanceID());		
 		if (!isFakeArm && !(CharacterManager.localClient.GetInstanceID() == CharacterManager.activePatient.GetInstanceID())) {
 			Debug.Log("Not original patient, aligning transform");
-			yield return StartCoroutine(alignTransformWrapper(animationSettingsManager.moveDuration));
+			yield return StartCoroutine(alignTransformWrapper(animSettingsManager.moveDuration));
 		} else {
 			Debug.Log("Original patient or FakeArm, moving object");
 			// if Fake Arm, we don't need to gain authority, because it is not using networked object
@@ -108,11 +110,11 @@ public class AnimationController : MonoBehaviour
 				CharacterManager.localClient.CmdSetItemAuthority(targetObject.GetComponent<NetworkIdentity>(), CharacterManager.localClient.GetComponent<NetworkIdentity>());
 			}
 
-			TargetMappingGroup currentTargetMappingGroup = animationMappings.getTargetMappingByType(animationSettingsManager.animType);
-			for (int i = 0; i < currentTargetMappingGroup.movePositions.Count; i++)	{
-				Vector3 startPos = currentTargetMappingGroup.startPositionRotation.position;
-				Vector3 endPos = currentTargetMappingGroup.movePositions[i].position;
-				yield return StartCoroutine(lerpVector3(targetObject, startPos, endPos, animationSettingsManager.moveDuration));
+			SyncList<PosRotMapping> currentAnimSetup = animSettingsManager.getCurrentAnimationSetup();
+			for (int i = 1; i < currentAnimSetup.Count; i++)	{
+				Vector3 startPos = currentAnimSetup[i-1].position;
+				Vector3 endPos = currentAnimSetup[i].position;
+				yield return StartCoroutine(lerpVector3(targetObject, startPos, endPos, animSettingsManager.moveDuration));
 			}
 		}
 
@@ -126,11 +128,11 @@ public class AnimationController : MonoBehaviour
 		// we set weight to the corresponding part we're moving
 		animPart = AnimationPart.Hand;
 
-		yield return StartCoroutine(simpleRigLerp(handRig, animationSettingsManager.armMoveDuration, 1, 0));
+		yield return StartCoroutine(simpleRigLerp(handRig, animSettingsManager.armMoveDuration, 1, 0));
 
 		animPart = AnimationPart.Arm;
 		
-		yield return StartCoroutine(simpleRigLerp(armRig, animationSettingsManager.handMoveDuration, 1, 0));
+		yield return StartCoroutine(simpleRigLerp(armRig, animSettingsManager.handMoveDuration, 1, 0));
 
 		if(isFakeArm) {
 			targetObject.GetComponent<Renderer>().enabled = false;
@@ -161,26 +163,26 @@ public class AnimationController : MonoBehaviour
         float time = 0;
         while (time < duration) {
             target.transform.position = Vector3.Lerp(startPosition, targetPosition, time / duration);
-			animationMappings.alignTargetTransforms();
+			targetsHelperObject.alignTargetTransforms();
             time += Time.deltaTime;
             yield return null;
         }
         target.transform.position = targetPosition;
-		animationMappings.alignTargetTransforms();
+		targetsHelperObject.alignTargetTransforms();
     }
 
 	IEnumerator alignTransformWrapper(float duration) {
         float time = 0;
         while (time < duration) {
-            animationMappings.alignTargetTransforms();
+            targetsHelperObject.alignTargetTransforms();
 			time += Time.deltaTime;
             yield return null;
         }
-        animationMappings.alignTargetTransforms();
+        targetsHelperObject.alignTargetTransforms();
     }
 
 	public void startAnimation() {
-		if(animationSettingsManager.animType == AnimationType.Off) {
+		if(animSettingsManager.animType == AnimationType.Off) {
 			Debug.LogError("No animation type specified");
 			return;
 		}
@@ -189,7 +191,7 @@ public class AnimationController : MonoBehaviour
 			return;
 		}
 
-		string targetObjectName = animationSettingsManager.animType.ToString(); // TODO animationSettingsManager.animType.toString();
+		string targetObjectName = animSettingsManager.animType.ToString(); // TODO animationSettingsManager.animType.toString();
 
 		// setup targetObject 
 		if(isFakeArm) {
@@ -207,24 +209,31 @@ public class AnimationController : MonoBehaviour
 			targetObject.GetComponent<Rigidbody>().useGravity = false;
 		}
 
-		TargetMappingGroup currentMapping = animationMappings.getTargetMappingByType(animationSettingsManager.animType);
+		TargetMappingGroup currentMapping = animationMapping.getTargetMappingByType(animSettingsManager.animType);
+		SyncList<PosRotMapping> currentAnimationSetup = animSettingsManager.getCurrentAnimationSetup();
 
-		targetObject.transform.position = currentMapping.startPositionRotation.position;
-		targetObject.transform.rotation = Quaternion.Euler(currentMapping.startPositionRotation.rotation);
+		if (currentAnimationSetup.Count <= 1) {
+			Debug.LogError("Start or End animation position not set");
+			return;
+		}
+		Debug.Log(currentAnimationSetup[0].position + " _ " + (currentAnimationSetup.Count - 1));
+
+		targetObject.transform.position = currentAnimationSetup[0].position;
+		targetObject.transform.rotation = Quaternion.Euler(currentAnimationSetup[0].rotation);
 		
 		// helper target objects, children of our target object
-		animationMappings.armTargetFake = targetObject.transform.Find("ArmIK_target_helper").gameObject;
-		animationMappings.thumbTargetFake = targetObject.transform.Find("ThumbIK_target_helper").gameObject;
-		animationMappings.indexTargetFake = targetObject.transform.Find("IndexChainIK_target_helper").gameObject;
-		animationMappings.middleTargetFake = targetObject.transform.Find("MiddleChainIK_target_helper").gameObject;
-		animationMappings.ringTargetFake = targetObject.transform.Find("RingChainIK_target_helper").gameObject;
-		animationMappings.pinkyTargetFake = targetObject.transform.Find("PinkyChainIK_target_helper").gameObject;
+		targetsHelperObject.armTargetTemplate = targetObject.transform.Find("ArmIK_target_helper").gameObject;
+		targetsHelperObject.thumbTargetTemplate = targetObject.transform.Find("ThumbIK_target_helper").gameObject;
+		targetsHelperObject.indexTargetTemplate = targetObject.transform.Find("IndexChainIK_target_helper").gameObject;
+		targetsHelperObject.middleTargetTemplate = targetObject.transform.Find("MiddleChainIK_target_helper").gameObject;
+		targetsHelperObject.ringTargetTemplate = targetObject.transform.Find("RingChainIK_target_helper").gameObject;
+		targetsHelperObject.pinkyTargetTemplate = targetObject.transform.Find("PinkyChainIK_target_helper").gameObject;
 
 		try {
 			// Setting position + rotation
 			// TODO calculate for any target position
-			animationMappings.setAllTargetMappings(animationSettingsManager.animType);
-			animationMappings.alignTargetTransforms();
+			targetsHelperObject.setAllTargetMappings(animationMapping.getTargetMappingByType(animSettingsManager.animType));
+			targetsHelperObject.alignTargetTransforms();
 		}catch(System.Exception ex) {
 			Debug.LogError(ex);
 			return;
@@ -247,30 +256,6 @@ public class AnimationController : MonoBehaviour
 
 		animState = Enums.AnimationState.Stopped;
 		StartCoroutine(armStopAnimationLerp());
-	}
-
-	public void setAnimationStartPosition() {
-		GameObject originalTargetObject = GameObject.Find(animationSettingsManager.animType.ToString());
-		if (!originalTargetObject) {
-			 originalTargetObject = GameObject.Find(animationSettingsManager.animType.ToString() + "(Clone)");
-		}
-
-		TargetMapping _startPositionRotation = new TargetMapping(originalTargetObject.transform.position, originalTargetObject.transform.rotation.eulerAngles);
-		animationMappings.getTargetMappingByType(animationSettingsManager.animType).startPositionRotation = _startPositionRotation;
-	}
-
-	public void setAnimationEndPosition() {
-		GameObject originalTargetObject = GameObject.Find(animationSettingsManager.animType.ToString());
-		if (!originalTargetObject) {
-			 originalTargetObject = GameObject.Find(animationSettingsManager.animType.ToString() + "(Clone)");
-		}
-
-		TargetMapping _endPositionRotation = new TargetMapping(originalTargetObject.transform.position, originalTargetObject.transform.rotation.eulerAngles);
-		animationMappings.getTargetMappingByType(animationSettingsManager.animType).movePositions.Add(_endPositionRotation);
-	}
-
-	public void clearAnimationEndPosition() {
-		animationMappings.getTargetMappingByType(animationSettingsManager.animType).movePositions.Clear();
 	}
 
 	private GameObject findChildByName(string name) {

@@ -1,7 +1,6 @@
 using UnityEngine;
-using Mirror;
 
-public class TherapistMenuManager : NetworkBehaviour
+public class TherapistMenuManager : MonoBehaviour
 {
 	public void playAnimationShowcaseHandler() {
 		CharacterManager.localClient.CmdStartAnimationShowcase();
@@ -16,26 +15,14 @@ public class TherapistMenuManager : NetworkBehaviour
 	}
 
 	public void setAnimationStartPositionHandler() {
-		if (CharacterManager.activePatient == null) {
-			Debug.LogError("No active patient found");
-		}
-
-		CharacterManager.localClient.CmdSetAnimationStartPosition();
+		NetworkCharacterManager.localNetworkClient.CMDSetAnimationStartPosition(null);
 	}
 
 	public void setAnimationEndPositionHandler() {
-		if (CharacterManager.activePatient == null) {
-			Debug.LogError("No active patient found");
-		}
-
-		CharacterManager.localClient.CmdSetAnimationEndPosition();
+		NetworkCharacterManager.localNetworkClient.CMDAddMovePosition();
 	}
 
 	public void clearAnimationEndPositionHandler() {
-		if (CharacterManager.activePatient == null) {
-			Debug.LogError("No active patient found");
-		}
-
-		CharacterManager.localClient.CmdClearAnimationEndPosition();
+		NetworkCharacterManager.localNetworkClient.CMDClearAnimationMovePositions();
 	}
 }
