@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public class TherapistMenuManager : MonoBehaviour
-{
+public class TherapistMenuManager : MonoBehaviour {
 	public void playAnimationShowcaseHandler() {
 		CharacterManager.localClient.CmdStartAnimationShowcase();
 	}

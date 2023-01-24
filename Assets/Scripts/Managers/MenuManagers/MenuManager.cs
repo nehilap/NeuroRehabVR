@@ -7,8 +7,6 @@ public class MenuManager : MonoBehaviour
 {
     public string targetAPI;
 
-    public RoleManager characterManager;
-
     public Canvas settingsCanvas;
 
     private JoinManager joinManager;
@@ -26,12 +24,12 @@ public class MenuManager : MonoBehaviour
     }
 
     public void JoinTherapist() {
-        characterManager.CreateCharacter(UserRole.Therapist);
+        RoleManager.instance.CreateCharacter(UserRole.Therapist);
         joinManager.Join();
     }
 
     public void JoinPatient() {
-        characterManager.CreateCharacter(UserRole.Patient);
+        RoleManager.instance.CreateCharacter(UserRole.Patient);
         joinManager.Join();
     }
 

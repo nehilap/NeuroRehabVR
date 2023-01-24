@@ -86,8 +86,7 @@ public class CharacterManager : NetworkBehaviour
 			XRControllers[i].enableInputActions = true;
 		}
 
-		RoleManager roleManager = GameObject.Find("GameManager").GetComponent<RoleManager>();
-		if (roleManager.characterRole == Enums.UserRole.Patient) {
+		if (RoleManager.instance.characterRole == Enums.UserRole.Patient) {
 			GameObject therapistMenu = GameObject.Find("TherapistMenu");
 			if (therapistMenu != null) {
 				TherapistMenuManager therapistMenuManager = therapistMenu.GetComponent<TherapistMenuManager>();
@@ -218,35 +217,6 @@ public class CharacterManager : NetworkBehaviour
         SetItemAuthority(itemID, newPlayerOwner);
     }
 
-    /* 
-	*
-	* ITEM RELEASE 
-	* CURRENTLY NOT USED DUE TO HOW BUGGY IT WAS 
-	*/
-	// Instead it's handled in CustomNetworkManager.cs
-	/*
-	void itemRelease(Transform interactedObject) {
-		// if not server, we ask server to release authority
-		NetworkIdentity itemNetIdentity = interactedObject.GetComponent<NetworkIdentity>();
-		if (!itemNetIdentity.hasAuthority) {
-			return;
-		}
-		if (isServer)
-			ReleaseAuthority(itemNetIdentity);
-		else
-			CmdReleaseAuthority(itemNetIdentity);
-	}
-
-	void ReleaseAuthority(NetworkIdentity item) {
-		Debug.Log("Releasing authority:" + item.netId);
-		item.RemoveClientAuthority();
-    }
-
-    [Command]
-    public void CmdReleaseAuthority(NetworkIdentity itemID) {
-        ReleaseAuthority(itemID);
-    }
-	*/
 	/**
 	*
 	* CALLING ANIMATIONS ON CLIENTS

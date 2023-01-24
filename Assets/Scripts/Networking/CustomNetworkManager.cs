@@ -3,7 +3,6 @@ using UnityEngine;
 using Mirror;
 using Enums;
 using Structs;
-using UnityEngine.XR.Interaction.Toolkit;
 
 // Class overriding default NetworkManager from Mirror
 // used for spawning custom character models
@@ -13,9 +12,6 @@ public class CustomNetworkManager : NetworkManager
     // usable prefabs for character (first non-simulated, then simulated prefabs)
     [SerializeField]
     private List<GameObject> characterPrefabs = new List<GameObject>();
-
-    // persistent components holding information
-    private RoleManager roleManager;
     
     // the reason is because NetworkManager (parent class) already starts server if this is server build
     // in case you still need to use Start(), don't forget to call base.Start(); 
@@ -37,25 +33,10 @@ public class CustomNetworkManager : NetworkManager
 
         base.Start();
     }
-    
-
-    // Fake Start method, since this is not traditional MonoBehaviour and Methods listed below are called on certain events
-    private void Setup() {
-        roleManager = gameObject.GetComponent<RoleManager>();
-
-        /*characterPrefabs = new Dictionary<string, GameObject>();
-
-        // we load character models from Resources folder (Prefabs folder is inside Resources)
-        string[] roles = System.Enum.GetNames(typeof(UserRole));
-        for (int i = 0; i < roles.Length; i++) {
-            characterPrefabs.Add(roles[i], Resources.Load<GameObject>("Prefabs/CharacterModel/" + roles[i]));
-        }*/
-    }
 
     // Called on SERVER only when SERVER starts
     public override void OnStartServer() {
         base.OnStartServer();
-        Setup();
 
         Debug.Log("Server started:" + NetworkManager.singleton.networkAddress);
 
@@ -66,12 +47,11 @@ public class CustomNetworkManager : NetworkManager
     // Called on CLIENT only when CLIENT connects
     public override void OnClientConnect() {
         base.OnClientConnect();
-        Setup();
         
         // you can send the message here
         CharacterMessage characterMessage = new CharacterMessage
         {
-            role = roleManager.characterRole,
+            role = RoleManager.instance.characterRole,
             hmdType = HMDInfoManager.instance.hmdType,
             controllerType = HMDInfoManager.instance.controllerType,
             isFemale = SettingsManager.instance.avatarSettings.isFemale,

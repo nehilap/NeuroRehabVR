@@ -1,5 +1,4 @@
 using UnityEngine;
-using TMPro;
 using Enums;
 using Mappings;
 using UnityEngine.Animations.Rigging;
@@ -57,15 +56,6 @@ public class AnimationController : MonoBehaviour
 				targetsHelperObject.pinkyTarget = child.gameObject;
 			}
 		}
-
-		/*
-		animationMappings.armTarget = transform.Find("ArmIK_target")?.gameObject;
-		animationMappings.thumbTarget = transform.Find("ThumbIK_target")?.gameObject;
-		animationMappings.indexTarget = transform.Find("IndexChainIK_target")?.gameObject;
-		animationMappings.middleTarget = transform.Find("MiddleChainIK_target")?.gameObject;
-		animationMappings.ringTarget = transform.Find("RingChainIK_target")?.gameObject;
-		animationMappings.pinkyTarget = transform.Find("PinkyChainIK_target")?.gameObject;
-		*/
 
 		// BLOCK animation setup - relative values
 		// TODO

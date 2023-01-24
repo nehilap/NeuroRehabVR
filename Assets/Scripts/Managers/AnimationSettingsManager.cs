@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using Mirror;
 using Enums;
+using System.Collections.Generic;
 using Mappings;
 
 [System.Serializable]
@@ -47,14 +48,27 @@ public class AnimationSettingsManager : NetworkBehaviour {
 	public readonly SyncList<PosRotMapping> cupSetup = new SyncList<PosRotMapping>();
 	public readonly SyncList<PosRotMapping> keySetup = new SyncList<PosRotMapping>();
 
+	[SerializeField]
+	private List<GameObject> markerPrefabs = new List<GameObject>();
+	[SerializeField]
+	private Transform markerParent;
+	[SerializeField]
+	private List<GameObject> spawnedMarkers = new List<GameObject>();
+
 	public void Start() {
 		if (isClientOnly) {
 			setAllElements();
 			
-			blockSetup.Callback += onAnimationSetupUpdated;
-			cubeSetup.Callback += onAnimationSetupUpdated;
-			cupSetup.Callback += onAnimationSetupUpdated;
-			keySetup.Callback += onAnimationSetupUpdated;
+			if (RoleManager.instance.characterRole == Enums.UserRole.Therapist) {
+				blockSetup.Callback += onAnimationSetupUpdated;
+				cubeSetup.Callback += onAnimationSetupUpdated;
+				cupSetup.Callback += onAnimationSetupUpdated;
+				keySetup.Callback += onAnimationSetupUpdated;
+
+				setupMarkers();
+			}
+		} else if (isServer) {
+			NetworkCharacterManager.localNetworkClient.CMDSetAnimationStartPosition(null);
 		}
 	}
 
@@ -128,6 +142,8 @@ public class AnimationSettingsManager : NetworkBehaviour {
 
 	private void changeAnimTypeValue(AnimationType _old, AnimationType _new) {
 		animTypeDropdown.value = animTypeDropdown.options.FindIndex(option => option.text == animType.ToString());
+
+		setupMarkers();
 	}
 
 	private void setAllElements() {
@@ -150,11 +166,17 @@ public class AnimationSettingsManager : NetworkBehaviour {
 	}
 
     void onAnimationSetupUpdated(SyncList<PosRotMapping>.Operation op, int index, PosRotMapping oldItem, PosRotMapping newItem) {
+		int prefabIndex;
+		// Debug.Log(newItem);
         switch (op) {
             case SyncList<PosRotMapping>.Operation.OP_ADD:
                 // index is where it was added into the list
                 // newItem is the new item
-				Debug.Log("Item added");
+				// Debug.Log("Item added");
+				prefabIndex = index == 0 ? 0 : 1;				
+				
+				GameObject marker = GameObject.Instantiate(markerPrefabs[prefabIndex], newItem.position, Quaternion.Euler(newItem.rotation), markerParent) as GameObject;
+				spawnedMarkers.Add(marker);
                 break;
             case SyncList<PosRotMapping>.Operation.OP_INSERT:
                 // index is where it was inserted into the list
@@ -168,14 +190,39 @@ public class AnimationSettingsManager : NetworkBehaviour {
                 // index is of the item that was changed
                 // oldItem is the previous value for the item at the index
                 // newItem is the new value for the item at the index
-				Debug.Log("Item changed");
+				// Debug.Log("Item changed");
+				GameObject.Destroy(spawnedMarkers[index]);
+				prefabIndex = index == 0 ? 0 : 1;	
+
+				GameObject newMarker = GameObject.Instantiate(markerPrefabs[prefabIndex], newItem.position, Quaternion.Euler(newItem.rotation), markerParent) as GameObject;
+				spawnedMarkers[index] = newMarker;
                 break;
             case SyncList<PosRotMapping>.Operation.OP_CLEAR:
                 // list got cleared
-				Debug.Log("List cleared");
+				// Debug.Log("List cleared");
+				foreach (GameObject item in spawnedMarkers) {
+					GameObject.Destroy(item);
+				}
+
+				spawnedMarkers.Clear();
                 break;
         }
     }
+
+	private void setupMarkers() {
+		spawnedMarkers.Clear();
+		SyncList<PosRotMapping> currentMapping = getCurrentAnimationSetup();
+
+		if (currentMapping.Count > 0) {
+			GameObject marker = GameObject.Instantiate(markerPrefabs[0], currentMapping[0].position, Quaternion.Euler(currentMapping[0].rotation), markerParent) as GameObject;
+			spawnedMarkers.Add(marker);
+
+			for (int i = 1; i < currentMapping.Count; i++) {
+				marker = GameObject.Instantiate(markerPrefabs[1], currentMapping[i].position, Quaternion.Euler(currentMapping[i].rotation), markerParent) as GameObject;
+				spawnedMarkers.Add(marker);
+			}
+		}
+	}
 
 	/*
 	* HANDLERS for assigning them in editor

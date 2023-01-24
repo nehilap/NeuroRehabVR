@@ -48,10 +48,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  armMoveDuration:
-    duration: 1.5
-    textValue: {fileID: 0}
-    slider: {fileID: 0}
+  armMoveDuration: 1.5
   handMoveDuration: 1.5
   waitDuration: 10
   moveDuration: 4
@@ -68,6 +65,11 @@ MonoBehaviour:
   repetitionsTextValue: {fileID: 0}
   repetitionsSlider: {fileID: 0}
   animTypeDropdown: {fileID: 0}
+  markerPrefabs:
+  - {fileID: 8717787728135219662, guid: 420ed2a59a8b52c4386b166cfcea93b7, type: 3}
+  - {fileID: 8717787728135219662, guid: 8ea946d07ad592c4eaa66162d6e3293a, type: 3}
+  markerParent: {fileID: 0}
+  spawnedMarkers: []
 --- !u!114 &4344473024364349043
 MonoBehaviour:
   m_ObjectHideFlags: 0
