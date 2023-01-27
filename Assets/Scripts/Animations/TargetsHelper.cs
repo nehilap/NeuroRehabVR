@@ -1,6 +1,7 @@
 using Mappings;
 using UnityEngine;
 
+[System.Serializable]
 public class TargetsHelper {
     
     // objects which are used as targets in dynamic animations (IK)

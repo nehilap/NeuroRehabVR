@@ -1,8 +1,0 @@
-TargetMappingGroup -> dat het start a move pos
-
-AnimationMapping presunut do AnimationController -> netreba to zdielat, kazdy pacient si to vybuduje sam mapy,
-	aj tak su rovnake
-
-start a move pos spravit novu triedu -> len to nech sa zdiela
-
-star a move pos vytvorit nejake objekty pri kazdej zmene

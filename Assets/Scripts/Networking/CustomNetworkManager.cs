@@ -1,13 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-using Enums;
 using Structs;
 
 // Class overriding default NetworkManager from Mirror
 // used for spawning custom character models
-public class CustomNetworkManager : NetworkManager
-{   
+public class CustomNetworkManager : NetworkManager {   
     // public bool isServer;
     // usable prefabs for character (first non-simulated, then simulated prefabs)
     [SerializeField]
@@ -55,7 +53,8 @@ public class CustomNetworkManager : NetworkManager
             hmdType = HMDInfoManager.instance.hmdType,
             controllerType = HMDInfoManager.instance.controllerType,
             isFemale = SettingsManager.instance.avatarSettings.isFemale,
-            avatarNumber = SettingsManager.instance.avatarSettings.avatarNumber
+            avatarNumber = SettingsManager.instance.avatarSettings.avatarNumber,
+            sizeMultiplier = SettingsManager.instance.avatarSettings.sizeMultiplier,
         };
 
         NetworkClient.Send(characterMessage);
@@ -82,12 +81,13 @@ public class CustomNetworkManager : NetworkManager
         CharacterManager characterManager = newCharacterModel.GetComponent<CharacterManager>();
         characterManager.controllerType = message.controllerType;
         characterManager.hmdType = message.hmdType;
+
+        // this gets called only on Server, Clients have to change their models themselves anyway
         characterManager.changeControllerType(message.controllerType, message.controllerType);
 
-        if (message.role == UserRole.Therapist) {
-            characterManager.isFemale = message.isFemale;
-            characterManager.avatarNumber = message.avatarNumber;
-        }
+        characterManager.isFemale = message.isFemale;
+        characterManager.avatarNumber = message.avatarNumber;
+        characterManager.avatarSizeMultiplier = message.sizeMultiplier;
         
         NetworkServer.AddPlayerForConnection(conn, newCharacterModel);
     }

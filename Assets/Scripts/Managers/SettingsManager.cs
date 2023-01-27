@@ -4,6 +4,7 @@ using UnityEngine;
 public class AvatarSettings {
     public bool isFemale;
     public int avatarNumber;
+    public float sizeMultiplier;
     public GameObject currentModel;
 }
 

@@ -49,42 +49,42 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	*/
 
 	[Command]
-	public void CMDUpdateArmDuration(float value) {
+	public void CmdUpdateArmDuration(float value) {
 		if (animSettingsManager.armMoveDuration == value) return;
 
 		animSettingsManager.armMoveDuration = value;
 	}
 
 	[Command]
-	public void CMDUpdateHandDuration(float value) {
+	public void CmdUpdateHandDuration(float value) {
 		if (animSettingsManager.handMoveDuration == value) return;
 
 		animSettingsManager.handMoveDuration = value;
 	}
 
 	[Command]
-	public void CMDUpdateWaitDuration(float value) {
+	public void CmdUpdateWaitDuration(float value) {
 		if (animSettingsManager.waitDuration == value) return;
 		
 		animSettingsManager.waitDuration = value;
 	}
 	
 	[Command]
-	public void CMDUpdateMoveDuration(float value) {
+	public void CmdUpdateMoveDuration(float value) {
 		if (animSettingsManager.moveDuration == value) return;
 		
 		animSettingsManager.moveDuration = value;
 	}
 	
 	[Command]
-	public void CMDUpdateRepetitions(int value) {
+	public void CmdUpdateRepetitions(int value) {
 		if (animSettingsManager.repetitions == value) return;
 		
 		animSettingsManager.repetitions = value;
 	}
 
 	[Command]
-	public void CMDUpdateAnimType(AnimationType _animType) {
+	public void CmdUpdateAnimType(AnimationType _animType) {
 		if (animSettingsManager.animType == _animType) return;
 		
 		animSettingsManager.animType = _animType;
@@ -97,13 +97,11 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	*/
 
     [Command]
-	public void CMDSetAnimationStartPosition(PosRotMapping newPosRotMapping) {
-        if (newPosRotMapping == null) {
-            newPosRotMapping = getAnimationStartPositionFromObject();
-            if (newPosRotMapping == null) {
-                return;
-            }
-        }
+	public void CmdSetAnimationStartPosition() {
+		PosRotMapping newPosRotMapping = getPosRotFromObject();
+		if (newPosRotMapping == null) {
+			return;
+		}
 
         if (animSettingsManager.getCurrentAnimationSetup().Count >= 1) {
             animSettingsManager.getCurrentAnimationSetup()[0] = newPosRotMapping;
@@ -112,7 +110,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
         }
 	}
 
-    public PosRotMapping getAnimationStartPositionFromObject() {
+    private PosRotMapping getPosRotFromObject() {
         string animType = animSettingsManager.animType.ToString();
         GameObject targetObject = GameObject.Find(animType);
 		if (!targetObject) {
@@ -126,7 +124,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
     }
 
 	[Command]
-	public void CMDAddMovePosition() {
+	public void CmdAddMovePosition() {
         GameObject originalTargetObject = GameObject.Find(animSettingsManager.animType.ToString());
 		if (!originalTargetObject) {
 			 originalTargetObject = GameObject.Find(animSettingsManager.animType.ToString() + "(Clone)");
@@ -137,7 +135,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	}
 
 	[Command]
-	public void CMDClearAnimationMovePositions() {
+	public void CmdClearAnimationMovePositions() {
 		animSettingsManager.getCurrentAnimationSetup().Clear();
 	}
 
@@ -148,7 +146,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	*/
 
 	[Command]
-	public void CMDSpawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType) {
+	public void CmdSpawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType) {
 		Debug.Log("Spawning object: '"+_newAnimType+"', old object: '"+_oldAnimType+"'");
 		if (_newAnimType == _oldAnimType) {
 			Debug.Log("Animation types equal, cancelling!");
@@ -164,13 +162,13 @@ public class NetworkCharacterManager : NetworkBehaviour {
 			}
 		}
 
-		RPCSpawnCorrectTarget(_oldAnimType, _newAnimType, !foundTarget);
+		RpcSpawnCorrectTarget(_oldAnimType, _newAnimType, !foundTarget);
 
 		spawnCorrectTarget(_oldAnimType, _newAnimType, !foundTarget);
 	}
 
 	[ClientRpc]
-	public void RPCSpawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType, bool spawnNew) {
+	public void RpcSpawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType, bool spawnNew) {
 		spawnCorrectTargetFakes(_oldAnimType, _newAnimType, spawnNew);
 	}
 
@@ -185,7 +183,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 					NetworkServer.Spawn(newObject);
 					
-                    CMDSetAnimationStartPosition(new PosRotMapping(newObject.transform.position, newObject.transform.rotation.eulerAngles));
+                    CmdSetAnimationStartPosition();
 				}
 			}
 		} else {
@@ -252,5 +250,43 @@ public class NetworkCharacterManager : NetworkBehaviour {
 			}
 		}
 		return results;
+	}
+
+	/**
+	*
+	* CALLING ANIMATIONS ON CLIENTS
+	*
+	*/
+
+	[Command]
+	public void CmdStartAnimationShowcase() {
+		RpcStartActualAnimation(true);
+	}
+
+	[Command]
+	public void CmdStartAnimation() {
+		RpcStartActualAnimation(false);
+	}
+
+	[Command]
+	public void CmdStopAnimation() {
+		RpcStopActualAnimation();
+	}
+
+	[ClientRpc]
+	public void RpcStartActualAnimation(bool isShowcase) {
+		if (CharacterManager.activePatient == null) {
+			return;
+		}
+		CharacterManager.activePatient.activeArmAnimationController.startAnimation(isShowcase);
+	}
+
+	[ClientRpc]
+	public void RpcStopActualAnimation() {
+		if (CharacterManager.activePatient == null) {
+			return;
+		}
+
+		CharacterManager.activePatient.activeArmAnimationController.stopAnimation();
 	}
 }

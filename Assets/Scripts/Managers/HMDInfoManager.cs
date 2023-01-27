@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.XR;
-using Enums;
+using UnityEngine.XR.Management;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using System.Collections;
-using UnityEngine.XR.Management;
+using Enums;
 
 public class HMDInfoManager : MonoBehaviour {
 

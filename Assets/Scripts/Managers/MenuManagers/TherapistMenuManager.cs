@@ -2,26 +2,26 @@ using UnityEngine;
 
 public class TherapistMenuManager : MonoBehaviour {
 	public void playAnimationShowcaseHandler() {
-		CharacterManager.localClient.CmdStartAnimationShowcase();
+		NetworkCharacterManager.localNetworkClient.CmdStartAnimationShowcase();
 	}
 
 	public void playAnimationHandler() {
-		CharacterManager.localClient.CmdStartAnimation();
+		NetworkCharacterManager.localNetworkClient.CmdStartAnimation();
 	}
 
 	public void stopAnimationHandler() {
-		CharacterManager.localClient.CmdStopAnimation();
+		NetworkCharacterManager.localNetworkClient.CmdStopAnimation();
 	}
 
 	public void setAnimationStartPositionHandler() {
-		NetworkCharacterManager.localNetworkClient.CMDSetAnimationStartPosition(null);
+		NetworkCharacterManager.localNetworkClient.CmdSetAnimationStartPosition();
 	}
 
 	public void setAnimationEndPositionHandler() {
-		NetworkCharacterManager.localNetworkClient.CMDAddMovePosition();
+		NetworkCharacterManager.localNetworkClient.CmdAddMovePosition();
 	}
 
 	public void clearAnimationEndPositionHandler() {
-		NetworkCharacterManager.localNetworkClient.CMDClearAnimationMovePositions();
+		NetworkCharacterManager.localNetworkClient.CmdClearAnimationMovePositions();
 	}
 }

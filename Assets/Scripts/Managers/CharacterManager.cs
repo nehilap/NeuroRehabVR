@@ -12,43 +12,41 @@ public class CharacterManager : NetworkBehaviour
 	public static CharacterManager localClient;
 	public static CharacterManager activePatient;
 
-	[SyncVar(hook = nameof(changeControllerType))]
-	public ControllerType controllerType;
+	[SerializeField] private bool isPatient = false;
 
-	[SyncVar(hook = nameof(changeHMDType))]
-	public HMDType hmdType;
+	[SyncVar(hook = nameof(changeControllerType))] public ControllerType controllerType;
+	[SyncVar(hook = nameof(changeHMDType))] public HMDType hmdType;
 	
 	[SyncVar] public bool isFemale;
 	[SyncVar] public int avatarNumber;
+	[SyncVar] public float avatarSizeMultiplier;
+
+	[SerializeField] public GameObject activeAvatarObject;
+	[SerializeField] public bool isLeftArmAnimated = false;
+	[SerializeField] public ArmAnimationController activeArmAnimationController;
+
     [SerializeField] private List<GameObject> avatarMalePrefabs = new List<GameObject>();
     [SerializeField] private List<GameObject> avatarFemalePrefabs = new List<GameObject>();
 
-	public List<GameObject> targetPrefabs = new List<GameObject>();
-
 	// Items is array of components that may need to be enabled / activated  only locally
-	public GameObject[] itemsToActivate;
-	public XRBaseController[] XRControllers;
-	public XRBaseControllerInteractor[] interactors;
+	[SerializeField] private GameObject[] itemsToActivate;
+	[SerializeField] private XRBaseController[] XRControllers;
+	[SerializeField] private XRBaseControllerInteractor[] interactors;
 	[SerializeField] private AvatarWalkingController[] avatarWalkingControllers;
 	[SerializeField] private NetworkAvatarWalkingController networkAvatarWalkingController;
+	[SerializeField] private HeadCollisionManager headCollisionManager;
 
 	[SerializeField] private GameObject cameraTransform;
 
-	public InputActionManager inputActionManager;
+	[SerializeField] private InputActionManager inputActionManager;
 
-	public GameObject arm;
-	public GameObject armFake;
-
-	private List<Transform> interactedObjects;
-
-	[SerializeField]
-	private GameObject[] objectsToCull;
-
-	[SerializeField]
-	private GameObject[] avatars;
+	[SerializeField] private GameObject[] objectsToCull;
+	[SerializeField] private GameObject[] avatars;
 
 	public override void OnStartLocalPlayer() {
 		base.OnStartLocalPlayer();
+
+		localClient = this;
 		Debug.Log("Local Character started");
 
 		// Items is array of components that may need to be enabled / activated  only locally
@@ -97,27 +95,19 @@ public class CharacterManager : NetworkBehaviour
         foreach (GameObject gameObject in objectsToCull) {
 			gameObject.layer = LayerCameraCull;
 		}
-	}
 
-	public override void OnStartClient () {
-		base.OnStartClient();
-
-		if (isLocalPlayer) {
-			localClient = this;
-		}
+		headCollisionManager.enabled = true;
 	}
 
 	public override void OnStopClient() {
 		base.OnStopClient();
 
-		if ((arm != null && armFake != null) && activePatient != null) {
+		if (isPatient && activePatient != null) {
 			activePatient = null;
 		}
 	}
 
 	void Start() {
-		interactedObjects = new List<Transform>();
-
 		// if non local character prefab is loaded we have to disable components such as camera, etc. otherwise Multiplayer aspect wouldn't work properly 
 		if (!isLocalPlayer)	{
 			if(cameraTransform.GetComponent<Camera>() != null) {
@@ -137,8 +127,14 @@ public class CharacterManager : NetworkBehaviour
 			}
 		}
 
-		if ((arm != null && armFake != null) && activePatient == null) {
+		if (isPatient && activePatient == null) {
 			activePatient = this;
+		}
+
+		if (!isPatient) {
+			foreach (ArmAnimationController item in transform.GetComponents<ArmAnimationController>()) {
+				item.enabled = false;
+			}
 		}
 
 		changeHMDType(hmdType, hmdType);
@@ -151,8 +147,19 @@ public class CharacterManager : NetworkBehaviour
 		} else {
 			avatar = avatarMalePrefabs[avatarNumber % avatarMalePrefabs.Count];
 		}
-		transform.GetComponent<AvatarModelManager>().changeModel(isFemale, avatar);
 
+		activeAvatarObject = transform.GetComponent<AvatarModelManager>().changeModel(isFemale, avatar, avatarSizeMultiplier);
+
+		if (isPatient) {
+			ArmAnimationController[] armAnimationControllers = activeAvatarObject.GetComponents<ArmAnimationController>();
+			foreach (ArmAnimationController item in armAnimationControllers) {
+				if (this.isLeftArmAnimated == item.isLeft) { // only if both True, or both False
+					activeArmAnimationController = item;
+				} else {
+					item.enabled = false;
+				}
+			}
+		}
 
 		// we disable avatars on Server, pointless calculations
 		if (isServer) {
@@ -198,9 +205,9 @@ public class CharacterManager : NetworkBehaviour
 		if (isOwned) {
 			// if not server, we ask server to grant us authority
 			NetworkIdentity itemNetIdentity = args.interactableObject.transform.GetComponent<NetworkIdentity>();
-			if (isServer)
-				SetItemAuthority(itemNetIdentity, identity);
-			else
+			if (!isServer)
+				// SetItemAuthority(itemNetIdentity, identity);
+			// else
 				CmdSetItemAuthority(itemNetIdentity, identity);
 		}
 	}
@@ -217,53 +224,13 @@ public class CharacterManager : NetworkBehaviour
         SetItemAuthority(itemID, newPlayerOwner);
     }
 
-	/**
-	*
-	* CALLING ANIMATIONS ON CLIENTS
-	*
-	*/
-
 	[Command]
-	public void CmdStartAnimationShowcase() {
-		RpcStartActualAnimation(true);
-	}
-
-	[Command]
-	public void CmdStartAnimation() {
-		RpcStartActualAnimation(false);
-	}
-
-	[Command]
-	public void CmdStopAnimation() {
-		RpcStopActualAnimation();
-	}
-
-	[ClientRpc]
-	public void RpcStartActualAnimation(bool isShowcase) {
-		if (activePatient == null) {
-			return;
-		}
-
-		if(isShowcase) {
-			activePatient.armFake.GetComponent<AnimationController>().startAnimation();
-		} else {
-			activePatient.arm.GetComponent<AnimationController>().startAnimation();
-		}
-	}
-
-	[ClientRpc]
-	public void RpcStopActualAnimation() {
-		if (activePatient == null) {
-			return;
-		}
-
-		activePatient.armFake.GetComponent<AnimationController>().stopAnimation();
-		activePatient.arm.GetComponent<AnimationController>().stopAnimation();
-	}
+    public void CmdSetAvatarSizeMultiplier(float _avatarSizeMultiplier) {
+        avatarSizeMultiplier = _avatarSizeMultiplier;
+    }
 
 	public void changeControllerType(ControllerType _old, ControllerType _new) {
 		// Debug.Log("Change controller called "  +  _new.ToString());
-        
 		XRBaseController rightC =  transform.Find("Offset/Camera Offset/RightHand Controller").GetComponent<XRBaseController>();
         XRBaseController leftC =  transform.Find("Offset/Camera Offset/LeftHand Controller").GetComponent<XRBaseController>();
 

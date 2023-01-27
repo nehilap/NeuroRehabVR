@@ -23,21 +23,17 @@ public class HeadCollisionManager : MonoBehaviour {
         XRRigCharacterController = XRRig.GetComponent<CharacterController>();
     }
 
-    private void OnTriggerEnter(Collider other) {
-        Debug.Log("Trigger detected: " + other.name);
-    }
-
     private void OnCollisionEnter(Collision collision) {
         Debug.Log("Collision detected: " + collision.transform.name);
 
     
         Vector3 headPosition = transform.TransformPoint(Vector3.zero);
         
-        Debug.Log(headPosition);
+        // Debug.Log(headPosition);
         foreach (ContactPoint contact in collision.contacts) {
-            Debug.Log(contact.point);
+            // Debug.Log(contact.point);
             float diffX = Mathf.Round((headPosition.x - contact.point.x) * 100) / 100;
-            Debug.Log(diffX);
+            // Debug.Log(diffX);
             if (diffX != 0f) {
                 if (Mathf.Abs(diffX) < collisionOffset) {
                     if (diffX < 0f) {
@@ -52,7 +48,7 @@ public class HeadCollisionManager : MonoBehaviour {
                 break;
             }
             float diffZ = Mathf.Round((headPosition.z - contact.point.z) * 100) / 100;
-            Debug.Log(diffZ);
+            // Debug.Log(diffZ);
             if (diffZ != 0f) {
                 if (Mathf.Abs(diffZ) < collisionOffset) {
                         if (diffZ < 0f) {

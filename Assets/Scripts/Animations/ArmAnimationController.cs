@@ -1,61 +1,35 @@
+using System.Collections;
+using Mirror;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
+
 using Enums;
 using Mappings;
-using UnityEngine.Animations.Rigging;
-using Mirror;
-using System.Collections;
 
-public class AnimationController : MonoBehaviour
-{
-	// no need to Serialize public fields, those are serialized automatically
-	public GameObject targetObject;
-	public bool isFakeArm = false;
-
+public class ArmAnimationController : MonoBehaviour {
 	private Enums.AnimationState animState = Enums.AnimationState.Stopped;
 	private AnimationPart animPart;
+	[SerializeField] public bool isLeft;
 
-	private Rig armRig;
-	private Rig handRig;
+	[SerializeField] private Rig restArmRig;
+	[SerializeField] private Rig armRig;
+	[SerializeField] private Rig handRig;
 
-	private Renderer figureRenderer;
 
-	[SerializeField]
-	private AnimationSettingsManager animSettingsManager;
+	[SerializeField] private Renderer[] armObjects;
+	[SerializeField] private Renderer[] fakeArmObjects;
 
-	private TargetsHelper targetsHelperObject;
+	[SerializeField] private AnimationSettingsManager animSettingsManager;
+
+	[SerializeField] private TargetsHelper targetsHelperObject;
+	[SerializeField] private GameObject targetObject;
 
 	private AnimationMapping animationMapping;
 
 	void Start() {
-		if(isFakeArm) {
-			figureRenderer = GetComponentInChildren<Renderer>();
-			figureRenderer.enabled = false;
-		}
-
 		animationMapping = new AnimationMapping();
 
 		animSettingsManager = GameObject.Find("AnimationSettingsObject")?.GetComponent<AnimationSettingsManager>();
-
-		armRig = transform.Find("ArmRig").GetComponent<Rig>();
-		handRig = transform.Find("HandRig").GetComponent<Rig>();
-
-		// target objects, these objects will be moved to correspond to where bones should move
-		Transform[] children = GetComponentsInChildren<Transform>();
-		foreach(Transform child in children) {
-			if(child.gameObject.name.Equals("ArmIK_target")) {
-				targetsHelperObject.armTarget = child.gameObject;
-			} else if(child.gameObject.name.Equals("ThumbIK_target")) {
-				targetsHelperObject.thumbTarget = child.gameObject;
-			} else if(child.gameObject.name.Equals("IndexChainIK_target")) {
-				targetsHelperObject.indexTarget = child.gameObject;
-			} else if(child.gameObject.name.Equals("MiddleChainIK_target")) {
-				targetsHelperObject.middleTarget = child.gameObject;
-			} else if(child.gameObject.name.Equals("RingChainIK_target")) {
-				targetsHelperObject.ringTarget = child.gameObject;
-			} else if(child.gameObject.name.Equals("PinkyChainIK_target")) {
-				targetsHelperObject.pinkyTarget = child.gameObject;
-			}
-		}
 
 		// BLOCK animation setup - relative values
 		// TODO
@@ -67,20 +41,11 @@ public class AnimationController : MonoBehaviour
 		animationMapping.blockMapping.pinkyMapping = new PosRotMapping(new Vector3(0.541992188f, -0.401f, 0.618f), new Vector3(0f, 0f, 0f)); // pinkyTarget
 	}
 
-	public static void PrintVector3(Vector3 message, int type = 1) {
-		if (type == 1)
-			Debug.Log("X: " + message.x + "  Y: " + message.y + "  Z:" + message.z);
-		if (type == 2)
-			Debug.LogWarning("X: " + message.x + "  Y: " + message.y + "  Z:" + message.z);
-		if (type == 3)
-			Debug.LogError("X: " + message.x + "  Y: " + message.y + "  Z:" + message.z);
-	}
-
 	// https://gamedevbeginner.com/coroutines-in-unity-when-and-how-to-use-them/
-	IEnumerator armStartAnimationLerp() {
+	private IEnumerator armStartAnimationLerp(bool isFakeAnimation) {
 		// Animation control for moving arm and grabbing with hand
 		// we set weight to the corresponding part we're moving
-		yield return StartCoroutine(simpleRigLerp(armRig, animSettingsManager.armMoveDuration, 0, 1));
+		yield return StartCoroutine(dualRigLerp(armRig, restArmRig, animSettingsManager.armMoveDuration, 0, 1));
 
 		animPart = AnimationPart.Hand;
 		
@@ -89,13 +54,13 @@ public class AnimationController : MonoBehaviour
 		animPart = AnimationPart.Moving;
 
 		// Debug.Log(CharacterManager.localClient.GetInstanceID() + ",,," + CharacterManager.activePatient.GetInstanceID());		
-		if (!isFakeArm && !(CharacterManager.localClient.GetInstanceID() == CharacterManager.activePatient.GetInstanceID())) {
+		if (!isFakeAnimation && !(CharacterManager.localClient.GetInstanceID() == CharacterManager.activePatient.GetInstanceID())) {
 			Debug.Log("Not original patient, aligning transform");
 			yield return StartCoroutine(alignTransformWrapper(animSettingsManager.moveDuration));
 		} else {
 			Debug.Log("Original patient or FakeArm, moving object");
 			// if Fake Arm, we don't need to gain authority, because it is not using networked object
-			if (!isFakeArm && (CharacterManager.localClient.GetInstanceID() == CharacterManager.activePatient.GetInstanceID())) {
+			if (!isFakeAnimation && (CharacterManager.localClient.GetInstanceID() == CharacterManager.activePatient.GetInstanceID())) {
 				// we ask server to grant us authority over target object
 				CharacterManager.localClient.CmdSetItemAuthority(targetObject.GetComponent<NetworkIdentity>(), CharacterManager.localClient.GetComponent<NetworkIdentity>());
 			}
@@ -112,9 +77,8 @@ public class AnimationController : MonoBehaviour
 		stopAnimation();
 	}
 
-	IEnumerator armStopAnimationLerp() {
-		
-		// Animation control for moving arm and grabbing with hand
+	// Animation control for moving arm and grabbing with hand
+	private IEnumerator armStopAnimationLerp() {
 		// we set weight to the corresponding part we're moving
 		animPart = AnimationPart.Hand;
 
@@ -122,11 +86,17 @@ public class AnimationController : MonoBehaviour
 
 		animPart = AnimationPart.Arm;
 		
-		yield return StartCoroutine(simpleRigLerp(armRig, animSettingsManager.handMoveDuration, 1, 0));
+		yield return StartCoroutine(dualRigLerp(armRig, restArmRig, animSettingsManager.handMoveDuration, 1, 0));
 
-		if(isFakeArm) {
+		
+		foreach (Renderer item in fakeArmObjects)	{
+			item.enabled = false;
+		}
+		foreach (Renderer item in armObjects)	{
+			item.enabled = true;
+		}
+		if (targetObject.name.Contains("fake")) {
 			targetObject.GetComponent<Renderer>().enabled = false;
-			figureRenderer.enabled = false;
 		} else {
 			targetObject.GetComponent<Rigidbody>().useGravity = true;
 		}
@@ -134,6 +104,7 @@ public class AnimationController : MonoBehaviour
 
 	// Linear interpolation for weights, we slowly move arm towards our goal
 	// https://gamedevbeginner.com/the-right-way-to-lerp-in-unity-with-examples/
+	// currently not used, kept for refference
 	private IEnumerator simpleRigLerp(Rig rig, float lerpDuration, float startLerpValue, float endLerpValue) {
 		float lerpTimeElapsed = 0f;
 
@@ -149,7 +120,26 @@ public class AnimationController : MonoBehaviour
 		rig.weight = endLerpValue;
 	}
 
-	IEnumerator lerpVector3(GameObject target, Vector3 startPosition, Vector3 targetPosition, float duration) {
+	private IEnumerator dualRigLerp(Rig rigToStart, Rig rigToStop, float lerpDuration, float startLerpValue, float endLerpValue) {
+		float lerpTimeElapsed = 0f;
+
+		while (lerpTimeElapsed < lerpDuration) {
+			// despite the fact lerp should be linear, we use calculation to manipulate it, the movement then looks more natural
+			float t = lerpTimeElapsed / lerpDuration;
+			t = t * t * t * (t * (6f* t - 15f) + 10f); // https://chicounity3d.wordpress.com/2014/05/23/how-to-lerp-like-a-pro/
+			float lerpValue = Mathf.Lerp(startLerpValue, endLerpValue, t);
+			rigToStart.weight = lerpValue;
+			rigToStop.weight = Mathf.Abs(endLerpValue - lerpValue);
+
+			lerpTimeElapsed += Time.deltaTime;
+			yield return null;
+		}  
+		// lerp never reaches endValue, that is why we have to set it manually
+		rigToStart.weight = endLerpValue;
+		rigToStop.weight = startLerpValue;
+	}
+
+	private IEnumerator lerpVector3(GameObject target, Vector3 startPosition, Vector3 targetPosition, float duration) {
         float time = 0;
         while (time < duration) {
             target.transform.position = Vector3.Lerp(startPosition, targetPosition, time / duration);
@@ -157,11 +147,12 @@ public class AnimationController : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
+		// lerp never reaches endValue, that is why we have to set it manually
         target.transform.position = targetPosition;
 		targetsHelperObject.alignTargetTransforms();
     }
 
-	IEnumerator alignTransformWrapper(float duration) {
+	private IEnumerator alignTransformWrapper(float duration) {
         float time = 0;
         while (time < duration) {
             targetsHelperObject.alignTargetTransforms();
@@ -171,7 +162,7 @@ public class AnimationController : MonoBehaviour
         targetsHelperObject.alignTargetTransforms();
     }
 
-	public void startAnimation() {
+	public void startAnimation(bool isFakeAnimation) {
 		if(animSettingsManager.animType == AnimationType.Off) {
 			Debug.LogError("No animation type specified");
 			return;
@@ -184,13 +175,20 @@ public class AnimationController : MonoBehaviour
 		string targetObjectName = animSettingsManager.animType.ToString(); // TODO animationSettingsManager.animType.toString();
 
 		// setup targetObject 
-		if(isFakeArm) {
-			// if it's a fake arm, we also have to set the correct position of our fake object
+		if(isFakeAnimation) {
+			// if it's a fake animation, we also have to set the correct position of our fake object
 			// GameObject originalTargetObject = GameObject.Find(targetObjectName);
 			targetObject = GameObject.Find(targetObjectName + "_fake");
 
 			targetObject.GetComponent<Renderer>().enabled = true;
-			figureRenderer.enabled = true;
+
+			foreach (Renderer item in armObjects) {
+				item.enabled = false;
+			}
+
+			foreach (Renderer item in fakeArmObjects) {
+				item.enabled = true;
+			}
 		}else {
 			targetObject = GameObject.Find(targetObjectName);
 			if (targetObject == null) {
@@ -233,7 +231,7 @@ public class AnimationController : MonoBehaviour
 		animPart = AnimationPart.Arm;
 
 		// https://gamedevbeginner.com/coroutines-in-unity-when-and-how-to-use-them/
-		StartCoroutine(armStartAnimationLerp());
+		StartCoroutine(armStartAnimationLerp(isFakeAnimation));
 	}
 
 	public void stopAnimation() {
@@ -257,5 +255,14 @@ public class AnimationController : MonoBehaviour
 		}
 
 		return null;
+	}
+
+	public static void PrintVector3(Vector3 message, int type = 1) {
+		if (type == 1)
+			Debug.Log("X: " + message.x + "  Y: " + message.y + "  Z:" + message.z);
+		if (type == 2)
+			Debug.LogWarning("X: " + message.x + "  Y: " + message.y + "  Z:" + message.z);
+		if (type == 3)
+			Debug.LogError("X: " + message.x + "  Y: " + message.y + "  Z:" + message.z);
 	}
 }

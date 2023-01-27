@@ -31,8 +31,11 @@ public class AvatarSetup : MonoBehaviour {
         bool flag;
         foreach(Transform bodyPart in currentAvatarObjects) {
                 // Debug.Log("bodypart " + bodyPart.name);
-            flag = false;
-            bodyPart.gameObject.SetActive(true);
+            flag = false; 
+            SkinnedMeshRenderer renderer = bodyPart.GetComponent<SkinnedMeshRenderer>();
+            if (renderer != null) {
+                renderer.enabled = true;
+            }
             foreach (Transform item in newModelTransform) {
                 // Debug.Log("part " + item.name);
                 if(System.Array.IndexOf(excludedNames, item.name) == -1) {
@@ -46,7 +49,9 @@ public class AvatarSetup : MonoBehaviour {
             if (flag) {
                 continue;
             }
-            bodyPart.gameObject.SetActive(false);
+            if (renderer != null) {
+                renderer.enabled = false;
+            }
         }
         modelToUse.SetActive(false);
 

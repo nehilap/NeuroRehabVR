@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8086902766099728958}
   - component: {fileID: 7688392913833302695}
   - component: {fileID: 7577890734083824152}
+  - component: {fileID: 1347928556813396229}
   m_Layer: 13
   m_Name: Collider
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 440158548270733304}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.06}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43,7 +44,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.13
+  m_Radius: 0.1
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: -0.85, z: 0}
@@ -59,6 +60,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70234b8978316ae4e96a5a70b689e8c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1347928556813396229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440158548270733304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e32f4711edaf30e44b83054103d1500c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: -0.08, y: 0, z: -0.08}
+  objectCollider: {fileID: 7688392913833302695}
 --- !u!1 &1878698787931433297
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,7 +89,8 @@ GameObject:
   - component: {fileID: 3247435004366056064}
   - component: {fileID: 235857474688144039}
   - component: {fileID: 6602759618926751572}
-  m_Layer: 0
+  - component: {fileID: 8414021256653980887}
+  m_Layer: 13
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -323,6 +339,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &8414021256653980887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878698787931433297}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4c378df3d175545826be8049777fbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  XRRig: {fileID: 1878698789788651940}
+  XRRigCharacterController: {fileID: 0}
+  collisionOffset: 0.07
 --- !u!1 &1878698788340855187
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,10 +485,15 @@ MonoBehaviour:
   syncDirection: 1
   syncMode: 0
   syncInterval: 0.1
+  isPatient: 0
   controllerType: 0
   hmdType: 0
   isFemale: 0
   avatarNumber: 0
+  avatarSizeMultiplier: 0
+  activeAvatarObject: {fileID: 0}
+  isLeftArmAnimated: 0
+  activeArmAnimationController: {fileID: 0}
   avatarMalePrefabs:
   - {fileID: 113542620659459055, guid: 062e2fbf6c1dad04ca6d5f9061cadf55, type: 3}
   - {fileID: 113542620659459055, guid: 9e6551be2b6bcc049b424db75ba29bf8, type: 3}
@@ -466,15 +502,6 @@ MonoBehaviour:
   - {fileID: 113542620659459055, guid: a50153c5ccaf04a4c99a6e410195e360, type: 3}
   - {fileID: 113542620659459055, guid: dea3ce09f4d875947964102386bc5471, type: 3}
   - {fileID: 113542620659459055, guid: 085ca7f99a401d24099215e6e1ad8905, type: 3}
-  targetPrefabs:
-  - {fileID: 4585951089911290167, guid: 187b5e0706a658c41807f396198c9070, type: 3}
-  - {fileID: 2118952973532061121, guid: 83818a48cdb0cc24b9dadcdf5207209b, type: 3}
-  - {fileID: 1241488487069944307, guid: 40fe8f4a9268b7a4ebe31233411b94ed, type: 3}
-  - {fileID: 1241488487069944307, guid: 5145697b12375a144ae28480da9c0102, type: 3}
-  - {fileID: 1241488487069944307, guid: 2b1054fd8afd78b4f980e73bcf87e511, type: 3}
-  - {fileID: 1241488487069944307, guid: 6477a5d14e4c74a45af9a46af6181bdc, type: 3}
-  - {fileID: 1241488487069944307, guid: 60e5cf70978117c48abdabd14b958b8b, type: 3}
-  - {fileID: 1241488487069944307, guid: f57036f58e9019f41a1816236dfa2aa0, type: 3}
   itemsToActivate:
   - {fileID: 6891543328459119718}
   - {fileID: 3335971121784178952}
@@ -492,10 +519,9 @@ MonoBehaviour:
   - {fileID: 5655778486102450752}
   - {fileID: 7251238349547129769}
   networkAvatarWalkingController: {fileID: 3311737012697809089}
+  headCollisionManager: {fileID: 8414021256653980887}
   cameraTransform: {fileID: 1878698787931433297}
   inputActionManager: {fileID: 1878698789788651961}
-  arm: {fileID: 0}
-  armFake: {fileID: 0}
   objectsToCull:
   - {fileID: 334737246450546167}
   - {fileID: 3938141908873933108}
@@ -734,7 +760,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.2
+  m_Radius: 0.15
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -791,7 +817,7 @@ GameObject:
   - component: {fileID: 1878698789848746004}
   - component: {fileID: 6329416979772408206}
   - component: {fileID: 7300424894983851047}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LeftHand Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1217,7 +1243,7 @@ GameObject:
   - component: {fileID: 3894817527111182952}
   - component: {fileID: 5754200158560209038}
   - component: {fileID: 8688723220056214405}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RightHand Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1865,6 +1891,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1878698789788651942}
     m_Modifications:
+    - target: {fileID: 130737475503542934, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1094835895749396996, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
       propertyPath: head.vrTarget
       value: 
@@ -1881,11 +1911,23 @@ PrefabInstance:
       propertyPath: rightHand.vrTarget
       value: 
       objectReference: {fileID: 5075809588356192700}
+    - target: {fileID: 1167241413671142295, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2566645696888079045, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2764439475390559081, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
       propertyPath: m_Name
       value: AvatarFemaleModel
       objectReference: {fileID: 0}
     - target: {fileID: 2764439475390559081, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5378691974650971042, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2182,6 +2224,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3841603294926556681, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366136674339965866, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788216306219917219, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7634075933599394607, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
       propertyPath: head.vrTarget
       value: 
@@ -2198,6 +2252,10 @@ PrefabInstance:
       propertyPath: rightHand.vrTarget
       value: 
       objectReference: {fileID: 5075809588356192700}
+    - target: {fileID: 8543358796385947776, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
 --- !u!1 &3388355682701442934 stripped

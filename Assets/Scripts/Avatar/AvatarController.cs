@@ -21,28 +21,25 @@ public class MapTransforms {
 
 public class AvatarController : MonoBehaviour {
 
-    [SerializeField]
-    private MapTransforms head;
-    [SerializeField]
-    private MapTransforms headSpine;
-    [SerializeField]
-    private MapTransforms leftHand;
-    [SerializeField]
-    private MapTransforms rightHand;
+    [SerializeField] private MapTransforms head;
+    [SerializeField] private MapTransforms headSpine;
+    [SerializeField] private MapTransforms leftHand;
+    [SerializeField] private MapTransforms rightHand;
     
-    [SerializeField]
-    private float turnSmoothness;
-    [SerializeField]
-    private Transform headTarget;
-    [SerializeField]
-    public Vector3 headOffset;
+    [SerializeField] private float turnSmoothness;
+    [SerializeField] private Transform headTarget;
+    [SerializeField] public Vector3 headOffset;
 
-    [SerializeField]
-    private float referenceHeight = 1.725f;
-    public float sizeMultiplier { get; private set; }
+    [SerializeField] private float referenceHeight = 1.725f;
+    public float sizeMultiplier;
+    public bool sizePreset;
 
     void Start() {
-        sizeMultiplier = head.vrTarget.TransformPoint(Vector3.zero).y / referenceHeight;
+        if (!sizePreset) {
+            sizeMultiplier = calculateSizeMultiplier();
+
+            SettingsManager.instance.avatarSettings.sizeMultiplier = sizeMultiplier;
+        }
 
         transform.localScale = new Vector3(sizeMultiplier, sizeMultiplier, sizeMultiplier);
         headOffset *= sizeMultiplier;
@@ -59,4 +56,8 @@ public class AvatarController : MonoBehaviour {
         leftHand.mapTransforms(sizeMultiplier);
         rightHand.mapTransforms(sizeMultiplier);
     }
+
+	public float calculateSizeMultiplier() {
+		return head.vrTarget.TransformPoint(Vector3.zero).y / referenceHeight;
+	}
 }

@@ -42,7 +42,8 @@ public class AnimationSettingsManager : NetworkBehaviour {
 	public Slider repetitionsSlider;
 
 	public TMP_Dropdown animTypeDropdown;
-
+	
+	// https://mirror-networking.gitbook.io/docs/guides/synchronization/synclists
 	public readonly SyncList<PosRotMapping> blockSetup = new SyncList<PosRotMapping>();
 	public readonly SyncList<PosRotMapping> cubeSetup = new SyncList<PosRotMapping>();
 	public readonly SyncList<PosRotMapping> cupSetup = new SyncList<PosRotMapping>();
@@ -68,13 +69,22 @@ public class AnimationSettingsManager : NetworkBehaviour {
 				setupMarkers();
 			}
 		} else if (isServer) {
-			NetworkCharacterManager.localNetworkClient.CMDSetAnimationStartPosition(null);
+        	string animTypeString = animType.ToString();
+       		GameObject targetObject = GameObject.Find(animTypeString);
+			if (!targetObject) {
+				targetObject = GameObject.Find(animTypeString + "(Clone)");
+			}
+			if (!targetObject) {
+				Debug.LogError("Failed to find object: " + animTypeString);
+			} else {
+			 	getCurrentAnimationSetup().Add(new PosRotMapping(targetObject.transform.position, targetObject.transform.rotation.eulerAngles));
+			}
 		}
 	}
 
 	public void setAnimType(AnimationType _animType) {
 		animType =_animType;
-		NetworkCharacterManager.localNetworkClient.CMDUpdateAnimType(_animType);
+		NetworkCharacterManager.localNetworkClient.CmdUpdateAnimType(_animType);
 		
 		changeAnimTypeValue(AnimationType.Off, AnimationType.Off);
 	}
@@ -236,7 +246,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		armMoveDuration = value / 2f;
 
 		changeArmMoveDurationElements(value, value);
-		NetworkCharacterManager.localNetworkClient.CMDUpdateArmDuration(armMoveDuration);
+		NetworkCharacterManager.localNetworkClient.CmdUpdateArmDuration(armMoveDuration);
 	}
 
 	public void handDurationSliderHandler(float value) {
@@ -247,7 +257,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		handMoveDuration = value / 2f;
 
 		changeHandMoveDurationElements(value, value);
-		NetworkCharacterManager.localNetworkClient.CMDUpdateHandDuration(handMoveDuration);
+		NetworkCharacterManager.localNetworkClient.CmdUpdateHandDuration(handMoveDuration);
 	}
 
 	public void waitDurationSliderHandler(float value) {
@@ -258,7 +268,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		waitDuration = value / 2f;
 
 		changeWaitDurationElements(value, value);
-		NetworkCharacterManager.localNetworkClient.CMDUpdateWaitDuration(waitDuration);
+		NetworkCharacterManager.localNetworkClient.CmdUpdateWaitDuration(waitDuration);
 	}
 
 	public void moveDurationSliderHandler(float value) {
@@ -269,7 +279,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		moveDuration = value / 2f;
 
 		changeMoveDurationElements(value, value);
-		NetworkCharacterManager.localNetworkClient.CMDUpdateMoveDuration(moveDuration);
+		NetworkCharacterManager.localNetworkClient.CmdUpdateMoveDuration(moveDuration);
 	}
 
 	// We have to take in float values, because that's default type that slider works with
@@ -281,7 +291,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		repetitions = (int) value;
 
 		changeRepetitionsElements((int) value, (int) value);
-		NetworkCharacterManager.localNetworkClient.CMDUpdateRepetitions(repetitions);
+		NetworkCharacterManager.localNetworkClient.CmdUpdateRepetitions(repetitions);
 	}
 
 	public void animationTypeDropdownHandler(TMP_Dropdown dropdown) {
@@ -300,11 +310,11 @@ public class AnimationSettingsManager : NetworkBehaviour {
 			case "Block": animType = AnimationType.Block; break;
 			default: break;
 		}
-		NetworkCharacterManager.localNetworkClient.CMDUpdateAnimType(animType);
+		NetworkCharacterManager.localNetworkClient.CmdUpdateAnimType(animType);
 
 		
 		if (CharacterManager.localClient != null) {
-			NetworkCharacterManager.localNetworkClient.CMDSpawnCorrectTarget(oldAnimType, animType);
+			NetworkCharacterManager.localNetworkClient.CmdSpawnCorrectTarget(oldAnimType, animType);
 		}
 		
 	}

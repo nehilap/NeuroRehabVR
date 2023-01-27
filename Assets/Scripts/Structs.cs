@@ -10,5 +10,6 @@ namespace Structs {
         public ControllerType controllerType;
         public bool isFemale;
         public int avatarNumber;
+        public float sizeMultiplier;
     }
 }
