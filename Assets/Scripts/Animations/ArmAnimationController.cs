@@ -15,7 +15,6 @@ public class ArmAnimationController : MonoBehaviour {
 	[SerializeField] private Rig armRig;
 	[SerializeField] private Rig handRig;
 
-
 	[SerializeField] private Renderer[] armObjects;
 	[SerializeField] private Renderer[] fakeArmObjects;
 
@@ -24,12 +23,18 @@ public class ArmAnimationController : MonoBehaviour {
 	[SerializeField] private TargetsHelper targetsHelperObject;
 	[SerializeField] private GameObject targetObject;
 
+	[SerializeField] private GameObject armRestHelperObject;
+	[SerializeField] private bool isArmResting = false;
+	[SerializeField] private PosRotMapping originalArmRestPosRot;
+
 	private AnimationMapping animationMapping;
 
 	void Start() {
 		animationMapping = new AnimationMapping();
 
 		animSettingsManager = GameObject.Find("AnimationSettingsObject")?.GetComponent<AnimationSettingsManager>();
+
+		armRestHelperObject = GameObject.Find("ArmRestHelperObject");
 
 		// BLOCK animation setup - relative values
 		// TODO
@@ -62,7 +67,7 @@ public class ArmAnimationController : MonoBehaviour {
 			// if Fake Arm, we don't need to gain authority, because it is not using networked object
 			if (!isFakeAnimation && (CharacterManager.localClient.GetInstanceID() == CharacterManager.activePatient.GetInstanceID())) {
 				// we ask server to grant us authority over target object
-				CharacterManager.localClient.CmdSetItemAuthority(targetObject.GetComponent<NetworkIdentity>(), CharacterManager.localClient.GetComponent<NetworkIdentity>());
+				NetworkCharacterManager.localNetworkClient.CmdSetItemAuthority(targetObject.GetComponent<NetworkIdentity>(), CharacterManager.localClient.GetComponent<NetworkIdentity>());
 			}
 
 			SyncList<PosRotMapping> currentAnimSetup = animSettingsManager.getCurrentAnimationSetup();
@@ -87,7 +92,6 @@ public class ArmAnimationController : MonoBehaviour {
 		animPart = AnimationPart.Arm;
 		
 		yield return StartCoroutine(dualRigLerp(armRig, restArmRig, animSettingsManager.handMoveDuration, 1, 0));
-
 		
 		foreach (Renderer item in fakeArmObjects)	{
 			item.enabled = false;
@@ -99,6 +103,29 @@ public class ArmAnimationController : MonoBehaviour {
 			targetObject.GetComponent<Renderer>().enabled = false;
 		} else {
 			targetObject.GetComponent<Rigidbody>().useGravity = true;
+		}
+	}
+
+	private IEnumerator restArmStartAnimation() {
+		originalArmRestPosRot = new PosRotMapping(targetsHelperObject.armRestTarget.transform);
+
+		Vector3 startPos = targetsHelperObject.armRestTarget.transform.position;
+		Vector3 endPos = armRestHelperObject.transform.position + new Vector3(0f, 0.02f, 0f);
+
+		yield return StartCoroutine(lerpVector3(targetsHelperObject.armRestTarget, startPos, endPos, animSettingsManager.armMoveDuration));
+	}
+	
+	private IEnumerator restArmStopAnimation() {
+		Vector3 startPos = targetsHelperObject.armRestTarget.transform.position;
+
+		yield return StartCoroutine(lerpTransform(targetsHelperObject.armRestTarget, originalArmRestPosRot, animSettingsManager.armMoveDuration));
+	}
+
+	public void alignArmRestTargetWithTable() {
+		if (isArmResting) {
+			Vector3 endPos = armRestHelperObject.transform.position + new Vector3(0f, 0.02f, 0f);
+
+			targetsHelperObject.armRestTarget.transform.position = endPos;
 		}
 	}
 
@@ -152,6 +179,23 @@ public class ArmAnimationController : MonoBehaviour {
 		targetsHelperObject.alignTargetTransforms();
     }
 
+	private IEnumerator lerpTransform(GameObject startTarget, PosRotMapping endMapping, float duration) {
+		PosRotMapping startMapping = new PosRotMapping(startTarget.transform);
+
+        float time = 0;
+        while (time < duration) {
+            startTarget.transform.position = Vector3.Lerp(startMapping.position, endMapping.position, time / duration);
+            startTarget.transform.rotation = Quaternion.Lerp(Quaternion.Euler(startMapping.rotation), Quaternion.Euler(endMapping.rotation), time / duration);
+			targetsHelperObject.alignTargetTransforms();
+            time += Time.deltaTime;
+            yield return null;
+        }
+		// lerp never reaches endValue, that is why we have to set it manually
+        startTarget.transform.position = endMapping.position;
+        startTarget.transform.rotation = Quaternion.Euler(endMapping.rotation);
+		targetsHelperObject.alignTargetTransforms();
+    }
+
 	private IEnumerator alignTransformWrapper(float duration) {
         float time = 0;
         while (time < duration) {
@@ -172,20 +216,18 @@ public class ArmAnimationController : MonoBehaviour {
 			return;
 		}
 
-		string targetObjectName = animSettingsManager.animType.ToString(); // TODO animationSettingsManager.animType.toString();
+		string targetObjectName = animSettingsManager.animType.ToString();
 
 		// setup targetObject 
 		if(isFakeAnimation) {
 			// if it's a fake animation, we also have to set the correct position of our fake object
 			// GameObject originalTargetObject = GameObject.Find(targetObjectName);
 			targetObject = GameObject.Find(targetObjectName + "_fake");
-
 			targetObject.GetComponent<Renderer>().enabled = true;
 
 			foreach (Renderer item in armObjects) {
 				item.enabled = false;
 			}
-
 			foreach (Renderer item in fakeArmObjects) {
 				item.enabled = true;
 			}
@@ -204,7 +246,7 @@ public class ArmAnimationController : MonoBehaviour {
 			Debug.LogError("Start or End animation position not set");
 			return;
 		}
-		Debug.Log(currentAnimationSetup[0].position + " _ " + (currentAnimationSetup.Count - 1));
+		// Debug.Log(currentAnimationSetup[0].position + " _ " + (currentAnimationSetup.Count - 1));
 
 		targetObject.transform.position = currentAnimationSetup[0].position;
 		targetObject.transform.rotation = Quaternion.Euler(currentAnimationSetup[0].rotation);
@@ -222,7 +264,7 @@ public class ArmAnimationController : MonoBehaviour {
 			// TODO calculate for any target position
 			targetsHelperObject.setAllTargetMappings(animationMapping.getTargetMappingByType(animSettingsManager.animType));
 			targetsHelperObject.alignTargetTransforms();
-		}catch(System.Exception ex) {
+		} catch(System.Exception ex) {
 			Debug.LogError(ex);
 			return;
 		}
@@ -244,6 +286,16 @@ public class ArmAnimationController : MonoBehaviour {
 
 		animState = Enums.AnimationState.Stopped;
 		StartCoroutine(armStopAnimationLerp());
+	}
+
+	public void setArmRestPosition() {
+		isArmResting = !isArmResting;
+
+		if (isArmResting) {
+			StartCoroutine(restArmStartAnimation());
+		} else {
+			StartCoroutine(restArmStopAnimation());
+		}
 	}
 
 	private GameObject findChildByName(string name) {

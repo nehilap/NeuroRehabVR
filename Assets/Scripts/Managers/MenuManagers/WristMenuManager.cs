@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class WristMenuManager : MonoBehaviour
-{
-    public InputActionAsset inputActions;
+public class WristMenuManager : MonoBehaviour {
+    [SerializeField] private InputActionAsset inputActions;
+    [SerializeField] private Vector3 positionOffset;
+    [SerializeField] private Vector3 scale;
 
     private Canvas _wristUICanvas;
     private InputAction _menu;
@@ -34,9 +35,9 @@ public class WristMenuManager : MonoBehaviour
         if (!_wristUICanvas.enabled) {
             therapistMenu.transform.SetParent(transform);
 
-            therapistMenu.transform.localScale = new Vector3(0.02f, 0.02f, 1f);
+            therapistMenu.transform.localScale = scale;
             therapistMenu.transform.localRotation = Quaternion.identity;
-            therapistMenu.transform.localPosition = new Vector3(0.5f, 0.5f, 0f);
+            therapistMenu.transform.localPosition = positionOffset;
         } else {
             therapistMenu.transform.SetParent(originalTherapistMenuParent);
 

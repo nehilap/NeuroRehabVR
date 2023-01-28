@@ -6,6 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation;
 using UnityEngine.InputSystem.XR;
 using System.Collections.Generic;
 using Enums;
+using Wolf3D.ReadyPlayerMe.AvatarSDK;
 
 public class CharacterManager : NetworkBehaviour
 {
@@ -96,7 +97,9 @@ public class CharacterManager : NetworkBehaviour
 			gameObject.layer = LayerCameraCull;
 		}
 
-		headCollisionManager.enabled = true;
+		if (RoleManager.instance.characterRole != UserRole.Patient) {
+			headCollisionManager.enabled = true;
+		}
 	}
 
 	public override void OnStopClient() {
@@ -108,6 +111,51 @@ public class CharacterManager : NetworkBehaviour
 	}
 
 	void Start() {
+		// Setting up offset based on HMD type used by client
+		changeHMDType(hmdType, hmdType);
+
+		// Setting up controller model
+		changeControllerType(controllerType, controllerType);
+
+		// Setting correct avatar, based on which one was chosen in the lobby
+		GameObject avatar;
+		if (isFemale) {
+			avatar = avatarFemalePrefabs[avatarNumber % avatarFemalePrefabs.Count];
+		} else {
+			avatar = avatarMalePrefabs[avatarNumber % avatarMalePrefabs.Count];
+		}
+
+		activeAvatarObject = transform.GetComponent<AvatarModelManager>().changeModel(isFemale, avatar, avatarSizeMultiplier);
+
+
+		if (isPatient && activePatient == null) {
+			activePatient = this;
+		}
+
+		if (isPatient) {
+			ArmAnimationController[] armAnimationControllers = activeAvatarObject.GetComponents<ArmAnimationController>();
+			foreach (ArmAnimationController item in armAnimationControllers) {
+				if (this.isLeftArmAnimated == item.isLeft) { // only if both True, or both False
+					activeArmAnimationController = item;
+				} else {
+					item.enabled = false;
+				}
+			}
+		} else {
+			foreach (ArmAnimationController item in transform.GetComponents<ArmAnimationController>()) {
+				item.enabled = false;
+			}
+		}
+
+		// we disable avatars on Server, pointless calculations, hogs HW too much
+		if (isServer) {
+			foreach (GameObject avatarObject in avatars) {
+				avatarObject.SetActive(false);
+			}
+		}
+
+		networkAvatarWalkingController.enabled = true;
+
 		// if non local character prefab is loaded we have to disable components such as camera, etc. otherwise Multiplayer aspect wouldn't work properly 
 		if (!isLocalPlayer)	{
 			if(cameraTransform.GetComponent<Camera>() != null) {
@@ -121,54 +169,14 @@ public class CharacterManager : NetworkBehaviour
 			for (int i = 0; i < XRControllers.Length; i++) {
 				XRControllers[i].enabled = false;
 			}
+			cameraTransform.GetComponent<HeadCollisionManager>().enabled = false;
+
+			activeAvatarObject.GetComponent<VoiceHandler>().enabled = false;
 		} else {
 			if(cameraTransform.GetComponent<AudioListener>() != null) {
 				cameraTransform.GetComponent<AudioListener>().enabled = true;
 			}
 		}
-
-		if (isPatient && activePatient == null) {
-			activePatient = this;
-		}
-
-		if (!isPatient) {
-			foreach (ArmAnimationController item in transform.GetComponents<ArmAnimationController>()) {
-				item.enabled = false;
-			}
-		}
-
-		changeHMDType(hmdType, hmdType);
-		changeControllerType(controllerType, controllerType);
-
-		// Setting correct avatar, based on which one was chosen in the lobby
-		GameObject avatar;
-		if (isFemale) {
-			avatar = avatarFemalePrefabs[avatarNumber % avatarFemalePrefabs.Count];
-		} else {
-			avatar = avatarMalePrefabs[avatarNumber % avatarMalePrefabs.Count];
-		}
-
-		activeAvatarObject = transform.GetComponent<AvatarModelManager>().changeModel(isFemale, avatar, avatarSizeMultiplier);
-
-		if (isPatient) {
-			ArmAnimationController[] armAnimationControllers = activeAvatarObject.GetComponents<ArmAnimationController>();
-			foreach (ArmAnimationController item in armAnimationControllers) {
-				if (this.isLeftArmAnimated == item.isLeft) { // only if both True, or both False
-					activeArmAnimationController = item;
-				} else {
-					item.enabled = false;
-				}
-			}
-		}
-
-		// we disable avatars on Server, pointless calculations
-		if (isServer) {
-			foreach (GameObject avatarObject in avatars) {
-				avatarObject.SetActive(false);
-			}
-		}
-
-		networkAvatarWalkingController.enabled = true;
 	}
 
 	// We search through all objects loaded in scene in certain layer
@@ -196,7 +204,6 @@ public class CharacterManager : NetworkBehaviour
 	* 
 	*/
 	private void itemPickUp(SelectEnterEventArgs args) {
-		
 		// we get net identity from current object of character
 		NetworkIdentity identity = base.GetComponent<NetworkIdentity>();
 
@@ -208,26 +215,10 @@ public class CharacterManager : NetworkBehaviour
 			if (!isServer)
 				// SetItemAuthority(itemNetIdentity, identity);
 			// else
-				CmdSetItemAuthority(itemNetIdentity, identity);
+				NetworkCharacterManager.localNetworkClient.CmdSetItemAuthority(itemNetIdentity, identity);
 		}
 	}
 
-    private void SetItemAuthority(NetworkIdentity item, NetworkIdentity newPlayerOwner) {
-		item.gameObject.GetComponent<NetworkTransform>().syncDirection = SyncDirection.ClientToServer;
-		Debug.Log("Granting authority:" + item.netId + " to:" + newPlayerOwner.netId);
-		item.RemoveClientAuthority();
-        item.AssignClientAuthority(newPlayerOwner.connectionToClient);
-    }
-
-    [Command]
-    public void CmdSetItemAuthority(NetworkIdentity itemID, NetworkIdentity newPlayerOwner) {
-        SetItemAuthority(itemID, newPlayerOwner);
-    }
-
-	[Command]
-    public void CmdSetAvatarSizeMultiplier(float _avatarSizeMultiplier) {
-        avatarSizeMultiplier = _avatarSizeMultiplier;
-    }
 
 	public void changeControllerType(ControllerType _old, ControllerType _new) {
 		// Debug.Log("Change controller called "  +  _new.ToString());

@@ -16,6 +16,11 @@ namespace Mappings
 			rotation = _rotation;
 		}
 
+		public PosRotMapping(Transform _object) {
+			position = _object.position;
+			rotation = _object.rotation.eulerAngles;
+		}
+
 		public override string ToString() {
 			return position + " _ " + rotation;
 		}

@@ -4,6 +4,8 @@ using UnityEngine;
 [System.Serializable]
 public class TargetsHelper {
     
+    public GameObject armRestTarget;
+
     // objects which are used as targets in dynamic animations (IK)
     public GameObject armTarget;
     public GameObject thumbTarget;

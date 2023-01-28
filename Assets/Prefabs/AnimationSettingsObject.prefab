@@ -51,7 +51,7 @@ MonoBehaviour:
   armMoveDuration: 1.5
   handMoveDuration: 1.5
   waitDuration: 10
-  moveDuration: 4
+  moveDuration: 2.5
   repetitions: 5
   animType: 3
   armMoveTextValue: {fileID: 0}

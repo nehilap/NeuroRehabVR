@@ -44,7 +44,25 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	}
 
 	/*
-	* COMMANDS FOR SERVER
+	*
+	* ITEM PICKUP
+	*
+	*/
+
+    [Command]
+    public void CmdSetItemAuthority(NetworkIdentity item, NetworkIdentity newPlayerOwner) {
+        setItemAuthority(item, newPlayerOwner);
+    }
+
+	private void setItemAuthority(NetworkIdentity item, NetworkIdentity newPlayerOwner) {
+        item.gameObject.GetComponent<NetworkTransform>().syncDirection = SyncDirection.ClientToServer;
+		Debug.Log("Granting authority:" + item.netId + " to:" + newPlayerOwner.netId);
+		item.RemoveClientAuthority();
+        item.AssignClientAuthority(newPlayerOwner.connectionToClient);
+    }
+
+	/*
+	* COMMANDS FOR SERVER - SYNCVARs
 	* 
 	*/
 
@@ -273,6 +291,11 @@ public class NetworkCharacterManager : NetworkBehaviour {
 		RpcStopActualAnimation();
 	}
 
+	[Command]
+	public void CmdSetArmRestPosition() {
+		RpcSetArmRestPosition();
+	}
+
 	[ClientRpc]
 	public void RpcStartActualAnimation(bool isShowcase) {
 		if (CharacterManager.activePatient == null) {
@@ -288,5 +311,68 @@ public class NetworkCharacterManager : NetworkBehaviour {
 		}
 
 		CharacterManager.activePatient.activeArmAnimationController.stopAnimation();
+	}
+	
+	[ClientRpc]
+	public void RpcSetArmRestPosition() {
+		if (CharacterManager.activePatient == null) {
+			return;
+		}
+
+		CharacterManager.activePatient.activeArmAnimationController.setArmRestPosition();
+	}
+
+	/*
+	*
+	* Setting up table
+	*
+	*/
+	
+	[Command]
+	public void CmdMoveTable(Vector3 offset, NetworkIdentity caller) {
+		RpcMoveTable(offset);
+		
+		string targetObjectName = animSettingsManager.animType.ToString();
+
+		GameObject targetObject = GameObject.Find(targetObjectName);
+		if (targetObject == null) {
+			targetObject = GameObject.Find(targetObjectName + "(Clone)");
+		}
+		if (targetObject == null) {
+			return;
+		}
+		setItemAuthority(targetObject.GetComponent<NetworkIdentity>(), caller);
+
+		TargetMoveObject(caller.connectionToClient, offset);
+	}
+
+	[TargetRpc]
+	public void TargetMoveObject(NetworkConnection connection, Vector3 offset) {
+		string targetObjectName = animSettingsManager.animType.ToString();
+
+		GameObject targetObject = GameObject.Find(targetObjectName);
+		if (targetObject == null) {
+			targetObject = GameObject.Find(targetObjectName + "(Clone)");
+		}
+		if (targetObject == null) {
+			return;
+		}
+
+		targetObject.transform.position += offset;
+	}
+
+	[ClientRpc]
+	public void RpcMoveTable(Vector3 offset) {
+		GameObject table = GameObject.Find("Table");
+		if (table == null) {
+			return;
+		}
+
+		table.transform.position += offset;
+
+		if (CharacterManager.activePatient == null) {
+			return;
+		}
+		CharacterManager.activePatient.activeArmAnimationController.alignArmRestTargetWithTable();
 	}
 }

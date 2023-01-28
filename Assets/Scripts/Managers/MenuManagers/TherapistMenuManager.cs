@@ -1,3 +1,4 @@
+using Mirror;
 using UnityEngine;
 
 public class TherapistMenuManager : MonoBehaviour {
@@ -13,6 +14,10 @@ public class TherapistMenuManager : MonoBehaviour {
 		NetworkCharacterManager.localNetworkClient.CmdStopAnimation();
 	}
 
+	public void setArmRestHandler() {
+		NetworkCharacterManager.localNetworkClient.CmdSetArmRestPosition();
+	}
+
 	public void setAnimationStartPositionHandler() {
 		NetworkCharacterManager.localNetworkClient.CmdSetAnimationStartPosition();
 	}
@@ -23,5 +28,17 @@ public class TherapistMenuManager : MonoBehaviour {
 
 	public void clearAnimationEndPositionHandler() {
 		NetworkCharacterManager.localNetworkClient.CmdClearAnimationMovePositions();
+	}
+
+	public void moveTableUpHandler() {
+		NetworkIdentity netId = CharacterManager.localClient.gameObject.GetComponent<NetworkIdentity>();
+
+		NetworkCharacterManager.localNetworkClient.CmdMoveTable(new Vector3(0f, 0.02f, 0f), netId);
+	}
+	
+	public void moveTableDownHandler() {
+		NetworkIdentity netId = CharacterManager.localClient.gameObject.GetComponent<NetworkIdentity>();
+
+		NetworkCharacterManager.localNetworkClient.CmdMoveTable(new Vector3(0f, -0.02f, 0f), netId);
 	}
 }

@@ -925,6 +925,8 @@ MonoBehaviour:
   headTarget: {fileID: 4862001591054997950}
   headOffset: {x: -0.1, y: -1.7104, z: -0.1}
   referenceHeight: 1.725
+  sizeMultiplier: 0
+  sizePreset: 0
 --- !u!114 &7609271394805096690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1016,6 +1018,7 @@ MonoBehaviour:
   - {fileID: 7582565619092503852}
   animSettingsManager: {fileID: 0}
   targetsHelperObject:
+    armRestTarget: {fileID: 113542618992345815}
     armTarget: {fileID: 4470176113457531708}
     thumbTarget: {fileID: 8625672721452245556}
     indexTarget: {fileID: 5098539074762692048}
@@ -1029,6 +1032,7 @@ MonoBehaviour:
     ringTargetTemplate: {fileID: 0}
     pinkyTargetTemplate: {fileID: 0}
   targetObject: {fileID: 0}
+  armRestHelperObject: {fileID: 0}
 --- !u!114 &3803358277512806963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1053,6 +1057,7 @@ MonoBehaviour:
   - {fileID: 9104006945362267303}
   animSettingsManager: {fileID: 0}
   targetsHelperObject:
+    armRestTarget: {fileID: 113542620755952040}
     armTarget: {fileID: 1472405245154511668}
     thumbTarget: {fileID: 5420269079563511246}
     indexTarget: {fileID: 5116166402229334582}
@@ -1066,6 +1071,7 @@ MonoBehaviour:
     ringTargetTemplate: {fileID: 0}
     pinkyTargetTemplate: {fileID: 0}
   targetObject: {fileID: 0}
+  armRestHelperObject: {fileID: 0}
 --- !u!1 &113542620701558244
 GameObject:
   m_ObjectHideFlags: 0
@@ -1956,7 +1962,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2770286892329898916}
   m_Layer: 0
-  m_Name: RightHandTarget
+  m_Name: RightHandAnimationTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4362,7 +4368,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6175319007479183986}
   m_Layer: 0
-  m_Name: LeftHandTarget
+  m_Name: LeftHandAnimationTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
