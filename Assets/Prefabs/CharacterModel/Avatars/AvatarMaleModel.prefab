@@ -1016,7 +1016,6 @@ MonoBehaviour:
   fakeArmObjects:
   - {fileID: 5147277731169034571}
   - {fileID: 7582565619092503852}
-  animSettingsManager: {fileID: 0}
   targetsHelperObject:
     armRestTarget: {fileID: 113542618992345815}
     armTarget: {fileID: 4470176113457531708}
@@ -1031,8 +1030,11 @@ MonoBehaviour:
     middleTargetTemplate: {fileID: 0}
     ringTargetTemplate: {fileID: 0}
     pinkyTargetTemplate: {fileID: 0}
+  armRestOffset: {x: 0, y: 0.04, z: 0}
   targetObject: {fileID: 0}
+  animSettingsManager: {fileID: 0}
   armRestHelperObject: {fileID: 0}
+  isArmResting: 0
 --- !u!114 &3803358277512806963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1055,7 +1057,6 @@ MonoBehaviour:
   fakeArmObjects:
   - {fileID: 8049719081618807732}
   - {fileID: 9104006945362267303}
-  animSettingsManager: {fileID: 0}
   targetsHelperObject:
     armRestTarget: {fileID: 113542620755952040}
     armTarget: {fileID: 1472405245154511668}
@@ -1070,8 +1071,11 @@ MonoBehaviour:
     middleTargetTemplate: {fileID: 0}
     ringTargetTemplate: {fileID: 0}
     pinkyTargetTemplate: {fileID: 0}
+  armRestOffset: {x: 0, y: 0.04, z: 0}
   targetObject: {fileID: 0}
+  animSettingsManager: {fileID: 0}
   armRestHelperObject: {fileID: 0}
+  isArmResting: 0
 --- !u!1 &113542620701558244
 GameObject:
   m_ObjectHideFlags: 0

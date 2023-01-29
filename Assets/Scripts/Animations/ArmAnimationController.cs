@@ -11,21 +11,27 @@ public class ArmAnimationController : MonoBehaviour {
 	private AnimationPart animPart;
 	[SerializeField] public bool isLeft;
 
+	[Header("Rigs")]
 	[SerializeField] private Rig restArmRig;
 	[SerializeField] private Rig armRig;
 	[SerializeField] private Rig handRig;
 
+	[Header("Arm objects")]
 	[SerializeField] private Renderer[] armObjects;
 	[SerializeField] private Renderer[] fakeArmObjects;
 
-	[SerializeField] private AnimationSettingsManager animSettingsManager;
-
 	[SerializeField] private TargetsHelper targetsHelperObject;
+
+	[SerializeField] private Vector3 armRestOffset;
+
+	[Header("Objects setup from code")]
 	[SerializeField] private GameObject targetObject;
 
+	[SerializeField] private AnimationSettingsManager animSettingsManager;
 	[SerializeField] private GameObject armRestHelperObject;
 	[SerializeField] private bool isArmResting = false;
 	[SerializeField] private PosRotMapping originalArmRestPosRot;
+	
 
 	private AnimationMapping animationMapping;
 
@@ -74,7 +80,7 @@ public class ArmAnimationController : MonoBehaviour {
 			for (int i = 1; i < currentAnimSetup.Count; i++)	{
 				Vector3 startPos = currentAnimSetup[i-1].position;
 				Vector3 endPos = currentAnimSetup[i].position;
-				yield return StartCoroutine(lerpVector3(targetObject, startPos, endPos, animSettingsManager.moveDuration));
+				yield return StartCoroutine(lerpAllTargets(targetObject, startPos, endPos, animSettingsManager.moveDuration));
 			}
 		}
 
@@ -110,9 +116,11 @@ public class ArmAnimationController : MonoBehaviour {
 		originalArmRestPosRot = new PosRotMapping(targetsHelperObject.armRestTarget.transform);
 
 		Vector3 startPos = targetsHelperObject.armRestTarget.transform.position;
-		Vector3 endPos = armRestHelperObject.transform.position + new Vector3(0f, 0.02f, 0f);
+		Vector3 endPos = armRestHelperObject.transform.position + armRestOffset;
 
-		yield return StartCoroutine(lerpVector3(targetsHelperObject.armRestTarget, startPos, endPos, animSettingsManager.armMoveDuration));
+		PosRotMapping endMapping = new PosRotMapping(endPos, armRestHelperObject.transform.rotation.eulerAngles);
+
+		yield return StartCoroutine(lerpTransform(targetsHelperObject.armRestTarget, endMapping, animSettingsManager.armMoveDuration));
 	}
 	
 	private IEnumerator restArmStopAnimation() {
@@ -123,7 +131,7 @@ public class ArmAnimationController : MonoBehaviour {
 
 	public void alignArmRestTargetWithTable() {
 		if (isArmResting) {
-			Vector3 endPos = armRestHelperObject.transform.position + new Vector3(0f, 0.02f, 0f);
+			Vector3 endPos = armRestHelperObject.transform.position + armRestOffset;
 
 			targetsHelperObject.armRestTarget.transform.position = endPos;
 		}
@@ -166,7 +174,7 @@ public class ArmAnimationController : MonoBehaviour {
 		rigToStop.weight = startLerpValue;
 	}
 
-	private IEnumerator lerpVector3(GameObject target, Vector3 startPosition, Vector3 targetPosition, float duration) {
+	private IEnumerator lerpAllTargets(GameObject target, Vector3 startPosition, Vector3 targetPosition, float duration) {
         float time = 0;
         while (time < duration) {
             target.transform.position = Vector3.Lerp(startPosition, targetPosition, time / duration);
@@ -186,14 +194,12 @@ public class ArmAnimationController : MonoBehaviour {
         while (time < duration) {
             startTarget.transform.position = Vector3.Lerp(startMapping.position, endMapping.position, time / duration);
             startTarget.transform.rotation = Quaternion.Lerp(Quaternion.Euler(startMapping.rotation), Quaternion.Euler(endMapping.rotation), time / duration);
-			targetsHelperObject.alignTargetTransforms();
             time += Time.deltaTime;
             yield return null;
         }
 		// lerp never reaches endValue, that is why we have to set it manually
         startTarget.transform.position = endMapping.position;
         startTarget.transform.rotation = Quaternion.Euler(endMapping.rotation);
-		targetsHelperObject.alignTargetTransforms();
     }
 
 	private IEnumerator alignTransformWrapper(float duration) {
