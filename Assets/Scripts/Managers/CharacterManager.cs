@@ -15,12 +15,15 @@ public class CharacterManager : NetworkBehaviour
 
 	[SerializeField] private bool isPatient = false;
 
+	[Header("Spawn sync vars")]
 	[SyncVar(hook = nameof(changeControllerType))] public ControllerType controllerType;
 	[SyncVar(hook = nameof(changeHMDType))] public HMDType hmdType;
-	
 	[SyncVar] public bool isFemale;
 	[SyncVar] public int avatarNumber;
 	[SyncVar] public float avatarSizeMultiplier;
+
+	[Header("Run sync vars")]
+	[SyncVar(hook = nameof(changeArmRestingState))] public bool isArmResting;
 
 	[SerializeField] public GameObject activeAvatarObject;
 	[SerializeField] public bool isLeftArmAnimated = false;
@@ -255,5 +258,13 @@ public class CharacterManager : NetworkBehaviour
 		if (_new == HMDType.Other) {
 			transform.Find("Offset").position = new Vector3(0f, 0f, 0f);
 		}
+	}
+
+	private void changeArmRestingState(bool _old, bool _new) {
+		if (!isPatient) {
+			return;
+		}
+
+		activeArmAnimationController.setArmRestPosition();
 	}
 }

@@ -52,6 +52,10 @@ public class ArmAnimationController : MonoBehaviour {
 		animationMapping.blockMapping.pinkyMapping = new PosRotMapping(new Vector3(0.541992188f, -0.401f, 0.618f), new Vector3(0f, 0f, 0f)); // pinkyTarget
 	}
 
+	private void LateUpdate() {
+		alignArmRestTargetWithTable();
+	}
+
 	// https://gamedevbeginner.com/coroutines-in-unity-when-and-how-to-use-them/
 	private IEnumerator armStartAnimationLerp(bool isFakeAnimation) {
 		// Animation control for moving arm and grabbing with hand
@@ -296,6 +300,7 @@ public class ArmAnimationController : MonoBehaviour {
 
 	public void setArmRestPosition() {
 		isArmResting = !isArmResting;
+		
 
 		if (isArmResting) {
 			StartCoroutine(restArmStartAnimation());

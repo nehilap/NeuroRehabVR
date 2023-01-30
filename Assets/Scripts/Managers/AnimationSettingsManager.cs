@@ -200,7 +200,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
                 // index is of the item that was changed
                 // oldItem is the previous value for the item at the index
                 // newItem is the new value for the item at the index
-				// Debug.Log("Item changed");
+				Debug.Log("Item changed");
 				GameObject.Destroy(spawnedMarkers[index]);
 				prefabIndex = index == 0 ? 0 : 1;	
 

@@ -291,11 +291,6 @@ public class NetworkCharacterManager : NetworkBehaviour {
 		RpcStopActualAnimation();
 	}
 
-	[Command]
-	public void CmdSetArmRestPosition() {
-		RpcSetArmRestPosition();
-	}
-
 	[ClientRpc]
 	public void RpcStartActualAnimation(bool isShowcase) {
 		if (CharacterManager.activePatient == null) {
@@ -312,15 +307,12 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 		CharacterManager.activePatient.activeArmAnimationController.stopAnimation();
 	}
-	
-	[ClientRpc]
-	public void RpcSetArmRestPosition() {
-		if (CharacterManager.activePatient == null) {
-			return;
-		}
 
-		CharacterManager.activePatient.activeArmAnimationController.setArmRestPosition();
+	[Command]
+	public void CmdSetArmRestPosition(NetworkIdentity patientIdentity) {
+		patientIdentity.gameObject.GetComponent<CharacterManager>().isArmResting = !patientIdentity.gameObject.GetComponent<CharacterManager>().isArmResting;
 	}
+	
 
 	/*
 	*
@@ -330,7 +322,18 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	
 	[Command]
 	public void CmdMoveTable(Vector3 offset, NetworkIdentity caller) {
-		RpcMoveTable(offset);
+		GameObject table = GameObject.Find("Table");
+		if (table == null) {
+			return;
+		}
+
+		table.transform.position += offset;
+
+		// we have to complete change object on position, otherwise it won't be synced to clients
+		SyncList<PosRotMapping> currentSetup = animSettingsManager.getCurrentAnimationSetup();
+		for (int i = 0; i < currentSetup.Count; i++) {
+			currentSetup[i] = new PosRotMapping(currentSetup[i].position + offset, currentSetup[i].rotation);
+		}
 		
 		string targetObjectName = animSettingsManager.animType.ToString();
 
@@ -359,20 +362,5 @@ public class NetworkCharacterManager : NetworkBehaviour {
 		}
 
 		targetObject.transform.position += offset;
-	}
-
-	[ClientRpc]
-	public void RpcMoveTable(Vector3 offset) {
-		GameObject table = GameObject.Find("Table");
-		if (table == null) {
-			return;
-		}
-
-		table.transform.position += offset;
-
-		if (CharacterManager.activePatient == null) {
-			return;
-		}
-		CharacterManager.activePatient.activeArmAnimationController.alignArmRestTargetWithTable();
 	}
 }
