@@ -60,7 +60,8 @@ public class ArmAnimationController : MonoBehaviour {
 	private IEnumerator armStartAnimationLerp(bool isFakeAnimation) {
 		// Animation control for moving arm and grabbing with hand
 		// we set weight to the corresponding part we're moving
-		yield return StartCoroutine(dualRigLerp(armRig, restArmRig, animSettingsManager.armMoveDuration, 0, 1));
+		RigLerp[] rigLerps = {new RigLerp(armRig, 0, 1), new RigLerp(restArmRig, 1, 0)};
+		yield return StartCoroutine(multiRigLerp(rigLerps, animSettingsManager.armMoveDuration));
 
 		animPart = AnimationPart.Hand;
 		
@@ -97,11 +98,12 @@ public class ArmAnimationController : MonoBehaviour {
 		// we set weight to the corresponding part we're moving
 		animPart = AnimationPart.Hand;
 
-		yield return StartCoroutine(simpleRigLerp(handRig, animSettingsManager.armMoveDuration, 1, 0));
+		yield return StartCoroutine(simpleRigLerp(handRig, animSettingsManager.handMoveDuration, 1, 0));
 
 		animPart = AnimationPart.Arm;
 		
-		yield return StartCoroutine(dualRigLerp(armRig, restArmRig, animSettingsManager.handMoveDuration, 1, 0));
+		RigLerp[] rigLerps = {new RigLerp(armRig, 1, 0), new RigLerp(restArmRig, 0, 1)};
+		yield return StartCoroutine(multiRigLerp(rigLerps, animSettingsManager.armMoveDuration));
 		
 		foreach (Renderer item in fakeArmObjects)	{
 			item.enabled = false;
@@ -118,11 +120,16 @@ public class ArmAnimationController : MonoBehaviour {
 
 	private IEnumerator restArmStartAnimation() {
 		originalArmRestPosRot = new PosRotMapping(targetsHelperObject.armRestTarget.transform);
+		
+		if (armRestHelperObject == null) {
+			armRestHelperObject = GameObject.Find("ArmRestHelperObject");
+		}
 
-		Vector3 startPos = targetsHelperObject.armRestTarget.transform.position;
 		Vector3 endPos = armRestHelperObject.transform.position + armRestOffset;
+		Vector3 endRot = armRestHelperObject.transform.rotation.eulerAngles;
 
-		PosRotMapping endMapping = new PosRotMapping(endPos, armRestHelperObject.transform.rotation.eulerAngles);
+		PosRotMapping endMapping = new PosRotMapping(endPos, endRot);
+		
 
 		yield return StartCoroutine(lerpTransform(targetsHelperObject.armRestTarget, endMapping, animSettingsManager.armMoveDuration));
 	}
@@ -138,6 +145,7 @@ public class ArmAnimationController : MonoBehaviour {
 			Vector3 endPos = armRestHelperObject.transform.position + armRestOffset;
 
 			targetsHelperObject.armRestTarget.transform.position = endPos;
+			targetsHelperObject.armRestTarget.transform.rotation = armRestHelperObject.transform.rotation;
 		}
 	}
 
@@ -159,7 +167,7 @@ public class ArmAnimationController : MonoBehaviour {
 		rig.weight = endLerpValue;
 	}
 
-	private IEnumerator dualRigLerp(Rig rigToStart, Rig rigToStop, float lerpDuration, float startLerpValue, float endLerpValue) {
+	private IEnumerator reverseDualRigLerp(Rig rigToStart, Rig rigToStop, float lerpDuration, float startLerpValue, float endLerpValue) {
 		float lerpTimeElapsed = 0f;
 
 		while (lerpTimeElapsed < lerpDuration) {
@@ -176,6 +184,27 @@ public class ArmAnimationController : MonoBehaviour {
 		// lerp never reaches endValue, that is why we have to set it manually
 		rigToStart.weight = endLerpValue;
 		rigToStop.weight = startLerpValue;
+	}
+
+	private IEnumerator multiRigLerp(RigLerp[] rigLerps, float lerpDuration) {
+		float lerpTimeElapsed = 0f;
+
+		while (lerpTimeElapsed < lerpDuration) {
+			// despite the fact lerp should be linear, we use calculation to manipulate it, the movement then looks more natural
+			float t = lerpTimeElapsed / lerpDuration;
+			t = t * t * t * (t * (6f* t - 15f) + 10f); // https://chicounity3d.wordpress.com/2014/05/23/how-to-lerp-like-a-pro/
+			foreach (RigLerp rigLerp in rigLerps) {
+				float lerpValue = Mathf.Lerp(rigLerp.startValue, rigLerp.endValue, t);
+				rigLerp.rig.weight = lerpValue;
+			}
+
+			lerpTimeElapsed += Time.deltaTime;
+			yield return null;
+		}  
+		// lerp never reaches endValue, that is why we have to set it manually
+		foreach (RigLerp rigLerp in rigLerps) {
+			rigLerp.rig.weight = rigLerp.endValue;
+		}
 	}
 
 	private IEnumerator lerpAllTargets(GameObject target, Vector3 startPosition, Vector3 targetPosition, float duration) {

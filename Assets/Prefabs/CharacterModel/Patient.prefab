@@ -552,8 +552,8 @@ MonoBehaviour:
   target: {fileID: 1878698787931433296}
   clientAuthority: 0
   onlySyncOnChange: 1
-  bufferResetMultiplier: 5
-  positionSensitivity: 0.002
+  bufferResetMultiplier: 1
+  positionSensitivity: 0.01
   rotationSensitivity: 0.01
   scaleSensitivity: 0.01
   syncPosition: 1

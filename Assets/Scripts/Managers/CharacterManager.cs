@@ -7,6 +7,7 @@ using UnityEngine.InputSystem.XR;
 using System.Collections.Generic;
 using Enums;
 using Wolf3D.ReadyPlayerMe.AvatarSDK;
+using Unity.XR.CoreUtils;
 
 public class CharacterManager : NetworkBehaviour
 {
@@ -29,9 +30,11 @@ public class CharacterManager : NetworkBehaviour
 	[SerializeField] public bool isLeftArmAnimated = false;
 	[SerializeField] public ArmAnimationController activeArmAnimationController;
 
+	[Header("Avatars prefabs used")]
     [SerializeField] private List<GameObject> avatarMalePrefabs = new List<GameObject>();
     [SerializeField] private List<GameObject> avatarFemalePrefabs = new List<GameObject>();
 
+	[Header("Activated objects based on 'authority'")]
 	// Items is array of components that may need to be enabled / activated  only locally
 	[SerializeField] private GameObject[] itemsToActivate;
 	[SerializeField] private XRBaseController[] XRControllers;
@@ -41,9 +44,9 @@ public class CharacterManager : NetworkBehaviour
 	[SerializeField] private HeadCollisionManager headCollisionManager;
 
 	[SerializeField] private GameObject cameraTransform;
-
 	[SerializeField] private InputActionManager inputActionManager;
 
+	[Header("Camera culling")]
 	[SerializeField] private GameObject[] objectsToCull;
 	[SerializeField] private GameObject[] avatars;
 
@@ -137,11 +140,15 @@ public class CharacterManager : NetworkBehaviour
 
 		if (isPatient) {
 			ArmAnimationController[] armAnimationControllers = activeAvatarObject.GetComponents<ArmAnimationController>();
-			foreach (ArmAnimationController item in armAnimationControllers) {
-				if (this.isLeftArmAnimated == item.isLeft) { // only if both True, or both False
-					activeArmAnimationController = item;
+			foreach (ArmAnimationController armController in armAnimationControllers) {
+				if (this.isLeftArmAnimated == armController.isLeft) { // only if both True, or both False
+					activeArmAnimationController = armController;
+
+					if (isArmResting) {
+						activeArmAnimationController.setArmRestPosition();
+					}
 				} else {
-					item.enabled = false;
+					armController.enabled = false;
 				}
 			}
 		} else {
@@ -261,7 +268,7 @@ public class CharacterManager : NetworkBehaviour
 	}
 
 	private void changeArmRestingState(bool _old, bool _new) {
-		if (!isPatient) {
+		if (!isPatient || activeArmAnimationController == null) {
 			return;
 		}
 

@@ -4,8 +4,10 @@ using UnityEngine;
 [System.Serializable]
 public class TargetsHelper {
     
+    [Header("Arm rest targets")]
     public GameObject armRestTarget;
 
+    [Header("Arm targets")]
     // objects which are used as targets in dynamic animations (IK)
     public GameObject armTarget;
     public GameObject thumbTarget;
@@ -14,6 +16,7 @@ public class TargetsHelper {
     public GameObject ringTarget;
     public GameObject pinkyTarget;
 
+    [Header("Target object target templates (filled in code)")]
     // objects which are children of our targeted object (cube, block, cup, key etc.)
     public GameObject armTargetTemplate;
     public GameObject thumbTargetTemplate;
