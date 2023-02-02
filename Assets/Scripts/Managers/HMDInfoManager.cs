@@ -46,7 +46,7 @@ public class HMDInfoManager : MonoBehaviour {
         // Debug.Log(Application.platform.ToString());
         if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor) {
             hmdType = HMDType.Mock;
-            StartCoroutine(HMDInfoManager.instance.startXR());
+            // StartCoroutine(HMDInfoManager.instance.startXR());
         } else if (Application.platform == RuntimePlatform.Android) {
             hmdType = HMDType.Other;
         } else {

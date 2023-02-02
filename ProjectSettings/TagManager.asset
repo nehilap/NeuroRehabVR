@@ -20,7 +20,7 @@ TagManager:
   - XRController
   - HeadCollider
   - Target
-  - TopLayer
+  - Reticle
   - 
   - 
   - 

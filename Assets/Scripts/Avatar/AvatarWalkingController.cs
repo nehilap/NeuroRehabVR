@@ -2,8 +2,7 @@ using UnityEngine.InputSystem;
 using UnityEngine;
 
 public class AvatarWalkingController : MonoBehaviour {
-    [SerializeField]
-    private InputActionReference move;
+    [SerializeField] private InputActionReference move;
     
     [SerializeField]
     private Animator animator;
@@ -21,7 +20,6 @@ public class AvatarWalkingController : MonoBehaviour {
     private void animateLegs(InputAction.CallbackContext obj) {
         bool isMoving = move.action.ReadValue<Vector2>().y != 0;
         bool isStrafing = move.action.ReadValue<Vector2>().x != 0;
-
         
         if (isMoving) {
             animator.SetBool("isWalking", true);

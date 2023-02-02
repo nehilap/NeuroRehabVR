@@ -7,7 +7,6 @@ using UnityEngine.InputSystem.XR;
 using System.Collections.Generic;
 using Enums;
 using Wolf3D.ReadyPlayerMe.AvatarSDK;
-using Unity.XR.CoreUtils;
 
 public class CharacterManager : NetworkBehaviour
 {
@@ -38,7 +37,7 @@ public class CharacterManager : NetworkBehaviour
 	// Items is array of components that may need to be enabled / activated  only locally
 	[SerializeField] private GameObject[] itemsToActivate;
 	[SerializeField] private XRBaseController[] XRControllers;
-	[SerializeField] private XRBaseControllerInteractor[] interactors;
+	[SerializeField] private XRBaseControllerInteractor[] XRInteractors;
 	[SerializeField] private AvatarWalkingController[] avatarWalkingControllers;
 	[SerializeField] private NetworkAvatarWalkingController networkAvatarWalkingController;
 	[SerializeField] private HeadCollisionManager headCollisionManager;
@@ -46,7 +45,7 @@ public class CharacterManager : NetworkBehaviour
 	[SerializeField] private GameObject cameraTransform;
 	[SerializeField] private InputActionManager inputActionManager;
 
-	[Header("Camera culling")]
+	[Header("Camera culling and objects to disable")]
 	[SerializeField] private GameObject[] objectsToCull;
 	[SerializeField] private GameObject[] avatars;
 
@@ -82,8 +81,8 @@ public class CharacterManager : NetworkBehaviour
 
 		// We add listeners on item pick up / release
 		// interactors should contain all hands (XRcontrollers and interactors) that are to be used to interact with items
-		for (int i = 0; i < interactors.Length; i++) {
-        	interactors[i].selectEntered.AddListener(itemPickUp);
+		for (int i = 0; i < XRInteractors.Length; i++) {
+        	XRInteractors[i].selectEntered.AddListener(itemPickUp);
 			// interactors[i].selectExited.AddListener(itemRelease);
 		}
         for (int i = 0; i < XRControllers.Length; i++) {
@@ -158,7 +157,7 @@ public class CharacterManager : NetworkBehaviour
 		}
 
 		// we disable avatars on Server, pointless calculations, hogs HW too much
-		if (isServer) {
+		if (isServerOnly) {
 			foreach (GameObject avatarObject in avatars) {
 				avatarObject.SetActive(false);
 			}

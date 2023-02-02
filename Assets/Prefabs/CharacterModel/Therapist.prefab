@@ -511,10 +511,10 @@ MonoBehaviour:
   - {fileID: 3894817527111182952}
   - {fileID: 4574851471257170734}
   - {fileID: 1922613568291401268}
-  interactors:
+  XRInteractors:
   - {fileID: 6329416979772408206}
-  - {fileID: 5754200158560209038}
   - {fileID: 1704616949775518200}
+  - {fileID: 5754200158560209038}
   - {fileID: 8494623748677677882}
   avatarWalkingControllers:
   - {fileID: 5655778486102450752}
@@ -2131,6 +2131,10 @@ PrefabInstance:
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].tangentMode
       value: 34
       objectReference: {fileID: 0}
+    - target: {fileID: 5464872145442030501, guid: 4bb642a5c1feea54b95ca7caae8857ac, type: 3}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 1878698787931433296}
     - target: {fileID: 7815606298927097357, guid: 4bb642a5c1feea54b95ca7caae8857ac, type: 3}
       propertyPath: m_Name
       value: RightRayInteractor
@@ -2319,6 +2323,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1878698788340855186}
     m_Modifications:
+    - target: {fileID: 490562291435481316, guid: d82e1661dda506a47a001a3142ac848c, type: 3}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 1878698787931433296}
     - target: {fileID: 1042493886980681527, guid: d82e1661dda506a47a001a3142ac848c, type: 3}
       propertyPath: m_Name
       value: LeftRayInteractor

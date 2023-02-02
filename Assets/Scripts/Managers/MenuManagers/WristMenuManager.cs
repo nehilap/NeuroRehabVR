@@ -12,7 +12,6 @@ public class WristMenuManager : MonoBehaviour {
     private GameObject therapistMenu;
     private Vector3 originalTherapistMenuPosition;
     private Vector3 originalTherapistMenuScale;
-
     private Transform originalTherapistMenuParent;
 
     private void Start() {

@@ -24,7 +24,7 @@ public class HeadCollisionManager : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision collision) {
-        Debug.Log("Collision detected: " + collision.transform.name);
+        // Debug.Log("Collision detected: " + collision.transform.name);
 
     
         Vector3 headPosition = transform.TransformPoint(Vector3.zero);

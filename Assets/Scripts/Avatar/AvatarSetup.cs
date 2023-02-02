@@ -19,6 +19,12 @@ public class AvatarSetup : MonoBehaviour {
         setupAvatarParts();
     }
 
+    void OnDisable() {
+        if (modelToUse != null) {
+            GameObject.Destroy(modelToUse);
+        }
+    }
+
     public void setupModel(GameObject model) {
         if(modelToUse != null) {
             GameObject.Destroy(modelToUse);

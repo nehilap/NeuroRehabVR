@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class AvatarMenuButtonManager : MonoBehaviour {
     [SerializeField]
-    private AvatarModelManager avatarModelManager;
+    private AvatarModelManager[] avatarModelManagers;
 
     [SerializeField]
     private GameObject modelToUse;
@@ -19,7 +19,9 @@ public class AvatarMenuButtonManager : MonoBehaviour {
     }
 
     public void setAvatar() {
-        avatarModelManager.changeModel(isFemale, modelToUse);
+        foreach (AvatarModelManager manager in avatarModelManagers) {
+            manager.changeModel(isFemale, modelToUse);
+        }
         
         SettingsManager.instance.avatarSettings.avatarNumber = avatarNumber;
         SettingsManager.instance.avatarSettings.isFemale = isFemale;
