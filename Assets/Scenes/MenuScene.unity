@@ -7633,8 +7633,8 @@ MonoBehaviour:
   - {fileID: 1241488487069944307, guid: 60e5cf70978117c48abdabd14b958b8b, type: 3}
   - {fileID: 5308743742952482155, guid: a030a6b7117e70444930fcf44cb4ef37, type: 3}
   timeInterpolationGui: 0
-  therapistPrefab: {fileID: 1878698789788651940, guid: b7308db629d8e5a4194f532e445a1308, type: 3}
-  patientPrefab: {fileID: 1878698789788651940, guid: 3bcc8871f4eb7ee4bb9043fe85ed3405, type: 3}
+  therapistXRPrefab: {fileID: 1878698789788651940, guid: b7308db629d8e5a4194f532e445a1308, type: 3}
+  patientXRPrefab: {fileID: 1878698789788651940, guid: 3bcc8871f4eb7ee4bb9043fe85ed3405, type: 3}
   therapistDesktopPrefab: {fileID: 5308743742952482155, guid: a030a6b7117e70444930fcf44cb4ef37, type: 3}
 --- !u!114 &1751045515
 MonoBehaviour:
@@ -9167,6 +9167,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4912644753405300745, guid: c3a148a7f339e0d44ad8fea07053ee82, type: 3}
+      propertyPath: menuToShow
+      value: 
+      objectReference: {fileID: 298974050}
     - target: {fileID: 5308743742913101019, guid: c3a148a7f339e0d44ad8fea07053ee82, type: 3}
       propertyPath: m_DirectionalAnchorRotationAction.m_Action.m_Id
       value: 9f802b3d-d07c-42d5-a426-a1e15a9f5cfb

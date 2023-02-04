@@ -3,42 +3,42 @@ using UnityEngine;
 
 public class TherapistMenuManager : MonoBehaviour {
 	public void playAnimationShowcaseHandler() {
-		NetworkCharacterManager.localNetworkClient.CmdStartAnimationShowcase();
+		NetworkCharacterManager.localNetworkClientInstance.CmdStartAnimationShowcase();
 	}
 
 	public void playAnimationHandler() {
-		NetworkCharacterManager.localNetworkClient.CmdStartAnimation();
+		NetworkCharacterManager.localNetworkClientInstance.CmdStartAnimation();
 	}
 
 	public void stopAnimationHandler() {
-		NetworkCharacterManager.localNetworkClient.CmdStopAnimation();
+		NetworkCharacterManager.localNetworkClientInstance.CmdStopAnimation();
 	}
 
 	public void setArmRestHandler() {
-		NetworkCharacterManager.localNetworkClient.CmdSetArmRestPosition(CharacterManager.activePatient.GetComponent<NetworkIdentity>());
+		NetworkCharacterManager.localNetworkClientInstance.CmdSetArmRestPosition(CharacterManager.activePatientInstance.GetComponent<NetworkIdentity>());
 	}
 
 	public void setAnimationStartPositionHandler() {
-		NetworkCharacterManager.localNetworkClient.CmdSetAnimationStartPosition();
+		NetworkCharacterManager.localNetworkClientInstance.CmdSetAnimationStartPosition();
 	}
 
 	public void setAnimationEndPositionHandler() {
-		NetworkCharacterManager.localNetworkClient.CmdAddMovePosition();
+		NetworkCharacterManager.localNetworkClientInstance.CmdAddMovePosition();
 	}
 
 	public void clearAnimationEndPositionHandler() {
-		NetworkCharacterManager.localNetworkClient.CmdClearAnimationMovePositions();
+		NetworkCharacterManager.localNetworkClientInstance.CmdClearAnimationMovePositions();
 	}
 
 	public void moveTableUpHandler() {
-		NetworkIdentity netId = CharacterManager.localClient.gameObject.GetComponent<NetworkIdentity>();
+		NetworkIdentity netId = CharacterManager.localClientInstance.gameObject.GetComponent<NetworkIdentity>();
 
-		NetworkCharacterManager.localNetworkClient.CmdMoveTable(new Vector3(0f, 0.02f, 0f), netId);
+		NetworkCharacterManager.localNetworkClientInstance.CmdMoveTable(new Vector3(0f, 0.02f, 0f), netId);
 	}
 	
 	public void moveTableDownHandler() {
-		NetworkIdentity netId = CharacterManager.localClient.gameObject.GetComponent<NetworkIdentity>();
+		NetworkIdentity netId = CharacterManager.localClientInstance.gameObject.GetComponent<NetworkIdentity>();
 
-		NetworkCharacterManager.localNetworkClient.CmdMoveTable(new Vector3(0f, -0.02f, 0f), netId);
+		NetworkCharacterManager.localNetworkClientInstance.CmdMoveTable(new Vector3(0f, -0.02f, 0f), netId);
 	}
 }

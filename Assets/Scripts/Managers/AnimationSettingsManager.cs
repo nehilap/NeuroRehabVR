@@ -60,7 +60,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		if (isClientOnly) {
 			setAllElements();
 			
-			if (RoleManager.instance.characterRole == Enums.UserRole.Therapist) {
+			if (RoleManager.Instance.characterRole == Enums.UserRole.Therapist) {
 				blockSetup.Callback += onAnimationSetupUpdated;
 				cubeSetup.Callback += onAnimationSetupUpdated;
 				cupSetup.Callback += onAnimationSetupUpdated;
@@ -84,7 +84,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 
 	public void setAnimType(AnimationType _animType) {
 		animType =_animType;
-		NetworkCharacterManager.localNetworkClient.CmdUpdateAnimType(_animType);
+		NetworkCharacterManager.localNetworkClientInstance.CmdUpdateAnimType(_animType);
 		
 		changeAnimTypeValue(AnimationType.Off, AnimationType.Off);
 	}
@@ -246,7 +246,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		armMoveDuration = value / 2f;
 
 		changeArmMoveDurationElements(value, value);
-		NetworkCharacterManager.localNetworkClient.CmdUpdateArmDuration(armMoveDuration);
+		NetworkCharacterManager.localNetworkClientInstance.CmdUpdateArmDuration(armMoveDuration);
 	}
 
 	public void handDurationSliderHandler(float value) {
@@ -257,7 +257,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		handMoveDuration = value / 2f;
 
 		changeHandMoveDurationElements(value, value);
-		NetworkCharacterManager.localNetworkClient.CmdUpdateHandDuration(handMoveDuration);
+		NetworkCharacterManager.localNetworkClientInstance.CmdUpdateHandDuration(handMoveDuration);
 	}
 
 	public void waitDurationSliderHandler(float value) {
@@ -268,7 +268,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		waitDuration = value / 2f;
 
 		changeWaitDurationElements(value, value);
-		NetworkCharacterManager.localNetworkClient.CmdUpdateWaitDuration(waitDuration);
+		NetworkCharacterManager.localNetworkClientInstance.CmdUpdateWaitDuration(waitDuration);
 	}
 
 	public void moveDurationSliderHandler(float value) {
@@ -279,7 +279,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		moveDuration = value / 2f;
 
 		changeMoveDurationElements(value, value);
-		NetworkCharacterManager.localNetworkClient.CmdUpdateMoveDuration(moveDuration);
+		NetworkCharacterManager.localNetworkClientInstance.CmdUpdateMoveDuration(moveDuration);
 	}
 
 	// We have to take in float values, because that's default type that slider works with
@@ -291,7 +291,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		repetitions = (int) value;
 
 		changeRepetitionsElements((int) value, (int) value);
-		NetworkCharacterManager.localNetworkClient.CmdUpdateRepetitions(repetitions);
+		NetworkCharacterManager.localNetworkClientInstance.CmdUpdateRepetitions(repetitions);
 	}
 
 	public void animationTypeDropdownHandler(TMP_Dropdown dropdown) {
@@ -310,11 +310,11 @@ public class AnimationSettingsManager : NetworkBehaviour {
 			case "Block": animType = AnimationType.Block; break;
 			default: break;
 		}
-		NetworkCharacterManager.localNetworkClient.CmdUpdateAnimType(animType);
+		NetworkCharacterManager.localNetworkClientInstance.CmdUpdateAnimType(animType);
 
 		
-		if (CharacterManager.localClient != null) {
-			NetworkCharacterManager.localNetworkClient.CmdSpawnCorrectTarget(oldAnimType, animType);
+		if (CharacterManager.localClientInstance != null) {
+			NetworkCharacterManager.localNetworkClientInstance.CmdSpawnCorrectTarget(oldAnimType, animType);
 		}
 		
 	}

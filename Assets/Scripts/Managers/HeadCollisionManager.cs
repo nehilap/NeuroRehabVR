@@ -11,7 +11,7 @@ public class HeadCollisionManager : MonoBehaviour {
     [SerializeField]
     private float collisionOffset = 0.1f;    
 
-    void Start() {
+    void Awake() {
         int controllerLayer = LayerMask.NameToLayer("XRController");
         int groundLayer = LayerMask.NameToLayer("Ground");
         int avatarLayer = LayerMask.NameToLayer("Avatar");

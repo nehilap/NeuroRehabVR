@@ -8,7 +8,7 @@ using Utility;
 
 public class NetworkCharacterManager : NetworkBehaviour {
 
-	public static NetworkCharacterManager localNetworkClient { get; private set; }
+	public static NetworkCharacterManager localNetworkClientInstance { get; private set; }
 
     [SerializeField]
     private AnimationSettingsManager animSettingsManager;
@@ -18,7 +18,6 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
     [SerializeField]
 	private GameObject spawnArea;
-
 
     void Start() {
 		spawnArea = GameObject.Find("SpawnArea");
@@ -39,7 +38,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 		base.OnStartClient();
 
 		if (isLocalPlayer) {
-			localNetworkClient = this;
+			localNetworkClientInstance = this;
 		}
 	}
 
@@ -293,19 +292,19 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 	[ClientRpc]
 	public void RpcStartActualAnimation(bool isShowcase) {
-		if (CharacterManager.activePatient == null) {
+		if (CharacterManager.activePatientInstance == null) {
 			return;
 		}
-		CharacterManager.activePatient.activeArmAnimationController.startAnimation(isShowcase);
+		CharacterManager.activePatientInstance.activeArmAnimationController.startAnimation(isShowcase);
 	}
 
 	[ClientRpc]
 	public void RpcStopActualAnimation() {
-		if (CharacterManager.activePatient == null) {
+		if (CharacterManager.activePatientInstance == null) {
 			return;
 		}
 
-		CharacterManager.activePatient.activeArmAnimationController.stopAnimation();
+		CharacterManager.activePatientInstance.activeArmAnimationController.stopAnimation();
 	}
 
 	[Command]

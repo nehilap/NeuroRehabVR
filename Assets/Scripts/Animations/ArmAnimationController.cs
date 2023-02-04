@@ -70,15 +70,15 @@ public class ArmAnimationController : MonoBehaviour {
 		animPart = AnimationPart.Moving;
 
 		// Debug.Log(CharacterManager.localClient.GetInstanceID() + ",,," + CharacterManager.activePatient.GetInstanceID());		
-		if (!isFakeAnimation && !(CharacterManager.localClient.GetInstanceID() == CharacterManager.activePatient.GetInstanceID())) {
+		if (!isFakeAnimation && !(CharacterManager.localClientInstance.GetInstanceID() == CharacterManager.activePatientInstance.GetInstanceID())) {
 			Debug.Log("Not original patient, aligning transform");
 			yield return StartCoroutine(alignTransformWrapper(animSettingsManager.moveDuration));
 		} else {
 			Debug.Log("Original patient or FakeArm, moving object");
 			// if Fake Arm, we don't need to gain authority, because it is not using networked object
-			if (!isFakeAnimation && (CharacterManager.localClient.GetInstanceID() == CharacterManager.activePatient.GetInstanceID())) {
+			if (!isFakeAnimation && (CharacterManager.localClientInstance.GetInstanceID() == CharacterManager.activePatientInstance.GetInstanceID())) {
 				// we ask server to grant us authority over target object
-				NetworkCharacterManager.localNetworkClient.CmdSetItemAuthority(targetObject.GetComponent<NetworkIdentity>(), CharacterManager.localClient.GetComponent<NetworkIdentity>());
+				NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(targetObject.GetComponent<NetworkIdentity>(), CharacterManager.localClientInstance.GetComponent<NetworkIdentity>());
 			}
 
 			SyncList<PosRotMapping> currentAnimSetup = animSettingsManager.getCurrentAnimationSetup();

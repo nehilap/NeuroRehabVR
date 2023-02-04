@@ -70,9 +70,10 @@ public class ServerInit : NetworkBehaviour
 			server = new SimpleRESTServer(port, routingManager);
 		}
 	}
- 	void OnApplicationQuit() {
-        if(isServer && server != null) {
+
+	private void OnDestroy() {
+		if(server != null) {
 			server.Stop();
 		}
-    }
+	}
 }

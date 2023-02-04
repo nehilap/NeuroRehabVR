@@ -10,8 +10,8 @@ using Wolf3D.ReadyPlayerMe.AvatarSDK;
 
 public class CharacterManager : NetworkBehaviour {
 	
-	public static CharacterManager localClient { get; private set; }
-	public static CharacterManager activePatient { get; private set; }
+	public static CharacterManager localClientInstance { get; private set; }
+	public static CharacterManager activePatientInstance { get; private set; }
 
 	[SerializeField] private bool isPatient = false;
 
@@ -52,7 +52,7 @@ public class CharacterManager : NetworkBehaviour {
 	public override void OnStartLocalPlayer() {
 		base.OnStartLocalPlayer();
 
-		localClient = this;
+		localClientInstance = this;
 		Debug.Log("Local Character started");
 
 		// Items is array of components that may need to be enabled / activated  only locally
@@ -90,7 +90,7 @@ public class CharacterManager : NetworkBehaviour {
 			XRControllers[i].enableInputActions = true;
 		}
 
-		if (RoleManager.instance.characterRole == Enums.UserRole.Patient) {
+		if (RoleManager.Instance.characterRole == Enums.UserRole.Patient) {
 			GameObject therapistMenu = GameObject.Find("TherapistMenu");
 			if (therapistMenu != null) {
 				TherapistMenuManager therapistMenuManager = therapistMenu.GetComponent<TherapistMenuManager>();
@@ -102,7 +102,7 @@ public class CharacterManager : NetworkBehaviour {
 			gameObject.layer = LayerCameraCull;
 		}
 
-		if (RoleManager.instance.characterRole != UserRole.Patient) {
+		if (RoleManager.Instance.characterRole != UserRole.Patient) {
 			headCollisionManager.enabled = true;
 		}
 	}
@@ -110,8 +110,8 @@ public class CharacterManager : NetworkBehaviour {
 	public override void OnStopClient() {
 		base.OnStopClient();
 
-		if (isPatient && activePatient != null) {
-			activePatient = null;
+		if (isPatient && activePatientInstance != null) {
+			activePatientInstance = null;
 		}
 	}
 
@@ -133,8 +133,8 @@ public class CharacterManager : NetworkBehaviour {
 		activeAvatarObject = transform.GetComponent<AvatarModelManager>().changeModel(isFemale, avatar, avatarSizeMultiplier);
 
 
-		if (isPatient && activePatient == null) {
-			activePatient = this;
+		if (isPatient && activePatientInstance == null) {
+			activePatientInstance = this;
 		}
 
 		if (isPatient) {
@@ -224,7 +224,7 @@ public class CharacterManager : NetworkBehaviour {
 			if (!isServer)
 				// SetItemAuthority(itemNetIdentity, identity);
 			// else
-				NetworkCharacterManager.localNetworkClient.CmdSetItemAuthority(itemNetIdentity, identity);
+				NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(itemNetIdentity, identity);
 		}
 	}
 
@@ -234,7 +234,7 @@ public class CharacterManager : NetworkBehaviour {
 		XRBaseController rightC =  transform.Find("Offset/Camera Offset/RightHand Controller").GetComponent<XRBaseController>();
         XRBaseController leftC =  transform.Find("Offset/Camera Offset/LeftHand Controller").GetComponent<XRBaseController>();
 
-        foreach (GameObject item in XRStatusManager.instance.controllerPrefabs) {
+        foreach (GameObject item in XRStatusManager.Instance.controllerPrefabs) {
             if (item.name.Contains(_new.ToString())) {
                 if (item.name.Contains("Left")) {
                     leftC.modelPrefab = item.transform;

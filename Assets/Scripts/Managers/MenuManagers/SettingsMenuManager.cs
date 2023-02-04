@@ -18,7 +18,7 @@ public class SettingsMenuManager : MonoBehaviour
         GameObject controllerL = null;
         GameObject controllerR = null;
 
-        foreach (GameObject item in XRStatusManager.instance.controllerPrefabs) {
+        foreach (GameObject item in XRStatusManager.Instance.controllerPrefabs) {
             if (item.name.Contains(((ControllerType) controller).ToString())) {
                 if (item.name.Contains("Left")) {
                     controllerL = item;
@@ -28,7 +28,7 @@ public class SettingsMenuManager : MonoBehaviour
             }
         }
 
-        XRStatusManager.instance.controllerType = (ControllerType) controller;
+        XRStatusManager.Instance.controllerType = (ControllerType) controller;
 
         XRBaseController rightC =  GameObject.Find("RightHand Controller").GetComponent<XRBaseController>();
         XRBaseController leftC =  GameObject.Find("LeftHand Controller").GetComponent<XRBaseController>();
@@ -44,10 +44,10 @@ public class SettingsMenuManager : MonoBehaviour
     }
 
     public void startXR() {
-            StartCoroutine(XRStatusManager.instance.startXR());
+            StartCoroutine(XRStatusManager.Instance.startXR());
     }
 
     public void stopXR() {
-            XRStatusManager.instance.stopXR();
+            XRStatusManager.Instance.stopXR();
     }
 }

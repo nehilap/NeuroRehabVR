@@ -8,8 +8,10 @@ public class StatusTextManager : MonoBehaviour {
     }
 
     public void setStatusText() {
+        if(!this.gameObject.scene.isLoaded) return;
+        
         GetComponent<TMP_Text>().text = "Platform: '" + Application.platform.ToString() 
-            + "', HMD type: '" + XRStatusManager.instance.hmdType.ToString()
+            + "', HMD type: '" + XRStatusManager.Instance.hmdType.ToString()
             + "', Device: '" + XRSettings.loadedDeviceName + "'";
     }
 }

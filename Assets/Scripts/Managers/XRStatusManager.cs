@@ -7,7 +7,16 @@ using Enums;
 
 public class XRStatusManager : MonoBehaviour {
 
-    public static XRStatusManager instance { get; private set; }
+    private static XRStatusManager _instance;
+
+    public static XRStatusManager Instance {
+        get {
+            if(_instance == null) {
+                _instance = GameObject.FindObjectOfType<XRStatusManager>();
+            }
+            return _instance;
+        }
+    }
 
     // https://forum.unity.com/threads/openxr-is-it-no-longer-possible-to-get-descriptive-device-names.1051493/
     public ControllerType controllerType = ControllerType.Quest2;
@@ -15,7 +24,7 @@ public class XRStatusManager : MonoBehaviour {
 
     public List<GameObject> controllerPrefabs = new List<GameObject>();
 
-    public bool isXRActive = false;
+    public bool isXRActive;
 
     [SerializeField] private StatusTextManager statusTextManager;
     [SerializeField] private ActiveBarGroupsManager activeXRButton;
@@ -26,11 +35,9 @@ public class XRStatusManager : MonoBehaviour {
 
     [SerializeField] private GameObject controllerSetupMenu;
 
-    void Start() {
-        if (instance == null) {
-            instance = this;
-        }
-        
+    void Awake() {
+        DontDestroyOnLoad(gameObject);
+            
         hmdType = HMDType.Other;
 
         // NOT WORKING CURRENTLY (MOST LIKELY)
@@ -53,17 +60,23 @@ public class XRStatusManager : MonoBehaviour {
         // Debug.Log(Application.platform.ToString());
         if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor) {
             hmdType = HMDType.Mock;
-            StartCoroutine(XRStatusManager.instance.startXR());
+            // StartCoroutine(startXR());
         } else if (Application.platform == RuntimePlatform.Android) {
             hmdType = HMDType.Other;
         } else {
             hmdType = HMDType.Server;
         }
 
-        setXRSettings();
         statusTextManager.setStatusText();
 
+        if (XRGeneralSettings.Instance.Manager.isInitializationComplete) {
+            isXRActive = true;
+        } else {
+            isXRActive = false;
+        }
+
         setupUIAndXRElements();
+        setXRSettings();
     }
 
     void OnApplicationQuit() {
@@ -78,7 +91,9 @@ public class XRStatusManager : MonoBehaviour {
             // Camera.main.ResetAspect();
 
             isXRActive = false;
+            
             setupUIAndXRElements();
+            statusTextManager.setStatusText();
         }
     }
 
@@ -96,10 +111,13 @@ public class XRStatusManager : MonoBehaviour {
                 setXRSettings();
                 yield return null;
             }
+        } else {
+            isXRActive = true;
+            setupUIAndXRElements();
+            setXRSettings();
         }
-
-        setXRSettings();
     }
+
     public void setXRSettings () {
         if(hmdType == HMDType.Mock){
             XRSettings.gameViewRenderMode = GameViewRenderMode.LeftEye;
@@ -111,6 +129,8 @@ public class XRStatusManager : MonoBehaviour {
     }
 
     private void setupUIAndXRElements() {
+        if(!this.gameObject.scene.isLoaded) return;
+
         if (isXRActive) {
             activeXRButton.activateBar();
 

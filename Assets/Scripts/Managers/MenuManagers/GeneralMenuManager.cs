@@ -18,12 +18,12 @@ public class GeneralMenuManager : MonoBehaviour
     }
 
     public void JoinTherapist() {
-        RoleManager.instance.CreateCharacter(UserRole.Therapist);
+        RoleManager.Instance.CreateCharacter(UserRole.Therapist);
         joinManager.Join();
     }
 
     public void JoinPatient() {
-        RoleManager.instance.CreateCharacter(UserRole.Patient);
+        RoleManager.Instance.CreateCharacter(UserRole.Patient);
         joinManager.Join();
     }
 

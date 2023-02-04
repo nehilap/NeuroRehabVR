@@ -8,7 +8,7 @@ public class SimpleRigManager : MonoBehaviour {
     }
 
     public void changeHMDOffset() {
-		if (XRStatusManager.instance.hmdType == Enums.HMDType.Other) {
+		if (XRStatusManager.Instance.hmdType == Enums.HMDType.Other) {
 			offset.position = new Vector3(0f, 0f, 0f);
 		}
 	}

@@ -23,8 +23,8 @@ public class AvatarMenuButtonManager : MonoBehaviour {
             manager.changeModel(isFemale, modelToUse);
         }
         
-        SettingsManager.instance.avatarSettings.avatarNumber = avatarNumber;
-        SettingsManager.instance.avatarSettings.isFemale = isFemale;
-        SettingsManager.instance.avatarSettings.currentModel = modelToUse;
+        SettingsManager.Instance.avatarSettings.avatarNumber = avatarNumber;
+        SettingsManager.Instance.avatarSettings.isFemale = isFemale;
+        SettingsManager.Instance.avatarSettings.currentModel = modelToUse;
     }
 }

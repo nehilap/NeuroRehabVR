@@ -10,8 +10,8 @@ public class CustomNetworkManager : NetworkManager {
     // usable prefabs for character (first non-simulated, then simulated prefabs)
 
     [Header("Prefabs for character")]
-    [SerializeField] private GameObject therapistPrefab;
-    [SerializeField] private GameObject patientPrefab;
+    [SerializeField] private GameObject therapistXRPrefab;
+    [SerializeField] private GameObject patientXRPrefab;
     [SerializeField] private GameObject therapistDesktopPrefab;
     
     // the reason is because NetworkManager (parent class) already starts server if this is server build
@@ -29,7 +29,7 @@ public class CustomNetworkManager : NetworkManager {
             }
         }
         #if UNITY_SERVER
-        XRStatusManager.instance.stopXR();
+        XRStatusManager.Instance.stopXR();
         #endif
 
         base.Start();
@@ -52,13 +52,13 @@ public class CustomNetworkManager : NetworkManager {
         // you can send the message here
         CharacterMessage characterMessage = new CharacterMessage
         {
-            role = RoleManager.instance.characterRole,
-            hmdType = XRStatusManager.instance.hmdType,
-            controllerType = XRStatusManager.instance.controllerType,
-            isFemale = SettingsManager.instance.avatarSettings.isFemale,
-            avatarNumber = SettingsManager.instance.avatarSettings.avatarNumber,
-            sizeMultiplier = SettingsManager.instance.avatarSettings.sizeMultiplier,
-            isXRActive = XRStatusManager.instance.isXRActive,
+            role = RoleManager.Instance.characterRole,
+            hmdType = XRStatusManager.Instance.hmdType,
+            controllerType = XRStatusManager.Instance.controllerType,
+            isFemale = SettingsManager.Instance.avatarSettings.isFemale,
+            avatarNumber = SettingsManager.Instance.avatarSettings.avatarNumber,
+            sizeMultiplier = SettingsManager.Instance.avatarSettings.sizeMultiplier,
+            isXRActive = XRStatusManager.Instance.isXRActive,
         };
 
         NetworkClient.Send(characterMessage);
@@ -72,12 +72,12 @@ public class CustomNetworkManager : NetworkManager {
         GameObject characterPrefab;
         if (message.role == Enums.UserRole.Therapist) {
             if (message.isXRActive) {
-                characterPrefab = therapistPrefab;
+                characterPrefab = therapistXRPrefab;
             } else {
                 characterPrefab = therapistDesktopPrefab;
             }
         } else if (message.role == Enums.UserRole.Patient) {
-            characterPrefab = patientPrefab;
+            characterPrefab = patientXRPrefab;
         } else {
             Debug.LogError("Cannot Instantiate character prefab " + message.role.ToString() + " - not found!!");
             return;

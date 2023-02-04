@@ -7,7 +7,7 @@ public class RoleBasedVisibility : MonoBehaviour
     public List<UserRole> allowedRoles = new List<UserRole>();
     
     void Start() {
-        if (!allowedRoles.Contains(RoleManager.instance.characterRole)) {
+        if (!allowedRoles.Contains(RoleManager.Instance.characterRole)) {
             Canvas cr = gameObject.GetComponent<Canvas>();
             if (cr != null) {
                 cr.enabled = false;

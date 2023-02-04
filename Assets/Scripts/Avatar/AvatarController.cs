@@ -38,7 +38,7 @@ public class AvatarController : MonoBehaviour {
         if (!sizePreset) {
             sizeMultiplier = calculateSizeMultiplier();
 
-            SettingsManager.instance.avatarSettings.sizeMultiplier = sizeMultiplier;
+            SettingsManager.Instance.avatarSettings.sizeMultiplier = sizeMultiplier;
         }
 
         transform.localScale = new Vector3(sizeMultiplier, sizeMultiplier, sizeMultiplier);

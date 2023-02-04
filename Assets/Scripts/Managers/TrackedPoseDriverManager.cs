@@ -16,7 +16,7 @@ public class TrackedPoseDriverManager : MonoBehaviour
         if (flag) {
             TrackedPoseDriver[] trackedPoseDrivers = GetComponents<TrackedPoseDriver>();
 
-            if (XRStatusManager.instance.hmdType == Enums.HMDType.Mock || XRStatusManager.instance.hmdType == Enums.HMDType.Server) {
+            if (XRStatusManager.Instance.hmdType == Enums.HMDType.Mock || XRStatusManager.Instance.hmdType == Enums.HMDType.Server) {
                 for (int i = 0; i < trackedPoseDrivers.Length; i++) {
                     trackedPoseDrivers[i].enabled = !trackedPoseDrivers[i].enabled;
                 }
