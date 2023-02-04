@@ -21,6 +21,7 @@ public class CharacterManager : NetworkBehaviour {
 	[SyncVar] public bool isFemale;
 	[SyncVar] public int avatarNumber;
 	[SyncVar] public float avatarSizeMultiplier;
+	[SyncVar] public bool isDesktopRig;
 
 	[Header("Run sync vars")]
 	[SyncVar(hook = nameof(changeArmRestingState))] public bool isArmResting;
@@ -40,7 +41,6 @@ public class CharacterManager : NetworkBehaviour {
 	[SerializeField] private XRBaseControllerInteractor[] XRInteractors;
 	[SerializeField] private AvatarWalkingController[] avatarWalkingControllers;
 	[SerializeField] private NetworkAvatarWalkingController networkAvatarWalkingController;
-	[SerializeField] private HeadCollisionManager headCollisionManager;
 
 	[SerializeField] private GameObject cameraTransform;
 	[SerializeField] private InputActionManager inputActionManager;
@@ -72,38 +72,29 @@ public class CharacterManager : NetworkBehaviour {
 			canvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
 		}
 
-		// Input Action manager has to be enabled only locally, otherwise it would not work, due to how VR works
-		// in other words, only local "player" can have it enabled
-		inputActionManager.enabled = true;
-
-		// We look for Device simulator and setup the local player camera transform to camera transform
-		GameObject.Find("XR Device Simulator").GetComponent<XRDeviceSimulator>().cameraTransform = cameraTransform.transform;
-
-		// We add listeners on item pick up / release
-		// interactors should contain all hands (XRcontrollers and interactors) that are to be used to interact with items
-		for (int i = 0; i < XRInteractors.Length; i++) {
-        	XRInteractors[i].selectEntered.AddListener(itemPickUp);
-			// interactors[i].selectExited.AddListener(itemRelease);
-		}
-        for (int i = 0; i < XRControllers.Length; i++) {
-			XRControllers[i].enableInputTracking = true;
-			XRControllers[i].enableInputActions = true;
-		}
-
-		if (RoleManager.Instance.characterRole == Enums.UserRole.Patient) {
-			GameObject therapistMenu = GameObject.Find("TherapistMenu");
-			if (therapistMenu != null) {
-				TherapistMenuManager therapistMenuManager = therapistMenu.GetComponent<TherapistMenuManager>();
-			}
-		}
-
 		int LayerCameraCull = LayerMask.NameToLayer("CameraCulled");
         foreach (GameObject gameObject in objectsToCull) {
 			gameObject.layer = LayerCameraCull;
 		}
 
-		if (RoleManager.Instance.characterRole != UserRole.Patient) {
-			headCollisionManager.enabled = true;
+		if (!isDesktopRig) {
+			// Input Action manager has to be enabled only locally, otherwise it would not work, due to how VR works
+			// in other words, only local "player" can have it enabled
+			inputActionManager.enabled = true;
+
+			// We look for Device simulator and setup the local player camera transform to camera transform
+			GameObject.Find("XR Device Simulator").GetComponent<XRDeviceSimulator>().cameraTransform = cameraTransform.transform;
+
+			// We add listeners on item pick up / release
+			// interactors should contain all hands (XRcontrollers and interactors) that are to be used to interact with items
+			for (int i = 0; i < XRInteractors.Length; i++) {
+				XRInteractors[i].selectEntered.AddListener(itemPickUp);
+				// interactors[i].selectExited.AddListener(itemRelease);
+			}
+			for (int i = 0; i < XRControllers.Length; i++) {
+				XRControllers[i].enableInputTracking = true;
+				XRControllers[i].enableInputActions = true;
+			}
 		}
 	}
 
@@ -116,11 +107,13 @@ public class CharacterManager : NetworkBehaviour {
 	}
 
 	void Start() {
-		// Setting up offset based on HMD type used by client
-		changeHMDType(hmdType, hmdType);
+		if (!isDesktopRig) {
+			// Setting up offset based on HMD type used by client
+			changeHMDType(hmdType, hmdType);
 
-		// Setting up controller model
-		changeControllerType(controllerType, controllerType);
+			// Setting up controller model
+			changeControllerType(controllerType, controllerType);
+		}
 
 		// Setting correct avatar, based on which one was chosen in the lobby
 		GameObject avatar;
@@ -178,9 +171,13 @@ public class CharacterManager : NetworkBehaviour {
 			for (int i = 0; i < XRControllers.Length; i++) {
 				XRControllers[i].enabled = false;
 			}
-			cameraTransform.GetComponent<HeadCollisionManager>().enabled = false;
+			if (cameraTransform.TryGetComponent<HeadCollisionManager>(out HeadCollisionManager headCollisionManager)) {
+				headCollisionManager.enabled = false;
+			}
 
-			activeAvatarObject.GetComponent<VoiceHandler>().enabled = false;
+			if (activeAvatarObject.TryGetComponent<VoiceHandler>(out VoiceHandler voiceHandler)) {
+				voiceHandler.enabled = false;
+			}
 		} else {
 			if(cameraTransform.GetComponent<AudioListener>() != null) {
 				cameraTransform.GetComponent<AudioListener>().enabled = true;
@@ -221,15 +218,17 @@ public class CharacterManager : NetworkBehaviour {
 		if (isOwned) {
 			// if not server, we ask server to grant us authority
 			NetworkIdentity itemNetIdentity = args.interactableObject.transform.GetComponent<NetworkIdentity>();
-			if (!isServer)
-				// SetItemAuthority(itemNetIdentity, identity);
-			// else
+			if (!isServer){
 				NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(itemNetIdentity, identity);
+			}
 		}
 	}
 
 
 	public void changeControllerType(ControllerType _old, ControllerType _new) {
+		if (isDesktopRig) {
+			return;
+		}
 		// Debug.Log("Change controller called "  +  _new.ToString());
 		XRBaseController rightC =  transform.Find("Offset/Camera Offset/RightHand Controller").GetComponent<XRBaseController>();
         XRBaseController leftC =  transform.Find("Offset/Camera Offset/LeftHand Controller").GetComponent<XRBaseController>();

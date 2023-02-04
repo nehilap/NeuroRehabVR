@@ -191,8 +191,10 @@ GameObject:
   - component: {fileID: 4064739466295004778}
   - component: {fileID: 5430102579018235178}
   - component: {fileID: 7874168802564253269}
-  - component: {fileID: 8351724715148979628}
   - component: {fileID: 7916707425804939655}
+  - component: {fileID: 8351724715148979628}
+  - component: {fileID: 8193521926499331895}
+  - component: {fileID: 2473320811156067586}
   m_Layer: 7
   m_Name: _RigDesktop
   m_TagString: Untagged
@@ -208,7 +210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5308743742952482155}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -282,24 +284,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &8351724715148979628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5308743742952482155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1d49b640ed28e34c9301dc0db3f44ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  move: {fileID: 3377828608154732254, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
-  avatarWalkingControllers:
-  - {fileID: 3394416713058309900}
-  - {fileID: 6953298347185884907}
-  body: {fileID: 7874168802564253269}
-  moveSpeed: 1.4
 --- !u!114 &7916707425804939655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,6 +305,54 @@ MonoBehaviour:
   scale: {x: 275, y: 275, z: 1}
   offsetByWidth: 0
   offsetByHeight: 1
+--- !u!114 &8351724715148979628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5308743742952482155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1d49b640ed28e34c9301dc0db3f44ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  move: {fileID: 3377828608154732254, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
+  avatarWalkingControllers:
+  - {fileID: 3394416713058309900}
+  - {fileID: 6953298347185884907}
+  body: {fileID: 7874168802564253269}
+  moveSpeed: 1.5
+--- !u!114 &8193521926499331895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5308743742952482155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a9da1b7a0bcb1345a40dc19c4841d4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuAction: {fileID: -3781283977073091197, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
+  isGrabbing: 0
+--- !u!114 &2473320811156067586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5308743742952482155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bd5d985b5d37ed43b33a3d0b1c468d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseClick: {fileID: 5444298425152310856, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
+  mousePhysicsDragSpeed: 15
+  mouseDragSpeed: 0.1
+  mainCamera: {fileID: 5308743743746186650}
 --- !u!1 &5308743743746186654
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,6 +453,7 @@ MonoBehaviour:
   mouseX: {fileID: -6197373250192671553, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
   mouseY: {fileID: -1086650663570721926, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
   menu: {fileID: 3796970163881969186, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
+  grab: {fileID: -3781283977073091197, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
   player: {fileID: 5308743742952482153}
   verticalRotation: 0
   mouseSensitivityX: 8

@@ -64,9 +64,18 @@ public partial class @DesktopInputControls : IInputActionCollection2, IDisposabl
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""Grab"",
                     ""type"": ""Button"",
-                    ""id"": ""df87e4c6-55aa-4130-8251-8e8ff0ede7a4"",
+                    ""id"": ""ae0ce3d1-ca31-4453-bcfc-bcda807aa9a2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MouseClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""abd1d7d8-2e69-40e2-81d2-b9e923cee1cc"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -208,12 +217,23 @@ public partial class @DesktopInputControls : IInputActionCollection2, IDisposabl
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e45b00b9-bd3a-4531-adf0-90987b359174"",
+                    ""id"": ""3c8d215a-828f-4af6-9745-817782994535"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Grab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e2130865-b3c3-4213-b21e-77720c8c5d53"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""MouseClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -228,7 +248,8 @@ public partial class @DesktopInputControls : IInputActionCollection2, IDisposabl
         m_Desktop_MouseX = m_Desktop.FindAction("MouseX", throwIfNotFound: true);
         m_Desktop_MouseY = m_Desktop.FindAction("MouseY", throwIfNotFound: true);
         m_Desktop_Menu = m_Desktop.FindAction("Menu", throwIfNotFound: true);
-        m_Desktop_Newaction = m_Desktop.FindAction("New action", throwIfNotFound: true);
+        m_Desktop_Grab = m_Desktop.FindAction("Grab", throwIfNotFound: true);
+        m_Desktop_MouseClick = m_Desktop.FindAction("MouseClick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -292,7 +313,8 @@ public partial class @DesktopInputControls : IInputActionCollection2, IDisposabl
     private readonly InputAction m_Desktop_MouseX;
     private readonly InputAction m_Desktop_MouseY;
     private readonly InputAction m_Desktop_Menu;
-    private readonly InputAction m_Desktop_Newaction;
+    private readonly InputAction m_Desktop_Grab;
+    private readonly InputAction m_Desktop_MouseClick;
     public struct DesktopActions
     {
         private @DesktopInputControls m_Wrapper;
@@ -301,7 +323,8 @@ public partial class @DesktopInputControls : IInputActionCollection2, IDisposabl
         public InputAction @MouseX => m_Wrapper.m_Desktop_MouseX;
         public InputAction @MouseY => m_Wrapper.m_Desktop_MouseY;
         public InputAction @Menu => m_Wrapper.m_Desktop_Menu;
-        public InputAction @Newaction => m_Wrapper.m_Desktop_Newaction;
+        public InputAction @Grab => m_Wrapper.m_Desktop_Grab;
+        public InputAction @MouseClick => m_Wrapper.m_Desktop_MouseClick;
         public InputActionMap Get() { return m_Wrapper.m_Desktop; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -323,9 +346,12 @@ public partial class @DesktopInputControls : IInputActionCollection2, IDisposabl
                 @Menu.started -= m_Wrapper.m_DesktopActionsCallbackInterface.OnMenu;
                 @Menu.performed -= m_Wrapper.m_DesktopActionsCallbackInterface.OnMenu;
                 @Menu.canceled -= m_Wrapper.m_DesktopActionsCallbackInterface.OnMenu;
-                @Newaction.started -= m_Wrapper.m_DesktopActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_DesktopActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_DesktopActionsCallbackInterface.OnNewaction;
+                @Grab.started -= m_Wrapper.m_DesktopActionsCallbackInterface.OnGrab;
+                @Grab.performed -= m_Wrapper.m_DesktopActionsCallbackInterface.OnGrab;
+                @Grab.canceled -= m_Wrapper.m_DesktopActionsCallbackInterface.OnGrab;
+                @MouseClick.started -= m_Wrapper.m_DesktopActionsCallbackInterface.OnMouseClick;
+                @MouseClick.performed -= m_Wrapper.m_DesktopActionsCallbackInterface.OnMouseClick;
+                @MouseClick.canceled -= m_Wrapper.m_DesktopActionsCallbackInterface.OnMouseClick;
             }
             m_Wrapper.m_DesktopActionsCallbackInterface = instance;
             if (instance != null)
@@ -342,9 +368,12 @@ public partial class @DesktopInputControls : IInputActionCollection2, IDisposabl
                 @Menu.started += instance.OnMenu;
                 @Menu.performed += instance.OnMenu;
                 @Menu.canceled += instance.OnMenu;
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @Grab.started += instance.OnGrab;
+                @Grab.performed += instance.OnGrab;
+                @Grab.canceled += instance.OnGrab;
+                @MouseClick.started += instance.OnMouseClick;
+                @MouseClick.performed += instance.OnMouseClick;
+                @MouseClick.canceled += instance.OnMouseClick;
             }
         }
     }
@@ -355,6 +384,7 @@ public partial class @DesktopInputControls : IInputActionCollection2, IDisposabl
         void OnMouseX(InputAction.CallbackContext context);
         void OnMouseY(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnGrab(InputAction.CallbackContext context);
+        void OnMouseClick(InputAction.CallbackContext context);
     }
 }

@@ -6,6 +6,7 @@ public class CameraMovement : MonoBehaviour {
     [SerializeField] private InputActionReference mouseX;
     [SerializeField] private InputActionReference mouseY;
     [SerializeField] private InputActionReference menu;
+    [SerializeField] private InputActionReference grab;
 
     [SerializeField] private Transform player;
 
@@ -13,24 +14,26 @@ public class CameraMovement : MonoBehaviour {
     [SerializeField] private float mouseSensitivityX = 50f;
     [SerializeField] private float mouseSensitivityY = 50f;
 
-    private bool isMenuShowing = false;
+    private bool isCameraMovementDisabled = false;
 
     private void OnEnable() {
-        menu.action.performed += triggerMenu;
+        menu.action.performed += disableCamera;
+        grab.action.performed += disableCamera;
 
-        isMenuShowing = false;
+        isCameraMovementDisabled = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void OnDisable() {
-        menu.action.performed -= triggerMenu;
+        menu.action.performed -= disableCamera;
+        grab.action.performed -= disableCamera;
             
         Cursor.lockState = CursorLockMode.None;             
         Cursor.visible = true;
     }
 
     void LateUpdate() {
-        if (isMenuShowing) {
+        if (isCameraMovementDisabled) {
             return;
         }
 
@@ -45,7 +48,7 @@ public class CameraMovement : MonoBehaviour {
     }
     
 
-    private void triggerMenu(InputAction.CallbackContext obj) {
-        isMenuShowing = !isMenuShowing;
+    private void disableCamera(InputAction.CallbackContext obj) {
+        isCameraMovementDisabled = !isCameraMovementDisabled;
     }
 }

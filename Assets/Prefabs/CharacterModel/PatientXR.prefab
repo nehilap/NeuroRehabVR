@@ -417,6 +417,7 @@ MonoBehaviour:
   isFemale: 0
   avatarNumber: 0
   avatarSizeMultiplier: 0
+  isDesktopRig: 0
   isArmResting: 0
   activeAvatarObject: {fileID: 0}
   isLeftArmAnimated: 0
@@ -445,7 +446,6 @@ MonoBehaviour:
   - {fileID: 2280552908848298392}
   - {fileID: 3948733740837762291}
   networkAvatarWalkingController: {fileID: 8998868872483375110}
-  headCollisionManager: {fileID: 4416399678249945351}
   cameraTransform: {fileID: 1878698787931433297}
   inputActionManager: {fileID: 1878698789788651961}
   objectsToCull:
@@ -1090,7 +1090,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &149729476660829114
 Transform:
   m_ObjectHideFlags: 0

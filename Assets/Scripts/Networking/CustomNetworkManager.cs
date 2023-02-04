@@ -101,13 +101,15 @@ public class CustomNetworkManager : NetworkManager {
         CharacterManager characterManager = newCharacterModel.GetComponent<CharacterManager>();
         characterManager.controllerType = message.controllerType;
         characterManager.hmdType = message.hmdType;
-
-        // this gets called only on Server, Clients have to change their models themselves anyway
-        characterManager.changeControllerType(message.controllerType, message.controllerType);
-
         characterManager.isFemale = message.isFemale;
         characterManager.avatarNumber = message.avatarNumber;
         characterManager.avatarSizeMultiplier = message.sizeMultiplier;
+        characterManager.isDesktopRig = !message.isXRActive;
+
+        if (message.isXRActive) {
+            // this gets called only on Server, Clients have to change their models themselves anyway
+            characterManager.changeControllerType(message.controllerType, message.controllerType);
+        }
         
         NetworkServer.AddPlayerForConnection(conn, newCharacterModel);
     }

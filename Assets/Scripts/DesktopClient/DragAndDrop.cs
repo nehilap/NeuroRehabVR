@@ -1,0 +1,73 @@
+using System.Collections;
+using Mirror;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class DragAndDrop : MonoBehaviour {
+    [SerializeField] private InputActionReference mouseClick;
+
+    [SerializeField] [Range(0.01f, 100f)] private float mousePhysicsDragSpeed = 10f;
+    [SerializeField] [Range(0.01f, 10f)] private float mouseDragSpeed = 0.1f;
+
+    [SerializeField] private Camera mainCamera;
+
+    private WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate();
+
+    private Vector3 velocity = Vector3.zero;
+
+    private void Awake() {
+        if (mainCamera == null) {
+            mainCamera = Camera.current;
+        }
+    }
+
+    private void OnEnable() {
+        mouseClick.action.performed += mousePressed;
+    }
+
+    private void OnDisable() {
+        mouseClick.action.performed -= mousePressed;
+    }
+
+    // https://www.youtube.com/watch?v=HfqRKy5oFDQ
+    private void mousePressed(InputAction.CallbackContext obj) { 
+        Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit)) {
+            if (hit.collider != null && (hit.collider.gameObject.CompareTag("Draggable") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Target") 
+            || hit.collider.gameObject.GetComponent<DragInterface>() != null)) {
+                StartCoroutine(dragUpdate(hit.collider.gameObject));
+            }
+        }
+    }
+
+    private IEnumerator dragUpdate(GameObject draggedObject) {
+        Quaternion initRotation = draggedObject.transform.rotation;
+        draggedObject.transform.TryGetComponent<DragInterface>(out DragInterface dragInterface);
+
+        dragInterface?.OnStartDrag();
+        
+        if (draggedObject.transform.TryGetComponent<NetworkIdentity>(out NetworkIdentity objectIdentity)) {
+            NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(objectIdentity, CharacterManager.localClientInstance.GetComponent<NetworkIdentity>());
+        }
+
+        float initDistance = Vector3.Distance(draggedObject.transform.position, mainCamera.transform.position);
+        draggedObject.TryGetComponent<Rigidbody>(out Rigidbody rigidbody);
+
+        while (mouseClick.action.ReadValue<float>() != 0) {
+            Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+            if (rigidbody != null) {
+                Vector3 direction = ray.GetPoint(initDistance) - draggedObject.transform.position;
+                rigidbody.velocity = direction * mousePhysicsDragSpeed;
+                draggedObject.transform.rotation = initRotation;
+                yield return waitForFixedUpdate;
+            } else {
+                draggedObject.transform.position = Vector3.SmoothDamp(draggedObject.transform.position, ray.GetPoint(initDistance), ref velocity, mouseDragSpeed);
+                yield return null;
+            }
+        }
+
+        dragInterface?.OnStopDrag();
+    }
+}
