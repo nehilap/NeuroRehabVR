@@ -3,14 +3,17 @@ using UnityEngine.InputSystem;
 
 public class MiniMenuManager : MonoBehaviour {
     
-    [SerializeField] private InputActionReference menu;
+    [SerializeField] private InputActionReference menuAction;
+    [SerializeField] private bool lockCursor;
     [SerializeField] private Transform menuHolder;
     [SerializeField] private GameObject menuToShow;
+    [SerializeField] private string menuNameToShow;
     [SerializeField] private Vector3 positionOffset;
     [SerializeField] private Vector3 scale;
 
     [SerializeField] private bool offsetByWidth;
     [SerializeField] private bool offsetByHeight;
+    
 
     private Vector3 originalMenuPosition;
     private Vector3 originalMenuScale;
@@ -21,17 +24,27 @@ public class MiniMenuManager : MonoBehaviour {
     private void Start() {
         menuHolder.GetComponent<Canvas>().enabled = false;
 
+        if (menuToShow == null && menuNameToShow != null) {
+            menuToShow = MenuManager.Instance.getMenuByName(menuNameToShow);        
+        }
+
         originalMenuPosition = menuToShow.transform.localPosition;
         originalMenuScale = menuToShow.transform.localScale;
         originalMenuParent = menuToShow.transform.parent;
     }
 
     private void OnEnable() {
-        menu.action.performed += triggerMenu;
+        menuAction.action.performed += triggerMenu;
     }
 
     private void OnDisable() {
-        menu.action.performed -= triggerMenu;
+        menuAction.action.performed -= triggerMenu;
+
+        if(!this.gameObject.scene.isLoaded) return;
+
+        if (isMenuShowing) {
+            triggerMenu(new InputAction.CallbackContext());
+        }
     }
 
     private void triggerMenu(InputAction.CallbackContext obj) {
@@ -40,7 +53,9 @@ public class MiniMenuManager : MonoBehaviour {
         menuHolder.GetComponent<Canvas>().enabled = isMenuShowing;
 
         if (isMenuShowing) {
-            Cursor.lockState = CursorLockMode.None;
+            if (lockCursor) {
+                Cursor.lockState = CursorLockMode.None;
+            }
 
             menuToShow.transform.SetParent(menuHolder);
 
@@ -57,7 +72,9 @@ public class MiniMenuManager : MonoBehaviour {
 
             menuToShow.transform.localPosition = newPosition;
         } else {
-            Cursor.lockState = CursorLockMode.Locked;
+            if (lockCursor) {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
 
             menuToShow.transform.SetParent(originalMenuParent);
 

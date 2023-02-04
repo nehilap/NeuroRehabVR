@@ -22,6 +22,8 @@ public class CustomXRInteractorLineVisual : XRInteractorLineVisual {
         }
     }
 
+    // https://forum.unity.com/threads/reticle-crosshair.374076/
+    // https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@2.2/api/UnityEngine.XR.Interaction.Toolkit.XRRayInteractor.html#UnityEngine_XR_Interaction_Toolkit_XRRayInteractor_TryGetCurrent3DRaycastHit_UnityEngine_RaycastHit__
     private void Update() {
         if (scaleReticleWithDistance && XRRayInteractor != null) {
             Vector3 _position, _normal;

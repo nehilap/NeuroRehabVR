@@ -2,11 +2,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.XR;
 
-public class StatusTextManager : MonoBehaviour
-{
+public class StatusTextManager : MonoBehaviour {
     void Start() {
+        setStatusText();
+    }
+
+    public void setStatusText() {
         GetComponent<TMP_Text>().text = "Platform: '" + Application.platform.ToString() 
-            + "', HMD type: '" + HMDInfoManager.instance.hmdType.ToString()
+            + "', HMD type: '" + XRStatusManager.instance.hmdType.ToString()
             + "', Device: '" + XRSettings.loadedDeviceName + "'";
     }
 }

@@ -4,7 +4,7 @@ using Enums;
 // Component holding information about Character such as role etc
 // this component is attached to object that is not despawned
 public class RoleManager : MonoBehaviour {
-    public static RoleManager instance;
+    public static RoleManager instance { get; private set; }
     public UserRole characterRole;
 
     private void Start() {

@@ -8,7 +8,7 @@ using Utility;
 
 public class NetworkCharacterManager : NetworkBehaviour {
 
-	public static NetworkCharacterManager localNetworkClient;
+	public static NetworkCharacterManager localNetworkClient { get; private set; }
 
     [SerializeField]
     private AnimationSettingsManager animSettingsManager;

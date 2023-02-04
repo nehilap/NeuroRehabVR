@@ -11,5 +11,6 @@ namespace Structs {
         public bool isFemale;
         public int avatarNumber;
         public float sizeMultiplier;
+        public bool isXRActive;
     }
 }

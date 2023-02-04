@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ActiveBarGroupsManager : MonoBehaviour
 {
-    public List<Image> activeBars = new List<Image>();
+    [SerializeField] private List<Image> activeBars = new List<Image>();
 
     private void Start() {
         transform.GetComponent<Button>().onClick.AddListener(activateBar);
@@ -12,9 +12,11 @@ public class ActiveBarGroupsManager : MonoBehaviour
 
     public void activateBar() {
         for (int i = 0; i < activeBars.Count; i++) {
-            activeBars[i].enabled = false;
+            if (activeBars[i].transform.parent == transform) {
+                activeBars[i].enabled = true;
+            } else {
+                activeBars[i].enabled = false;
+            }
         }
-        
-        gameObject.transform.Find("ActiveBar").GetComponent<Image>().enabled = true;
     }
 }

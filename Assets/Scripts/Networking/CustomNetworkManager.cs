@@ -8,8 +8,11 @@ using Structs;
 public class CustomNetworkManager : NetworkManager {   
     // public bool isServer;
     // usable prefabs for character (first non-simulated, then simulated prefabs)
-    [SerializeField]
-    private List<GameObject> characterPrefabs = new List<GameObject>();
+
+    [Header("Prefabs for character")]
+    [SerializeField] private GameObject therapistPrefab;
+    [SerializeField] private GameObject patientPrefab;
+    [SerializeField] private GameObject therapistDesktopPrefab;
     
     // the reason is because NetworkManager (parent class) already starts server if this is server build
     // in case you still need to use Start(), don't forget to call base.Start(); 
@@ -26,7 +29,7 @@ public class CustomNetworkManager : NetworkManager {
             }
         }
         #if UNITY_SERVER
-        HMDInfoManager.instance.stopXR();
+        XRStatusManager.instance.stopXR();
         #endif
 
         base.Start();
@@ -50,11 +53,12 @@ public class CustomNetworkManager : NetworkManager {
         CharacterMessage characterMessage = new CharacterMessage
         {
             role = RoleManager.instance.characterRole,
-            hmdType = HMDInfoManager.instance.hmdType,
-            controllerType = HMDInfoManager.instance.controllerType,
+            hmdType = XRStatusManager.instance.hmdType,
+            controllerType = XRStatusManager.instance.controllerType,
             isFemale = SettingsManager.instance.avatarSettings.isFemale,
             avatarNumber = SettingsManager.instance.avatarSettings.avatarNumber,
             sizeMultiplier = SettingsManager.instance.avatarSettings.sizeMultiplier,
+            isXRActive = XRStatusManager.instance.isXRActive,
         };
 
         NetworkClient.Send(characterMessage);
@@ -65,6 +69,21 @@ public class CustomNetworkManager : NetworkManager {
         Debug.Log("New connection requested, Client using: '" + message.hmdType.ToString() + "'" +
             ", '" + message.isFemale + "', '" + message.avatarNumber + "'");
 
+        GameObject characterPrefab;
+        if (message.role == Enums.UserRole.Therapist) {
+            if (message.isXRActive) {
+                characterPrefab = therapistPrefab;
+            } else {
+                characterPrefab = therapistDesktopPrefab;
+            }
+        } else if (message.role == Enums.UserRole.Patient) {
+            characterPrefab = patientPrefab;
+        } else {
+            Debug.LogError("Cannot Instantiate character prefab " + message.role.ToString() + " - not found!!");
+            return;
+        }
+        GameObject newCharacterModel = Instantiate(characterPrefab);
+        /*
         int indexToSpawn = -1;
         for (int i = 0; i < characterPrefabs.Count; i++) {
             if (characterPrefabs[i].name == message.role.ToString()) {
@@ -73,11 +92,12 @@ public class CustomNetworkManager : NetworkManager {
             }
         }
         if (indexToSpawn == -1) {
-            Debug.LogError("Cannot Instantiate character prefab - not found!!");
+            Debug.LogError("Cannot Instantiate character prefab " + message.role.ToString() + " - not found!!");
             return;
         }
 
         GameObject newCharacterModel = Instantiate(characterPrefabs[indexToSpawn]);
+        */
         CharacterManager characterManager = newCharacterModel.GetComponent<CharacterManager>();
         characterManager.controllerType = message.controllerType;
         characterManager.hmdType = message.hmdType;

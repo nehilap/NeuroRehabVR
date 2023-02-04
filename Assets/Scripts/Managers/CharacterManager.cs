@@ -8,10 +8,10 @@ using System.Collections.Generic;
 using Enums;
 using Wolf3D.ReadyPlayerMe.AvatarSDK;
 
-public class CharacterManager : NetworkBehaviour
-{
-	public static CharacterManager localClient;
-	public static CharacterManager activePatient;
+public class CharacterManager : NetworkBehaviour {
+	
+	public static CharacterManager localClient { get; private set; }
+	public static CharacterManager activePatient { get; private set; }
 
 	[SerializeField] private bool isPatient = false;
 
@@ -234,7 +234,7 @@ public class CharacterManager : NetworkBehaviour
 		XRBaseController rightC =  transform.Find("Offset/Camera Offset/RightHand Controller").GetComponent<XRBaseController>();
         XRBaseController leftC =  transform.Find("Offset/Camera Offset/LeftHand Controller").GetComponent<XRBaseController>();
 
-        foreach (GameObject item in HMDInfoManager.instance.controllerPrefabs) {
+        foreach (GameObject item in XRStatusManager.instance.controllerPrefabs) {
             if (item.name.Contains(_new.ToString())) {
                 if (item.name.Contains("Left")) {
                     leftC.modelPrefab = item.transform;

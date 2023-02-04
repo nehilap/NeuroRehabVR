@@ -11,12 +11,12 @@ public class TrackedPoseDriverManager : MonoBehaviour
                 flag = false;
             }
         }
-        // We have to be sure HMDInfoManager is setup before this code runs
+        // We have to be sure XRStatusManager is setup before this code runs
         // we can do that in "Edit" -> "Project Settings" -> "Script Execution Order"
         if (flag) {
             TrackedPoseDriver[] trackedPoseDrivers = GetComponents<TrackedPoseDriver>();
 
-            if (HMDInfoManager.instance.hmdType == Enums.HMDType.Mock || HMDInfoManager.instance.hmdType == Enums.HMDType.Server) {
+            if (XRStatusManager.instance.hmdType == Enums.HMDType.Mock || XRStatusManager.instance.hmdType == Enums.HMDType.Server) {
                 for (int i = 0; i < trackedPoseDrivers.Length; i++) {
                     trackedPoseDrivers[i].enabled = !trackedPoseDrivers[i].enabled;
                 }

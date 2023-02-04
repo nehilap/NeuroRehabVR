@@ -9,7 +9,7 @@ public class AvatarSettings {
 }
 
 public class SettingsManager : MonoBehaviour {
-    public static SettingsManager instance;
+    public static SettingsManager instance { get; private set; }
 
     [SerializeField]
     public AvatarSettings avatarSettings;

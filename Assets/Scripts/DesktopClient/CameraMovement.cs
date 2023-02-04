@@ -15,16 +15,18 @@ public class CameraMovement : MonoBehaviour {
 
     private bool isMenuShowing = false;
 
-    void Start() {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
     private void OnEnable() {
         menu.action.performed += triggerMenu;
+
+        isMenuShowing = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void OnDisable() {
         menu.action.performed -= triggerMenu;
+            
+        Cursor.lockState = CursorLockMode.None;             
+        Cursor.visible = true;
     }
 
     void LateUpdate() {

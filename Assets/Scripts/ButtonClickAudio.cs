@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonClickAudio : MonoBehaviour
-{
-    public static AudioSource audioSource;
+public class ButtonClickAudio : MonoBehaviour {
+    [SerializeField] private AudioSource audioSource;
+
     void Start() {
         if (audioSource == null) {
-            audioSource = GameObject.Find("ButtonAudioSource")?.GetComponent<AudioSource>();
+            audioSource = AudioSourceManager.Instance.GetComponent<AudioSource>();
         }
 
         gameObject.GetComponent<Button>().onClick.AddListener(playSound);

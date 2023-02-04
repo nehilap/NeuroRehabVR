@@ -3,21 +3,28 @@ using UnityEngine.XR;
 using UnityEngine.XR.Management;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using Enums;
 
-public class HMDInfoManager : MonoBehaviour {
+public class XRStatusManager : MonoBehaviour {
 
-    public static HMDInfoManager instance;
-
-    public TMP_Text statusText;
+    public static XRStatusManager instance { get; private set; }
 
     // https://forum.unity.com/threads/openxr-is-it-no-longer-possible-to-get-descriptive-device-names.1051493/
     public ControllerType controllerType = ControllerType.Quest2;
-    
+    public HMDType hmdType;
+
     public List<GameObject> controllerPrefabs = new List<GameObject>();
 
-    public HMDType hmdType;
+    public bool isXRActive = false;
+
+    [SerializeField] private StatusTextManager statusTextManager;
+    [SerializeField] private ActiveBarGroupsManager activeXRButton;
+    [SerializeField] private ActiveBarGroupsManager inactiveXRButton;
+
+    [SerializeField] private GameObject XRRig;
+    [SerializeField] private GameObject desktopRig;
+
+    [SerializeField] private GameObject controllerSetupMenu;
 
     void Start() {
         if (instance == null) {
@@ -46,7 +53,7 @@ public class HMDInfoManager : MonoBehaviour {
         // Debug.Log(Application.platform.ToString());
         if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor) {
             hmdType = HMDType.Mock;
-            // StartCoroutine(HMDInfoManager.instance.startXR());
+            StartCoroutine(XRStatusManager.instance.startXR());
         } else if (Application.platform == RuntimePlatform.Android) {
             hmdType = HMDType.Other;
         } else {
@@ -54,6 +61,9 @@ public class HMDInfoManager : MonoBehaviour {
         }
 
         setXRSettings();
+        statusTextManager.setStatusText();
+
+        setupUIAndXRElements();
     }
 
     void OnApplicationQuit() {
@@ -66,6 +76,9 @@ public class HMDInfoManager : MonoBehaviour {
             XRGeneralSettings.Instance.Manager.StopSubsystems();
             XRGeneralSettings.Instance.Manager.DeinitializeLoader();
             // Camera.main.ResetAspect();
+
+            isXRActive = false;
+            setupUIAndXRElements();
         }
     }
 
@@ -77,7 +90,10 @@ public class HMDInfoManager : MonoBehaviour {
             } else {
                 Debug.Log("Starting XR...");
                 XRGeneralSettings.Instance.Manager.StartSubsystems();
+                isXRActive = true;
                 
+                setupUIAndXRElements();
+                setXRSettings();
                 yield return null;
             }
         }
@@ -92,6 +108,24 @@ public class HMDInfoManager : MonoBehaviour {
         // We actually have to increase the resolution scaling, to increase the image queality
         // because 1.0 creates artifacts / jagged lines
         XRSettings.eyeTextureResolutionScale = 1.6f;
+    }
+
+    private void setupUIAndXRElements() {
+        if (isXRActive) {
+            activeXRButton.activateBar();
+
+            desktopRig.SetActive(false);
+            XRRig.SetActive(true);
+
+            controllerSetupMenu.SetActive(true);
+        } else {
+            inactiveXRButton.activateBar();
+
+            XRRig.SetActive(false);
+            desktopRig.SetActive(true);
+
+            controllerSetupMenu.SetActive(false);
+        }
     }
 
 }

@@ -1,63 +1,37 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
-using Enums;
 
-public class MenuManager : MonoBehaviour
-{
-    public string targetAPI;
+public class MenuManager : MonoBehaviour {
 
-    public Canvas settingsCanvas;
+    private static MenuManager _instance;
 
-    private JoinManager joinManager;
+    public static MenuManager Instance { get { return _instance; } }
 
-    void Start() {
-        joinManager = new JoinManager();
-        /*
-        Canvas canvas = gameObject.GetComponent<Canvas>();
-        canvas.renderMode = RenderMode.WorldSpace;
-        canvas.worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        */
-        
-        // listeners for menu buttons
-        // https://u3ds.blogspot.com/2021/01/get-post-rest-api-data-unitywebrequest.html
-    }
+    [SerializeField] private Dictionary<string, GameObject> menuList = new Dictionary<string, GameObject>();
 
-    public void JoinTherapist() {
-        RoleManager.instance.CreateCharacter(UserRole.Therapist);
-        joinManager.Join();
-    }
-
-    public void JoinPatient() {
-        RoleManager.instance.CreateCharacter(UserRole.Patient);
-        joinManager.Join();
-    }
-
-    public void OpenSettings() {
-        settingsCanvas.enabled = true;
-        gameObject.GetComponent<Canvas>().enabled = false;
-    }
-
-    public void QuitApp() {
-        Application.Quit();
-        // UnityEditor.EditorApplication.isPlaying = false; // TODO remove later
-    }
-
-    public void SendSync() => StartCoroutine(PostData_Coroutine());
- 
-    IEnumerator PostData_Coroutine()
+    private void Awake()
     {
-        if (targetAPI == "") {
-            targetAPI = "https://8f15f933-34cb-4124-a097-d0a0c0b82f95.mock.pstmn.io";
-        }
-        WWWForm form = new WWWForm();
-        using(UnityWebRequest request = UnityWebRequest.Post(targetAPI + "/sync", form))
+        if (_instance != null && _instance != this)
         {
-            yield return request.SendWebRequest();
-            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
-                Debug.LogError("Failed to retrieve response from server!!");
-            else
-                Debug.Log("POST request received, message: \"" + request.downloadHandler.text + "\"");
+            Destroy(this.gameObject);
+        } else {
+            _instance = this;
         }
+    }
+
+    public GameObject getMenuByName(string menuName) {
+        if (menuList.ContainsKey(menuName)) {
+            return menuList[menuName];
+        } else {
+            return null;
+        }
+    }
+
+    public Dictionary<string, GameObject> getMenuList() {
+        return menuList;
+    }
+
+    public void addMenuToList(string menuName, GameObject menuToAdd) {
+        menuList.Add(menuName, menuToAdd);
     }
 }
