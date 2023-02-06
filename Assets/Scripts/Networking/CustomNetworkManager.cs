@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using Structs;
+using Enums;
 
 // Class overriding default NetworkManager from Mirror
 // used for spawning custom character models
@@ -70,13 +70,13 @@ public class CustomNetworkManager : NetworkManager {
             ", '" + message.isFemale + "', '" + message.avatarNumber + "'");
 
         GameObject characterPrefab;
-        if (message.role == Enums.UserRole.Therapist) {
+        if (message.role == UserRole.Therapist) {
             if (message.isXRActive) {
                 characterPrefab = therapistXRPrefab;
             } else {
                 characterPrefab = therapistDesktopPrefab;
             }
-        } else if (message.role == Enums.UserRole.Patient) {
+        } else if (message.role == UserRole.Patient) {
             characterPrefab = patientXRPrefab;
         } else {
             Debug.LogError("Cannot Instantiate character prefab " + message.role.ToString() + " - not found!!");
@@ -99,16 +99,16 @@ public class CustomNetworkManager : NetworkManager {
         GameObject newCharacterModel = Instantiate(characterPrefabs[indexToSpawn]);
         */
         CharacterManager characterManager = newCharacterModel.GetComponent<CharacterManager>();
-        characterManager.controllerType = message.controllerType;
-        characterManager.hmdType = message.hmdType;
         characterManager.isFemale = message.isFemale;
         characterManager.avatarNumber = message.avatarNumber;
         characterManager.avatarSizeMultiplier = message.sizeMultiplier;
-        characterManager.isDesktopRig = !message.isXRActive;
 
         if (message.isXRActive) {
+            
+            ((XRCharacterManager) characterManager).controllerType = message.controllerType;
+            ((XRCharacterManager) characterManager).hmdType = message.hmdType;
             // this gets called only on Server, Clients have to change their models themselves anyway
-            characterManager.changeControllerType(message.controllerType, message.controllerType);
+            ((XRCharacterManager) characterManager).changeControllerType(message.controllerType, message.controllerType);
         }
         
         NetworkServer.AddPlayerForConnection(conn, newCharacterModel);

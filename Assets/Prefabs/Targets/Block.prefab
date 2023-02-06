@@ -154,7 +154,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &9085835025275287474
 MonoBehaviour:
@@ -338,6 +338,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83eae000a14847240a11a4e95fe912b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ArmIK_target_helper: {fileID: 7342635418878198631}
+  ThumbIK_target_helper: {fileID: 6440076486746848198}
+  IndexChainIK_target_helper: {fileID: 4483250976575881993}
+  MiddleChainIK_target_helper: {fileID: 6524383771783079658}
+  RingChainIK_target_helper: {fileID: 4723480501298921936}
+  PinkyChainIK_target_helper: {fileID: 8651332568434498930}
+  renderers:
+  - {fileID: 4585951089911290154}
 --- !u!114 &4597051606143054759
 MonoBehaviour:
   m_ObjectHideFlags: 0

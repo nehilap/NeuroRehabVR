@@ -151,10 +151,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -191,10 +191,10 @@ GameObject:
   - component: {fileID: 4064739466295004778}
   - component: {fileID: 5430102579018235178}
   - component: {fileID: 7874168802564253269}
-  - component: {fileID: 7916707425804939655}
   - component: {fileID: 8351724715148979628}
-  - component: {fileID: 8193521926499331895}
+  - component: {fileID: 7916707425804939655}
   - component: {fileID: 2473320811156067586}
+  - component: {fileID: 5622529241403108388}
   m_Layer: 7
   m_Name: _RigDesktop
   m_TagString: Untagged
@@ -277,13 +277,31 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 1.9
   m_Radius: 0.15
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.95, z: 0}
+--- !u!114 &8351724715148979628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5308743742952482155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1d49b640ed28e34c9301dc0db3f44ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  move: {fileID: 3377828608154732254, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
+  avatarWalkingControllers:
+  - {fileID: 3394416713058309900}
+  - {fileID: 6953298347185884907}
+  body: {fileID: 7874168802564253269}
+  moveSpeed: 1.5
 --- !u!114 &7916707425804939655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,38 +323,6 @@ MonoBehaviour:
   scale: {x: 275, y: 275, z: 1}
   offsetByWidth: 0
   offsetByHeight: 1
---- !u!114 &8351724715148979628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5308743742952482155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1d49b640ed28e34c9301dc0db3f44ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  move: {fileID: 3377828608154732254, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
-  avatarWalkingControllers:
-  - {fileID: 3394416713058309900}
-  - {fileID: 6953298347185884907}
-  body: {fileID: 7874168802564253269}
-  moveSpeed: 1.5
---- !u!114 &8193521926499331895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5308743742952482155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a9da1b7a0bcb1345a40dc19c4841d4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menuAction: {fileID: -3781283977073091197, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
-  isGrabbing: 0
 --- !u!114 &2473320811156067586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,6 +339,26 @@ MonoBehaviour:
   mousePhysicsDragSpeed: 15
   mouseDragSpeed: 0.1
   mainCamera: {fileID: 5308743743746186650}
+  layersToIgnore:
+    serializedVersion: 2
+    m_Bits: 13696
+  rayLength: 10
+--- !u!114 &5622529241403108388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5308743742952482155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a63ae4b32e0ce5c41b3b90af57238a51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseVisibilityTriggers:
+  - {fileID: 3796970163881969186, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
+  - {fileID: -3781283977073091197, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
+  activeTriggers: 0
 --- !u!1 &5308743743746186654
 GameObject:
   m_ObjectHideFlags: 0

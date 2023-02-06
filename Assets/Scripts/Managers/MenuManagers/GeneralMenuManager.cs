@@ -23,6 +23,8 @@ public class GeneralMenuManager : MonoBehaviour
     }
 
     public void JoinPatient() {
+        StartCoroutine(XRStatusManager.Instance.startXR());
+
         RoleManager.Instance.CreateCharacter(UserRole.Patient);
         joinManager.Join();
     }

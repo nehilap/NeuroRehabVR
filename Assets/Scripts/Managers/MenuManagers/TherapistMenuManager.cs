@@ -15,6 +15,9 @@ public class TherapistMenuManager : MonoBehaviour {
 	}
 
 	public void setArmRestHandler() {
+		if (CharacterManager.activePatientInstance == null) {
+			return;
+		}
 		NetworkCharacterManager.localNetworkClientInstance.CmdSetArmRestPosition(CharacterManager.activePatientInstance.GetComponent<NetworkIdentity>());
 	}
 

@@ -4792,6 +4792,7 @@ GameObject:
   - component: {fileID: 813480496}
   - component: {fileID: 813480497}
   - component: {fileID: 813480498}
+  - component: {fileID: 813480499}
   m_Layer: 6
   m_Name: GeneralMenu
   m_TagString: Untagged
@@ -4943,6 +4944,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allowedRoles: 0000000001000000
+--- !u!114 &813480499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813480490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88bb5698f9a0b314eb7a4e463d568590, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuName: 
 --- !u!1001 &813721883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11911,7 +11925,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2135288243}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0

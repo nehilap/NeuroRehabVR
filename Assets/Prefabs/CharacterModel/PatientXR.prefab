@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8206c30601a90ae4885b0b1cb7cca353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterManager: {fileID: 5999612633623057118}
+  characterManager: {fileID: 0}
 --- !u!54 &8735132832999914894
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 1878698789788651942}
   - component: {fileID: 1878698789788651943}
   - component: {fileID: 1878698789788651961}
-  - component: {fileID: 5999612633623057118}
+  - component: {fileID: 7685821798100096815}
   - component: {fileID: 5739927704567814008}
   - component: {fileID: 5780283270695576813}
   - component: {fileID: 2172990643908766035}
@@ -396,7 +396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ActionAssets:
   - {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
---- !u!114 &5999612633623057118
+--- !u!114 &7685821798100096815
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -405,23 +405,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1878698789788651940}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3aaebba47fe4147419b730c9145f3884, type: 3}
+  m_Script: {fileID: 11500000, guid: fa5bdafb3f6696a4f9f9bfb13be4c28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
   isPatient: 1
-  controllerType: 0
-  hmdType: 0
   isFemale: 0
   avatarNumber: 0
   avatarSizeMultiplier: 0
-  isDesktopRig: 0
   isArmResting: 0
   activeAvatarObject: {fileID: 0}
-  isLeftArmAnimated: 0
   activeArmAnimationController: {fileID: 0}
+  isLeftArmAnimated: 0
   avatarMalePrefabs:
   - {fileID: 113542620659459055, guid: 062e2fbf6c1dad04ca6d5f9061cadf55, type: 3}
   - {fileID: 113542620659459055, guid: 9e6551be2b6bcc049b424db75ba29bf8, type: 3}
@@ -432,22 +429,11 @@ MonoBehaviour:
   - {fileID: 113542620659459055, guid: 085ca7f99a401d24099215e6e1ad8905, type: 3}
   itemsToActivate:
   - {fileID: 6891543328459119718}
-  XRControllers:
-  - {fileID: 6362797812642250330}
-  - {fileID: 1573056820055513617}
-  - {fileID: 2177842846919724711}
-  - {fileID: 3191518763767511024}
-  XRInteractors:
-  - {fileID: 6586229125798327662}
-  - {fileID: 3957652242156794993}
-  - {fileID: 5754200158560209038}
-  - {fileID: 4829553120487303934}
   avatarWalkingControllers:
   - {fileID: 2280552908848298392}
   - {fileID: 3948733740837762291}
   networkAvatarWalkingController: {fileID: 8998868872483375110}
   cameraTransform: {fileID: 1878698787931433297}
-  inputActionManager: {fileID: 1878698789788651961}
   objectsToCull:
   - {fileID: 6160435662094528047}
   - {fileID: 7456955392007760620}
@@ -463,6 +449,19 @@ MonoBehaviour:
   avatars:
   - {fileID: 7777868807694302075}
   - {fileID: 507970931972756462}
+  controllerType: 3
+  hmdType: 0
+  XRControllers:
+  - {fileID: 6362797812642250330}
+  - {fileID: 2177842846919724711}
+  - {fileID: 1573056820055513617}
+  - {fileID: 3191518763767511024}
+  XRInteractors:
+  - {fileID: 6586229125798327662}
+  - {fileID: 3957652242156794993}
+  - {fileID: 5754200158560209038}
+  - {fileID: 4829553120487303934}
+  inputActionManager: {fileID: 1878698789788651961}
 --- !u!114 &5739927704567814008
 MonoBehaviour:
   m_ObjectHideFlags: 0

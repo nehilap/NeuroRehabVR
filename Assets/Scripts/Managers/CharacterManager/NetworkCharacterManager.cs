@@ -10,31 +10,31 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 	public static NetworkCharacterManager localNetworkClientInstance { get; private set; }
 
-    [SerializeField]
-    private AnimationSettingsManager animSettingsManager;
-    
-    [SerializeField]
+	[SerializeField]
+	private AnimationSettingsManager animSettingsManager;
+	
+	[SerializeField]
 	private List<GameObject> targetPrefabs = new List<GameObject>();
 
-    [SerializeField]
+	[SerializeField]
 	private GameObject spawnArea;
 
-    void Start() {
+	void Start() {
 		spawnArea = GameObject.Find("SpawnArea");
 
-        try {
+		try {
 			animSettingsManager = GameObject.Find("AnimationSettingsObject").GetComponent<AnimationSettingsManager>();
 		}
 		catch (System.Exception e) {
 			Debug.Log(e);
 		}
 		
-        if (isLocalPlayer) {
+		if (isLocalPlayer) {
 			spawnCorrectTargetFakes(AnimationType.Off, animSettingsManager.animType, true);
-        }
-    }
+		}
+	}
 
-    public override void OnStartClient () {
+	public override void OnStartClient () {
 		base.OnStartClient();
 
 		if (isLocalPlayer) {
@@ -48,17 +48,17 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	*
 	*/
 
-    [Command]
-    public void CmdSetItemAuthority(NetworkIdentity item, NetworkIdentity newPlayerOwner) {
-        setItemAuthority(item, newPlayerOwner);
-    }
+	[Command]
+	public void CmdSetItemAuthority(NetworkIdentity item, NetworkIdentity newPlayerOwner) {
+		setItemAuthority(item, newPlayerOwner);
+	}
 
 	private void setItemAuthority(NetworkIdentity item, NetworkIdentity newPlayerOwner) {
-        item.gameObject.GetComponent<NetworkTransform>().syncDirection = SyncDirection.ClientToServer;
+		item.gameObject.GetComponent<NetworkTransform>().syncDirection = SyncDirection.ClientToServer;
 		Debug.Log("Granting authority:" + item.netId + " to:" + newPlayerOwner.netId);
 		item.RemoveClientAuthority();
-        item.AssignClientAuthority(newPlayerOwner.connectionToClient);
-    }
+		item.AssignClientAuthority(newPlayerOwner.connectionToClient);
+	}
 
 	/*
 	* COMMANDS FOR SERVER - SYNCVARs
@@ -113,36 +113,36 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	*
 	*/
 
-    [Command]
+	[Command]
 	public void CmdSetAnimationStartPosition() {
 		PosRotMapping newPosRotMapping = getPosRotFromObject();
 		if (newPosRotMapping == null) {
 			return;
 		}
 
-        if (animSettingsManager.getCurrentAnimationSetup().Count >= 1) {
-            animSettingsManager.getCurrentAnimationSetup()[0] = newPosRotMapping;
-        } else {
-            animSettingsManager.getCurrentAnimationSetup().Add(newPosRotMapping);
-        }
+		if (animSettingsManager.getCurrentAnimationSetup().Count >= 1) {
+			animSettingsManager.getCurrentAnimationSetup()[0] = newPosRotMapping;
+		} else {
+			animSettingsManager.getCurrentAnimationSetup().Add(newPosRotMapping);
+		}
 	}
 
-    private PosRotMapping getPosRotFromObject() {
-        string animType = animSettingsManager.animType.ToString();
-        GameObject targetObject = GameObject.Find(animType);
+	private PosRotMapping getPosRotFromObject() {
+		string animType = animSettingsManager.animType.ToString();
+		GameObject targetObject = GameObject.Find(animType);
 		if (!targetObject) {
 			 targetObject = GameObject.Find(animType + "(Clone)");
 		}
-        if (!targetObject) {
-            Debug.LogError("Failed to find object: " + animType);
-            return null;
-        }
-        return new PosRotMapping(targetObject.transform.position, targetObject.transform.rotation.eulerAngles);
-    }
+		if (!targetObject) {
+			Debug.LogError("Failed to find object: " + animType);
+			return null;
+		}
+		return new PosRotMapping(targetObject.transform.position, targetObject.transform.rotation.eulerAngles);
+	}
 
 	[Command]
 	public void CmdAddMovePosition() {
-        GameObject originalTargetObject = GameObject.Find(animSettingsManager.animType.ToString());
+		GameObject originalTargetObject = GameObject.Find(animSettingsManager.animType.ToString());
 		if (!originalTargetObject) {
 			 originalTargetObject = GameObject.Find(animSettingsManager.animType.ToString() + "(Clone)");
 		}
@@ -156,7 +156,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 		animSettingsManager.getCurrentAnimationSetup().Clear();
 	}
 
-    /**
+	/**
 	*
 	* TARGET OBJECT SPAWNING
 	*
@@ -200,7 +200,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 					NetworkServer.Spawn(newObject);
 					
-                    CmdSetAnimationStartPosition();
+					CmdSetAnimationStartPosition();
 				}
 			}
 		} else {

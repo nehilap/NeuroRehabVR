@@ -133,6 +133,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83eae000a14847240a11a4e95fe912b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ArmIK_target_helper: {fileID: 5128142822107989905}
+  ThumbIK_target_helper: {fileID: 8904502434043051824}
+  IndexChainIK_target_helper: {fileID: 2088315329165002751}
+  MiddleChainIK_target_helper: {fileID: 8667140931413910044}
+  RingChainIK_target_helper: {fileID: 7152198644009043238}
+  PinkyChainIK_target_helper: {fileID: 6540123426287704452}
+  renderers:
+  - {fileID: 2118952973532061148}
 --- !u!1 &5128142822107989905
 GameObject:
   m_ObjectHideFlags: 0

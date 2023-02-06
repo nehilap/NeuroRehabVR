@@ -5,6 +5,7 @@ using UnityEngine.Animations.Rigging;
 
 using Enums;
 using Mappings;
+using Utility;
 
 public class ArmAnimationController : MonoBehaviour {
 	private Enums.AnimationState animState = Enums.AnimationState.Stopped;
@@ -112,7 +113,11 @@ public class ArmAnimationController : MonoBehaviour {
 			item.enabled = true;
 		}
 		if (targetObject.name.Contains("fake")) {
-			targetObject.GetComponent<Renderer>().enabled = false;
+			if (targetObject.TryGetComponent<TargetUtility>(out TargetUtility targetUtility)) {
+				foreach (Renderer item in targetUtility.renderers) {
+					item.enabled = false;
+				}
+			}
 		} else {
 			targetObject.GetComponent<Rigidbody>().useGravity = true;
 		}
@@ -262,7 +267,11 @@ public class ArmAnimationController : MonoBehaviour {
 			// if it's a fake animation, we also have to set the correct position of our fake object
 			// GameObject originalTargetObject = GameObject.Find(targetObjectName);
 			targetObject = GameObject.Find(targetObjectName + "_fake");
-			targetObject.GetComponent<Renderer>().enabled = true;
+			if (targetObject.TryGetComponent<TargetUtility>(out TargetUtility tu)) {
+				foreach (Renderer item in tu.renderers) {
+					item.enabled = true;
+				}
+			}
 
 			foreach (Renderer item in armObjects) {
 				item.enabled = false;
@@ -281,7 +290,7 @@ public class ArmAnimationController : MonoBehaviour {
 		TargetMappingGroup currentMapping = animationMapping.getTargetMappingByType(animSettingsManager.animType);
 		SyncList<PosRotMapping> currentAnimationSetup = animSettingsManager.getCurrentAnimationSetup();
 
-		if (currentAnimationSetup.Count <= 1) {
+		if (currentAnimationSetup.Count < 1) {
 			Debug.LogError("Start or End animation position not set");
 			return;
 		}
@@ -289,14 +298,19 @@ public class ArmAnimationController : MonoBehaviour {
 
 		targetObject.transform.position = currentAnimationSetup[0].position;
 		targetObject.transform.rotation = Quaternion.Euler(currentAnimationSetup[0].rotation);
-		
-		// helper target objects, children of our target object
-		targetsHelperObject.armTargetTemplate = targetObject.transform.Find("ArmIK_target_helper").gameObject;
-		targetsHelperObject.thumbTargetTemplate = targetObject.transform.Find("ThumbIK_target_helper").gameObject;
-		targetsHelperObject.indexTargetTemplate = targetObject.transform.Find("IndexChainIK_target_helper").gameObject;
-		targetsHelperObject.middleTargetTemplate = targetObject.transform.Find("MiddleChainIK_target_helper").gameObject;
-		targetsHelperObject.ringTargetTemplate = targetObject.transform.Find("RingChainIK_target_helper").gameObject;
-		targetsHelperObject.pinkyTargetTemplate = targetObject.transform.Find("PinkyChainIK_target_helper").gameObject;
+
+		if (targetObject.TryGetComponent<TargetUtility>(out TargetUtility targetUtility)) {
+			// helper target objects, children of our target object
+			targetsHelperObject.armTargetTemplate = targetUtility.ArmIK_target_helper;
+			targetsHelperObject.thumbTargetTemplate = targetUtility.ThumbIK_target_helper;
+			targetsHelperObject.indexTargetTemplate = targetUtility.IndexChainIK_target_helper;
+			targetsHelperObject.middleTargetTemplate = targetUtility.MiddleChainIK_target_helper;
+			targetsHelperObject.ringTargetTemplate = targetUtility.RingChainIK_target_helper;
+			targetsHelperObject.pinkyTargetTemplate = targetUtility.PinkyChainIK_target_helper;
+		} else {
+			Debug.LogError("Failed to retrieve target helper objects from Target - " + targetObjectName);
+			return;
+		}
 
 		try {
 			// Setting position + rotation
