@@ -6,10 +6,10 @@ using UnityEngine.Animations.Rigging;
 using Enums;
 using Mappings;
 using Utility;
+using System.Collections.Generic;
 
-public class ArmAnimationController : MonoBehaviour {
+public class ArmAnimationControllerOffline : MonoBehaviour {
 	private Enums.AnimationState animState = Enums.AnimationState.Stopped;
-	private AnimationPart animPart;
 	[SerializeField] public bool isLeft;
 
 	[Header("Rigs")]
@@ -25,33 +25,50 @@ public class ArmAnimationController : MonoBehaviour {
 
 	[SerializeField] private Vector3 armRestOffset;
 
+	[SerializeField] private bool isAnimationRunning;
+
 	[Header("Objects setup from code")]
 	[SerializeField] private GameObject targetObject;
 
-	[SerializeField] private AnimationSettingsManager animSettingsManager;
+	[SerializeField] private AnimationSettingsManagerOffline animSettingsManager;
 	[SerializeField] private GameObject armRestHelperObject;
 	[SerializeField] private bool isArmResting = false;
 	[SerializeField] private PosRotMapping originalArmRestPosRot;
-	
-	private AnimationMapping animationMapping;
+	[SerializeField] private AnimationMapping animationMapping;
 
 	void Start() {
-		animSettingsManager = GameObject.Find("AnimationSettingsObject")?.GetComponent<AnimationSettingsManager>();
+
+		animSettingsManager = GameObject.Find("AnimSettingsManagerOffline")?.GetComponent<AnimationSettingsManagerOffline>();
 
 		armRestHelperObject = GameObject.Find("ArmRestHelperObject");
 
 		// BLOCK animation setup - relative values
 		// TODO
+
+		/* 	
 		animationMapping.blockMapping.armMapping = new PosRotMapping(new Vector3(-1.104002f, 0.07f, -1.648f), new Vector3(0f, 336.925079f, 270f)); // armTarget
 		animationMapping.blockMapping.thumbMapping = new PosRotMapping(new Vector3(-0.300006866f, 0.287f, 1.146f), new Vector3(1.90925431f, 8.86787796f, 17.1680984f)); // thumbTarget
 		animationMapping.blockMapping.indexMapping = new PosRotMapping(new Vector3(0.200004578f, 0.326000452f, 0.654f), new Vector3(0f, 0f, 0f)); // indexTarget
 		animationMapping.blockMapping.middleMapping = new PosRotMapping(new Vector3(0.186004639f, 0.104000568f, 0.68f), new Vector3(0f, 0f, 0f)); // middleTarget
 		animationMapping.blockMapping.ringMapping = new PosRotMapping(new Vector3(0.267972946f, -0.161999464f, 0.664f), new Vector3(0f, 0f, 0f)); // ringTarget
 		animationMapping.blockMapping.pinkyMapping = new PosRotMapping(new Vector3(0.541992188f, -0.401f, 0.618f), new Vector3(0f, 0f, 0f)); // pinkyTarget
+		 */
+		/*
+		X: -0,08240002  Y: -0,006999969  Z:0,0552001 (0.00, 246.93, 270.00)
+		X: 0,05730001  Y: -0,02869999  Z:0,01500034 (1.91, 278.87, 17.17)
+		X: 0,03270001  Y: -0,03260005  Z:-0,01000023 (0.00, 270.00, 0.00)
+		X: 0,03400001  Y: -0,01040006  Z:-0,009300232 (0.00, 270.00, 0.00)
+		X: 0,03320001  Y: 0,01619995  Z:-0,01339865 (0.00, 270.00, 0.00)
+		X: 0,03090001  Y: 0,04009998  Z:-0,02709961 (0.00, 270.00, 0.00)
+		*/
 	}
 
 	private void LateUpdate() {
 		alignArmRestTargetWithTable();
+
+		if (isAnimationRunning) {
+			targetsHelperObject.alignTargetTransforms();
+		}
 	}
 
 	// https://gamedevbeginner.com/coroutines-in-unity-when-and-how-to-use-them/
@@ -61,25 +78,13 @@ public class ArmAnimationController : MonoBehaviour {
 		RigLerp[] rigLerps = {new RigLerp(armRig, 0, 1), new RigLerp(restArmRig, 1, 0)};
 		yield return StartCoroutine(multiRigLerp(rigLerps, animSettingsManager.armMoveDuration));
 
-		animPart = AnimationPart.Hand;
-		
 		yield return StartCoroutine(simpleRigLerp(handRig, animSettingsManager.handMoveDuration, 0, 1));
 		
-		animPart = AnimationPart.Moving;
-
 		// Debug.Log(CharacterManager.localClient.GetInstanceID() + ",,," + CharacterManager.activePatient.GetInstanceID());		
-		if (!isFakeAnimation && !(CharacterManager.localClientInstance.GetInstanceID() == CharacterManager.activePatientInstance.GetInstanceID())) {
-			Debug.Log("Not original patient, aligning transform");
+		if (!isFakeAnimation) {
 			yield return StartCoroutine(alignTransformWrapper(animSettingsManager.moveDuration));
 		} else {
-			Debug.Log("Original patient or FakeArm, moving object");
-			// if Fake Arm, we don't need to gain authority, because it is not using networked object
-			if (!isFakeAnimation && (CharacterManager.localClientInstance.GetInstanceID() == CharacterManager.activePatientInstance.GetInstanceID())) {
-				// we ask server to grant us authority over target object
-				NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(targetObject.GetComponent<NetworkIdentity>(), CharacterManager.localClientInstance.GetComponent<NetworkIdentity>());
-			}
-
-			SyncList<PosRotMapping> currentAnimSetup = animSettingsManager.getCurrentAnimationSetup();
+			List<PosRotMapping> currentAnimSetup = animSettingsManager.getCurrentAnimationSetup();
 			for (int i = 1; i < currentAnimSetup.Count; i++)	{
 				Vector3 startPos = currentAnimSetup[i-1].position;
 				Vector3 endPos = currentAnimSetup[i].position;
@@ -87,18 +92,14 @@ public class ArmAnimationController : MonoBehaviour {
 			}
 		}
 
-		// do nothing else
-		stopAnimation();
+		isAnimationRunning = true;
 	}
 
 	// Animation control for moving arm and grabbing with hand
 	private IEnumerator armStopAnimationLerp() {
 		// we set weight to the corresponding part we're moving
-		animPart = AnimationPart.Hand;
-
+		
 		yield return StartCoroutine(simpleRigLerp(handRig, animSettingsManager.handMoveDuration, 1, 0));
-
-		animPart = AnimationPart.Arm;
 		
 		RigLerp[] rigLerps = {new RigLerp(armRig, 1, 0), new RigLerp(restArmRig, 0, 1)};
 		yield return StartCoroutine(multiRigLerp(rigLerps, animSettingsManager.armMoveDuration));
@@ -285,7 +286,7 @@ public class ArmAnimationController : MonoBehaviour {
 		}
 
 		TargetMappingGroup currentMapping = animationMapping.getTargetMappingByType(animSettingsManager.animType);
-		SyncList<PosRotMapping> currentAnimationSetup = animSettingsManager.getCurrentAnimationSetup();
+		List<PosRotMapping> currentAnimationSetup = animSettingsManager.getCurrentAnimationSetup();
 
 		if (currentAnimationSetup.Count < 1) {
 			Debug.LogError("Start or End animation position not set");
@@ -312,15 +313,27 @@ public class ArmAnimationController : MonoBehaviour {
 		try {
 			// Setting position + rotation
 			// TODO calculate for any target position
-			targetsHelperObject.setAllTargetMappings(animationMapping.getTargetMappingByType(animSettingsManager.animType));
+			PosRotMapping currentTransform = new PosRotMapping(targetObject.transform);
+
+			targetObject.transform.position = targetUtility.zeroTransform.position;
+			targetObject.transform.rotation = Quaternion.Euler(targetUtility.zeroTransform.rotation);
+
+			targetsHelperObject.setAllTargetMappings(animationMapping.getTargetMappingByType(animSettingsManager.animType), targetObject);
+
+			targetObject.transform.position = currentTransform.position;
+			targetObject.transform.rotation = Quaternion.Euler(currentTransform.rotation);
+
 			targetsHelperObject.alignTargetTransforms();
+
+			#if UNITY_EDITOR
+				// printOffsets();
+			#endif
 		} catch(System.Exception ex) {
 			Debug.LogError(ex);
 			return;
 		}
 
 		animState = Enums.AnimationState.Playing;
-		animPart = AnimationPart.Arm;
 
 		// https://gamedevbeginner.com/coroutines-in-unity-when-and-how-to-use-them/
 		StartCoroutine(armStartAnimationLerp(isFakeAnimation));
@@ -332,7 +345,6 @@ public class ArmAnimationController : MonoBehaviour {
 		}
 
 		// We don't have to set the positions of targets here, because we're simply releasing the hand grip + moving arm to relaxed position
-		animPart = AnimationPart.Hand;
 
 		animState = Enums.AnimationState.Stopped;
 		StartCoroutine(armStopAnimationLerp());
@@ -360,12 +372,36 @@ public class ArmAnimationController : MonoBehaviour {
 		return null;
 	}
 
-	public static void PrintVector3(Vector3 message, int type = 1) {
-		if (type == 1)
-			Debug.Log("X: " + message.x + "  Y: " + message.y + "  Z:" + message.z);
-		if (type == 2)
-			Debug.LogWarning("X: " + message.x + "  Y: " + message.y + "  Z:" + message.z);
-		if (type == 3)
-			Debug.LogError("X: " + message.x + "  Y: " + message.y + "  Z:" + message.z);
+	public void printOffsets() {
+		if (targetObject == null) {
+			return;
+		}
+		Debug.Log("_____________________________________");
+		ArmAnimationController.PrintVector3(targetObject.transform.position - targetsHelperObject.armTargetTemplate.transform.position);
+		Debug.Log(targetsHelperObject.armTargetTemplate.transform.rotation.eulerAngles);
+		ArmAnimationController.PrintVector3(targetObject.transform.position - targetsHelperObject.thumbTargetTemplate.transform.position);
+		Debug.Log(targetsHelperObject.thumbTargetTemplate.transform.rotation.eulerAngles);
+		ArmAnimationController.PrintVector3(targetObject.transform.position - targetsHelperObject.indexTargetTemplate.transform.position);
+		Debug.Log(targetsHelperObject.indexTargetTemplate.transform.rotation.eulerAngles);
+		ArmAnimationController.PrintVector3(targetObject.transform.position - targetsHelperObject.middleTargetTemplate.transform.position);
+		Debug.Log(targetsHelperObject.middleTargetTemplate.transform.rotation.eulerAngles);
+		ArmAnimationController.PrintVector3(targetObject.transform.position - targetsHelperObject.ringTargetTemplate.transform.position);
+		Debug.Log(targetsHelperObject.ringTargetTemplate.transform.rotation.eulerAngles);
+		ArmAnimationController.PrintVector3(targetObject.transform.position - targetsHelperObject.pinkyTargetTemplate.transform.position);
+		Debug.Log(targetsHelperObject.pinkyTargetTemplate.transform.rotation.eulerAngles);
+	}
+
+	public void saveOffsets() {
+		if (targetObject == null) {
+			return;
+		}
+		TargetMappingGroup currentMapping = animationMapping.getTargetMappingByType(animSettingsManager.animType);
+		
+		currentMapping.armMapping = new PosRotMapping(targetObject.transform.position - targetsHelperObject.armTargetTemplate.transform.position, targetsHelperObject.armTargetTemplate.transform.rotation.eulerAngles);
+		currentMapping.thumbMapping = new PosRotMapping(targetObject.transform.position - targetsHelperObject.thumbTargetTemplate.transform.position, targetsHelperObject.thumbTargetTemplate.transform.rotation.eulerAngles);
+		currentMapping.indexMapping = new PosRotMapping(targetObject.transform.position - targetsHelperObject.indexTargetTemplate.transform.position, targetsHelperObject.indexTargetTemplate.transform.rotation.eulerAngles);
+		currentMapping.middleMapping = new PosRotMapping(targetObject.transform.position - targetsHelperObject.middleTargetTemplate.transform.position, targetsHelperObject.middleTargetTemplate.transform.rotation.eulerAngles);
+		currentMapping.ringMapping = new PosRotMapping(targetObject.transform.position - targetsHelperObject.ringTargetTemplate.transform.position, targetsHelperObject.ringTargetTemplate.transform.rotation.eulerAngles);
+		currentMapping.pinkyMapping = new PosRotMapping(targetObject.transform.position - targetsHelperObject.pinkyTargetTemplate.transform.position, targetsHelperObject.pinkyTargetTemplate.transform.rotation.eulerAngles);
 	}
 }

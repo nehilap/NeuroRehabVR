@@ -322,7 +322,7 @@ MonoBehaviour:
   positionOffset: {x: 0, y: 0, z: 0}
   scale: {x: 275, y: 275, z: 1}
   offsetByWidth: 0
-  offsetByHeight: 1
+  offsetByHeight: 0
 --- !u!114 &2473320811156067586
 MonoBehaviour:
   m_ObjectHideFlags: 0

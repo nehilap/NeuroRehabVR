@@ -13,13 +13,6 @@ namespace Mappings
 
         public TargetMappingGroup keyMapping;
 
-        public AnimationMapping() {
-            cubeMapping = new TargetMappingGroup();
-            blockMapping = new TargetMappingGroup();
-            cupMapping = new TargetMappingGroup();
-            keyMapping = new TargetMappingGroup();
-        }
-
         public AnimationMapping(TargetMappingGroup _cubeMapping, TargetMappingGroup _blockMapping, TargetMappingGroup _cupMapping, TargetMappingGroup _keyMapping) {  
             cubeMapping = _cubeMapping;
             blockMapping = _blockMapping;

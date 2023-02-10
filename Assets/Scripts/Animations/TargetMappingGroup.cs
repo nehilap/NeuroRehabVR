@@ -19,8 +19,5 @@ namespace Mappings
             ringMapping = _ringMapping;
             pinkyMapping = _pinkyMapping;
         }
-
-        public TargetMappingGroup() {
-        }
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Mappings;
 using UnityEngine;
 
 namespace Utility {
@@ -19,5 +20,7 @@ namespace Utility {
 		[SerializeField] public GameObject PinkyChainIK_target_helper;
 
         [SerializeField] public List<Renderer> renderers = new List<Renderer>();
+
+        [SerializeField] public PosRotMapping zeroTransform;
     }
 }

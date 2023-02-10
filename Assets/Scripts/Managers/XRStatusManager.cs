@@ -35,6 +35,12 @@ public class XRStatusManager : MonoBehaviour {
 	[SerializeField] private GameObject controllerSetupMenu;
 
 	void Awake() {
+		#if UNITY_EDITOR
+			if (isXRActive) {
+				StartCoroutine(startXR());
+			}
+		#endif
+
 		DontDestroyOnLoad(gameObject);
 			
 		hmdType = HMDType.Other;

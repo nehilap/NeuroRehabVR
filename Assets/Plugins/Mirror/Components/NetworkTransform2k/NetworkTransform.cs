@@ -408,8 +408,6 @@ namespace Mirror
                 {
                     // step the transform interpolation without touching time.
                     // NetworkClient is responsible for time globally.
-                    //Debug.Log(serverSnapshots);
-                    //Debug.Log(connectionToClient);
                     SnapshotInterpolation.StepInterpolation(
                         serverSnapshots,
                         connectionToClient.remoteTimeline,
