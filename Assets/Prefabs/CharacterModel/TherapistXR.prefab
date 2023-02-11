@@ -696,6 +696,7 @@ MonoBehaviour:
   activeAvatarObject: {fileID: 0}
   activeArmAnimationController: {fileID: 0}
   isLeftArmAnimated: 0
+  offsetObject: {fileID: 436356087230740168}
   avatarMalePrefabs:
   - {fileID: 113542620659459055, guid: 062e2fbf6c1dad04ca6d5f9061cadf55, type: 3}
   - {fileID: 113542620659459055, guid: 9e6551be2b6bcc049b424db75ba29bf8, type: 3}
@@ -1788,10 +1789,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1878698787931433301}
-    - target: {fileID: 5320752503591782335, guid: b91fac11c333f274ca15b1834e69e3d4, type: 3}
-      propertyPath: menuHolder
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5320752503591782335, guid: b91fac11c333f274ca15b1834e69e3d4, type: 3}
       propertyPath: menuNameToShow
       value: TherapistMenu

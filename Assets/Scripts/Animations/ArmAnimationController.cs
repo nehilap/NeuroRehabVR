@@ -33,7 +33,7 @@ public class ArmAnimationController : MonoBehaviour {
 	[SerializeField] private bool isArmResting = false;
 	[SerializeField] private PosRotMapping originalArmRestPosRot;
 	
-	private AnimationMapping animationMapping;
+	[SerializeField] private AnimationMapping animationMapping;
 
 	void Start() {
 		animSettingsManager = GameObject.Find("AnimationSettingsObject")?.GetComponent<AnimationSettingsManager>();
@@ -42,12 +42,12 @@ public class ArmAnimationController : MonoBehaviour {
 
 		// BLOCK animation setup - relative values
 		// TODO
-		animationMapping.blockMapping.armMapping = new PosRotMapping(new Vector3(-1.104002f, 0.07f, -1.648f), new Vector3(0f, 336.925079f, 270f)); // armTarget
+		/* animationMapping.blockMapping.armMapping = new PosRotMapping(new Vector3(-1.104002f, 0.07f, -1.648f), new Vector3(0f, 336.925079f, 270f)); // armTarget
 		animationMapping.blockMapping.thumbMapping = new PosRotMapping(new Vector3(-0.300006866f, 0.287f, 1.146f), new Vector3(1.90925431f, 8.86787796f, 17.1680984f)); // thumbTarget
 		animationMapping.blockMapping.indexMapping = new PosRotMapping(new Vector3(0.200004578f, 0.326000452f, 0.654f), new Vector3(0f, 0f, 0f)); // indexTarget
 		animationMapping.blockMapping.middleMapping = new PosRotMapping(new Vector3(0.186004639f, 0.104000568f, 0.68f), new Vector3(0f, 0f, 0f)); // middleTarget
 		animationMapping.blockMapping.ringMapping = new PosRotMapping(new Vector3(0.267972946f, -0.161999464f, 0.664f), new Vector3(0f, 0f, 0f)); // ringTarget
-		animationMapping.blockMapping.pinkyMapping = new PosRotMapping(new Vector3(0.541992188f, -0.401f, 0.618f), new Vector3(0f, 0f, 0f)); // pinkyTarget
+		animationMapping.blockMapping.pinkyMapping = new PosRotMapping(new Vector3(0.541992188f, -0.401f, 0.618f), new Vector3(0f, 0f, 0f)); // pinkyTarget */
 	}
 
 	private void LateUpdate() {

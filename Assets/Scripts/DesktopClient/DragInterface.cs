@@ -1,4 +1,4 @@
 public interface DragInterface {
-    void OnStartDrag();
-    void OnStopDrag();
+	void OnStartDrag();
+	void OnStopDrag();
 }

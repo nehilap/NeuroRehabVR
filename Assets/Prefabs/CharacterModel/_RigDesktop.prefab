@@ -277,13 +277,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.9
+  m_Height: 1.8
   m_Radius: 0.15
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.95, z: 0}
+  m_Center: {x: 0, y: 0.98, z: 0}
 --- !u!114 &8351724715148979628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,9 +297,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   move: {fileID: 3377828608154732254, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
-  avatarWalkingControllers:
-  - {fileID: 3394416713058309900}
-  - {fileID: 6953298347185884907}
+  avatarControllers:
+  - {fileID: 8555077073163106513}
+  - {fileID: 4415032647177336165}
   body: {fileID: 7874168802564253269}
   moveSpeed: 1.5
 --- !u!114 &7916707425804939655
@@ -319,10 +319,10 @@ MonoBehaviour:
   menuHolder: {fileID: 8518358390509158249}
   menuToShow: {fileID: 0}
   menuNameToShow: 
-  positionOffset: {x: 0, y: 0, z: 0}
+  positionOffset: {x: 0, y: -350, z: 0}
   scale: {x: 275, y: 275, z: 1}
   offsetByWidth: 0
-  offsetByHeight: 0
+  offsetByHeight: 1
 --- !u!114 &2473320811156067586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,7 +421,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 52215
@@ -460,10 +460,12 @@ MonoBehaviour:
   mouseY: {fileID: -1086650663570721926, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
   menu: {fileID: 3796970163881969186, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
   grab: {fileID: -3781283977073091197, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
+  mouseManager: {fileID: 5622529241403108388}
   player: {fileID: 5308743742952482153}
   verticalRotation: 0
   mouseSensitivityX: 8
   mouseSensitivityY: 5
+  cameraFieldOfView: 60
 --- !u!1 &7690668916594123911
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,15 +794,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 113542620659459051, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
   m_PrefabInstance: {fileID: 2254072332982506494}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3394416713058309900 stripped
+--- !u!114 &8555077073163106513 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3482257624152933618, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7634075933599394607, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
   m_PrefabInstance: {fileID: 2254072332982506494}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2223494747928096785}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b7a12cadc0a0e54d9439f589c66325f, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a32cecea874c8748a085f61d9a595a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &3635807595672682337
@@ -941,15 +943,15 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2764439475390559081, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
   m_PrefabInstance: {fileID: 3635807595672682337}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6953298347185884907 stripped
+--- !u!114 &4415032647177336165 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5912082539520979338, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1094835895749396996, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
   m_PrefabInstance: {fileID: 3635807595672682337}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1452895424448039944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b7a12cadc0a0e54d9439f589c66325f, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a32cecea874c8748a085f61d9a595a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &7447934343227788429 stripped

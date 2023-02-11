@@ -69,15 +69,15 @@ public class AnimationSettingsManager : NetworkBehaviour {
 				setupMarkers();
 			}
 		} else if (isServer) {
-        	string animTypeString = animType.ToString();
-       		GameObject targetObject = GameObject.Find(animTypeString);
+			string animTypeString = animType.ToString();
+			GameObject targetObject = GameObject.Find(animTypeString);
 			if (!targetObject) {
 				targetObject = GameObject.Find(animTypeString + "(Clone)");
 			}
 			if (!targetObject) {
 				Debug.LogError("Failed to find object: " + animTypeString);
 			} else {
-			 	getCurrentAnimationSetup().Add(new PosRotMapping(targetObject.transform.position, targetObject.transform.rotation.eulerAngles));
+				getCurrentAnimationSetup().Add(new PosRotMapping(targetObject.transform.position, targetObject.transform.rotation.eulerAngles));
 			}
 		}
 	}
@@ -175,49 +175,49 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		animTypeDropdown.value = animTypeDropdown.options.FindIndex(option => option.text == animType.ToString());
 	}
 
-    void onAnimationSetupUpdated(SyncList<PosRotMapping>.Operation op, int index, PosRotMapping oldItem, PosRotMapping newItem) {
+	void onAnimationSetupUpdated(SyncList<PosRotMapping>.Operation op, int index, PosRotMapping oldItem, PosRotMapping newItem) {
 		int prefabIndex;
 		// Debug.Log(newItem);
-        switch (op) {
-            case SyncList<PosRotMapping>.Operation.OP_ADD:
-                // index is where it was added into the list
-                // newItem is the new item
+		switch (op) {
+			case SyncList<PosRotMapping>.Operation.OP_ADD:
+				// index is where it was added into the list
+				// newItem is the new item
 				// Debug.Log("Item added");
 				prefabIndex = index == 0 ? 0 : 1;				
 				
 				GameObject marker = GameObject.Instantiate(markerPrefabs[prefabIndex], newItem.position, Quaternion.Euler(newItem.rotation), markerParent) as GameObject;
 				spawnedMarkers.Add(marker);
-                break;
-            case SyncList<PosRotMapping>.Operation.OP_INSERT:
-                // index is where it was inserted into the list
-                // newItem is the new item
-                break;
-            case SyncList<PosRotMapping>.Operation.OP_REMOVEAT:
-                // index is where it was removed from the list
-                // oldItem is the item that was removed
-                break;
-            case SyncList<PosRotMapping>.Operation.OP_SET:
-                // index is of the item that was changed
-                // oldItem is the previous value for the item at the index
-                // newItem is the new value for the item at the index
+				break;
+			case SyncList<PosRotMapping>.Operation.OP_INSERT:
+				// index is where it was inserted into the list
+				// newItem is the new item
+				break;
+			case SyncList<PosRotMapping>.Operation.OP_REMOVEAT:
+				// index is where it was removed from the list
+				// oldItem is the item that was removed
+				break;
+			case SyncList<PosRotMapping>.Operation.OP_SET:
+				// index is of the item that was changed
+				// oldItem is the previous value for the item at the index
+				// newItem is the new value for the item at the index
 				// Debug.Log("Item changed");
 				GameObject.Destroy(spawnedMarkers[index]);
 				prefabIndex = index == 0 ? 0 : 1;	
 
 				GameObject newMarker = GameObject.Instantiate(markerPrefabs[prefabIndex], newItem.position, Quaternion.Euler(newItem.rotation), markerParent) as GameObject;
 				spawnedMarkers[index] = newMarker;
-                break;
-            case SyncList<PosRotMapping>.Operation.OP_CLEAR:
-                // list got cleared
+				break;
+			case SyncList<PosRotMapping>.Operation.OP_CLEAR:
+				// list got cleared
 				// Debug.Log("List cleared");
 				foreach (GameObject item in spawnedMarkers) {
 					GameObject.Destroy(item);
 				}
 
 				spawnedMarkers.Clear();
-                break;
-        }
-    }
+				break;
+		}
+	}
 
 	private void setupMarkers() {
 		spawnedMarkers.Clear();
@@ -312,7 +312,6 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		}
 		NetworkCharacterManager.localNetworkClientInstance.CmdUpdateAnimType(animType);
 
-		
 		if (CharacterManager.localClientInstance != null) {
 			NetworkCharacterManager.localNetworkClientInstance.CmdSpawnCorrectTarget(oldAnimType, animType);
 		}

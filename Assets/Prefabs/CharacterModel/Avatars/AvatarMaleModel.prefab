@@ -923,7 +923,8 @@ MonoBehaviour:
     rotationOffset: {x: 0, y: -90, z: -110}
   turnSmoothness: 2
   headTarget: {fileID: 4862001591054997950}
-  headOffset: {x: -0.1, y: -1.7104, z: -0.1}
+  headOffset: {x: -0.1, y: -1.7204, z: -0.1}
+  originHeadOffset: {x: 0, y: 0, z: 0}
   referenceHeight: 1.725
   sizeMultiplier: 0
   sizePreset: 0
@@ -2582,7 +2583,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8919212196284583004}
   m_Layer: 0
-  m_Name: PinkyIK_hint
+  m_Name: RingIK_hint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

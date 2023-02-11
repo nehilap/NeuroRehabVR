@@ -18,9 +18,11 @@ public class CharacterManager : NetworkBehaviour {
 	[Header("Run sync vars")]
 	[SyncVar(hook = nameof(changeArmRestingState))] public bool isArmResting;
 
+	[Header("Active avatar")]
 	[SerializeField] public GameObject activeAvatarObject;
 	[SerializeField] public ArmAnimationController activeArmAnimationController;
 	[SerializeField] public bool isLeftArmAnimated = false;
+	[SerializeField] public Transform offsetObject;
 
 	[Header("Avatars prefabs used")]
 	[SerializeField] private List<GameObject> avatarMalePrefabs = new List<GameObject>();
@@ -37,6 +39,11 @@ public class CharacterManager : NetworkBehaviour {
 	[Header("Camera culling and objects to disable")]
 	[SerializeField] private GameObject[] objectsToCull;
 	[SerializeField] private GameObject[] avatars;
+
+	[Header("Components On / Off")]
+	[SerializeField] private MonoBehaviour[] componentsToDisable;
+	[SerializeField] private MonoBehaviour[] componentsToEnable;
+	[SerializeField] private MonoBehaviour[] componentsToEnableLocally;
 
 	public override void OnStartLocalPlayer() {
 		base.OnStartLocalPlayer();
@@ -65,8 +72,12 @@ public class CharacterManager : NetworkBehaviour {
 		}
 
 		int LayerCameraCull = LayerMask.NameToLayer("CameraCulled");
-        foreach (GameObject gameObject in objectsToCull) {
+		foreach (GameObject gameObject in objectsToCull) {
 			gameObject.layer = LayerCameraCull;
+		}
+
+		foreach (MonoBehaviour component in componentsToEnableLocally) {
+			component.enabled = true;	
 		}
 	}
 
@@ -75,6 +86,12 @@ public class CharacterManager : NetworkBehaviour {
 
 		if (isPatient && activePatientInstance != null) {
 			activePatientInstance = null;
+		}
+	}
+
+	public void Awake() {
+		if (isPatient && activePatientInstance == null) {
+			activePatientInstance = this;
 		}
 	}
 
@@ -89,9 +106,8 @@ public class CharacterManager : NetworkBehaviour {
 
 		activeAvatarObject = transform.GetComponent<AvatarModelManager>().changeModel(isFemale, avatar, avatarSizeMultiplier);
 
-
-		if (isPatient && activePatientInstance == null) {
-			activePatientInstance = this;
+		if (offsetObject != null) {
+			offsetObject.position *= avatarSizeMultiplier;
 		}
 
 		if (isPatient) {
@@ -135,10 +151,18 @@ public class CharacterManager : NetworkBehaviour {
 			if(cameraTransform.TryGetComponent<AudioListener>(out AudioListener audioListener)) {
 				audioListener.enabled = false;
 			}
+
+			foreach (MonoBehaviour component in componentsToDisable) {
+				component.enabled = false;	
+			}
 		} else {
 			if(cameraTransform.TryGetComponent<AudioListener>(out AudioListener audioListener)) {
 				audioListener.enabled = true;
 			}
+		}
+
+		foreach (MonoBehaviour component in componentsToEnable) {
+			component.enabled = true;	
 		}
 	}
 

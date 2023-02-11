@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 812953604696496144}
   - component: {fileID: 8351724715148979628}
   - component: {fileID: 6339621406385160040}
-  - component: {fileID: 1253837238839085606}
+  - component: {fileID: 4308045679610666501}
   m_Layer: 7
   m_Name: TherapistDesktop
   m_TagString: Untagged
@@ -332,13 +332,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.9
+  m_Height: 1.8
   m_Radius: 0.15
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.95, z: 0}
+  m_Center: {x: 0, y: 0.98, z: 0}
 --- !u!114 &5430102579018235178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,7 +346,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5308743742952482155}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
@@ -392,6 +392,7 @@ MonoBehaviour:
   activeAvatarObject: {fileID: 0}
   activeArmAnimationController: {fileID: 0}
   isLeftArmAnimated: 0
+  offsetObject: {fileID: 6787573859773515368}
   avatarMalePrefabs:
   - {fileID: 113542620659459055, guid: 062e2fbf6c1dad04ca6d5f9061cadf55, type: 3}
   - {fileID: 113542620659459055, guid: 9e6551be2b6bcc049b424db75ba29bf8, type: 3}
@@ -423,11 +424,13 @@ MonoBehaviour:
   - {fileID: 1452895424448039944}
   - {fileID: 2223494747928096785}
   componentsToDisable:
-  - {fileID: 5430102579018235178}
   - {fileID: 8351724715148979628}
   - {fileID: 6339621406385160040}
-  - {fileID: 1253837238839085606}
+  - {fileID: 4308045679610666501}
   - {fileID: 6423741902651404792}
+  componentsToEnable: []
+  componentsToEnableLocally:
+  - {fileID: 5430102579018235178}
 --- !u!114 &7718914668586964949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,9 +509,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   move: {fileID: 3377828608154732254, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
-  avatarWalkingControllers:
-  - {fileID: 3394416713058309900}
-  - {fileID: 6953298347185884907}
+  avatarControllers:
+  - {fileID: 8555077073163106513}
+  - {fileID: 4415032647177336165}
   body: {fileID: 7874168802564253269}
   moveSpeed: 1.5
 --- !u!114 &6339621406385160040
@@ -531,7 +534,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 13696
   rayLength: 10
---- !u!114 &1253837238839085606
+--- !u!114 &4308045679610666501
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -648,10 +651,12 @@ MonoBehaviour:
   mouseY: {fileID: -1086650663570721926, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
   menu: {fileID: 3796970163881969186, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
   grab: {fileID: -3781283977073091197, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
+  mouseManager: {fileID: 4308045679610666501}
   player: {fileID: 5308743742952482153}
   verticalRotation: 0
   mouseSensitivityX: 8
   mouseSensitivityY: 5
+  cameraFieldOfView: 60
 --- !u!1 &7690668916594123911
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,6 +861,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5308743742952482153}
     m_Modifications:
+    - target: {fileID: 113542619433590301, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: m_Weight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 113542620432590543, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: m_Weight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 113542620659459051, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -997,6 +1010,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8932678251044810797, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
   m_PrefabInstance: {fileID: 2254072332982506494}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8555077073163106513 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7634075933599394607, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+  m_PrefabInstance: {fileID: 2254072332982506494}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2223494747928096785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a32cecea874c8748a085f61d9a595a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3635807595672682337
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1004,6 +1028,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5308743742952482153}
     m_Modifications:
+    - target: {fileID: 443294459369577447, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
+      propertyPath: m_Weight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 603027608205170359, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
+      propertyPath: m_Weight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1094835895749396996, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
       propertyPath: head.vrTarget
       value: 
@@ -1132,6 +1164,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 76353302322133811, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
   m_PrefabInstance: {fileID: 3635807595672682337}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4415032647177336165 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1094835895749396996, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
+  m_PrefabInstance: {fileID: 3635807595672682337}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452895424448039944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a32cecea874c8748a085f61d9a595a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &5460448283200388019 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8769515038079730898, guid: 950e1948ca80622448e07a928401d8d5, type: 3}

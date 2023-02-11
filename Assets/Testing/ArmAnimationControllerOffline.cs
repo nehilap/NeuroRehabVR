@@ -36,11 +36,14 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 	[SerializeField] private PosRotMapping originalArmRestPosRot;
 	[SerializeField] private AnimationMapping animationMapping;
 
-	void Start() {
+	[SerializeField] private AvatarController avatarController;
 
+	void Start() {
 		animSettingsManager = GameObject.Find("AnimSettingsManagerOffline")?.GetComponent<AnimationSettingsManagerOffline>();
 
 		armRestHelperObject = GameObject.Find("ArmRestHelperObject");
+
+		avatarController = gameObject.GetComponent<AvatarController>();
 
 		// BLOCK animation setup - relative values
 		// TODO
@@ -61,6 +64,8 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 		X: 0,03320001  Y: 0,01619995  Z:-0,01339865 (0.00, 270.00, 0.00)
 		X: 0,03090001  Y: 0,04009998  Z:-0,02709961 (0.00, 270.00, 0.00)
 		*/
+
+		animationMapping.resizeMappings(avatarController.sizeMultiplier);
 	}
 
 	private void LateUpdate() {

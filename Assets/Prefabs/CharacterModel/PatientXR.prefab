@@ -419,6 +419,7 @@ MonoBehaviour:
   activeAvatarObject: {fileID: 0}
   activeArmAnimationController: {fileID: 0}
   isLeftArmAnimated: 0
+  offsetObject: {fileID: 6464526741415293537}
   avatarMalePrefabs:
   - {fileID: 113542620659459055, guid: 062e2fbf6c1dad04ca6d5f9061cadf55, type: 3}
   - {fileID: 113542620659459055, guid: 9e6551be2b6bcc049b424db75ba29bf8, type: 3}

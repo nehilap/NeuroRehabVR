@@ -11,17 +11,16 @@ public class AvatarSettings {
 public class SettingsManager : MonoBehaviour {
    
 	private static SettingsManager _instance;
-	public static SettingsManager Instance { get { return _instance; } }
-
-	[SerializeField] public AvatarSettings avatarSettings = new AvatarSettings();
-
-	private void Awake() {
-		if (_instance != null && _instance != this) {
-			Destroy(this.gameObject);
-		} else {
-			_instance = this;
+	public static SettingsManager Instance {
+		get {
+			if(_instance == null) {
+				_instance = GameObject.FindObjectOfType<SettingsManager>();
+			}
+			return _instance;
 		}
 	}
+
+	[SerializeField] public AvatarSettings avatarSettings = new AvatarSettings();
 
 	void Start() {
 		Application.targetFrameRate = 60;

@@ -3109,7 +3109,8 @@ MonoBehaviour:
     rotationOffset: {x: 0, y: -90, z: -110}
   turnSmoothness: 2
   headTarget: {fileID: 7236258537340909252}
-  headOffset: {x: -0.1, y: -1.6004, z: -0.1}
+  headOffset: {x: -0.1, y: -1.6204, z: -0.1}
+  originHeadOffset: {x: 0, y: 0, z: 0}
   referenceHeight: 1.625
   sizeMultiplier: 0
   sizePreset: 0
@@ -3221,6 +3222,9 @@ MonoBehaviour:
   animSettingsManager: {fileID: 0}
   armRestHelperObject: {fileID: 0}
   isArmResting: 0
+  originalArmRestPosRot:
+    position: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
 --- !u!114 &3616212703665744782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3262,6 +3266,9 @@ MonoBehaviour:
   animSettingsManager: {fileID: 0}
   armRestHelperObject: {fileID: 0}
   isArmResting: 0
+  originalArmRestPosRot:
+    position: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
 --- !u!1 &2855427333736969266
 GameObject:
   m_ObjectHideFlags: 0

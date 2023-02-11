@@ -1378,7 +1378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5308743742952482155, guid: e9254f494dad27843a9386d4dc95e08a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7690668916594123911, guid: e9254f494dad27843a9386d4dc95e08a, type: 3}
       propertyPath: m_Name
@@ -7613,11 +7613,11 @@ MonoBehaviour:
   autoCreatePlayer: 0
   playerSpawnMethod: 0
   spawnPrefabs:
-  - {fileID: 1878698789788651940, guid: 3bcc8871f4eb7ee4bb9043fe85ed3405, type: 3}
   - {fileID: 4585951089911290167, guid: 187b5e0706a658c41807f396198c9070, type: 3}
   - {fileID: 1241488487069944307, guid: 40fe8f4a9268b7a4ebe31233411b94ed, type: 3}
   - {fileID: 1241488487069944307, guid: 2b1054fd8afd78b4f980e73bcf87e511, type: 3}
   - {fileID: 1241488487069944307, guid: 60e5cf70978117c48abdabd14b958b8b, type: 3}
+  - {fileID: 1878698789788651940, guid: 3bcc8871f4eb7ee4bb9043fe85ed3405, type: 3}
   - {fileID: 5308743742952482155, guid: a030a6b7117e70444930fcf44cb4ef37, type: 3}
   timeInterpolationGui: 0
   therapistXRPrefab: {fileID: 1878698789788651940, guid: b7308db629d8e5a4194f532e445a1308, type: 3}
@@ -9188,7 +9188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5308743742952482155, guid: c3a148a7f339e0d44ad8fea07053ee82, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5308743743746186650, guid: c3a148a7f339e0d44ad8fea07053ee82, type: 3}
       propertyPath: m_TargetEye

@@ -101,17 +101,17 @@ public class XRCharacterManager : CharacterManager {
 	public void changeControllerType(ControllerType _old, ControllerType _new) {
 		// Debug.Log("Change controller called "  +  _new.ToString());
 		XRBaseController rightC =  transform.Find("Offset/Camera Offset/RightHand Controller").GetComponent<XRBaseController>();
-        XRBaseController leftC =  transform.Find("Offset/Camera Offset/LeftHand Controller").GetComponent<XRBaseController>();
+		XRBaseController leftC =  transform.Find("Offset/Camera Offset/LeftHand Controller").GetComponent<XRBaseController>();
 
-        foreach (GameObject item in XRStatusManager.Instance.controllerPrefabs) {
-            if (item.name.Contains(_new.ToString())) {
-                if (item.name.Contains("Left")) {
-                    leftC.modelPrefab = item.transform;
-                }else if (item.name.Contains("Right")) {
-                    rightC.modelPrefab = item.transform;
-                }
-            }
-        }
+		foreach (GameObject item in XRStatusManager.Instance.controllerPrefabs) {
+			if (item.name.Contains(_new.ToString())) {
+				if (item.name.Contains("Left")) {
+					leftC.modelPrefab = item.transform;
+				}else if (item.name.Contains("Right")) {
+					rightC.modelPrefab = item.transform;
+				}
+			}
+		}
 
 		if (rightC.model != null) {
 			rightC.model.gameObject.SetActive(false);
@@ -122,10 +122,10 @@ public class XRCharacterManager : CharacterManager {
 		}
 
 		if (leftC.modelParent != null) {
-        	leftC.model = Instantiate(leftC.modelPrefab, leftC.modelParent.transform.position, leftC.modelParent.transform.rotation, leftC.modelParent.transform);
+			leftC.model = Instantiate(leftC.modelPrefab, leftC.modelParent.transform.position, leftC.modelParent.transform.rotation, leftC.modelParent.transform);
 		}
 		if (rightC.modelParent != null) {
-        	rightC.model = Instantiate(rightC.modelPrefab, rightC.modelParent.transform.position, rightC.modelParent.transform.rotation, rightC.modelParent.transform);
+			rightC.model = Instantiate(rightC.modelPrefab, rightC.modelParent.transform.position, rightC.modelParent.transform.rotation, rightC.modelParent.transform);
 		}
 	}
 

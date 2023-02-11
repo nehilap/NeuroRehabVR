@@ -24,8 +24,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 		try {
 			animSettingsManager = GameObject.Find("AnimationSettingsObject").GetComponent<AnimationSettingsManager>();
-		}
-		catch (System.Exception e) {
+		} catch (System.Exception e) {
 			Debug.Log(e);
 		}
 		

@@ -71,7 +71,9 @@ public class XRStatusManager : MonoBehaviour {
 		} else {
 			hmdType = HMDType.Server;
 		}
+	}
 
+	void Start() {
 		StatusTextManager.Instance.setStatusText();
 
 		if (XRGeneralSettings.Instance.Manager.isInitializationComplete) {
@@ -93,7 +95,6 @@ public class XRStatusManager : MonoBehaviour {
 			Debug.Log("Stopping XR...");
 			XRGeneralSettings.Instance.Manager.StopSubsystems();
 			XRGeneralSettings.Instance.Manager.DeinitializeLoader();
-			// Camera.main.ResetAspect();
 
 			isXRActive = false;
 			
@@ -150,6 +151,10 @@ public class XRStatusManager : MonoBehaviour {
 			desktopRig.SetActive(true);
 
 			controllerSetupMenu.SetActive(false);
+			
+			if (desktopRig.TryGetComponent<MouseManager>(out MouseManager mouseManager)) {
+				mouseManager.activeTriggers = 0;
+			}
 		}
 	}
 

@@ -8,15 +8,23 @@ public class CameraMovement : MonoBehaviour {
 	[SerializeField] private InputActionReference menu;
 	[SerializeField] private InputActionReference grab;
 
+	[SerializeField] private MouseManager mouseManager;
+
 	[SerializeField] private Transform player;
 
 	[SerializeField] private float verticalRotation = 0f;
 	[SerializeField] private float mouseSensitivityX = 50f;
 	[SerializeField] private float mouseSensitivityY = 50f;
 
+	[SerializeField] private float cameraFieldOfView = 60f;
+
 
 	private void OnEnable() {
 		Cursor.lockState = CursorLockMode.Locked;
+
+		if (TryGetComponent<Camera>(out Camera camera)) {
+			camera.fieldOfView = cameraFieldOfView;
+		}
 	}
 
 	private void OnDisable() {
@@ -25,7 +33,7 @@ public class CameraMovement : MonoBehaviour {
 	}
 
 	void LateUpdate() {
-		if (MouseManager.Instance.activeTriggers > 0) {
+		if (mouseManager.activeTriggers > 0) {
 			return;
 		}
 
