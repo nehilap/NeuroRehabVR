@@ -10,9 +10,8 @@ public class CustomNetworkManager : NetworkManager {
 	// usable prefabs for character (first non-simulated, then simulated prefabs)
 
 	[Header("Prefabs for character")]
-	[SerializeField] private GameObject therapistXRPrefab;
-	[SerializeField] private GameObject patientXRPrefab;
-	[SerializeField] private GameObject therapistDesktopPrefab;
+	[SerializeField] private GameObject onlineXRPrefab;
+	[SerializeField] private GameObject onlineDesktopPrefab;
 	
 	// the reason is because NetworkManager (parent class) already starts server if this is server build
 	// in case you still need to use Start(), don't forget to call base.Start(); 
@@ -69,38 +68,23 @@ public class CustomNetworkManager : NetworkManager {
 		Debug.Log("New connection requested, Client using: HMD: '" + message.hmdType.ToString() + "'" + ", female: '" + message.isFemale + "', avatarIndex: '" + message.avatarNumber + "', role: '" + message.role + "', XR: '" + message.isXRActive + "'");
 
 		GameObject characterPrefab;
-		if (message.role == UserRole.Therapist) {
+		if (message.role == UserRole.Therapist || message.role == UserRole.Patient) {
 			if (message.isXRActive) {
-				characterPrefab = therapistXRPrefab;
+				characterPrefab = onlineXRPrefab;
 			} else {
-				characterPrefab = therapistDesktopPrefab;
+				characterPrefab = onlineDesktopPrefab;
 			}
-		} else if (message.role == UserRole.Patient) {
-			characterPrefab = patientXRPrefab;
 		} else {
 			Debug.LogError("Cannot Instantiate character prefab " + message.role.ToString() + " - not found!!");
 			return;
 		}
 		GameObject newCharacterModel = Instantiate(characterPrefab);
-		/*
-		int indexToSpawn = -1;
-		for (int i = 0; i < characterPrefabs.Count; i++) {
-			if (characterPrefabs[i].name == message.role.ToString()) {
-				indexToSpawn = i;
-				break;
-			}
-		}
-		if (indexToSpawn == -1) {
-			Debug.LogError("Cannot Instantiate character prefab " + message.role.ToString() + " - not found!!");
-			return;
-		}
 
-		GameObject newCharacterModel = Instantiate(characterPrefabs[indexToSpawn]);
-		*/
 		CharacterManager characterManager = newCharacterModel.GetComponent<CharacterManager>();
 		characterManager.isFemale = message.isFemale;
 		characterManager.avatarNumber = message.avatarNumber;
 		characterManager.avatarSizeMultiplier = message.sizeMultiplier;
+		characterManager.isPatient = (message.role == UserRole.Patient);
 
 		if (message.isXRActive) {
 			((XRCharacterManager) characterManager).controllerType = message.controllerType;

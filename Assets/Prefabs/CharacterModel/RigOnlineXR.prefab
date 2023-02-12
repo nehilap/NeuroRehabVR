@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 5704176413575433497}
   - component: {fileID: 3311737012697809089}
   m_Layer: 7
-  m_Name: TherapistXR
+  m_Name: RigOnlineXR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -728,6 +728,9 @@ MonoBehaviour:
   avatars:
   - {fileID: 4191707899220304035}
   - {fileID: 6152346352656084148}
+  componentsToDisable: []
+  componentsToEnable: []
+  componentsToEnableLocally: []
   controllerType: 3
   hmdType: 0
   XRControllers:
@@ -818,6 +821,7 @@ GameObject:
   - component: {fileID: 1878698789848746004}
   - component: {fileID: 6329416979772408206}
   - component: {fileID: 7300424894983851047}
+  - component: {fileID: 3505914708008219913}
   m_Layer: 12
   m_Name: LeftHand Controller
   m_TagString: Untagged
@@ -1116,6 +1120,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.08
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3505914708008219913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878698789848746001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6806460342540224797f5073a1d68b1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLeftHandController: 1
 --- !u!1 &4293449873773858731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,6 +1145,7 @@ GameObject:
   - component: {fileID: 3894817527111182952}
   - component: {fileID: 5754200158560209038}
   - component: {fileID: 8688723220056214405}
+  - component: {fileID: 7854776577554266362}
   m_Layer: 12
   m_Name: RightHand Controller
   m_TagString: Untagged
@@ -1425,6 +1443,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.08
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7854776577554266362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4293449873773858731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6806460342540224797f5073a1d68b1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLeftHandController: 0
 --- !u!1 &6891543328459119718
 GameObject:
   m_ObjectHideFlags: 0
@@ -2000,18 +2031,36 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3736120885158743909, guid: 4bb642a5c1feea54b95ca7caae8857ac, type: 3}
   m_PrefabInstance: {fileID: 2987893148506972497}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 4972462695502448476}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: caff514de9b15ad48ab85dcff5508221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4972462695502448476 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7815606298927097357, guid: 4bb642a5c1feea54b95ca7caae8857ac, type: 3}
+  m_PrefabInstance: {fileID: 2987893148506972497}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7195646441110388888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4972462695502448476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6806460342540224797f5073a1d68b1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLeftHandController: 0
 --- !u!114 &8494623748677677882 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6671475608009265771, guid: 4bb642a5c1feea54b95ca7caae8857ac, type: 3}
   m_PrefabInstance: {fileID: 2987893148506972497}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 4972462695502448476}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6803edce0201f574f923fd9d10e5b30a, type: 3}
@@ -2276,7 +2325,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9183900578398987486, guid: d82e1661dda506a47a001a3142ac848c, type: 3}
   m_PrefabInstance: {fileID: 7555845003214531878}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 7398409602560999953}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6803edce0201f574f923fd9d10e5b30a, type: 3}
@@ -2287,9 +2336,27 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6315986026552090120, guid: d82e1661dda506a47a001a3142ac848c, type: 3}
   m_PrefabInstance: {fileID: 7555845003214531878}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 7398409602560999953}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: caff514de9b15ad48ab85dcff5508221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7398409602560999953 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1042493886980681527, guid: d82e1661dda506a47a001a3142ac848c, type: 3}
+  m_PrefabInstance: {fileID: 7555845003214531878}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1384836211083586065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7398409602560999953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6806460342540224797f5073a1d68b1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLeftHandController: 1

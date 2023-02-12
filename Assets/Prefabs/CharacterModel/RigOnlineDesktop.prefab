@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 6339621406385160040}
   - component: {fileID: 4308045679610666501}
   m_Layer: 7
-  m_Name: TherapistDesktop
+  m_Name: RigOnlineDesktop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -450,6 +450,9 @@ MonoBehaviour:
   avatars:
   - {fileID: 7777868807694302075}
   - {fileID: 507970931972756462}
+  componentsToDisable: []
+  componentsToEnable: []
+  componentsToEnableLocally: []
   controllerType: 3
   hmdType: 0
   XRControllers:
@@ -1336,10 +1339,10 @@ MonoBehaviour:
   m_DirectionalAnchorRotationAction:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Directional Anchor Rotation
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: f1941b22-4220-433f-b0fc-9d98c0aa5004
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -1766,10 +1769,6 @@ PrefabInstance:
       propertyPath: leftHand.vrTarget
       value: 
       objectReference: {fileID: 1805176678371361237}
-    - target: {fileID: 7634075933599394607, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
-      propertyPath: rightHand.applyIk
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7634075933599394607, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
       propertyPath: headSpine.vrTarget
       value: 

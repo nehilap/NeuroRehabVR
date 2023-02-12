@@ -74,6 +74,19 @@ public class XRCharacterManager : CharacterManager {
 				headCollisionManager.enabled = false;
 			}
 		}
+
+		if (base.isPatient) {
+			for (int i = 0; i < XRControllers.Length; i++) {
+				if (XRControllers[i].TryGetComponent<XRControllerUtility>(out XRControllerUtility xrControllerUtility)) {
+					// We turn off controller and ray interactors, based on  which arm is being used
+					if (base.isLeftArmAnimated == xrControllerUtility.isLeftHandController) { 
+						XRControllers[i].gameObject.SetActive(false);
+					}
+				} else {
+					Debug.LogWarning("Failed to identify XRController, missing 'XRControllerUtility'!");
+				}
+			}
+		}
 	}
 
 	/**

@@ -21,11 +21,12 @@ public class MapTransforms {
 
 public class AvatarController : MonoBehaviour {
 
-	[SerializeField] private MapTransforms head;
-	[SerializeField] private MapTransforms headSpine;
-	[SerializeField] private MapTransforms leftHand;
-	[SerializeField] private MapTransforms rightHand;
+	[SerializeField] public MapTransforms head;
+	[SerializeField] public MapTransforms headSpine;
+	[SerializeField] public MapTransforms leftHand;
+	[SerializeField] public MapTransforms rightHand;
 	
+	[SerializeField] public bool applyTurn = true;
 	[SerializeField] private float turnSmoothness;
 	[SerializeField] private Transform headTarget;
 	[SerializeField] public Vector3 headOffset;
@@ -54,7 +55,9 @@ public class AvatarController : MonoBehaviour {
 		transform.position = headTarget.position + new Vector3(0, headOffset.y, 0);
 		transform.position += new Vector3(transform.forward.x * headOffset.x, 0, transform.forward.z * headOffset.z);
 
-		transform.forward = Vector3.Lerp(transform.forward, Vector3.ProjectOnPlane(headTarget.forward, Vector3.up).normalized, Time.deltaTime * turnSmoothness);
+		if (applyTurn) {
+			transform.forward = Vector3.Lerp(transform.forward, Vector3.ProjectOnPlane(headTarget.forward, Vector3.up).normalized, Time.deltaTime * turnSmoothness);
+		}
 
 		head.mapTransforms(sizeMultiplier);
 		headSpine.mapTransforms(sizeMultiplier);

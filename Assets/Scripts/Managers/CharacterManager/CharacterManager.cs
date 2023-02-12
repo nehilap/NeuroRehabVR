@@ -8,9 +8,9 @@ public class CharacterManager : NetworkBehaviour {
 	public static CharacterManager localClientInstance { get; private set; }
 	public static CharacterManager activePatientInstance { get; private set; }
 
-	[SerializeField] private bool isPatient = false;
 
 	[Header("Spawn sync vars")]
+	[SyncVar] public bool isPatient = false;
 	[SyncVar] public bool isFemale;
 	[SyncVar] public int avatarNumber;
 	[SyncVar] public float avatarSizeMultiplier;
@@ -121,6 +121,19 @@ public class CharacterManager : NetworkBehaviour {
 					}
 				} else {
 					armController.enabled = false;
+				}
+			}
+
+			if (activeArmAnimationController == null) {
+				Debug.LogError("Failed to find correct Arm animation controller for Patient");
+				return;
+			} else {
+				if (activeArmAnimationController.gameObject.TryGetComponent<AvatarController>(out AvatarController avatarController)) {
+					if (this.isLeftArmAnimated) {
+						avatarController.leftHand.applyIk = false;
+					} else {
+						avatarController.rightHand.applyIk = false;
+					}
 				}
 			}
 		} else {
