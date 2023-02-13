@@ -288,7 +288,7 @@ MonoBehaviour:
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
@@ -346,6 +346,12 @@ MonoBehaviour:
   PinkyChainIK_target_helper: {fileID: 8651332568434498930}
   renderers:
   - {fileID: 4585951089911290154}
+  zeroTransformPosition: {x: 0, y: 0, z: 0}
+  zeroTransformClampMin: {x: 0, y: 0, z: 0}
+  zeroTransformClampMax: {x: 0, y: 0, z: 0}
+  ignoreZeroRotX: 0
+  ignoreZeroRotY: 0
+  ignoreZeroRotZ: 0
 --- !u!114 &4597051606143054759
 MonoBehaviour:
   m_ObjectHideFlags: 0

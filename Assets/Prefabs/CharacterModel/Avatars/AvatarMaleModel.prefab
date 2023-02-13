@@ -921,6 +921,7 @@ MonoBehaviour:
     ikTarget: {fileID: 113542620755952087}
     positionOffset: {x: 0.044, y: -0.04, z: -0.125}
     rotationOffset: {x: 0, y: -90, z: -110}
+  applyTurn: 1
   turnSmoothness: 2
   headTarget: {fileID: 4862001591054997950}
   headOffset: {x: -0.1, y: -1.7204, z: -0.1}
@@ -1039,6 +1040,84 @@ MonoBehaviour:
   originalArmRestPosRot:
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0}
+  animationMapping:
+    cubeMapping:
+      armMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      thumbMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      indexMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      middleMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      ringMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      pinkyMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+    blockMapping:
+      armMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      thumbMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      indexMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      middleMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      ringMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      pinkyMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+    cupMapping:
+      armMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      thumbMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      indexMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      middleMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      ringMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      pinkyMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+    keyMapping:
+      armMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      thumbMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      indexMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      middleMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      ringMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      pinkyMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+  avatarController: {fileID: 0}
 --- !u!114 &3803358277512806963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1083,6 +1162,84 @@ MonoBehaviour:
   originalArmRestPosRot:
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0}
+  animationMapping:
+    cubeMapping:
+      armMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      thumbMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      indexMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      middleMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      ringMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      pinkyMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+    blockMapping:
+      armMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      thumbMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      indexMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      middleMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      ringMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      pinkyMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+    cupMapping:
+      armMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      thumbMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      indexMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      middleMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      ringMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      pinkyMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+    keyMapping:
+      armMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      thumbMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      indexMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      middleMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      ringMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+      pinkyMapping:
+        position: {x: 0, y: 0, z: 0}
+        rotation: {x: 0, y: 0, z: 0}
+  avatarController: {fileID: 0}
 --- !u!1 &113542620701558244
 GameObject:
   m_ObjectHideFlags: 0
@@ -3299,7 +3456,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3102640764628881298}
-  m_LocalRotation: {x: -0.049648855, y: 0.023285706, z: 0.22048119, w: 0.97384846}
+  m_LocalRotation: {x: -0.054840464, y: 0.00030175876, z: 0.21924736, w: 0.9741268}
   m_LocalPosition: {x: 4.656613e-10, y: 0.0028512867, z: -0.0000000013539102}
   m_LocalScale: {x: 1, y: 1.0000002, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3308,7 +3465,7 @@ Transform:
   - {fileID: 5833125855696390499}
   m_Father: {fileID: 3286597014685527547}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -6.141, y: -1.352, z: 25.441}
 --- !u!1 &3151753992233910279
 GameObject:
   m_ObjectHideFlags: 0
@@ -3621,6 +3778,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7812281153923394343}
+  - {fileID: 717416592886789950}
   m_Father: {fileID: 5490343988054738671}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8213,3 +8371,81 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.004763382, y: -0.00018133584, z: 0.00057674677}
     m_Extent: {x: 0.00097089086, y: 0.0012421958, z: 0.0010165538}
   m_DirtyAABB: 0
+--- !u!1001 &8146742521326640883
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3286597014685527547}
+    m_Modifications:
+    - target: {fileID: 8717787728135219661, guid: 420ed2a59a8b52c4386b166cfcea93b7, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717787728135219661, guid: 420ed2a59a8b52c4386b166cfcea93b7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.01058602
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717787728135219661, guid: 420ed2a59a8b52c4386b166cfcea93b7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.01058602
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717787728135219661, guid: 420ed2a59a8b52c4386b166cfcea93b7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.01058602
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717787728135219661, guid: 420ed2a59a8b52c4386b166cfcea93b7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.00034
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717787728135219661, guid: 420ed2a59a8b52c4386b166cfcea93b7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717787728135219661, guid: 420ed2a59a8b52c4386b166cfcea93b7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717787728135219661, guid: 420ed2a59a8b52c4386b166cfcea93b7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717787728135219661, guid: 420ed2a59a8b52c4386b166cfcea93b7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717787728135219661, guid: 420ed2a59a8b52c4386b166cfcea93b7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717787728135219661, guid: 420ed2a59a8b52c4386b166cfcea93b7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717787728135219661, guid: 420ed2a59a8b52c4386b166cfcea93b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717787728135219661, guid: 420ed2a59a8b52c4386b166cfcea93b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717787728135219661, guid: 420ed2a59a8b52c4386b166cfcea93b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717787728135219662, guid: 420ed2a59a8b52c4386b166cfcea93b7, type: 3}
+      propertyPath: m_Name
+      value: RightArmRange
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717787728135219663, guid: 420ed2a59a8b52c4386b166cfcea93b7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5deba86e4a3d4904fb5ac3f391250ee3, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 420ed2a59a8b52c4386b166cfcea93b7, type: 3}
+--- !u!4 &717416592886789950 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8717787728135219661, guid: 420ed2a59a8b52c4386b166cfcea93b7, type: 3}
+  m_PrefabInstance: {fileID: 8146742521326640883}
+  m_PrefabAsset: {fileID: 0}

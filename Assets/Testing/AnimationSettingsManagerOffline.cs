@@ -42,17 +42,14 @@ public class AnimationSettingsManagerOffline : MonoBehaviour {
 	public List<PosRotMapping> cupSetup = new List<PosRotMapping>();
 	public List<PosRotMapping> keySetup = new List<PosRotMapping>();
 
-	[SerializeField]
-	private List<GameObject> markerPrefabs = new List<GameObject>();
-	[SerializeField]
-	private Transform markerParent;
-	[SerializeField]
-	private List<GameObject> spawnedMarkers = new List<GameObject>();
+	[SerializeField] private Transform markerParent;
+	[SerializeField] private List<GameObject> markerPrefabs = new List<GameObject>();
+	[SerializeField] private List<GameObject> spawnedMarkers = new List<GameObject>();
 
 	[SerializeField] private GameObject targetObject;
 
 	public void Start() {
-		blockSetup.Add(new PosRotMapping(targetObject.transform));
+		getCurrentAnimationSetup().Add(new PosRotMapping(targetObject.transform));
 		
 		setupMarkers();
 	}
@@ -210,6 +207,6 @@ public class AnimationSettingsManagerOffline : MonoBehaviour {
 			case "Key": animType = AnimationType.Key; break;
 			case "Block": animType = AnimationType.Block; break;
 			default: break;
-		}		
+		}
 	}
 }

@@ -318,15 +318,42 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 		try {
 			// Setting position + rotation
 			// TODO calculate for any target position
-			PosRotMapping currentTransform = new PosRotMapping(targetObject.transform);
+			/* PosRotMapping originalTransform = new PosRotMapping(targetObject.transform);
 
-			targetObject.transform.position = targetUtility.zeroTransform.position;
-			targetObject.transform.rotation = Quaternion.Euler(targetUtility.zeroTransform.rotation);
+			if (targetObject.TryGetComponent<NetworkTransform>(out NetworkTransform networkTransform)) {
+				networkTransform.enabled = false;
+			}
+
+			Vector3 newRotation = targetObject.transform.localRotation.eulerAngles;
+			ArmAnimationController.PrintVector3(newRotation);
+
+			if (!targetUtility.ignoreZeroRotX) {
+				newRotation.x = 0;
+			} else {
+				newRotation.x = Mathf.Clamp(newRotation.x, targetUtility.zeroTransformClampMin.x, targetUtility.zeroTransformClampMax.x);
+			}
+			if (!targetUtility.ignoreZeroRotY) {
+				newRotation.y = 0;
+			} else {
+				newRotation.y = Mathf.Clamp(newRotation.y, targetUtility.zeroTransformClampMin.y, targetUtility.zeroTransformClampMax.y);
+			}
+			if (!targetUtility.ignoreZeroRotZ) {
+				newRotation.z = 0;
+			} else {
+				newRotation.z = Mathf.Clamp(newRotation.z, targetUtility.zeroTransformClampMin.z, targetUtility.zeroTransformClampMax.z);
+			}
+
+			targetObject.transform.position = targetUtility.zeroTransformPosition;
+			targetObject.transform.localRotation = Quaternion.Euler(newRotation); */
 
 			targetsHelperObject.setAllTargetMappings(animationMapping.getTargetMappingByType(animSettingsManager.animType), targetObject);
 
-			targetObject.transform.position = currentTransform.position;
-			targetObject.transform.rotation = Quaternion.Euler(currentTransform.rotation);
+			/* targetObject.transform.position = originalTransform.position;
+			targetObject.transform.rotation = Quaternion.Euler(originalTransform.rotation);
+
+			if (networkTransform != null) {
+				networkTransform.enabled = true;
+			} */
 
 			targetsHelperObject.alignTargetTransforms();
 
