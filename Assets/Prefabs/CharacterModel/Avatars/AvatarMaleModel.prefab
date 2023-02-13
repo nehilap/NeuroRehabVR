@@ -1701,13 +1701,13 @@ GameObject:
   - component: {fileID: 717416592886789951}
   - component: {fileID: 717416592886789948}
   - component: {fileID: 4365314712059015749}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RightArmRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &717416592886789950
 Transform:
   m_ObjectHideFlags: 0
