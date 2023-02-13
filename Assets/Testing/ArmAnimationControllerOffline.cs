@@ -38,6 +38,9 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 
 	[SerializeField] private AvatarController avatarController;
 
+	[SerializeField] private MeshFilter armRangeMesh;
+	[SerializeField] private float armRangeSlack = 0.01f;
+
 	void Start() {
 		animSettingsManager = GameObject.Find("AnimSettingsManagerOffline")?.GetComponent<AnimationSettingsManagerOffline>();
 
@@ -78,24 +81,43 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 
 	// https://gamedevbeginner.com/coroutines-in-unity-when-and-how-to-use-them/
 	private IEnumerator armStartAnimationLerp(bool isFakeAnimation) {
+		float armLength = Mathf.Max(armRangeMesh.transform.lossyScale.x, armRangeMesh.transform.lossyScale.x, armRangeMesh.transform.lossyScale.x) * armRangeMesh.mesh.bounds.extents.x;
+		float targetDistance = Vector3.Distance(targetObject.transform.position, armRangeMesh.transform.position);
+		if ((targetDistance - armRangeSlack) > armLength) {
+			Debug.LogError("Arm cannot grab object, too far away: " + targetDistance + "m > " + armLength + "m");
+			yield break;
+		}
+
 		// Animation control for moving arm and grabbing with hand
 		// we set weight to the corresponding part we're moving
 		RigLerp[] rigLerps = {new RigLerp(armRig, 0, 1), new RigLerp(restArmRig, 1, 0)};
 		yield return StartCoroutine(multiRigLerp(rigLerps, animSettingsManager.armMoveDuration));
 
 		yield return StartCoroutine(simpleRigLerp(handRig, animSettingsManager.handMoveDuration, 0, 1));
-		
-		// Debug.Log(CharacterManager.localClient.GetInstanceID() + ",,," + CharacterManager.activePatient.GetInstanceID());		
-		if (!isFakeAnimation) {
-			yield return StartCoroutine(alignTransformWrapper(animSettingsManager.moveDuration));
-		} else {
-			List<PosRotMapping> currentAnimSetup = animSettingsManager.getCurrentAnimationSetup();
-			for (int i = 1; i < currentAnimSetup.Count; i++)	{
-				Vector3 startPos = currentAnimSetup[i-1].position;
-				Vector3 endPos = currentAnimSetup[i].position;
-				yield return StartCoroutine(lerpAllTargets(targetObject, startPos, endPos, animSettingsManager.moveDuration));
+
+		yield return StartCoroutine(alignTransformWrapper(animSettingsManager.moveDuration));
+		List<PosRotMapping> currentAnimSetup = animSettingsManager.getCurrentAnimationSetup();
+
+		if (animSettingsManager.animType == AnimationType.Cup) {
+			Vector3 tempPos = currentAnimSetup[0].position;
+
+			yield return StartCoroutine(lerpAllTargets(targetObject, tempPos, tempPos + new Vector3(0, 0.2f, 0), animSettingsManager.moveDuration / 2));
+			yield return new WaitForSeconds(0.5f);
+			yield return StartCoroutine(lerpAllTargets(targetObject, tempPos + new Vector3(0, 0.2f, 0), tempPos, animSettingsManager.moveDuration / 2));
+		}
+
+		for (int i = 1; i < currentAnimSetup.Count; i++)	{
+			Vector3 startPos = currentAnimSetup[i-1].position;
+			Vector3 endPos = currentAnimSetup[i].position;
+			yield return StartCoroutine(lerpAllTargets(targetObject, startPos, endPos, animSettingsManager.moveDuration));
+
+			if (animSettingsManager.animType == AnimationType.Cup) {
+				yield return StartCoroutine(lerpAllTargets(targetObject, endPos, endPos + new Vector3(0, 0.2f, 0), animSettingsManager.moveDuration / 2));
+				yield return new WaitForSeconds(0.5f);
+				yield return StartCoroutine(lerpAllTargets(targetObject, endPos + new Vector3(0, 0.2f, 0), endPos, animSettingsManager.moveDuration / 2));
 			}
 		}
+		
 
 		isAnimationRunning = true;
 	}
