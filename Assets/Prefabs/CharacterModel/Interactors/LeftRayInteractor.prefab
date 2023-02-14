@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9183900578398987486}
   - component: {fileID: 8880621362369281709}
   - component: {fileID: 490562291435481316}
+  - component: {fileID: 965454531853410388}
   m_Layer: 0
   m_Name: LeftRayInteractor
   m_TagString: Untagged
@@ -574,3 +575,16 @@ MonoBehaviour:
   distance: 0
   XRRayInteractor: {fileID: 9183900578398987486}
   _camera: {fileID: 0}
+--- !u!114 &965454531853410388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042493886980681527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6806460342540224797f5073a1d68b1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLeftHandController: 1

@@ -123,9 +123,26 @@ public class XRCharacterManager : CharacterManager {
 	}
 
 	public void changeControllerType(ControllerType _old, ControllerType _new) {
-		// Debug.Log("Change controller called "  +  _new.ToString());
-		XRBaseController rightC =  transform.Find("Offset/Camera Offset/RightHand Controller").GetComponent<XRBaseController>();
-		XRBaseController leftC =  transform.Find("Offset/Camera Offset/LeftHand Controller").GetComponent<XRBaseController>();
+		// Debug.Log("Change controller called " + _new.ToString());
+
+		XRBaseController rightC = null;
+		XRBaseController leftC = null;
+		foreach (XRBaseController item in XRControllers) {
+			if (item.modelPrefab != null) {
+				if (item.gameObject.TryGetComponent<XRControllerUtility>(out XRControllerUtility xrControllerUtility)) {
+					if (xrControllerUtility.isLeftHandController) {
+						leftC = item;
+					} else {
+						rightC = item;
+					}
+				}
+			}
+		}
+
+		if (leftC == null || rightC == null) {
+			Debug.LogError("Failed to find controller objects");
+			return;
+		}
 
 		foreach (GameObject item in XRStatusManager.Instance.controllerPrefabs) {
 			if (item.name.Contains(_new.ToString())) {
@@ -147,9 +164,13 @@ public class XRCharacterManager : CharacterManager {
 
 		if (leftC.modelParent != null) {
 			leftC.model = Instantiate(leftC.modelPrefab, leftC.modelParent.transform.position, leftC.modelParent.transform.rotation, leftC.modelParent.transform);
+			Outline outline = leftC.model.gameObject.AddComponent(typeof(Outline)) as Outline;
+			outline.OutlineMode = Outline.Mode.OutlineHidden;
 		}
 		if (rightC.modelParent != null) {
 			rightC.model = Instantiate(rightC.modelPrefab, rightC.modelParent.transform.position, rightC.modelParent.transform.rotation, rightC.modelParent.transform);
+			Outline outline = rightC.model.gameObject.AddComponent(typeof(Outline)) as Outline;
+			outline.OutlineMode = Outline.Mode.OutlineHidden;
 		}
 	}
 
