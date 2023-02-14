@@ -21,6 +21,9 @@ public class MapTransforms {
 
 public class AvatarController : MonoBehaviour {
 
+	[SerializeField] public GameObject rightArmRangeMarker;
+	[SerializeField] public GameObject leftArmRangeMarker;
+
 	[SerializeField] public MapTransforms head;
 	[SerializeField] public MapTransforms headSpine;
 	[SerializeField] public MapTransforms leftHand;

@@ -16,4 +16,16 @@ public class TargetDraggable : MonoBehaviour, DragInterface {
 		_rigidbody.useGravity = true;
 		_rigidbody.velocity = Vector3.zero;
 	}
+
+	public void OnShowDragRange() {
+		if (CharacterManager.activePatientInstance != null) {
+			CharacterManager.activePatientInstance.showArmRangeMarker();
+		}
+	}
+
+	public void OnHideDragRange() {
+		if (CharacterManager.activePatientInstance != null) {
+			CharacterManager.activePatientInstance.hideArmRangeMarker();
+		}
+	}
 }

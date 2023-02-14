@@ -10,7 +10,7 @@ public class CharacterManager : NetworkBehaviour {
 
 
 	[Header("Spawn sync vars")]
-	[SyncVar] public bool isPatient = false;
+	[SyncVar] public bool isPatient;
 	[SyncVar] public bool isFemale;
 	[SyncVar] public int avatarNumber;
 	[SyncVar] public float avatarSizeMultiplier;
@@ -44,6 +44,8 @@ public class CharacterManager : NetworkBehaviour {
 	[SerializeField] private MonoBehaviour[] componentsToDisable;
 	[SerializeField] private MonoBehaviour[] componentsToEnable;
 	[SerializeField] private MonoBehaviour[] componentsToEnableLocally;
+
+	[SerializeField] private GameObject activeArmRangeMarker {get; set;}
 
 	public override void OnStartLocalPlayer() {
 		base.OnStartLocalPlayer();
@@ -89,13 +91,11 @@ public class CharacterManager : NetworkBehaviour {
 		}
 	}
 
-	public void Awake() {
+	public void Start() {
 		if (isPatient && activePatientInstance == null) {
 			activePatientInstance = this;
 		}
-	}
-
-	public void Start() {
+		
 		// Setting correct avatar, based on which one was chosen in the lobby
 		GameObject avatar;
 		if (isFemale) {
@@ -128,12 +128,16 @@ public class CharacterManager : NetworkBehaviour {
 				Debug.LogError("Failed to find correct Arm animation controller for Patient");
 				return;
 			} else {
-				if (activeArmAnimationController.gameObject.TryGetComponent<AvatarController>(out AvatarController avatarController)) {
+				if (activeAvatarObject.TryGetComponent<AvatarController>(out AvatarController avatarController)) {
 					if (this.isLeftArmAnimated) {
 						avatarController.leftHand.applyIk = false;
+						activeArmRangeMarker = avatarController.leftArmRangeMarker;
 					} else {
 						avatarController.rightHand.applyIk = false;
+						activeArmRangeMarker = avatarController.rightArmRangeMarker;
 					}
+
+					
 				}
 			}
 		} else {
@@ -201,5 +205,17 @@ public class CharacterManager : NetworkBehaviour {
 		}
 
 		activeArmAnimationController.setArmRestPosition();
+	}
+
+	public void showArmRangeMarker() {
+		MeshRenderer meshRenderer = activeArmRangeMarker.GetComponent<MeshRenderer>();
+		
+		meshRenderer.enabled = true;
+	}
+
+	public void hideArmRangeMarker() {
+		MeshRenderer meshRenderer = activeArmRangeMarker.GetComponent<MeshRenderer>();
+		
+		meshRenderer.enabled = false;
 	}
 }

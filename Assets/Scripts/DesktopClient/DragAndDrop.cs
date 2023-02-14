@@ -51,6 +51,7 @@ public class DragAndDrop : MonoBehaviour {
 		draggedObject.transform.TryGetComponent<DragInterface>(out DragInterface dragInterface);
 
 		dragInterface?.OnStartDrag();
+		dragInterface?.OnShowDragRange();
 		
 		if (draggedObject.transform.TryGetComponent<NetworkIdentity>(out NetworkIdentity objectIdentity)) {
 			NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(objectIdentity, CharacterManager.localClientInstance.GetComponent<NetworkIdentity>());
@@ -73,5 +74,6 @@ public class DragAndDrop : MonoBehaviour {
 		}
 
 		dragInterface?.OnStopDrag();
+		dragInterface?.OnHideDragRange();
 	}
 }

@@ -925,6 +925,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AvatarMaleModel
       objectReference: {fileID: 0}
+    - target: {fileID: 2469224535557687186, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2582390790784424128, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -957,6 +961,22 @@ PrefabInstance:
       propertyPath: headSpine.vrTarget
       value: 
       objectReference: {fileID: 5308743743746186655}
+    - target: {fileID: 7739318295036910233, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: m_Name
+      value: LeftArmRange
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812281153923394343, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812281153923394343, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812281153923394343, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
 --- !u!1 &925758021437001734 stripped

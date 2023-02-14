@@ -9724,14 +9724,6 @@ PrefabInstance:
       propertyPath: menuToShow
       value: 
       objectReference: {fileID: 147769611}
-    - target: {fileID: 5308743742913101019, guid: c3a148a7f339e0d44ad8fea07053ee82, type: 3}
-      propertyPath: m_DirectionalAnchorRotationAction.m_Action.m_Id
-      value: 9f802b3d-d07c-42d5-a426-a1e15a9f5cfb
-      objectReference: {fileID: 0}
-    - target: {fileID: 5308743742913101019, guid: c3a148a7f339e0d44ad8fea07053ee82, type: 3}
-      propertyPath: m_DirectionalAnchorRotationAction.m_Action.m_Name
-      value: Directional Anchor Rotation
-      objectReference: {fileID: 0}
     - target: {fileID: 5308743742952482153, guid: c3a148a7f339e0d44ad8fea07053ee82, type: 3}
       propertyPath: m_RootOrder
       value: 7

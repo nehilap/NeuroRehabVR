@@ -15,8 +15,16 @@ public class AvatarSetup : MonoBehaviour {
 	[SerializeField]
 	private string[] excludedNames;
 
+	private Dictionary<string, Transform> allBones;
+
 	void Awake() {
 		setupAvatarParts();
+
+		allBones = new Dictionary<string, Transform>();
+		var childrenBones = rootBone.GetComponentsInChildren<Transform>();
+		foreach(Transform b in childrenBones) {
+			allBones.Add(b.name, b);
+		}
 	}
 
 	void OnDisable() {
@@ -46,7 +54,7 @@ public class AvatarSetup : MonoBehaviour {
 				// Debug.Log("part " + item.name);
 				if(System.Array.IndexOf(excludedNames, item.name) == -1) {
 					if(bodyPart.name.Equals(item.name) && item.GetComponent<SkinnedMeshRenderer>() != null) {
-						updateMesh(bodyPart.GetComponent<SkinnedMeshRenderer>(), item.GetComponent<SkinnedMeshRenderer>(), rootBone);
+						updateMesh(bodyPart.GetComponent<SkinnedMeshRenderer>(), item.GetComponent<SkinnedMeshRenderer>());
 						flag = item.gameObject.activeSelf;
 						break;
 					}
@@ -64,15 +72,9 @@ public class AvatarSetup : MonoBehaviour {
 		Debug.Log("Model succsefully changed " + modelToUse.name);
 	}
 
-	private void updateMesh(SkinnedMeshRenderer origin, SkinnedMeshRenderer target, Transform skeletonRoot) {
+	private void updateMesh(SkinnedMeshRenderer origin, SkinnedMeshRenderer target) {
 		origin.sharedMesh = target.sharedMesh;
 		origin.sharedMaterials = target.sharedMaterials;
-
-		Dictionary<string, Transform> allBones = new Dictionary<string, Transform>(); // you can just cache this (and consequently the foreach below) or pass through parameter if in a static context. Leaving here for simplicity
-		var childrenBones = skeletonRoot.GetComponentsInChildren<Transform>();
-		foreach(Transform b in childrenBones) {
-			allBones.Add(b.name, b);
-		}
 
 		var originBones = origin.bones;
 		var targetBones = new List<Transform>();

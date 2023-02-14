@@ -24,6 +24,7 @@ public class XRCharacterManager : CharacterManager {
 	[SerializeField] private XRBaseControllerInteractor[] XRInteractors;
 
 	[SerializeField] private InputActionManager inputActionManager;
+
 	public override void OnStartLocalPlayer() {
 		base.OnStartLocalPlayer();
 
@@ -38,7 +39,7 @@ public class XRCharacterManager : CharacterManager {
 		// interactors should contain all hands (XRcontrollers and interactors) that are to be used to interact with items
 		for (int i = 0; i < XRInteractors.Length; i++) {
 			XRInteractors[i].selectEntered.AddListener(itemPickUp);
-			// interactors[i].selectExited.AddListener(itemRelease);
+			XRInteractors[i].selectExited.AddListener(itemRelease);
 		}
 		for (int i = 0; i < XRControllers.Length; i++) {
 			XRControllers[i].enableInputTracking = true;
@@ -108,6 +109,16 @@ public class XRCharacterManager : CharacterManager {
 			if (!isServer){
 				NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(itemNetIdentity, identity);
 			}
+
+			args.interactableObject.transform.transform.TryGetComponent<DragInterface>(out DragInterface dragInterface);
+			dragInterface?.OnShowDragRange();
+		}
+	}
+
+	private void itemRelease(SelectExitEventArgs args) {
+		if (isOwned) {
+			args.interactableObject.transform.transform.TryGetComponent<DragInterface>(out DragInterface dragInterface);
+			dragInterface?.OnHideDragRange();
 		}
 	}
 
