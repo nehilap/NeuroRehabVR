@@ -48,26 +48,6 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 
 		avatarController = gameObject.GetComponent<AvatarController>();
 
-		// BLOCK animation setup - relative values
-		// TODO
-
-		/* 	
-		animationMapping.blockMapping.armMapping = new PosRotMapping(new Vector3(-1.104002f, 0.07f, -1.648f), new Vector3(0f, 336.925079f, 270f)); // armTarget
-		animationMapping.blockMapping.thumbMapping = new PosRotMapping(new Vector3(-0.300006866f, 0.287f, 1.146f), new Vector3(1.90925431f, 8.86787796f, 17.1680984f)); // thumbTarget
-		animationMapping.blockMapping.indexMapping = new PosRotMapping(new Vector3(0.200004578f, 0.326000452f, 0.654f), new Vector3(0f, 0f, 0f)); // indexTarget
-		animationMapping.blockMapping.middleMapping = new PosRotMapping(new Vector3(0.186004639f, 0.104000568f, 0.68f), new Vector3(0f, 0f, 0f)); // middleTarget
-		animationMapping.blockMapping.ringMapping = new PosRotMapping(new Vector3(0.267972946f, -0.161999464f, 0.664f), new Vector3(0f, 0f, 0f)); // ringTarget
-		animationMapping.blockMapping.pinkyMapping = new PosRotMapping(new Vector3(0.541992188f, -0.401f, 0.618f), new Vector3(0f, 0f, 0f)); // pinkyTarget
-		 */
-		/*
-		X: -0,08240002  Y: -0,006999969  Z:0,0552001 (0.00, 246.93, 270.00)
-		X: 0,05730001  Y: -0,02869999  Z:0,01500034 (1.91, 278.87, 17.17)
-		X: 0,03270001  Y: -0,03260005  Z:-0,01000023 (0.00, 270.00, 0.00)
-		X: 0,03400001  Y: -0,01040006  Z:-0,009300232 (0.00, 270.00, 0.00)
-		X: 0,03320001  Y: 0,01619995  Z:-0,01339865 (0.00, 270.00, 0.00)
-		X: 0,03090001  Y: 0,04009998  Z:-0,02709961 (0.00, 270.00, 0.00)
-		*/
-
 		animationMapping.resizeMappings(avatarController.sizeMultiplier);
 	}
 
@@ -81,13 +61,6 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 
 	// https://gamedevbeginner.com/coroutines-in-unity-when-and-how-to-use-them/
 	private IEnumerator armStartAnimationLerp(bool isFakeAnimation) {
-		float armLength = Mathf.Max(armRangeMesh.transform.lossyScale.x, armRangeMesh.transform.lossyScale.x, armRangeMesh.transform.lossyScale.x) * armRangeMesh.mesh.bounds.extents.x;
-		float targetDistance = Vector3.Distance(targetObject.transform.position, armRangeMesh.transform.position);
-		if ((targetDistance - armRangeSlack) > armLength) {
-			Debug.LogError("Arm cannot grab object, too far away: " + targetDistance + "m > " + armLength + "m");
-			yield break;
-		}
-
 		// Animation control for moving arm and grabbing with hand
 		// we set weight to the corresponding part we're moving
 		RigLerp[] rigLerps = {new RigLerp(armRig, 0, 1), new RigLerp(restArmRig, 1, 0)};
@@ -95,7 +68,6 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 
 		yield return StartCoroutine(simpleRigLerp(handRig, animSettingsManager.handMoveDuration, 0, 1));
 
-		yield return StartCoroutine(alignTransformWrapper(animSettingsManager.moveDuration));
 		List<PosRotMapping> currentAnimSetup = animSettingsManager.getCurrentAnimationSetup();
 
 		if (animSettingsManager.animType == AnimationType.Cup) {
@@ -312,6 +284,13 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 			targetObject.GetComponent<Rigidbody>().useGravity = false;
 		}
 
+		float armLength = Mathf.Max(armRangeMesh.transform.lossyScale.x, armRangeMesh.transform.lossyScale.x, armRangeMesh.transform.lossyScale.x) * armRangeMesh.mesh.bounds.extents.x;
+		float targetDistance = Vector3.Distance(targetObject.transform.position, armRangeMesh.transform.position);
+		if ((targetDistance - armRangeSlack) > armLength) {
+			Debug.LogError("Arm cannot grab object, too far away: " + targetDistance + "m > " + armLength + "m");
+			return;
+		}
+
 		TargetMappingGroup currentMapping = animationMapping.getTargetMappingByType(animSettingsManager.animType);
 		List<PosRotMapping> currentAnimationSetup = animSettingsManager.getCurrentAnimationSetup();
 
@@ -400,8 +379,8 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 
 		// We don't have to set the positions of targets here, because we're simply releasing the hand grip + moving arm to relaxed position
 
-		animState = Enums.AnimationState.Stopped;
 		StartCoroutine(armStopAnimationLerp());
+		animState = Enums.AnimationState.Stopped;
 	}
 
 	public void setArmRestPosition() {

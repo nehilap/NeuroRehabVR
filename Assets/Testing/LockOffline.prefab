@@ -169,8 +169,8 @@ GameObject:
   - component: {fileID: 9155434571027466177}
   - component: {fileID: 2463984014523002898}
   - component: {fileID: 2936729247538541773}
-  - component: {fileID: 5788026121823274479}
   - component: {fileID: 2946349981666543233}
+  - component: {fileID: 8540727714282526712}
   m_Layer: 14
   m_Name: LockOffline
   m_TagString: Untagged
@@ -406,32 +406,6 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!114 &5788026121823274479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5516410589025645693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83eae000a14847240a11a4e95fe912b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ArmIK_target_helper: {fileID: 250205198373849213}
-  ThumbIK_target_helper: {fileID: 6256200450085987237}
-  IndexChainIK_target_helper: {fileID: 3679841797041164185}
-  MiddleChainIK_target_helper: {fileID: 427186142489257504}
-  RingChainIK_target_helper: {fileID: 2308123932767118256}
-  PinkyChainIK_target_helper: {fileID: 5302290603068341023}
-  renderers:
-  - {fileID: 6309198124103243176}
-  zeroTransformPosition: {x: 0, y: 0, z: 0}
-  zeroTransformClampMin: {x: 0, y: 0, z: 0}
-  zeroTransformClampMax: {x: 360, y: 360, z: 360}
-  ignoreZeroRotX: 0
-  ignoreZeroRotY: 0
-  ignoreZeroRotZ: 0
 --- !u!114 &2946349981666543233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,6 +418,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 616b575f497e66d4798211a8fc519d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8540727714282526712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5516410589025645693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fcc15a11fa20ea46afd46642a9798fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ArmIK_target_helper: {fileID: 250205198373849213}
+  ThumbIK_target_helper: {fileID: 6256200450085987237}
+  IndexChainIK_target_helper: {fileID: 3679841797041164185}
+  MiddleChainIK_target_helper: {fileID: 427186142489257504}
+  RingChainIK_target_helper: {fileID: 2308123932767118256}
+  PinkyChainIK_target_helper: {fileID: 5302290603068341023}
+  renderers:
+  - {fileID: 6309198124103243176}
 --- !u!1 &6256200450085987237
 GameObject:
   m_ObjectHideFlags: 0

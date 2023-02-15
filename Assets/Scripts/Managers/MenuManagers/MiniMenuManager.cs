@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,7 +15,6 @@ public class MiniMenuManager : MonoBehaviour {
 	[SerializeField] private bool offsetByWidth;
 	[SerializeField] private bool offsetByHeight;
 	
-
 	private Vector3 originalMenuPosition;
 	private Vector3 originalMenuScale;
 	private Transform originalMenuParent;
@@ -31,20 +31,19 @@ public class MiniMenuManager : MonoBehaviour {
 		originalMenuPosition = menuToShow.transform.localPosition;
 		originalMenuScale = menuToShow.transform.localScale;
 		originalMenuParent = menuToShow.transform.parent;
+
 	}
 
 	private void OnEnable() {
 		menuAction.action.performed += triggerMenu;
+
+		if (originalMenuParent != null) {
+			resetMenu();
+		}
 	}
 
 	private void OnDisable() {
 		menuAction.action.performed -= triggerMenu;
-
-		if(!this.gameObject.scene.isLoaded) return;
-
-		if (isMenuShowing) {
-			triggerMenu(new InputAction.CallbackContext());
-		}
 	}
 
 	private void triggerMenu(InputAction.CallbackContext obj) {
@@ -53,10 +52,6 @@ public class MiniMenuManager : MonoBehaviour {
 		menuHolder.GetComponent<Canvas>().enabled = isMenuShowing;
 
 		if (isMenuShowing) {
-			/*if (lockCursor) {
-				Cursor.lockState = CursorLockMode.None;
-			}*/
-
 			menuToShow.transform.SetParent(menuHolder);
 
 			menuToShow.transform.localScale = scale;
@@ -72,15 +67,23 @@ public class MiniMenuManager : MonoBehaviour {
 
 			menuToShow.transform.localPosition = newPosition;
 		} else {
-			/*if (lockCursor) {
-				Cursor.lockState = CursorLockMode.Locked;
-			}*/
-
 			menuToShow.transform.SetParent(originalMenuParent);
 
 			menuToShow.transform.localScale = originalMenuScale;
 			menuToShow.transform.localRotation = Quaternion.identity;
 			menuToShow.transform.localPosition = originalMenuPosition;
 		}
+	}
+
+	private void resetMenu() {
+		isMenuShowing = false;
+
+		menuHolder.GetComponent<Canvas>().enabled = isMenuShowing;
+
+		menuToShow.transform.SetParent(originalMenuParent);
+
+		menuToShow.transform.localScale = originalMenuScale;
+		menuToShow.transform.localRotation = Quaternion.identity;
+		menuToShow.transform.localPosition = originalMenuPosition;
 	}
 }

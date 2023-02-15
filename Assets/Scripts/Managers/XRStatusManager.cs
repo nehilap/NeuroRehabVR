@@ -95,6 +95,8 @@ public class XRStatusManager : MonoBehaviour {
 			Debug.Log("Stopping XR...");
 			XRGeneralSettings.Instance.Manager.StopSubsystems();
 			XRGeneralSettings.Instance.Manager.DeinitializeLoader();
+			
+			Application.targetFrameRate = 60;
 
 			isXRActive = false;
 			

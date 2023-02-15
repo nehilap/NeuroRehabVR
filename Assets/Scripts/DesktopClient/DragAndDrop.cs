@@ -13,7 +13,7 @@ public class DragAndDrop : MonoBehaviour {
 
 	[SerializeField] private LayerMask layersToIgnore;
 
-	[SerializeField][Range(0.1f, 10f)] private float rayLength = 10f;
+	[SerializeField][Range(0.1f, 50f)] private float rayLength = 10f;
 
 	private WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate();
 
