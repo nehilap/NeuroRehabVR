@@ -41,6 +41,8 @@ public class AnimationSettingsManager : NetworkBehaviour {
 	public TMP_Text repetitionsTextValue;
 	public Slider repetitionsSlider;
 
+	[SerializeField] private Button registerMovePositionButton;
+
 	public TMP_Dropdown animTypeDropdown;
 	
 	// https://mirror-networking.gitbook.io/docs/guides/synchronization/synclists
@@ -49,12 +51,9 @@ public class AnimationSettingsManager : NetworkBehaviour {
 	public readonly SyncList<PosRotMapping> cupSetup = new SyncList<PosRotMapping>();
 	public readonly SyncList<PosRotMapping> keySetup = new SyncList<PosRotMapping>();
 
-	[SerializeField]
-	private List<GameObject> markerPrefabs = new List<GameObject>();
-	[SerializeField]
-	private Transform markerParent;
-	[SerializeField]
-	private List<GameObject> spawnedMarkers = new List<GameObject>();
+	[SerializeField] private List<GameObject> markerPrefabs = new List<GameObject>();
+	[SerializeField] private Transform markerParent;
+	[SerializeField] private List<GameObject> spawnedMarkers = new List<GameObject>();
 
 	public void Start() {
 		if (isClientOnly) {
@@ -220,7 +219,11 @@ public class AnimationSettingsManager : NetworkBehaviour {
 	}
 
 	private void setupMarkers() {
+		foreach (GameObject item in spawnedMarkers) {
+			GameObject.Destroy(item);
+		}
 		spawnedMarkers.Clear();
+
 		SyncList<PosRotMapping> currentMapping = getCurrentAnimationSetup();
 
 		if (currentMapping.Count > 0) {
@@ -301,20 +304,26 @@ public class AnimationSettingsManager : NetworkBehaviour {
 
 		AnimationType oldAnimType = animType;
 
-		switch (dropdown.options[dropdown.value].text)
-		{
+		switch (dropdown.options[dropdown.value].text) {
 			case "Off": animType = AnimationType.Off; break;
 			case "Cube": animType = AnimationType.Cube; break;
 			case "Cup": animType = AnimationType.Cup; break;
 			case "Key": animType = AnimationType.Key; break;
 			case "Block": animType = AnimationType.Block; break;
-			default: break;
+			default: return;
 		}
-		NetworkCharacterManager.localNetworkClientInstance.CmdUpdateAnimType(animType);
+
+		if (animType == AnimationType.Key) {
+			registerMovePositionButton.interactable = false;
+		} else {
+			registerMovePositionButton.interactable = true;
+		}
 
 		if (CharacterManager.localClientInstance != null) {
+			NetworkCharacterManager.localNetworkClientInstance.CmdUpdateAnimType(animType);
 			NetworkCharacterManager.localNetworkClientInstance.CmdSpawnCorrectTarget(oldAnimType, animType);
 		}
 		
+		setupMarkers();
 	}
 }

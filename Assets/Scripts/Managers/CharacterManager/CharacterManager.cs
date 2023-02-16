@@ -63,7 +63,7 @@ public class CharacterManager : NetworkBehaviour {
 		}
 
 		// We find all canvases and set them up to work correctly with the VR camera settings
-		Dictionary<string, GameObject> menus = MenuManager.Instance.getMenuList();
+		Dictionary<string, GameObject> menus = ObjectManager.Instance.getMenuList();
 		foreach (var item in menus) {
 			if (item.Value.layer == LayerMask.NameToLayer("Canvas")) { // 6 = Canvas
 				if (item.Value.TryGetComponent<Canvas>(out Canvas canvas)) {

@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 4578220707294919251}
   - component: {fileID: 6412301924038609496}
   - component: {fileID: 4603113496850682077}
+  - component: {fileID: 8678935859701527992}
   m_Layer: 14
   m_Name: BlockOffline
   m_TagString: Untagged
@@ -299,12 +300,6 @@ MonoBehaviour:
   PinkyChainIK_target_helper: {fileID: 8656547818008395272}
   renderers:
   - {fileID: 4578220707294919248}
-  zeroTransformPosition: {x: 0, y: 0, z: 0}
-  zeroTransformClampMin: {x: 0, y: 0, z: 0}
-  zeroTransformClampMax: {x: 360, y: 360, z: 360}
-  ignoreZeroRotX: 0
-  ignoreZeroRotY: 0
-  ignoreZeroRotZ: 0
 --- !u!114 &4603113496850682077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,6 +312,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 616b575f497e66d4798211a8fc519d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8678935859701527992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4578220707294919245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0754cd5c75a4467458942bc5101679d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetName: 
 --- !u!1 &4728961300648223402
 GameObject:
   m_ObjectHideFlags: 0

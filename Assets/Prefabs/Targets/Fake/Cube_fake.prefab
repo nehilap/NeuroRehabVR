@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1241488487069944297}
   - component: {fileID: 1241488487069944302}
   - component: {fileID: 2817348143941748358}
+  - component: {fileID: -4979324039085876574}
   m_Layer: 0
   m_Name: Cube_fake
   m_TagString: Untagged
@@ -110,6 +111,19 @@ MonoBehaviour:
   PinkyChainIK_target_helper: {fileID: 7597547295145087904}
   renderers:
   - {fileID: 1241488487069944302}
+--- !u!114 &-4979324039085876574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241488487069944307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0754cd5c75a4467458942bc5101679d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetName: Cube_fake
 --- !u!1 &2667496327511642804
 GameObject:
   m_ObjectHideFlags: 0

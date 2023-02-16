@@ -25,7 +25,7 @@ public class MiniMenuManager : MonoBehaviour {
 		menuHolder.GetComponent<Canvas>().enabled = false;
 
 		if (menuToShow == null && menuNameToShow != null) {
-			menuToShow = MenuManager.Instance.getMenuByName(menuNameToShow);        
+			menuToShow = ObjectManager.Instance.getMenuByName(menuNameToShow);        
 		}
 
 		originalMenuPosition = menuToShow.transform.localPosition;

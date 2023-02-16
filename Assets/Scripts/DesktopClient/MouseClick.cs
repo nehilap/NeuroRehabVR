@@ -31,9 +31,8 @@ public class MouseClick : MonoBehaviour {
 		RaycastHit hit;
 
 		if (Physics.Raycast(ray, out hit, rayLength, layerMask:~(layersToIgnore))) {
-			if (hit.collider != null && (hit.collider.gameObject.CompareTag("Draggable") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Target"))
-			&& (hit.collider.gameObject.TryGetComponent<LockTargetUtility>(out LockTargetUtility lockTargetUtility))) {
-				lockTargetUtility.OnMouseClicked();
+			if (hit.collider != null && (hit.collider.gameObject.TryGetComponent<MouseClickable>(out MouseClickable mouseClickable))) {
+				mouseClickable.OnMouseClicked();
 			}
 		}
 	}

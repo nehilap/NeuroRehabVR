@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 2118952973532061147}
   - component: {fileID: 2118952973532061148}
   - component: {fileID: 2146701783691952598}
+  - component: {fileID: -2945731422002025810}
   m_Layer: 0
   m_Name: Block_fake
   m_TagString: Untagged
@@ -141,6 +142,19 @@ MonoBehaviour:
   PinkyChainIK_target_helper: {fileID: 6540123426287704452}
   renderers:
   - {fileID: 2118952973532061148}
+--- !u!114 &-2945731422002025810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118952973532061121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0754cd5c75a4467458942bc5101679d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetName: Block_fake
 --- !u!1 &5128142822107989905
 GameObject:
   m_ObjectHideFlags: 0

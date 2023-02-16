@@ -20,15 +20,13 @@ namespace Utility {
 
 		[SerializeField] public List<Renderer> renderers = new List<Renderer>();
 
+		[SerializeField] public GameObject customTargetPos;
+
 		/* [SerializeField] public Vector3 zeroTransformPosition;
 		[SerializeField] public Vector3 zeroTransformClampMin = Vector3.zero;
 		[SerializeField] public Vector3 zeroTransformClampMax = new Vector3(360, 360, 360);
 		[SerializeField] public bool ignoreZeroRotX = false;
 		[SerializeField] public bool ignoreZeroRotY = false;
 		[SerializeField] public bool ignoreZeroRotZ = false; */
-
-		public void selectEntered() {
-			Debug.Log("Wooooo1");
-		}
 	}
 }

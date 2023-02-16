@@ -284,7 +284,7 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 			targetObject.GetComponent<Rigidbody>().useGravity = false;
 		}
 
-		float armLength = Mathf.Max(armRangeMesh.transform.lossyScale.x, armRangeMesh.transform.lossyScale.x, armRangeMesh.transform.lossyScale.x) * armRangeMesh.mesh.bounds.extents.x;
+		float armLength = Mathf.Max(armRangeMesh.transform.lossyScale.x, armRangeMesh.transform.lossyScale.x, armRangeMesh.transform.lossyScale.x) * armRangeMesh.sharedMesh.bounds.extents.x;
 		float targetDistance = Vector3.Distance(targetObject.transform.position, armRangeMesh.transform.position);
 		if ((targetDistance - armRangeSlack) > armLength) {
 			Debug.LogError("Arm cannot grab object, too far away: " + targetDistance + "m > " + armLength + "m");
