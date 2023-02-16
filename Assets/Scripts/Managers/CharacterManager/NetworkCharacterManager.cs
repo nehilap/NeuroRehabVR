@@ -229,15 +229,19 @@ public class NetworkCharacterManager : NetworkBehaviour {
 				if (_newAnimType == AnimationType.Key) {
 					if (targetPrefabs[i].name.Equals("Lock")) {
 						float halfHeight = targetPrefabs[i].transform.lossyScale.y * targetPrefabs[i].GetComponent<MeshFilter>().sharedMesh.bounds.extents.y;
-						GameObject newLock1 = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(0, halfHeight, 0.3f), targetPrefabs[i].transform.rotation);
+
+						// Center
+						GameObject newLock1 = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(0, halfHeight, 0.22f), targetPrefabs[i].transform.rotation);
 						NetworkServer.Spawn(newLock1);
 
-						GameObject newLock2 = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(-0.3f, halfHeight, 0.32f), targetPrefabs[i].transform.rotation);
-						newLock2.transform.LookAt(spawnArea.transform);
+						// Left
+						GameObject newLock2 = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(-0.3f, halfHeight, 0.15f), targetPrefabs[i].transform.rotation);
+						newLock2.transform.LookAt(spawnArea.transform.position + new Vector3(0, halfHeight, 0));
 						NetworkServer.Spawn(newLock2);
 
-						GameObject newLock3 = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(+0.3f, halfHeight, 0.32f), targetPrefabs[i].transform.rotation);
-						newLock3.transform.LookAt(spawnArea.transform);
+						// Right
+						GameObject newLock3 = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(+0.3f, halfHeight, 0.15f), targetPrefabs[i].transform.rotation);
+						newLock3.transform.LookAt(spawnArea.transform.position + new Vector3(0, halfHeight, 0));
 						NetworkServer.Spawn(newLock3);
 
 						SetLockPosition(new PosRotMapping(newLock1.GetComponent<TargetUtility>().customTargetPos.transform));

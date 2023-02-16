@@ -5,18 +5,17 @@ public class ObjectManager : MonoBehaviour {
 
 	private static ObjectManager _instance;
 
-	public static ObjectManager Instance { get { return _instance; } }
+	public static ObjectManager Instance {
+		get {
+			if(_instance == null) {
+				_instance = GameObject.FindObjectOfType<ObjectManager>();
+			}
+			return _instance;
+		}
+	}
 
 	[SerializeField] private Dictionary<string, GameObject> menuList = new Dictionary<string, GameObject>();
 	[SerializeField] private Dictionary<string, GameObject> targetList = new Dictionary<string, GameObject>();
-
-	private void Awake() {
-		if (_instance != null && _instance != this) {
-			Destroy(this.gameObject);
-		} else {
-			_instance = this;
-		}
-	}
 
 	public GameObject getMenuByName(string menuName) {
 		if (menuList.ContainsKey(menuName)) {

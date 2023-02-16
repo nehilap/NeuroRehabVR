@@ -16,6 +16,8 @@ public class TargetListMember : MonoBehaviour
 	}
 
 	private void OnDestroy() {
-		ObjectManager.Instance.removeTargetFromList(gameObject.name.Trim());
+		if (ObjectManager.Instance != null) {
+			ObjectManager.Instance.removeTargetFromList(gameObject.name.Trim());
+		}
 	}
 }

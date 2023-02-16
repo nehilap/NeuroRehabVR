@@ -24,14 +24,13 @@ public class MiniMenuManager : MonoBehaviour {
 	private void Start() {
 		menuHolder.GetComponent<Canvas>().enabled = false;
 
-		if (menuToShow == null && menuNameToShow != null) {
-			menuToShow = ObjectManager.Instance.getMenuByName(menuNameToShow);        
+		if (menuToShow == null && menuNameToShow.Trim().Length > 0) {
+			menuToShow = ObjectManager.Instance.getMenuByName(menuNameToShow);
 		}
 
 		originalMenuPosition = menuToShow.transform.localPosition;
 		originalMenuScale = menuToShow.transform.localScale;
 		originalMenuParent = menuToShow.transform.parent;
-
 	}
 
 	private void OnEnable() {

@@ -4,6 +4,7 @@ using TMPro;
 using Enums;
 using System.Collections.Generic;
 using Mappings;
+using Utility;
 
 [System.Serializable]
 public class AnimationSettingsManagerOffline : MonoBehaviour {
@@ -50,6 +51,10 @@ public class AnimationSettingsManagerOffline : MonoBehaviour {
 
 	public void Start() {
 		getCurrentAnimationSetup().Add(new PosRotMapping(targetObject.transform));
+
+		if (animType == AnimationType.Key) {
+			getCurrentAnimationSetup().Add(new PosRotMapping(ObjectManager.Instance.getTargetByName("Lock").GetComponent<TargetUtility>().customTargetPos.transform));
+		}
 		
 		setupMarkers();
 	}

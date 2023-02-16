@@ -71,26 +71,41 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 		List<PosRotMapping> currentAnimSetup = animSettingsManager.getCurrentAnimationSetup();
 
 		if (animSettingsManager.animType == AnimationType.Cup) {
-			Vector3 tempPos = currentAnimSetup[0].position;
+			PosRotMapping endMapping = currentAnimSetup[0].Clone();
+			endMapping.position += new Vector3(0, 0.2f, 0);
 
-			yield return StartCoroutine(lerpAllTargets(targetObject, tempPos, tempPos + new Vector3(0, 0.2f, 0), animSettingsManager.moveDuration / 2));
-			yield return new WaitForSeconds(0.5f);
-			yield return StartCoroutine(lerpAllTargets(targetObject, tempPos + new Vector3(0, 0.2f, 0), tempPos, animSettingsManager.moveDuration / 2));
+			yield return StartCoroutine(lerpTransform(targetObject, currentAnimSetup[0], endMapping, animSettingsManager.moveDuration / 2, true));
+			yield return new WaitForSeconds(0.6f);
+			yield return StartCoroutine(lerpTransform(targetObject, endMapping, currentAnimSetup[0], animSettingsManager.moveDuration / 2, true));
 		}
 
-		for (int i = 1; i < currentAnimSetup.Count; i++)	{
-			Vector3 startPos = currentAnimSetup[i-1].position;
-			Vector3 endPos = currentAnimSetup[i].position;
-			yield return StartCoroutine(lerpAllTargets(targetObject, startPos, endPos, animSettingsManager.moveDuration));
+		for (int i = 1; i < currentAnimSetup.Count; i++) {
+			yield return StartCoroutine(lerpTransform(targetObject, currentAnimSetup[i-1], currentAnimSetup[i], animSettingsManager.moveDuration, true));
 
 			if (animSettingsManager.animType == AnimationType.Cup) {
-				yield return StartCoroutine(lerpAllTargets(targetObject, endPos, endPos + new Vector3(0, 0.2f, 0), animSettingsManager.moveDuration / 2));
-				yield return new WaitForSeconds(0.5f);
-				yield return StartCoroutine(lerpAllTargets(targetObject, endPos + new Vector3(0, 0.2f, 0), endPos, animSettingsManager.moveDuration / 2));
+				PosRotMapping tempCupMapping = currentAnimSetup[i].Clone();
+				tempCupMapping.position += new Vector3(0, 0.2f, 0);
+
+				yield return StartCoroutine(lerpTransform(targetObject, currentAnimSetup[i], tempCupMapping, animSettingsManager.moveDuration / 2, true));
+				yield return new WaitForSeconds(0.6f);
+				yield return StartCoroutine(lerpTransform(targetObject, tempCupMapping, currentAnimSetup[i], animSettingsManager.moveDuration / 2, true));
 			}
 		}
-		
 
+		if (animSettingsManager.animType == AnimationType.Key) {
+			yield return new WaitForSeconds(0.5f);
+			PosRotMapping tempMapping = currentAnimSetup[currentAnimSetup.Count - 1].Clone();
+			// Theoretically both ways should work pretty well
+			tempMapping.rotation.x += -90;
+			//tempMapping.rotation = (Quaternion.Euler(tempMapping.rotation) * Quaternion.Euler(targetObject.transform.forward * 90)).eulerAngles;
+
+			yield return StartCoroutine(lerpTransform(targetObject, currentAnimSetup[currentAnimSetup.Count - 1], tempMapping, 1f, true));
+			yield return new WaitForSeconds(0.5f);
+			yield return StartCoroutine(lerpTransform(targetObject, tempMapping, currentAnimSetup[currentAnimSetup.Count - 1], 1f, true));
+			yield return new WaitForSeconds(0.5f);
+			yield return StartCoroutine(lerpTransform(targetObject, currentAnimSetup[currentAnimSetup.Count - 1], currentAnimSetup[0], animSettingsManager.moveDuration, true));
+		}
+		
 		isAnimationRunning = true;
 	}
 
@@ -117,6 +132,7 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 			}
 		} else {
 			targetObject.GetComponent<Rigidbody>().useGravity = true;
+			targetObject.GetComponent<Collider>().enabled = true;
 		}
 	}
 
@@ -127,19 +143,17 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 			armRestHelperObject = GameObject.Find("ArmRestHelperObject");
 		}
 
-		Vector3 endPos = armRestHelperObject.transform.position + armRestOffset;
-		Vector3 endRot = armRestHelperObject.transform.rotation.eulerAngles;
+		PosRotMapping startMapping = new PosRotMapping(targetsHelperObject.armRestTarget.transform);
+		PosRotMapping endMapping = new PosRotMapping(armRestHelperObject.transform);
+		endMapping.position += armRestOffset;
 
-		PosRotMapping endMapping = new PosRotMapping(endPos, endRot);
-		
-
-		yield return StartCoroutine(lerpTransform(targetsHelperObject.armRestTarget, endMapping, animSettingsManager.armMoveDuration));
+		yield return StartCoroutine(lerpTransform(targetsHelperObject.armRestTarget, startMapping, endMapping, animSettingsManager.armMoveDuration));
 	}
 	
 	private IEnumerator restArmStopAnimation() {
-		Vector3 startPos = targetsHelperObject.armRestTarget.transform.position;
+		PosRotMapping startMapping = new PosRotMapping(targetsHelperObject.armRestTarget.transform);
 
-		yield return StartCoroutine(lerpTransform(targetsHelperObject.armRestTarget, originalArmRestPosRot, animSettingsManager.armMoveDuration));
+		yield return StartCoroutine(lerpTransform(targetsHelperObject.armRestTarget, startMapping, originalArmRestPosRot, animSettingsManager.armMoveDuration));
 	}
 
 	public void alignArmRestTargetWithTable() {
@@ -209,7 +223,8 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 		}
 	}
 
-	private IEnumerator lerpAllTargets(GameObject target, Vector3 startPosition, Vector3 targetPosition, float duration) {
+	// No need to use currently
+	/*private IEnumerator lerpAllTargets(GameObject target, Vector3 startPosition, Vector3 targetPosition, float duration) {
 		float time = 0;
 		while (time < duration) {
 			target.transform.position = Vector3.Lerp(startPosition, targetPosition, time / duration);
@@ -220,21 +235,27 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 		// lerp never reaches endValue, that is why we have to set it manually
 		target.transform.position = targetPosition;
 		targetsHelperObject.alignTargetTransforms();
-	}
+	}*/
 
-	private IEnumerator lerpTransform(GameObject startTarget, PosRotMapping endMapping, float duration) {
-		PosRotMapping startMapping = new PosRotMapping(startTarget.transform);
-
+	private IEnumerator lerpTransform(GameObject startTarget, PosRotMapping startMapping, PosRotMapping endMapping, float duration, bool alignTransforms = false) {
 		float time = 0;
 		while (time < duration) {
-			startTarget.transform.position = Vector3.Lerp(startMapping.position, endMapping.position, time / duration);
-			startTarget.transform.rotation = Quaternion.Lerp(Quaternion.Euler(startMapping.rotation), Quaternion.Euler(endMapping.rotation), time / duration);
+			float t = time / duration;
+			t = t * t * t * (t * (6f* t - 15f) + 10f); // https://chicounity3d.wordpress.com/2014/05/23/how-to-lerp-like-a-pro/
+			startTarget.transform.position = Vector3.Lerp(startMapping.position, endMapping.position, t);
+			startTarget.transform.rotation = Quaternion.Lerp(Quaternion.Euler(startMapping.rotation), Quaternion.Euler(endMapping.rotation), t);
+			if (alignTransforms) {
+				targetsHelperObject.alignTargetTransforms();
+			}
 			time += Time.deltaTime;
 			yield return null;
 		}
 		// lerp never reaches endValue, that is why we have to set it manually
 		startTarget.transform.position = endMapping.position;
 		startTarget.transform.rotation = Quaternion.Euler(endMapping.rotation);
+		if (alignTransforms) {
+			targetsHelperObject.alignTargetTransforms();
+		}
 	}
 
 	private IEnumerator alignTransformWrapper(float duration) {
@@ -282,6 +303,7 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 				targetObject = GameObject.Find(targetObjectName + "(Clone)");
 			}
 			targetObject.GetComponent<Rigidbody>().useGravity = false;
+			targetObject.GetComponent<Collider>().enabled = false;
 		}
 
 		float armLength = Mathf.Max(armRangeMesh.transform.lossyScale.x, armRangeMesh.transform.lossyScale.x, armRangeMesh.transform.lossyScale.x) * armRangeMesh.sharedMesh.bounds.extents.x;

@@ -24,6 +24,10 @@ namespace Mappings
 		public override string ToString() {
 			return position + " _ " + rotation;
 		}
+
+		public PosRotMapping Clone() {
+			return new PosRotMapping(position, rotation);
+		}
 	}
 
 	// https://mirror-networking.gitbook.io/docs/guides/serialization
