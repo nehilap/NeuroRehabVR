@@ -7554,7 +7554,7 @@ MonoBehaviour:
   - {fileID: 6503223248108256113, guid: 432ec2da1efa32444b52bda54e24d565, type: 3}
   - {fileID: 6447446020758575640, guid: 6d36fc476b8ddbf4fade76110a5fcd6d, type: 3}
   - {fileID: 6447446020758575640, guid: 326f7e656e408e9428d253ee408af9d0, type: 3}
-  isXRActive: 0
+  isXRActive: 1
   activeXRButton: {fileID: 741526237}
   inactiveXRButton: {fileID: 1472012654}
   XRRig: {fileID: 5909644039463754659}
