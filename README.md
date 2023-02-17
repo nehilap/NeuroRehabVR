@@ -1,4 +1,4 @@
-# Masters Thesis - Neurorehabilitation in Collaborative VR
+# VRArm-Unity - Neurorehabilitation in Collaborative VR
 
 ## Authors
 
@@ -19,4 +19,4 @@
 
 ## Testing
 
-For testing locally with multiple instances running, create clones using ParrelSync package and run Server and Clients separately
+For testing locally with multiple instances running, create clones using ParrelSync package and run Server and Clients separately.
