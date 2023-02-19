@@ -1,10 +1,13 @@
 using Enums;
+using UnityEngine;
 
 namespace Mappings
 {
 	[System.Serializable]
 	public class AnimationMapping {
-		// order: armTarget; thumbTarget; indexFingerTarget; middleFingerTarget; ringFingerTarget; pinkyFingerTarget;
+
+		[NonReorderable] public TargetMappingGroup[] targetMappingGroups;
+
 		public TargetMappingGroup cubeMapping;
 
 		public TargetMappingGroup blockMapping;
@@ -13,33 +16,25 @@ namespace Mappings
 
 		public TargetMappingGroup keyMapping;
 
-		public AnimationMapping(TargetMappingGroup _cubeMapping, TargetMappingGroup _blockMapping, TargetMappingGroup _cupMapping, TargetMappingGroup _keyMapping) {  
-			cubeMapping = _cubeMapping;
-			blockMapping = _blockMapping;
-			cupMapping = _cupMapping;
-			keyMapping = _keyMapping;
-		}
-
-
 		public TargetMappingGroup getTargetMappingByType(AnimationType animType) {
-			switch (animType) {
-				case AnimationType.Block:
-					return blockMapping;
-				case AnimationType.Cube: 
-					return cubeMapping;
-				case AnimationType.Cup: 
-					return cupMapping;
-				case AnimationType.Key: 
-					return keyMapping;
-				default: return null; // AnimType.Off
+			foreach (TargetMappingGroup item in targetMappingGroups) {
+				if (item.animationType == animType) {
+					return item;
+				}
 			}
+			return null;
 		}
 
 		public void resizeMappings(float multiplier) {
-			cubeMapping.resizeMapping(multiplier);
-			blockMapping.resizeMapping(multiplier);
-			cupMapping.resizeMapping(multiplier);
-			keyMapping.resizeMapping(multiplier);
+			foreach (TargetMappingGroup item in targetMappingGroups) {
+				item.resizeMapping(multiplier);
+			}
+		}
+
+		public void mirrorMappings(Transform _mirror) {
+			foreach (TargetMappingGroup item in targetMappingGroups) {
+				item.mirrorMapping(_mirror);
+			}
 		}
 	}
 }

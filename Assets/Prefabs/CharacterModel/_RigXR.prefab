@@ -1630,6 +1630,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 9011600344085463258, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: m_Data.m_MaintainTargetPositionOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011600344085463258, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: m_Data.m_MaintainTargetRotationOffset
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
 --- !u!1 &2223494747928096785 stripped

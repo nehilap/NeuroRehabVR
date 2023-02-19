@@ -39,15 +39,19 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 
 	[SerializeField] private MeshFilter armRangeMesh;
 	[SerializeField] private float armRangeSlack = 0.01f;
+ 
+	[SerializeField] private Transform _mirror;
 
 	void Start() {
 		animSettingsManager = GameObject.Find("AnimSettingsManagerOffline")?.GetComponent<AnimationSettingsManagerOffline>();
-
 		armRestHelperObject = GameObject.Find("ArmRestHelperObject");
 
 		avatarController = gameObject.GetComponent<AvatarController>();
-
 		animationMapping.resizeMappings(avatarController.sizeMultiplier);
+
+		if (isLeft) {
+			animationMapping.mirrorMappings(_mirror);
+		}
 	}
 
 	private void LateUpdate() {

@@ -7,6 +7,11 @@
 			"type": -1,
 			"children": [
 				{
+					"name": "animationType",
+					"type": 7,
+					"val": "Enum:Cube"
+				},
+				{
 					"name": "armMapping",
 					"type": -1,
 					"children": [
@@ -300,6 +305,11 @@
 			"name": "blockMapping",
 			"type": -1,
 			"children": [
+				{
+					"name": "animationType",
+					"type": 7,
+					"val": "Enum:Cube"
+				},
 				{
 					"name": "armMapping",
 					"type": -1,
@@ -595,6 +605,11 @@
 			"type": -1,
 			"children": [
 				{
+					"name": "animationType",
+					"type": 7,
+					"val": "Enum:Cube"
+				},
+				{
 					"name": "armMapping",
 					"type": -1,
 					"children": [
@@ -888,6 +903,11 @@
 			"name": "keyMapping",
 			"type": -1,
 			"children": [
+				{
+					"name": "animationType",
+					"type": 7,
+					"val": "Enum:Cube"
+				},
 				{
 					"name": "armMapping",
 					"type": -1,
