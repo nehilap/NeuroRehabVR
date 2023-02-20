@@ -14,54 +14,35 @@ public class ObjectManager : MonoBehaviour {
 		}
 	}
 
-	[SerializeField] private Dictionary<string, GameObject> menuList = new Dictionary<string, GameObject>();
-	[SerializeField] private Dictionary<string, GameObject> targetList = new Dictionary<string, GameObject>();
+	[SerializeField] private Dictionary<string, List<GameObject>> objectList = new Dictionary<string, List<GameObject>>();
 
-	public GameObject getMenuByName(string menuName) {
-		if (menuList.ContainsKey(menuName)) {
-			return menuList[menuName];
+	/*
+	 * OBJECT LIST
+	 */
+
+	public List<GameObject> getObjectsByName(string targetName) {
+		if (objectList.ContainsKey(targetName)) {
+			return objectList[targetName];
 		} else {
-			return null;
+			return new List<GameObject>();
 		}
 	}
 
-	public Dictionary<string, GameObject> getMenuList() {
-		return menuList;
+	public Dictionary<string, List<GameObject>> getObjectList() {
+		return objectList;
 	}
 
-	public void addMenuToList(string menuName, GameObject menuToAdd) {
-		menuList.Add(menuName, menuToAdd);
-	}
-
-	public void removeMenuFromList(string menuName) {
-		menuList.Remove(menuName);
-	}
-
-	public GameObject getTargetByName(string targetName) {
-		if (targetList.ContainsKey(targetName)) {
-			return targetList[targetName];
+	public void addObjectToList(string objectName, GameObject objectToAdd) {
+		if (objectList.ContainsKey(objectName)) {
+			objectList[objectName].Add(objectToAdd);
 		} else {
-			return null;
+			List<GameObject> objects = new List<GameObject>();
+			objects.Add(objectToAdd);
+			objectList.Add(objectName, objects);
 		}
 	}
 
-	public Dictionary<string, GameObject> getTargetList() {
-		return targetList;
-	}
-
-	public string addTargetToList(string targetName, GameObject targetToAdd) {
-		string postfix = "";
-		int index = 0;
-		while(targetList.ContainsKey(targetName + postfix)) {
-			postfix = "" + index;
-			index++;
-		}
-
-		targetList.Add(targetName + postfix, targetToAdd);
-		return targetName + postfix;
-	}
-
-	public void removeTargetFromList(string targetName) {
-		targetList.Remove(targetName);
+	public void removeObjectFromList(string targetName, GameObject objectToRemove) {
+		objectList[targetName].Remove(objectToRemove);
 	}
 }

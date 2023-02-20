@@ -46,6 +46,7 @@ namespace Mappings
 			pinkyMapping = MirrorObject(pinkyMapping);
 		}
 		
+		// https://forum.unity.com/threads/mirror-reflections-in-vr.416728/#post-6067572
 		private PosRotMapping MirrorObject(PosRotMapping mirroredObject) {
 			PosRotMapping newMirroredObject = mirroredObject.Clone();
 

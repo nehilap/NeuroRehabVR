@@ -114,7 +114,7 @@ public class XRStatusManager : MonoBehaviour {
 				Debug.Log("Starting XR...");
 				XRGeneralSettings.Instance.Manager.StartSubsystems();
 				isXRActive = true;
-				
+
 				setupUIAndXRElements();
 				setXRSettings();
 				yield return null;
@@ -134,6 +134,7 @@ public class XRStatusManager : MonoBehaviour {
 		// We actually have to increase the resolution scaling, to increase the image queality
 		// because 1.0 creates artifacts / jagged lines
 		XRSettings.eyeTextureResolutionScale = 1.6f;
+
 	}
 
 	private void setupUIAndXRElements() {

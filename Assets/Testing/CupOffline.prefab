@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 4435673564120194193}
   - component: {fileID: 841383254428881914}
   - component: {fileID: 3632295222895175595}
-  - component: {fileID: -706596651420296783}
+  - component: {fileID: 9101935367680111398}
   m_Layer: 14
   m_Name: CupOffline
   m_TagString: Untagged
@@ -395,6 +395,7 @@ MonoBehaviour:
   PinkyChainIK_target_helper: {fileID: 753292368921395862}
   renderers:
   - {fileID: 2106662151925561747}
+  customTargetPos: {fileID: 0}
 --- !u!114 &3632295222895175595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,7 +408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 616b575f497e66d4798211a8fc519d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-706596651420296783
+--- !u!114 &9101935367680111398
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -416,10 +417,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4435673564120194191}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0754cd5c75a4467458942bc5101679d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 83be284ef4640ca4a88123afcbc77699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetName: 
+  objectName: Cup
 --- !u!1 &7742152862637147326
 GameObject:
   m_ObjectHideFlags: 0

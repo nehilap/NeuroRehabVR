@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7806239503561634730}
   - component: {fileID: 1794689875691241846}
   - component: {fileID: 2817348143941748358}
-  - component: {fileID: -1137422226847378364}
+  - component: {fileID: 5729967117254340604}
   m_Layer: 0
   m_Name: Cup_fake
   m_TagString: Untagged
@@ -113,7 +113,7 @@ MonoBehaviour:
   renderers:
   - {fileID: 1794689875691241846}
   customTargetPos: {fileID: 0}
---- !u!114 &-1137422226847378364
+--- !u!114 &5729967117254340604
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,10 +122,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1241488487069944307}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0754cd5c75a4467458942bc5101679d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 83be284ef4640ca4a88123afcbc77699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetName: Cup_fake
+  objectName: Cup_fake
 --- !u!1 &2380342136038093271
 GameObject:
   m_ObjectHideFlags: 0

@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 4585951089911290153}
   - component: {fileID: 6399786466804558114}
   - component: {fileID: 4597051606143054759}
-  - component: {fileID: 7969754043903631270}
+  - component: {fileID: -3380091909828661251}
   m_Layer: 14
   m_Name: Block
   m_TagString: Untagged
@@ -347,6 +347,7 @@ MonoBehaviour:
   PinkyChainIK_target_helper: {fileID: 8651332568434498930}
   renderers:
   - {fileID: 4585951089911290154}
+  customTargetPos: {fileID: 0}
 --- !u!114 &4597051606143054759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,7 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 616b575f497e66d4798211a8fc519d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7969754043903631270
+--- !u!114 &-3380091909828661251
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -368,10 +369,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4585951089911290167}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0754cd5c75a4467458942bc5101679d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 83be284ef4640ca4a88123afcbc77699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetName: Block
+  objectName: Block
 --- !u!1 &4723480501298921936
 GameObject:
   m_ObjectHideFlags: 0

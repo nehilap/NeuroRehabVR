@@ -53,7 +53,7 @@ public class AnimationSettingsManagerOffline : MonoBehaviour {
 		getCurrentAnimationSetup().Add(new PosRotMapping(targetObject.transform));
 
 		if (animType == AnimationType.Key) {
-			getCurrentAnimationSetup().Add(new PosRotMapping(ObjectManager.Instance.getTargetByName("Lock").GetComponent<TargetUtility>().customTargetPos.transform));
+			getCurrentAnimationSetup().Add(new PosRotMapping(ObjectManager.Instance.getObjectsByName("Lock")[0].GetComponent<TargetUtility>().customTargetPos.transform));
 		}
 		
 		setupMarkers();

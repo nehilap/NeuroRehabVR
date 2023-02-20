@@ -8,14 +8,6 @@ namespace Mappings
 
 		[NonReorderable] public TargetMappingGroup[] targetMappingGroups;
 
-		public TargetMappingGroup cubeMapping;
-
-		public TargetMappingGroup blockMapping;
-
-		public TargetMappingGroup cupMapping;
-
-		public TargetMappingGroup keyMapping;
-
 		public TargetMappingGroup getTargetMappingByType(AnimationType animType) {
 			foreach (TargetMappingGroup item in targetMappingGroups) {
 				if (item.animationType == animType) {

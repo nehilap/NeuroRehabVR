@@ -1,1196 +1,1211 @@
 {
-	"name": "animationMapping",
+	"name": "targetMappingGroups",
 	"type": -1,
+	"arraySize": 4,
+	"arrayType": "TargetMappingGroup",
 	"children": [
 		{
-			"name": "cubeMapping",
+			"name": "Array",
 			"type": -1,
+			"arraySize": 4,
+			"arrayType": "TargetMappingGroup",
 			"children": [
 				{
-					"name": "animationType",
-					"type": 7,
-					"val": "Enum:Cube"
+					"name": "size",
+					"type": 12,
+					"val": 4
 				},
 				{
-					"name": "armMapping",
+					"name": "data",
 					"type": -1,
 					"children": [
 						{
-							"name": "position",
-							"type": 9,
+							"name": "animationType",
+							"type": 7,
+							"val": "Enum:Cube"
+						},
+						{
+							"name": "armMapping",
+							"type": -1,
 							"children": [
 								{
-									"name": "x",
-									"type": 2,
-									"val": -0.03654
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": -0.03654
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": -0.0199199915
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 0.0969000161
+										}
+									]
 								},
 								{
-									"name": "y",
-									"type": 2,
-									"val": -0.0199199915
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 0.0969000161
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 73.66279
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 344.502258
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 3.15425754
+										}
+									]
 								}
 							]
 						},
 						{
-							"name": "rotation",
-							"type": 9,
+							"name": "thumbMapping",
+							"type": -1,
 							"children": [
 								{
-									"name": "x",
-									"type": 2,
-									"val": 73.66279
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 0.04518
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": -0.002460003
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 0.03354001
+										}
+									]
 								},
 								{
-									"name": "y",
-									"type": 2,
-									"val": 344.502258
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 315.726074
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 61.535984
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 127.276657
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "indexMapping",
+							"type": -1,
+							"children": [
+								{
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 0.0233999938
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": -0.02880001
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": -0.04218
+										}
+									]
 								},
 								{
-									"name": "z",
-									"type": 2,
-									"val": 3.15425754
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 344.350983
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 0
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 180
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "middleMapping",
+							"type": -1,
+							"children": [
+								{
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": -0.000180006027
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": -0.0154800415
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": -0.0424799919
+										}
+									]
+								},
+								{
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 0
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 0
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 180
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "ringMapping",
+							"type": -1,
+							"children": [
+								{
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": -0.0181799978
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": -0.0123599768
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": -0.04626
+										}
+									]
+								},
+								{
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 0
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 0
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 180
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "pinkyMapping",
+							"type": -1,
+							"children": [
+								{
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": -0.0291
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": -0.0227999687
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": -0.0383400023
+										}
+									]
+								},
+								{
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 0
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 0
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 180
+										}
+									]
 								}
 							]
 						}
 					]
 				},
 				{
-					"name": "thumbMapping",
+					"name": "data",
 					"type": -1,
 					"children": [
 						{
-							"name": "position",
-							"type": 9,
+							"name": "animationType",
+							"type": 7,
+							"val": "Enum:Block"
+						},
+						{
+							"name": "armMapping",
+							"type": -1,
 							"children": [
 								{
-									"name": "x",
-									"type": 2,
-									"val": 0.04518
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": -0.07165
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 0.00259995461
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 0.0578500032
+										}
+									]
 								},
 								{
-									"name": "y",
-									"type": 2,
-									"val": -0.002460003
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 0.03354001
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 0
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 246.925079
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 270
+										}
+									]
 								}
 							]
 						},
 						{
-							"name": "rotation",
-							"type": 9,
+							"name": "thumbMapping",
+							"type": -1,
 							"children": [
 								{
-									"name": "x",
-									"type": 2,
-									"val": 315.726074
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 0.0219500065
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": -0.0314999819
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 0.0365000069
+										}
+									]
 								},
 								{
-									"name": "y",
-									"type": 2,
-									"val": 61.535984
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 336.0237
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 23.2167511
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 132.693481
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "indexMapping",
+							"type": -1,
+							"children": [
+								{
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 0.0312000066
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": -0.0268000364
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": -0.0286500156
+										}
+									]
 								},
 								{
-									"name": "z",
-									"type": 2,
-									"val": 127.276657
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 0
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 270
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 0
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "middleMapping",
+							"type": -1,
+							"children": [
+								{
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 0.0358500034
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": -0.00380003452
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": -0.0221000016
+										}
+									]
+								},
+								{
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 0
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 270
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 0
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "ringMapping",
+							"type": -1,
+							"children": [
+								{
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 0.0353
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 0.0161999464
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": -0.0217500031
+										}
+									]
+								},
+								{
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 0
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 270
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 0
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "pinkyMapping",
+							"type": -1,
+							"children": [
+								{
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 0.0195500031
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 0.0364999771
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": -0.0317499936
+										}
+									]
+								},
+								{
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 0
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 0
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 0
+										}
+									]
 								}
 							]
 						}
 					]
 				},
 				{
-					"name": "indexMapping",
+					"name": "data",
 					"type": -1,
 					"children": [
 						{
-							"name": "position",
-							"type": 9,
+							"name": "animationType",
+							"type": 7,
+							"val": "Enum:Cup"
+						},
+						{
+							"name": "armMapping",
+							"type": -1,
 							"children": [
 								{
-									"name": "x",
-									"type": 2,
-									"val": 0.0233999938
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": -0.07164997
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 0.00259995461
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 0.0578500479
+										}
+									]
 								},
 								{
-									"name": "y",
-									"type": 2,
-									"val": -0.02880001
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": -0.04218
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": -2.561321E-05
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 246.9251
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 270
+										}
+									]
 								}
 							]
 						},
 						{
-							"name": "rotation",
-							"type": 9,
+							"name": "thumbMapping",
+							"type": -1,
 							"children": [
 								{
-									"name": "x",
-									"type": 2,
-									"val": 344.350983
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 0.0194600075
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": -0.034160018
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 0.0416499972
+										}
+									]
 								},
 								{
-									"name": "y",
-									"type": 2,
-									"val": 0
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 333.603943
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 26.179121
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 117.109154
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "indexMapping",
+							"type": -1,
+							"children": [
+								{
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 0.0303099751
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": -0.02323997
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": -0.0343700349
+										}
+									]
 								},
 								{
-									"name": "z",
-									"type": 2,
-									"val": 180
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 2.41072321E-05
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 90.24365
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 1.93699925E-05
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "middleMapping",
+							"type": -1,
+							"children": [
+								{
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 0.03583999
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": -0.005319953
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": -0.0221200287
+										}
+									]
+								},
+								{
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": -2.41483649E-05
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 270
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": -1.9318697E-05
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "ringMapping",
+							"type": -1,
+							"children": [
+								{
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 0.0352799967
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 0.0121799707
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": -0.02177
+										}
+									]
+								},
+								{
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": -2.41483649E-05
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 270
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": -1.9318697E-05
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "pinkyMapping",
+							"type": -1,
+							"children": [
+								{
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 0.0195299983
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 0.03283
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": -0.0317800045
+										}
+									]
+								},
+								{
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 2.39056644E-05
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 2.263024E-05
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": -2.204422E-05
+										}
+									]
 								}
 							]
 						}
 					]
 				},
 				{
-					"name": "middleMapping",
+					"name": "data",
 					"type": -1,
 					"children": [
 						{
-							"name": "position",
-							"type": 9,
+							"name": "animationType",
+							"type": 7,
+							"val": "Enum:Key"
+						},
+						{
+							"name": "armMapping",
+							"type": -1,
 							"children": [
 								{
-									"name": "x",
-									"type": 2,
-									"val": -0.000180006027
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": -0.0342000052
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": -0.04100001
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 0.113000005
+										}
+									]
 								},
 								{
-									"name": "y",
-									"type": 2,
-									"val": -0.0154800415
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": -0.0424799919
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 11.8217382
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 58.54801
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 82.3405762
+										}
+									]
 								}
 							]
 						},
 						{
-							"name": "rotation",
-							"type": 9,
+							"name": "thumbMapping",
+							"type": -1,
 							"children": [
 								{
-									"name": "x",
-									"type": 2,
-									"val": 0
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": -0.002799999
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 0.0180000067
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 0.0272000134
+										}
+									]
 								},
 								{
-									"name": "y",
-									"type": 2,
-									"val": 0
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 180
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "ringMapping",
-					"type": -1,
-					"children": [
-						{
-							"name": "position",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": -0.0181799978
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": -0.0123599768
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": -0.04626
-								}
-							]
-						},
-						{
-							"name": "rotation",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": 0
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": 0
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 180
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "pinkyMapping",
-					"type": -1,
-					"children": [
-						{
-							"name": "position",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": -0.0291
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": -0.0227999687
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": -0.0383400023
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 90
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 30.60102
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 0
+										}
+									]
 								}
 							]
 						},
 						{
-							"name": "rotation",
-							"type": 9,
+							"name": "indexMapping",
+							"type": -1,
 							"children": [
 								{
-									"name": "x",
-									"type": 2,
-									"val": 0
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": -0.0163
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": -0.01639998
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": -0.00189998746
+										}
+									]
 								},
 								{
-									"name": "y",
-									"type": 2,
-									"val": 0
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 180
-								}
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "blockMapping",
-			"type": -1,
-			"children": [
-				{
-					"name": "animationType",
-					"type": 7,
-					"val": "Enum:Cube"
-				},
-				{
-					"name": "armMapping",
-					"type": -1,
-					"children": [
-						{
-							"name": "position",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": -0.07165
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": 0.00259995461
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 0.0578500032
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 90
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 200.056244
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 0
+										}
+									]
 								}
 							]
 						},
 						{
-							"name": "rotation",
-							"type": 9,
+							"name": "middleMapping",
+							"type": -1,
 							"children": [
 								{
-									"name": "x",
-									"type": 2,
-									"val": 0
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": -0.0299
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": -0.0274000168
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 0.0246
+										}
+									]
 								},
 								{
-									"name": "y",
-									"type": 2,
-									"val": 246.925079
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 270
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "thumbMapping",
-					"type": -1,
-					"children": [
-						{
-							"name": "position",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": 0.0219500065
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": -0.0314999819
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 0.0365000069
-								}
-							]
-						},
-						{
-							"name": "rotation",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": 336.0237
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": 23.2167511
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 132.693481
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "indexMapping",
-					"type": -1,
-					"children": [
-						{
-							"name": "position",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": 0.0312000066
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": -0.0268000364
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": -0.0286500156
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 340.7376
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 24.0985641
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 335.223053
+										}
+									]
 								}
 							]
 						},
 						{
-							"name": "rotation",
-							"type": 9,
+							"name": "ringMapping",
+							"type": -1,
 							"children": [
 								{
-									"name": "x",
-									"type": 2,
-									"val": 0
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": -0.0378
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": -0.04030001
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 0.0316
+										}
+									]
 								},
 								{
-									"name": "y",
-									"type": 2,
-									"val": 270
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 0
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "middleMapping",
-					"type": -1,
-					"children": [
-						{
-							"name": "position",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": 0.0358500034
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": -0.00380003452
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": -0.0221000016
-								}
-							]
-						},
-						{
-							"name": "rotation",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": 0
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": 270
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 0
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "ringMapping",
-					"type": -1,
-					"children": [
-						{
-							"name": "position",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": 0.0353
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": 0.0161999464
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": -0.0217500031
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 337.67453
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 301.654022
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 349.629181
+										}
+									]
 								}
 							]
 						},
 						{
-							"name": "rotation",
-							"type": 9,
+							"name": "pinkyMapping",
+							"type": -1,
 							"children": [
 								{
-									"name": "x",
-									"type": 2,
-									"val": 0
+									"name": "position",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": -0.036
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": -0.060199976
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 0.0282999873
+										}
+									]
 								},
 								{
-									"name": "y",
-									"type": 2,
-									"val": 270
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 0
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "pinkyMapping",
-					"type": -1,
-					"children": [
-						{
-							"name": "position",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": 0.0195500031
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": 0.0364999771
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": -0.0317499936
-								}
-							]
-						},
-						{
-							"name": "rotation",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": 0
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": 0
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 0
-								}
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "cupMapping",
-			"type": -1,
-			"children": [
-				{
-					"name": "animationType",
-					"type": 7,
-					"val": "Enum:Cube"
-				},
-				{
-					"name": "armMapping",
-					"type": -1,
-					"children": [
-						{
-							"name": "position",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": -0.07164997
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": 0.00259995461
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 0.0578500479
-								}
-							]
-						},
-						{
-							"name": "rotation",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": -2.561321E-05
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": 246.9251
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 270
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "thumbMapping",
-					"type": -1,
-					"children": [
-						{
-							"name": "position",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": 0.0194600075
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": -0.034160018
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 0.0416499972
-								}
-							]
-						},
-						{
-							"name": "rotation",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": 333.603943
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": 26.179121
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 117.109154
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "indexMapping",
-					"type": -1,
-					"children": [
-						{
-							"name": "position",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": 0.0303099751
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": -0.02323997
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": -0.0343700349
-								}
-							]
-						},
-						{
-							"name": "rotation",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": 2.41072321E-05
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": 90.24365
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 1.93699925E-05
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "middleMapping",
-					"type": -1,
-					"children": [
-						{
-							"name": "position",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": 0.03583999
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": -0.005319953
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": -0.0221200287
-								}
-							]
-						},
-						{
-							"name": "rotation",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": -2.41483649E-05
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": 270
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": -1.9318697E-05
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "ringMapping",
-					"type": -1,
-					"children": [
-						{
-							"name": "position",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": 0.0352799967
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": 0.0121799707
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": -0.02177
-								}
-							]
-						},
-						{
-							"name": "rotation",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": -2.41483649E-05
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": 270
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": -1.9318697E-05
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "pinkyMapping",
-					"type": -1,
-					"children": [
-						{
-							"name": "position",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": 0.0195299983
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": 0.03283
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": -0.0317800045
-								}
-							]
-						},
-						{
-							"name": "rotation",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": 2.39056644E-05
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": 2.263024E-05
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": -2.204422E-05
-								}
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "keyMapping",
-			"type": -1,
-			"children": [
-				{
-					"name": "animationType",
-					"type": 7,
-					"val": "Enum:Cube"
-				},
-				{
-					"name": "armMapping",
-					"type": -1,
-					"children": [
-						{
-							"name": "position",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": -0.0342000052
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": -0.04100001
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 0.113000005
-								}
-							]
-						},
-						{
-							"name": "rotation",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": 11.8217382
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": 58.54801
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 82.3405762
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "thumbMapping",
-					"type": -1,
-					"children": [
-						{
-							"name": "position",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": -0.002799999
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": 0.0180000067
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 0.0272000134
-								}
-							]
-						},
-						{
-							"name": "rotation",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": 90
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": 30.60102
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 0
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "indexMapping",
-					"type": -1,
-					"children": [
-						{
-							"name": "position",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": -0.0163
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": -0.01639998
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": -0.00189998746
-								}
-							]
-						},
-						{
-							"name": "rotation",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": 90
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": 200.056244
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 0
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "middleMapping",
-					"type": -1,
-					"children": [
-						{
-							"name": "position",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": -0.0299
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": -0.0274000168
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 0.0246
-								}
-							]
-						},
-						{
-							"name": "rotation",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": 340.7376
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": 24.0985641
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 335.223053
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "ringMapping",
-					"type": -1,
-					"children": [
-						{
-							"name": "position",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": -0.0378
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": -0.04030001
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 0.0316
-								}
-							]
-						},
-						{
-							"name": "rotation",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": 337.67453
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": 301.654022
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 349.629181
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "pinkyMapping",
-					"type": -1,
-					"children": [
-						{
-							"name": "position",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": -0.036
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": -0.060199976
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 0.0282999873
-								}
-							]
-						},
-						{
-							"name": "rotation",
-							"type": 9,
-							"children": [
-								{
-									"name": "x",
-									"type": 2,
-									"val": 40.1726952
-								},
-								{
-									"name": "y",
-									"type": 2,
-									"val": 78.2657852
-								},
-								{
-									"name": "z",
-									"type": 2,
-									"val": 140.26062
+									"name": "rotation",
+									"type": 9,
+									"children": [
+										{
+											"name": "x",
+											"type": 2,
+											"val": 40.1726952
+										},
+										{
+											"name": "y",
+											"type": 2,
+											"val": 78.2657852
+										},
+										{
+											"name": "z",
+											"type": 2,
+											"val": 140.26062
+										}
+									]
 								}
 							]
 						}

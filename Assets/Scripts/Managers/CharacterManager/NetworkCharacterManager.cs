@@ -26,7 +26,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 		}
 		
 		if (isLocalPlayer) {
-			spawnCorrectTargetFakes(AnimationType.Off, animSettingsManager.animType, true);
+			spawnCorrectTargetFakes(AnimationType.Off, animSettingsManager.animType);
 		}
 	}
 
@@ -132,26 +132,26 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	}
 
 	private PosRotMapping getPosRotFromObject() {
-		string animType = animSettingsManager.animType.ToString();
-		GameObject targetObject = ObjectManager.Instance.getTargetByName(animType);
-		if (!targetObject) {
-			 targetObject = ObjectManager.Instance.getTargetByName(animType + "(Clone)");
-		}
-		if (!targetObject) {
-			Debug.LogError("Failed to find object: " + animType);
+		List<GameObject> targetObjects = ObjectManager.Instance.getObjectsByName(animSettingsManager.animType.ToString());
+		
+		if (targetObjects.Count == 0) {
+			Debug.LogError("Failed to find object: " + animSettingsManager.animType.ToString());
 			return null;
 		}
-		return new PosRotMapping(targetObject.transform.position, targetObject.transform.rotation.eulerAngles);
+		
+		return new PosRotMapping(targetObjects[0].transform);
 	}
 
 	[Command]
 	public void CmdAddMovePosition() {
-		GameObject originalTargetObject = ObjectManager.Instance.getTargetByName(animSettingsManager.animType.ToString());
-		if (!originalTargetObject) {
-			originalTargetObject = ObjectManager.Instance.getTargetByName(animSettingsManager.animType.ToString() + "(Clone)");
+		List<GameObject> targetObjects = ObjectManager.Instance.getObjectsByName(animSettingsManager.animType.ToString());
+		
+		if (targetObjects.Count == 0) {
+			Debug.LogError("Failed to find object: " + animSettingsManager.animType.ToString());
+			return;
 		}
 
-		PosRotMapping _endPositionRotation = new PosRotMapping(originalTargetObject.transform.position, originalTargetObject.transform.rotation.eulerAngles);
+		PosRotMapping _endPositionRotation = new PosRotMapping(targetObjects[0].transform);
 		animSettingsManager.getCurrentAnimationSetup().Add(_endPositionRotation);
 	}
 
@@ -196,143 +196,89 @@ public class NetworkCharacterManager : NetworkBehaviour {
 			return;
 		}
 
-		bool foundTarget = false;
-		if (ObjectManager.Instance.getTargetByName(_newAnimType.ToString()) != null || ObjectManager.Instance.getTargetByName(_newAnimType.ToString() + "(Clone)") != null) {
-			foundTarget = true;
-		}
+		spawnCorrectTarget(_oldAnimType, _newAnimType);
 
-		RpcSpawnCorrectTarget(_oldAnimType, _newAnimType, !foundTarget);
-
-		spawnCorrectTarget(_oldAnimType, _newAnimType, !foundTarget);
+		RpcSpawnCorrectTarget(_oldAnimType, _newAnimType);
 	}
 
 	[ClientRpc]
-	public void RpcSpawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType, bool spawnNew) {
-		spawnCorrectTargetFakes(_oldAnimType, _newAnimType, spawnNew);
+	public void RpcSpawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType) {
+		spawnCorrectTargetFakes(_oldAnimType, _newAnimType);
 	}
 
 	// https://gamedevbeginner.com/how-to-spawn-an-object-in-unity-using-instantiate/
 	// https://mirror-networking.gitbook.io/docs/guides/gameobjects/spawning-gameobjects
-	private void spawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType, bool spawnNew) {
-		if (spawnNew) {
-			for (int i = 0; i < targetPrefabs.Count; i++) {
-				if (targetPrefabs[i].name.Equals(_newAnimType.ToString())) {
+	private void spawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType) {
+		for (int i = 0; i < targetPrefabs.Count; i++) {
+			if (targetPrefabs[i].name.Equals(_newAnimType.ToString())) {
+				float halfHeight = targetPrefabs[i].transform.lossyScale.y * targetPrefabs[i].GetComponent<MeshFilter>().sharedMesh.bounds.extents.y;
+
+				GameObject newObject = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(0, halfHeight, 0), targetPrefabs[i].transform.rotation);
+				newObject.gameObject.name = targetPrefabs[i].name;
+
+				NetworkServer.Spawn(newObject);
+
+				SetAnimationStartPosition();
+			}
+
+			if (_newAnimType == AnimationType.Key) {
+				if (targetPrefabs[i].name.Equals("Lock")) {
 					float halfHeight = targetPrefabs[i].transform.lossyScale.y * targetPrefabs[i].GetComponent<MeshFilter>().sharedMesh.bounds.extents.y;
-					GameObject newObject = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(0, halfHeight, 0), targetPrefabs[i].transform.rotation);
-					newObject.gameObject.name = targetPrefabs[i].name;
 
-					NetworkServer.Spawn(newObject);
+					// Center
+					GameObject newLock1 = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(0, halfHeight, 0.25f), targetPrefabs[i].transform.rotation);
+					NetworkServer.Spawn(newLock1);
 
-					SetAnimationStartPosition();
-				}
+					// Left
+					GameObject newLock2 = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(-0.3f, halfHeight, 0.18f), targetPrefabs[i].transform.rotation);
+					newLock2.transform.LookAt(spawnArea.transform.position + new Vector3(0, halfHeight, 0));
+					NetworkServer.Spawn(newLock2);
 
-				if (_newAnimType == AnimationType.Key) {
-					if (targetPrefabs[i].name.Equals("Lock")) {
-						float halfHeight = targetPrefabs[i].transform.lossyScale.y * targetPrefabs[i].GetComponent<MeshFilter>().sharedMesh.bounds.extents.y;
+					// Right
+					GameObject newLock3 = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(+0.3f, halfHeight, 0.18f), targetPrefabs[i].transform.rotation);
+					newLock3.transform.LookAt(spawnArea.transform.position + new Vector3(0, halfHeight, 0));
+					NetworkServer.Spawn(newLock3);
 
-						// Center
-						GameObject newLock1 = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(0, halfHeight, 0.22f), targetPrefabs[i].transform.rotation);
-						NetworkServer.Spawn(newLock1);
-
-						// Left
-						GameObject newLock2 = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(-0.3f, halfHeight, 0.15f), targetPrefabs[i].transform.rotation);
-						newLock2.transform.LookAt(spawnArea.transform.position + new Vector3(0, halfHeight, 0));
-						NetworkServer.Spawn(newLock2);
-
-						// Right
-						GameObject newLock3 = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(+0.3f, halfHeight, 0.15f), targetPrefabs[i].transform.rotation);
-						newLock3.transform.LookAt(spawnArea.transform.position + new Vector3(0, halfHeight, 0));
-						NetworkServer.Spawn(newLock3);
-
-						SetLockPosition(new PosRotMapping(newLock1.GetComponent<TargetUtility>().customTargetPos.transform));
-					}
-				}
-			}
-		} else {
-			Dictionary<string, GameObject> targetsInScene = ObjectManager.Instance.getTargetList();
-			foreach (var item in targetsInScene) {
-				if (item.Key.Contains(_newAnimType.ToString())) {
-					item.Value.SetActive(true);
-				}
-				if (_newAnimType == AnimationType.Key) {
-					if (item.Key.Contains("Lock")) {
-						item.Value.SetActive(true);
-					}
+					SetLockPosition(new PosRotMapping(newLock1.GetComponent<TargetUtility>().customTargetPos.transform));
 				}
 			}
 		}
-		
-		GameObject obj = ObjectManager.Instance.getTargetByName(_oldAnimType.ToString());
-		if (obj) {
-			NetworkServer.Destroy(obj);
-		}
-		obj = ObjectManager.Instance.getTargetByName(_oldAnimType.ToString() + "(Clone)");
-		if (obj) {
-			NetworkServer.Destroy(obj);
+
+		List<GameObject> oldTargetsInScene = ObjectManager.Instance.getObjectsByName(_oldAnimType.ToString());
+		foreach (var item in oldTargetsInScene) {
+			NetworkServer.Destroy(item);
 		}
 
 		if (_oldAnimType == AnimationType.Key) {
-			Dictionary<string, GameObject> targetsInScene = ObjectManager.Instance.getTargetList();
-			foreach (var item in targetsInScene) {
-				if (item.Key.Contains("Lock")) {
-					NetworkServer.Destroy(item.Value);
-				}
+			oldTargetsInScene = ObjectManager.Instance.getObjectsByName("Lock");
+			foreach (var item in oldTargetsInScene) {
+				NetworkServer.Destroy(item);
 			}
 		}
 	}
 
-	private void spawnCorrectTargetFakes(AnimationType _oldAnimType, AnimationType _newAnimType, bool spawnNew) {
-		if (spawnNew) {
-			for (int i = 0; i < targetPrefabs.Count; i++) {
-				if (targetPrefabs[i].name.Equals(_newAnimType.ToString() + "_fake")) {
-					GameObject newObject = Instantiate(targetPrefabs[i], spawnArea.transform.position, spawnArea.transform.rotation);
-					newObject.gameObject.name = targetPrefabs[i].name;
-				}
-			}
-		} else {
-			// We activate both here on client, active state is not synced
-			// we check both names for objects, because server spawned objects have (Clone) in the name
-			Dictionary<string, GameObject> targetsInScene = ObjectManager.Instance.getTargetList();
-			foreach (var item in targetsInScene) {
-				if (item.Key.Contains(_newAnimType.ToString())) {
-					item.Value.SetActive(true);
-				}
+	private void spawnCorrectTargetFakes(AnimationType _oldAnimType, AnimationType _newAnimType) {
+		for (int i = 0; i < targetPrefabs.Count; i++) {
+			if (targetPrefabs[i].name.Equals(_newAnimType.ToString() + "_fake")) {
+				GameObject newObject = Instantiate(targetPrefabs[i], spawnArea.transform.position, spawnArea.transform.rotation);
+				newObject.gameObject.name = targetPrefabs[i].name;
 			}
 		}
 
 		// We de-activate fake here on client
-		GameObject obj = ObjectManager.Instance.getTargetByName(_oldAnimType.ToString() + "_fake");
-		if (obj) {
-			Destroy(obj);
+		List<GameObject> oldTargetsInScene = ObjectManager.Instance.getObjectsByName(_oldAnimType.ToString() + "_fake");
+		foreach (var item in oldTargetsInScene) {
+			Destroy(item);
 		}
 
-/* 		if (_oldAnimType == AnimationType.Key) {
-			Dictionary<string, GameObject> targetsInScene = ObjectManager.Instance.getTargetList();
-			foreach (var item in targetsInScene) {
-				if (item.Key.Contains("Lock") && item.Key.Contains("_fake")) {
-					Destroy(item.Value);
-				}
+		// We de-activate fake here on client
+		oldTargetsInScene = ObjectManager.Instance.getObjectsByName(_oldAnimType.ToString());
+		foreach (var item in oldTargetsInScene) {
+			if (!item.activeSelf) {
+				Destroy(item);
 			}
-		} */
+		}
 	}
-
-	/*public static List<GameObject> FindTargetsOfTypeAll() {
-		List<GameObject> results = new List<GameObject>();
-		for(int i = 0; i< SceneManager.sceneCount; i++) {
-			var s = SceneManager.GetSceneAt(i);
-			if (s.isLoaded) {
-				var allGameObjects = s.GetRootGameObjects();
-				for (int j = 0; j < allGameObjects.Length; j++) {
-					var go = allGameObjects[j];
-					TargetUtility[] items = go.GetComponentsInChildren<TargetUtility>(true);
-					foreach (TargetUtility item in items) {
-						results.Add(item.gameObject);
-					}
-				}
-			}
-		}
-		return results;
-	}*/
 
 	/**
 	*
@@ -401,14 +347,13 @@ public class NetworkCharacterManager : NetworkBehaviour {
 		
 		string targetObjectName = animSettingsManager.animType.ToString();
 
-		GameObject targetObject = ObjectManager.Instance.getTargetByName(targetObjectName);
-		if (targetObject == null) {
-			targetObject = ObjectManager.Instance.getTargetByName(targetObjectName + "(Clone)");
-		}
-		if (targetObject == null) {
+		List<GameObject> targetObjects = ObjectManager.Instance.getObjectsByName(targetObjectName);
+		if (targetObjects.Count == 0) {
 			return;
 		}
-		setItemAuthority(targetObject.GetComponent<NetworkIdentity>(), caller);
+		foreach (var item in targetObjects) {
+			setItemAuthority(item.GetComponent<NetworkIdentity>(), caller);
+		}
 
 		TargetMoveObject(caller.connectionToClient, offset);
 	}
@@ -417,14 +362,16 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	public void TargetMoveObject(NetworkConnection connection, Vector3 offset) {
 		string targetObjectName = animSettingsManager.animType.ToString();
 
-		GameObject targetObject = ObjectManager.Instance.getTargetByName(targetObjectName);
-		if (targetObject == null) {
-			targetObject = ObjectManager.Instance.getTargetByName(targetObjectName + "(Clone)");
-		}
-		if (targetObject == null) {
-			return;
+		List<GameObject> targetObjects = ObjectManager.Instance.getObjectsByName(targetObjectName);
+		foreach (var item in targetObjects) {
+			item.transform.position += offset;
 		}
 
-		targetObject.transform.position += offset;
+		if (animSettingsManager.animType == AnimationType.Key) {
+			List<GameObject> lockObjects = ObjectManager.Instance.getObjectsByName("Lock");
+			foreach (var item in lockObjects) {
+				item.transform.position += offset;
+			}
+		}
 	}
 }

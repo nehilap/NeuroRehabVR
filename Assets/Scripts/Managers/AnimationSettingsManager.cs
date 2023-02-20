@@ -152,6 +152,12 @@ public class AnimationSettingsManager : NetworkBehaviour {
 	private void changeAnimTypeValue(AnimationType _old, AnimationType _new) {
 		animTypeDropdown.value = animTypeDropdown.options.FindIndex(option => option.text == animType.ToString());
 
+		if (animType == AnimationType.Key) {
+			registerMovePositionButton.interactable = false;
+		} else {
+			registerMovePositionButton.interactable = true;
+		}
+
 		setupMarkers();
 	}
 
@@ -175,6 +181,10 @@ public class AnimationSettingsManager : NetworkBehaviour {
 	}
 
 	void onAnimationSetupUpdated(SyncList<PosRotMapping>.Operation op, int index, PosRotMapping oldItem, PosRotMapping newItem) {
+		if (RoleManager.Instance.characterRole == UserRole.Patient) {
+			return;
+		}
+
 		int prefabIndex;
 		// Debug.Log(newItem);
 		switch (op) {
@@ -219,6 +229,10 @@ public class AnimationSettingsManager : NetworkBehaviour {
 	}
 
 	private void setupMarkers() {
+		if (RoleManager.Instance.characterRole == UserRole.Patient) {
+			return;
+		}
+
 		foreach (GameObject item in spawnedMarkers) {
 			GameObject.Destroy(item);
 		}
