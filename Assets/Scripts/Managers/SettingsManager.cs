@@ -6,6 +6,7 @@ public class AvatarSettings {
 	public int avatarNumber;
 	public float sizeMultiplier;
 	public GameObject currentModel;
+	public bool isLeftArmAnimated;
 }
 
 public class SettingsManager : MonoBehaviour {

@@ -22,9 +22,18 @@ public class GeneralMenuManager : MonoBehaviour
 		joinManager.Join();
 	}
 
-	public void JoinPatient() {
+	public void JoinPatientRight() {
 		StartCoroutine(XRStatusManager.Instance.startXR());
 
+		SettingsManager.Instance.avatarSettings.isLeftArmAnimated = false;
+		RoleManager.Instance.CreateCharacter(UserRole.Patient);
+		joinManager.Join();
+	}
+
+	public void JoinPatientLeft() {
+		StartCoroutine(XRStatusManager.Instance.startXR());
+
+		SettingsManager.Instance.avatarSettings.isLeftArmAnimated = true;
 		RoleManager.Instance.CreateCharacter(UserRole.Patient);
 		joinManager.Join();
 	}

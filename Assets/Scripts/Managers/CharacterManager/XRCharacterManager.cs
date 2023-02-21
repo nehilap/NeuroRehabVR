@@ -5,6 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit.Inputs;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation;
 using UnityEngine.InputSystem.XR;
 using Enums;
+using System.Collections.Generic;
 
 public class XRCharacterManager : CharacterManager {
 
@@ -33,7 +34,10 @@ public class XRCharacterManager : CharacterManager {
 		inputActionManager.enabled = true;
 
 		// We look for Device simulator and setup the local player camera transform to camera transform
-		GameObject.Find("XR Device Simulator").GetComponent<XRDeviceSimulator>().cameraTransform = cameraTransform.transform;
+		List<GameObject> objs =  ObjectManager.Instance.getObjectsByName("XR Device Simulator");
+		foreach (var item in objs) {
+			item.GetComponent<XRDeviceSimulator>().cameraTransform = cameraTransform.transform;
+		}
 
 		// We add listeners on item pick up / release
 		// interactors should contain all hands (XRcontrollers and interactors) that are to be used to interact with items

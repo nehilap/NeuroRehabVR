@@ -58,6 +58,7 @@ public class CustomNetworkManager : NetworkManager {
 			avatarNumber = SettingsManager.Instance.avatarSettings.avatarNumber,
 			sizeMultiplier = SettingsManager.Instance.avatarSettings.sizeMultiplier,
 			isXRActive = XRStatusManager.Instance.isXRActive,
+			isLeftArmAnimated = SettingsManager.Instance.avatarSettings.isLeftArmAnimated,
 		};
 
 		NetworkClient.Send(characterMessage);
@@ -65,7 +66,7 @@ public class CustomNetworkManager : NetworkManager {
 
 	// https://mirror-networking.gitbook.io/docs/guides/gameobjects/custom-character-spawning
 	void OnCreateCharacter(NetworkConnectionToClient conn, CharacterMessage message) {
-		Debug.Log("New connection requested, Client using: HMD: '" + message.hmdType.ToString() + "'" + ", female: '" + message.isFemale + "', avatarIndex: '" + message.avatarNumber + "', role: '" + message.role + "', XR: '" + message.isXRActive + "'");
+		Debug.Log("New connection requested, Client using: HMD: '" + message.hmdType.ToString() + "'" + ", female: '" + message.isFemale + "', avatarIndex: '" + message.avatarNumber + "', role: '" + message.role + "', XR: '" + message.isXRActive + "', LeftArmed: '" + message.isLeftArmAnimated + "'");
 
 		GameObject characterPrefab;
 		if (message.role == UserRole.Therapist || message.role == UserRole.Patient) {
@@ -85,6 +86,7 @@ public class CustomNetworkManager : NetworkManager {
 		characterManager.avatarNumber = message.avatarNumber;
 		characterManager.avatarSizeMultiplier = message.sizeMultiplier;
 		characterManager.isPatient = (message.role == UserRole.Patient);
+		characterManager.isLeftArmAnimated = message.isLeftArmAnimated;
 
 		if (message.isXRActive) {
 			((XRCharacterManager) characterManager).controllerType = message.controllerType;

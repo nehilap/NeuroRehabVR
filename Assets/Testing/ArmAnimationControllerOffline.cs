@@ -43,8 +43,22 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 	[SerializeField] private Transform _mirror;
 
 	void Start() {
-		animSettingsManager = GameObject.Find("AnimSettingsManagerOffline")?.GetComponent<AnimationSettingsManagerOffline>();
-		armRestHelperObject = GameObject.Find("ArmRestHelperObject");
+		animSettingsManager = ObjectManager.Instance.getFirstObjectByName("AnimationSettingsManagerOffline")?.GetComponent<AnimationSettingsManagerOffline>();
+		if (animSettingsManager == null) {
+			Debug.LogError("Failed to initialize ArmAnimationController - 'AnimationSettingsManager' not found");
+			return;
+		}
+
+		armRestHelperObject = ObjectManager.Instance.getFirstObjectByName("ArmRestHelperObject" + (isLeft ? "Left" : "Right"));
+		if (armRestHelperObject == null) {
+			Debug.LogError("Failed to initialize ArmAnimationController - 'ArmRestHelperObject' not found");
+			return;
+		}
+		_mirror = ObjectManager.Instance.getFirstObjectByName("MirrorPlane")?.transform;
+		if (_mirror == null) {
+			Debug.LogError("Failed to initialize ArmAnimationController - 'MirrorPlane' not found");
+			return;
+		}
 
 		avatarController = gameObject.GetComponent<AvatarController>();
 		animationMapping.resizeMappings(avatarController.sizeMultiplier);
@@ -74,24 +88,14 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 		List<PosRotMapping> currentAnimSetup = animSettingsManager.getCurrentAnimationSetup();
 
 		if (animSettingsManager.animType == AnimationType.Cup) {
-			PosRotMapping endMapping = currentAnimSetup[0].Clone();
-			endMapping.position += new Vector3(0, 0.2f, 0);
-
-			yield return StartCoroutine(lerpTransform(targetObject, currentAnimSetup[0], endMapping, animSettingsManager.moveDuration / 2, true));
-			yield return new WaitForSeconds(0.6f);
-			yield return StartCoroutine(lerpTransform(targetObject, endMapping, currentAnimSetup[0], animSettingsManager.moveDuration / 2, true));
+			yield return StartCoroutine(moveCupUpwards(currentAnimSetup[0]));
 		}
 
 		for (int i = 1; i < currentAnimSetup.Count; i++) {
 			yield return StartCoroutine(lerpTransform(targetObject, currentAnimSetup[i-1], currentAnimSetup[i], animSettingsManager.moveDuration, true));
 
 			if (animSettingsManager.animType == AnimationType.Cup) {
-				PosRotMapping tempCupMapping = currentAnimSetup[i].Clone();
-				tempCupMapping.position += new Vector3(0, 0.2f, 0);
-
-				yield return StartCoroutine(lerpTransform(targetObject, currentAnimSetup[i], tempCupMapping, animSettingsManager.moveDuration / 2, true));
-				yield return new WaitForSeconds(0.6f);
-				yield return StartCoroutine(lerpTransform(targetObject, tempCupMapping, currentAnimSetup[i], animSettingsManager.moveDuration / 2, true));
+				yield return StartCoroutine(moveCupUpwards(currentAnimSetup[i]));
 			}
 		}
 
@@ -110,6 +114,15 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 		}
 		
 		isAnimationRunning = true;
+	}
+
+	private IEnumerator moveCupUpwards(PosRotMapping currentAnimSetup) {
+		PosRotMapping tempCupMapping = currentAnimSetup.Clone();
+		tempCupMapping.position += new Vector3(0, 0.2f, 0);
+
+		yield return StartCoroutine(lerpTransform(targetObject, currentAnimSetup, tempCupMapping, animSettingsManager.moveDuration / 2, true));
+		yield return new WaitForSeconds(0.6f);
+		yield return StartCoroutine(lerpTransform(targetObject, tempCupMapping, currentAnimSetup, animSettingsManager.moveDuration / 2, true));
 	}
 
 	// Animation control for moving arm and grabbing with hand
@@ -143,7 +156,7 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 		originalArmRestPosRot = new PosRotMapping(targetsHelperObject.armRestTarget.transform);
 		
 		if (armRestHelperObject == null) {
-			armRestHelperObject = GameObject.Find("ArmRestHelperObject");
+			armRestHelperObject = GameObject.Find("ArmRestHelperObject" + (isLeft ? "Left" : "Right"));
 		}
 
 		PosRotMapping startMapping = new PosRotMapping(targetsHelperObject.armRestTarget.transform);
@@ -301,10 +314,11 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 				item.enabled = true;
 			}
 		}else {
-			targetObject = GameObject.Find(targetObjectName);
-			if (targetObject == null) {
-				targetObject = GameObject.Find(targetObjectName + "(Clone)");
+			List<GameObject> targetObjects = ObjectManager.Instance.getObjectsByName(targetObjectName);
+			if (targetObjects.Count > 0) {
+				targetObject = targetObjects[0];
 			}
+
 			targetObject.GetComponent<Rigidbody>().useGravity = false;
 			targetObject.GetComponent<Collider>().enabled = false;
 		}

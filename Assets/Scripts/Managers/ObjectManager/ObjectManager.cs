@@ -28,6 +28,14 @@ public class ObjectManager : MonoBehaviour {
 		}
 	}
 
+	public GameObject getFirstObjectByName(string targetName) {
+		if (objectList.ContainsKey(targetName)) {
+			return objectList[targetName][0];
+		} else {
+			return null;
+		}
+	}
+
 	public Dictionary<string, List<GameObject>> getObjectList() {
 		return objectList;
 	}

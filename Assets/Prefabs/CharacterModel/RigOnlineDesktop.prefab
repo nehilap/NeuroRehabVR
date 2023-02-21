@@ -635,6 +635,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7609271394805096690, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: offsetTransform
+      value: 
+      objectReference: {fileID: 5308743743746186655}
     - target: {fileID: 7634075933599394607, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
       propertyPath: head.vrTarget
       value: 
@@ -742,6 +746,10 @@ PrefabInstance:
       propertyPath: m_Weight
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 449345143359801962, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
+      propertyPath: offsetTransform
+      value: 
+      objectReference: {fileID: 5308743743746186655}
     - target: {fileID: 603027608205170359, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
       propertyPath: m_Weight
       value: 0

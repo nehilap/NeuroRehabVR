@@ -14,6 +14,7 @@ public class CharacterManager : NetworkBehaviour {
 	[SyncVar] public bool isFemale;
 	[SyncVar] public int avatarNumber;
 	[SyncVar] public float avatarSizeMultiplier;
+	[SyncVar] public bool isLeftArmAnimated;
 
 	[Header("Run sync vars")]
 	[SyncVar(hook = nameof(changeArmRestingState))] public bool isArmResting;
@@ -21,7 +22,6 @@ public class CharacterManager : NetworkBehaviour {
 	[Header("Active avatar")]
 	[SerializeField] public GameObject activeAvatarObject;
 	[SerializeField] public ArmAnimationController activeArmAnimationController;
-	[SerializeField] public bool isLeftArmAnimated = false;
 	[SerializeField] public Transform offsetObject;
 
 	[Header("Avatars prefabs used")]
@@ -108,9 +108,12 @@ public class CharacterManager : NetworkBehaviour {
 
 		activeAvatarObject = transform.GetComponent<AvatarModelManager>().changeModel(isFemale, avatar, avatarSizeMultiplier);
 
-		if (offsetObject != null) {
-			offsetObject.position *= avatarSizeMultiplier;
+		if (activeAvatarObject.TryGetComponent<AvatarController>(out AvatarController avatarController)) {
+			if (offsetObject != null) {
+				offsetObject.position *= avatarSizeMultiplier / avatarController.calculateStandardizedSizeMultiplier();
+			}
 		}
+		
 
 		if (isPatient) {
 			ArmAnimationController[] armAnimationControllers = activeAvatarObject.GetComponents<ArmAnimationController>();
@@ -130,7 +133,7 @@ public class CharacterManager : NetworkBehaviour {
 				Debug.LogError("Failed to find correct Arm animation controller for Patient");
 				return;
 			} else {
-				if (activeAvatarObject.TryGetComponent<AvatarController>(out AvatarController avatarController)) {
+				if (activeAvatarObject.TryGetComponent<AvatarController>(out avatarController)) {
 					if (this.isLeftArmAnimated) {
 						avatarController.leftHand.applyIk = false;
 						activeArmRangeMarker = avatarController.leftArmRangeMarker;
@@ -138,8 +141,6 @@ public class CharacterManager : NetworkBehaviour {
 						avatarController.rightHand.applyIk = false;
 						activeArmRangeMarker = avatarController.rightArmRangeMarker;
 					}
-
-					
 				}
 			}
 		} else {

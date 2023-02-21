@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8206c30601a90ae4885b0b1cb7cca353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterManager: {fileID: 0}
+  characterManager: {fileID: 217987416441878893}
 --- !u!54 &6602759618926751572
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -669,7 +669,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 1.8
   m_Radius: 0.15
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -1733,6 +1733,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 449345143359801962, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
+      propertyPath: offsetTransform
+      value: 
+      objectReference: {fileID: 1878698787931433296}
     - target: {fileID: 1094835895749396996, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
       propertyPath: head.vrTarget
       value: 
@@ -2197,6 +2201,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7609271394805096690, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: offsetTransform
+      value: 
+      objectReference: {fileID: 1878698787931433296}
     - target: {fileID: 7634075933599394607, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
       propertyPath: head.vrTarget
       value: 

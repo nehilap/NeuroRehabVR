@@ -67,7 +67,7 @@ public class AvatarSetup : MonoBehaviour {
 				renderer.enabled = false;
 			}
 		}
-		modelToUse.SetActive(false);
+		GameObject.Destroy(modelToUse);
 
 		Debug.Log("Model succsefully changed " + modelToUse.name);
 	}

@@ -12,5 +12,6 @@ namespace Structs {
         public int avatarNumber;
         public float sizeMultiplier;
         public bool isXRActive;
+        public bool isLeftArmAnimated;
     }
 }

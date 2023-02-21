@@ -3,7 +3,6 @@ using Enums;
 using Mappings;
 using Mirror;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Utility;
 
 public class NetworkCharacterManager : NetworkBehaviour {
@@ -17,12 +16,12 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	[SerializeField] private GameObject spawnArea;
 
 	void Start() {
-		spawnArea = GameObject.Find("SpawnArea");
+		spawnArea = ObjectManager.Instance.getFirstObjectByName("SpawnArea");
+		animSettingsManager = ObjectManager.Instance.getFirstObjectByName("AnimationSettingsManager")?.GetComponent<AnimationSettingsManager>();
 
-		try {
-			animSettingsManager = GameObject.Find("AnimationSettingsObject").GetComponent<AnimationSettingsManager>();
-		} catch (System.Exception e) {
-			Debug.Log(e);
+		if (spawnArea == null || animSettingsManager == null) {
+			Debug.LogError("'AnimationSettingsManager' or 'SpawnArea' not found");
+			return;
 		}
 		
 		if (isLocalPlayer) {
@@ -132,26 +131,26 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	}
 
 	private PosRotMapping getPosRotFromObject() {
-		List<GameObject> targetObjects = ObjectManager.Instance.getObjectsByName(animSettingsManager.animType.ToString());
+		GameObject targetObject = ObjectManager.Instance.getFirstObjectByName(animSettingsManager.animType.ToString());
 		
-		if (targetObjects.Count == 0) {
+		if (targetObject == null) {
 			Debug.LogError("Failed to find object: " + animSettingsManager.animType.ToString());
 			return null;
 		}
 		
-		return new PosRotMapping(targetObjects[0].transform);
+		return new PosRotMapping(targetObject.transform);
 	}
 
 	[Command]
 	public void CmdAddMovePosition() {
-		List<GameObject> targetObjects = ObjectManager.Instance.getObjectsByName(animSettingsManager.animType.ToString());
+		GameObject targetObject = ObjectManager.Instance.getFirstObjectByName(animSettingsManager.animType.ToString());
 		
-		if (targetObjects.Count == 0) {
+		if (targetObject == null) {
 			Debug.LogError("Failed to find object: " + animSettingsManager.animType.ToString());
 			return;
 		}
 
-		PosRotMapping _endPositionRotation = new PosRotMapping(targetObjects[0].transform);
+		PosRotMapping _endPositionRotation = new PosRotMapping(targetObject.transform);
 		animSettingsManager.getCurrentAnimationSetup().Add(_endPositionRotation);
 	}
 
@@ -332,12 +331,13 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	
 	[Command]
 	public void CmdMoveTable(Vector3 offset, NetworkIdentity caller) {
-		GameObject table = GameObject.Find("Table");
-		if (table == null) {
+		List<GameObject> tableObjs =  ObjectManager.Instance.getObjectsByName("Table");
+		if (tableObjs.Count == 0) {
 			return;
 		}
-
-		table.transform.position += offset;
+		foreach (var item in tableObjs) {
+			item.transform.position += offset;
+		}
 
 		// we have to complete change object on position, otherwise it won't be synced to clients
 		SyncList<PosRotMapping> currentSetup = animSettingsManager.getCurrentAnimationSetup();

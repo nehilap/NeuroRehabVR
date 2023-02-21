@@ -36,6 +36,9 @@ public class AvatarController : MonoBehaviour {
 	[SerializeField] private Vector3 originHeadOffset;
 
 	[SerializeField] private float referenceHeight = 1.725f;
+	private float standardizedReferenceHeight = 1.725f;
+
+	private bool sizeInitialized = false;
 	public float sizeMultiplier;
 	public bool sizePreset;
 
@@ -44,12 +47,13 @@ public class AvatarController : MonoBehaviour {
 	}
 
 	private void OnEnable() {
-		if (!sizePreset) {
+		if (!sizePreset && !sizeInitialized) {
 			sizeMultiplier = calculateSizeMultiplier();
 
-			SettingsManager.Instance.avatarSettings.sizeMultiplier = sizeMultiplier;
+			sizeInitialized = true;
 		}
 
+		SettingsManager.Instance.avatarSettings.sizeMultiplier = sizeMultiplier;
 		transform.localScale = new Vector3(sizeMultiplier, sizeMultiplier, sizeMultiplier);
 		headOffset = originHeadOffset * sizeMultiplier;
 	}
@@ -69,6 +73,10 @@ public class AvatarController : MonoBehaviour {
 	}
 
 	public float calculateSizeMultiplier() {
-		return head.vrTarget.TransformPoint(Vector3.zero).y / referenceHeight;
+		return Mathf.Round((head.vrTarget.TransformPoint(Vector3.zero).y / referenceHeight) * 1000) / 1000;
+	}
+
+	public float calculateStandardizedSizeMultiplier() {
+		return Mathf.Round((standardizedReferenceHeight / referenceHeight) * 1000) / 1000;
 	}
 }
