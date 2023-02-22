@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +5,7 @@ public class MiniMenuManager : MonoBehaviour {
 	
 	[SerializeField] private InputActionReference menuAction;
 	[SerializeField] private bool lockCursor;
+	[SerializeField] private bool isStickyParent = true;
 	[SerializeField] private Transform menuHolder;
 	[SerializeField] private GameObject menuToShow;
 	[SerializeField] private string menuNameToShow;
@@ -14,12 +14,20 @@ public class MiniMenuManager : MonoBehaviour {
 
 	[SerializeField] private bool offsetByWidth;
 	[SerializeField] private bool offsetByHeight;
+
+	[SerializeField] private MiniMenuVisibilityManager miniMenuVisibilityManager;
 	
 	private Vector3 originalMenuPosition;
 	private Vector3 originalMenuScale;
 	private Transform originalMenuParent;
 
 	private bool isMenuShowing = false;
+
+	private void Awake() {
+		if (miniMenuVisibilityManager != null) {
+			miniMenuVisibilityManager.registerMiniMenuManager(this);
+		}
+	}
 
 	private void Start() {
 		menuHolder.GetComponent<Canvas>().enabled = false;
@@ -46,12 +54,21 @@ public class MiniMenuManager : MonoBehaviour {
 	}
 
 	private void triggerMenu(InputAction.CallbackContext obj) {
-		isMenuShowing = !isMenuShowing;
+		if (miniMenuVisibilityManager != null) {
+			if (miniMenuVisibilityManager.isMenuShowing(this)) {
+				return;
+			}
+			isMenuShowing = miniMenuVisibilityManager.triggerMenu(this);
+		} else {
+			isMenuShowing = !isMenuShowing;
+		}
 
 		menuHolder.GetComponent<Canvas>().enabled = isMenuShowing;
 
 		if (isMenuShowing) {
-			menuToShow.transform.SetParent(menuHolder);
+			if (isStickyParent) {
+				menuToShow.transform.SetParent(menuHolder);
+			}
 
 			menuToShow.transform.localScale = scale;
 			menuToShow.transform.localRotation = Quaternion.identity;
@@ -75,7 +92,12 @@ public class MiniMenuManager : MonoBehaviour {
 	}
 
 	private void resetMenu() {
-		isMenuShowing = false;
+		if (miniMenuVisibilityManager != null) {
+			miniMenuVisibilityManager.setMenuStatus(this, false);
+			isMenuShowing = false;
+		} else {
+			isMenuShowing = false;
+		}
 
 		menuHolder.GetComponent<Canvas>().enabled = isMenuShowing;
 

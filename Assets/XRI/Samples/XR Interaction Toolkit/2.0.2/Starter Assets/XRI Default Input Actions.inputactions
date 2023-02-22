@@ -95,7 +95,16 @@
                     "id": "173341bf-b8c6-4734-97e9-7cee2357244b",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MenuHold",
+                    "type": "Button",
+                    "id": "226adbf3-60b8-49fa-9874-6ae6d2b3f4a2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
                     "initialStateCheck": false
                 }
             ],
@@ -218,6 +227,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6bb8c23e-8218-47bc-8e42-2f017fa69469",
+                    "path": "<XRController>{LeftHand}/menuButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuHold",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
