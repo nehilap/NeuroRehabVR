@@ -3,11 +3,9 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Enums;
 
-public class GeneralMenuManager : MonoBehaviour
-{
+public class GeneralMenuManager : MonoBehaviour {
+	
 	public string targetAPI;
-
-	public Canvas settingsCanvas;
 
 	private JoinManager joinManager;
 
@@ -36,11 +34,6 @@ public class GeneralMenuManager : MonoBehaviour
 		SettingsManager.Instance.avatarSettings.isLeftArmAnimated = true;
 		RoleManager.Instance.CreateCharacter(UserRole.Patient);
 		joinManager.Join();
-	}
-
-	public void OpenSettings() {
-		settingsCanvas.enabled = true;
-		gameObject.GetComponent<Canvas>().enabled = false;
 	}
 
 	public void QuitApp() {

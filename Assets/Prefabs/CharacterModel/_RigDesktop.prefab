@@ -597,7 +597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4287621437376485675, guid: 390a6df766e42374689a00f4a7c236b7, type: 3}
       propertyPath: menuNameToShow
-      value: 
+      value: LobbyMenu
       objectReference: {fileID: 0}
     - target: {fileID: 4287621437376485675, guid: 390a6df766e42374689a00f4a7c236b7, type: 3}
       propertyPath: offsetByHeight
@@ -605,7 +605,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4287621437376485675, guid: 390a6df766e42374689a00f4a7c236b7, type: 3}
       propertyPath: positionOffset.y
-      value: -450
+      value: -425
       objectReference: {fileID: 0}
     - target: {fileID: 5932472227890620300, guid: 390a6df766e42374689a00f4a7c236b7, type: 3}
       propertyPath: m_Camera

@@ -2,14 +2,7 @@ using Enums;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class SettingsMenuManager : MonoBehaviour
-{
-	public Canvas generalMenu;
-
-	public void closeSettingsMenu() {
-		gameObject.GetComponent<Canvas>().enabled = false;
-		generalMenu.enabled = true;
-	}
+public class SettingsMenuManager : MonoBehaviour {
 
 	public void setControllerPrefabs(int controller) {
 		if (!System.Enum.IsDefined(typeof(ControllerType), controller)) {

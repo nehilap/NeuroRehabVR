@@ -34,6 +34,10 @@ public class XRStatusManager : MonoBehaviour {
 
 	[SerializeField] private GameObject controllerSetupMenu;
 
+	[SerializeField] private GameObject desktopControls;
+	[SerializeField] private GameObject XRControls;
+	[SerializeField] private GameObject MockXRControls;
+
 	void Awake() {
 		#if UNITY_EDITOR
 			if (isXRActive) {
@@ -147,6 +151,16 @@ public class XRStatusManager : MonoBehaviour {
 			XRRig.SetActive(true);
 
 			controllerSetupMenu.SetActive(true);
+
+			if (hmdType == HMDType.Mock) {
+				desktopControls.SetActive(false);
+				XRControls.SetActive(false);
+				MockXRControls.SetActive(true);
+			} else {
+				desktopControls.SetActive(false);
+				XRControls.SetActive(true);
+				MockXRControls.SetActive(false);
+			}
 		} else {
 			inactiveXRButton.activateBar();
 
@@ -158,6 +172,10 @@ public class XRStatusManager : MonoBehaviour {
 			if (desktopRig.TryGetComponent<MouseManager>(out MouseManager mouseManager)) {
 				mouseManager.activeTriggers = 0;
 			}
+
+			desktopControls.SetActive(true);
+			XRControls.SetActive(false);
+			MockXRControls.SetActive(false);
 		}
 	}
 

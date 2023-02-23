@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 0.54901963}
+  m_Color: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 0.7490196}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -359,6 +359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuAction: {fileID: 3796970163881969186, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
   lockCursor: 1
+  isStickyParent: 1
   menuHolder: {fileID: 3114087712732273748}
   menuToShow: {fileID: 0}
   menuNameToShow: TherapistMenu
@@ -366,3 +367,4 @@ MonoBehaviour:
   scale: {x: 3.5, y: 3.5, z: 1}
   offsetByWidth: 0
   offsetByHeight: 0
+  miniMenuVisibilityManager: {fileID: 0}
