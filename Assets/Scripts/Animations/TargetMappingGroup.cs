@@ -38,36 +38,12 @@ namespace Mappings
 		public void mirrorMapping(Transform _mirror) {
 			mirrorPlane = new Plane(_mirror.forward, _mirror.position);
 
-			armMapping = MirrorObject(armMapping);
-			thumbMapping = MirrorObject(thumbMapping);
-			indexMapping = MirrorObject(indexMapping);
-			middleMapping = MirrorObject(middleMapping);
-			ringMapping = MirrorObject(ringMapping);
-			pinkyMapping = MirrorObject(pinkyMapping);
-		}
-		
-		// https://forum.unity.com/threads/mirror-reflections-in-vr.416728/#post-6067572
-		private PosRotMapping MirrorObject(PosRotMapping mirroredObject) {
-			PosRotMapping newMirroredObject = mirroredObject.Clone();
-
-			Vector3 closestPoint;
-			float distanceToMirror;
-			Vector3 mirrorPos;
-
-			closestPoint = mirrorPlane.ClosestPointOnPlane(mirroredObject.position);
-			distanceToMirror = mirrorPlane.GetDistanceToPoint(mirroredObject.position);
-	
-			mirrorPos = closestPoint - mirrorPlane.normal * distanceToMirror;
-	
-			newMirroredObject.position = mirrorPos;
-			newMirroredObject.rotation = ReflectRotation(Quaternion.Euler(mirroredObject.rotation), mirrorPlane.normal).eulerAngles;
-
-			return newMirroredObject;
-		}
-	
-	
-		private Quaternion ReflectRotation(Quaternion source, Vector3 normal) {
-			return Quaternion.LookRotation(Vector3.Reflect(source * Vector3.forward, normal), Vector3.Reflect(source * Vector3.up, normal));
+			armMapping = armMapping.MirrorObject(mirrorPlane);
+			thumbMapping = thumbMapping.MirrorObject(mirrorPlane);
+			indexMapping = indexMapping.MirrorObject(mirrorPlane);
+			middleMapping = middleMapping.MirrorObject(mirrorPlane);
+			ringMapping = ringMapping.MirrorObject(mirrorPlane);
+			pinkyMapping = pinkyMapping.MirrorObject(mirrorPlane);
 		}
 	}
 }

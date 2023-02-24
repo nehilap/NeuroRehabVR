@@ -417,6 +417,10 @@ PrefabInstance:
       propertyPath: m_WarningMessage
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 113542620659459054, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 113542620659459055, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
       propertyPath: m_Name
       value: AvatarMaleModel
@@ -700,6 +704,10 @@ PrefabInstance:
     - target: {fileID: 3616212703665744782, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5753469573669430757, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5912082539520979338, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
       propertyPath: move

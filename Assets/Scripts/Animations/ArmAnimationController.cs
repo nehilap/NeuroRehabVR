@@ -6,7 +6,6 @@ using UnityEngine.Animations.Rigging;
 using Enums;
 using Mappings;
 using Utility;
-using System.Collections.Generic;
 
 public class ArmAnimationController : MonoBehaviour {
 	private Enums.AnimationState animState = Enums.AnimationState.Stopped;
@@ -40,6 +39,8 @@ public class ArmAnimationController : MonoBehaviour {
 	[SerializeField] private AvatarController avatarController;
 	[SerializeField] private MeshFilter armRangeMesh;
 	[SerializeField] private float armRangeSlack = 0.01f;
+
+	private float armLength;
  
 	[SerializeField] private Transform _mirror;
 
@@ -67,6 +68,10 @@ public class ArmAnimationController : MonoBehaviour {
 		if (isLeft) {
 			animationMapping.mirrorMappings(_mirror);
 		}
+
+		armLength = calculateArmLength();
+		// Debug.Log(armRangeMesh.transform.lossyScale);
+		// Debug.Log(armLength);
 	}
 
 	private void LateUpdate() {
@@ -78,19 +83,18 @@ public class ArmAnimationController : MonoBehaviour {
 		float waitDuration = 0.5f;
 		float keyTurnDuration = 1f;
 
+		SyncList<PosRotMapping> currentAnimSetup = animSettingsManager.getCurrentAnimationSetup();
+
+		// First we move the object to it's starting position, instead of it just warping there suddenly
+		yield return StartCoroutine(lerpTransform(targetObject, new PosRotMapping(targetObject.transform), currentAnimSetup[0], 1f, false));
+
 		// Animation control for moving arm and grabbing with hand
 		// we set weight to the corresponding part we're moving
 		RigLerp[] rigLerps = {new RigLerp(armRig, 0, 1), new RigLerp(restArmRig, 1, 0)};
 		yield return StartCoroutine(multiRigLerp(rigLerps, animSettingsManager.armMoveDuration));
 
-		//animPart = AnimationPart.Hand;
-		
 		yield return StartCoroutine(simpleRigLerp(handRig, animSettingsManager.handMoveDuration, 0, 1));
-		
-		//animPart = AnimationPart.Moving;
-
-		SyncList<PosRotMapping> currentAnimSetup = animSettingsManager.getCurrentAnimationSetup();
-		// Debug.Log(CharacterManager.localClient.GetInstanceID() + ",,," + CharacterManager.activePatient.GetInstanceID());		
+	
 		if (!isFakeAnimation && !(CharacterManager.localClientInstance.GetInstanceID() == CharacterManager.activePatientInstance.GetInstanceID())) {
 			Debug.Log("Not original patient, aligning transform");
 			yield return StartCoroutine(alignTransformWrapper(calculateAnimationDuration(animSettingsManager, waitDuration, keyTurnDuration)));
@@ -106,12 +110,19 @@ public class ArmAnimationController : MonoBehaviour {
 				yield return StartCoroutine(moveCupUpAndDown(currentAnimSetup[0], waitDuration));
 			}
 
+			// we use one extra variable to store previous mapping, because in case we skip some steps (out of range)
+			PosRotMapping previousMapping = currentAnimSetup[0].Clone();
 			for (int i = 1; i < currentAnimSetup.Count; i++) {
-				yield return StartCoroutine(lerpTransform(targetObject, currentAnimSetup[i-1], currentAnimSetup[i], animSettingsManager.moveDuration, true));
+				if (!isTargetInRange(currentAnimSetup[i].position)) {
+					continue;
+				}
+
+				yield return StartCoroutine(lerpTransform(targetObject, previousMapping, currentAnimSetup[i], animSettingsManager.moveDuration, true));
 
 				if (animSettingsManager.animType == AnimationType.Cup) {
 					yield return StartCoroutine(moveCupUpAndDown(currentAnimSetup[i], waitDuration));
 				}
+				previousMapping = currentAnimSetup[i].Clone();
 			}
 
 			if (animSettingsManager.animType == AnimationType.Key) {
@@ -297,10 +308,20 @@ public class ArmAnimationController : MonoBehaviour {
 			+ if (key) (_waitDuration * 3) + (2 * _keyTurnDuration) + _animationSettingsManager.moveDuration
 		 */
 		SyncList<PosRotMapping> currentAnimSetup = _animationSettingsManager.getCurrentAnimationSetup();
+		int animCount = currentAnimSetup.Count;
+		for (int i = 0; i < currentAnimSetup.Count; i++) {
+			if (!isTargetInRange(currentAnimSetup[i].position)) {
+				animCount--;
+			}
+		}
+		if(animCount == 0) {
+			return 0f;
+		}
+
 		float duration = 0f;
-		duration += (currentAnimSetup.Count - 1) * _animationSettingsManager.moveDuration;
+		duration += (animCount - 1) * _animationSettingsManager.moveDuration;
 		if (_animationSettingsManager.animType == AnimationType.Cup) {
-			duration += (currentAnimSetup.Count * _animationSettingsManager.moveDuration) + currentAnimSetup.Count * _waitDuration;// Up + Down movement
+			duration += (animCount * _animationSettingsManager.moveDuration) + animCount * _waitDuration;// Up + Down movement
 		}
 		if (_animationSettingsManager.animType == AnimationType.Key) {
 			duration += (_waitDuration * 3) + (2 * _keyTurnDuration) + _animationSettingsManager.moveDuration;
@@ -321,7 +342,20 @@ public class ArmAnimationController : MonoBehaviour {
 
 		string targetObjectName = animSettingsManager.animType.ToString();
 
-		// setup targetObject 
+		SyncList<PosRotMapping> currentAnimationSetup = animSettingsManager.getCurrentAnimationSetup();
+
+		if (currentAnimationSetup.Count < 1) {
+			Debug.LogError("Start or End animation position not set");
+			return;
+		}
+		
+		if (!isTargetInRange(currentAnimationSetup[0].position)) {
+			float targetDistance = Vector3.Distance(currentAnimationSetup[0].position, armRangeMesh.transform.position);
+			Debug.LogWarning("Arm cannot grab object, too far away: " + targetDistance + "m > " + armLength + "m");
+			return;
+		}
+
+		// setup targetObject
 		if(isFakeAnimation) {
 			// if it's a fake animation, we also have to set the correct position of our fake object
 			// GameObject originalTargetObject = GameObject.Find(targetObjectName);
@@ -345,28 +379,7 @@ public class ArmAnimationController : MonoBehaviour {
 				Debug.LogError("Failed to find object: '" + targetObjectName + "'");
 				return;
 			}
-
-			targetObject.GetComponent<Rigidbody>().useGravity = false;
-			targetObject.GetComponent<Collider>().enabled = false;
 		}
-
-		float armLength = Mathf.Max(armRangeMesh.transform.lossyScale.x, armRangeMesh.transform.lossyScale.x, armRangeMesh.transform.lossyScale.x) * armRangeMesh.sharedMesh.bounds.extents.x;
-		float targetDistance = Vector3.Distance(targetObject.transform.position, armRangeMesh.transform.position);
-		if ((targetDistance - armRangeSlack) > armLength) {
-			Debug.LogError("Arm cannot grab object, too far away: " + targetDistance + "m > " + armLength + "m");
-			return;
-		}
-
-		SyncList<PosRotMapping> currentAnimationSetup = animSettingsManager.getCurrentAnimationSetup();
-
-		if (currentAnimationSetup.Count < 1) {
-			Debug.LogError("Start or End animation position not set");
-			return;
-		}
-		// Debug.Log(currentAnimationSetup[0].position + " _ " + (currentAnimationSetup.Count - 1));
-
-		targetObject.transform.position = currentAnimationSetup[0].position;
-		targetObject.transform.rotation = Quaternion.Euler(currentAnimationSetup[0].rotation);
 
 		if (targetObject.TryGetComponent<TargetUtility>(out TargetUtility targetUtility)) {
 			// helper target objects, children of our target object
@@ -381,6 +394,9 @@ public class ArmAnimationController : MonoBehaviour {
 			return;
 		}
 
+		targetObject.GetComponent<Rigidbody>().useGravity = false;
+		targetObject.GetComponent<Collider>().enabled = false;
+
 		try {
 			// Setting initial position + rotation
 			targetsHelperObject.setAllTargetMappings(animationMapping.getTargetMappingByType(animSettingsManager.animType), targetObject);
@@ -392,7 +408,6 @@ public class ArmAnimationController : MonoBehaviour {
 
 		animState = Enums.AnimationState.Playing;
 		//animPart = AnimationPart.Arm;
-
 		// https://gamedevbeginner.com/coroutines-in-unity-when-and-how-to-use-them/
 		StartCoroutine(armStartAnimationLerp(isFakeAnimation));
 	}
@@ -427,14 +442,25 @@ public class ArmAnimationController : MonoBehaviour {
 		}
 	}
 
-	private GameObject findChildByName(string name) {
-		Transform[] children = GetComponentsInChildren<Transform>();
-			foreach(Transform child in children) {
-				if(child.gameObject.name.Equals(name)) {
-					return child.gameObject;
-			}
-		}
-		return null;
+	public bool isTargetInRange(Vector3 targetPosition) {
+		float targetDistance = Vector3.Distance(targetPosition, armRangeMesh.transform.position);
+		return armLength > (targetDistance - armRangeSlack);
+	}
+
+	public float calculateArmLength() {
+		return armRangeMesh.transform.lossyScale.x * armRangeMesh.sharedMesh.bounds.extents.x;
+	}
+
+	public float getArmLength() {
+		return armLength;
+	}
+
+	public float getArmRangeSlack() {
+		return armRangeSlack;
+	}
+
+	public Vector3 getArmRangePosition() {
+		return armRangeMesh.transform.position;
 	}
 
 	public static void PrintVector3(Vector3 message, int type = 1) {

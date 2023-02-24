@@ -34,9 +34,9 @@ public class XRStatusManager : MonoBehaviour {
 
 	[SerializeField] private GameObject controllerSetupMenu;
 
-	[SerializeField] private GameObject desktopControls;
-	[SerializeField] private GameObject XRControls;
-	[SerializeField] private GameObject MockXRControls;
+	private GameObject desktopControls;
+	private GameObject XRControls;
+	private GameObject mockXRControls;
 
 	void Awake() {
 		#if UNITY_EDITOR
@@ -78,7 +78,9 @@ public class XRStatusManager : MonoBehaviour {
 	}
 
 	void Start() {
-		StatusTextManager.Instance.setStatusText();
+		desktopControls = ObjectManager.Instance.getFirstObjectByName("DesktopControls");
+		XRControls = ObjectManager.Instance.getFirstObjectByName("XRControls");
+		mockXRControls = ObjectManager.Instance.getFirstObjectByName("MockXRControls");
 
 		if (XRGeneralSettings.Instance.Manager.isInitializationComplete) {
 			isXRActive = true;
@@ -105,7 +107,6 @@ public class XRStatusManager : MonoBehaviour {
 			isXRActive = false;
 			
 			setupUIAndXRElements();
-			StatusTextManager.Instance.setStatusText();
 		}
 	}
 
@@ -153,13 +154,13 @@ public class XRStatusManager : MonoBehaviour {
 			controllerSetupMenu.SetActive(true);
 
 			if (hmdType == HMDType.Mock) {
-				desktopControls.SetActive(false);
-				XRControls.SetActive(false);
-				MockXRControls.SetActive(true);
+				desktopControls?.SetActive(false);
+				XRControls?.SetActive(false);
+				mockXRControls?.SetActive(true);
 			} else {
-				desktopControls.SetActive(false);
-				XRControls.SetActive(true);
-				MockXRControls.SetActive(false);
+				desktopControls?.SetActive(false);
+				XRControls?.SetActive(true);
+				mockXRControls?.SetActive(false);
 			}
 		} else {
 			inactiveXRButton.activateBar();
@@ -173,10 +174,12 @@ public class XRStatusManager : MonoBehaviour {
 				mouseManager.activeTriggers = 0;
 			}
 
-			desktopControls.SetActive(true);
-			XRControls.SetActive(false);
-			MockXRControls.SetActive(false);
+			desktopControls?.SetActive(true);
+			XRControls?.SetActive(false);
+			mockXRControls?.SetActive(false);
 		}
+
+		StatusTextManager.Instance.InitStatusText();
 	}
 
 }

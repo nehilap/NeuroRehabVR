@@ -16,26 +16,33 @@ public class AvatarLowerBodyAnimationController : MonoBehaviour {
 	private float rightFootRotationWeight;
 
 	[SerializeField] private Vector3 footOffset;
+	private Vector3 internalFootOffset;
 
 	[SerializeField] private Vector3 raycastLeftOffset;
+	private Vector3 internalRaycastLeftOffset;
 	
 	[SerializeField] private Vector3 raycastRightOffset;
+	private Vector3 internalRaycastRightOffset;
 
 	[SerializeField] private LayerMask groundLayer;
 
 	[SerializeField] private Transform offsetTransform;
-	[SerializeField] private float offsetDistance;
+	[SerializeField] public float offsetDistance;
+	public bool offsetPreset;
 
 	[SerializeField] private AvatarController avatarController;
 
 	private float groundOffset;
 
-	void Start() {
-		offsetDistance = offsetTransform.TransformPoint(Vector3.zero).y;
+	private void OnEnable() {
+		if (!offsetPreset) {
+			offsetDistance = offsetTransform.TransformPoint(Vector3.zero).y;
+		}
 
-		footOffset *= avatarController.sizeMultiplier;
-		raycastLeftOffset *= avatarController.sizeMultiplier;
-		raycastRightOffset *= avatarController.sizeMultiplier;
+		SettingsManager.Instance.avatarSettings.offsetDistance = offsetDistance;
+		internalFootOffset = footOffset * avatarController.sizeMultiplier;
+		internalRaycastLeftOffset = raycastLeftOffset * avatarController.sizeMultiplier;
+		internalRaycastRightOffset = raycastRightOffset * avatarController.sizeMultiplier;
 		groundOffset = 0.045f * avatarController.sizeMultiplier;
 	}
 
@@ -48,7 +55,6 @@ public class AvatarLowerBodyAnimationController : MonoBehaviour {
 
 		bool isLeftFootDown = Physics.Raycast(leftFootPosition + raycastLeftOffset, Vector3.down, out leftFootHit);
 		bool isRightFootDown = Physics.Raycast(rightFootPosition + raycastRightOffset, Vector3.down, out rightFootHit);
-
 
 		bool isCrouching = Physics.Raycast(offsetTransform.position, Vector3.down, offsetDistance - groundOffset, groundLayer.value);
 

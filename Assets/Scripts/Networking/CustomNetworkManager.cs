@@ -57,6 +57,7 @@ public class CustomNetworkManager : NetworkManager {
 			isFemale = SettingsManager.Instance.avatarSettings.isFemale,
 			avatarNumber = SettingsManager.Instance.avatarSettings.avatarNumber,
 			sizeMultiplier = SettingsManager.Instance.avatarSettings.sizeMultiplier,
+			offsetDistance = SettingsManager.Instance.avatarSettings.offsetDistance,
 			isXRActive = XRStatusManager.Instance.isXRActive,
 			isLeftArmAnimated = SettingsManager.Instance.avatarSettings.isLeftArmAnimated,
 		};
@@ -85,6 +86,7 @@ public class CustomNetworkManager : NetworkManager {
 		characterManager.isFemale = message.isFemale;
 		characterManager.avatarNumber = message.avatarNumber;
 		characterManager.avatarSizeMultiplier = message.sizeMultiplier;
+		characterManager.avatarOffsetDistance = message.offsetDistance;
 		characterManager.isPatient = (message.role == UserRole.Patient);
 		characterManager.isLeftArmAnimated = message.isLeftArmAnimated;
 

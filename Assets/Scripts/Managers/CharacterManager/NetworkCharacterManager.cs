@@ -15,6 +15,8 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 	[SerializeField] private GameObject spawnArea;
 
+	private Transform _mirror;
+
 	void Start() {
 		spawnArea = ObjectManager.Instance.getFirstObjectByName("SpawnArea");
 		animSettingsManager = ObjectManager.Instance.getFirstObjectByName("AnimationSettingsManager")?.GetComponent<AnimationSettingsManager>();
@@ -23,9 +25,15 @@ public class NetworkCharacterManager : NetworkBehaviour {
 			Debug.LogError("'AnimationSettingsManager' or 'SpawnArea' not found");
 			return;
 		}
-		
+
 		if (isLocalPlayer) {
 			spawnCorrectTargetFakes(AnimationType.Off, animSettingsManager.animType);
+		}
+
+		_mirror = ObjectManager.Instance.getFirstObjectByName("MirrorPlane")?.transform;
+		if (_mirror == null) {
+			Debug.LogError("Failed to initialize ArmAnimationController - 'MirrorPlane' not found");
+			return;
 		}
 	}
 
@@ -118,15 +126,20 @@ public class NetworkCharacterManager : NetworkBehaviour {
 			return;
 		}
 
-		PosRotMapping newPosRotMapping = getPosRotFromObject();
-		if (newPosRotMapping == null) {
+		PosRotMapping targetPosRotMapping = getPosRotFromObject();
+		if (targetPosRotMapping == null) {
+			return;
+		}
+
+		if (!isTargetInBounds(targetPosRotMapping)) {
+			Debug.LogWarning("Cannot set target position - Out of range of Arm");
 			return;
 		}
 
 		if (animSettingsManager.getCurrentAnimationSetup().Count >= 1) {
-			animSettingsManager.getCurrentAnimationSetup()[0] = newPosRotMapping;
+			animSettingsManager.getCurrentAnimationSetup()[0] = targetPosRotMapping;
 		} else {
-			animSettingsManager.getCurrentAnimationSetup().Add(newPosRotMapping);
+			animSettingsManager.getCurrentAnimationSetup().Add(targetPosRotMapping);
 		}
 	}
 
@@ -149,9 +162,14 @@ public class NetworkCharacterManager : NetworkBehaviour {
 			Debug.LogError("Failed to find object: " + animSettingsManager.animType.ToString());
 			return;
 		}
+		PosRotMapping movePosRotMapping = new PosRotMapping(targetObject.transform);
 
-		PosRotMapping _endPositionRotation = new PosRotMapping(targetObject.transform);
-		animSettingsManager.getCurrentAnimationSetup().Add(_endPositionRotation);
+		if (!isTargetInBounds(movePosRotMapping)) {
+			Debug.LogWarning("Cannot set target position - Out of range of Arm");
+			return;
+		}
+
+		animSettingsManager.getCurrentAnimationSetup().Add(movePosRotMapping);
 	}
 
 	[Command]
@@ -168,12 +186,46 @@ public class NetworkCharacterManager : NetworkBehaviour {
 			return;
 		}
 
+		if (!isTargetInBounds(lockTargetPosRot)) {
+			Debug.LogWarning("Cannot set Lock position - Out of range of Arm");
+			return;
+		}
+
 		int setupCount = animSettingsManager.getCurrentAnimationSetup().Count;
 		if (setupCount > 1) {
 			animSettingsManager.getCurrentAnimationSetup()[setupCount - 1] = lockTargetPosRot;
 		} else {
 			animSettingsManager.getCurrentAnimationSetup().Add(lockTargetPosRot);
 		}
+	}
+
+	public bool isTargetInBounds(PosRotMapping targetPosRotMapping) {
+		GameObject tableObject = ObjectManager.Instance.getFirstObjectByName("Table");
+
+		if (tableObject != null) {
+			RaycastHit[] hits = Physics.RaycastAll(targetPosRotMapping.position, Vector3.down, targetPosRotMapping.position.y);
+			bool isAboveTable = false;
+			foreach (RaycastHit hit in hits) {
+				if (hit.collider.gameObject.Equals(tableObject)) {
+					isAboveTable = true;
+					break;
+				}
+			}
+			if (!isAboveTable) {
+				Debug.LogWarning("Target Object not above Table");
+				return false;
+			}
+
+			if ( CharacterManager.activePatientInstance != null) {
+				float armLength = CharacterManager.activePatientInstance.activeArmAnimationController.calculateArmLength() + CharacterManager.activePatientInstance.activeArmAnimationController.getArmRangeSlack();
+				float targetDistance = Vector3.Distance(targetPosRotMapping.position, CharacterManager.activePatientInstance.activeArmAnimationController.getArmRangePosition());
+				if (targetDistance > armLength) {
+					Debug.LogWarning("Arm cannot reach object, too far away: " + targetDistance + "m > " + armLength + "m");
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	[Command]
@@ -205,14 +257,24 @@ public class NetworkCharacterManager : NetworkBehaviour {
 		spawnCorrectTargetFakes(_oldAnimType, _newAnimType);
 	}
 
+	private Quaternion ReflectRotation(Quaternion source, Vector3 normal) {
+		return Quaternion.LookRotation(Vector3.Reflect(source * Vector3.forward, normal), Vector3.Reflect(source * Vector3.up, normal));
+	}
+
 	// https://gamedevbeginner.com/how-to-spawn-an-object-in-unity-using-instantiate/
 	// https://mirror-networking.gitbook.io/docs/guides/gameobjects/spawning-gameobjects
 	private void spawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType) {
 		for (int i = 0; i < targetPrefabs.Count; i++) {
 			if (targetPrefabs[i].name.Equals(_newAnimType.ToString())) {
-				float halfHeight = targetPrefabs[i].transform.lossyScale.y * targetPrefabs[i].GetComponent<MeshFilter>().sharedMesh.bounds.extents.y;
+				float halfHeight = targetPrefabs[i].GetComponent<Renderer>().bounds.extents.y;
+				Vector3 rotation = targetPrefabs[i].transform.rotation.eulerAngles;
 
-				GameObject newObject = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(0, halfHeight, 0), targetPrefabs[i].transform.rotation);
+				// if animation is Key AND patient is left handed, we flip the key
+				if (CharacterManager.activePatientInstance != null && _newAnimType == AnimationType.Key && CharacterManager.activePatientInstance.isLeftArmAnimated) {
+					rotation = new Vector3(-90f, 0f, -90f);
+				}
+
+				GameObject newObject = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(0, halfHeight, 0), Quaternion.Euler(rotation));
 				newObject.gameObject.name = targetPrefabs[i].name;
 
 				NetworkServer.Spawn(newObject);

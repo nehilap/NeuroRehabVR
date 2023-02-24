@@ -28,6 +28,29 @@ namespace Mappings
 		public PosRotMapping Clone() {
 			return new PosRotMapping(position, rotation);
 		}
+
+		// https://forum.unity.com/threads/mirror-reflections-in-vr.416728/#post-6067572
+		public PosRotMapping MirrorObject(Plane mirrorPlane) {
+			PosRotMapping newMirroredObject = this.Clone();
+
+			Vector3 closestPoint;
+			float distanceToMirror;
+			Vector3 mirrorPos;
+
+			closestPoint = mirrorPlane.ClosestPointOnPlane(this.position);
+			distanceToMirror = mirrorPlane.GetDistanceToPoint(this.position);
+	
+			mirrorPos = closestPoint - mirrorPlane.normal * distanceToMirror;
+	
+			newMirroredObject.position = mirrorPos;
+			newMirroredObject.rotation = ReflectRotation(Quaternion.Euler(this.rotation), mirrorPlane.normal).eulerAngles;
+
+			return newMirroredObject;
+		}
+	
+		private Quaternion ReflectRotation(Quaternion source, Vector3 normal) {
+			return Quaternion.LookRotation(Vector3.Reflect(source * Vector3.forward, normal), Vector3.Reflect(source * Vector3.up, normal));
+		}
 	}
 
 	// https://mirror-networking.gitbook.io/docs/guides/serialization

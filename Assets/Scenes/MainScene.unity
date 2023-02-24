@@ -4992,7 +4992,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetAPI: 
-  settingsCanvas: {fileID: 0}
 --- !u!114 &813480497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5817,8 +5816,6 @@ MonoBehaviour:
     - m_Text: Key
       m_Image: {fileID: 21300000, guid: 7665ab4241ea4bb46b5506cec1b74909, type: 3}
     - m_Text: Cup
-      m_Image: {fileID: 21300000, guid: 7665ab4241ea4bb46b5506cec1b74909, type: 3}
-    - m_Text: Off
       m_Image: {fileID: 21300000, guid: 7665ab4241ea4bb46b5506cec1b74909, type: 3}
   m_OnValueChanged:
     m_PersistentCalls:

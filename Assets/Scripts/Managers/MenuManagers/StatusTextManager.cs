@@ -15,10 +15,10 @@ public class StatusTextManager : MonoBehaviour {
 		}
 	}
 	void Start() {
-		setStatusText();
+		InitStatusText();
 	}
 
-	public void setStatusText() {
+	public void InitStatusText() {
 		if(!this.gameObject.scene.isLoaded) return;
 		
 		GetComponent<TMP_Text>().text = "Platform: '" + Application.platform.ToString() 

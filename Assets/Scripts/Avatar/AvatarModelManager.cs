@@ -28,7 +28,7 @@ public class AvatarModelManager : MonoBehaviour
 		}
 	}
 
-	public GameObject changeModel(bool _isFemale, GameObject modelToUse, float sizeMultiplier) {
+	public GameObject changeModel(bool _isFemale, GameObject modelToUse, float sizeMultiplier, float offsetDistance) {
 		isFemale = _isFemale;
 	
 		avatarFemale.SetActive(false);
@@ -37,6 +37,9 @@ public class AvatarModelManager : MonoBehaviour
 		if (isFemale) {
 			avatarFemale.GetComponent<AvatarController>().sizePreset = true;
 			avatarFemale.GetComponent<AvatarController>().sizeMultiplier = sizeMultiplier;
+			
+			avatarFemale.GetComponent<AvatarLowerBodyAnimationController>().offsetPreset = true;
+			avatarFemale.GetComponent<AvatarLowerBodyAnimationController>().offsetDistance = offsetDistance;
 
 			avatarFemale.SetActive(true);
 			avatarMale.SetActive(false);
@@ -47,6 +50,9 @@ public class AvatarModelManager : MonoBehaviour
 		} else {
 			avatarMale.GetComponent<AvatarController>().sizePreset = true;
 			avatarMale.GetComponent<AvatarController>().sizeMultiplier = sizeMultiplier;
+			
+			avatarMale.GetComponent<AvatarLowerBodyAnimationController>().offsetPreset = true;
+			avatarMale.GetComponent<AvatarLowerBodyAnimationController>().offsetDistance = offsetDistance;
 
 			avatarFemale.SetActive(false);
 			avatarMale.SetActive(true);

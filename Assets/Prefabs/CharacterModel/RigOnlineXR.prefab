@@ -730,6 +730,7 @@ MonoBehaviour:
   isFemale: 0
   avatarNumber: 0
   avatarSizeMultiplier: 0
+  avatarOffsetDistance: 0
   isLeftArmAnimated: 0
   isArmResting: 0
   activeAvatarObject: {fileID: 0}
@@ -769,7 +770,9 @@ MonoBehaviour:
   - {fileID: 6152346352656084148}
   componentsToDisable: []
   componentsToEnable: []
-  componentsToEnableLocally: []
+  componentsToEnableLocally:
+  - {fileID: 6152346352656084149}
+  - {fileID: 6030000176672060975}
   controllerType: 3
   hmdType: 0
   XRControllers:
@@ -1886,6 +1889,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b7a12cadc0a0e54d9439f589c66325f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6030000176672060975 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5753469573669430757, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
+  m_PrefabInstance: {fileID: 2051023691713680330}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4191707899220304035}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bf4ff6de4560d44d9b3b0697e00c1b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &7333303133049804568 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8769515038079730898, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
@@ -2268,6 +2282,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 113542620659459055, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
   m_PrefabInstance: {fileID: 6121205533115043675}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6152346352656084149 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 113542620659459054, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+  m_PrefabInstance: {fileID: 6121205533115043675}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6152346352656084148}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bf4ff6de4560d44d9b3b0697e00c1b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &6152346352656084151 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 113542620659459052, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}

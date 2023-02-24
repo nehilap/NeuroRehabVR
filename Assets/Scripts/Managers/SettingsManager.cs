@@ -5,6 +5,7 @@ public class AvatarSettings {
 	public bool isFemale;
 	public int avatarNumber;
 	public float sizeMultiplier;
+	public float offsetDistance;
 	public GameObject currentModel;
 	public bool isLeftArmAnimated;
 }

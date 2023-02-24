@@ -14,6 +14,7 @@ public class CharacterManager : NetworkBehaviour {
 	[SyncVar] public bool isFemale;
 	[SyncVar] public int avatarNumber;
 	[SyncVar] public float avatarSizeMultiplier;
+	[SyncVar] public float avatarOffsetDistance;
 	[SyncVar] public bool isLeftArmAnimated;
 
 	[Header("Run sync vars")]
@@ -81,7 +82,7 @@ public class CharacterManager : NetworkBehaviour {
 		}
 
 		foreach (MonoBehaviour component in componentsToEnableLocally) {
-			component.enabled = true;	
+			component.enabled = true;
 		}
 	}
 
@@ -106,14 +107,13 @@ public class CharacterManager : NetworkBehaviour {
 			avatar = avatarMalePrefabs[avatarNumber % avatarMalePrefabs.Count];
 		}
 
-		activeAvatarObject = transform.GetComponent<AvatarModelManager>().changeModel(isFemale, avatar, avatarSizeMultiplier);
+		activeAvatarObject = transform.GetComponent<AvatarModelManager>().changeModel(isFemale, avatar, avatarSizeMultiplier, avatarOffsetDistance);
 
 		if (activeAvatarObject.TryGetComponent<AvatarController>(out AvatarController avatarController)) {
 			if (offsetObject != null) {
 				offsetObject.position *= avatarSizeMultiplier / avatarController.calculateStandardizedSizeMultiplier();
 			}
 		}
-		
 
 		if (isPatient) {
 			ArmAnimationController[] armAnimationControllers = activeAvatarObject.GetComponents<ArmAnimationController>();
@@ -149,16 +149,9 @@ public class CharacterManager : NetworkBehaviour {
 			}
 		}
 
-		// we disable avatars on Server, pointless calculations, hogs HW too much
-		if (isServerOnly) {
-			foreach (GameObject avatarObject in avatars) {
-				avatarObject.SetActive(false);
-			}
-		}
-
 		networkAvatarWalkingController.enabled = true;
 
-		// if non local character prefab is loaded we have to disable components such as camera, etc. otherwise Multiplayer aspect wouldn't work properly 
+		// if non local character prefab is loaded we have to disable components such as camera, etc. otherwise Multiplayer aspect wouldn't work properly
 		if (!isLocalPlayer)	{
 			if(cameraTransform.TryGetComponent<Camera>(out Camera camera)) {
 				camera.enabled = false;
@@ -173,7 +166,7 @@ public class CharacterManager : NetworkBehaviour {
 			}
 
 			foreach (MonoBehaviour component in componentsToDisable) {
-				component.enabled = false;	
+				component.enabled = false;
 			}
 		} else {
 			if(cameraTransform.TryGetComponent<AudioListener>(out AudioListener audioListener)) {
@@ -182,7 +175,7 @@ public class CharacterManager : NetworkBehaviour {
 		}
 
 		foreach (MonoBehaviour component in componentsToEnable) {
-			component.enabled = true;	
+			component.enabled = true;
 		}
 	}
 
