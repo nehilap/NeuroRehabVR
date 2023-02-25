@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Mappings
 {
-    [System.Serializable]
+	[System.Serializable]
 	public class PosRotMapping {
 		public Vector3 position;
 		public Vector3 rotation;

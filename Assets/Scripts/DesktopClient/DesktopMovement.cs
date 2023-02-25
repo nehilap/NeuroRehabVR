@@ -21,9 +21,9 @@ public class DesktopMovement : MonoBehaviour {
 	void Update() {
 		Vector2 tempMove = move.action.ReadValue<Vector2>();
 
-		Vector3 sidewayMovement = transform.right *  tempMove.x;
-		Vector3 forwardMovement = transform.forward *  tempMove.y;
-		Vector3 movement =  sidewayMovement + forwardMovement;
+		Vector3 sidewayMovement = transform.right * tempMove.x;
+		Vector3 forwardMovement = transform.forward * tempMove.y;
+		Vector3 movement = sidewayMovement + forwardMovement;
 
 		movement = Vector3.ClampMagnitude(movement, 1f); // double move speed fix
 

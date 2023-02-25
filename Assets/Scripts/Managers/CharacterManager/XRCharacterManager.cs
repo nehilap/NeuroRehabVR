@@ -36,7 +36,7 @@ public class XRCharacterManager : CharacterManager {
 		// We look for Device simulator and setup the local player camera transform to camera transform
 		List<GameObject> objs =  ObjectManager.Instance.getObjectsByName("XR Device Simulator");
 		foreach (var item in objs) {
-			item.GetComponent<XRDeviceSimulator>().cameraTransform = cameraTransform.transform;
+			item.GetComponent<XRDeviceSimulator>().cameraTransform = cameraObject.transform;
 		}
 
 		// We add listeners on item pick up / release
@@ -67,15 +67,15 @@ public class XRCharacterManager : CharacterManager {
 	
 		// if non local character prefab is loaded we have to disable components such as camera, etc. otherwise Multiplayer aspect wouldn't work properly 
 		if (!isLocalPlayer)	{
-			if(cameraTransform.GetComponents<TrackedPoseDriver>() != null) {
-				foreach (TrackedPoseDriver item in cameraTransform.GetComponents<TrackedPoseDriver>())	{
+			if(cameraObject.GetComponents<TrackedPoseDriver>() != null) {
+				foreach (TrackedPoseDriver item in cameraObject.GetComponents<TrackedPoseDriver>())	{
 					item.enabled = false;
 				}
 			}
 			for (int i = 0; i < XRControllers.Length; i++) {
 				XRControllers[i].enabled = false;
 			}
-			if (cameraTransform.TryGetComponent<HeadCollisionManager>(out HeadCollisionManager headCollisionManager)) {
+			if (cameraObject.TryGetComponent<HeadCollisionManager>(out HeadCollisionManager headCollisionManager)) {
 				headCollisionManager.enabled = false;
 			}
 		}

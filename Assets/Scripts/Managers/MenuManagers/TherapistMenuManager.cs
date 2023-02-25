@@ -44,4 +44,44 @@ public class TherapistMenuManager : MonoBehaviour {
 
 		NetworkCharacterManager.localNetworkClientInstance.CmdMoveTable(new Vector3(0f, -0.02f, 0f), netId);
 	}
+
+	public void movePatientForwardHandler() {
+		if (CharacterManager.activePatientInstance == null) {
+			return;
+		}
+
+		NetworkIdentity patientId = CharacterManager.activePatientInstance.gameObject.GetComponent<NetworkIdentity>();
+
+		NetworkCharacterManager.localNetworkClientInstance.CmdMovePatient(new Vector3(0f, 0f, 0.02f), patientId);
+	}
+	
+	public void movePatientBackwardsHandler() {
+		if (CharacterManager.activePatientInstance == null) {
+			return;
+		}
+
+		NetworkIdentity patientId = CharacterManager.activePatientInstance.gameObject.GetComponent<NetworkIdentity>();
+
+		NetworkCharacterManager.localNetworkClientInstance.CmdMovePatient(new Vector3(0f, 0f, -0.02f), patientId);
+	}
+
+	public void movePatientRightHandler() {
+		if (CharacterManager.activePatientInstance == null) {
+			return;
+		}
+
+		NetworkIdentity patientId = CharacterManager.activePatientInstance.gameObject.GetComponent<NetworkIdentity>();
+
+		NetworkCharacterManager.localNetworkClientInstance.CmdMovePatient(new Vector3(0.02f, 0f, 0f), patientId);
+	}
+
+	public void movePatientLeftHandler() {
+		if (CharacterManager.activePatientInstance == null) {
+			return;
+		}
+
+		NetworkIdentity patientId = CharacterManager.activePatientInstance.gameObject.GetComponent<NetworkIdentity>();
+
+		NetworkCharacterManager.localNetworkClientInstance.CmdMovePatient(new Vector3(-0.02f, 0f, 0f), patientId);
+	}
 }

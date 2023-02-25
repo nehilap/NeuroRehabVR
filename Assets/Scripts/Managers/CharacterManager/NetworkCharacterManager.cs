@@ -383,11 +383,10 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	public void CmdSetArmRestPosition(NetworkIdentity patientIdentity) {
 		patientIdentity.gameObject.GetComponent<CharacterManager>().isArmResting = !patientIdentity.gameObject.GetComponent<CharacterManager>().isArmResting;
 	}
-	
 
 	/*
 	*
-	* Setting up table
+	* Setting up posittioning
 	*
 	*/
 	
@@ -435,5 +434,24 @@ public class NetworkCharacterManager : NetworkBehaviour {
 				item.transform.position += offset;
 			}
 		}
+	}
+
+	[Command]
+	public void CmdMovePatient(Vector3 offset, NetworkIdentity patientId) {
+		if (CharacterManager.activePatientInstance == null) {
+			return;
+		}
+
+		TargetMovePatient(patientId.connectionToClient, offset);
+	}
+
+	[TargetRpc]
+	public void TargetMovePatient(NetworkConnection connection, Vector3 offset) {
+		
+		Vector3 sidewayMovement = CharacterManager.localClientInstance.cameraObject.transform.right * offset.x;
+		Vector3 forwardMovement = CharacterManager.localClientInstance.cameraObject.transform.forward * offset.z;
+		Vector3 movement =  sidewayMovement + forwardMovement;
+
+		CharacterManager.localClientInstance.transform.position += movement;
 	}
 }

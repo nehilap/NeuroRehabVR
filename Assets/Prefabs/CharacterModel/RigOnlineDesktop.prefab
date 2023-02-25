@@ -188,6 +188,7 @@ MonoBehaviour:
   isFemale: 0
   avatarNumber: 0
   avatarSizeMultiplier: 0
+  avatarOffsetDistance: 0
   isLeftArmAnimated: 0
   isArmResting: 0
   activeAvatarObject: {fileID: 0}
@@ -207,7 +208,7 @@ MonoBehaviour:
   - {fileID: 6953298347185884907}
   - {fileID: 3394416713058309900}
   networkAvatarWalkingController: {fileID: 812953604696496144}
-  cameraTransform: {fileID: 5308743743746186654}
+  cameraObject: {fileID: 5308743743746186654}
   objectsToCull:
   - {fileID: 3073549861044050268}
   - {fileID: 1775930784046112159}

@@ -28,7 +28,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 132567205436134351}
   m_LocalRotation: {x: 0.052560065, y: -0.12168102, z: 0.006452631, w: 0.9911557}
-  m_LocalPosition: {x: 0, y: 0, z: 0.4952}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -39,8 +39,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 6.071, y: -13.998, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.049987793, y: 2.0671997}
-  m_SizeDelta: {x: 8.4, y: 5}
+  m_AnchoredPosition: {x: -0.05, y: 0.34}
+  m_SizeDelta: {x: 10.4, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4515300185434200984
 Canvas:
@@ -117,6 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuAction: {fileID: 9084135795761281899, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   lockCursor: 0
+  isStickyParent: 1
   menuHolder: {fileID: 5689664696698577655}
   menuToShow: {fileID: 0}
   menuNameToShow: 
@@ -124,6 +125,7 @@ MonoBehaviour:
   scale: {x: 0.02, y: 0.02, z: 1}
   offsetByWidth: 0
   offsetByHeight: 0
+  miniMenuVisibilityManager: {fileID: 0}
 --- !u!1 &5434795546658844180
 GameObject:
   m_ObjectHideFlags: 0

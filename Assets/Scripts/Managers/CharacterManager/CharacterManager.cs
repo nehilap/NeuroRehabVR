@@ -35,7 +35,7 @@ public class CharacterManager : NetworkBehaviour {
 	[SerializeField] private AvatarWalkingController[] avatarWalkingControllers;
 	[SerializeField] private NetworkAvatarWalkingController networkAvatarWalkingController;
 
-	[SerializeField] protected GameObject cameraTransform;
+	[SerializeField] public GameObject cameraObject;
 
 	[Header("Camera culling and objects to disable")]
 	[SerializeField] private GameObject[] objectsToCull;
@@ -70,7 +70,7 @@ public class CharacterManager : NetworkBehaviour {
 				if (item.layer == LayerMask.NameToLayer("Canvas")) { // 6 = Canvas
 					if (item.TryGetComponent<Canvas>(out Canvas canvas)) {
 						canvas.renderMode = RenderMode.WorldSpace;
-						canvas.worldCamera = cameraTransform.GetComponent<Camera>();
+						canvas.worldCamera = cameraObject.GetComponent<Camera>();
 					}
 				}
 			}
@@ -153,7 +153,7 @@ public class CharacterManager : NetworkBehaviour {
 
 		// if non local character prefab is loaded we have to disable components such as camera, etc. otherwise Multiplayer aspect wouldn't work properly
 		if (!isLocalPlayer)	{
-			if(cameraTransform.TryGetComponent<Camera>(out Camera camera)) {
+			if(cameraObject.TryGetComponent<Camera>(out Camera camera)) {
 				camera.enabled = false;
 			}
 
@@ -161,7 +161,7 @@ public class CharacterManager : NetworkBehaviour {
 				voiceHandler.enabled = false;
 			}
 			
-			if(cameraTransform.TryGetComponent<AudioListener>(out AudioListener audioListener)) {
+			if(this.cameraObject.TryGetComponent<AudioListener>(out AudioListener audioListener)) {
 				audioListener.enabled = false;
 			}
 
@@ -169,7 +169,7 @@ public class CharacterManager : NetworkBehaviour {
 				component.enabled = false;
 			}
 		} else {
-			if(cameraTransform.TryGetComponent<AudioListener>(out AudioListener audioListener)) {
+			if(cameraObject.TryGetComponent<AudioListener>(out AudioListener audioListener)) {
 				audioListener.enabled = true;
 			}
 		}
