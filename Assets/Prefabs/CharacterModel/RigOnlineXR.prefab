@@ -2312,6 +2312,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1878698787931433296}
     - target: {fileID: 6873313555506742889, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 1878698787931433296}
+    - target: {fileID: 6873313555506742889, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
       propertyPath: miniMenuVisibilityManager
       value: 
       objectReference: {fileID: 1828743430781379336}

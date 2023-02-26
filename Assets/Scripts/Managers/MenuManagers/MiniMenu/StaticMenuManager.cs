@@ -7,8 +7,8 @@ public class StaticMenuManager : MonoBehaviour
 
 	[SerializeField] private MiniMenuVisibilityManager miniMenuVisibilityManager;
 
-	private DirectionalOffset directionalOffset;
-	private FollowObject followObject;
+	[SerializeField] private Transform cameraTransform;
+
 	private FreezeObjectPosition freezeObjectPosition;
 	private FreezeObjectRotation freezeObjectRotation;
 	private MiniMenuManager miniMenuManager;
@@ -39,30 +39,20 @@ public class StaticMenuManager : MonoBehaviour
 			isMenuShowing = !isMenuShowing;
 		}
 
+		transform.localRotation = cameraTransform.localRotation;
+		transform.position = cameraTransform.position + (cameraTransform.forward * 1f);
+
 		// first we freeze position + rotation, so that it gets 'saved'
 		freezeObjectPosition.enabled = isMenuShowing;
 		freezeObjectRotation.enabled = isMenuShowing;
-
-		// now we can disable following object + offset
-		followObject.enabled = !isMenuShowing;
-		directionalOffset.enabled = !isMenuShowing;
 	}
 
 	private void resetMenu() {
 		freezeObjectPosition.enabled = false;
 		freezeObjectRotation.enabled = false;
-
-		followObject.enabled = true;
-		directionalOffset.enabled = true;
 	}
 
 	private void initElements() {
-		if (directionalOffset == null) {
-			directionalOffset = gameObject.GetComponent<DirectionalOffset>();
-		}
-		if (followObject == null) {
-			followObject = gameObject.GetComponent<FollowObject>();
-		}
 		if (freezeObjectPosition == null) {
 			freezeObjectPosition = gameObject.GetComponent<FreezeObjectPosition>();
 		}
