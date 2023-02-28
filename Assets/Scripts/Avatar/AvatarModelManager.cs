@@ -62,4 +62,12 @@ public class AvatarModelManager : MonoBehaviour
 			return avatarMale;
 		}
 	}
+
+	public void resetHeight() {
+		avatarFemale.GetComponent<AvatarController>().resetHeight();
+		avatarFemale.GetComponent<AvatarLowerBodyAnimationController>().resetHeight();
+		
+		avatarMale.GetComponent<AvatarController>().resetHeight();
+		avatarMale.GetComponent<AvatarLowerBodyAnimationController>().resetHeight();
+	}
 }

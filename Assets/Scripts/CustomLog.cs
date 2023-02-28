@@ -8,6 +8,7 @@ public class CustomLog : MonoBehaviour {
  
 	 void OnEnable () {
 		 Application.logMessageReceived += HandleLog;
+		 Debug.Log("Log initialized");
 	 }
 	 
 	 void OnDisable () {
@@ -24,8 +25,8 @@ public class CustomLog : MonoBehaviour {
 			 myLogQueue.Enqueue(newString);
 		 }
 		 myLog = string.Empty;
-		 foreach(string mylog in myLogQueue){
-			 myLog += mylog;
+		 for (int i = Mathf.Max(myLogQueue.Count - 10, 0); i < myLogQueue.Count; i++) {
+			 myLog += myLogQueue.ToArray()[i];
 		 }
 		 text.text = myLog;
 	 }

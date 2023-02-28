@@ -9,6 +9,8 @@ public class StaticMenuManager : MonoBehaviour
 
 	[SerializeField] private Transform cameraTransform;
 
+	[SerializeField] private float menuOffset = 1.25f;
+
 	private FreezeObjectPosition freezeObjectPosition;
 	private FreezeObjectRotation freezeObjectRotation;
 	private MiniMenuManager miniMenuManager;
@@ -40,7 +42,7 @@ public class StaticMenuManager : MonoBehaviour
 		}
 
 		transform.localRotation = cameraTransform.localRotation;
-		transform.position = cameraTransform.position + (cameraTransform.forward * 1f);
+		transform.position = cameraTransform.position + (cameraTransform.forward * menuOffset);
 
 		// first we freeze position + rotation, so that it gets 'saved'
 		freezeObjectPosition.enabled = isMenuShowing;

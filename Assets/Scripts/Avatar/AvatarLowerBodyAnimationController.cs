@@ -34,16 +34,33 @@ public class AvatarLowerBodyAnimationController : MonoBehaviour {
 
 	private float groundOffset;
 
+	private readonly float groundOffsetConst = 0.1f;
+
 	private void OnEnable() {
 		if (!offsetPreset) {
 			offsetDistance = offsetTransform.TransformPoint(Vector3.zero).y;
 		}
 
+
 		SettingsManager.Instance.avatarSettings.offsetDistance = offsetDistance;
 		internalFootOffset = footOffset * avatarController.sizeMultiplier;
 		internalRaycastLeftOffset = raycastLeftOffset * avatarController.sizeMultiplier;
 		internalRaycastRightOffset = raycastRightOffset * avatarController.sizeMultiplier;
-		groundOffset = 0.045f * avatarController.sizeMultiplier;
+		groundOffset = groundOffsetConst * avatarController.sizeMultiplier;
+/* 
+		Debug.Log("offset dist " + offsetDistance);
+		Debug.Log(groundOffset); */
+	}
+
+	public void resetHeight() {
+		offsetDistance = offsetTransform.TransformPoint(Vector3.zero).y;
+		// Debug.Log("offset dist " + offsetDistance);
+
+		SettingsManager.Instance.avatarSettings.offsetDistance = offsetDistance;
+		internalFootOffset = footOffset * avatarController.sizeMultiplier;
+		internalRaycastLeftOffset = raycastLeftOffset * avatarController.sizeMultiplier;
+		internalRaycastRightOffset = raycastRightOffset * avatarController.sizeMultiplier;
+		groundOffset = groundOffsetConst * avatarController.sizeMultiplier;
 	}
 
 	private void OnAnimatorIK(int layerIndex) {

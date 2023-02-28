@@ -69,7 +69,7 @@ public class AvatarSetup : MonoBehaviour {
 		}
 		GameObject.Destroy(modelToUse);
 
-		Debug.Log("Model succsefully changed " + modelToUse.name);
+		Debug.Log("Model succesfully changed " + modelToUse.name);
 	}
 
 	private void updateMesh(SkinnedMeshRenderer origin, SkinnedMeshRenderer target) {

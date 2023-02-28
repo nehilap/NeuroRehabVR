@@ -1,4 +1,5 @@
 using UnityEngine;
+using Unity.XR.CoreUtils;
 using UnityEngine.XR;
 using UnityEngine.XR.Management;
 using System.Collections;
@@ -33,10 +34,12 @@ public class XRStatusManager : MonoBehaviour {
 	[SerializeField] private GameObject desktopRig;
 
 	[SerializeField] private GameObject controllerSetupMenu;
+	[SerializeField] private GameObject xrSetupMenu;
 
 	private GameObject desktopControls;
-	private GameObject XRControls;
+	private GameObject xrControls;
 	private GameObject mockXRControls;
+	[SerializeField] private GameObject xrDeviceSimulator;
 
 	void Awake() {
 		#if UNITY_EDITOR
@@ -78,13 +81,13 @@ public class XRStatusManager : MonoBehaviour {
 	}
 
 	void Start() {
-		desktopControls = ObjectManager.Instance.getFirstObjectByName("DesktopControls");
-		XRControls = ObjectManager.Instance.getFirstObjectByName("XRControls");
-		mockXRControls = ObjectManager.Instance.getFirstObjectByName("MockXRControls");
+		initObjects();
 
 		if (XRGeneralSettings.Instance.Manager.isInitializationComplete) {
+			Debug.Log("XR running");
 			isXRActive = true;
 		} else {
+			Debug.Log("XR not running");
 			isXRActive = false;
 		}
 
@@ -116,6 +119,10 @@ public class XRStatusManager : MonoBehaviour {
 			if (XRGeneralSettings.Instance.Manager.activeLoader == null) {
 				Debug.LogError("Initializing XR Failed. Check Editor or Player log for details.");
 			} else {
+				if (hmdType == HMDType.Mock) {
+					xrDeviceSimulator.SetActive(true);
+				}
+
 				Debug.Log("Starting XR...");
 				XRGeneralSettings.Instance.Manager.StartSubsystems();
 				isXRActive = true;
@@ -138,12 +145,15 @@ public class XRStatusManager : MonoBehaviour {
 		
 		// We actually have to increase the resolution scaling, to increase the image queality
 		// because 1.0 creates artifacts / jagged lines
-		XRSettings.eyeTextureResolutionScale = 1.6f;
-
+		// XRSettings.eyeTextureResolutionScale = 1f;
 	}
 
 	private void setupUIAndXRElements() {
-		if(!this.gameObject.scene.isLoaded) return;
+		if (!this.gameObject.scene.isLoaded) return;
+
+		if (desktopControls == null) {
+			initObjects();
+		}
 
 		if (isXRActive) {
 			activeXRButton.activateBar();
@@ -155,12 +165,16 @@ public class XRStatusManager : MonoBehaviour {
 
 			if (hmdType == HMDType.Mock) {
 				desktopControls?.SetActive(false);
-				XRControls?.SetActive(false);
+				xrControls?.SetActive(false);
 				mockXRControls?.SetActive(true);
+
+				xrSetupMenu.SetActive(true);
 			} else {
 				desktopControls?.SetActive(false);
-				XRControls?.SetActive(true);
+				xrControls?.SetActive(true);
 				mockXRControls?.SetActive(false);
+
+				xrSetupMenu.SetActive(false);
 			}
 		} else {
 			inactiveXRButton.activateBar();
@@ -169,17 +183,25 @@ public class XRStatusManager : MonoBehaviour {
 			desktopRig.SetActive(true);
 
 			controllerSetupMenu.SetActive(false);
+
+			xrSetupMenu.SetActive(true);
 			
 			if (desktopRig.TryGetComponent<MouseManager>(out MouseManager mouseManager)) {
 				mouseManager.activeTriggers = 0;
 			}
 
 			desktopControls?.SetActive(true);
-			XRControls?.SetActive(false);
+			xrControls?.SetActive(false);
 			mockXRControls?.SetActive(false);
 		}
 
 		StatusTextManager.Instance.InitStatusText();
+	}
+
+	private void initObjects() {
+		desktopControls = ObjectManager.Instance.getFirstObjectByName("DesktopControls");
+		xrControls = ObjectManager.Instance.getFirstObjectByName("XRControls");
+		mockXRControls = ObjectManager.Instance.getFirstObjectByName("MockXRControls");
 	}
 
 }

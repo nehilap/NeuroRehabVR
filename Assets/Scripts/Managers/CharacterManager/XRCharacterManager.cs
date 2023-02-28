@@ -26,6 +26,8 @@ public class XRCharacterManager : CharacterManager {
 
 	[SerializeField] private InputActionManager inputActionManager;
 
+	[SerializeField] private GameObject xrDeviceSimulator;
+
 	public override void OnStartLocalPlayer() {
 		base.OnStartLocalPlayer();
 
@@ -34,9 +36,10 @@ public class XRCharacterManager : CharacterManager {
 		inputActionManager.enabled = true;
 
 		// We look for Device simulator and setup the local player camera transform to camera transform
-		List<GameObject> objs =  ObjectManager.Instance.getObjectsByName("XR Device Simulator");
-		foreach (var item in objs) {
-			item.GetComponent<XRDeviceSimulator>().cameraTransform = cameraObject.transform;
+		if (hmdType == HMDType.Mock && XRStatusManager.Instance.isXRActive) {
+			GameObject deviceSimulator = Instantiate(xrDeviceSimulator);
+			
+			deviceSimulator.GetComponent<XRDeviceSimulator>().cameraTransform = cameraObject.transform;
 		}
 
 		// We add listeners on item pick up / release
@@ -49,7 +52,6 @@ public class XRCharacterManager : CharacterManager {
 			XRControllers[i].enableInputTracking = true;
 			XRControllers[i].enableInputActions = true;
 		}
-		
 	}
 
 	public override void OnStopClient() {

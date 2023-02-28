@@ -450,7 +450,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 		
 		Vector3 sidewayMovement = CharacterManager.localClientInstance.cameraObject.transform.right * offset.x;
 		Vector3 forwardMovement = CharacterManager.localClientInstance.cameraObject.transform.forward * offset.z;
-		Vector3 movement =  sidewayMovement + forwardMovement;
+		Vector3 movement = sidewayMovement + forwardMovement;
 
 		CharacterManager.localClientInstance.transform.position += movement;
 	}
