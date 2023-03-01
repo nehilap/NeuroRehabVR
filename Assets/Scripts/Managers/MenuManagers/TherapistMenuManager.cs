@@ -28,6 +28,22 @@ public class TherapistMenuManager : MonoBehaviour {
 		NetworkCharacterManager.localNetworkClientInstance.CmdMovePatientToSit(CharacterManager.activePatientInstance.GetComponent<NetworkIdentity>());
 	}
 
+	public void sitAcrossTableHandler() {
+		if (ObjectManager.Instance.getFirstObjectByName("TherapistSitPositionObject") != null) {
+			// We have to turn off character controller, as it stops us trying to teleport object around
+			CharacterController cc = CharacterManager.localClientInstance.GetComponent<CharacterController>();
+
+			cc.enabled = false;
+			CharacterManager.localClientInstance.transform.position = ObjectManager.Instance.getFirstObjectByName("TherapistSitPositionObject").transform.position;
+
+			CharacterManager.localClientInstance.transform.LookAt(ObjectManager.Instance.getFirstObjectByName("Table").transform);
+			float cameraRot = CharacterManager.localClientInstance.cameraObject.transform.localRotation.eulerAngles.y;
+
+			CharacterManager.localClientInstance.transform.rotation = Quaternion.Euler(CharacterManager.localClientInstance.transform.eulerAngles.x, CharacterManager.localClientInstance.transform.eulerAngles.y - cameraRot, CharacterManager.localClientInstance.transform.eulerAngles.z);
+			cc.enabled = true;
+		}
+	}
+
 	public void setAnimationStartPositionHandler() {
 		NetworkCharacterManager.localNetworkClientInstance.CmdSetAnimationStartPosition();
 	}

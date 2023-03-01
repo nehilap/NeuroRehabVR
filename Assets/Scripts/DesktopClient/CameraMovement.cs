@@ -5,8 +5,6 @@ public class CameraMovement : MonoBehaviour {
 	
 	[SerializeField] private InputActionReference mouseX;
 	[SerializeField] private InputActionReference mouseY;
-	[SerializeField] private InputActionReference menu;
-	[SerializeField] private InputActionReference grab;
 
 	[SerializeField] private MouseManager mouseManager;
 
@@ -37,7 +35,7 @@ public class CameraMovement : MonoBehaviour {
 			return;
 		}
 
-		float _mouseX =  mouseX.action.ReadValue<float>() * mouseSensitivityX * Time.deltaTime;
+		float _mouseX = mouseX.action.ReadValue<float>() * mouseSensitivityX * Time.deltaTime;
 		float _mouseY = mouseY.action.ReadValue<float>() * mouseSensitivityY * Time.deltaTime;
 
 		verticalRotation -= _mouseY;

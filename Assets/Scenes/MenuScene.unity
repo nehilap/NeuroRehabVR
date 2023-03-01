@@ -21784,6 +21784,10 @@ PrefabInstance:
       propertyPath: modelToUse
       value: 
       objectReference: {fileID: 4208533902832042052, guid: a3b5c51f2fb0bf044aa7cd022550a7d2, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 612815494906209894, guid: c3a148a7f339e0d44ad8fea07053ee82, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -21928,17 +21932,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: XRRig
       objectReference: {fileID: 0}
-    - target: {fileID: 5308743742952482155, guid: c3a148a7f339e0d44ad8fea07053ee82, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5308743743746186650, guid: c3a148a7f339e0d44ad8fea07053ee82, type: 3}
       propertyPath: m_TargetEye
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5909644037636158251, guid: c3a148a7f339e0d44ad8fea07053ee82, type: 3}
-      propertyPath: m_RightHandMoveAction.m_UseReference
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6247121120029974128, guid: c3a148a7f339e0d44ad8fea07053ee82, type: 3}
       propertyPath: m_Enabled
