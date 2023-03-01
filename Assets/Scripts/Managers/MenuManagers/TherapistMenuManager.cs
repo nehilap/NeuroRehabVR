@@ -21,6 +21,13 @@ public class TherapistMenuManager : MonoBehaviour {
 		NetworkCharacterManager.localNetworkClientInstance.CmdSetArmRestPosition(CharacterManager.activePatientInstance.GetComponent<NetworkIdentity>());
 	}
 
+	public void sitPatientHandler() {
+		if (CharacterManager.activePatientInstance == null) {
+			return;
+		}
+		NetworkCharacterManager.localNetworkClientInstance.CmdMovePatientToSit(CharacterManager.activePatientInstance.GetComponent<NetworkIdentity>());
+	}
+
 	public void setAnimationStartPositionHandler() {
 		NetworkCharacterManager.localNetworkClientInstance.CmdSetAnimationStartPosition();
 	}

@@ -384,6 +384,22 @@ public class NetworkCharacterManager : NetworkBehaviour {
 		patientIdentity.gameObject.GetComponent<CharacterManager>().isArmResting = !patientIdentity.gameObject.GetComponent<CharacterManager>().isArmResting;
 	}
 
+	[Command]
+	public void CmdMovePatientToSit(NetworkIdentity patientIdentity) {
+		if (CharacterManager.activePatientInstance == null) {
+			return;
+		}
+
+		TargetMovePatientToSit(patientIdentity.connectionToClient);
+	}
+
+	[TargetRpc]
+	public void TargetMovePatientToSit(NetworkConnection connection) {
+		if (ObjectManager.Instance.getFirstObjectByName("PatientSitPositionObject") != null) {
+			CharacterManager.localClientInstance.transform.position = ObjectManager.Instance.getFirstObjectByName("PatientSitPositionObject").transform.position;
+		}
+	}
+
 	/*
 	*
 	* Setting up posittioning
@@ -447,7 +463,6 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 	[TargetRpc]
 	public void TargetMovePatient(NetworkConnection connection, Vector3 offset) {
-		
 		Vector3 sidewayMovement = CharacterManager.localClientInstance.cameraObject.transform.right * offset.x;
 		Vector3 forwardMovement = CharacterManager.localClientInstance.cameraObject.transform.forward * offset.z;
 		Vector3 movement = sidewayMovement + forwardMovement;
