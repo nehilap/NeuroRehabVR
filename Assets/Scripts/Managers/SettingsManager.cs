@@ -10,8 +10,13 @@ public class AvatarSettings {
 	public bool isLeftArmAnimated;
 }
 
+[System.Serializable]
+public class AudioSettings {
+	[Range(0f, 2f)] public float UIvolume = 1f;
+}
+
 public class SettingsManager : MonoBehaviour {
-   
+
 	private static SettingsManager _instance;
 	public static SettingsManager Instance {
 		get {
@@ -23,6 +28,7 @@ public class SettingsManager : MonoBehaviour {
 	}
 
 	[SerializeField] public AvatarSettings avatarSettings = new AvatarSettings();
+	[SerializeField] public AudioSettings audioSettings = new AudioSettings();
 
 	void Start() {
 		Application.targetFrameRate = 60;

@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7619131785802657623}
-  - component: {fileID: 7619131785802657620}
   - component: {fileID: 1033323376457212423}
+  - component: {fileID: 7619131785802657620}
+  - component: {fileID: 963215300687018310}
   m_Layer: 0
   m_Name: ButtonAudioSource
   m_TagString: Untagged
@@ -33,6 +34,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1033323376457212423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7619131785802657622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bfdf222ecd720245ab7dba166037474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonClickAudio:
+    audioSource: {fileID: 7619131785802657620}
+    initialVolume: 0.15
 --- !u!82 &7619131785802657620
 AudioSource:
   m_ObjectHideFlags: 0
@@ -129,7 +145,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1033323376457212423
+--- !u!114 &963215300687018310
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,6 +154,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7619131785802657622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bfdf222ecd720245ab7dba166037474, type: 3}
+  m_Script: {fileID: 11500000, guid: 83be284ef4640ca4a88123afcbc77699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectName: AudioSourceManager

@@ -1,15 +1,15 @@
 using UnityEngine;
 
+[System.Serializable]
+public class CustomAudioSource {
+	public AudioSource audioSource;
+	public float initialVolume;
+}
+
 public class AudioSourceManager : MonoBehaviour {
-	private static AudioSourceManager _instance;
+	public CustomAudioSource buttonClickAudio;
 
-	public static AudioSourceManager Instance { get { return _instance; } }
-
-	private void Awake() {
-		if (_instance != null && _instance != this) {
-			Destroy(this.gameObject);
-		} else {
-			_instance = this;
-		}
+	private void Start() {
+		buttonClickAudio.audioSource.volume = buttonClickAudio.initialVolume * SettingsManager.Instance.audioSettings.UIvolume;
 	}
 }
