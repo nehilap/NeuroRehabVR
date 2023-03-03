@@ -1,8 +1,9 @@
+using Mappings;
 using UnityEngine;
 
 [System.Serializable]
 public class MapTransforms {
-	public bool applyIk = true;
+	public bool followVRTarget = true;
 	// public bool applyDirectionalOffset;
 	public Transform vrTarget;
 	public Transform ikTarget;
@@ -15,7 +16,7 @@ public class MapTransforms {
 	private Vector3 actualRotOffset;
 
 	public void mapTransforms(){
-		if (!applyIk) {
+		if (!followVRTarget || vrTarget == null || ikTarget == null) {
 			return;
 		}
 
@@ -26,14 +27,14 @@ public class MapTransforms {
 		ikTarget.rotation = vrTarget.rotation * Quaternion.Euler(actualRotOffset);
 	}
 
-	/* public void mapTransformsDebug(Transform transform){
-		if (!applyIk) {
+	 public void mapTransformsDebug(Transform transform){
+		if (!followVRTarget) {
 			return;
 		}
 		ikTarget.rotation = vrTarget.rotation * Quaternion.Euler(rotationOffset);
 
 		// not working sadly
-		if (applyDirectionalOffset) {
+		/*if (applyDirectionalOffset) {
 			Vector3 offset = positionOffset;
 			ikTarget.position = vrTarget.TransformPoint(positionOffset);
 
@@ -45,12 +46,12 @@ public class MapTransforms {
 			Debug.Log("model " + transform.forward);
 			Debug.Log(ikTarget.forward);
 			ikTarget.localPosition += offset;
-		} else {
+		} else {*/
 			ikTarget.position = vrTarget.TransformPoint(positionOffset);
-		}
+		//}
 
 		//ikTarget.position = vrTarget.TransformPoint(positionOffset);
-	} */
+	} 
 
 	public void setMulti(float multiplier) {
 		actualPosOffset = positionOffset * multiplier;
@@ -75,9 +76,12 @@ public class AvatarController : MonoBehaviour {
 	[SerializeField] private Vector3 originHeadOffset;
 
 	[SerializeField] private float referenceHeight = 1.725f;
+	private float standardizedReferenceHeight = 1.725f;
 
 	[SerializeField] private bool debug;
-	private float standardizedReferenceHeight = 1.725f;
+
+	private PosRotMapping initialLeftPosRot;
+	private PosRotMapping initialRightPosRot;
 
 	private bool sizeInitialized = false;
 	public float sizeMultiplier;
@@ -85,6 +89,14 @@ public class AvatarController : MonoBehaviour {
 
 	private void Awake() {
 		originHeadOffset = headOffset;
+
+		if (leftHand.ikTarget != null) {
+			initialLeftPosRot = new PosRotMapping(leftHand.ikTarget.transform.localPosition, leftHand.ikTarget.transform.localRotation.eulerAngles);
+		}
+
+		if (rightHand.ikTarget != null) {
+			initialRightPosRot = new PosRotMapping(rightHand.ikTarget.transform.localPosition, rightHand.ikTarget.transform.localRotation.eulerAngles);
+		}
 	}
 
 	private void OnEnable() {
@@ -97,11 +109,11 @@ public class AvatarController : MonoBehaviour {
 		SettingsManager.Instance.avatarSettings.sizeMultiplier = sizeMultiplier;
 		transform.localScale = new Vector3(sizeMultiplier, sizeMultiplier, sizeMultiplier);
 		headOffset = originHeadOffset * sizeMultiplier;
-/* 
+/*
 		Debug.Log(gameObject.name);
 		Debug.Log("head offset " +headOffset);
 		Debug.Log("size multi " + sizeMultiplier);
- */
+*/
 		head.setMulti(sizeMultiplier);
 		headSpine.setMulti(sizeMultiplier);
 		leftHand.setMulti(sizeMultiplier);
@@ -138,16 +150,17 @@ public class AvatarController : MonoBehaviour {
 			transform.forward = Vector3.Lerp(transform.forward, Vector3.ProjectOnPlane(headTarget.forward, Vector3.up).normalized, Time.deltaTime * turnSmoothness);
 		}
 
-		/* if (debug) {
+		if (debug) {
 			head.mapTransformsDebug(transform);
 			headSpine.mapTransformsDebug(transform);
 			leftHand.mapTransformsDebug(transform);
 			rightHand.mapTransformsDebug(transform);
-		} else { */
+		} else {
 		head.mapTransforms();
 		headSpine.mapTransforms();
 		leftHand.mapTransforms();
 		rightHand.mapTransforms();
+		}
 	}
 
 	public float calculateSizeMultiplier() {
@@ -156,5 +169,16 @@ public class AvatarController : MonoBehaviour {
 
 	public float calculateStandardizedSizeMultiplier() {
 		return Mathf.Round((standardizedReferenceHeight / referenceHeight) * 1000) / 1000;
+	}
+
+	public void resetHandIKTargets() {
+		if (leftHand.ikTarget != null) {
+			leftHand.ikTarget.localRotation = Quaternion.Euler(initialLeftPosRot.rotation);
+			leftHand.ikTarget.localPosition = initialLeftPosRot.position;
+		}
+		if (rightHand.ikTarget != null) {
+			rightHand.ikTarget.localRotation = Quaternion.Euler(initialRightPosRot.rotation);
+			rightHand.ikTarget.localPosition = initialRightPosRot.position;
+		}
 	}
 }

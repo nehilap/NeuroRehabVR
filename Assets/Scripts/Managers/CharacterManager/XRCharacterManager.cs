@@ -5,7 +5,6 @@ using UnityEngine.XR.Interaction.Toolkit.Inputs;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation;
 using UnityEngine.InputSystem.XR;
 using Enums;
-using System.Collections.Generic;
 
 public class XRCharacterManager : CharacterManager {
 
@@ -58,7 +57,7 @@ public class XRCharacterManager : CharacterManager {
 		base.OnStopClient();
 	}
 
-	public new void Start() {
+	public override void Start() {
 		base.Start();
 
 		// Setting up offset based on HMD type used by client
@@ -79,19 +78,6 @@ public class XRCharacterManager : CharacterManager {
 			}
 			if (cameraObject.TryGetComponent<HeadCollisionManager>(out HeadCollisionManager headCollisionManager)) {
 				headCollisionManager.enabled = false;
-			}
-		}
-
-		if (base.isPatient) {
-			for (int i = 0; i < XRControllers.Length; i++) {
-				if (XRControllers[i].TryGetComponent<XRControllerUtility>(out XRControllerUtility xrControllerUtility)) {
-					// We turn off controller and ray interactors, based on  which arm is being used
-					if (base.isLeftArmAnimated == xrControllerUtility.isLeftHandController) { 
-						XRControllers[i].gameObject.SetActive(false);
-					}
-				} else {
-					Debug.LogWarning("Failed to identify XRController, missing 'XRControllerUtility'!");
-				}
 			}
 		}
 	}
@@ -183,6 +169,23 @@ public class XRCharacterManager : CharacterManager {
 	public void changeHMDType(HMDType _old, HMDType _new) {
 		if (_new == HMDType.Other) {
 			transform.Find("Offset").position = new Vector3(0f, 0f, 0f);
+		}
+	}
+
+	protected override void changeAnimatedArm(bool _old, bool _new) { 
+		base.changeAnimatedArm(_old, _new);
+
+		for (int i = 0; i < XRControllers.Length; i++) {
+			if (XRControllers[i].TryGetComponent<XRControllerUtility>(out XRControllerUtility xrControllerUtility)) {
+				// We turn off controller and ray interactors, based on which arm is being used
+				if (base.isLeftArmAnimated == xrControllerUtility.isLeftHandController) { 
+					XRControllers[i].gameObject.SetActive(false);
+				} else {
+					XRControllers[i].gameObject.SetActive(true);
+				}
+			} else {
+				Debug.LogWarning("Failed to identify XRController, most likely missing 'XRControllerUtility'!");
+			}
 		}
 	}
 }

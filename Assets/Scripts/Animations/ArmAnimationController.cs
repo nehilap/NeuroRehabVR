@@ -45,24 +45,21 @@ public class ArmAnimationController : MonoBehaviour {
 	[SerializeField] private Transform _mirror;
 
 	void Start() {
-		animSettingsManager = ObjectManager.Instance.getFirstObjectByName("AnimationSettingsManager")?.GetComponent<AnimationSettingsManager>();
+		initElements();
+
 		if (animSettingsManager == null) {
 			Debug.LogError("Failed to initialize ArmAnimationController - 'AnimationSettingsManager' not found");
 			return;
 		}
-
-		armRestHelperObject = ObjectManager.Instance.getFirstObjectByName("ArmRestHelperObject" + (isLeft ? "Left" : "Right"));
 		if (armRestHelperObject == null) {
 			Debug.LogError("Failed to initialize ArmAnimationController - 'ArmRestHelperObject' not found");
 			return;
 		}
-		_mirror = ObjectManager.Instance.getFirstObjectByName("MirrorPlane")?.transform;
 		if (_mirror == null) {
 			Debug.LogError("Failed to initialize ArmAnimationController - 'MirrorPlane' not found");
 			return;
 		}
 
-		avatarController = gameObject.GetComponent<AvatarController>();
 		animationMapping.resizeMappings(avatarController.sizeMultiplier);
 
 		if (isLeft) {
@@ -74,8 +71,29 @@ public class ArmAnimationController : MonoBehaviour {
 		// Debug.Log(armLength);
 	}
 
+	private void OnEnable() {
+		armRig.gameObject.SetActive(true);
+		handRig.gameObject.SetActive(true);
+	}
+	
+	private void OnDisable() {
+		armRig.gameObject.SetActive(false);
+		handRig.gameObject.SetActive(false);
+	}
+
 	private void LateUpdate() {
 		alignArmRestTargetWithTable();
+	}
+
+	private void initElements() {
+		if (!animSettingsManager)
+			animSettingsManager = ObjectManager.Instance.getFirstObjectByName("AnimationSettingsManager")?.GetComponent<AnimationSettingsManager>();
+		if (!armRestHelperObject)
+			armRestHelperObject = ObjectManager.Instance.getFirstObjectByName("ArmRestHelperObject" + (isLeft ? "Left" : "Right"));
+		if (!_mirror)
+			_mirror = ObjectManager.Instance.getFirstObjectByName("MirrorPlane")?.transform;
+		if (!avatarController)
+			avatarController = gameObject.GetComponent<AvatarController>();
 	}
 
 	// https://gamedevbeginner.com/coroutines-in-unity-when-and-how-to-use-them/
@@ -169,8 +187,10 @@ public class ArmAnimationController : MonoBehaviour {
 				}
 			}
 		} else {
-			targetObject.GetComponent<Rigidbody>().useGravity = true;
-			targetObject.GetComponent<Collider>().enabled = true;
+			if (targetObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
+				rb.useGravity = true;
+			if (targetObject.TryGetComponent<Collider>(out Collider col))
+				col.enabled = true;
 		}
 	}
 
@@ -394,8 +414,10 @@ public class ArmAnimationController : MonoBehaviour {
 			return;
 		}
 
-		targetObject.GetComponent<Rigidbody>().useGravity = false;
-		targetObject.GetComponent<Collider>().enabled = false;
+		if (targetObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
+			rb.useGravity = false;
+		if (targetObject.TryGetComponent<Collider>(out Collider col))
+			col.enabled = false;
 
 		try {
 			// Setting initial position + rotation
@@ -424,12 +446,10 @@ public class ArmAnimationController : MonoBehaviour {
 		StartCoroutine(armStopAnimationLerp());
 	}
 
-	public void setArmRestPosition() {
-		isArmResting = !isArmResting;
+	public void setArmRestPosition(bool _isArmResting) {
+		isArmResting = _isArmResting;
 		
-		if (avatarController == null) {
-			gameObject.GetComponent<AvatarController>();
-		}
+		initElements();
 
 		if (isArmResting) {
 			StartCoroutine(restArmStartAnimation());

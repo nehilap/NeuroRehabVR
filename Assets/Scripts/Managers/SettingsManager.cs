@@ -7,7 +7,6 @@ public class AvatarSettings {
 	public float sizeMultiplier;
 	public float offsetDistance;
 	public GameObject currentModel;
-	public bool isLeftArmAnimated;
 }
 
 [System.Serializable]

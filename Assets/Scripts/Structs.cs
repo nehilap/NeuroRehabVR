@@ -13,6 +13,5 @@ namespace Structs {
 		public float sizeMultiplier;
 		public float offsetDistance;
 		public bool isXRActive;
-		public bool isLeftArmAnimated;
 	}
 }

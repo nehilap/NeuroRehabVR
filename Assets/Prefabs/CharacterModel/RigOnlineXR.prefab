@@ -2105,6 +2105,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AvatarMaleModel
       objectReference: {fileID: 0}
+    - target: {fileID: 113542620659459055, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3482257624152933618, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
       propertyPath: m_Enabled
       value: 0

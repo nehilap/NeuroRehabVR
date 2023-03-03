@@ -4,6 +4,7 @@ using Mappings;
 using Mirror;
 using UnityEngine;
 using Utility;
+using Unity.XR.CoreUtils;
 
 public class NetworkCharacterManager : NetworkBehaviour {
 
@@ -216,7 +217,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 				return false;
 			}
 
-			if ( CharacterManager.activePatientInstance != null) {
+			if (CharacterManager.activePatientInstance != null) {
 				float armLength = CharacterManager.activePatientInstance.activeArmAnimationController.calculateArmLength() + CharacterManager.activePatientInstance.activeArmAnimationController.getArmRangeSlack();
 				float targetDistance = Vector3.Distance(targetPosRotMapping.position, CharacterManager.activePatientInstance.activeArmAnimationController.getArmRangePosition());
 				if (targetDistance > armLength) {
@@ -386,7 +387,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 	[Command]
 	public void CmdMovePatientToSit(NetworkIdentity patientIdentity) {
-		if (CharacterManager.activePatientInstance == null) {
+		if (patientIdentity == null) {
 			return;
 		}
 
@@ -412,7 +413,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 	/*
 	*
-	* Setting up posittioning
+	* Setting up positioning
 	*
 	*/
 	
@@ -464,7 +465,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 	[Command]
 	public void CmdMovePatient(Vector3 offset, NetworkIdentity patientId) {
-		if (CharacterManager.activePatientInstance == null) {
+		if (patientId == null) {
 			return;
 		}
 
@@ -476,7 +477,22 @@ public class NetworkCharacterManager : NetworkBehaviour {
 		Vector3 sidewayMovement = CharacterManager.localClientInstance.cameraObject.transform.right * offset.x;
 		Vector3 forwardMovement = CharacterManager.localClientInstance.cameraObject.transform.forward * offset.z;
 		Vector3 movement = sidewayMovement + forwardMovement;
+		movement.y = 0;
 
-		CharacterManager.localClientInstance.transform.position += movement;
+		if (CharacterManager.localClientInstance.TryGetComponent<XROrigin>(out XROrigin xrOrigin)) {
+			xrOrigin.MoveCameraToWorldLocation(CharacterManager.localClientInstance.cameraObject.transform.position + movement);
+		}
+		// CharacterManager.localClientInstance.transform.position += movement;
+	}
+
+	/*
+	*
+	* Setting active arm
+	*
+	*/
+
+	[Command]
+	public void CmdSetActiveArm(bool isLeftAnimated, NetworkIdentity patientId) {
+		patientId.gameObject.GetComponent<CharacterManager>().isLeftArmAnimated = isLeftAnimated;
 	}
 }

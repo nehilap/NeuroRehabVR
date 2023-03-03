@@ -107,4 +107,13 @@ public class TherapistMenuManager : MonoBehaviour {
 
 		NetworkCharacterManager.localNetworkClientInstance.CmdMovePatient(new Vector3(-0.02f, 0f, 0f), patientId);
 	}
+
+	public void setPatientAnimatedArm(bool isLeft) {
+		if (CharacterManager.activePatientInstance == null) {
+			return;
+		}
+		NetworkIdentity patientId = CharacterManager.activePatientInstance.gameObject.GetComponent<NetworkIdentity>();
+
+		NetworkCharacterManager.localNetworkClientInstance.CmdSetActiveArm(isLeft, patientId);
+	}
 }

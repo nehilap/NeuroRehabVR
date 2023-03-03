@@ -22,7 +22,7 @@ public class DesktopCharacterManager : CharacterManager {
 		base.OnStopClient();
 	}
 
-	public new void Start() {
+	public override void Start() {
 		base.Start();
 	}
 }

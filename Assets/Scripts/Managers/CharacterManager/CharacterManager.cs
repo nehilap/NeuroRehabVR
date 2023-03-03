@@ -8,16 +8,15 @@ public class CharacterManager : NetworkBehaviour {
 	public static CharacterManager localClientInstance { get; private set; }
 	public static CharacterManager activePatientInstance { get; private set; }
 
-
 	[Header("Spawn sync vars")]
 	[SyncVar] public bool isPatient;
 	[SyncVar] public bool isFemale;
 	[SyncVar] public int avatarNumber;
 	[SyncVar] public float avatarSizeMultiplier;
 	[SyncVar] public float avatarOffsetDistance;
-	[SyncVar] public bool isLeftArmAnimated;
 
 	[Header("Run sync vars")]
+	[SyncVar(hook = nameof(changeAnimatedArm))] public bool isLeftArmAnimated = false;
 	[SyncVar(hook = nameof(changeArmRestingState))] public bool isArmResting;
 
 	[Header("Active avatar")]
@@ -94,7 +93,7 @@ public class CharacterManager : NetworkBehaviour {
 		}
 	}
 
-	public void Start() {
+	public virtual void Start() {
 		if (isPatient && activePatientInstance == null) {
 			activePatientInstance = this;
 		}
@@ -116,33 +115,7 @@ public class CharacterManager : NetworkBehaviour {
 		}
 
 		if (isPatient) {
-			ArmAnimationController[] armAnimationControllers = activeAvatarObject.GetComponents<ArmAnimationController>();
-			foreach (ArmAnimationController armController in armAnimationControllers) {
-				if (this.isLeftArmAnimated == armController.isLeft) { // only if both True, or both False
-					activeArmAnimationController = armController;
-
-					if (isArmResting) {
-						activeArmAnimationController.setArmRestPosition();
-					}
-				} else {
-					armController.enabled = false;
-				}
-			}
-
-			if (activeArmAnimationController == null) {
-				Debug.LogError("Failed to find correct Arm animation controller for Patient");
-				return;
-			} else {
-				if (activeAvatarObject.TryGetComponent<AvatarController>(out avatarController)) {
-					if (this.isLeftArmAnimated) {
-						avatarController.leftHand.applyIk = false;
-						activeArmRangeMarker = avatarController.leftArmRangeMarker;
-					} else {
-						avatarController.rightHand.applyIk = false;
-						activeArmRangeMarker = avatarController.rightArmRangeMarker;
-					}
-				}
-			}
+			changeAnimatedArm(false, isLeftArmAnimated);
 		} else {
 			foreach (ArmAnimationController item in transform.GetComponents<ArmAnimationController>()) {
 				item.enabled = false;
@@ -195,12 +168,49 @@ public class CharacterManager : NetworkBehaviour {
 		return goList.ToArray();
 	}
 
-	private void changeArmRestingState(bool _old, bool _new) {
+	protected void changeArmRestingState(bool _old, bool _new) {
 		if (!isPatient || activeArmAnimationController == null) {
 			return;
 		}
 
-		activeArmAnimationController.setArmRestPosition();
+		activeArmAnimationController.setArmRestPosition(_new);
+	}
+
+	protected virtual void changeAnimatedArm(bool _old, bool _new) {
+		ArmAnimationController[] armAnimationControllers = activeAvatarObject.GetComponents<ArmAnimationController>();
+		foreach (ArmAnimationController armAnimationController in armAnimationControllers) {
+			if (this.isLeftArmAnimated == armAnimationController.isLeft) { // only if both True, or both False
+				armAnimationController.enabled = true;
+				activeArmAnimationController = armAnimationController;
+
+				if (isArmResting) {
+					activeArmAnimationController.setArmRestPosition(true);
+				}
+			} else {
+				armAnimationController.enabled = false;
+				if (isArmResting) {
+					armAnimationController.setArmRestPosition(false);
+				}
+			}
+		}
+
+		if (activeArmAnimationController == null) {
+			Debug.LogError("Failed to find correct Arm animation controller for Patient");
+			return;
+		} else {
+			if (activeAvatarObject.TryGetComponent<AvatarController>(out AvatarController avatarController)) {
+				if (this.isLeftArmAnimated) {
+					avatarController.leftHand.followVRTarget = false;
+					activeArmRangeMarker = avatarController.leftArmRangeMarker;
+					avatarController.rightHand.followVRTarget = true;
+				} else {
+					avatarController.rightHand.followVRTarget = false;
+					activeArmRangeMarker = avatarController.rightArmRangeMarker;
+					avatarController.leftHand.followVRTarget = true;
+				}
+				avatarController.resetHandIKTargets();
+			}
+		}
 	}
 
 	public void showArmRangeMarker() {

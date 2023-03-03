@@ -277,8 +277,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseX: {fileID: -6197373250192671553, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
   mouseY: {fileID: -1086650663570721926, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
-  menu: {fileID: 3796970163881969186, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
-  grab: {fileID: -3781283977073091197, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
   mouseManager: {fileID: 5622529241403108388}
   player: {fileID: 5308743742952482153}
   verticalRotation: 0
@@ -473,6 +471,14 @@ PrefabInstance:
       propertyPath: headSpine.vrTarget
       value: 
       objectReference: {fileID: 5308743743746186655}
+    - target: {fileID: 7634075933599394607, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: leftHand.followVRTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634075933599394607, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: rightHand.followVRTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8932678251044810797, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -658,10 +664,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1094835895749396996, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
-      propertyPath: leftHand.vrTarget
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1094835895749396996, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
       propertyPath: rightHand.applyIk
       value: 0
       objectReference: {fileID: 0}
@@ -670,8 +672,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5308743743746186655}
     - target: {fileID: 1094835895749396996, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
-      propertyPath: rightHand.vrTarget
-      value: 
+      propertyPath: leftHand.followVRTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1094835895749396996, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
+      propertyPath: rightHand.followVRTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1543947783190627638, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
       propertyPath: m_Layer

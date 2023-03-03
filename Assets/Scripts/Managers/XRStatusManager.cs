@@ -169,6 +169,7 @@ public class XRStatusManager : MonoBehaviour {
 				mockXRControls?.SetActive(true);
 
 				xrSetupMenu.SetActive(true);
+				xrDeviceSimulator.SetActive(true);
 			} else {
 				desktopControls?.SetActive(false);
 				xrControls?.SetActive(true);

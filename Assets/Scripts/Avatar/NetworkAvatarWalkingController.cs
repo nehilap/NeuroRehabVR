@@ -32,11 +32,7 @@ public class NetworkAvatarWalkingController : NetworkBehaviour
 	private float strafeDirection;
 
 	private void Start() {
-		if (avatarModelManager.isFemale) {
-			animator = femaleAnimator;
-		} else {
-			animator = maleAnimator;
-		}
+		initAnimator();
 	}
 
 	private void OnEnable() {
@@ -54,6 +50,14 @@ public class NetworkAvatarWalkingController : NetworkBehaviour
 		}
 		move.action.performed -= updateStartAnimation;
 		move.action.canceled -= updateStopAnimation;
+	}
+
+	private void initAnimator() {
+		if (avatarModelManager.isFemale) {
+			animator = femaleAnimator;
+		} else {
+			animator = maleAnimator;
+		}
 	}
 
 	private void updateStartAnimation(InputAction.CallbackContext obj) {
@@ -98,6 +102,9 @@ public class NetworkAvatarWalkingController : NetworkBehaviour
 		if (isLocalPlayer) {
 			return;
 		}
+		if (animator == null) {
+			initAnimator();
+		}
 
 		if (isWalking) {
 			animator.SetBool("isWalking", true);
@@ -138,6 +145,11 @@ public class NetworkAvatarWalkingController : NetworkBehaviour
 		if (isLocalPlayer) {
 			return;
 		}
+		
+		if (animator == null) {
+			initAnimator();
+		}
+
 
 		if (!isWalking) {
 			animator.SetBool("isWalking", false);

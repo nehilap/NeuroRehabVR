@@ -6,9 +6,6 @@ public class AvatarWalkingController : MonoBehaviour {
 
 	[SerializeField] private Animator animator;
 
-	private void Update() {
-	}
-
 	private void OnEnable() {
 		move.action.performed += animateLegs;
 		move.action.canceled += stopAnimateLegs;
