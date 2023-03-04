@@ -396,19 +396,10 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 	[TargetRpc]
 	public void TargetMovePatientToSit(NetworkConnection connection) {
-		if (ObjectManager.Instance.getFirstObjectByName("PatientSitPositionObject") != null) {
-			// We have to turn off character controller, as it stops us trying to teleport object around
-			CharacterController cc = CharacterManager.localClientInstance.GetComponent<CharacterController>();
+		GameObject patientSitPosition = ObjectManager.Instance.getFirstObjectByName("PatientSitPositionObject");
+		GameObject tableObject = ObjectManager.Instance.getFirstObjectByName("Table");
 
-			cc.enabled = false;
-			CharacterManager.localClientInstance.transform.position = ObjectManager.Instance.getFirstObjectByName("PatientSitPositionObject").transform.position;
-
-			CharacterManager.localClientInstance.cameraObject.transform.LookAt(ObjectManager.Instance.getFirstObjectByName("Table").transform);
-			float cameraRot = CharacterManager.localClientInstance.cameraObject.transform.localRotation.eulerAngles.y;
-
-			CharacterManager.localClientInstance.transform.rotation = Quaternion.Euler(CharacterManager.localClientInstance.transform.eulerAngles.x, CharacterManager.localClientInstance.transform.eulerAngles.y - cameraRot, CharacterManager.localClientInstance.transform.eulerAngles.z);
-			cc.enabled = true;
-		}
+		CharacterManager.localClientInstance.teleportCharacter(patientSitPosition.transform, tableObject.transform);
 	}
 
 	/*
@@ -481,8 +472,9 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 		if (CharacterManager.localClientInstance.TryGetComponent<XROrigin>(out XROrigin xrOrigin)) {
 			xrOrigin.MoveCameraToWorldLocation(CharacterManager.localClientInstance.cameraObject.transform.position + movement);
+		} else {
+			CharacterManager.localClientInstance.transform.position += movement;
 		}
-		// CharacterManager.localClientInstance.transform.position += movement;
 	}
 
 	/*

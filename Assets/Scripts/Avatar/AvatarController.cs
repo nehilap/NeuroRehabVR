@@ -19,12 +19,12 @@ public class MapTransforms {
 		if (!followVRTarget || vrTarget == null || ikTarget == null) {
 			return;
 		}
+		ikTarget.rotation = vrTarget.rotation * Quaternion.Euler(actualRotOffset);
 
 		if (vrTarget.hasChanged) {
 			ikTarget.position = vrTarget.TransformPoint(actualPosOffset);
 		}
 
-		ikTarget.rotation = vrTarget.rotation * Quaternion.Euler(actualRotOffset);
 	}
 
 	 public void mapTransformsDebug(Transform transform){
@@ -55,7 +55,7 @@ public class MapTransforms {
 
 	public void setMulti(float multiplier) {
 		actualPosOffset = positionOffset * multiplier;
-		actualRotOffset = rotationOffset * multiplier;
+		actualRotOffset = rotationOffset;
 	}
 }
 

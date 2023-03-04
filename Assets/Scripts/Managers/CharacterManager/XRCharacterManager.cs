@@ -5,6 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit.Inputs;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation;
 using UnityEngine.InputSystem.XR;
 using Enums;
+using Unity.XR.CoreUtils;
 
 public class XRCharacterManager : CharacterManager {
 
@@ -26,6 +27,9 @@ public class XRCharacterManager : CharacterManager {
 	[SerializeField] private InputActionManager inputActionManager;
 
 	[SerializeField] private GameObject xrDeviceSimulator;
+
+	private XROrigin xrOrigin;
+	private CharacterController characterController;
 
 	public override void OnStartLocalPlayer() {
 		base.OnStartLocalPlayer();
@@ -59,6 +63,9 @@ public class XRCharacterManager : CharacterManager {
 
 	public override void Start() {
 		base.Start();
+		
+		xrOrigin = gameObject.GetComponent<XROrigin>();
+		characterController = gameObject.GetComponent<CharacterController>();
 
 		// Setting up offset based on HMD type used by client
 		changeHMDType(hmdType, hmdType);
@@ -79,6 +86,16 @@ public class XRCharacterManager : CharacterManager {
 			if (cameraObject.TryGetComponent<HeadCollisionManager>(out HeadCollisionManager headCollisionManager)) {
 				headCollisionManager.enabled = false;
 			}
+		}
+	}
+
+	private void LateUpdate() {
+		if (!isLocalPlayer) {
+			Vector3 center = xrOrigin.CameraInOriginSpacePos;
+			center.y = xrOrigin.CameraInOriginSpaceHeight / 2f + characterController.skinWidth;
+
+			characterController.height = xrOrigin.CameraInOriginSpaceHeight;
+			characterController.center = center;
 		}
 	}
 
@@ -186,6 +203,29 @@ public class XRCharacterManager : CharacterManager {
 			} else {
 				Debug.LogWarning("Failed to identify XRController, most likely missing 'XRControllerUtility'!");
 			}
+		}
+	}
+
+	public override void teleportCharacter(Transform targetPosition, Transform lookTarget = null) {
+		if (targetPosition == null) {
+			Debug.LogError("Argument 'targetPosition' cannot be null");
+			return;
+		}
+		if (xrOrigin != null) {
+			// We have to turn off character controller, as it stops us trying to teleport object around
+			CharacterController cc = gameObject.GetComponent<CharacterController>();
+			cc.enabled = false;
+
+			Vector3 targetCameraPos = targetPosition.position;
+			targetCameraPos.y += xrOrigin.CameraYOffset;
+			xrOrigin.MoveCameraToWorldLocation(targetCameraPos);
+
+			float angleToRotate = targetPosition.rotation.eulerAngles.y - base.cameraObject.transform.rotation.eulerAngles.y;
+			xrOrigin.RotateAroundCameraUsingOriginUp(angleToRotate);
+
+			cc.enabled = true;
+		} else {
+			Debug.LogError("Failed to retrieve XROrigin");
 		}
 	}
 }

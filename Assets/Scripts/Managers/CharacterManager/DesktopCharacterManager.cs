@@ -25,4 +25,19 @@ public class DesktopCharacterManager : CharacterManager {
 	public override void Start() {
 		base.Start();
 	}
+
+	public override void teleportCharacter(Transform targetPosition, Transform lookTarget = null) {
+		if (targetPosition == null || lookTarget == null) {
+			Debug.LogError("Arguments 'targetPosition' and 'lookTarget' cannot be null");
+			return;
+		}
+		// We have to turn off character controller, as it stops us trying to teleport object around
+		CharacterController cc = gameObject.GetComponent<CharacterController>();
+		cc.enabled = false;
+		
+		transform.position = targetPosition.position;
+		transform.LookAt(lookTarget);
+
+		cc.enabled = true;
+	}
 }

@@ -11,7 +11,7 @@ public class AvatarSettings {
 
 [System.Serializable]
 public class AudioSettings {
-	[Range(0f, 2f)] public float UIvolume = 1f;
+	[Tooltip("2 = 200% of initial volume")][Range(0f, 2f)] public float UIvolume = 1f;
 }
 
 public class SettingsManager : MonoBehaviour {

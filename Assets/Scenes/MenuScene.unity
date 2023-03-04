@@ -18200,7 +18200,7 @@ MonoBehaviour:
     offsetDistance: 0
     currentModel: {fileID: 113542620659459055, guid: 392d4b474683e4e478930e8461877fa2, type: 3}
   audioSettings:
-    UIvolume: 0
+    UIvolume: 1
 --- !u!114 &1751045517
 MonoBehaviour:
   m_ObjectHideFlags: 0

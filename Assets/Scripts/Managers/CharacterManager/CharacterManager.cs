@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Wolf3D.ReadyPlayerMe.AvatarSDK;
 
-public class CharacterManager : NetworkBehaviour {
+public abstract class CharacterManager : NetworkBehaviour {
 	
 	public static CharacterManager localClientInstance { get; private set; }
 	public static CharacterManager activePatientInstance { get; private set; }
@@ -224,4 +224,6 @@ public class CharacterManager : NetworkBehaviour {
 		
 		meshRenderer.enabled = false;
 	}
+
+	public abstract void teleportCharacter(Transform targetPosition, Transform lookTarget = null);
 }

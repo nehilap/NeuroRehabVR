@@ -60,6 +60,7 @@ public class ArmAnimationController : MonoBehaviour {
 			return;
 		}
 
+		Debug.Log(avatarController.sizeMultiplier);
 		animationMapping.resizeMappings(avatarController.sizeMultiplier);
 
 		if (isLeft) {
@@ -105,6 +106,7 @@ public class ArmAnimationController : MonoBehaviour {
 
 		// First we move the object to it's starting position, instead of it just warping there suddenly
 		yield return StartCoroutine(lerpTransform(targetObject, new PosRotMapping(targetObject.transform), currentAnimSetup[0], 1f, false));
+		targetsHelperObject.alignTargetTransforms();
 
 		// Animation control for moving arm and grabbing with hand
 		// we set weight to the corresponding part we're moving
@@ -187,10 +189,10 @@ public class ArmAnimationController : MonoBehaviour {
 				}
 			}
 		} else {
-			if (targetObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
-				rb.useGravity = true;
 			if (targetObject.TryGetComponent<Collider>(out Collider col))
 				col.enabled = true;
+			if (targetObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
+				rb.useGravity = true;
 		}
 	}
 
