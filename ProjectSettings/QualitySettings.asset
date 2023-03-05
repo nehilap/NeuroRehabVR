@@ -26,7 +26,7 @@ QualitySettings:
     softVegetation: 0
     realtimeReflectionProbes: 0
     billboardsFaceCameraPosition: 0
-    vSyncCount: 0
+    vSyncCount: 1
     lodBias: 0.3
     maximumLODLevel: 0
     streamingMipmapsActive: 0
@@ -41,7 +41,8 @@ QualitySettings:
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
     customRenderPipeline: {fileID: 11400000, guid: 7b4dbe0ea802d7144a6b5e00c53b6a7c, type: 2}
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - Android
   - serializedVersion: 2
     name: Low
     pixelLightCount: 0
@@ -62,7 +63,7 @@ QualitySettings:
     softVegetation: 0
     realtimeReflectionProbes: 0
     billboardsFaceCameraPosition: 0
-    vSyncCount: 0
+    vSyncCount: 1
     lodBias: 0.4
     maximumLODLevel: 0
     streamingMipmapsActive: 0
@@ -79,6 +80,7 @@ QualitySettings:
     customRenderPipeline: {fileID: 11400000, guid: db2835e9640c42c4f9f50ddea20633a2, type: 2}
     excludedTargetPlatforms:
     - Server
+    - Android
   - serializedVersion: 2
     name: Medium
     pixelLightCount: 1
@@ -116,6 +118,7 @@ QualitySettings:
     customRenderPipeline: {fileID: 11400000, guid: 62fa089a802c9aa4b9a9a17972733b91, type: 2}
     excludedTargetPlatforms:
     - Server
+    - Android
   - serializedVersion: 2
     name: High
     pixelLightCount: 2
@@ -153,6 +156,7 @@ QualitySettings:
     customRenderPipeline: {fileID: 11400000, guid: 0dd540d4ba4d495428f4d79700a03e7a, type: 2}
     excludedTargetPlatforms:
     - Server
+    - Android
   - serializedVersion: 2
     name: Very High
     pixelLightCount: 3
@@ -190,6 +194,7 @@ QualitySettings:
     customRenderPipeline: {fileID: 11400000, guid: 34c9008350f7cdf40986d6def935799b, type: 2}
     excludedTargetPlatforms:
     - Server
+    - Android
   - serializedVersion: 2
     name: Ultra
     pixelLightCount: 4
@@ -210,7 +215,7 @@ QualitySettings:
     softVegetation: 1
     realtimeReflectionProbes: 1
     billboardsFaceCameraPosition: 1
-    vSyncCount: 0
+    vSyncCount: 1
     lodBias: 2
     maximumLODLevel: 0
     streamingMipmapsActive: 0
@@ -227,6 +232,7 @@ QualitySettings:
     customRenderPipeline: {fileID: 11400000, guid: be4ed9d30e575f04bb5c528e02bea183, type: 2}
     excludedTargetPlatforms:
     - Server
+    - Android
   - serializedVersion: 2
     name: Standalone VR
     pixelLightCount: 1

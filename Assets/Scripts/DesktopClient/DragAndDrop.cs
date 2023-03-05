@@ -34,12 +34,12 @@ public class DragAndDrop : MonoBehaviour {
 	}
 
 	// https://www.youtube.com/watch?v=HfqRKy5oFDQ
-	private void mousePressed(InputAction.CallbackContext obj) { 
+	private void mousePressed(InputAction.CallbackContext obj) {
 		Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 		RaycastHit hit;
 
 		if (Physics.Raycast(ray, out hit, rayLength, layerMask:~(layersToIgnore))) {
-			if (hit.collider != null && (hit.collider.gameObject.CompareTag("Draggable") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Target") 
+			if (hit.collider != null && (hit.collider.gameObject.CompareTag("Draggable") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Target")
 			|| hit.collider.gameObject.GetComponent<DragInterface>() != null)) {
 				StartCoroutine(dragUpdate(hit.collider.gameObject));
 			}
@@ -52,7 +52,7 @@ public class DragAndDrop : MonoBehaviour {
 
 		dragInterface?.OnStartDrag();
 		dragInterface?.OnShowDragRange();
-		
+
 		if (draggedObject.transform.TryGetComponent<NetworkIdentity>(out NetworkIdentity objectIdentity)) {
 			NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(objectIdentity, CharacterManager.localClientInstance.GetComponent<NetworkIdentity>());
 		}
