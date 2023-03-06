@@ -928,7 +928,7 @@ MonoBehaviour:
     middleTargetTemplate: {fileID: 0}
     ringTargetTemplate: {fileID: 0}
     pinkyTargetTemplate: {fileID: 0}
-  armRestOffset: {x: 0, y: 0.04, z: 0}
+  armRestOffset: {x: 0, y: 0.06, z: 0}
   targetObject: {fileID: 0}
   animSettingsManager: {fileID: 0}
   armRestHelperObject: {fileID: 0}
@@ -1054,7 +1054,7 @@ MonoBehaviour:
     middleTargetTemplate: {fileID: 0}
     ringTargetTemplate: {fileID: 0}
     pinkyTargetTemplate: {fileID: 0}
-  armRestOffset: {x: 0, y: 0.04, z: 0}
+  armRestOffset: {x: 0, y: 0.06, z: 0}
   targetObject: {fileID: 0}
   animSettingsManager: {fileID: 0}
   armRestHelperObject: {fileID: 0}

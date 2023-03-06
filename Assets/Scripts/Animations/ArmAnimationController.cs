@@ -32,7 +32,7 @@ public class ArmAnimationController : MonoBehaviour {
 	[SerializeField] private GameObject armRestHelperObject;
 	[SerializeField] private bool isArmResting = false;
 	[SerializeField] private PosRotMapping originalArmRestPosRot;
-	
+
 	[SerializeField] private AnimationMapping animationMapping;
 
 	[Header("Arm range and mirroring mappings objects")]
@@ -41,7 +41,7 @@ public class ArmAnimationController : MonoBehaviour {
 	[SerializeField] private float armRangeSlack = 0.01f;
 
 	private float armLength;
- 
+
 	[SerializeField] private Transform _mirror;
 
 	void Start() {
@@ -60,7 +60,6 @@ public class ArmAnimationController : MonoBehaviour {
 			return;
 		}
 
-		Debug.Log(avatarController.sizeMultiplier);
 		animationMapping.resizeMappings(avatarController.sizeMultiplier);
 
 		if (isLeft) {
@@ -76,7 +75,7 @@ public class ArmAnimationController : MonoBehaviour {
 		armRig.gameObject.SetActive(true);
 		handRig.gameObject.SetActive(true);
 	}
-	
+
 	private void OnDisable() {
 		armRig.gameObject.SetActive(false);
 		handRig.gameObject.SetActive(false);
@@ -114,7 +113,7 @@ public class ArmAnimationController : MonoBehaviour {
 		yield return StartCoroutine(multiRigLerp(rigLerps, animSettingsManager.armMoveDuration));
 
 		yield return StartCoroutine(simpleRigLerp(handRig, animSettingsManager.handMoveDuration, 0, 1));
-	
+
 		if (!isFakeAnimation && !(CharacterManager.localClientInstance.GetInstanceID() == CharacterManager.activePatientInstance.GetInstanceID())) {
 			Debug.Log("Not original patient, aligning transform");
 			yield return StartCoroutine(alignTransformWrapper(calculateAnimationDuration(animSettingsManager, waitDuration, keyTurnDuration)));
@@ -172,10 +171,10 @@ public class ArmAnimationController : MonoBehaviour {
 		yield return StartCoroutine(simpleRigLerp(handRig, animSettingsManager.handMoveDuration, 1, 0));
 
 		//animPart = AnimationPart.Arm;
-		
+
 		RigLerp[] rigLerps = {new RigLerp(armRig, 1, 0), new RigLerp(restArmRig, 0, 1)};
 		yield return StartCoroutine(multiRigLerp(rigLerps, animSettingsManager.armMoveDuration));
-		
+
 		foreach (Renderer item in fakeArmObjects)	{
 			item.enabled = false;
 		}
@@ -198,7 +197,7 @@ public class ArmAnimationController : MonoBehaviour {
 
 	private IEnumerator restArmStartAnimation() {
 		originalArmRestPosRot = new PosRotMapping(targetsHelperObject.armRestTarget.transform);
-		
+
 		if (armRestHelperObject == null) {
 			armRestHelperObject = GameObject.Find("ArmRestHelperObject" + (isLeft ? "Left" : "Right"));
 		}
@@ -209,7 +208,7 @@ public class ArmAnimationController : MonoBehaviour {
 
 		yield return StartCoroutine(lerpTransform(targetsHelperObject.armRestTarget, startMapping, endMapping, animSettingsManager.armMoveDuration));
 	}
-	
+
 	private IEnumerator restArmStopAnimation() {
 		PosRotMapping startMapping = new PosRotMapping(targetsHelperObject.armRestTarget.transform);
 
@@ -238,7 +237,7 @@ public class ArmAnimationController : MonoBehaviour {
 			rig.weight = Mathf.Lerp(startLerpValue, endLerpValue, t);
 			lerpTimeElapsed += Time.deltaTime;
 			yield return null;
-		}  
+		}
 		// lerp never reaches endValue, that is why we have to set it manually
 		rig.weight = endLerpValue;
 	}
@@ -256,7 +255,7 @@ public class ArmAnimationController : MonoBehaviour {
 
 			lerpTimeElapsed += Time.deltaTime;
 			yield return null;
-		}  
+		}
 		// lerp never reaches endValue, that is why we have to set it manually
 		rigToStart.weight = endLerpValue;
 		rigToStop.weight = startLerpValue;
@@ -276,7 +275,7 @@ public class ArmAnimationController : MonoBehaviour {
 
 			lerpTimeElapsed += Time.deltaTime;
 			yield return null;
-		}  
+		}
 		// lerp never reaches endValue, that is why we have to set it manually
 		foreach (RigLerp rigLerp in rigLerps) {
 			rigLerp.rig.weight = rigLerp.endValue;
@@ -370,7 +369,7 @@ public class ArmAnimationController : MonoBehaviour {
 			Debug.LogError("Start or End animation position not set");
 			return;
 		}
-		
+
 		if (!isTargetInRange(currentAnimationSetup[0].position)) {
 			float targetDistance = Vector3.Distance(currentAnimationSetup[0].position, armRangeMesh.transform.position);
 			Debug.LogWarning("Arm cannot grab object, too far away: " + targetDistance + "m > " + armLength + "m");
@@ -396,7 +395,7 @@ public class ArmAnimationController : MonoBehaviour {
 			}
 		}else {
 			targetObject = ObjectManager.Instance.getFirstObjectByName(targetObjectName);
-			
+
 			if (targetObject == null) {
 				Debug.LogError("Failed to find object: '" + targetObjectName + "'");
 				return;
@@ -450,7 +449,7 @@ public class ArmAnimationController : MonoBehaviour {
 
 	public void setArmRestPosition(bool _isArmResting) {
 		isArmResting = _isArmResting;
-		
+
 		initElements();
 
 		if (isArmResting) {
