@@ -4,14 +4,14 @@ using UnityEngine.Networking;
 using Enums;
 
 public class GeneralMenuManager : MonoBehaviour {
-	
+
 	public string targetAPI;
 
 	private JoinManager joinManager;
 
 	void Start() {
 		joinManager = new JoinManager();
-		
+
 		// https://u3ds.blogspot.com/2021/01/get-post-rest-api-data-unitywebrequest.html
 	}
 
@@ -34,8 +34,12 @@ public class GeneralMenuManager : MonoBehaviour {
 		#endif
 	}
 
+	public void triggerActive(GameObject _object) {
+		_object.SetActive(!_object.activeSelf);
+	}
+
 	public void SendSync() => StartCoroutine(PostData_Coroutine());
- 
+
 	IEnumerator PostData_Coroutine()
 	{
 		if (targetAPI == "") {
