@@ -41,7 +41,7 @@ public class XRCharacterManager : CharacterManager {
 		// We look for Device simulator and setup the local player camera transform to camera transform
 		if (hmdType == HMDType.Mock && XRStatusManager.Instance.isXRActive) {
 			GameObject deviceSimulator = Instantiate(xrDeviceSimulator);
-			
+
 			deviceSimulator.GetComponent<XRDeviceSimulator>().cameraTransform = cameraObject.transform;
 		}
 
@@ -63,7 +63,7 @@ public class XRCharacterManager : CharacterManager {
 
 	public override void Start() {
 		base.Start();
-		
+
 		xrOrigin = gameObject.GetComponent<XROrigin>();
 		characterController = gameObject.GetComponent<CharacterController>();
 
@@ -72,8 +72,8 @@ public class XRCharacterManager : CharacterManager {
 
 		// Setting up controller model
 		changeControllerType(controllerType, controllerType);
-	
-		// if non local character prefab is loaded we have to disable components such as camera, etc. otherwise Multiplayer aspect wouldn't work properly 
+
+		// if non local character prefab is loaded we have to disable components such as camera, etc. otherwise Multiplayer aspect wouldn't work properly
 		if (!isLocalPlayer)	{
 			if(cameraObject.GetComponents<TrackedPoseDriver>() != null) {
 				foreach (TrackedPoseDriver item in cameraObject.GetComponents<TrackedPoseDriver>())	{
@@ -104,7 +104,7 @@ public class XRCharacterManager : CharacterManager {
 	* ITEM PICKUP / RELEASE
 	* these are the methods used for granting player an authority over items and then releasing the authority after the item is released
 	* this is used for certain VR functions to work as intended in multiplayer space such as grabbing an item
-	* 
+	*
 	*/
 	private void itemPickUp(SelectEnterEventArgs args) {
 		// we get net identity from current object of character
@@ -115,7 +115,7 @@ public class XRCharacterManager : CharacterManager {
 		if (isOwned) {
 			// if not server, we ask server to grant us authority
 			NetworkIdentity itemNetIdentity = args.interactableObject.transform.GetComponent<NetworkIdentity>();
-			if (!isServer){
+			if (!isServer && !itemNetIdentity.isOwned){
 				NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(itemNetIdentity, identity);
 			}
 
@@ -189,13 +189,13 @@ public class XRCharacterManager : CharacterManager {
 		}
 	}
 
-	protected override void changeAnimatedArm(bool _old, bool _new) { 
+	protected override void changeAnimatedArm(bool _old, bool _new) {
 		base.changeAnimatedArm(_old, _new);
 
 		for (int i = 0; i < XRControllers.Length; i++) {
 			if (XRControllers[i].TryGetComponent<XRControllerUtility>(out XRControllerUtility xrControllerUtility)) {
 				// We turn off controller and ray interactors, based on which arm is being used
-				if (base.isLeftArmAnimated == xrControllerUtility.isLeftHandController) { 
+				if (base.isLeftArmAnimated == xrControllerUtility.isLeftHandController) {
 					XRControllers[i].gameObject.SetActive(false);
 				} else {
 					XRControllers[i].gameObject.SetActive(true);

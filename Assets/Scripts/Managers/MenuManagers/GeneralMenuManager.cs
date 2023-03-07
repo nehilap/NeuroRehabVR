@@ -11,8 +11,6 @@ public class GeneralMenuManager : MonoBehaviour {
 
 	void Start() {
 		joinManager = new JoinManager();
-
-		// https://u3ds.blogspot.com/2021/01/get-post-rest-api-data-unitywebrequest.html
 	}
 
 	public void JoinTherapist() {
@@ -30,7 +28,7 @@ public class GeneralMenuManager : MonoBehaviour {
 	public void QuitApp() {
 		Application.Quit();
 		#if UNITY_EDITOR
-			UnityEditor.EditorApplication.isPlaying = false; // TODO remove later
+			UnityEditor.EditorApplication.isPlaying = false;
 		#endif
 	}
 

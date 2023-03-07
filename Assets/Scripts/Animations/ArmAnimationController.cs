@@ -122,7 +122,10 @@ public class ArmAnimationController : MonoBehaviour {
 			// if Fake Arm, we don't need to gain authority, because it is not using networked object
 			if (!isFakeAnimation && (CharacterManager.localClientInstance.GetInstanceID() == CharacterManager.activePatientInstance.GetInstanceID())) {
 				// we ask server to grant us authority over target object
-				NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(targetObject.GetComponent<NetworkIdentity>(), CharacterManager.localClientInstance.GetComponent<NetworkIdentity>());
+				NetworkIdentity targetObjectIdentity = targetObject.GetComponent<NetworkIdentity>();
+				if (!targetObjectIdentity.isOwned) {
+					NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(targetObjectIdentity, CharacterManager.localClientInstance.GetComponent<NetworkIdentity>());
+				}
 			}
 
 			if (animSettingsManager.animType == AnimationType.Cup) {

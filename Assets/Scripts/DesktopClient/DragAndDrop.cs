@@ -54,7 +54,9 @@ public class DragAndDrop : MonoBehaviour {
 		dragInterface?.OnShowDragRange();
 
 		if (draggedObject.transform.TryGetComponent<NetworkIdentity>(out NetworkIdentity objectIdentity)) {
-			NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(objectIdentity, CharacterManager.localClientInstance.GetComponent<NetworkIdentity>());
+			if (!objectIdentity.isOwned) {
+				NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(objectIdentity, CharacterManager.localClientInstance.GetComponent<NetworkIdentity>());
+			}
 		}
 
 		float initDistance = Vector3.Distance(draggedObject.transform.position, mainCamera.transform.position);

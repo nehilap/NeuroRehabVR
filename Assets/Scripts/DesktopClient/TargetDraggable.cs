@@ -5,7 +5,7 @@ public class TargetDraggable : MonoBehaviour, DragInterface {
 	private Rigidbody _rigidbody;
 
 	private void Awake() {
-		_rigidbody = transform.GetComponent<Rigidbody>();    
+		_rigidbody = transform.GetComponent<Rigidbody>();
 	}
 
 	public void OnStartDrag() {

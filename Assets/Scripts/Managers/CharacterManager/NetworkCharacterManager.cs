@@ -11,7 +11,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	public static NetworkCharacterManager localNetworkClientInstance { get; private set; }
 
 	[SerializeField] private AnimationSettingsManager animSettingsManager;
-	
+
 	[SerializeField] private List<GameObject> targetPrefabs = new List<GameObject>();
 
 	[SerializeField] private GameObject spawnArea;
@@ -58,15 +58,20 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	}
 
 	private void setItemAuthority(NetworkIdentity item, NetworkIdentity newPlayerOwner) {
+		// No need to re-assign authority
+		if (newPlayerOwner.connectionToClient.owned.Contains(item)) {
+			return;
+		}
 		item.gameObject.GetComponent<NetworkTransform>().syncDirection = SyncDirection.ClientToServer;
 		Debug.Log("Granting authority:" + item.netId + " to:" + newPlayerOwner.netId);
 		item.RemoveClientAuthority();
 		item.AssignClientAuthority(newPlayerOwner.connectionToClient);
+
 	}
 
 	/*
 	* COMMANDS FOR SERVER - SYNCVARs
-	* 
+	*
 	*/
 
 	[Command]
@@ -86,28 +91,28 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	[Command]
 	public void CmdUpdateWaitDuration(float value) {
 		if (animSettingsManager.waitDuration == value) return;
-		
+
 		animSettingsManager.waitDuration = value;
 	}
-	
+
 	[Command]
 	public void CmdUpdateMoveDuration(float value) {
 		if (animSettingsManager.moveDuration == value) return;
-		
+
 		animSettingsManager.moveDuration = value;
 	}
-	
+
 	[Command]
 	public void CmdUpdateRepetitions(int value) {
 		if (animSettingsManager.repetitions == value) return;
-		
+
 		animSettingsManager.repetitions = value;
 	}
 
 	[Command]
 	public void CmdUpdateAnimType(AnimationType _animType) {
 		if (animSettingsManager.animType == _animType) return;
-		
+
 		animSettingsManager.animType = _animType;
 	}
 
@@ -146,19 +151,19 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 	private PosRotMapping getPosRotFromObject() {
 		GameObject targetObject = ObjectManager.Instance.getFirstObjectByName(animSettingsManager.animType.ToString());
-		
+
 		if (targetObject == null) {
 			Debug.LogError("Failed to find object: " + animSettingsManager.animType.ToString());
 			return null;
 		}
-		
+
 		return new PosRotMapping(targetObject.transform);
 	}
 
 	[Command]
 	public void CmdAddMovePosition() {
 		GameObject targetObject = ObjectManager.Instance.getFirstObjectByName(animSettingsManager.animType.ToString());
-		
+
 		if (targetObject == null) {
 			Debug.LogError("Failed to find object: " + animSettingsManager.animType.ToString());
 			return;
@@ -407,7 +412,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	* Setting up positioning
 	*
 	*/
-	
+
 	[Command]
 	public void CmdMoveTable(Vector3 offset, NetworkIdentity caller) {
 		List<GameObject> tableObjs =  ObjectManager.Instance.getObjectsByName("Table");
@@ -423,7 +428,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 		for (int i = 0; i < currentSetup.Count; i++) {
 			currentSetup[i] = new PosRotMapping(currentSetup[i].position + offset, currentSetup[i].rotation);
 		}
-		
+
 		string targetObjectName = animSettingsManager.animType.ToString();
 
 		List<GameObject> targetObjects = ObjectManager.Instance.getObjectsByName(targetObjectName);
