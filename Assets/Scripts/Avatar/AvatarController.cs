@@ -51,10 +51,14 @@ public class MapTransforms {
 		//}
 
 		//ikTarget.position = vrTarget.TransformPoint(positionOffset);
-	} 
+	}
 
-	public void setMulti(float multiplier) {
-		actualPosOffset = positionOffset * multiplier;
+	public void setMulti(float multiplier, bool ignoreMulti = false) {
+		if (!ignoreMulti) {
+			actualPosOffset = positionOffset;
+		} else {
+			actualPosOffset = positionOffset * multiplier;
+		}
 		actualRotOffset = rotationOffset;
 	}
 }
@@ -68,7 +72,7 @@ public class AvatarController : MonoBehaviour {
 	[SerializeField] public MapTransforms headSpine;
 	[SerializeField] public MapTransforms leftHand;
 	[SerializeField] public MapTransforms rightHand;
-	
+
 	[SerializeField] public bool applyTurn = true;
 	[SerializeField] private float turnSmoothness;
 	[SerializeField] private Transform headTarget;
@@ -116,8 +120,8 @@ public class AvatarController : MonoBehaviour {
 */
 		head.setMulti(sizeMultiplier);
 		headSpine.setMulti(sizeMultiplier);
-		leftHand.setMulti(sizeMultiplier);
-		rightHand.setMulti(sizeMultiplier);
+		leftHand.setMulti(sizeMultiplier, true);
+		rightHand.setMulti(sizeMultiplier, true);
 
 		transform.position = headTarget.position + new Vector3(0, headOffset.y, 0);
 		transform.position += new Vector3(transform.forward.x * headOffset.x, 0, transform.forward.z * headOffset.z);
@@ -138,11 +142,11 @@ public class AvatarController : MonoBehaviour {
 		Debug.Log("size multi " + sizeMultiplier); */
 		head.setMulti(sizeMultiplier);
 		headSpine.setMulti(sizeMultiplier);
-		leftHand.setMulti(sizeMultiplier);
-		rightHand.setMulti(sizeMultiplier);
+		leftHand.setMulti(sizeMultiplier, true);
+		rightHand.setMulti(sizeMultiplier, true);
 	}
 
-	void LateUpdate() {
+	void Update() {
 		transform.position = headTarget.position + new Vector3(0, headOffset.y, 0);
 		transform.position += new Vector3(transform.forward.x * headOffset.x, 0, transform.forward.z * headOffset.z);
 

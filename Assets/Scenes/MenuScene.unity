@@ -4906,10 +4906,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 612815494906209894, guid: e9254f494dad27843a9386d4dc95e08a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2033386938909559545, guid: e9254f494dad27843a9386d4dc95e08a, type: 3}
       propertyPath: menuToShow
       value: 
       objectReference: {fileID: 298974050}
+    - target: {fileID: 2223494747928096791, guid: e9254f494dad27843a9386d4dc95e08a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5308743742952482153, guid: e9254f494dad27843a9386d4dc95e08a, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -10464,6 +10472,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 905958832}
   m_CullTransparentMesh: 1
+--- !u!1 &942712588 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8340094899192376777, guid: 86e973d90f672ba44a87b64c5146a8bf, type: 3}
+  m_PrefabInstance: {fileID: 1397531549}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1001216823
 GameObject:
   m_ObjectHideFlags: 0
@@ -10483,7 +10496,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1001216824
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13120,43 +13133,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1190975463}
   m_CullTransparentMesh: 1
---- !u!1001 &1195984327
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6598815579406187026, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
-      propertyPath: m_CameraTransform
-      value: 
-      objectReference: {fileID: 1994874456122345022}
-    - target: {fileID: 6598815579406187027, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187027, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187027, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187027, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187037, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
-      propertyPath: m_Name
-      value: XR Device Simulator
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187037, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
 --- !u!1 &1217870065
 GameObject:
   m_ObjectHideFlags: 0
@@ -15608,6 +15584,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1396581013}
   m_CullTransparentMesh: 1
+--- !u!1001 &1397531549
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8340094899192376774, guid: 86e973d90f672ba44a87b64c5146a8bf, type: 3}
+      propertyPath: m_CameraTransform
+      value: 
+      objectReference: {fileID: 1994874456122345022}
+    - target: {fileID: 8340094899192376775, guid: 86e973d90f672ba44a87b64c5146a8bf, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8340094899192376775, guid: 86e973d90f672ba44a87b64c5146a8bf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8340094899192376775, guid: 86e973d90f672ba44a87b64c5146a8bf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8340094899192376775, guid: 86e973d90f672ba44a87b64c5146a8bf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8340094899192376775, guid: 86e973d90f672ba44a87b64c5146a8bf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8340094899192376775, guid: 86e973d90f672ba44a87b64c5146a8bf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8340094899192376775, guid: 86e973d90f672ba44a87b64c5146a8bf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8340094899192376775, guid: 86e973d90f672ba44a87b64c5146a8bf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8340094899192376775, guid: 86e973d90f672ba44a87b64c5146a8bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8340094899192376775, guid: 86e973d90f672ba44a87b64c5146a8bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8340094899192376775, guid: 86e973d90f672ba44a87b64c5146a8bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8340094899192376777, guid: 86e973d90f672ba44a87b64c5146a8bf, type: 3}
+      propertyPath: m_Name
+      value: XR Device Simulator
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 86e973d90f672ba44a87b64c5146a8bf, type: 3}
 --- !u!1001 &1398627182
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19962,7 +19999,7 @@ MonoBehaviour:
   desktopRig: {fileID: 426800830}
   controllerSetupMenu: {fileID: 268548054}
   xrSetupMenu: {fileID: 1123609518}
-  xrDeviceSimulator: {fileID: 2111265730}
+  xrDeviceSimulator: {fileID: 942712588}
 --- !u!114 &1751045514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23614,11 +23651,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111199877}
   m_CullTransparentMesh: 1
---- !u!1 &2111265730 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6598815579406187037, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
-  m_PrefabInstance: {fileID: 1195984327}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2119026829
 GameObject:
   m_ObjectHideFlags: 0
@@ -26639,7 +26671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2223494747928096791, guid: c3a148a7f339e0d44ad8fea07053ee82, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2363077756337848761, guid: c3a148a7f339e0d44ad8fea07053ee82, type: 3}
       propertyPath: m_Layer

@@ -5,6 +5,7 @@ using UnityEngine.XR.Management;
 using System.Collections;
 using System.Collections.Generic;
 using Enums;
+using System;
 
 public class XRStatusManager : MonoBehaviour {
 
@@ -26,6 +27,7 @@ public class XRStatusManager : MonoBehaviour {
 	public List<GameObject> controllerPrefabs = new List<GameObject>();
 
 	public bool isXRActive;
+	private bool foundHMD = false;
 
 	[SerializeField] private ActiveBarGroupsManager activeXRButton;
 	[SerializeField] private ActiveBarGroupsManager inactiveXRButton;
@@ -41,6 +43,8 @@ public class XRStatusManager : MonoBehaviour {
 	private GameObject mockXRControls;
 	[SerializeField] private GameObject xrDeviceSimulator;
 
+	private XRLoader removedLoader = null;
+
 	void Awake() {
 		#if UNITY_EDITOR
 			if (isXRActive) {
@@ -49,35 +53,8 @@ public class XRStatusManager : MonoBehaviour {
 		#endif
 
 		DontDestroyOnLoad(gameObject);
-			
-		hmdType = HMDType.Other;
 
-		// NOT WORKING CURRENTLY (MOST LIKELY)
-		// seems to only work when using MOCK HMD
-		// discovers which type of HMD device is being used
-		if(!XRSettings.isDeviceActive) {
-			Debug.Log("No HMD discovered");
-			hmdType = HMDType.NotFound;
-		}else {
-			Debug.Log("HMD discovered: " + XRSettings.loadedDeviceName);
-
-			hmdType = HMDType.Other;
-			if(XRSettings.loadedDeviceName.Equals("MockHMD Display")) { 
-				// if MockHMD, we make the game view render only using one eye
-				XRSettings.gameViewRenderMode = GameViewRenderMode.LeftEye;
-				hmdType = HMDType.Mock;
-			}
-		}
-
-		// Debug.Log(Application.platform.ToString());
-		if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor) {
-			hmdType = HMDType.Mock;
-			// StartCoroutine(startXR());
-		} else if (Application.platform == RuntimePlatform.Android) {
-			hmdType = HMDType.Other;
-		} else {
-			hmdType = HMDType.Server;
-		}
+		initHMD();
 	}
 
 	void Start() {
@@ -90,13 +67,16 @@ public class XRStatusManager : MonoBehaviour {
 			Debug.Log("XR not running");
 			isXRActive = false;
 		}
-
+		setupRigs();
 		setupUIAndXRElements();
 		setXRSettings();
 	}
 
 	void OnApplicationQuit() {
 		stopXR();
+		if (removedLoader != null) {
+			XRGeneralSettings.Instance.Manager.TryAddLoader(removedLoader);
+		}
 	}
 
 	public void stopXR() {
@@ -104,35 +84,44 @@ public class XRStatusManager : MonoBehaviour {
 			Debug.Log("Stopping XR...");
 			XRGeneralSettings.Instance.Manager.StopSubsystems();
 			XRGeneralSettings.Instance.Manager.DeinitializeLoader();
-			
+
 			Application.targetFrameRate = 60;
 
 			isXRActive = false;
-			
+
 			setupUIAndXRElements();
 		}
 	}
 
-	public IEnumerator startXR() {
+	public IEnumerator startXR(bool isOpenXRActive = true) {
+		setupLoader(isOpenXRActive);
+
 		if (XRGeneralSettings.Instance.Manager.activeLoader == null) {
 			yield return XRGeneralSettings.Instance.Manager.InitializeLoader();
-			if (XRGeneralSettings.Instance.Manager.activeLoader == null) {
-				Debug.LogError("Initializing XR Failed. Check Editor or Player log for details.");
-			} else {
-				if (hmdType == HMDType.Mock) {
-					xrDeviceSimulator.SetActive(true);
-				}
 
+			if (XRGeneralSettings.Instance.Manager.activeLoader == null) {
+				Debug.LogWarning("Initializing XR Failed. Check Editor or Player log for details.");
+				if (isOpenXRActive) {
+					Debug.LogWarning("Attempting to launch Mock HMD loader");
+					yield return StartCoroutine(startXR(false));
+				}
+			} else {
 				Debug.Log("Starting XR...");
 				XRGeneralSettings.Instance.Manager.StartSubsystems();
 				isXRActive = true;
 
+				setupRigs();
+				initHMD();
+
 				setupUIAndXRElements();
 				setXRSettings();
-				yield return null;
 			}
 		} else {
 			isXRActive = true;
+			setupRigs();
+
+			initHMD();
+
 			setupUIAndXRElements();
 			setXRSettings();
 		}
@@ -141,11 +130,23 @@ public class XRStatusManager : MonoBehaviour {
 	public void setXRSettings () {
 		if(hmdType == HMDType.Mock){
 			XRSettings.gameViewRenderMode = GameViewRenderMode.LeftEye;
+
+			XRSettings.eyeTextureResolutionScale = 1.6f;
 		}
-		
-		// We actually have to increase the resolution scaling, to increase the image queality
-		// because 1.0 creates artifacts / jagged lines
-		// XRSettings.eyeTextureResolutionScale = 1f;
+	}
+
+	private void setupRigs() {
+		if (isXRActive) {
+			desktopRig.SetActive(false);
+			XRRig.SetActive(true);
+		} else {
+			XRRig.SetActive(false);
+			desktopRig.SetActive(true);
+
+			if (desktopRig.TryGetComponent<MouseManager>(out MouseManager mouseManager)) {
+				mouseManager.activeTriggers = 0;
+			}
+		}
 	}
 
 	private void setupUIAndXRElements() {
@@ -157,9 +158,6 @@ public class XRStatusManager : MonoBehaviour {
 
 		if (isXRActive) {
 			activeXRButton.activateBar();
-
-			desktopRig.SetActive(false);
-			XRRig.SetActive(true);
 
 			controllerSetupMenu.SetActive(true);
 
@@ -176,20 +174,15 @@ public class XRStatusManager : MonoBehaviour {
 				mockXRControls?.SetActive(false);
 
 				xrSetupMenu.SetActive(false);
+				xrDeviceSimulator.SetActive(false);
 			}
 		} else {
 			inactiveXRButton.activateBar();
 
-			XRRig.SetActive(false);
-			desktopRig.SetActive(true);
-
 			controllerSetupMenu.SetActive(false);
 
 			xrSetupMenu.SetActive(true);
-			
-			if (desktopRig.TryGetComponent<MouseManager>(out MouseManager mouseManager)) {
-				mouseManager.activeTriggers = 0;
-			}
+			xrDeviceSimulator.SetActive(false);
 
 			desktopControls?.SetActive(true);
 			xrControls?.SetActive(false);
@@ -203,6 +196,65 @@ public class XRStatusManager : MonoBehaviour {
 		desktopControls = ObjectManager.Instance.getFirstObjectByName("DesktopControls");
 		xrControls = ObjectManager.Instance.getFirstObjectByName("XRControls");
 		mockXRControls = ObjectManager.Instance.getFirstObjectByName("MockXRControls");
+	}
+
+	private void initHMD() {
+		hmdType = HMDType.Other;
+
+		if(XRSettings.loadedDeviceName == null || XRSettings.loadedDeviceName.Trim().Equals("")) {
+			Debug.Log("No HMD discovered");
+			hmdType = HMDType.NotFound;
+			foundHMD = false;
+		}else {
+			foundHMD = true;
+			Debug.Log("HMD discovered: " + XRSettings.loadedDeviceName);
+
+			hmdType = HMDType.Other;
+			if(XRSettings.loadedDeviceName.Equals("MockHMD Display")) {
+				// if MockHMD, we make the game view render only using one eye
+				XRSettings.gameViewRenderMode = GameViewRenderMode.LeftEye;
+				hmdType = HMDType.Mock;
+			}
+		}
+
+		if (!foundHMD && (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)) {
+			hmdType = HMDType.Mock;
+		} else if (Application.platform == RuntimePlatform.Android) {
+			hmdType = HMDType.Other;
+		} else if (Application.platform == RuntimePlatform.WindowsServer || Application.platform == RuntimePlatform.LinuxServer){
+			hmdType = HMDType.Server;
+		}
+	}
+
+	private void setupLoader(bool isOpenXRActive) {
+		if (removedLoader != null) {
+			XRGeneralSettings.Instance.Manager.TryAddLoader(removedLoader);
+		}
+
+		Type openXRLoaderType = typeof(UnityEngine.XR.OpenXR.OpenXRLoader);
+		IReadOnlyList<XRLoader> loaders = XRGeneralSettings.Instance.Manager.activeLoaders;
+		bool loaderRemoved = false;
+		for (int i = 0; i < loaders.Count; i++) {
+			XRLoader loader = loaders[i];
+
+			if (isOpenXRActive) {
+				if (loader.GetType() != openXRLoaderType) {
+					XRGeneralSettings.Instance.Manager.TryRemoveLoader(loader);
+					loaderRemoved = true;
+				}
+			} else {
+				if (loader.GetType() == openXRLoaderType) {
+					XRGeneralSettings.Instance.Manager.TryRemoveLoader(loader);
+					loaderRemoved = true;
+				}
+			}
+
+			if (loaderRemoved) {
+				removedLoader = loader;
+				Debug.Log("Loader '" + loader.name + "' removed");
+				break;
+			}
+		}
 	}
 
 }

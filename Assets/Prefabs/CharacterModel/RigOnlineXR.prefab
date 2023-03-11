@@ -698,7 +698,7 @@ MonoBehaviour:
   - {fileID: 5754200158560209038}
   - {fileID: 8494623748677677882}
   inputActionManager: {fileID: 1878698789788651961}
-  xrDeviceSimulator: {fileID: 6598815579406187037, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
+  xrDeviceSimulator: {fileID: 8340094899192376777, guid: 86e973d90f672ba44a87b64c5146a8bf, type: 3}
 --- !u!114 &7898726773472306906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -778,6 +778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e56d5342549212f4681fed238f189008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMenuShowingList: 
 --- !u!1 &1878698789848746001
 GameObject:
   m_ObjectHideFlags: 0

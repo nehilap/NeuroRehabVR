@@ -571,7 +571,7 @@ MonoBehaviour:
   m_StopLineAtFirstRaycastHit: 1
   m_StopLineAtSelection: 0
   scaleReticleWithDistance: 1
-  scaleFactor: 0.4
+  scaleFactor: 0.3
   distance: 0
   XRRayInteractor: {fileID: 9183900578398987486}
   _camera: {fileID: 0}

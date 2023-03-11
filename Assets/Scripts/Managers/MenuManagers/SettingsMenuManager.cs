@@ -38,13 +38,9 @@ public class SettingsMenuManager : MonoBehaviour {
 
 		if (leftC.modelParent != null) {
 			leftC.model = Instantiate(leftC.modelPrefab, leftC.modelParent.transform.position, leftC.modelParent.transform.rotation, leftC.modelParent.transform);
-			Outline outline = leftC.model.gameObject.AddComponent(typeof(Outline)) as Outline;
-			outline.OutlineMode = Outline.Mode.OutlineHidden;
 		}
 		if (rightC.modelParent != null) {
 			rightC.model = Instantiate(rightC.modelPrefab, rightC.modelParent.transform.position, rightC.modelParent.transform.rotation, rightC.modelParent.transform);
-			Outline outline = rightC.model.gameObject.AddComponent(typeof(Outline)) as Outline;
-			outline.OutlineMode = Outline.Mode.OutlineHidden;
 		}
 	}
 

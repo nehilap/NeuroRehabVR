@@ -807,20 +807,20 @@ MonoBehaviour:
     followVRTarget: 1
     vrTarget: {fileID: 0}
     ikTarget: {fileID: 113542618992345814}
-    positionOffset: {x: -0.05, y: -0.01, z: -0.08}
+    positionOffset: {x: -0.06, y: -0.01, z: -0.08}
     rotationOffset: {x: 5, y: 90, z: 110}
   rightHand:
     followVRTarget: 1
     vrTarget: {fileID: 0}
     ikTarget: {fileID: 113542620755952087}
-    positionOffset: {x: 0.058, y: -0.025, z: -0.09}
+    positionOffset: {x: 0.068, y: -0.012, z: -0.09}
     rotationOffset: {x: 5, y: -90, z: -110}
   applyTurn: 1
   turnSmoothness: 2
   headTarget: {fileID: 4862001591054997950}
   headOffset: {x: -0.1, y: -1.7154, z: -0.1}
   originHeadOffset: {x: 0, y: 0, z: 0}
-  referenceHeight: 1.74
+  referenceHeight: 1.725
   debug: 0
   sizeMultiplier: 0
   sizePreset: 0
@@ -3723,7 +3723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c430f382484144e925c097c2d33cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 0.45
+  m_Weight: 0.65
   m_Data:
     m_ConstrainedObject: {fileID: 6356427642663820590}
     m_SourceObjects:
@@ -4809,7 +4809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c430f382484144e925c097c2d33cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 0.45
+  m_Weight: 0.65
   m_Data:
     m_ConstrainedObject: {fileID: 5490343988054738671}
     m_SourceObjects:

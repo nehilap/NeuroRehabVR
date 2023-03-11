@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class MiniMenuManager : MonoBehaviour {
-	
+
 	[SerializeField] private InputActionReference menuAction;
 	[SerializeField] private bool lockCursor;
 	[SerializeField] private bool isStickyParent = true;
@@ -16,7 +16,7 @@ public class MiniMenuManager : MonoBehaviour {
 	[SerializeField] private bool offsetByHeight;
 
 	[SerializeField] private MiniMenuVisibilityManager miniMenuVisibilityManager;
-	
+
 	private Vector3 originalMenuPosition;
 	private Vector3 originalMenuScale;
 	private Transform originalMenuParent;
@@ -42,6 +42,8 @@ public class MiniMenuManager : MonoBehaviour {
 	}
 
 	private void OnEnable() {
+		menuAction.action.Enable();
+
 		menuAction.action.performed += triggerMenu;
 
 		if (originalMenuParent != null) {
@@ -50,6 +52,8 @@ public class MiniMenuManager : MonoBehaviour {
 	}
 
 	private void OnDisable() {
+		menuAction.action.Disable();
+
 		menuAction.action.performed -= triggerMenu;
 	}
 

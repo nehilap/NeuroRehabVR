@@ -5,7 +5,6 @@ public class StaticMenuManager : MonoBehaviour
 {
 	[SerializeField] private InputActionReference menuAction;
 
-	[SerializeField] private MiniMenuVisibilityManager miniMenuVisibilityManager;
 
 	[SerializeField] private Transform cameraTransform;
 
@@ -15,9 +14,11 @@ public class StaticMenuManager : MonoBehaviour
 	private FreezeObjectRotation freezeObjectRotation;
 	private MiniMenuManager miniMenuManager;
 
-	private bool isMenuShowing = false;
+	[SerializeField] private bool isMenuShowing = false;
 
 	private void OnEnable() {
+		menuAction.action.Enable();
+
 		menuAction.action.performed += triggerMenu;
 
 		initElements();
@@ -25,21 +26,13 @@ public class StaticMenuManager : MonoBehaviour
 	}
 
 	private void OnDisable() {
+		menuAction.action.Disable();
+
 		menuAction.action.performed -= triggerMenu;
 	}
 
 	private void triggerMenu(InputAction.CallbackContext obj) {
-		if (miniMenuVisibilityManager != null) {
-			if (miniMenuManager == null) {
-				miniMenuManager = gameObject.GetComponent<MiniMenuManager>();
-			}
-			if (miniMenuVisibilityManager.isMenuShowing(miniMenuManager)) {
-				return;
-			}
-			isMenuShowing = miniMenuVisibilityManager.getMenuStatus(miniMenuManager);
-		} else {
-			isMenuShowing = !isMenuShowing;
-		}
+		isMenuShowing = !isMenuShowing;
 
 		transform.localRotation = cameraTransform.localRotation;
 		transform.position = cameraTransform.position + (cameraTransform.forward * menuOffset);

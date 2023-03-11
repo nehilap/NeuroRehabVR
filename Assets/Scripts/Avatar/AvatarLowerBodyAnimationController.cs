@@ -20,7 +20,7 @@ public class AvatarLowerBodyAnimationController : MonoBehaviour {
 
 	[SerializeField] private Vector3 raycastLeftOffset;
 	private Vector3 internalRaycastLeftOffset;
-	
+
 	[SerializeField] private Vector3 raycastRightOffset;
 	private Vector3 internalRaycastRightOffset;
 
@@ -34,7 +34,7 @@ public class AvatarLowerBodyAnimationController : MonoBehaviour {
 
 	private float groundOffset;
 
-	private readonly float groundOffsetConst = 0.1f;
+	private readonly float groundOffsetConst = 0.15f;
 
 	private void OnEnable() {
 		if (!offsetPreset) {
@@ -47,7 +47,7 @@ public class AvatarLowerBodyAnimationController : MonoBehaviour {
 		internalRaycastLeftOffset = raycastLeftOffset * avatarController.sizeMultiplier;
 		internalRaycastRightOffset = raycastRightOffset * avatarController.sizeMultiplier;
 		groundOffset = groundOffsetConst * avatarController.sizeMultiplier;
-/* 
+/*
 		Debug.Log("offset dist " + offsetDistance);
 		Debug.Log(groundOffset); */
 	}

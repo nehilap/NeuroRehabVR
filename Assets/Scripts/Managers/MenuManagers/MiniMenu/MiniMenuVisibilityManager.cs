@@ -4,7 +4,7 @@ using UnityEngine;
 public class MiniMenuVisibilityManager : MonoBehaviour {
 
 	private List<MiniMenuManager> miniMenuManagers = new List<MiniMenuManager>();
-	private List<bool> isMenuShowingList = new List<bool>();
+	[SerializeField] private List<bool> isMenuShowingList = new List<bool>();
 
 	public void registerMiniMenuManager(MiniMenuManager _miniMenuManager) {
 		miniMenuManagers.Add(_miniMenuManager);
