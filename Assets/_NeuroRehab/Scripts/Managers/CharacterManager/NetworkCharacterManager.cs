@@ -315,14 +315,12 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 				// if animation is Key AND patient is left handed, we flip the key
 				if (CharacterManager.activePatientInstance != null && _newAnimType == AnimationType.Key && CharacterManager.activePatientInstance.isLeftArmAnimated) {
-					rotation = new Vector3(-90f, 0f, -90f); // did not find effective algorithm to correctly mirror the key, so it is what it is
+					rotation = new Vector3(-90f, 0f, -90f); // did not find effective algorithm to mirror the key, so it is what it is
 				}
-
 				GameObject newObject = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(0, halfHeight, 0), Quaternion.Euler(rotation));
 				newObject.gameObject.name = targetPrefabs[i].name;
 
 				NetworkServer.Spawn(newObject);
-
 				setAnimationStartPosition();
 			}
 
@@ -334,12 +332,10 @@ public class NetworkCharacterManager : NetworkBehaviour {
 					// Center
 					GameObject newLock1 = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(0, halfHeight, 0.25f), targetPrefabs[i].transform.rotation);
 					NetworkServer.Spawn(newLock1);
-
 					// Left
 					GameObject newLock2 = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(-0.3f, halfHeight, 0.18f), targetPrefabs[i].transform.rotation);
 					newLock2.transform.LookAt(spawnArea.transform.position + new Vector3(0, halfHeight, 0));
 					NetworkServer.Spawn(newLock2);
-
 					// Right
 					GameObject newLock3 = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(+0.3f, halfHeight, 0.18f), targetPrefabs[i].transform.rotation);
 					newLock3.transform.LookAt(spawnArea.transform.position + new Vector3(0, halfHeight, 0));
@@ -355,7 +351,6 @@ public class NetworkCharacterManager : NetworkBehaviour {
 		foreach (var item in oldTargetsInScene) {
 			NetworkServer.Destroy(item);
 		}
-
 		if (_oldAnimType == AnimationType.Key) {
 			oldTargetsInScene = ObjectManager.Instance.getObjectsByName("Lock");
 			foreach (var item in oldTargetsInScene) {
