@@ -2,29 +2,83 @@ using UnityEngine.InputSystem;
 using UnityEngine;
 
 public class AvatarWalkingController : MonoBehaviour {
+	[SerializeField] private InputActionReference headMove;
+
 	[SerializeField] private InputActionReference move;
 
 	[SerializeField] private Animator animator;
 
+	private bool isAnimatingLegs = false;
+	private bool isAnimatingHead = false;
+	private Vector3 lastHeadPosition = Vector3.zero;
+	private float lastHeadMovementTime;
+
+	[Range(0.1f, 4f)] [SerializeField] private float headMoveDuration = 0.7f;
+	[Range(0.001f, 0.2f)] [SerializeField] private float headMoveTreshold = 0.07f;
+
 	private void OnEnable() {
-		move.action.performed += animateLegs;
-		move.action.canceled += stopAnimateLegs;
+		move.action.performed += animateLegsAction;
+		move.action.canceled += stopAnimateLegsAction;
+
+		if (headMove) {
+			headMove.action.performed += animateHeadMovement;
+		}
 	}
 
 	private void OnDisable() {
-		move.action.performed -= animateLegs;
-		move.action.canceled -= stopAnimateLegs;
+		move.action.performed -= animateLegsAction;
+		move.action.canceled -= stopAnimateLegsAction;
+
+		if (headMove) {
+			headMove.action.performed -= animateHeadMovement;
+		}
+	}
+
+	private void Update() {
+		if (!isAnimatingLegs) {
+			if (isAnimatingHead) {
+				if ((Time.time - lastHeadMovementTime) > headMoveDuration) {
+					stopAnimateLegs();
+					isAnimatingHead = false;
+				}
+			}
+		}
+	}
+
+	private void animateHeadMovement(InputAction.CallbackContext obj) {
+		// Debug.Log( headMove.action.ReadValue<Vector3>());
+		if (isAnimatingLegs) {
+			return;
+		}
+		Vector3 headPosition = headMove.action.ReadValue<Vector3>();
+
+		Vector3 positionDiff = headPosition - lastHeadPosition;
+
+		if (Mathf.Abs(positionDiff.x) < headMoveTreshold && Mathf.Abs(positionDiff.z) < headMoveTreshold) {
+			return;
+		}
+
+		lastHeadPosition = headPosition;
+		lastHeadMovementTime = Time.time;
+
+		isAnimatingHead = true;
+		handleMovement(new Vector2(positionDiff.x, positionDiff.z));
 	}
 
 	/// <summary>
 	/// Event used to set Animator variables
 	/// </summary>
 	/// <param name="obj"></param>
-	private void animateLegs(InputAction.CallbackContext obj) {
-		bool isMoving = move.action.ReadValue<Vector2>().y != 0;
-		bool isStrafing = move.action.ReadValue<Vector2>().x != 0;
+	private void animateLegsAction(InputAction.CallbackContext obj) {
+		isAnimatingLegs = true;
+		handleMovement(move.action.ReadValue<Vector2>());
+	}
 
-		if (Mathf.Abs(move.action.ReadValue<Vector2>().y) < Mathf.Abs(move.action.ReadValue<Vector2>().x)) {
+	private void handleMovement(Vector2 movementVector) {
+		bool isMoving = movementVector.y != 0;
+		bool isStrafing = movementVector.x != 0;
+
+		if (Mathf.Abs(movementVector.y) < Mathf.Abs(movementVector.x)) {
 			if (isMoving) isMoving = false;
 		}
 
@@ -34,14 +88,14 @@ public class AvatarWalkingController : MonoBehaviour {
 			animator.SetBool("isStrafingRight", false);
 			animator.SetBool("isStrafingLeft", false);
 
-			if (move.action.ReadValue<Vector2>().y > 0) {
+			if (movementVector.y > 0) {
 				animator.SetFloat("animationSpeed", 1);
 			} else {
 				animator.SetFloat("animationSpeed", -1);
 			}
 		} else if (isStrafing) {
 			animator.SetBool("isWalking", false);
-			if (move.action.ReadValue<Vector2>().x > 0) {
+			if (movementVector.x > 0) {
 				animator.SetFloat("strafeSpeed", 1);
 				animator.SetBool("isStrafingRight", true);
 				animator.SetBool("isStrafingLeft", false);
@@ -55,7 +109,7 @@ public class AvatarWalkingController : MonoBehaviour {
 
 			animator.SetBool("isStrafingLeft", false);
 			animator.SetBool("isStrafingRight", false);
-			if (move.action.ReadValue<Vector2>().y > 0) {
+			if (movementVector.y > 0) {
 				animator.SetFloat("animationSpeed", 1);
 			} else {
 				animator.SetFloat("animationSpeed", -1);
@@ -63,7 +117,12 @@ public class AvatarWalkingController : MonoBehaviour {
 		}
 	}
 
-	private void stopAnimateLegs(InputAction.CallbackContext obj) {
+	private void stopAnimateLegsAction(InputAction.CallbackContext obj) {
+		isAnimatingLegs = false;
+		stopAnimateLegs();
+	}
+
+	private void stopAnimateLegs() {
 		animator.SetBool("isWalking", false);
 		animator.SetFloat("animationSpeed", 0);
 

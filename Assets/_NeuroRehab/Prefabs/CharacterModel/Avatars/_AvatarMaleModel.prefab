@@ -863,8 +863,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b7a12cadc0a0e54d9439f589c66325f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  headMove: {fileID: 7862207684358717888, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   move: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   animator: {fileID: 113542620659459052}
+  headMoveDuration: 0.7
+  headMoveTreshold: 0.07
 --- !u!114 &3489650067311148051
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -758,6 +758,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   avatarModelManager: {fileID: 5704176413575433497}
+  headMove: {fileID: 7862207684358717888, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   move: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   maleAnimator: {fileID: 6152346352656084151}
   femaleAnimator: {fileID: 7333303133049804568}
@@ -766,6 +767,8 @@ MonoBehaviour:
   walkingSpeed: 0
   isStrafing: 0
   strafeDirection: 0
+  headMoveDuration: 0.7
+  headMoveTreshold: 0.07
 --- !u!114 &1828743430781379336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1541,7 +1544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 7474263609803910207}
-  m_MoveSpeed: 1
+  m_MoveSpeed: 1.2
   m_EnableStrafe: 1
   m_EnableFly: 0
   m_UseGravity: 1

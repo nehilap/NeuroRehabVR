@@ -138,7 +138,7 @@ MonoBehaviour:
   - {fileID: 8555077073163106513}
   - {fileID: 4415032647177336165}
   body: {fileID: 7874168802564253269}
-  moveSpeed: 1.5
+  moveSpeed: 1.4
 --- !u!114 &2473320811156067586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,6 +439,10 @@ PrefabInstance:
       propertyPath: move
       value: 
       objectReference: {fileID: 3377828608154732254, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
+    - target: {fileID: 3482257624152933618, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: headMove
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3803358277512806963, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -719,6 +723,10 @@ PrefabInstance:
       propertyPath: move
       value: 
       objectReference: {fileID: 3377828608154732254, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
+    - target: {fileID: 5912082539520979338, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
+      propertyPath: headMove
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6136325387786580972, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
       propertyPath: m_RootOrder
       value: 1

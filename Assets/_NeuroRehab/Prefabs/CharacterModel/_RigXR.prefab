@@ -531,6 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e56d5342549212f4681fed238f189008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMenuShowingList: 
 --- !u!1 &5308743743318181212
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,7 +855,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 5909644037636158253}
-  m_MoveSpeed: 1
+  m_MoveSpeed: 1.2
   m_EnableStrafe: 1
   m_EnableFly: 0
   m_UseGravity: 1

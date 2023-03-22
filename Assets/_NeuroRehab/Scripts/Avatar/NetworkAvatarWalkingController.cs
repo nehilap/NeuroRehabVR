@@ -4,20 +4,16 @@ using UnityEngine.InputSystem;
 
 public class NetworkAvatarWalkingController : NetworkBehaviour {
 
-	[SerializeField]
-	private AvatarModelManager avatarModelManager;
+	[SerializeField] private AvatarModelManager avatarModelManager;
 
-	[SerializeField]
-	private InputActionReference move;
+	[SerializeField] private InputActionReference headMove;
+	[SerializeField] private InputActionReference move;
 
-	[SerializeField]
-	private Animator maleAnimator;
+	[SerializeField] private Animator maleAnimator;
 
-	[SerializeField]
-	private Animator femaleAnimator;
+	[SerializeField] private Animator femaleAnimator;
 
-	[SerializeField]
-	private Animator animator;
+	[SerializeField] private Animator animator;
 
 	[SerializeField] [SyncVar(hook = nameof(changeIsWalking))]
 	private bool isWalking;
@@ -31,6 +27,14 @@ public class NetworkAvatarWalkingController : NetworkBehaviour {
 	[SerializeField] [SyncVar(hook = nameof(changeStrafeSpeed))]
 	private float strafeDirection;
 
+	private bool isAnimatingLegs = false;
+	private bool isAnimatingHead = false;
+	private Vector3 lastHeadPosition = Vector3.zero;
+	private float lastHeadMovementTime;
+
+	[Range(0.1f, 4f)] [SerializeField] private float headMoveDuration = 0.7f;
+	[Range(0.001f, 0.2f)] [SerializeField] private float headMoveTreshold = 0.07f;
+
 	private void Start() {
 		initAnimator();
 	}
@@ -42,6 +46,10 @@ public class NetworkAvatarWalkingController : NetworkBehaviour {
 
 		move.action.performed += updateStartAnimation;
 		move.action.canceled += updateStopAnimation;
+
+		if (headMove) {
+			headMove.action.performed += animateHeadMovement;
+		}
 	}
 
 	private void OnDisable() {
@@ -50,6 +58,10 @@ public class NetworkAvatarWalkingController : NetworkBehaviour {
 		}
 		move.action.performed -= updateStartAnimation;
 		move.action.canceled -= updateStopAnimation;
+
+		if (headMove) {
+			headMove.action.performed += animateHeadMovement;
+		}
 	}
 
 	private void initAnimator() {
@@ -60,28 +72,58 @@ public class NetworkAvatarWalkingController : NetworkBehaviour {
 		}
 	}
 
+	private void Update() {
+		if (!isLocalPlayer) {
+			return;
+		}
+
+		if (!isAnimatingLegs) {
+			if (isAnimatingHead) {
+				if ((Time.time - lastHeadMovementTime) > headMoveDuration) {
+					isWalking = false;
+					isStrafing = false;
+					isAnimatingHead = false;
+
+					CMDUpdateIsWalking(isWalking);
+					CMDUpdateIsStrafing(isStrafing);
+				}
+			}
+		}
+	}
+
+	private void animateHeadMovement(InputAction.CallbackContext obj) {
+		// Debug.Log( headMove.action.ReadValue<Vector3>());
+		if (isAnimatingLegs) {
+			return;
+		}
+		Vector3 headPosition = headMove.action.ReadValue<Vector3>();
+
+		Vector3 positionDiff = headPosition - lastHeadPosition;
+
+		if (Mathf.Abs(positionDiff.x) < headMoveTreshold && Mathf.Abs(positionDiff.z) < headMoveTreshold) {
+			return;
+		}
+
+		lastHeadPosition = headPosition;
+		lastHeadMovementTime = Time.time;
+
+		isAnimatingHead = true;
+		handleMovement(new Vector2(positionDiff.x, positionDiff.z));
+
+		CMDUpdateIsWalking(isWalking);
+		CMDUpdateIsStrafing(isStrafing);
+		CMDUpdateWalkingSpeed(walkingSpeed);
+		CMDUpdateStrafeDirection(strafeDirection);
+	}
+
 	/// <summary>
 	/// Event called when movement is done, updates SyncVars on Server
 	/// </summary>
 	/// <param name="obj"></param>
 	private void updateStartAnimation(InputAction.CallbackContext obj) {
-		bool _isMoving = move.action.ReadValue<Vector2>().y != 0;
-		bool _isStrafing = move.action.ReadValue<Vector2>().x != 0;
-
-		isWalking = _isMoving;
-		isStrafing = _isStrafing;
-		if (_isMoving) {
-			if (move.action.ReadValue<Vector2>().y > 0) {
-				walkingSpeed = 1f; // front
-			} else {
-				walkingSpeed = -1f; // back
-			}
-		} else if (_isStrafing) {
-			if (move.action.ReadValue<Vector2>().x > 0) {
-				strafeDirection = 1f; // right
-			} else {
-				strafeDirection = -1f; // left
-			}
+		handleMovement(move.action.ReadValue<Vector2>());
+		if (isWalking || isStrafing) {
+			isAnimatingLegs = true;
 		}
 
 		CMDUpdateIsWalking(isWalking);
@@ -90,7 +132,30 @@ public class NetworkAvatarWalkingController : NetworkBehaviour {
 		CMDUpdateStrafeDirection(strafeDirection);
 	}
 
+	private void handleMovement(Vector2 movementVector) {
+		bool _isMoving = movementVector.y != 0;
+		bool _isStrafing = movementVector.x != 0;
+
+		isWalking = _isMoving;
+		isStrafing = _isStrafing;
+		if (_isMoving) {
+			if (movementVector.y > 0) {
+				walkingSpeed = 1f; // front
+			} else {
+				walkingSpeed = -1f; // back
+			}
+		} else if (_isStrafing) {
+			if (movementVector.x > 0) {
+				strafeDirection = 1f; // right
+			} else {
+				strafeDirection = -1f; // left
+			}
+		}
+	}
+
 	private void updateStopAnimation(InputAction.CallbackContext obj) {
+		isAnimatingLegs = false;
+
 		isWalking = false;
 		isStrafing = false;
 		strafeDirection = 0f;
@@ -148,6 +213,9 @@ public class NetworkAvatarWalkingController : NetworkBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Stoppings animations on animator
+	/// </summary>
 	private void stopAnimateLegs() {
 		if (isLocalPlayer) {
 			return;
