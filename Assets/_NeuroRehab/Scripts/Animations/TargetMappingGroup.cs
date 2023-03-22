@@ -1,7 +1,7 @@
 using Enums;
 using UnityEngine;
 
-namespace Mappings {
+namespace NeuroRehab.Mappings {
 
 	// Contains mapping positioning for hand for certain animation
 	[System.Serializable]

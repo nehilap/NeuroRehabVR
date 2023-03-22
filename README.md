@@ -15,6 +15,7 @@
 - [Mirror](https://assetstore.unity.com/packages/tools/network/mirror-129321)
 - [Quick Outline](https://assetstore.unity.com/packages/tools/particles-effects/quick-outline-115488)
 - [Ready Player Me SDK](https://docs.readyplayer.me/ready-player-me/integration-guides/unity)
+- [HTTP and REST API](https://assetstore.unity.com/packages/tools/utilities/simple-http-and-rest-server-244127)
 - Other Assets used from AssetStore are located in Folder 'Plugins'
 
 ## Testing

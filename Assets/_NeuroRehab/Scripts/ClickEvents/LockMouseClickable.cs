@@ -1,5 +1,5 @@
 using UnityEngine;
-using Utility;
+using NeuroRehab.Utility;
 
 public class LockMouseClickable : MonoBehaviour, MouseClickable
 {
@@ -7,7 +7,7 @@ public class LockMouseClickable : MonoBehaviour, MouseClickable
 		if (NetworkCharacterManager.localNetworkClientInstance != null) {
 			Transform customTarget = gameObject.GetComponent<TargetUtility>().customTargetPos.transform;
 
-			NetworkCharacterManager.localNetworkClientInstance.CmdSetLockPosition(new Mappings.PosRotMapping(customTarget));
+			NetworkCharacterManager.localNetworkClientInstance.CmdSetLockPosition(new NeuroRehab.Mappings.PosRotMapping(customTarget));
 		}
 	}
 }

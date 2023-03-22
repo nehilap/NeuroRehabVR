@@ -32,7 +32,7 @@ public class TherapistMenuManager : MonoBehaviour {
 	public void sitAcrossTableHandler() {
 		GameObject therapistSitPosition = ObjectManager.Instance.getFirstObjectByName("TherapistSitPositionObject");
 		GameObject tableObject = ObjectManager.Instance.getFirstObjectByName("Table");
-		
+
 		CharacterManager.localClientInstance.teleportCharacter(therapistSitPosition.transform, tableObject.transform);
 	}
 
@@ -53,7 +53,7 @@ public class TherapistMenuManager : MonoBehaviour {
 
 		NetworkCharacterManager.localNetworkClientInstance.CmdMoveTable(new Vector3(0f, 0.02f, 0f), netId);
 	}
-	
+
 	public void moveTableDownHandler() {
 		NetworkIdentity netId = CharacterManager.localClientInstance.gameObject.GetComponent<NetworkIdentity>();
 
@@ -69,7 +69,7 @@ public class TherapistMenuManager : MonoBehaviour {
 
 		NetworkCharacterManager.localNetworkClientInstance.CmdMovePatient(new Vector3(0f, 0f, 0.02f), patientId);
 	}
-	
+
 	public void movePatientBackwardsHandler() {
 		if (CharacterManager.activePatientInstance == null) {
 			return;

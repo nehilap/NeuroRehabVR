@@ -1,7 +1,7 @@
 using Enums;
 using UnityEngine;
 
-namespace Mappings
+namespace NeuroRehab.Mappings
 {
 	[System.Serializable]
 	public class AnimationMapping {

@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 50646718105696962}
   - component: {fileID: 8111849158406486534}
   m_Layer: 0
-  m_Name: WindowGlass
+  m_Name: DoorInnerFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,7 +199,7 @@ Transform:
   m_GameObject: {fileID: 2320063198516639006}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 1.8, z: 0.7}
+  m_LocalScale: {x: 0.05, y: 2, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6238750306486993118}
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 8009771251421052166}
   - component: {fileID: 6936455516450482705}
   m_Layer: 0
-  m_Name: DoorFrame
+  m_Name: DoorFrameB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -392,7 +392,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3067544204165948259}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.95, z: 0}
+  m_LocalPosition: {x: 0, y: -1.05, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -475,7 +475,7 @@ GameObject:
   - component: {fileID: 4616034120981270623}
   - component: {fileID: 9213402038162913582}
   m_Layer: 0
-  m_Name: DoorFrame
+  m_Name: DoorFrameR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -490,7 +490,7 @@ Transform:
   m_GameObject: {fileID: 3564041640075445471}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.4}
-  m_LocalScale: {x: 0.1, y: 2, z: 0.1}
+  m_LocalScale: {x: 0.1, y: 2.2, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6238750306486993118}
@@ -996,7 +996,7 @@ GameObject:
   - component: {fileID: 3173422279539655205}
   - component: {fileID: 4516596079668068259}
   m_Layer: 0
-  m_Name: DoorFrame
+  m_Name: DoorFrameL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1011,7 +1011,7 @@ Transform:
   m_GameObject: {fileID: 5476450080475982738}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.4}
-  m_LocalScale: {x: 0.1, y: 2, z: 0.1}
+  m_LocalScale: {x: 0.1, y: 2.2, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6238750306486993118}
@@ -1190,7 +1190,7 @@ GameObject:
   - component: {fileID: 4625107072229197124}
   - component: {fileID: 7201510693160521186}
   m_Layer: 0
-  m_Name: DoorFrame
+  m_Name: DoorFrameT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1204,7 +1204,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6780967539232774260}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.95, z: 0}
+  m_LocalPosition: {x: 0, y: 1.05, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []

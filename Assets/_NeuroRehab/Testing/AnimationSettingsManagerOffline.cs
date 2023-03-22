@@ -3,13 +3,13 @@ using UnityEngine.UI;
 using TMPro;
 using Enums;
 using System.Collections.Generic;
-using Mappings;
-using Utility;
+using NeuroRehab.Mappings;
+using NeuroRehab.Utility;
 
 [System.Serializable]
 public class AnimationSettingsManagerOffline : MonoBehaviour {
 	public float armMoveDuration = 1.5f;
-	
+
 	public float handMoveDuration = 1.5f;
 
 	public float waitDuration = 10f;
@@ -36,7 +36,7 @@ public class AnimationSettingsManagerOffline : MonoBehaviour {
 	public Slider repetitionsSlider;
 
 	public TMP_Dropdown animTypeDropdown;
-	
+
 	// https://mirror-networking.gitbook.io/docs/guides/synchronization/synclists
 	public List<PosRotMapping> blockSetup = new List<PosRotMapping>();
 	public List<PosRotMapping> cubeSetup = new List<PosRotMapping>();
@@ -55,13 +55,13 @@ public class AnimationSettingsManagerOffline : MonoBehaviour {
 		if (animType == AnimationType.Key) {
 			getCurrentAnimationSetup().Add(new PosRotMapping(ObjectManager.Instance.getFirstObjectByName("Lock").GetComponent<TargetUtility>().customTargetPos.transform));
 		}
-		
+
 		setupMarkers();
 	}
 
 	public void setAnimType(AnimationType _animType) {
 		animType =_animType;
-		
+
 		changeAnimTypeValue(AnimationType.Off, AnimationType.Off);
 	}
 
@@ -69,11 +69,11 @@ public class AnimationSettingsManagerOffline : MonoBehaviour {
 		switch (animType) {
 			case AnimationType.Block:
 				return blockSetup;
-			case AnimationType.Cube: 
+			case AnimationType.Cube:
 				return cubeSetup;
-			case AnimationType.Cup: 
+			case AnimationType.Cup:
 				return cupSetup;
-			case AnimationType.Key: 
+			case AnimationType.Key:
 				return keySetup;
 			default: return null; // AnimType.Off
 		}
@@ -83,11 +83,11 @@ public class AnimationSettingsManagerOffline : MonoBehaviour {
 		switch (_animType) {
 			case AnimationType.Block:
 				return blockSetup;
-			case AnimationType.Cube: 
+			case AnimationType.Cube:
 				return cubeSetup;
-			case AnimationType.Cup: 
+			case AnimationType.Cup:
 				return cupSetup;
-			case AnimationType.Key: 
+			case AnimationType.Key:
 				return keySetup;
 			default: return null; // AnimType.Off
 		}
@@ -119,7 +119,7 @@ public class AnimationSettingsManagerOffline : MonoBehaviour {
 
 		moveDurSlider.value = (int) (moveDuration * 2);
 	}
-	
+
 	private void changeRepetitionsElements(int _old, int _new) {
 		repetitionsTextValue.text = repetitions + " x";
 

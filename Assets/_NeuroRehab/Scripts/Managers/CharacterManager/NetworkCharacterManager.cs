@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Enums;
-using Mappings;
+using NeuroRehab.Mappings;
 using Mirror;
 using UnityEngine;
-using Utility;
+using NeuroRehab.Utility;
 using Unity.XR.CoreUtils;
 
 public class NetworkCharacterManager : NetworkBehaviour {
@@ -391,34 +391,22 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 	[Command]
 	public void CmdStartAnimationShowcase() {
-		RpcStartActualAnimation(true);
+		AnimationServerManager.Instance.RpcStartActualAnimation(true);
 	}
 
 	[Command]
 	public void CmdStartAnimation() {
-		RpcStartActualAnimation(false);
+		AnimationServerManager.Instance.startAnimationListening();
 	}
 
 	[Command]
 	public void CmdStopAnimation() {
-		RpcStopActualAnimation();
+		AnimationServerManager.Instance.stopAnimation();
 	}
 
-	[ClientRpc]
-	public void RpcStartActualAnimation(bool isShowcase) {
-		if (CharacterManager.activePatientInstance == null) {
-			return;
-		}
-		CharacterManager.activePatientInstance.activeArmAnimationController.startAnimation(isShowcase);
-	}
-
-	[ClientRpc]
-	public void RpcStopActualAnimation() {
-		if (CharacterManager.activePatientInstance == null) {
-			return;
-		}
-
-		CharacterManager.activePatientInstance.activeArmAnimationController.stopAnimation();
+	[Command]
+	public void CmdProgressAnimationStep() {
+		AnimationServerManager.Instance.progressAnimationStep();
 	}
 
 	// alternates arm resting state SyncVar, which calls hook on clients and causes other events

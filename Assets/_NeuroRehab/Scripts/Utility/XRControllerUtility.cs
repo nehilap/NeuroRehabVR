@@ -1,5 +1,8 @@
 using UnityEngine;
 
-public class XRControllerUtility : MonoBehaviour {
-	[SerializeField] public bool isLeftHandController;
+
+namespace NeuroRehab.Utility {
+	public class XRControllerUtility : MonoBehaviour {
+		[SerializeField] public bool isLeftHandController;
+	}
 }

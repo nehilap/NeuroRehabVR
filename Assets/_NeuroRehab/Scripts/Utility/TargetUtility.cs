@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Utility {
+namespace NeuroRehab.Utility {
 	public class TargetUtility : MonoBehaviour {
 		[SerializeField] public GameObject ArmIK_target_helper;
 		[SerializeField] public GameObject ThumbIK_target_helper;

@@ -3,8 +3,8 @@ using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
 using Enums;
-using Mappings;
-using Utility;
+using NeuroRehab.Mappings;
+using NeuroRehab.Utility;
 using System.Collections.Generic;
 
 public class ArmAnimationControllerOffline : MonoBehaviour {
@@ -39,7 +39,7 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 
 	[SerializeField] private MeshFilter armRangeMesh;
 	[SerializeField] private float armRangeSlack = 0.01f;
- 
+
 	[SerializeField] private Transform _mirror;
 
 	void Start() {
@@ -112,7 +112,7 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 			yield return new WaitForSeconds(0.5f);
 			yield return StartCoroutine(lerpTransform(targetObject, currentAnimSetup[currentAnimSetup.Count - 1], currentAnimSetup[0], animSettingsManager.moveDuration, true));
 		}
-		
+
 		isAnimationRunning = true;
 	}
 
@@ -128,12 +128,12 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 	// Animation control for moving arm and grabbing with hand
 	private IEnumerator armStopAnimationLerp() {
 		// we set weight to the corresponding part we're moving
-		
+
 		yield return StartCoroutine(simpleRigLerp(handRig, animSettingsManager.handMoveDuration, 1, 0));
-		
+
 		RigLerp[] rigLerps = {new RigLerp(armRig, 1, 0), new RigLerp(restArmRig, 0, 1)};
 		yield return StartCoroutine(multiRigLerp(rigLerps, animSettingsManager.armMoveDuration));
-		
+
 		foreach (Renderer item in fakeArmObjects)	{
 			item.enabled = false;
 		}
@@ -154,7 +154,7 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 
 	private IEnumerator restArmStartAnimation() {
 		originalArmRestPosRot = new PosRotMapping(targetsHelperObject.armRestTarget.transform);
-		
+
 		if (armRestHelperObject == null) {
 			armRestHelperObject = GameObject.Find("ArmRestHelperObject" + (isLeft ? "Left" : "Right"));
 		}
@@ -165,7 +165,7 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 
 		yield return StartCoroutine(lerpTransform(targetsHelperObject.armRestTarget, startMapping, endMapping, animSettingsManager.armMoveDuration));
 	}
-	
+
 	private IEnumerator restArmStopAnimation() {
 		PosRotMapping startMapping = new PosRotMapping(targetsHelperObject.armRestTarget.transform);
 
@@ -194,7 +194,7 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 			rig.weight = Mathf.Lerp(startLerpValue, endLerpValue, t);
 			lerpTimeElapsed += Time.deltaTime;
 			yield return null;
-		}  
+		}
 		// lerp never reaches endValue, that is why we have to set it manually
 		rig.weight = endLerpValue;
 	}
@@ -212,7 +212,7 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 
 			lerpTimeElapsed += Time.deltaTime;
 			yield return null;
-		}  
+		}
 		// lerp never reaches endValue, that is why we have to set it manually
 		rigToStart.weight = endLerpValue;
 		rigToStop.weight = startLerpValue;
@@ -232,7 +232,7 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 
 			lerpTimeElapsed += Time.deltaTime;
 			yield return null;
-		}  
+		}
 		// lerp never reaches endValue, that is why we have to set it manually
 		foreach (RigLerp rigLerp in rigLerps) {
 			rigLerp.rig.weight = rigLerp.endValue;
@@ -296,7 +296,7 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 
 		string targetObjectName = animSettingsManager.animType.ToString();
 
-		// setup targetObject 
+		// setup targetObject
 		if(isFakeAnimation) {
 			// if it's a fake animation, we also have to set the correct position of our fake object
 			// GameObject originalTargetObject = GameObject.Find(targetObjectName);
@@ -424,7 +424,7 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 
 	public void setArmRestPosition() {
 		isArmResting = !isArmResting;
-		
+
 
 		if (isArmResting) {
 			StartCoroutine(restArmStartAnimation());
@@ -468,7 +468,7 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 			return;
 		}
 		TargetMappingGroup currentMapping = animationMapping.getTargetMappingByType(animSettingsManager.animType);
-		
+
 		currentMapping.armMapping = new PosRotMapping(targetObject.transform.position - targetsHelperObject.armTargetTemplate.transform.position, targetsHelperObject.armTargetTemplate.transform.rotation.eulerAngles);
 		currentMapping.thumbMapping = new PosRotMapping(targetObject.transform.position - targetsHelperObject.thumbTargetTemplate.transform.position, targetsHelperObject.thumbTargetTemplate.transform.rotation.eulerAngles);
 		currentMapping.indexMapping = new PosRotMapping(targetObject.transform.position - targetsHelperObject.indexTargetTemplate.transform.position, targetsHelperObject.indexTargetTemplate.transform.rotation.eulerAngles);

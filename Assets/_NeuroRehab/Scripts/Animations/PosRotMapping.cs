@@ -1,7 +1,7 @@
 using Mirror;
 using UnityEngine;
 
-namespace Mappings {
+namespace NeuroRehab.Mappings {
 
 	// custom class used to transfer two vectors together
 	[System.Serializable]

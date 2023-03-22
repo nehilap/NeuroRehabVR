@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
 using Enums;
-using Mappings;
-using Utility;
+using NeuroRehab.Mappings;
+using NeuroRehab.Utility;
 
 public class ArmAnimationController : MonoBehaviour {
 	private Enums.AnimationState animState = Enums.AnimationState.Stopped;
@@ -40,9 +40,9 @@ public class ArmAnimationController : MonoBehaviour {
 	[SerializeField] private MeshFilter armRangeMesh;
 	[SerializeField] private float armRangeSlack = 0.01f;
 
-	private float armLength;
 
 	[SerializeField] private Transform _mirror;
+	private float armLength;
 
 	void Start() {
 		initElements();
@@ -65,7 +65,6 @@ public class ArmAnimationController : MonoBehaviour {
 		if (isLeft) {
 			animationMapping.mirrorMappings(_mirror);
 		}
-
 		armLength = calculateArmLength();
 		// Debug.Log(armRangeMesh.transform.lossyScale);
 		// Debug.Log(armLength);
@@ -170,15 +169,16 @@ public class ArmAnimationController : MonoBehaviour {
 			}
 		}
 
-		// do nothing else
-		stopAnimation();
+		// finish animation and inform server about end of animation
+		// we inform server about end of animation only if it's not fake animation playing
+		stopAnimation(!isFakeAnimation);
 	}
 
 	/// <summary>
 	/// Coroutine - Animation control for stopping animation
 	/// </summary>
 	/// <returns></returns>
-	private IEnumerator armStopAnimationLerp() {
+	private IEnumerator armStopAnimationLerp(bool informServer) {
 
 		// simply release hand by changing weights
 		yield return StartCoroutine(simpleRigLerp(handRig, animSettingsManager.handMoveDuration, 1, 0));
@@ -191,6 +191,12 @@ public class ArmAnimationController : MonoBehaviour {
 		}
 		foreach (Renderer item in armObjects) {
 			item.enabled = true;
+		}
+
+		// if we are patient, we inform Server to progress animation step by one
+		// alternative check - (CharacterManager.localClientInstance.GetInstanceID() == CharacterManager.activePatientInstance.GetInstanceID())
+		if (informServer && RoleManager.Instance.characterRole == UserRole.Patient) {
+			NetworkCharacterManager.localNetworkClientInstance.CmdProgressAnimationStep();
 		}
 
 		// if this is a fake animation, we have to hide the fake object
@@ -506,7 +512,7 @@ public class ArmAnimationController : MonoBehaviour {
 		StartCoroutine(armStartAnimationLerp(isFakeAnimation));
 	}
 
-	public void stopAnimation() {
+	public void stopAnimation(bool informServer = false) {
 		if(animState == Enums.AnimationState.Stopped) {
 			return;
 		}
@@ -515,7 +521,7 @@ public class ArmAnimationController : MonoBehaviour {
 		// all the movements are done using rig weights
 
 		animState = Enums.AnimationState.Stopped;
-		StartCoroutine(armStopAnimationLerp());
+		StartCoroutine(armStopAnimationLerp(informServer));
 	}
 
 	public void setArmRestPosition(bool _isArmResting) {

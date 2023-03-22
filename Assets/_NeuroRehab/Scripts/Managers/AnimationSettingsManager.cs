@@ -4,7 +4,7 @@ using TMPro;
 using Mirror;
 using Enums;
 using System.Collections.Generic;
-using Mappings;
+using NeuroRehab.Mappings;
 
 [System.Serializable]
 public class AnimationSettingsManager : NetworkBehaviour {

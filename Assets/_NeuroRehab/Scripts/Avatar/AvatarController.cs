@@ -1,4 +1,4 @@
-using Mappings;
+using NeuroRehab.Mappings;
 using UnityEngine;
 
 [System.Serializable]
