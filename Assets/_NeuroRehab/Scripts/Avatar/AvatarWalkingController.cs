@@ -35,13 +35,16 @@ public class AvatarWalkingController : MonoBehaviour {
 	}
 
 	private void Update() {
-		if (!isAnimatingLegs) {
-			if (isAnimatingHead) {
-				if ((Time.time - lastHeadMovementTime) > headMoveDuration) {
-					stopAnimateLegs();
-					isAnimatingHead = false;
-				}
-			}
+		if (isAnimatingLegs) {
+			return;
+		}
+		if (!isAnimatingHead) {
+			return;
+		}
+
+		if ((Time.time - lastHeadMovementTime) > headMoveDuration) {
+			stopAnimateLegs();
+			isAnimatingHead = false;
 		}
 	}
 
@@ -75,45 +78,29 @@ public class AvatarWalkingController : MonoBehaviour {
 	}
 
 	private void handleMovement(Vector2 movementVector) {
-		bool isMoving = movementVector.y != 0;
+		bool isWalking = movementVector.y != 0;
 		bool isStrafing = movementVector.x != 0;
 
 		if (Mathf.Abs(movementVector.y) < Mathf.Abs(movementVector.x)) {
-			if (isMoving) isMoving = false;
+			if (isWalking) isWalking = false;
 		}
 
-		if (isMoving) {
+		movementVector.y = movementVector.y > 0f ? 1f : movementVector.y < 0f ? -1f : 0f;
+		movementVector.x = movementVector.x > 0f ? 1f : movementVector.x < 0f ? -1f : 0f;
+
+		if (isWalking) {
 			animator.SetBool("isWalking", true);
 
 			animator.SetBool("isStrafingRight", false);
 			animator.SetBool("isStrafingLeft", false);
 
-			if (movementVector.y > 0) {
-				animator.SetFloat("animationSpeed", 1);
-			} else {
-				animator.SetFloat("animationSpeed", -1);
-			}
+			animator.SetFloat("animationSpeed", movementVector.y);
 		} else if (isStrafing) {
 			animator.SetBool("isWalking", false);
-			if (movementVector.x > 0) {
-				animator.SetFloat("strafeSpeed", 1);
-				animator.SetBool("isStrafingRight", true);
-				animator.SetBool("isStrafingLeft", false);
-			} else {
-				animator.SetFloat("strafeSpeed", 1);
-				animator.SetBool("isStrafingLeft", true);
-				animator.SetBool("isStrafingRight", false);
-			}
-		} else if (isMoving && isStrafing) {
-			animator.SetBool("isWalking", true);
+			animator.SetFloat("strafeSpeed", 1);
 
-			animator.SetBool("isStrafingLeft", false);
-			animator.SetBool("isStrafingRight", false);
-			if (movementVector.y > 0) {
-				animator.SetFloat("animationSpeed", 1);
-			} else {
-				animator.SetFloat("animationSpeed", -1);
-			}
+			animator.SetBool("isStrafingRight", movementVector.x == 1);
+			animator.SetBool("isStrafingLeft", movementVector.x == -1);
 		}
 	}
 

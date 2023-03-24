@@ -172,7 +172,6 @@ public class AvatarController : MonoBehaviour {
 	/// </summary>
 	public void resetHandIKTargets() {
 		if (leftHand.ikTarget != null) {
-
 			leftHand.ikTarget.localRotation = Quaternion.Euler(initialLeftPosRot.rotation);
 			leftHand.ikTarget.localPosition = initialLeftPosRot.position;
 			// Debug.Log("Left hand reset position " + leftHand.followVRTarget);

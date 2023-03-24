@@ -76,18 +76,20 @@ public class NetworkAvatarWalkingController : NetworkBehaviour {
 		if (!isLocalPlayer) {
 			return;
 		}
+		if (isAnimatingLegs) {
+			return;
+		}
+		if (!isAnimatingHead) {
+			return;
+		}
 
-		if (!isAnimatingLegs) {
-			if (isAnimatingHead) {
-				if ((Time.time - lastHeadMovementTime) > headMoveDuration) {
-					isWalking = false;
-					isStrafing = false;
-					isAnimatingHead = false;
+		if ((Time.time - lastHeadMovementTime) > headMoveDuration) {
+			isWalking = false;
+			isStrafing = false;
+			isAnimatingHead = false;
 
-					CMDUpdateIsWalking(isWalking);
-					CMDUpdateIsStrafing(isStrafing);
-				}
-			}
+			CMDUpdateIsWalking(isWalking);
+			CMDUpdateIsStrafing(isStrafing);
 		}
 	}
 
@@ -184,32 +186,13 @@ public class NetworkAvatarWalkingController : NetworkBehaviour {
 			animator.SetBool("isStrafingRight", false);
 			animator.SetBool("isStrafingLeft", false);
 
-			if (walkingSpeed == 1f) {
-				animator.SetFloat("animationSpeed", 1);
-			} else if (walkingSpeed == -1f){
-				animator.SetFloat("animationSpeed", -1);
-			}
+			animator.SetFloat("animationSpeed", walkingSpeed);
 		} else if (isStrafing) {
 			animator.SetBool("isWalking", false);
-			if (strafeDirection == 1f) {
-				animator.SetFloat("strafeSpeed", 1);
-				animator.SetBool("isStrafingRight", true);
-				animator.SetBool("isStrafingLeft", false);
-			} else if (strafeDirection == -1f){
-				animator.SetFloat("strafeSpeed", 1);
-				animator.SetBool("isStrafingLeft", true);
-				animator.SetBool("isStrafingRight", false);
-			}
-		} else if (isWalking && isStrafing) {
-			animator.SetBool("isWalking", true);
+			animator.SetFloat("strafeSpeed", 1);
 
-			animator.SetBool("isStrafingLeft", false);
-			animator.SetBool("isStrafingRight", false);
-			if (walkingSpeed == 1f) {
-				animator.SetFloat("animationSpeed", 1);
-			} else if (walkingSpeed == -1f){
-				animator.SetFloat("animationSpeed", -1);
-			}
+			animator.SetBool("isStrafingRight", strafeDirection == 1f);
+			animator.SetBool("isStrafingLeft", strafeDirection == -1f);
 		}
 	}
 

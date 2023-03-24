@@ -66,31 +66,33 @@ public class AvatarLowerBodyAnimationController : MonoBehaviour {
 	private void OnAnimatorIK(int layerIndex) {
 		bool isCrouching = Physics.Raycast(offsetTransform.position, Vector3.down, offsetDistance - groundOffset, groundLayer.value);
 
-		if (isCrouching) {
-			Vector3 leftFootPosition = animator.GetIKPosition(AvatarIKGoal.LeftFoot);
-			Vector3 rightFootPosition = animator.GetIKPosition(AvatarIKGoal.RightFoot);
-
-			RaycastHit leftFootHit;
-			RaycastHit rightFootHit;
-
-			bool isLeftFootDown = Physics.Raycast(leftFootPosition + raycastLeftOffset, Vector3.down, out leftFootHit);
-			bool isRightFootDown = Physics.Raycast(rightFootPosition + raycastRightOffset, Vector3.down, out rightFootHit);
-
-			calculateFoot(isLeftFootDown, leftFootHit, AvatarIKGoal.LeftFoot, leftFootPositionWeight, leftFootRotationWeight);
-			calculateFoot(isRightFootDown, rightFootHit, AvatarIKGoal.RightFoot, rightFootPositionWeight, rightFootRotationWeight);
+		if (!isCrouching) {
+			return;
 		}
+		Vector3 leftFootPosition = animator.GetIKPosition(AvatarIKGoal.LeftFoot);
+		Vector3 rightFootPosition = animator.GetIKPosition(AvatarIKGoal.RightFoot);
+
+		RaycastHit leftFootHit;
+		RaycastHit rightFootHit;
+
+		bool isLeftFootDown = Physics.Raycast(leftFootPosition + raycastLeftOffset, Vector3.down, out leftFootHit);
+		bool isRightFootDown = Physics.Raycast(rightFootPosition + raycastRightOffset, Vector3.down, out rightFootHit);
+
+		calculateFoot(isLeftFootDown, leftFootHit, AvatarIKGoal.LeftFoot, leftFootPositionWeight, leftFootRotationWeight);
+		calculateFoot(isRightFootDown, rightFootHit, AvatarIKGoal.RightFoot, rightFootPositionWeight, rightFootRotationWeight);
 	}
 
 	private void calculateFoot(bool isFootDown, RaycastHit footHit, AvatarIKGoal goal, float footPositionWeight, float footRotationWeight) {
-		if(isFootDown) {
-			animator.SetIKPositionWeight(goal, footPositionWeight);
-			animator.SetIKPosition(goal, footHit.point + footOffset);
-
-			Quaternion footRotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(transform.forward, footHit.normal), footHit.normal);
-			animator.SetIKRotationWeight(goal, footRotationWeight);
-			animator.SetIKRotation(goal, footRotation);
-		} else {
+		if(!isFootDown) {
 			animator.SetIKPositionWeight(goal, 0f);
+			return;
 		}
+
+		animator.SetIKPositionWeight(goal, footPositionWeight);
+		animator.SetIKPosition(goal, footHit.point + footOffset);
+
+		Quaternion footRotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(transform.forward, footHit.normal), footHit.normal);
+		animator.SetIKRotationWeight(goal, footRotationWeight);
+		animator.SetIKRotation(goal, footRotation);
 	}
 }

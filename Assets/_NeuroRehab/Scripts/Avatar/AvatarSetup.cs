@@ -48,7 +48,7 @@ public class AvatarSetup : MonoBehaviour {
 
 		bool flag;
 		foreach(Transform bodyPart in currentAvatarObjects) {
-				// Debug.Log("bodypart " + bodyPart.name);
+			// Debug.Log("bodypart " + bodyPart.name);
 			flag = false;
 			SkinnedMeshRenderer renderer = bodyPart.GetComponent<SkinnedMeshRenderer>();
 			if (renderer != null) {
@@ -56,13 +56,15 @@ public class AvatarSetup : MonoBehaviour {
 			}
 			foreach (Transform item in newModelTransform) {
 				// Debug.Log("part " + item.name);
-				if(System.Array.IndexOf(excludedNames, item.name) == -1) {
-					if(bodyPart.name.Equals(item.name) && item.GetComponent<SkinnedMeshRenderer>() != null) {
-						updateMesh(bodyPart.GetComponent<SkinnedMeshRenderer>(), item.GetComponent<SkinnedMeshRenderer>());
-						flag = item.gameObject.activeSelf;
-						break;
-					}
+				if(System.Array.IndexOf(excludedNames, item.name) != -1) {
+					continue;
 				}
+				if(bodyPart.name.Equals(item.name) && item.GetComponent<SkinnedMeshRenderer>() != null) {
+					updateMesh(bodyPart.GetComponent<SkinnedMeshRenderer>(), item.GetComponent<SkinnedMeshRenderer>());
+					flag = item.gameObject.activeSelf;
+					break;
+				}
+
 			}
 			if (flag) {
 				continue;
