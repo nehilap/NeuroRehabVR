@@ -64,7 +64,7 @@ public class AvatarController : MonoBehaviour {
 	[SerializeField] public bool applyTurn = true;
 	[SerializeField] private float turnSmoothness;
 	[SerializeField] private Transform headTarget;
-	[SerializeField] public Vector3 headOffset;
+	private Vector3 headOffset;
 	[SerializeField] private Vector3 originHeadOffset;
 
 	[SerializeField] private float referenceHeight = 1.725f;
@@ -80,8 +80,6 @@ public class AvatarController : MonoBehaviour {
 	public bool sizePreset;
 
 	private void Awake() {
-		originHeadOffset = headOffset;
-
 		if (leftHand.ikTarget != null) {
 			initialLeftPosRot = new PosRotMapping(leftHand.ikTarget.transform.localPosition, leftHand.ikTarget.transform.localRotation.eulerAngles);
 		}
