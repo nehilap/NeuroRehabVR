@@ -1,11 +1,11 @@
 using UnityEngine;
-using Unity.XR.CoreUtils;
 using UnityEngine.XR;
 using UnityEngine.XR.Management;
 using System.Collections;
 using System.Collections.Generic;
 using Enums;
 using System;
+using UnityEngine.XR.OpenXR;
 
 public class XRStatusManager : MonoBehaviour {
 
@@ -89,6 +89,7 @@ public class XRStatusManager : MonoBehaviour {
 
 			isXRActive = false;
 
+			setupRigs();
 			setupUIAndXRElements();
 		}
 	}
@@ -102,7 +103,13 @@ public class XRStatusManager : MonoBehaviour {
 			if (XRGeneralSettings.Instance.Manager.activeLoader == null) {
 				Debug.LogWarning("Initializing XR Failed. Check Editor or Player log for details.");
 				if (isOpenXRActive) {
-					Debug.LogWarning("Attempting to launch Mock HMD loader");
+					Debug.LogWarning("Failed to load loader. Attempting to launch Mock HMD loader");
+					IReadOnlyList<XRLoader> loaders = XRGeneralSettings.Instance.Manager.activeLoaders;
+					foreach (var loader in loaders) {
+						loader.Stop();
+						loader.Deinitialize();
+					}
+					// if there is an issue with OpenXR loader restarting itself / reloading scene after Mock HMD is loaded, refer to https://gist.github.com/Kroporo/f7201d7c9ce6dd015a461992c62cb946 for possible solution; Should be fixed in OpenXR plugin, just in case
 					yield return StartCoroutine(startXR(false));
 				}
 			} else {
@@ -239,7 +246,7 @@ public class XRStatusManager : MonoBehaviour {
 			XRGeneralSettings.Instance.Manager.TryAddLoader(removedLoader);
 		}
 
-		Type openXRLoaderType = typeof(UnityEngine.XR.OpenXR.OpenXRLoader);
+		Type openXRLoaderType = typeof(OpenXRLoader);
 		IReadOnlyList<XRLoader> loaders = XRGeneralSettings.Instance.Manager.activeLoaders;
 		bool loaderRemoved = false;
 		for (int i = 0; i < loaders.Count; i++) {

@@ -13,7 +13,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: shell_quest2ControllerMAT
-    second: {fileID: 2100000, guid: 2bd7b3385fa7b2e49a3d9f8c0d79c229, type: 2}
+    second: {fileID: 2100000, guid: 19d6650955167f94884a0dac6d55738d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
