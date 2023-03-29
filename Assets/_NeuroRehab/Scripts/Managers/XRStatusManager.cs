@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Enums;
 using System;
 using UnityEngine.XR.OpenXR;
+using Unity.XR.MockHMD;
 
 public class XRStatusManager : MonoBehaviour {
 
@@ -43,7 +44,10 @@ public class XRStatusManager : MonoBehaviour {
 	private GameObject mockXRControls;
 	[SerializeField] private GameObject xrDeviceSimulator;
 
-	private XRLoader removedLoader = null;
+	private XRLoader activeLoader;
+	private bool xrInitialized;
+
+	//private XRLoader removedLoader = null;
 
 	void Awake() {
 		#if UNITY_EDITOR
@@ -60,12 +64,10 @@ public class XRStatusManager : MonoBehaviour {
 	void Start() {
 		initObjects();
 
-		if (XRGeneralSettings.Instance.Manager.isInitializationComplete) {
+		if (xrInitialized) {
 			Debug.Log("XR running");
-			isXRActive = true;
 		} else {
 			Debug.Log("XR not running");
-			isXRActive = false;
 		}
 		setupRigs();
 		setupUIAndXRElements();
@@ -74,47 +76,57 @@ public class XRStatusManager : MonoBehaviour {
 
 	void OnApplicationQuit() {
 		stopXR();
-		if (removedLoader != null) {
+		/*if (removedLoader != null) {
 			XRGeneralSettings.Instance.Manager.TryAddLoader(removedLoader);
-		}
+		}*/
 	}
 
 	public void stopXR() {
-		if (XRGeneralSettings.Instance.Manager.isInitializationComplete) {
+		if (xrInitialized) {
 			Debug.Log("Stopping XR...");
-			XRGeneralSettings.Instance.Manager.StopSubsystems();
-			XRGeneralSettings.Instance.Manager.DeinitializeLoader();
+
+			activeLoader.Stop();
+			activeLoader.Deinitialize();
 
 			Application.targetFrameRate = 60;
 
+			xrInitialized = false;
 			isXRActive = false;
+			activeLoader = null;
 
-			setupRigs();
-			setupUIAndXRElements();
 		}
+		setupRigs();
+		setupUIAndXRElements();
 	}
 
 	public IEnumerator startXR(bool isOpenXRActive = true) {
-		setupLoader(isOpenXRActive);
+		if (xrInitialized) {
+			Debug.Log("XR is already initialized.");
+			yield return null;
+		}
 
-		if (XRGeneralSettings.Instance.Manager.activeLoader == null) {
-			yield return XRGeneralSettings.Instance.Manager.InitializeLoader();
+		XRLoader loader = setupLoader(isOpenXRActive);
+		if (loader == null) {
+			Debug.LogError("Error resolving loader");
+			yield return null;
+		}
 
-			if (XRGeneralSettings.Instance.Manager.activeLoader == null) {
-				Debug.LogWarning("Initializing XR Failed. Check Editor or Player log for details.");
+		if (activeLoader == null) {
+			xrInitialized = loader.Initialize();
+			if (!xrInitialized) {
+				Debug.LogWarning("Initializing XR loader failed. Check log for details.");
 				if (isOpenXRActive) {
-					Debug.LogWarning("Failed to load loader. Attempting to launch Mock HMD loader");
-					IReadOnlyList<XRLoader> loaders = XRGeneralSettings.Instance.Manager.activeLoaders;
-					foreach (var loader in loaders) {
-						loader.Stop();
-						loader.Deinitialize();
-					}
+					Debug.LogWarning("Failed to start OpenXR loader. Attempting to launch Mock HMD loader");
+					loader.Deinitialize();
+
 					// if there is an issue with OpenXR loader restarting itself / reloading scene after Mock HMD is loaded, refer to https://gist.github.com/Kroporo/f7201d7c9ce6dd015a461992c62cb946 for possible solution; Should be fixed in OpenXR plugin, just in case
 					yield return StartCoroutine(startXR(false));
 				}
 			} else {
 				Debug.Log("Starting XR...");
-				XRGeneralSettings.Instance.Manager.StartSubsystems();
+				loader.Start();
+				activeLoader = loader;
+
 				isXRActive = true;
 
 				setupRigs();
@@ -238,38 +250,20 @@ public class XRStatusManager : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Swaps laoders, so that we have only one active loader
+	/// Swaps laoders, so that we have only one active loader. Refer to https://forum.unity.com/threads/xr-management-controlling-the-used-xrloader-manually.1019677/ for more details
 	/// </summary>
-	/// <param name="isOpenXRActive"></param>
-	private void setupLoader(bool isOpenXRActive) {
-		if (removedLoader != null) {
-			XRGeneralSettings.Instance.Manager.TryAddLoader(removedLoader);
-		}
-
-		Type openXRLoaderType = typeof(OpenXRLoader);
+	/// <param name="useOpenXRLoader"></param>
+	private XRLoader setupLoader(bool useOpenXRLoader) {
 		IReadOnlyList<XRLoader> loaders = XRGeneralSettings.Instance.Manager.activeLoaders;
-		bool loaderRemoved = false;
+		//bool loaderRemoved = false;
 		for (int i = 0; i < loaders.Count; i++) {
 			XRLoader loader = loaders[i];
 
-			if (isOpenXRActive) {
-				if (loader.GetType() != openXRLoaderType) {
-					XRGeneralSettings.Instance.Manager.TryRemoveLoader(loader);
-					loaderRemoved = true;
-				}
-			} else {
-				if (loader.GetType() == openXRLoaderType) {
-					XRGeneralSettings.Instance.Manager.TryRemoveLoader(loader);
-					loaderRemoved = true;
-				}
-			}
-
-			if (loaderRemoved) {
-				removedLoader = loader;
-				Debug.Log("Loader '" + loader.name + "' removed");
-				break;
+			if ((useOpenXRLoader && loader.GetType() == typeof(OpenXRLoader)) ||
+			 (!useOpenXRLoader && loader.GetType() == typeof(MockHMDLoader))) {
+				return loader;
 			}
 		}
+		return null;
 	}
-
 }
