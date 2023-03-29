@@ -21,10 +21,7 @@ public class MapTransforms {
 			return;
 		}
 		ikTarget.rotation = vrTarget.rotation * Quaternion.Euler(actualRotOffset);
-
-		if (vrTarget.hasChanged) {
-			ikTarget.position = vrTarget.TransformPoint(actualPosOffset); // transformPoint from somewhere acts as if it was offset
-		}
+		ikTarget.position = vrTarget.TransformPoint(actualPosOffset); // transformPoint from somewhere acts as if it was offset
 	}
 
 	 public void mapTransformsDebug(Transform transform){
