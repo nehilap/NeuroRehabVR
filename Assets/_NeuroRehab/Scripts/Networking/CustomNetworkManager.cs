@@ -124,7 +124,7 @@ public class CustomNetworkManager : NetworkManager {
 			Debug.Log("Object with netID '" + networkIdentity.netId + "' released authority.");
 		}
 
+		Debug.Log("User with netID '" + conn.identity.netId + "' disconnected!");
 		base.OnServerDisconnect(conn);
-		Debug.Log("User: '" + conn.identity.netId + "' disconnected!");
 	}
 }
