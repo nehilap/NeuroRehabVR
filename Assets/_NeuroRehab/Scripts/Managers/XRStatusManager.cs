@@ -50,11 +50,11 @@ public class XRStatusManager : MonoBehaviour {
 	//private XRLoader removedLoader = null;
 
 	void Awake() {
-		#if UNITY_EDITOR
-			if (isXRActive) {
-				StartCoroutine(startXR());
-			}
-		#endif
+#if UNITY_EDITOR
+		if (isXRActive) {
+			StartCoroutine(startXR());
+		}
+#endif
 
 		DontDestroyOnLoad(gameObject);
 
@@ -64,7 +64,7 @@ public class XRStatusManager : MonoBehaviour {
 	void Start() {
 		initObjects();
 
-		if (XRGeneralSettings.Instance.Manager.isInitializationComplete || xrInitialized) {
+		if ((XRGeneralSettings.Instance != null && XRGeneralSettings.Instance.Manager.isInitializationComplete) || xrInitialized) {
 			Debug.Log("XR running");
 			isXRActive = true;
 		} else {
@@ -81,17 +81,20 @@ public class XRStatusManager : MonoBehaviour {
 	}
 
 	public void stopXR() {
-		Debug.Log("Stopping XR...");
 
-		if (XRGeneralSettings.Instance.Manager.isInitializationComplete) {
+		if (XRGeneralSettings.Instance != null && XRGeneralSettings.Instance.Manager.isInitializationComplete) {
 			XRGeneralSettings.Instance.Manager.StopSubsystems();
 			XRGeneralSettings.Instance.Manager.DeinitializeLoader();
+
+			Debug.Log("Stopped XR...");
 		}
 		if (xrInitialized) {
 			activeLoader.Stop();
 			activeLoader.Deinitialize();
 			xrInitialized = false;
 			activeLoader = null;
+
+			Debug.Log("Stopped XR...");
 		}
 		isXRActive = false;
 		Application.targetFrameRate = 60;
@@ -156,6 +159,8 @@ public class XRStatusManager : MonoBehaviour {
 	}
 
 	private void setupRigs() {
+		if (!this.gameObject.scene.isLoaded) return;
+
 		if (isXRActive) {
 			desktopRig.SetActive(false);
 			XRRig.SetActive(true);

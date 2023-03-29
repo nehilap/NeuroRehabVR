@@ -27,9 +27,9 @@ public class CustomNetworkManager : NetworkManager {
 				break;
 			}
 		}
-		#if UNITY_SERVER
+#if UNITY_SERVER
 		XRStatusManager.Instance.stopXR();
-		#endif
+#endif
 
 		base.Start();
 	}
