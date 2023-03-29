@@ -125,5 +125,6 @@ public class CustomNetworkManager : NetworkManager {
 		}
 
 		base.OnServerDisconnect(conn);
+		Debug.Log("User: '" + conn.identity.netId + "' disconnected!");
 	}
 }

@@ -64,10 +64,12 @@ public class XRStatusManager : MonoBehaviour {
 	void Start() {
 		initObjects();
 
-		if (xrInitialized) {
+		if (XRGeneralSettings.Instance.Manager.isInitializationComplete || xrInitialized) {
 			Debug.Log("XR running");
+			isXRActive = true;
 		} else {
 			Debug.Log("XR not running");
+			isXRActive = false;
 		}
 		setupRigs();
 		setupUIAndXRElements();
@@ -76,25 +78,24 @@ public class XRStatusManager : MonoBehaviour {
 
 	void OnApplicationQuit() {
 		stopXR();
-		/*if (removedLoader != null) {
-			XRGeneralSettings.Instance.Manager.TryAddLoader(removedLoader);
-		}*/
 	}
 
 	public void stopXR() {
-		if (xrInitialized) {
-			Debug.Log("Stopping XR...");
+		Debug.Log("Stopping XR...");
 
+		if (XRGeneralSettings.Instance.Manager.isInitializationComplete) {
+			XRGeneralSettings.Instance.Manager.StopSubsystems();
+			XRGeneralSettings.Instance.Manager.DeinitializeLoader();
+		}
+		if (xrInitialized) {
 			activeLoader.Stop();
 			activeLoader.Deinitialize();
-
-			Application.targetFrameRate = 60;
-
 			xrInitialized = false;
-			isXRActive = false;
 			activeLoader = null;
-
 		}
+		isXRActive = false;
+		Application.targetFrameRate = 60;
+
 		setupRigs();
 		setupUIAndXRElements();
 	}
@@ -145,8 +146,6 @@ public class XRStatusManager : MonoBehaviour {
 			setXRSettings();
 		}
 	}
-
-
 
 	public void setXRSettings () {
 		if(hmdType == HMDType.Mock){

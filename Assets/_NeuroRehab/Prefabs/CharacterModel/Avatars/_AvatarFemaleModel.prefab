@@ -2286,7 +2286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c430f382484144e925c097c2d33cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 0.55
+  m_Weight: 0.6
   m_Data:
     m_ConstrainedObject: {fileID: 5379890003174761957}
     m_SourceObjects:
@@ -3135,7 +3135,6 @@ MonoBehaviour:
   applyTurn: 1
   turnSmoothness: 2
   headTarget: {fileID: 7236258537340909252}
-  headOffset: {x: -0.1, y: -1.6104, z: -0.1}
   originHeadOffset: {x: -0.1, y: -1.6104, z: -0.1}
   referenceHeight: 1.625
   debug: 0
@@ -4161,7 +4160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c430f382484144e925c097c2d33cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 0.55
+  m_Weight: 0.6
   m_Data:
     m_ConstrainedObject: {fileID: 6822455304189328932}
     m_SourceObjects:
