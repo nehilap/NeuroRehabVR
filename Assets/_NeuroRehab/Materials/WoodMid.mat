@@ -27,6 +27,7 @@ Material:
   - _ENVIRONMENTREFLECTIONS_OFF
   - _NORMALMAP
   - _PARALLAXMAP
+  - _SPECULAR_SETUP
   m_InvalidKeywords:
   - _GLOSSYREFLECTIONS_OFF
   m_LightmapFlags: 4
@@ -123,7 +124,7 @@ Material:
     - _SrcBlend: 1
     - _Surface: 0
     - _UVSec: 0
-    - _WorkflowMode: 1
+    - _WorkflowMode: 0
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.45927793, g: 0.4811321, b: 0.27006942, a: 1}
