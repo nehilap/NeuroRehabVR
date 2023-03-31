@@ -57,7 +57,7 @@ public class AnimationServerManager : NetworkBehaviour {
 			DateTime currentTime = DateTime.Now;
 			Debug.Log("Seconds since last animation step: " + (currentTime - lastAnimationTrigger).TotalSeconds);
 			if ((currentTime - lastAnimationTrigger).TotalSeconds <= animSettingsManager.waitDuration) {
-				//Debug.Log("Actually moving arm");
+				Debug.Log("Starting arm animation");
 				RpcStartActualAnimation(false);
 				isAnimationTriggered = true;
 				return true;
@@ -99,7 +99,7 @@ public class AnimationServerManager : NetworkBehaviour {
 			}
 		}
 
-		// Debug.Log("Listening to animation events");
+		Debug.Log("Listening to animation events - STARTED");
 		isAnimationRunning = true;
 		isAnimationTriggered = false;
 		lastAnimationTrigger = DateTime.Now;
@@ -112,6 +112,7 @@ public class AnimationServerManager : NetworkBehaviour {
 	/// Stops animation listening and ends all animations
 	/// </summary>
 	public void stopTraining() {
+		Debug.Log("Listening to animation events - STOPPED");
 		isAnimationRunning = false;
 		currentRepetitions = 0;
 

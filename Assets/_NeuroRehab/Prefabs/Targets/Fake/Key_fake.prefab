@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1241488487069944297}
   - component: {fileID: 1241488487069944302}
   - component: {fileID: 2817348143941748358}
-  - component: {fileID: 3578579940405830652}
+  - component: {fileID: 9155965548309921204}
   m_Layer: 14
   m_Name: Key_fake
   m_TagString: Untagged
@@ -112,7 +112,7 @@ MonoBehaviour:
   renderers:
   - {fileID: 1241488487069944302}
   customTargetPos: {fileID: 0}
---- !u!114 &3578579940405830652
+--- !u!114 &9155965548309921204
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 1453361859768465495}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1241488487069944306}
@@ -181,7 +181,7 @@ Transform:
   m_GameObject: {fileID: 3340497040873921216}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1241488487069944306}
@@ -212,7 +212,7 @@ Transform:
   m_GameObject: {fileID: 5710727287594033606}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1241488487069944306}
@@ -243,7 +243,7 @@ Transform:
   m_GameObject: {fileID: 6375811038861159837}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1241488487069944306}
@@ -274,7 +274,7 @@ Transform:
   m_GameObject: {fileID: 6512322807451011145}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1241488487069944306}
@@ -305,7 +305,7 @@ Transform:
   m_GameObject: {fileID: 7185960044817903803}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1241488487069944306}

@@ -21,9 +21,8 @@ public class TabGroup : MonoBehaviour {
 		} else {
 			if (tabButton.tabMenu.TryGetComponent<Canvas>(out Canvas canvas)) {
 				canvas.enabled = false;
-			} else {
-				tabButton.tabMenu.SetActive(false);
 			}
+			tabButton.tabMenu.SetActive(false);
 		}
 		resetTabs();
 	}
@@ -51,15 +50,13 @@ public class TabGroup : MonoBehaviour {
 			if (i == index) {
 				if (tabObjects[i].TryGetComponent<Canvas>(out Canvas canvas)) {
 					canvas.enabled = true;
-				} else {
-					tabObjects[i].SetActive(true);
 				}
+				tabObjects[i].SetActive(true);
 			} else {
 				if (tabObjects[i].TryGetComponent<Canvas>(out Canvas canvas)) {
 					canvas.enabled = false;
-				} else {
-					tabObjects[i].SetActive(false);
 				}
+				tabObjects[i].SetActive(false);
 			}
 		}
 	}
@@ -69,7 +66,7 @@ public class TabGroup : MonoBehaviour {
 			if (selectedTabButton != null && item.Equals(selectedTabButton)) {
 				continue;
 			}
-			item.background.sprite = tabIdle;	
+			item.background.sprite = tabIdle;
 		}
 	}
 }

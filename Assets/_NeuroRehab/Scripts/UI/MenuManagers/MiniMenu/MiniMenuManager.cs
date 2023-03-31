@@ -17,6 +17,8 @@ public class MiniMenuManager : MonoBehaviour {
 
 	[SerializeField] private MiniMenuVisibilityManager miniMenuVisibilityManager;
 
+	[SerializeField] private GameObject reticle;
+
 	private Vector3 originalMenuPosition;
 	private Vector3 originalMenuScale;
 	private Transform originalMenuParent;
@@ -86,12 +88,20 @@ public class MiniMenuManager : MonoBehaviour {
 			}
 
 			menuToShow.transform.localPosition = newPosition;
+
+			if (reticle) {
+				reticle.SetActive(false);
+			}
 		} else {
 			menuToShow.transform.SetParent(originalMenuParent);
 
 			menuToShow.transform.localScale = originalMenuScale;
 			menuToShow.transform.localRotation = Quaternion.identity;
 			menuToShow.transform.localPosition = originalMenuPosition;
+
+			if (reticle) {
+				reticle.SetActive(true);
+			}
 		}
 	}
 

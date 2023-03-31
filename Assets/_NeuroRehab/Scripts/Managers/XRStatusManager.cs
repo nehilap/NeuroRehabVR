@@ -44,8 +44,8 @@ public class XRStatusManager : MonoBehaviour {
 	private GameObject mockXRControls;
 	[SerializeField] private GameObject xrDeviceSimulator;
 
-	private XRLoader activeLoader;
-	private bool xrInitialized;
+	private static XRLoader activeLoader;
+	private static bool xrInitialized;
 
 	//private XRLoader removedLoader = null;
 
@@ -64,7 +64,7 @@ public class XRStatusManager : MonoBehaviour {
 	void Start() {
 		initObjects();
 
-		if ((XRGeneralSettings.Instance != null && XRGeneralSettings.Instance.Manager.isInitializationComplete) || xrInitialized) {
+		if ((XRGeneralSettings.Instance != null && XRGeneralSettings.Instance.Manager.isInitializationComplete) || xrInitialized || activeLoader != null) {
 			Debug.Log("XR running");
 			isXRActive = true;
 		} else {
@@ -81,14 +81,13 @@ public class XRStatusManager : MonoBehaviour {
 	}
 
 	public void stopXR() {
-
 		if (XRGeneralSettings.Instance != null && XRGeneralSettings.Instance.Manager.isInitializationComplete) {
 			XRGeneralSettings.Instance.Manager.StopSubsystems();
 			XRGeneralSettings.Instance.Manager.DeinitializeLoader();
 
 			Debug.Log("Stopped XR...");
 		}
-		if (xrInitialized) {
+		if (xrInitialized || activeLoader != null) {
 			activeLoader.Stop();
 			activeLoader.Deinitialize();
 			xrInitialized = false;

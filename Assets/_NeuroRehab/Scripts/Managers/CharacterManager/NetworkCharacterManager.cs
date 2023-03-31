@@ -362,7 +362,13 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	private void spawnCorrectTargetFakes(AnimationType _oldAnimType, AnimationType _newAnimType) {
 		for (int i = 0; i < targetPrefabs.Count; i++) {
 			if (targetPrefabs[i].name.Equals(_newAnimType.ToString() + "_fake")) {
-				GameObject newObject = Instantiate(targetPrefabs[i], spawnArea.transform.position, spawnArea.transform.rotation);
+				Vector3 rotation = targetPrefabs[i].transform.rotation.eulerAngles;
+
+				// if animation is Key AND patient is left handed, we flip the key
+				if (CharacterManager.activePatientInstance != null && _newAnimType == AnimationType.Key && CharacterManager.activePatientInstance.isLeftArmAnimated) {
+					rotation = new Vector3(-90f, 0f, -90f); // did not find effective algorithm to mirror the key, so it is what it is
+				}
+				GameObject newObject = Instantiate(targetPrefabs[i], spawnArea.transform.position, Quaternion.Euler(rotation));
 				newObject.gameObject.name = targetPrefabs[i].name;
 			}
 		}
