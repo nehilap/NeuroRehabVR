@@ -3183,7 +3183,7 @@ MonoBehaviour:
   move: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   animator: {fileID: 8769515038079730898}
   headMoveDuration: 0.7
-  headMoveTreshold: 0.07
+  headMoveTreshold: 0.12
 --- !u!114 &8247325176624259852
 MonoBehaviour:
   m_ObjectHideFlags: 0

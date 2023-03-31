@@ -111,11 +111,11 @@ public class AnimationServerManager : NetworkBehaviour {
 	/// <summary>
 	/// Stops animation listening and ends all animations
 	/// </summary>
-	public void stopAnimation() {
+	public void stopTraining() {
 		isAnimationRunning = false;
 		currentRepetitions = 0;
 
-		RpcStopActualAnimation();
+		// RpcStopActualAnimation();
 	}
 
 	[ClientRpc]

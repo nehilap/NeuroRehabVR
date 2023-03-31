@@ -51,4 +51,12 @@ public class SettingsMenuManager : MonoBehaviour {
 	public void stopXR() {
 		XRStatusManager.Instance.stopXR();
 	}
+
+	public void toggleFps(bool value) {
+		SettingsManager.Instance.generalSettings.showFps = value;
+	}
+
+	public void toggleFpsWrite(bool value) {
+		SettingsManager.Instance.generalSettings.writeFps = value;
+	}
 }

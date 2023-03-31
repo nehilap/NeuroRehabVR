@@ -14,7 +14,7 @@ public class AvatarWalkingController : MonoBehaviour {
 	private float lastHeadMovementTime;
 
 	[Range(0.1f, 4f)] [SerializeField] private float headMoveDuration = 0.7f;
-	[Range(0.001f, 0.2f)] [SerializeField] private float headMoveTreshold = 0.07f;
+	[Range(0.001f, 0.4f)] [SerializeField] private float headMoveTreshold = 0.12f;
 
 	private void OnEnable() {
 		move.action.performed += animateLegsAction;

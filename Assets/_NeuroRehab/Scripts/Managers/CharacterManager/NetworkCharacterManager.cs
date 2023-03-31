@@ -401,7 +401,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 	[Command]
 	public void CmdStopAnimation() {
-		AnimationServerManager.Instance.stopAnimation();
+		AnimationServerManager.Instance.stopTraining();
 	}
 
 	[Command]

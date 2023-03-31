@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using System.IO;
 
 public class FPSCounterManager : MonoBehaviour {
 	[SerializeField] private TMP_Text textField;
@@ -8,8 +9,18 @@ public class FPSCounterManager : MonoBehaviour {
 	private float uiUpdateTime;
 	public int frameRate { get; private set; }
 
+	void OnApplicationQuit() {
+		if (SettingsManager.Instance.generalSettings.writeFps && Application.platform != RuntimePlatform.Android) {
+			System.Diagnostics.Process.Start(SettingsManager.Instance.generalSettings.fpsCounterFilePath);
+		}
+	}
+
 	void Start() {
 		textField = GetComponent<TMP_Text>();
+
+		StreamWriter writer = new StreamWriter(SettingsManager.Instance.generalSettings.fpsCounterFilePath, false);
+		writer.WriteLine("");
+		writer.Close();
 	}
 
 	private void Update() {
@@ -17,14 +28,25 @@ public class FPSCounterManager : MonoBehaviour {
 			frameRate = (int)(1f / Time.unscaledDeltaTime);
 			textField.text = $"FPS: {frameRate}";
 			uiUpdateTime = Time.unscaledTime + refreshRate;
+			if (SettingsManager.Instance.generalSettings.writeFps) {
+				writeFps();
+			}
 		}
 	}
 
 	protected void OnGUI() {
 		if (XRStatusManager.Instance.isXRActive) return;
+		if (!SettingsManager.Instance.generalSettings.showFps) return;
+
 		GUIStyle style = new();
 		style.normal.textColor = Color.black;
 		style.fontSize = 18;
 		GUI.Label(new Rect(Screen.width - 80, 10, 70, 25), $"FPS: {frameRate}", style);
+	}
+
+	private void writeFps() {
+		StreamWriter writer = new StreamWriter(SettingsManager.Instance.generalSettings.fpsCounterFilePath, true);
+		writer.WriteLine($"{frameRate}");
+		writer.Close();
 	}
 }

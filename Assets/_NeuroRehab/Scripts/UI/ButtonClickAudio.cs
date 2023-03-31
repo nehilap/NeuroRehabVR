@@ -8,6 +8,8 @@ public class ButtonClickAudio : MonoBehaviour {
 			button.onClick.AddListener(playSound);
 		} else if (gameObject.TryGetComponent<Slider>(out Slider slider)) {
 			slider.onValueChanged.AddListener(playSoundSlider);
+		}else if (gameObject.TryGetComponent<Toggle>(out Toggle toggle)) {
+			toggle.onValueChanged.AddListener(playSoundToggle);
 		}
 	}
 
@@ -23,6 +25,11 @@ public class ButtonClickAudio : MonoBehaviour {
 
 	// Wrapper for method
 	void playSoundSlider(float val) {
+		playSound();
+	}
+
+	// Wrapper for method
+	void playSoundToggle(bool val) {
 		playSound();
 	}
 }

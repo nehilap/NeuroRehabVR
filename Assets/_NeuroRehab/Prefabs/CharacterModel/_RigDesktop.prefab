@@ -280,8 +280,8 @@ MonoBehaviour:
   mouseManager: {fileID: 5622529241403108388}
   player: {fileID: 5308743742952482153}
   verticalRotation: 0
-  mouseSensitivityX: 8
-  mouseSensitivityY: 5
+  mouseSensitivityX: 7
+  mouseSensitivityY: 4
   cameraFieldOfView: 60
 --- !u!114 &5395967575768044713
 MonoBehaviour:
