@@ -161,7 +161,7 @@ public class ArmAnimationController : MonoBehaviour {
 				if (animSettingsManager.animType == AnimationType.Cup) {
 					yield return StartCoroutine(moveCupUpAndDown(currentAnimSetup[i], waitDuration, cupMoveDuration));
 				}
-				previousMapping = currentAnimSetup[i].Clone(); // we clone previos animation so that we make changes only to cloned versions of it
+				previousMapping = currentAnimSetup[i].Clone(); // we clone previous animation so that we make changes only to cloned versions of it
 			}
 
 			if (animSettingsManager.animType == AnimationType.Key) {
