@@ -59,7 +59,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		if (isClientOnly) {
 			setAllElements();
 
-			if (RoleManager.Instance.characterRole == Enums.UserRole.Therapist) {
+			if (SettingsManager.Instance.roleSettings.characterRole == Enums.UserRole.Therapist) {
 				blockSetup.Callback += onAnimationSetupUpdated;
 				cubeSetup.Callback += onAnimationSetupUpdated;
 				cupSetup.Callback += onAnimationSetupUpdated;
@@ -181,7 +181,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 	}
 
 	void onAnimationSetupUpdated(SyncList<PosRotMapping>.Operation op, int index, PosRotMapping oldItem, PosRotMapping newItem) {
-		if (RoleManager.Instance.characterRole == UserRole.Patient) {
+		if (SettingsManager.Instance.roleSettings.characterRole == UserRole.Patient) {
 			return;
 		}
 
@@ -232,7 +232,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 	/// Method that re-creates all markers locally only
 	/// </summary>
 	private void setupMarkers() {
-		if (RoleManager.Instance.characterRole == UserRole.Patient) {
+		if (SettingsManager.Instance.roleSettings.characterRole == UserRole.Patient) {
 			return;
 		}
 

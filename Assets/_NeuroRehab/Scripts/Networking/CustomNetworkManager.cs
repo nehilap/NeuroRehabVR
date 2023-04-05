@@ -51,7 +51,7 @@ public class CustomNetworkManager : NetworkManager {
 		// you can send the message here
 		CharacterMessage characterMessage = new CharacterMessage
 		{
-			role = RoleManager.Instance.characterRole,
+			role = SettingsManager.Instance.roleSettings.characterRole,
 			hmdType = XRStatusManager.Instance.hmdType,
 			controllerType = XRStatusManager.Instance.controllerType,
 			isFemale = SettingsManager.Instance.avatarSettings.isFemale,

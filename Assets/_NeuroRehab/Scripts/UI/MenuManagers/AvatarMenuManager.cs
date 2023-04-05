@@ -7,7 +7,9 @@ public class AvatarMenuManager : MonoBehaviour
 
 	public void resetHeight() {
 		foreach (AvatarModelManager manager in avatarModelManagers) {
-			manager.resetHeight();
+			if (manager.gameObject.activeInHierarchy) {
+				manager.resetHeight();
+			}
 		}
 	}
 }

@@ -4,9 +4,10 @@ using UnityEngine.XR.Management;
 using System.Collections;
 using System.Collections.Generic;
 using Enums;
-using System;
 using UnityEngine.XR.OpenXR;
 using Unity.XR.MockHMD;
+using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class XRStatusManager : MonoBehaviour {
 
@@ -14,9 +15,6 @@ public class XRStatusManager : MonoBehaviour {
 
 	public static XRStatusManager Instance {
 		get {
-			if(_instance == null) {
-				_instance = GameObject.FindObjectOfType<XRStatusManager>();
-			}
 			return _instance;
 		}
 	}
@@ -30,6 +28,8 @@ public class XRStatusManager : MonoBehaviour {
 	public bool isXRActive;
 	private bool foundHMD = false;
 
+	[SerializeField] private string offlineSceneName;
+
 	[SerializeField] private ActiveBarGroupsManager activeXRButton;
 	[SerializeField] private ActiveBarGroupsManager inactiveXRButton;
 
@@ -38,30 +38,44 @@ public class XRStatusManager : MonoBehaviour {
 
 	[SerializeField] private GameObject controllerSetupMenu;
 	[SerializeField] private GameObject xrSetupMenu;
+	[SerializeField] private GameObject xrDeviceSimulator;
 
 	private GameObject desktopControls;
 	private GameObject xrControls;
 	private GameObject mockXRControls;
-	[SerializeField] private GameObject xrDeviceSimulator;
 
-	private static XRLoader activeLoader;
-	private static bool xrInitialized;
+	private XRLoader activeLoader;
+	private bool xrInitialized;
 
 	//private XRLoader removedLoader = null;
 
 	void Awake() {
+		{
+			if (_instance != null && _instance != this )
+			{
+				Destroy(gameObject);
+				return;
+			}
+			_instance = this;
+			DontDestroyOnLoad(gameObject);
+		}
+
 #if UNITY_EDITOR
 		if (isXRActive) {
 			StartCoroutine(startXR());
 		}
 #endif
-
-		DontDestroyOnLoad(gameObject);
-
-		initHMD();
 	}
 
 	void Start() {
+		SceneManager.activeSceneChanged += changedActiveScene;
+
+		initialize();
+	}
+
+	private void initialize() {
+		initHMD();
+
 		initObjects();
 
 		if ((XRGeneralSettings.Instance != null && XRGeneralSettings.Instance.Manager.isInitializationComplete) || xrInitialized || activeLoader != null) {
@@ -78,6 +92,14 @@ public class XRStatusManager : MonoBehaviour {
 
 	void OnApplicationQuit() {
 		stopXR();
+	}
+
+	private void changedActiveScene(Scene current, Scene next) {
+		// Debug.Log("New Scene: " + next.name);
+
+		if (next.name.Equals(offlineSceneName)) {
+			initialize();
+		}
 	}
 
 	public void stopXR() {
@@ -216,9 +238,39 @@ public class XRStatusManager : MonoBehaviour {
 	}
 
 	private void initObjects() {
+		SimpleObjectListManager simpleObjectListManager = ObjectManager.Instance.getFirstObjectByName("SimpleObjectListManager").GetComponent<SimpleObjectListManager>();
+
 		desktopControls = ObjectManager.Instance.getFirstObjectByName("DesktopControls");
 		xrControls = ObjectManager.Instance.getFirstObjectByName("XRControls");
 		mockXRControls = ObjectManager.Instance.getFirstObjectByName("MockXRControls");
+
+		// you could use simpleObjectListManager.objectList.Find(...), but it's more time consuming (cycling multiple times through array)
+		foreach (SimpleObjectListMember item in simpleObjectListManager.objectList) {
+			switch (item.name) {
+				case "XR Device Simulator":
+					xrDeviceSimulator = item.gameObject;
+					break;
+				case "XRRig":
+					XRRig = item.gameObject;
+					break;
+				case "DesktopRig":
+					desktopRig = item.gameObject;
+					break;
+				case "XRSetup":
+					controllerSetupMenu = item.gameObject;
+					break;
+				case "XRModeSetup":
+					xrSetupMenu = item.gameObject;
+					break;
+				case "inactiveXRButton":
+					inactiveXRButton = item.gameObject.GetComponent<ActiveBarGroupsManager>();
+					break;
+				case "activeXRButton":
+					activeXRButton = item.gameObject.GetComponent<ActiveBarGroupsManager>();
+					break;
+				default: break;
+			}
+		}
 	}
 
 	/// <summary>

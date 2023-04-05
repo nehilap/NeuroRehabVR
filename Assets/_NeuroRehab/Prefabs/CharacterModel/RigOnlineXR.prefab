@@ -758,6 +758,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   avatarModelManager: {fileID: 5704176413575433497}
+  cameraTransform: {fileID: 1878698787931433296}
   headMove: {fileID: 7862207684358717888, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   move: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   maleAnimator: {fileID: 6152346352656084151}
@@ -768,7 +769,7 @@ MonoBehaviour:
   isStrafing: 0
   strafeDirection: 0
   headMoveDuration: 0.7
-  headMoveTreshold: 0.07
+  headMoveTreshold: 0.12
 --- !u!114 &1828743430781379336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1718,6 +1719,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5912082539520979338, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 1878698787931433296}
     - target: {fileID: 6136325387786580972, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2117,6 +2122,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3482257624152933618, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 1878698787931433296}
     - target: {fileID: 3841603294926556681, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
       propertyPath: m_IsActive
       value: 0

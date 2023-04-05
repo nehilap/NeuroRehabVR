@@ -2,19 +2,21 @@ using UnityEngine.InputSystem;
 using UnityEngine;
 
 public class AvatarWalkingController : MonoBehaviour {
-	[SerializeField] private InputActionReference headMove;
+	[SerializeField] private Animator animator;
 
+	[Header("Input movement (controller / keyboard)")]
 	[SerializeField] private InputActionReference move;
 
-	[SerializeField] private Animator animator;
+	[Header("Head movement")]
+	[SerializeField] private InputActionReference headMove;
+	[SerializeField] private Transform cameraTransform;
+	[Range(0.1f, 4f)] [SerializeField] private float headMoveDuration = 0.7f;
+	[Range(0.001f, 0.4f)] [SerializeField] private float headMoveTreshold = 0.12f;
 
 	private bool isAnimatingLegs = false;
 	private bool isAnimatingHead = false;
 	private Vector3 lastHeadPosition = Vector3.zero;
 	private float lastHeadMovementTime;
-
-	[Range(0.1f, 4f)] [SerializeField] private float headMoveDuration = 0.7f;
-	[Range(0.001f, 0.4f)] [SerializeField] private float headMoveTreshold = 0.12f;
 
 	private void OnEnable() {
 		move.action.performed += animateLegsAction;
@@ -22,6 +24,7 @@ public class AvatarWalkingController : MonoBehaviour {
 
 		if (headMove) {
 			headMove.action.performed += animateHeadMovement;
+			lastHeadPosition = cameraTransform.position;
 		}
 	}
 
@@ -49,23 +52,24 @@ public class AvatarWalkingController : MonoBehaviour {
 	}
 
 	private void animateHeadMovement(InputAction.CallbackContext obj) {
-		// Debug.Log( headMove.action.ReadValue<Vector3>());
 		if (isAnimatingLegs) {
 			return;
 		}
-		Vector3 headPosition = headMove.action.ReadValue<Vector3>();
 
+		Vector3 headPosition = cameraTransform.position;
 		Vector3 positionDiff = headPosition - lastHeadPosition;
 
 		if (Mathf.Abs(positionDiff.x) < headMoveTreshold && Mathf.Abs(positionDiff.z) < headMoveTreshold) {
 			return;
 		}
 
+		Vector3 direction = cameraTransform.InverseTransformDirection(positionDiff);
+
 		lastHeadPosition = headPosition;
 		lastHeadMovementTime = Time.time;
 
 		isAnimatingHead = true;
-		handleMovement(new Vector2(positionDiff.x, positionDiff.z));
+		handleMovement(new Vector2(direction.x, direction.z));
 	}
 
 	/// <summary>
@@ -107,6 +111,10 @@ public class AvatarWalkingController : MonoBehaviour {
 	private void stopAnimateLegsAction(InputAction.CallbackContext obj) {
 		isAnimatingLegs = false;
 		stopAnimateLegs();
+
+		if (headMove) {
+			lastHeadPosition = cameraTransform.position;
+		}
 	}
 
 	private void stopAnimateLegs() {

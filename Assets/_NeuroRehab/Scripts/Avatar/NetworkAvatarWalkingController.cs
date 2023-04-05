@@ -6,6 +6,7 @@ public class NetworkAvatarWalkingController : NetworkBehaviour {
 
 	[SerializeField] private AvatarModelManager avatarModelManager;
 
+	[SerializeField] private Transform cameraTransform;
 	[SerializeField] private InputActionReference headMove;
 	[SerializeField] private InputActionReference move;
 
@@ -49,6 +50,7 @@ public class NetworkAvatarWalkingController : NetworkBehaviour {
 
 		if (headMove) {
 			headMove.action.performed += animateHeadMovement;
+			lastHeadPosition = cameraTransform.position;
 		}
 	}
 
@@ -98,19 +100,20 @@ public class NetworkAvatarWalkingController : NetworkBehaviour {
 		if (isAnimatingLegs) {
 			return;
 		}
-		Vector3 headPosition = headMove.action.ReadValue<Vector3>();
-
+		Vector3 headPosition = cameraTransform.position;
 		Vector3 positionDiff = headPosition - lastHeadPosition;
 
 		if (Mathf.Abs(positionDiff.x) < headMoveTreshold && Mathf.Abs(positionDiff.z) < headMoveTreshold) {
 			return;
 		}
 
+		Vector3 direction = cameraTransform.InverseTransformDirection(positionDiff);
+
 		lastHeadPosition = headPosition;
 		lastHeadMovementTime = Time.time;
 
 		isAnimatingHead = true;
-		handleMovement(new Vector2(positionDiff.x, positionDiff.z));
+		handleMovement(new Vector2(direction.x, direction.z));
 
 		CMDUpdateIsWalking(isWalking);
 		CMDUpdateIsStrafing(isStrafing);
@@ -138,6 +141,10 @@ public class NetworkAvatarWalkingController : NetworkBehaviour {
 		bool _isMoving = movementVector.y != 0;
 		bool _isStrafing = movementVector.x != 0;
 
+		if (Mathf.Abs(movementVector.y) < Mathf.Abs(movementVector.x)) {
+			if (_isMoving) _isMoving = false;
+		}
+
 		isWalking = _isMoving;
 		isStrafing = _isStrafing;
 		if (_isMoving) {
@@ -156,6 +163,10 @@ public class NetworkAvatarWalkingController : NetworkBehaviour {
 	}
 
 	private void updateStopAnimation(InputAction.CallbackContext obj) {
+		if (headMove) {
+			lastHeadPosition = cameraTransform.position;
+		}
+
 		isAnimatingLegs = false;
 
 		isWalking = false;

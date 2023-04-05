@@ -195,7 +195,7 @@ public class ArmAnimationController : MonoBehaviour {
 
 		// if we are patient, we inform Server to progress animation step by one
 		// alternative check - (CharacterManager.localClientInstance.GetInstanceID() == CharacterManager.activePatientInstance.GetInstanceID())
-		if (informServer && RoleManager.Instance.characterRole == UserRole.Patient) {
+		if (informServer && SettingsManager.Instance.roleSettings.characterRole == UserRole.Patient) {
 			NetworkCharacterManager.localNetworkClientInstance.CmdProgressAnimationStep();
 		}
 

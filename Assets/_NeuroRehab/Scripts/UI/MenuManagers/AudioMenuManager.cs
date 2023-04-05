@@ -9,6 +9,8 @@ public class AudioMenuManager : MonoBehaviour {
 	[Tooltip("2 = 200% of initial volume")][Range(0f, 10f)][SerializeField] private float maxAudioVolume = 2f;
 
 	private void Start() {
+		audioVolumeSlider.value = SettingsManager.Instance.audioSettings.UIvolume * audioVolumeSlider.maxValue / maxAudioVolume;
+
 		audioVolumeTextValue.text = Mathf.Round(audioVolumeSlider.value * maxAudioVolume * 100 / audioVolumeSlider.maxValue) + " %";
 	}
 

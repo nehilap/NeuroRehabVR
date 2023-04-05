@@ -41,6 +41,7 @@ public class MiniMenuManager : MonoBehaviour {
 		originalMenuPosition = menuToShow.transform.localPosition;
 		originalMenuScale = menuToShow.transform.localScale;
 		originalMenuParent = menuToShow.transform.parent;
+		Debug.Log(gameObject.name);
 	}
 
 	private void OnEnable() {
@@ -57,6 +58,10 @@ public class MiniMenuManager : MonoBehaviour {
 		menuAction.action.Disable();
 
 		menuAction.action.performed -= triggerMenu;
+
+		if (originalMenuParent != null) {
+			resetMenu();
+		}
 	}
 
 	private void triggerMenu(InputAction.CallbackContext obj) {

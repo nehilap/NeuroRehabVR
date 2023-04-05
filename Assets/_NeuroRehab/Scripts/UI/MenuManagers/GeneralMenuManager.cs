@@ -14,14 +14,14 @@ public class GeneralMenuManager : MonoBehaviour {
 	}
 
 	public void JoinTherapist() {
-		RoleManager.Instance.CreateCharacter(UserRole.Therapist);
+		SettingsManager.Instance.roleSettings.createCharacter(UserRole.Therapist);
 		joinManager.Join();
 	}
 
 	public void JoinPatient() {
 		StartCoroutine(XRStatusManager.Instance.startXR());
 
-		RoleManager.Instance.CreateCharacter(UserRole.Patient);
+		SettingsManager.Instance.roleSettings.createCharacter(UserRole.Patient);
 		joinManager.Join();
 	}
 

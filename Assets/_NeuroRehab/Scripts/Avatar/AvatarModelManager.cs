@@ -80,10 +80,14 @@ public class AvatarModelManager : MonoBehaviour {
 	/// ResetHeight wrapper method
 	/// </summary>
 	public void resetHeight() {
-		avatarFemale.GetComponent<AvatarController>().resetHeight();
-		avatarFemale.GetComponent<AvatarLowerBodyAnimationController>().resetHeight();
+		if (avatarFemale.activeInHierarchy) {
+			avatarFemale.GetComponent<AvatarController>().resetHeight();
+			avatarFemale.GetComponent<AvatarLowerBodyAnimationController>().resetHeight();
+		}
 
-		avatarMale.GetComponent<AvatarController>().resetHeight();
-		avatarMale.GetComponent<AvatarLowerBodyAnimationController>().resetHeight();
+		if (avatarMale.activeInHierarchy) {
+			avatarMale.GetComponent<AvatarController>().resetHeight();
+			avatarMale.GetComponent<AvatarLowerBodyAnimationController>().resetHeight();
+		}
 	}
 }
