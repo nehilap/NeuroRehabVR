@@ -36,6 +36,10 @@ public class ObjectManager : MonoBehaviour {
 	/// <returns></returns>
 	public GameObject getFirstObjectByName(string targetName) {
 		if (objectList.ContainsKey(targetName)) {
+			if (objectList[targetName].Count <= 0) {
+				objectList.Remove(targetName);
+				return null;
+			}
 			return objectList[targetName][0];
 		} else {
 			return null;

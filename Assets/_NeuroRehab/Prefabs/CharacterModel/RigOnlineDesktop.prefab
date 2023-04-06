@@ -294,6 +294,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   avatarModelManager: {fileID: 4064739466295004778}
+  cameraTransform: {fileID: 0}
   headMove: {fileID: 0}
   move: {fileID: 3377828608154732254, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
   maleAnimator: {fileID: 2223494747928096786}
@@ -352,6 +353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseClick: {fileID: 5444298425152310856, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
+  miniMenuManager: {fileID: 7386061097422830102}
   mousePhysicsDragSpeed: 15
   mouseDragSpeed: 0.1
   mainCamera: {fileID: 5308743743746186650}
@@ -1080,3 +1082,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1626116079738220342, guid: 390a6df766e42374689a00f4a7c236b7, type: 3}
   m_PrefabInstance: {fileID: 6701426152077321021}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7386061097422830102 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4287621437376485675, guid: 390a6df766e42374689a00f4a7c236b7, type: 3}
+  m_PrefabInstance: {fileID: 6701426152077321021}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4407383298804560811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b8caa96e06e7245b3357e1648f22bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

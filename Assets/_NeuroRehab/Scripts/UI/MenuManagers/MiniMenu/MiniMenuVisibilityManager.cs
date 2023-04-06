@@ -12,6 +12,16 @@ public class MiniMenuVisibilityManager : MonoBehaviour {
 		isMenuShowingList.Add(false);
 	}
 
+	public bool isMenuShowing() {
+		for (int i = 0; i < miniMenuManagers.Count; i++) {
+			if (isMenuShowingList[i]) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	// checks if IS menu showing AND was triggered by other MiniMenuManager
 	public bool isMenuShowing(MiniMenuManager _miniMenuManager) {
 		int index = miniMenuManagers.IndexOf(_miniMenuManager);

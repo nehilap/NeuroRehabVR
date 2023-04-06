@@ -67,6 +67,10 @@ public class AnimationSettingsManager : NetworkBehaviour {
 
 				setupMarkers();
 			}
+
+			 animTypeDropdown.onValueChanged.AddListener(delegate {
+				animationTypeDropdownHandler(animTypeDropdown);
+			});
 		} else if (isServer) {
 			string animTypeString = animType.ToString();
 			GameObject targetObject = GameObject.Find(animTypeString);
@@ -114,6 +118,16 @@ public class AnimationSettingsManager : NetworkBehaviour {
 				return keySetup;
 			default: return null; // AnimType.Off
 		}
+	}
+
+	public List<SyncList<PosRotMapping>> getAllAnimationSetups() {
+		List<SyncList<PosRotMapping>> setups = new List<SyncList<PosRotMapping>>();
+		setups.Add(blockSetup);
+		setups.Add(cubeSetup);
+		setups.Add(cupSetup);
+		setups.Add(keySetup);
+
+		return setups;
 	}
 
 	/*

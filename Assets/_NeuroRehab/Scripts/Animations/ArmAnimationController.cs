@@ -44,6 +44,8 @@ public class ArmAnimationController : MonoBehaviour {
 	[SerializeField] private Transform _mirror;
 	private float armLength;
 
+	private bool initialized = false;
+
 	void Start() {
 		initElements();
 
@@ -60,14 +62,14 @@ public class ArmAnimationController : MonoBehaviour {
 			return;
 		}
 
-		animationMapping.resizeMappings(avatarController.sizeMultiplier);
+		if (!initialized) {
+			initialized = true;
+			animationMapping.resizeMappings(avatarController.sizeMultiplier);
 
-		if (isLeft) {
-			animationMapping.mirrorMappings(_mirror);
+			if (isLeft) {
+				animationMapping.mirrorMappings(_mirror);
+			}
 		}
-		armLength = calculateArmLength();
-		// Debug.Log(armRangeMesh.transform.lossyScale);
-		// Debug.Log(armLength);
 	}
 
 	private void OnEnable() {
@@ -93,7 +95,7 @@ public class ArmAnimationController : MonoBehaviour {
 		}
 	}
 
-	private void initElements() {
+	public void initElements() {
 		if (!animSettingsManager)
 			animSettingsManager = ObjectManager.Instance.getFirstObjectByName("AnimationSettingsManager")?.GetComponent<AnimationSettingsManager>();
 		if (!armRestHelperObject)
@@ -102,6 +104,8 @@ public class ArmAnimationController : MonoBehaviour {
 			_mirror = ObjectManager.Instance.getFirstObjectByName("MirrorPlane")?.transform;
 		if (!avatarController)
 			avatarController = gameObject.GetComponent<AvatarController>();
+
+		armLength = calculateArmLength();
 	}
 
 	/// <summary>
@@ -118,6 +122,9 @@ public class ArmAnimationController : MonoBehaviour {
 
 		// First we move the object to it's starting position, instead of it just warping there suddenly
 		yield return StartCoroutine(lerpTransform(targetObject, new PosRotMapping(targetObject.transform), currentAnimSetup[0], 1f, false));
+
+		// Setting initial position + rotation
+		targetsHelperObject.setAllTargetMappings(animationMapping.getTargetMappingByType(animSettingsManager.animType), targetObject);
 		targetsHelperObject.alignTargetTransforms();
 
 		// Animation control for moving arm and grabbing with hand
@@ -383,8 +390,8 @@ public class ArmAnimationController : MonoBehaviour {
 	private IEnumerator handleKeyAnimation(PosRotMapping lastMapping, PosRotMapping initialMapping, float waitDuration, float keyTurnDuration) {
 		PosRotMapping tempMapping = lastMapping.Clone();
 		// Theoretically both ways should work pretty well
-		tempMapping.rotation.x += -90;
-		//tempMapping.rotation = (Quaternion.Euler(tempMapping.rotation) * Quaternion.Euler(targetObject.transform.forward * 90)).eulerAngles;
+		tempMapping.rotation.x += -65;
+		//tempMapping.rotation = (Quaternion.Euler(tempMapping.rotation) * Quaternion.Euler(targetObject.transform.forward * 65)).eulerAngles;
 
 		yield return new WaitForSeconds(waitDuration);
 		yield return StartCoroutine(lerpTransform(targetObject, lastMapping, tempMapping, keyTurnDuration, true));
@@ -448,6 +455,10 @@ public class ArmAnimationController : MonoBehaviour {
 			Debug.LogError("Too few animation positions set: '" + currentAnimationSetup.Count + "'");
 			return;
 		}
+		if (animSettingsManager.animType == AnimationType.Key && currentAnimationSetup.Count != 2) {
+			Debug.LogError("Too few animation positions set for 'Key': '" + currentAnimationSetup.Count + "'");
+			return;
+		}
 
 		// Initial starting position HAS to be in arm range
 		if (!isTargetInRange(currentAnimationSetup[0].position)) {
@@ -496,15 +507,6 @@ public class ArmAnimationController : MonoBehaviour {
 			rb.useGravity = false;
 		if (targetObject.TryGetComponent<Collider>(out Collider col))
 			col.enabled = false;
-
-		try {
-			// Setting initial position + rotation
-			targetsHelperObject.setAllTargetMappings(animationMapping.getTargetMappingByType(animSettingsManager.animType), targetObject);
-			targetsHelperObject.alignTargetTransforms();
-		} catch(System.Exception ex) {
-			Debug.LogError(ex);
-			return;
-		}
 
 		animState = Enums.AnimationState.Playing;
 		//animPart = AnimationPart.Arm;

@@ -1,10 +1,12 @@
 using System.Collections;
+using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class DragAndDrop : MonoBehaviour {
 	[SerializeField] private InputActionReference mouseClick;
+	[SerializeField] private MiniMenuManager miniMenuManager;
 
 	[SerializeField] [Range(0.01f, 100f)] private float mousePhysicsDragSpeed = 10f;
 	[SerializeField] [Range(0.01f, 10f)] private float mouseDragSpeed = 0.1f;
@@ -35,6 +37,12 @@ public class DragAndDrop : MonoBehaviour {
 
 	// https://www.youtube.com/watch?v=HfqRKy5oFDQ
 	private void mousePressed(InputAction.CallbackContext obj) {
+		if (miniMenuManager) {
+			if (miniMenuManager.isMenuShowing) {
+				return;
+			}
+		}
+
 		Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 		RaycastHit hit;
 

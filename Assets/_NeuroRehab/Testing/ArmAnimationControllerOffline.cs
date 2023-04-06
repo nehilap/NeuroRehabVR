@@ -103,8 +103,8 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 			yield return new WaitForSeconds(0.5f);
 			PosRotMapping tempMapping = currentAnimSetup[currentAnimSetup.Count - 1].Clone();
 			// Theoretically both ways should work pretty well
-			tempMapping.rotation.x += -90;
-			//tempMapping.rotation = (Quaternion.Euler(tempMapping.rotation) * Quaternion.Euler(targetObject.transform.forward * 90)).eulerAngles;
+			tempMapping.rotation.x += -65;
+			//tempMapping.rotation = (Quaternion.Euler(tempMapping.rotation) * Quaternion.Euler(targetObject.transform.forward * 65)).eulerAngles;
 
 			yield return StartCoroutine(lerpTransform(targetObject, currentAnimSetup[currentAnimSetup.Count - 1], tempMapping, 1f, true));
 			yield return new WaitForSeconds(0.5f);

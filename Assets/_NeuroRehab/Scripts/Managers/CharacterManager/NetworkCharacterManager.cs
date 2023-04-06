@@ -140,7 +140,30 @@ public class NetworkCharacterManager : NetworkBehaviour {
 			return;
 		}
 
-		PosRotMapping targetPosRotMapping = getPosRotFromObject();
+		PosRotMapping targetPosRotMapping = getPosRotFromCurrentObject();
+		if (targetPosRotMapping == null) {
+			return;
+		}
+
+		if (!isTargetInBounds(targetPosRotMapping)) {
+			Debug.LogWarning("Cannot set target position - Out of range of Arm");
+			return;
+		}
+
+		// due to how SyncList works we can't simply change value in list element, we have to replace whole element
+		// https://mirror-networking.gitbook.io/docs/manual/guides/synchronization/synclists
+		if (animSettingsManager.getCurrentAnimationSetup().Count >= 1) {
+			animSettingsManager.getCurrentAnimationSetup()[0] = targetPosRotMapping;
+		} else {
+			animSettingsManager.getCurrentAnimationSetup().Add(targetPosRotMapping);
+		}
+	}
+
+	private void setAnimationStartPosition(PosRotMapping targetPosRotMapping) {
+		if (!isServer) {
+			return;
+		}
+
 		if (targetPosRotMapping == null) {
 			return;
 		}
@@ -163,7 +186,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	/// Helper method for getting posRot of current target object
 	/// </summary>
 	/// <returns></returns>
-	private PosRotMapping getPosRotFromObject() {
+	private PosRotMapping getPosRotFromCurrentObject() {
 		GameObject targetObject = ObjectManager.Instance.getFirstObjectByName(animSettingsManager.animType.ToString());
 
 		if (targetObject == null) {
@@ -183,7 +206,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 			return;
 		}
 
-		PosRotMapping movePosRotMapping = getPosRotFromObject();
+		PosRotMapping movePosRotMapping = getPosRotFromCurrentObject();
 		if (movePosRotMapping == null) {
 			return;
 		}
@@ -464,16 +487,17 @@ public class NetworkCharacterManager : NetworkBehaviour {
 			item.transform.position += offset;
 		}
 
-		// we have to completely change object on position, otherwise it won't be synced to clients
+		// we have to completely change object holding position, otherwise it won't be synced to clients
 		// Refer to https://mirror-networking.gitbook.io/docs/manual/guides/synchronization/synclists for more details
-		SyncList<PosRotMapping> currentSetup = animSettingsManager.getCurrentAnimationSetup();
-		for (int i = 0; i < currentSetup.Count; i++) {
-			currentSetup[i] = new PosRotMapping(currentSetup[i].position + offset, currentSetup[i].rotation);
+		List<SyncList<PosRotMapping>> allSetups = animSettingsManager.getAllAnimationSetups();
+
+		foreach (SyncList<PosRotMapping> setup in allSetups) {
+			for (int i = 0; i < setup.Count; i++) {
+				setup[i] = new PosRotMapping(setup[i].position + offset, setup[i].rotation);
+			}
 		}
 
-		string targetObjectName = animSettingsManager.animType.ToString();
-
-		List<GameObject> targetObjects = ObjectManager.Instance.getObjectsByName(targetObjectName);
+		List<GameObject> targetObjects = ObjectManager.Instance.getObjectsByName(animSettingsManager.animType.ToString());
 		if (targetObjects.Count == 0) {
 			return;
 		}
@@ -481,8 +505,15 @@ public class NetworkCharacterManager : NetworkBehaviour {
 			setItemAuthority(item.GetComponent<NetworkIdentity>(), caller);
 		}
 
+		if (animSettingsManager.animType == AnimationType.Key) {
+			List<GameObject> lockObjects = ObjectManager.Instance.getObjectsByName("Lock");
+			foreach (var item in lockObjects) {
+				setItemAuthority(item.GetComponent<NetworkIdentity>(), caller);
+			}
+		}
+
 		// To keep sync direction consistent, we move target objects on caller Client
-		TargetMoveObject(caller.connectionToClient, offset);
+		TargetMoveObjects(caller.connectionToClient, offset);
 	}
 
 	/// <summary>
@@ -491,7 +522,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	/// <param name="connection"></param>
 	/// <param name="offset"></param>
 	[TargetRpc]
-	public void TargetMoveObject(NetworkConnection connection, Vector3 offset) {
+	public void TargetMoveObjects(NetworkConnection connection, Vector3 offset) {
 		string targetObjectName = animSettingsManager.animType.ToString();
 
 		List<GameObject> targetObjects = ObjectManager.Instance.getObjectsByName(targetObjectName);
@@ -548,10 +579,46 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 	[Command]
 	public void CmdSetActiveArm(bool isLeftAnimated, NetworkIdentity patientId) {
-		if (patientId.gameObject.TryGetComponent<CharacterManager>(out CharacterManager characterManager)) {
-			characterManager.isLeftArmAnimated = isLeftAnimated;
-			characterManager.changeAnimatedArm(false, isLeftAnimated);
+		patientId.gameObject.TryGetComponent<CharacterManager>(out CharacterManager characterManager);
+		if (!characterManager) {
+			return;
 		}
 
+		characterManager.isLeftArmAnimated = isLeftAnimated;
+		characterManager.changeAnimatedArm(false, isLeftAnimated);
+
+		if (animSettingsManager.animType != AnimationType.Key) {
+			return;
+		}
+		GameObject targetObject = ObjectManager.Instance.getFirstObjectByName(animSettingsManager.animType.ToString());
+
+		PosRotMapping newMapping;
+		if (isLeftAnimated) {
+			newMapping = new PosRotMapping(targetObject.transform.position, new Vector3(-90f, 0f, -90f));
+			TargetTransformObject(patientId.connectionToClient, newMapping, targetObject.GetComponent<NetworkIdentity>(), true);
+		} else {
+			Vector3 rotation = targetObject.transform.rotation.eulerAngles;
+
+			for (int i = 0; i < targetPrefabs.Count; i++) {
+				if (targetPrefabs[i].name.Equals(animSettingsManager.animType.ToString())) {
+					rotation = targetPrefabs[i].transform.rotation.eulerAngles;
+					break;
+				}
+			}
+			newMapping = new PosRotMapping(targetObject.transform.position, rotation);
+			TargetTransformObject(patientId.connectionToClient, newMapping, targetObject.GetComponent<NetworkIdentity>(), true);
+		}
+
+		setAnimationStartPosition(newMapping);
+	}
+
+	[TargetRpc]
+	public void TargetTransformObject(NetworkConnection connection, PosRotMapping mapping, NetworkIdentity itemId, bool resetStartPost) {
+		if (!itemId.isOwned) {
+			NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(itemId, CharacterManager.localClientInstance.GetComponent<NetworkIdentity>());
+		}
+
+		itemId.gameObject.transform.position = mapping.position;
+		itemId.gameObject.transform.rotation = Quaternion.Euler(mapping.rotation);
 	}
 }

@@ -125,7 +125,7 @@ public abstract class CharacterManager : NetworkBehaviour {
 		networkAvatarWalkingController.enabled = true;
 
 		// if non local character prefab is loaded we have to disable components such as camera, etc. otherwise Multiplayer aspect wouldn't work properly
-		if (!isLocalPlayer)	{
+		if (!isLocalPlayer) {
 			if(cameraObject.TryGetComponent<Camera>(out Camera camera)) {
 				camera.enabled = false;
 			}
@@ -197,10 +197,10 @@ public abstract class CharacterManager : NetworkBehaviour {
 
 		ArmAnimationController[] armAnimationControllers = activeAvatarObject.GetComponents<ArmAnimationController>();
 		foreach (ArmAnimationController armAnimationController in armAnimationControllers) {
+			armAnimationController.initElements();
 			if (this.isLeftArmAnimated == armAnimationController.isLeft) { // only if both True, or both False
 				armAnimationController.enabled = true;
 				activeArmAnimationController = armAnimationController;
-
 			} else {
 				armAnimationController.enabled = false;
 				if (isArmResting) {

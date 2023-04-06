@@ -23,7 +23,8 @@ public class MiniMenuManager : MonoBehaviour {
 	private Vector3 originalMenuScale;
 	private Transform originalMenuParent;
 
-	private bool isMenuShowing = false;
+	public bool isMenuShowing = false;
+	private bool menuInitialized = false;
 
 	private void Awake() {
 		if (miniMenuVisibilityManager != null) {
@@ -34,14 +35,22 @@ public class MiniMenuManager : MonoBehaviour {
 	private void Start() {
 		menuHolder.GetComponent<Canvas>().enabled = false;
 
+		initMenu();
+	}
+
+	private void initMenu() {
+		if (menuInitialized) {
+			return;
+		}
+
 		if (menuToShow == null && menuNameToShow.Trim().Length > 0) {
 			menuToShow = ObjectManager.Instance.getFirstObjectByName(menuNameToShow);
 		}
-
 		originalMenuPosition = menuToShow.transform.localPosition;
 		originalMenuScale = menuToShow.transform.localScale;
 		originalMenuParent = menuToShow.transform.parent;
-		Debug.Log(gameObject.name);
+
+		menuInitialized = true;
 	}
 
 	private void OnEnable() {
@@ -59,8 +68,10 @@ public class MiniMenuManager : MonoBehaviour {
 
 		menuAction.action.performed -= triggerMenu;
 
-		if (originalMenuParent != null) {
-			resetMenu();
+		initMenu();
+
+		if (reticle) {
+			reticle.SetActive(true);
 		}
 	}
 

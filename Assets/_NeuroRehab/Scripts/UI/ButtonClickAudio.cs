@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,9 +8,11 @@ public class ButtonClickAudio : MonoBehaviour {
 		if (gameObject.TryGetComponent<Button>(out Button button)) {
 			button.onClick.AddListener(playSound);
 		} else if (gameObject.TryGetComponent<Slider>(out Slider slider)) {
-			slider.onValueChanged.AddListener(playSoundSlider);
-		}else if (gameObject.TryGetComponent<Toggle>(out Toggle toggle)) {
-			toggle.onValueChanged.AddListener(playSoundToggle);
+			slider.onValueChanged.AddListener(playSound);
+		} else if (gameObject.TryGetComponent<Toggle>(out Toggle toggle)) {
+			toggle.onValueChanged.AddListener(playSound);
+		} else if (gameObject.TryGetComponent<TMP_Dropdown>(out TMP_Dropdown dropdown)) {
+			dropdown.onValueChanged.AddListener(playSound);
 		}
 	}
 
@@ -24,12 +27,17 @@ public class ButtonClickAudio : MonoBehaviour {
 	}
 
 	// Wrapper for method
-	void playSoundSlider(float val) {
+	void playSound(int val) {
 		playSound();
 	}
 
 	// Wrapper for method
-	void playSoundToggle(bool val) {
+	void playSound(float val) {
+		playSound();
+	}
+
+	// Wrapper for method
+	void playSound(bool val) {
 		playSound();
 	}
 }
