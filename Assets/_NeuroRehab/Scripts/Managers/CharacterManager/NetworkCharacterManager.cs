@@ -16,11 +16,14 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 	[SerializeField] private GameObject spawnArea;
 
+	[SerializeField] private CountdownManager countdownManager;
+
 	private Transform _mirror;
 
 	void Start() {
 		spawnArea = ObjectManager.Instance.getFirstObjectByName("SpawnArea");
 		animSettingsManager = ObjectManager.Instance.getFirstObjectByName("AnimationSettingsManager")?.GetComponent<AnimationSettingsManager>();
+		countdownManager = ObjectManager.Instance.getFirstObjectByName("Countdown")?.GetComponent<CountdownManager>();
 
 		if (spawnArea == null || animSettingsManager == null) {
 			Debug.LogError("'AnimationSettingsManager' or 'SpawnArea' not found");
@@ -425,7 +428,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 	[Command]
 	public void CmdStartAnimation() {
-		AnimationServerManager.Instance.startAnimationListening();
+		AnimationServerManager.Instance.startTraining();
 	}
 
 	[Command]
@@ -620,5 +623,23 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 		itemId.gameObject.transform.position = mapping.position;
 		itemId.gameObject.transform.rotation = Quaternion.Euler(mapping.rotation);
+	}
+
+	/**
+	*
+	* COUNTDOWN
+	*
+	*/
+
+	public void startCountdown() {
+		countdownManager.startCountdown(animSettingsManager.waitDuration);
+	}
+
+	public void pauseCountdown() {
+		countdownManager.pauseCountdown();
+	}
+
+	public void stopCountdown() {
+		countdownManager.hideCountdown();
 	}
 }

@@ -64,6 +64,8 @@ public class AnimationServerManager : NetworkBehaviour {
 			} else {
 				isAnimationRunning = false;
 				isAnimationTriggered = false;
+
+				RpcStopCountdown();
 			}
 		}
 		return false;
@@ -83,6 +85,10 @@ public class AnimationServerManager : NetworkBehaviour {
 		currentRepetitions++;
 		if (currentRepetitions >= animSettingsManager.repetitions) {
 			isAnimationRunning = false;
+
+			RpcStopCountdown();
+		} else {
+			RpcStartCountdown();
 		}
 		isAnimationTriggered = false;
 	}
@@ -91,7 +97,7 @@ public class AnimationServerManager : NetworkBehaviour {
 	/// Starts listening to animation move events
 	/// </summary>
 	/// <returns>Whether we succesfully started listening to new moves</returns>
-	public bool startAnimationListening() {
+	public bool startTraining() {
 		if (isAnimationRunning) {
 			DateTime currentTime = DateTime.Now;
 			if ((currentTime - lastAnimationTrigger).TotalSeconds <= animSettingsManager.waitDuration) {
@@ -104,6 +110,8 @@ public class AnimationServerManager : NetworkBehaviour {
 		isAnimationTriggered = false;
 		lastAnimationTrigger = DateTime.Now;
 		currentRepetitions = 0;
+
+		RpcStartCountdown();
 
 		return true;
 	}
@@ -126,6 +134,8 @@ public class AnimationServerManager : NetworkBehaviour {
 			return;
 		}
 		CharacterManager.activePatientInstance.activeArmAnimationController.startAnimation(isShowcase);
+
+		NetworkCharacterManager.localNetworkClientInstance.pauseCountdown();
 	}
 
 	[ClientRpc]
@@ -135,5 +145,15 @@ public class AnimationServerManager : NetworkBehaviour {
 		}
 
 		CharacterManager.activePatientInstance.activeArmAnimationController.stopAnimation();
+	}
+
+	[ClientRpc]
+	public void RpcStartCountdown() {
+		NetworkCharacterManager.localNetworkClientInstance.startCountdown();
+	}
+
+	[ClientRpc]
+	public void RpcStopCountdown() {
+		NetworkCharacterManager.localNetworkClientInstance.stopCountdown();
 	}
 }
