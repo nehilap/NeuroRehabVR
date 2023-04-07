@@ -1,8 +1,10 @@
+using System.Collections.Generic;
 using Mirror;
-using Unity.XR.CoreUtils;
 using UnityEngine;
 
 public class TherapistMenuManager : MonoBehaviour {
+	[SerializeField] public List<CanvasGroup> animationCanvases = new List<CanvasGroup>();
+
 	public void playAnimationShowcaseHandler() {
 		NetworkCharacterManager.localNetworkClientInstance.CmdStartAnimationShowcase();
 	}

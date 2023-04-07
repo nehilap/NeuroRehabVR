@@ -19,7 +19,7 @@ public class AnimationServerManager : NetworkBehaviour {
 		}
 	}
 
-	private bool isAnimationRunning = false;
+	private bool isTrainingRunning = false;
 	private bool isAnimationTriggered = false;
 	private DateTime lastAnimationTrigger;
 	private int currentRepetitions = 0;
@@ -41,12 +41,13 @@ public class AnimationServerManager : NetworkBehaviour {
 
 	private IEnumerator waitDurationCoroutine(float duration) {
 		yield return new WaitForSeconds(duration);
-		if (!isAnimationRunning) {
+		if (!isTrainingRunning) {
 			yield break;
 		}
-		isAnimationRunning = false;
+		isTrainingRunning = false;
 		isAnimationTriggered = false;
 
+		Debug.Log("Listening to animation events - Canceled");
 		yield return new WaitForSeconds(2.5f);
 		RpcStopTraining();
 	}
@@ -57,7 +58,7 @@ public class AnimationServerManager : NetworkBehaviour {
 	/// <returns>Whether move was succesfully triggered</returns>
 	public bool moveArm() {
 		//Debug.Log("Move arm called");
-		if (!isAnimationTriggered && isAnimationRunning) {
+		if (!isAnimationTriggered && isTrainingRunning) {
 			DateTime currentTime = DateTime.Now;
 			Debug.Log("Seconds since last animation step: " + (currentTime - lastAnimationTrigger).TotalSeconds);
 			if ((currentTime - lastAnimationTrigger).TotalSeconds <= animSettingsManager.waitDuration) {
@@ -70,7 +71,7 @@ public class AnimationServerManager : NetworkBehaviour {
 				}
 				return true;
 			} else {
-				isAnimationRunning = false;
+				isTrainingRunning = false;
 				isAnimationTriggered = false;
 
 				RpcStopTraining();
@@ -83,7 +84,7 @@ public class AnimationServerManager : NetworkBehaviour {
 	/// Marks animation step as done
 	/// </summary>
 	public void progressAnimationStep() {
-		if (!isAnimationRunning) {
+		if (!isTrainingRunning) {
 			return;
 		}
 
@@ -92,7 +93,7 @@ public class AnimationServerManager : NetworkBehaviour {
 		lastAnimationTrigger = currentTime;
 		currentRepetitions++;
 		if (currentRepetitions >= animSettingsManager.repetitions) {
-			isAnimationRunning = false;
+			isTrainingRunning = false;
 
 			RpcStopTraining();
 		} else {
@@ -109,7 +110,7 @@ public class AnimationServerManager : NetworkBehaviour {
 	/// </summary>
 	/// <returns>Whether we succesfully started listening to new moves</returns>
 	public bool startTraining() {
-		if (isAnimationRunning) {
+		if (isTrainingRunning) {
 			DateTime currentTime = DateTime.Now;
 			if ((currentTime - lastAnimationTrigger).TotalSeconds <= animSettingsManager.waitDuration) {
 				return false;
@@ -117,7 +118,7 @@ public class AnimationServerManager : NetworkBehaviour {
 		}
 
 		Debug.Log("Listening to animation events - STARTED");
-		isAnimationRunning = true;
+		isTrainingRunning = true;
 		isAnimationTriggered = false;
 		lastAnimationTrigger = DateTime.Now;
 		currentRepetitions = 0;
@@ -135,8 +136,11 @@ public class AnimationServerManager : NetworkBehaviour {
 	/// Stops animation listening and ends all animations
 	/// </summary>
 	public void stopTraining() {
+		if (!isTrainingRunning) {
+			return;
+		}
 		Debug.Log("Listening to animation events - STOPPED");
-		isAnimationRunning = false;
+		isTrainingRunning = false;
 		currentRepetitions = 0;
 
 		// RpcStopActualAnimation();
@@ -166,6 +170,8 @@ public class AnimationServerManager : NetworkBehaviour {
 	[ClientRpc]
 	public void RpcStartTraining() {
 		NetworkCharacterManager.localNetworkClientInstance.startCountdown();
+
+		NetworkCharacterManager.localNetworkClientInstance.trainingStarted();
 	}
 
 	[ClientRpc]
@@ -176,5 +182,7 @@ public class AnimationServerManager : NetworkBehaviour {
 	[ClientRpc]
 	public void RpcStopTraining() {
 		NetworkCharacterManager.localNetworkClientInstance.stopCountdown();
+
+		NetworkCharacterManager.localNetworkClientInstance.trainingStopped();
 	}
 }

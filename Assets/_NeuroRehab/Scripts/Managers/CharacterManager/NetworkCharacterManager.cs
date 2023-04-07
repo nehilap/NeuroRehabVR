@@ -17,6 +17,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	[SerializeField] private GameObject spawnArea;
 
 	[SerializeField] private List<CountdownManager> countdownManagers = new List<CountdownManager>();
+	[SerializeField] private List<TherapistMenuManager> therapistMenuManagers = new List<TherapistMenuManager>();
 
 	private Transform _mirror;
 
@@ -25,7 +26,16 @@ public class NetworkCharacterManager : NetworkBehaviour {
 		animSettingsManager = ObjectManager.Instance.getFirstObjectByName("AnimationSettingsManager")?.GetComponent<AnimationSettingsManager>();
 		List<GameObject> countdownObjects = ObjectManager.Instance.getObjectsByName("Countdown");
 		foreach (GameObject item in countdownObjects) {
-			countdownManagers.Add(item.GetComponent<CountdownManager>());
+			if (item.TryGetComponent<CountdownManager>(out CountdownManager cm)) {
+				countdownManagers.Add(cm);
+			}
+		}
+
+		List<GameObject> therapistMenuObjects = ObjectManager.Instance.getObjectsByName("TherapistMenu");
+		foreach (GameObject therapistMenuObject in therapistMenuObjects) {
+			if (therapistMenuObject.TryGetComponent<TherapistMenuManager>(out TherapistMenuManager tmm)) {
+				therapistMenuManagers.Add(tmm);
+			}
 		}
 
 		if (spawnArea == null || animSettingsManager == null) {
@@ -630,7 +640,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 	/**
 	*
-	* COUNTDOWN
+	* TRAINING + COUNTDOWN
 	*
 	*/
 
@@ -650,6 +660,22 @@ public class NetworkCharacterManager : NetworkBehaviour {
 		foreach (CountdownManager countdownManager in countdownManagers) {
 			countdownManager.stopCountdown();
 			countdownManager.hideCountdown();
+		}
+	}
+
+	public void trainingStarted() {
+		foreach (TherapistMenuManager therapistMenuManager in therapistMenuManagers) {
+			foreach (CanvasGroup cg in therapistMenuManager.animationCanvases) {
+				cg.interactable = false;
+			}
+		}
+	}
+
+	public void trainingStopped() {
+		foreach (TherapistMenuManager therapistMenuManager in therapistMenuManagers) {
+			foreach (CanvasGroup cg in therapistMenuManager.animationCanvases) {
+				cg.interactable = true;
+			}
 		}
 	}
 }

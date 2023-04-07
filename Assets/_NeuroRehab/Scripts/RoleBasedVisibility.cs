@@ -8,14 +8,14 @@ public class RoleBasedVisibility : MonoBehaviour
 
 	void Start() {
 		if (!allowedRoles.Contains(SettingsManager.Instance.roleSettings.characterRole)) {
-			Canvas cr = gameObject.GetComponent<Canvas>();
-			if (cr != null) {
-				cr.enabled = false;
+			if (gameObject.TryGetComponent<Canvas>(out Canvas canvas)) {
+				canvas.enabled = false;
 			}
-
-			Renderer r = gameObject.GetComponent<Renderer>();
-			if (r != null) {
-				r.enabled = false;
+			if (gameObject.TryGetComponent<CanvasGroup>(out CanvasGroup canvasGroup)) {
+				canvasGroup.interactable = false;
+			}
+			if (gameObject.TryGetComponent<Renderer>(out Renderer renderer)) {
+				renderer.enabled = false;
 			}
 		}
 	}

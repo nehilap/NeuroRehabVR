@@ -64,7 +64,10 @@ public class CountdownManager : MonoBehaviour {
 	}
 
 	public void startCountdown(float duration) {
-		if (Mathf.Approximately(canvasGroup.alpha, 1f)) {
+		if (coroutine != null) {
+			StopCoroutine(coroutine);
+		}
+		if (!Mathf.Approximately(canvasGroup.alpha, 1f)) {
 			StartCoroutine(fadeAlpha(0f, 1f, 0.5f));
 		}
 		coroutine = StartCoroutine(countdown(duration));

@@ -19,10 +19,12 @@ public class TabGroup : MonoBehaviour {
 		if (isActive) {
 			OnTabSelected(tabButton);
 		} else {
-			if (tabButton.tabMenu.TryGetComponent<Canvas>(out Canvas canvas)) {
+			if (tabButton.tabMenu.TryGetComponent<Canvas>(out Canvas canvas) && tabButton.tabMenu.TryGetComponent<CanvasGroup>(out CanvasGroup canvasGroup) ) {
 				canvas.enabled = false;
+				canvasGroup.interactable = false;
+			} else {
+				tabButton.tabMenu.SetActive(false);
 			}
-			tabButton.tabMenu.SetActive(false);
 		}
 		resetTabs();
 	}
@@ -48,15 +50,19 @@ public class TabGroup : MonoBehaviour {
 
 		for (int i = 0; i < tabObjects.Count; i++) {
 			if (i == index) {
-				if (tabObjects[i].TryGetComponent<Canvas>(out Canvas canvas)) {
+				if (tabObjects[i].TryGetComponent<Canvas>(out Canvas canvas) && tabObjects[i].TryGetComponent<CanvasGroup>(out CanvasGroup canvasGroup) ) {
 					canvas.enabled = true;
+					canvasGroup.interactable = true;
+				} else {
+					tabObjects[i].SetActive(true);
 				}
-				tabObjects[i].SetActive(true);
 			} else {
-				if (tabObjects[i].TryGetComponent<Canvas>(out Canvas canvas)) {
+				if (tabObjects[i].TryGetComponent<Canvas>(out Canvas canvas) && tabObjects[i].TryGetComponent<CanvasGroup>(out CanvasGroup canvasGroup) ) {
 					canvas.enabled = false;
+					canvasGroup.interactable = false;
+				} else {
+					tabObjects[i].SetActive(false);
 				}
-				tabObjects[i].SetActive(false);
 			}
 		}
 	}
