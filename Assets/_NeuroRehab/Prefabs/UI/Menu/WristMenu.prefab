@@ -39,7 +39,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 6.071, y: -13.998, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.05, y: 0.34}
+  m_AnchoredPosition: {x: -0.049987793, y: 0.33999634}
   m_SizeDelta: {x: 10.4, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4515300185434200984
@@ -126,6 +126,8 @@ MonoBehaviour:
   offsetByWidth: 0
   offsetByHeight: 0
   miniMenuVisibilityManager: {fileID: 0}
+  reticle: {fileID: 0}
+  isMenuShowing: 0
 --- !u!1 &5434795546658844180
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.90588236, g: 0.90588236, b: 0.90588236, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

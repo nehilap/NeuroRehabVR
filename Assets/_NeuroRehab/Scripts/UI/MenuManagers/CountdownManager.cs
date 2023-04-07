@@ -10,15 +10,15 @@ public class CountdownManager : MonoBehaviour {
 
 	private Coroutine coroutine;
 
-	private Canvas canvas;
+	private CanvasGroup canvasGroup;
 
 	private void Start() {
-		canvas = gameObject.GetComponent<Canvas>();
+		canvasGroup = gameObject.GetComponent<CanvasGroup>();
 
-		canvas.enabled = false;
+		canvasGroup.alpha = 0f;
 	}
 
-	private IEnumerator ImageCountdown(float duration) {
+	private IEnumerator countdownCoroutine(float duration) {
 		float normalizedTime = 0;
 
 		while(normalizedTime <= 1f) {
@@ -49,19 +49,34 @@ public class CountdownManager : MonoBehaviour {
 		countdownImage.fillAmount = 0f;
 	}
 
-	public void startCountdown(float duration) {
-		canvas.enabled = true;
+	IEnumerator fadeAlpha(float startLerpValue, float endLerpValue, float lerpDuration) {
+		float lerpTimeElapsed = 0f;
 
+		while (lerpTimeElapsed < lerpDuration) {
+			float t = lerpTimeElapsed / lerpDuration;
+			t = t * t * t * (t * (6f* t - 15f) + 10f); // https://chicounity3d.wordpress.com/2014/05/23/how-to-lerp-like-a-pro/
+			canvasGroup.alpha = Mathf.Lerp(startLerpValue, endLerpValue, t);
+			lerpTimeElapsed += Time.deltaTime;
+			yield return null;
+		}
+		// lerp never reaches endValue, that is why we have to set it manually
+		canvasGroup.alpha = endLerpValue;
+	}
+
+	public void startCountdown(float duration) {
+		if (Mathf.Approximately(canvasGroup.alpha, 1f)) {
+			StartCoroutine(fadeAlpha(0f, 1f, 0.5f));
+		}
 		coroutine = StartCoroutine(countdown(duration));
 	}
 
-	public void pauseCountdown() {
+	public void stopCountdown() {
 		if (coroutine != null) {
 			StopCoroutine(coroutine);
 		}
 	}
 
 	public void hideCountdown() {
-		canvas.enabled = false;
+		StartCoroutine(fadeAlpha(1f, 0f, 0.5f));
 	}
 }

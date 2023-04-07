@@ -16,14 +16,17 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 	[SerializeField] private GameObject spawnArea;
 
-	[SerializeField] private CountdownManager countdownManager;
+	[SerializeField] private List<CountdownManager> countdownManagers = new List<CountdownManager>();
 
 	private Transform _mirror;
 
 	void Start() {
 		spawnArea = ObjectManager.Instance.getFirstObjectByName("SpawnArea");
 		animSettingsManager = ObjectManager.Instance.getFirstObjectByName("AnimationSettingsManager")?.GetComponent<AnimationSettingsManager>();
-		countdownManager = ObjectManager.Instance.getFirstObjectByName("Countdown")?.GetComponent<CountdownManager>();
+		List<GameObject> countdownObjects = ObjectManager.Instance.getObjectsByName("Countdown");
+		foreach (GameObject item in countdownObjects) {
+			countdownManagers.Add(item.GetComponent<CountdownManager>());
+		}
 
 		if (spawnArea == null || animSettingsManager == null) {
 			Debug.LogError("'AnimationSettingsManager' or 'SpawnArea' not found");
@@ -632,14 +635,21 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	*/
 
 	public void startCountdown() {
-		countdownManager.startCountdown(animSettingsManager.waitDuration);
+		foreach (CountdownManager countdownManager in countdownManagers) {
+			countdownManager.startCountdown(animSettingsManager.waitDuration);
+		}
 	}
 
 	public void pauseCountdown() {
-		countdownManager.pauseCountdown();
+		foreach (CountdownManager countdownManager in countdownManagers) {
+			countdownManager.stopCountdown();
+		}
 	}
 
 	public void stopCountdown() {
-		countdownManager.hideCountdown();
+		foreach (CountdownManager countdownManager in countdownManagers) {
+			countdownManager.stopCountdown();
+			countdownManager.hideCountdown();
+		}
 	}
 }

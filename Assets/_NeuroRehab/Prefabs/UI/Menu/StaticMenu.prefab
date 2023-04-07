@@ -129,6 +129,8 @@ MonoBehaviour:
   offsetByWidth: 0
   offsetByHeight: 0
   miniMenuVisibilityManager: {fileID: 0}
+  reticle: {fileID: 0}
+  isMenuShowing: 0
 --- !u!114 &6873313555506742889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,8 +144,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuAction: {fileID: -7804725512957425204, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  miniMenuVisibilityManager: {fileID: 0}
   cameraTransform: {fileID: 0}
+  menuOffset: 1.25
+  isMenuShowing: 0
 --- !u!114 &3483727520419222571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,7 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using Mirror;
 using ShadowGroveGames.SimpleHttpAndRestServer.Scripts;
+using System.Collections;
 
 public class AnimationServerManager : NetworkBehaviour {
 
@@ -22,6 +23,7 @@ public class AnimationServerManager : NetworkBehaviour {
 	private bool isAnimationTriggered = false;
 	private DateTime lastAnimationTrigger;
 	private int currentRepetitions = 0;
+	private Coroutine trainingCoroutine;
 
 	private void Start() {
 		if (!isServer) {
@@ -36,16 +38,18 @@ public class AnimationServerManager : NetworkBehaviour {
 			}
 		}
 	}
-/*
-	void Update() {
-		if (isAnimationRunning) {
-			DateTime currentTime = DateTime.Now;
-			if ((currentTime - lastAnimationTrigger).TotalSeconds > animSettingsManager.waitDuration) {
-				isAnimationRunning = false;
-			}
+
+	private IEnumerator waitDurationCoroutine(float duration) {
+		yield return new WaitForSeconds(duration);
+		if (!isAnimationRunning) {
+			yield break;
 		}
+		isAnimationRunning = false;
+		isAnimationTriggered = false;
+
+		yield return new WaitForSeconds(2.5f);
+		RpcStopTraining();
 	}
- */
 
 	/// <summary>
 	/// Starts animation if it's in time and we still have repetitions left
@@ -60,12 +64,16 @@ public class AnimationServerManager : NetworkBehaviour {
 				Debug.Log("Starting arm animation");
 				RpcStartActualAnimation(false);
 				isAnimationTriggered = true;
+
+				if (trainingCoroutine != null) {
+					StopCoroutine(trainingCoroutine);
+				}
 				return true;
 			} else {
 				isAnimationRunning = false;
 				isAnimationTriggered = false;
 
-				RpcStopCountdown();
+				RpcStopTraining();
 			}
 		}
 		return false;
@@ -86,10 +94,13 @@ public class AnimationServerManager : NetworkBehaviour {
 		if (currentRepetitions >= animSettingsManager.repetitions) {
 			isAnimationRunning = false;
 
-			RpcStopCountdown();
+			RpcStopTraining();
 		} else {
 			RpcStartCountdown();
 		}
+
+		trainingCoroutine = StartCoroutine(waitDurationCoroutine(animSettingsManager.waitDuration));
+
 		isAnimationTriggered = false;
 	}
 
@@ -111,7 +122,11 @@ public class AnimationServerManager : NetworkBehaviour {
 		lastAnimationTrigger = DateTime.Now;
 		currentRepetitions = 0;
 
-		RpcStartCountdown();
+		RpcStartTraining();
+		if (trainingCoroutine != null) {
+			StopCoroutine(trainingCoroutine);
+		}
+		trainingCoroutine = StartCoroutine(waitDurationCoroutine(animSettingsManager.waitDuration));
 
 		return true;
 	}
@@ -125,6 +140,7 @@ public class AnimationServerManager : NetworkBehaviour {
 		currentRepetitions = 0;
 
 		// RpcStopActualAnimation();
+		RpcStopTraining();
 	}
 
 	[ClientRpc]
@@ -148,12 +164,17 @@ public class AnimationServerManager : NetworkBehaviour {
 	}
 
 	[ClientRpc]
+	public void RpcStartTraining() {
+		NetworkCharacterManager.localNetworkClientInstance.startCountdown();
+	}
+
+	[ClientRpc]
 	public void RpcStartCountdown() {
 		NetworkCharacterManager.localNetworkClientInstance.startCountdown();
 	}
 
 	[ClientRpc]
-	public void RpcStopCountdown() {
+	public void RpcStopTraining() {
 		NetworkCharacterManager.localNetworkClientInstance.stopCountdown();
 	}
 }
