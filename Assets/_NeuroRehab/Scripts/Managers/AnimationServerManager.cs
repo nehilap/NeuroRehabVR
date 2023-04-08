@@ -3,6 +3,7 @@ using System;
 using Mirror;
 using ShadowGroveGames.SimpleHttpAndRestServer.Scripts;
 using System.Collections;
+using Enums;
 
 public class AnimationServerManager : NetworkBehaviour {
 
@@ -48,7 +49,7 @@ public class AnimationServerManager : NetworkBehaviour {
 		isAnimationTriggered = false;
 
 		Debug.Log("Listening to animation events - Canceled");
-		yield return new WaitForSeconds(2.5f);
+		yield return new WaitForSecondsRealtime(2.5f);
 		RpcStopTraining();
 	}
 
@@ -110,9 +111,14 @@ public class AnimationServerManager : NetworkBehaviour {
 	/// </summary>
 	/// <returns>Whether we succesfully started listening to new moves</returns>
 	public bool startTraining() {
+		if (CharacterManager.activePatientInstance == null) {
+			MessageManager.Instance.RpcInformClients("No patient present! Can't start training.", MessageType.WARNING);
+			return false;
+		}
 		if (isTrainingRunning) {
 			DateTime currentTime = DateTime.Now;
 			if ((currentTime - lastAnimationTrigger).TotalSeconds <= animSettingsManager.waitDuration) {
+				MessageManager.Instance.RpcInformClients("Training already started! Can't start new training.", MessageType.WARNING);
 				return false;
 			}
 		}
@@ -172,6 +178,8 @@ public class AnimationServerManager : NetworkBehaviour {
 		NetworkCharacterManager.localNetworkClientInstance.startCountdown();
 
 		NetworkCharacterManager.localNetworkClientInstance.trainingStarted();
+
+		MessageManager.Instance.showMessage("Training started.", MessageType.OK);
 	}
 
 	[ClientRpc]
@@ -184,5 +192,7 @@ public class AnimationServerManager : NetworkBehaviour {
 		NetworkCharacterManager.localNetworkClientInstance.stopCountdown();
 
 		NetworkCharacterManager.localNetworkClientInstance.trainingStopped();
+
+		MessageManager.Instance.showMessage("Training stopped.", MessageType.NORMAL);
 	}
 }

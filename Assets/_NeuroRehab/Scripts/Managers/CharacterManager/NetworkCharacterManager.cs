@@ -667,6 +667,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 		foreach (TherapistMenuManager therapistMenuManager in therapistMenuManagers) {
 			foreach (CanvasGroup cg in therapistMenuManager.animationCanvases) {
 				cg.interactable = false;
+				cg.blocksRaycasts = false;
 			}
 		}
 	}
@@ -675,6 +676,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 		foreach (TherapistMenuManager therapistMenuManager in therapistMenuManagers) {
 			foreach (CanvasGroup cg in therapistMenuManager.animationCanvases) {
 				cg.interactable = true;
+				cg.blocksRaycasts = true;
 			}
 		}
 	}

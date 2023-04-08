@@ -68,9 +68,18 @@ public class AnimationSettingsManager : NetworkBehaviour {
 				setupMarkers();
 			}
 
-			 animTypeDropdown.onValueChanged.AddListener(delegate {
+			animTypeDropdown.onValueChanged.AddListener(delegate {
 				animationTypeDropdownHandler(animTypeDropdown);
 			});
+
+			if (SettingsManager.Instance.roleSettings.characterRole == UserRole.Patient) {
+				animTypeDropdown.GetComponent<ButtonClickAudio>().enabled = false;
+				armMoveSlider.GetComponent<ButtonClickAudio>().enabled = false;
+				moveDurSlider.GetComponent<ButtonClickAudio>().enabled = false;
+				waitDurSlider.GetComponent<ButtonClickAudio>().enabled = false;
+				handMoveSlider.GetComponent<ButtonClickAudio>().enabled = false;
+				repetitionsSlider.GetComponent<ButtonClickAudio>().enabled = false;
+			}
 		} else if (isServer) {
 			string animTypeString = animType.ToString();
 			GameObject targetObject = GameObject.Find(animTypeString);

@@ -727,6 +727,8 @@ MonoBehaviour:
   - {fileID: 7931688326429741820, guid: 7b67e2b558688d347b3ed4e6326978e5, type: 3}
   - {fileID: 7931688326429741820, guid: 8fe8e02833c01e045b0b18417050b41f, type: 3}
   spawnArea: {fileID: 0}
+  countdownManagers: []
+  therapistMenuManagers: []
 --- !u!114 &5704176413575433497
 MonoBehaviour:
   m_ObjectHideFlags: 0

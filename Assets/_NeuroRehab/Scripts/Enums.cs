@@ -15,4 +15,5 @@ namespace Enums {
 	public enum AnimationState {Playing, Stopped};
 
 	public enum AnimationPart {Arm, Hand, Moving};
+	public enum MessageType {OK, WARNING, NORMAL};
 }
