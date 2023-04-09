@@ -452,21 +452,24 @@ public class ArmAnimationController : MonoBehaviour {
 		SyncList<PosRotMapping> currentAnimationSetup = animSettingsManager.getCurrentAnimationSetup();
 
 		if (currentAnimationSetup.Count < 1) {
-			Debug.LogError("Too few animation positions set: '" + currentAnimationSetup.Count + "'");
-			MessageManager.Instance.showMessage("Too few animation positions set: '" + currentAnimationSetup.Count + "'", MessageType.WARNING);
+			string errorMessage = "Too few animation positions set: '" + currentAnimationSetup.Count + "'!";
+			Debug.LogError(errorMessage);
+			MessageManager.Instance.showMessage(errorMessage, MessageType.WARNING);
 			return false;
 		}
 		if (animSettingsManager.animType == AnimationType.Key && currentAnimationSetup.Count != 2) {
-			Debug.LogError("Too few animation positions set for 'Key': '" + currentAnimationSetup.Count + "'");
-			MessageManager.Instance.showMessage("Too few animation positions set for 'Key': '" + currentAnimationSetup.Count + "'", MessageType.WARNING);
+			string errorMessage = "Too few animation positions set for 'Key': '" + currentAnimationSetup.Count + "'!";
+			Debug.LogError(errorMessage);
+			MessageManager.Instance.showMessage(errorMessage, MessageType.WARNING);
 			return false;
 		}
 
 		// Initial starting position HAS to be in arm range
 		if (!isTargetInRange(currentAnimationSetup[0].position)) {
 			float targetDistance = Vector3.Distance(currentAnimationSetup[0].position, armRangeMesh.transform.position);
-			Debug.LogWarning("Arm cannot grab object, too far away: " + targetDistance + "m > " + armLength + "m");
-			MessageManager.Instance.showMessage("Arm cannot grab object, too far away: " + targetDistance + "m > " + armLength + "m!", MessageType.WARNING);
+			string errorMessage = "Arm cannot grab object, too far away: '" + targetDistance + "m > " + armLength + "m'; cancelling training!";
+			Debug.LogWarning(errorMessage);
+			MessageManager.Instance.showMessage(errorMessage, MessageType.WARNING);
 			return false;
 		}
 

@@ -1,0 +1,317 @@
+\hypertarget{class_x_r_status_manager}{}\doxysection{XRStatus\+Manager Class Reference}
+\label{class_x_r_status_manager}\index{XRStatusManager@{XRStatusManager}}
+Inheritance diagram for XRStatus\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_x_r_status_manager}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_x_r_status_manager_af1b5b7f98fcf7a258e752c3e51636416}{stop\+XR}} ()
+\item 
+IEnumerator \mbox{\hyperlink{class_x_r_status_manager_aa058e75252be9da5f25a163b5d5651b5}{start\+XR}} (bool is\+Open\+XRActive=true)
+\item 
+void \mbox{\hyperlink{class_x_r_status_manager_aba4010520688ccf3ead3b2ae105bfd20}{set\+XRSettings}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_enums_afc9dc20ef762f0c310a514f76ba4aca5}{Controller\+Type}} \mbox{\hyperlink{class_x_r_status_manager_a1440152f15661ef32fbc616c11b2e976}{controller\+Type}} = Controller\+Type.\+Quest2
+\item 
+\mbox{\hyperlink{namespace_enums_a43c575cdf8ecae3080155c75265fe07a}{HMDType}} \mbox{\hyperlink{class_x_r_status_manager_a1f190bc6941d29ba19d7ed7e6e0d3093}{hmd\+Type}}
+\item 
+List$<$ Game\+Object $>$ \mbox{\hyperlink{class_x_r_status_manager_adcfc8ec5851b3d447b916da70912a567}{controller\+Prefabs}} = new List$<$Game\+Object$>$()
+\item 
+bool \mbox{\hyperlink{class_x_r_status_manager_a8ed1a365b73a1e57dd977c7939f7050f}{is\+XRActive}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_x_r_status_manager}{XRStatus\+Manager}} \mbox{\hyperlink{class_x_r_status_manager_a9ea3cb59d9fd877ee97f23b3ca8f2121}{Instance}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_x_r_status_manager_a5aa092260d023c8220d48a72cebab4e2}{Awake}} ()
+\item 
+void \mbox{\hyperlink{class_x_r_status_manager_af941c04441df533589c4d18ec62a4c8f}{Start}} ()
+\item 
+void \mbox{\hyperlink{class_x_r_status_manager_a9f5b44f0d7cabbbeb99d6ada50606c33}{initialize}} ()
+\item 
+void \mbox{\hyperlink{class_x_r_status_manager_ab5e0ccef20b65b45c86898dbb54242a2}{On\+Application\+Quit}} ()
+\item 
+void \mbox{\hyperlink{class_x_r_status_manager_ab191c9024a25bd1daf3ade77f0c6b5c0}{changed\+Active\+Scene}} (Scene current, Scene next)
+\item 
+void \mbox{\hyperlink{class_x_r_status_manager_a7c3ab435698fe59a5627d973a442ec5e}{setup\+Rigs}} ()
+\item 
+void \mbox{\hyperlink{class_x_r_status_manager_af9539e520d26661ca7b6ba6965f34257}{setup\+UIAnd\+XRElements}} ()
+\item 
+void \mbox{\hyperlink{class_x_r_status_manager_a25587457b912c947c611e570da9aeeda}{init\+Objects}} ()
+\item 
+void \mbox{\hyperlink{class_x_r_status_manager_aaa545bd23a24cd96fd77ad8014f89ec5}{init\+HMD}} ()
+\begin{DoxyCompactList}\small\item\em Initializes HMD type based on either HMD discovered or platform used. \end{DoxyCompactList}\item 
+XRLoader \mbox{\hyperlink{class_x_r_status_manager_acd2012b49c8594303bd4b8c1e6e99c57}{setup\+Loader}} (bool use\+Open\+XRLoader)
+\begin{DoxyCompactList}\small\item\em Swaps laoders, so that we have only one active loader. Refer to \href{https://forum.unity.com/threads/xr-management-controlling-the-used-xrloader-manually.1019677/}{\texttt{ https\+://forum.\+unity.\+com/threads/xr-\/management-\/controlling-\/the-\/used-\/xrloader-\/manually.\+1019677/}} for more details. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_x_r_status_manager_a27a45e73fcee53da2344460dd827d7ea}{found\+HMD}} = false
+\item 
+string \mbox{\hyperlink{class_x_r_status_manager_a1eae321f1e1481f2a37fe0ddee3931d5}{offline\+Scene\+Name}}
+\item 
+\mbox{\hyperlink{class_active_bar_groups_manager}{Active\+Bar\+Groups\+Manager}} \mbox{\hyperlink{class_x_r_status_manager_aeec517b02796fe8ff071d662b162c208}{active\+XRButton}}
+\item 
+\mbox{\hyperlink{class_active_bar_groups_manager}{Active\+Bar\+Groups\+Manager}} \mbox{\hyperlink{class_x_r_status_manager_a5b971446aad6297b1117f090acea6f3d}{inactive\+XRButton}}
+\item 
+Game\+Object \mbox{\hyperlink{class_x_r_status_manager_a46209dce2f3cf97be08436578f2cfd88}{XRRig}}
+\item 
+Game\+Object \mbox{\hyperlink{class_x_r_status_manager_a81125e2e2481b3b2bee5e3a0182a44db}{desktop\+Rig}}
+\item 
+Game\+Object \mbox{\hyperlink{class_x_r_status_manager_aa6a0a9ec042768d2af56845fc530882a}{controller\+Setup\+Menu}}
+\item 
+Game\+Object \mbox{\hyperlink{class_x_r_status_manager_a33cbfee67ae3fecbc9d9409b60d329c1}{xr\+Setup\+Menu}}
+\item 
+Game\+Object \mbox{\hyperlink{class_x_r_status_manager_a696a1765f92ed90808738285e2126638}{xr\+Device\+Simulator}}
+\item 
+Game\+Object \mbox{\hyperlink{class_x_r_status_manager_a424a937e74b4907d556bf9852259fd0b}{desktop\+Controls}}
+\item 
+Game\+Object \mbox{\hyperlink{class_x_r_status_manager_aa3381a1c4fcb9c5605fef4a5c7e61ce1}{xr\+Controls}}
+\item 
+Game\+Object \mbox{\hyperlink{class_x_r_status_manager_a9c1bc2c6668fd61c37c738175a76e347}{mock\+XRControls}}
+\item 
+XRLoader \mbox{\hyperlink{class_x_r_status_manager_a171849ddda7468a0fc112f5d2168fb5a}{active\+Loader}}
+\item 
+bool \mbox{\hyperlink{class_x_r_status_manager_afc269e7c12f3b1ceacf9d48ced8cf245}{xr\+Initialized}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_x_r_status_manager}{XRStatus\+Manager}} \mbox{\hyperlink{class_x_r_status_manager_a961ea6455367fe463230c36e4a0b3bf7}{\+\_\+instance}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_x_r_status_manager_a5aa092260d023c8220d48a72cebab4e2}\label{class_x_r_status_manager_a5aa092260d023c8220d48a72cebab4e2}} 
+\index{XRStatusManager@{XRStatusManager}!Awake@{Awake}}
+\index{Awake@{Awake}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void XRStatus\+Manager.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_status_manager_ab191c9024a25bd1daf3ade77f0c6b5c0}\label{class_x_r_status_manager_ab191c9024a25bd1daf3ade77f0c6b5c0}} 
+\index{XRStatusManager@{XRStatusManager}!changedActiveScene@{changedActiveScene}}
+\index{changedActiveScene@{changedActiveScene}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{changedActiveScene()}{changedActiveScene()}}
+{\footnotesize\ttfamily void XRStatus\+Manager.\+changed\+Active\+Scene (\begin{DoxyParamCaption}\item[{Scene}]{current,  }\item[{Scene}]{next }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_status_manager_aaa545bd23a24cd96fd77ad8014f89ec5}\label{class_x_r_status_manager_aaa545bd23a24cd96fd77ad8014f89ec5}} 
+\index{XRStatusManager@{XRStatusManager}!initHMD@{initHMD}}
+\index{initHMD@{initHMD}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{initHMD()}{initHMD()}}
+{\footnotesize\ttfamily void XRStatus\+Manager.\+init\+HMD (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes HMD type based on either HMD discovered or platform used. 
+
+\mbox{\Hypertarget{class_x_r_status_manager_a9f5b44f0d7cabbbeb99d6ada50606c33}\label{class_x_r_status_manager_a9f5b44f0d7cabbbeb99d6ada50606c33}} 
+\index{XRStatusManager@{XRStatusManager}!initialize@{initialize}}
+\index{initialize@{initialize}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily void XRStatus\+Manager.\+initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_status_manager_a25587457b912c947c611e570da9aeeda}\label{class_x_r_status_manager_a25587457b912c947c611e570da9aeeda}} 
+\index{XRStatusManager@{XRStatusManager}!initObjects@{initObjects}}
+\index{initObjects@{initObjects}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{initObjects()}{initObjects()}}
+{\footnotesize\ttfamily void XRStatus\+Manager.\+init\+Objects (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_status_manager_ab5e0ccef20b65b45c86898dbb54242a2}\label{class_x_r_status_manager_ab5e0ccef20b65b45c86898dbb54242a2}} 
+\index{XRStatusManager@{XRStatusManager}!OnApplicationQuit@{OnApplicationQuit}}
+\index{OnApplicationQuit@{OnApplicationQuit}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{OnApplicationQuit()}{OnApplicationQuit()}}
+{\footnotesize\ttfamily void XRStatus\+Manager.\+On\+Application\+Quit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_status_manager_acd2012b49c8594303bd4b8c1e6e99c57}\label{class_x_r_status_manager_acd2012b49c8594303bd4b8c1e6e99c57}} 
+\index{XRStatusManager@{XRStatusManager}!setupLoader@{setupLoader}}
+\index{setupLoader@{setupLoader}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{setupLoader()}{setupLoader()}}
+{\footnotesize\ttfamily XRLoader XRStatus\+Manager.\+setup\+Loader (\begin{DoxyParamCaption}\item[{bool}]{use\+Open\+XRLoader }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Swaps laoders, so that we have only one active loader. Refer to \href{https://forum.unity.com/threads/xr-management-controlling-the-used-xrloader-manually.1019677/}{\texttt{ https\+://forum.\+unity.\+com/threads/xr-\/management-\/controlling-\/the-\/used-\/xrloader-\/manually.\+1019677/}} for more details. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em use\+Open\+XRLoader} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_x_r_status_manager_a7c3ab435698fe59a5627d973a442ec5e}\label{class_x_r_status_manager_a7c3ab435698fe59a5627d973a442ec5e}} 
+\index{XRStatusManager@{XRStatusManager}!setupRigs@{setupRigs}}
+\index{setupRigs@{setupRigs}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{setupRigs()}{setupRigs()}}
+{\footnotesize\ttfamily void XRStatus\+Manager.\+setup\+Rigs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_status_manager_af9539e520d26661ca7b6ba6965f34257}\label{class_x_r_status_manager_af9539e520d26661ca7b6ba6965f34257}} 
+\index{XRStatusManager@{XRStatusManager}!setupUIAndXRElements@{setupUIAndXRElements}}
+\index{setupUIAndXRElements@{setupUIAndXRElements}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{setupUIAndXRElements()}{setupUIAndXRElements()}}
+{\footnotesize\ttfamily void XRStatus\+Manager.\+setup\+UIAnd\+XRElements (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_status_manager_aba4010520688ccf3ead3b2ae105bfd20}\label{class_x_r_status_manager_aba4010520688ccf3ead3b2ae105bfd20}} 
+\index{XRStatusManager@{XRStatusManager}!setXRSettings@{setXRSettings}}
+\index{setXRSettings@{setXRSettings}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{setXRSettings()}{setXRSettings()}}
+{\footnotesize\ttfamily void XRStatus\+Manager.\+set\+XRSettings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_x_r_status_manager_af941c04441df533589c4d18ec62a4c8f}\label{class_x_r_status_manager_af941c04441df533589c4d18ec62a4c8f}} 
+\index{XRStatusManager@{XRStatusManager}!Start@{Start}}
+\index{Start@{Start}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void XRStatus\+Manager.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_status_manager_aa058e75252be9da5f25a163b5d5651b5}\label{class_x_r_status_manager_aa058e75252be9da5f25a163b5d5651b5}} 
+\index{XRStatusManager@{XRStatusManager}!startXR@{startXR}}
+\index{startXR@{startXR}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{startXR()}{startXR()}}
+{\footnotesize\ttfamily IEnumerator XRStatus\+Manager.\+start\+XR (\begin{DoxyParamCaption}\item[{bool}]{is\+Open\+XRActive = {\ttfamily true} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_x_r_status_manager_af1b5b7f98fcf7a258e752c3e51636416}\label{class_x_r_status_manager_af1b5b7f98fcf7a258e752c3e51636416}} 
+\index{XRStatusManager@{XRStatusManager}!stopXR@{stopXR}}
+\index{stopXR@{stopXR}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{stopXR()}{stopXR()}}
+{\footnotesize\ttfamily void XRStatus\+Manager.\+stop\+XR (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_x_r_status_manager_a961ea6455367fe463230c36e4a0b3bf7}\label{class_x_r_status_manager_a961ea6455367fe463230c36e4a0b3bf7}} 
+\index{XRStatusManager@{XRStatusManager}!\_instance@{\_instance}}
+\index{\_instance@{\_instance}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{\_instance}{\_instance}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_x_r_status_manager}{XRStatus\+Manager}} XRStatus\+Manager.\+\_\+instance\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_status_manager_a171849ddda7468a0fc112f5d2168fb5a}\label{class_x_r_status_manager_a171849ddda7468a0fc112f5d2168fb5a}} 
+\index{XRStatusManager@{XRStatusManager}!activeLoader@{activeLoader}}
+\index{activeLoader@{activeLoader}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{activeLoader}{activeLoader}}
+{\footnotesize\ttfamily XRLoader XRStatus\+Manager.\+active\+Loader\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_status_manager_aeec517b02796fe8ff071d662b162c208}\label{class_x_r_status_manager_aeec517b02796fe8ff071d662b162c208}} 
+\index{XRStatusManager@{XRStatusManager}!activeXRButton@{activeXRButton}}
+\index{activeXRButton@{activeXRButton}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{activeXRButton}{activeXRButton}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_active_bar_groups_manager}{Active\+Bar\+Groups\+Manager}} XRStatus\+Manager.\+active\+XRButton\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_status_manager_adcfc8ec5851b3d447b916da70912a567}\label{class_x_r_status_manager_adcfc8ec5851b3d447b916da70912a567}} 
+\index{XRStatusManager@{XRStatusManager}!controllerPrefabs@{controllerPrefabs}}
+\index{controllerPrefabs@{controllerPrefabs}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{controllerPrefabs}{controllerPrefabs}}
+{\footnotesize\ttfamily List$<$Game\+Object$>$ XRStatus\+Manager.\+controller\+Prefabs = new List$<$Game\+Object$>$()}
+
+\mbox{\Hypertarget{class_x_r_status_manager_aa6a0a9ec042768d2af56845fc530882a}\label{class_x_r_status_manager_aa6a0a9ec042768d2af56845fc530882a}} 
+\index{XRStatusManager@{XRStatusManager}!controllerSetupMenu@{controllerSetupMenu}}
+\index{controllerSetupMenu@{controllerSetupMenu}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{controllerSetupMenu}{controllerSetupMenu}}
+{\footnotesize\ttfamily Game\+Object XRStatus\+Manager.\+controller\+Setup\+Menu\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_status_manager_a1440152f15661ef32fbc616c11b2e976}\label{class_x_r_status_manager_a1440152f15661ef32fbc616c11b2e976}} 
+\index{XRStatusManager@{XRStatusManager}!controllerType@{controllerType}}
+\index{controllerType@{controllerType}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{controllerType}{controllerType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_enums_afc9dc20ef762f0c310a514f76ba4aca5}{Controller\+Type}} XRStatus\+Manager.\+controller\+Type = Controller\+Type.\+Quest2}
+
+\mbox{\Hypertarget{class_x_r_status_manager_a424a937e74b4907d556bf9852259fd0b}\label{class_x_r_status_manager_a424a937e74b4907d556bf9852259fd0b}} 
+\index{XRStatusManager@{XRStatusManager}!desktopControls@{desktopControls}}
+\index{desktopControls@{desktopControls}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{desktopControls}{desktopControls}}
+{\footnotesize\ttfamily Game\+Object XRStatus\+Manager.\+desktop\+Controls\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_status_manager_a81125e2e2481b3b2bee5e3a0182a44db}\label{class_x_r_status_manager_a81125e2e2481b3b2bee5e3a0182a44db}} 
+\index{XRStatusManager@{XRStatusManager}!desktopRig@{desktopRig}}
+\index{desktopRig@{desktopRig}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{desktopRig}{desktopRig}}
+{\footnotesize\ttfamily Game\+Object XRStatus\+Manager.\+desktop\+Rig\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_status_manager_a27a45e73fcee53da2344460dd827d7ea}\label{class_x_r_status_manager_a27a45e73fcee53da2344460dd827d7ea}} 
+\index{XRStatusManager@{XRStatusManager}!foundHMD@{foundHMD}}
+\index{foundHMD@{foundHMD}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{foundHMD}{foundHMD}}
+{\footnotesize\ttfamily bool XRStatus\+Manager.\+found\+HMD = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_status_manager_a1f190bc6941d29ba19d7ed7e6e0d3093}\label{class_x_r_status_manager_a1f190bc6941d29ba19d7ed7e6e0d3093}} 
+\index{XRStatusManager@{XRStatusManager}!hmdType@{hmdType}}
+\index{hmdType@{hmdType}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{hmdType}{hmdType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_enums_a43c575cdf8ecae3080155c75265fe07a}{HMDType}} XRStatus\+Manager.\+hmd\+Type}
+
+\mbox{\Hypertarget{class_x_r_status_manager_a5b971446aad6297b1117f090acea6f3d}\label{class_x_r_status_manager_a5b971446aad6297b1117f090acea6f3d}} 
+\index{XRStatusManager@{XRStatusManager}!inactiveXRButton@{inactiveXRButton}}
+\index{inactiveXRButton@{inactiveXRButton}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{inactiveXRButton}{inactiveXRButton}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_active_bar_groups_manager}{Active\+Bar\+Groups\+Manager}} XRStatus\+Manager.\+inactive\+XRButton\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_status_manager_a8ed1a365b73a1e57dd977c7939f7050f}\label{class_x_r_status_manager_a8ed1a365b73a1e57dd977c7939f7050f}} 
+\index{XRStatusManager@{XRStatusManager}!isXRActive@{isXRActive}}
+\index{isXRActive@{isXRActive}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{isXRActive}{isXRActive}}
+{\footnotesize\ttfamily bool XRStatus\+Manager.\+is\+XRActive}
+
+\mbox{\Hypertarget{class_x_r_status_manager_a9c1bc2c6668fd61c37c738175a76e347}\label{class_x_r_status_manager_a9c1bc2c6668fd61c37c738175a76e347}} 
+\index{XRStatusManager@{XRStatusManager}!mockXRControls@{mockXRControls}}
+\index{mockXRControls@{mockXRControls}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{mockXRControls}{mockXRControls}}
+{\footnotesize\ttfamily Game\+Object XRStatus\+Manager.\+mock\+XRControls\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_status_manager_a1eae321f1e1481f2a37fe0ddee3931d5}\label{class_x_r_status_manager_a1eae321f1e1481f2a37fe0ddee3931d5}} 
+\index{XRStatusManager@{XRStatusManager}!offlineSceneName@{offlineSceneName}}
+\index{offlineSceneName@{offlineSceneName}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{offlineSceneName}{offlineSceneName}}
+{\footnotesize\ttfamily string XRStatus\+Manager.\+offline\+Scene\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_status_manager_aa3381a1c4fcb9c5605fef4a5c7e61ce1}\label{class_x_r_status_manager_aa3381a1c4fcb9c5605fef4a5c7e61ce1}} 
+\index{XRStatusManager@{XRStatusManager}!xrControls@{xrControls}}
+\index{xrControls@{xrControls}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{xrControls}{xrControls}}
+{\footnotesize\ttfamily Game\+Object XRStatus\+Manager.\+xr\+Controls\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_status_manager_a696a1765f92ed90808738285e2126638}\label{class_x_r_status_manager_a696a1765f92ed90808738285e2126638}} 
+\index{XRStatusManager@{XRStatusManager}!xrDeviceSimulator@{xrDeviceSimulator}}
+\index{xrDeviceSimulator@{xrDeviceSimulator}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{xrDeviceSimulator}{xrDeviceSimulator}}
+{\footnotesize\ttfamily Game\+Object XRStatus\+Manager.\+xr\+Device\+Simulator\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_status_manager_afc269e7c12f3b1ceacf9d48ced8cf245}\label{class_x_r_status_manager_afc269e7c12f3b1ceacf9d48ced8cf245}} 
+\index{XRStatusManager@{XRStatusManager}!xrInitialized@{xrInitialized}}
+\index{xrInitialized@{xrInitialized}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{xrInitialized}{xrInitialized}}
+{\footnotesize\ttfamily bool XRStatus\+Manager.\+xr\+Initialized\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_status_manager_a46209dce2f3cf97be08436578f2cfd88}\label{class_x_r_status_manager_a46209dce2f3cf97be08436578f2cfd88}} 
+\index{XRStatusManager@{XRStatusManager}!XRRig@{XRRig}}
+\index{XRRig@{XRRig}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{XRRig}{XRRig}}
+{\footnotesize\ttfamily Game\+Object XRStatus\+Manager.\+XRRig\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_status_manager_a33cbfee67ae3fecbc9d9409b60d329c1}\label{class_x_r_status_manager_a33cbfee67ae3fecbc9d9409b60d329c1}} 
+\index{XRStatusManager@{XRStatusManager}!xrSetupMenu@{xrSetupMenu}}
+\index{xrSetupMenu@{xrSetupMenu}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{xrSetupMenu}{xrSetupMenu}}
+{\footnotesize\ttfamily Game\+Object XRStatus\+Manager.\+xr\+Setup\+Menu\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\Hypertarget{class_x_r_status_manager_a9ea3cb59d9fd877ee97f23b3ca8f2121}\label{class_x_r_status_manager_a9ea3cb59d9fd877ee97f23b3ca8f2121}} 
+\index{XRStatusManager@{XRStatusManager}!Instance@{Instance}}
+\index{Instance@{Instance}!XRStatusManager@{XRStatusManager}}
+\doxysubsubsection{\texorpdfstring{Instance}{Instance}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_x_r_status_manager}{XRStatus\+Manager}} XRStatus\+Manager.\+Instance\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Unity/\+Unity\+Projects/\+Masters\+Thesis/\+Assets/\+\_\+\+Neuro\+Rehab/\+Scripts/\+Managers/\mbox{\hyperlink{_x_r_status_manager_8cs}{XRStatus\+Manager.\+cs}}\end{DoxyCompactItemize}

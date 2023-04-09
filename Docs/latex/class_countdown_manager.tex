@@ -1,0 +1,116 @@
+\hypertarget{class_countdown_manager}{}\doxysection{Countdown\+Manager Class Reference}
+\label{class_countdown_manager}\index{CountdownManager@{CountdownManager}}
+Inheritance diagram for Countdown\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_countdown_manager}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_countdown_manager_af71e7fac2deacf5271780e929f7d4f3d}{start\+Countdown}} (float duration, string extra\+Text)
+\item 
+void \mbox{\hyperlink{class_countdown_manager_adc4d50549b46eeddfd857318a6e99766}{stop\+Countdown}} (string extra\+Text)
+\item 
+void \mbox{\hyperlink{class_countdown_manager_ac5aed7f3efb6524f0775105dc0342d41}{stop\+Countdown}} ()
+\item 
+void \mbox{\hyperlink{class_countdown_manager_a569ae93ccaf0d28e371f394bafd07071}{hide\+Countdown}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_countdown_manager_ad07d50456d7ff2dbcebb18cae8e51eb3}{Start}} ()
+\item 
+IEnumerator \mbox{\hyperlink{class_countdown_manager_a34995d0bfcf00d4337b4d0bdc35b1e1f}{countdown\+Coroutine}} (float duration)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Image \mbox{\hyperlink{class_countdown_manager_a640a90097972f389b0d43176c0178714}{countdown\+Image}}
+\item 
+TMP\+\_\+\+Text \mbox{\hyperlink{class_countdown_manager_aff7fb2c616f3ad9a7b31ed05481d3ad8}{text\+Field}}
+\item 
+TMP\+\_\+\+Text \mbox{\hyperlink{class_countdown_manager_a7f1cafdc2efea16c7effa5a966b41b88}{extra\+Text\+Field}}
+\item 
+Coroutine \mbox{\hyperlink{class_countdown_manager_a5ac471db0b0a86d643472b128d722bc2}{coroutine}}
+\item 
+\mbox{\hyperlink{class_fadeable}{Fadeable}} \mbox{\hyperlink{class_countdown_manager_a3e3eb0056659bfd0a2165cf330f717a7}{fadeable}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_countdown_manager_a34995d0bfcf00d4337b4d0bdc35b1e1f}\label{class_countdown_manager_a34995d0bfcf00d4337b4d0bdc35b1e1f}} 
+\index{CountdownManager@{CountdownManager}!countdownCoroutine@{countdownCoroutine}}
+\index{countdownCoroutine@{countdownCoroutine}!CountdownManager@{CountdownManager}}
+\doxysubsubsection{\texorpdfstring{countdownCoroutine()}{countdownCoroutine()}}
+{\footnotesize\ttfamily IEnumerator Countdown\+Manager.\+countdown\+Coroutine (\begin{DoxyParamCaption}\item[{float}]{duration }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_countdown_manager_a569ae93ccaf0d28e371f394bafd07071}\label{class_countdown_manager_a569ae93ccaf0d28e371f394bafd07071}} 
+\index{CountdownManager@{CountdownManager}!hideCountdown@{hideCountdown}}
+\index{hideCountdown@{hideCountdown}!CountdownManager@{CountdownManager}}
+\doxysubsubsection{\texorpdfstring{hideCountdown()}{hideCountdown()}}
+{\footnotesize\ttfamily void Countdown\+Manager.\+hide\+Countdown (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_countdown_manager_ad07d50456d7ff2dbcebb18cae8e51eb3}\label{class_countdown_manager_ad07d50456d7ff2dbcebb18cae8e51eb3}} 
+\index{CountdownManager@{CountdownManager}!Start@{Start}}
+\index{Start@{Start}!CountdownManager@{CountdownManager}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void Countdown\+Manager.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_countdown_manager_af71e7fac2deacf5271780e929f7d4f3d}\label{class_countdown_manager_af71e7fac2deacf5271780e929f7d4f3d}} 
+\index{CountdownManager@{CountdownManager}!startCountdown@{startCountdown}}
+\index{startCountdown@{startCountdown}!CountdownManager@{CountdownManager}}
+\doxysubsubsection{\texorpdfstring{startCountdown()}{startCountdown()}}
+{\footnotesize\ttfamily void Countdown\+Manager.\+start\+Countdown (\begin{DoxyParamCaption}\item[{float}]{duration,  }\item[{string}]{extra\+Text }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_countdown_manager_ac5aed7f3efb6524f0775105dc0342d41}\label{class_countdown_manager_ac5aed7f3efb6524f0775105dc0342d41}} 
+\index{CountdownManager@{CountdownManager}!stopCountdown@{stopCountdown}}
+\index{stopCountdown@{stopCountdown}!CountdownManager@{CountdownManager}}
+\doxysubsubsection{\texorpdfstring{stopCountdown()}{stopCountdown()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Countdown\+Manager.\+stop\+Countdown (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_countdown_manager_adc4d50549b46eeddfd857318a6e99766}\label{class_countdown_manager_adc4d50549b46eeddfd857318a6e99766}} 
+\index{CountdownManager@{CountdownManager}!stopCountdown@{stopCountdown}}
+\index{stopCountdown@{stopCountdown}!CountdownManager@{CountdownManager}}
+\doxysubsubsection{\texorpdfstring{stopCountdown()}{stopCountdown()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Countdown\+Manager.\+stop\+Countdown (\begin{DoxyParamCaption}\item[{string}]{extra\+Text }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_countdown_manager_a5ac471db0b0a86d643472b128d722bc2}\label{class_countdown_manager_a5ac471db0b0a86d643472b128d722bc2}} 
+\index{CountdownManager@{CountdownManager}!coroutine@{coroutine}}
+\index{coroutine@{coroutine}!CountdownManager@{CountdownManager}}
+\doxysubsubsection{\texorpdfstring{coroutine}{coroutine}}
+{\footnotesize\ttfamily Coroutine Countdown\+Manager.\+coroutine\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_countdown_manager_a640a90097972f389b0d43176c0178714}\label{class_countdown_manager_a640a90097972f389b0d43176c0178714}} 
+\index{CountdownManager@{CountdownManager}!countdownImage@{countdownImage}}
+\index{countdownImage@{countdownImage}!CountdownManager@{CountdownManager}}
+\doxysubsubsection{\texorpdfstring{countdownImage}{countdownImage}}
+{\footnotesize\ttfamily Image Countdown\+Manager.\+countdown\+Image\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_countdown_manager_a7f1cafdc2efea16c7effa5a966b41b88}\label{class_countdown_manager_a7f1cafdc2efea16c7effa5a966b41b88}} 
+\index{CountdownManager@{CountdownManager}!extraTextField@{extraTextField}}
+\index{extraTextField@{extraTextField}!CountdownManager@{CountdownManager}}
+\doxysubsubsection{\texorpdfstring{extraTextField}{extraTextField}}
+{\footnotesize\ttfamily TMP\+\_\+\+Text Countdown\+Manager.\+extra\+Text\+Field\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_countdown_manager_a3e3eb0056659bfd0a2165cf330f717a7}\label{class_countdown_manager_a3e3eb0056659bfd0a2165cf330f717a7}} 
+\index{CountdownManager@{CountdownManager}!fadeable@{fadeable}}
+\index{fadeable@{fadeable}!CountdownManager@{CountdownManager}}
+\doxysubsubsection{\texorpdfstring{fadeable}{fadeable}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_fadeable}{Fadeable}} Countdown\+Manager.\+fadeable\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_countdown_manager_aff7fb2c616f3ad9a7b31ed05481d3ad8}\label{class_countdown_manager_aff7fb2c616f3ad9a7b31ed05481d3ad8}} 
+\index{CountdownManager@{CountdownManager}!textField@{textField}}
+\index{textField@{textField}!CountdownManager@{CountdownManager}}
+\doxysubsubsection{\texorpdfstring{textField}{textField}}
+{\footnotesize\ttfamily TMP\+\_\+\+Text Countdown\+Manager.\+text\+Field\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Unity/\+Unity\+Projects/\+Masters\+Thesis/\+Assets/\+\_\+\+Neuro\+Rehab/\+Scripts/\+UI/\+Managers/\mbox{\hyperlink{_countdown_manager_8cs}{Countdown\+Manager.\+cs}}\end{DoxyCompactItemize}

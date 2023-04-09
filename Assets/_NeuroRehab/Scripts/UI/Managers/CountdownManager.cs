@@ -60,6 +60,9 @@ public class CountdownManager : MonoBehaviour {
 	}
 
 	public void hideCountdown() {
+		if (Mathf.Approximately(fadeable.canvasGroup.alpha, 0f)) {
+			return;
+		}
 		StartCoroutine(fadeable.fadeAlpha(1f, 0f, 0.5f));
 	}
 }

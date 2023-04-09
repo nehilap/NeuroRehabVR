@@ -1,0 +1,559 @@
+\hypertarget{class_network_character_manager}{}\doxysection{Network\+Character\+Manager Class Reference}
+\label{class_network_character_manager}\index{NetworkCharacterManager@{NetworkCharacterManager}}
+Inheritance diagram for Network\+Character\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_network_character_manager}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \mbox{\hyperlink{class_network_character_manager_a1b6d10af18eb023fda28eacce7a84546}{On\+Start\+Client}} ()
+\item 
+void \mbox{\hyperlink{class_network_character_manager_a688e233077d8a603df7cbff81480b715}{Cmd\+Set\+Item\+Authority}} (Network\+Identity item, Network\+Identity new\+Player\+Owner)
+\begin{DoxyCompactList}\small\item\em Command wrapper to change item authority. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_network_character_manager_a2d2ea7aee43b18c77062c49471148b96}{Cmd\+Update\+Arm\+Duration}} (float value)
+\item 
+void \mbox{\hyperlink{class_network_character_manager_acd3248bb66e6ed898354eb4a78fcebee}{Cmd\+Update\+Hand\+Duration}} (float value)
+\item 
+void \mbox{\hyperlink{class_network_character_manager_ad1e9ee348338c1edcc9afd8ab089b97e}{Cmd\+Update\+Wait\+Duration}} (float value)
+\item 
+void \mbox{\hyperlink{class_network_character_manager_af4c38fd52b73083ab78b619adf97101c}{Cmd\+Update\+Move\+Duration}} (float value)
+\item 
+void \mbox{\hyperlink{class_network_character_manager_a235de8ac95f7dd4ce3db3e0ae4779ed1}{Cmd\+Update\+Repetitions}} (int value)
+\item 
+void \mbox{\hyperlink{class_network_character_manager_a8a96881861af72cd262b42248da332f5}{Cmd\+Update\+Anim\+Type}} (\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \+\_\+anim\+Type)
+\item 
+void \mbox{\hyperlink{class_network_character_manager_af1fffd69834b109e370f1ee081fe2781}{Cmd\+Set\+Animation\+Start\+Position}} ()
+\item 
+void \mbox{\hyperlink{class_network_character_manager_aaffc4e5b2a8fe37c970b3916928f98be}{Cmd\+Add\+Move\+Position}} ()
+\begin{DoxyCompactList}\small\item\em Adds new move position at the end of synclist ///. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_network_character_manager_a2673c91a7122dd1cd99fe5bf7086f343}{Cmd\+Set\+Lock\+Position}} (\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} lock\+Target\+Pos\+Rot)
+\begin{DoxyCompactList}\small\item\em Command wrapper for setting lock position. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_network_character_manager_a297c5c9b71ded4a4397efa7248460981}{is\+Target\+In\+Bounds}} (\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} target\+Pos\+Rot\+Mapping)
+\begin{DoxyCompactList}\small\item\em Checks if object is above table AND in range of arm. If there is no active patient only checks if object is above table. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_network_character_manager_abc0aa4d2c10c5edb48f96fc8a8cb44a6}{Cmd\+Clear\+Animation\+Move\+Positions}} ()
+\item 
+void \mbox{\hyperlink{class_network_character_manager_a560dfa424330a7881640bb82da01b334}{Cmd\+Spawn\+Correct\+Target}} (\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \+\_\+old\+Anim\+Type, \mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \+\_\+new\+Anim\+Type)
+\begin{DoxyCompactList}\small\item\em Command wrapper to spawn correct target object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_network_character_manager_a86f008a4ab1ecb68fa258d35d5bf54c9}{Rpc\+Spawn\+Correct\+Target}} (\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \+\_\+old\+Anim\+Type, \mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \+\_\+new\+Anim\+Type)
+\item 
+void \mbox{\hyperlink{class_network_character_manager_a3b72d29e02fe25e25d21109f3556bd25}{Cmd\+Start\+Animation\+Showcase}} ()
+\item 
+void \mbox{\hyperlink{class_network_character_manager_abf6b797ba17764d4c1c47cd132c3fe39}{Cmd\+Start\+Training}} ()
+\item 
+void \mbox{\hyperlink{class_network_character_manager_a5672047037c04ad6f695edfa8c0be714}{Cmd\+Stop\+Training}} ()
+\item 
+void \mbox{\hyperlink{class_network_character_manager_aacc48156bb6a2500300270c5a4c0186f}{Cmd\+Cancel\+Training}} ()
+\item 
+void \mbox{\hyperlink{class_network_character_manager_ae09da83a53b1c9827836ec4e11caa04f}{Cmd\+Progress\+Animation\+Step}} ()
+\item 
+void \mbox{\hyperlink{class_network_character_manager_ae874f4913497d027a6f12e50773b9941}{Cmd\+Set\+Arm\+Rest\+Position}} (Network\+Identity patient\+Identity)
+\item 
+void \mbox{\hyperlink{class_network_character_manager_adc4bcce234bad509440708ba1c49f08e}{Cmd\+Move\+Patient\+To\+Sit}} (Network\+Identity patient\+Identity)
+\item 
+void \mbox{\hyperlink{class_network_character_manager_a8b977fdbc0d3c3a7a4bcd31bbd9e96e6}{Target\+Move\+Patient\+To\+Sit}} (Network\+Connection connection)
+\begin{DoxyCompactList}\small\item\em Method to teleport patient behind table AND rotate them to look in the direction \textquotesingle{}Patient\+Sit\+Position\+Object\textquotesingle{} is rotated. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_network_character_manager_a187096451859a924281f721e63cd31bf}{Cmd\+Move\+Table}} (Vector3 offset, Network\+Identity caller)
+\begin{DoxyCompactList}\small\item\em Method to move table up or down. On top of moving table we also have to change ALL markers and target object as well. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_network_character_manager_a2848a3600ac9b8157f55d5ed4cee209d}{Target\+Move\+Objects}} (Network\+Connection connection, Vector3 offset)
+\begin{DoxyCompactList}\small\item\em Moving target object(s) on client. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_network_character_manager_a57576500889a23a66839848b6be1d73d}{Cmd\+Move\+Patient}} (Vector3 offset, Network\+Identity patient\+Id)
+\begin{DoxyCompactList}\small\item\em Method to move patient object by offset. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_network_character_manager_ae6fdb9a98e009654d07b3c81df47c5a7}{Target\+Move\+Patient}} (Network\+Connection connection, Vector3 offset)
+\begin{DoxyCompactList}\small\item\em Method to move patient camera. Moved patient based on direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_network_character_manager_a1af32ed85ef11c83dcf7f8663855870b}{Cmd\+Set\+Active\+Arm}} (bool is\+Left\+Animated, Network\+Identity patient\+Id)
+\item 
+void \mbox{\hyperlink{class_network_character_manager_a0b790f988326cdf9e926efa694cf867c}{Target\+Transform\+Object}} (Network\+Connection connection, \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} mapping, Network\+Identity item\+Id, bool reset\+Start\+Post)
+\item 
+void \mbox{\hyperlink{class_network_character_manager_af4090bda718dcaad2d88d8218d2b5531}{start\+Countdown}} (float duration, string extra\+Text)
+\item 
+void \mbox{\hyperlink{class_network_character_manager_aa0c55df17ddc7da0607e564bd4a234bc}{pause\+Countdown}} (string extra\+Text)
+\item 
+void \mbox{\hyperlink{class_network_character_manager_aa9b6262c19e3d31c8121fced36d4a7e1}{stop\+Countdown}} ()
+\item 
+void \mbox{\hyperlink{class_network_character_manager_ac559d22d4f21cc1f700e06d7af712731}{training\+Started}} ()
+\item 
+void \mbox{\hyperlink{class_network_character_manager_a8b89b51e119ddd82be2cb2e28eaa65e6}{training\+Stopped}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_network_character_manager}{Network\+Character\+Manager}} \mbox{\hyperlink{class_network_character_manager_ae4e486021c9dfd52321df349a556d00e}{local\+Network\+Client\+Instance}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_network_character_manager_a874cb2771e80202fdce1d0f9b8903808}{Start}} ()
+\item 
+void \mbox{\hyperlink{class_network_character_manager_a5771067ce618e454f25548ef7dc4db4f}{set\+Item\+Authority}} (Network\+Identity item, Network\+Identity new\+Player\+Owner)
+\item 
+void \mbox{\hyperlink{class_network_character_manager_af4ce20d2f1fa7abd93613d71ec49e2af}{set\+Animation\+Start\+Position}} ()
+\begin{DoxyCompactList}\small\item\em Changes or Adds new start position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_network_character_manager_a38d676fc5c4dbca9ed95b688e46cd1d9}{set\+Animation\+Start\+Position}} (\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} target\+Pos\+Rot\+Mapping)
+\item 
+\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} \mbox{\hyperlink{class_network_character_manager_afd0bd6669b184d3fc60b6a56c2aa2561}{get\+Pos\+Rot\+From\+Current\+Object}} ()
+\begin{DoxyCompactList}\small\item\em Helper method for getting pos\+Rot of current target object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_network_character_manager_ad5271e4100b1d34bf542a137ccb36bbe}{set\+Lock\+Position}} (\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} lock\+Target\+Pos\+Rot)
+\begin{DoxyCompactList}\small\item\em Sets the lock position at the end of synclist. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_network_character_manager_a2b1b3359a334662eb7482397f622359a}{spawn\+Correct\+Target}} (\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \+\_\+old\+Anim\+Type, \mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \+\_\+new\+Anim\+Type)
+\begin{DoxyCompactList}\small\item\em Method called on server, objects are then spawned on all clients. Refer to \href{https://mirror-networking.gitbook.io/docs/guides/gameobjects/spawning-gameobjects}{\texttt{ https\+://mirror-\/networking.\+gitbook.\+io/docs/guides/gameobjects/spawning-\/gameobjects}} for more details. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_network_character_manager_a21d1e3e55ac34ae5376f61429e11bd95}{spawn\+Correct\+Target\+Fakes}} (\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \+\_\+old\+Anim\+Type, \mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \+\_\+new\+Anim\+Type)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_animation_settings_manager}{Animation\+Settings\+Manager}} \mbox{\hyperlink{class_network_character_manager_ab9c894901e3e5205a47c04031e6fddc9}{anim\+Settings\+Manager}}
+\item 
+List$<$ Game\+Object $>$ \mbox{\hyperlink{class_network_character_manager_aad76855eb91eeef4c971ad4593a469f8}{target\+Prefabs}} = new List$<$Game\+Object$>$()
+\item 
+Game\+Object \mbox{\hyperlink{class_network_character_manager_aacf518be52741fbab7844fac131cde7f}{spawn\+Area}}
+\item 
+List$<$ \mbox{\hyperlink{class_countdown_manager}{Countdown\+Manager}} $>$ \mbox{\hyperlink{class_network_character_manager_a657b6ee4fc4320ad78bd8e53c9374d08}{countdown\+Managers}} = new List$<$\mbox{\hyperlink{class_countdown_manager}{Countdown\+Manager}}$>$()
+\item 
+List$<$ \mbox{\hyperlink{class_therapist_menu_manager}{Therapist\+Menu\+Manager}} $>$ \mbox{\hyperlink{class_network_character_manager_abb2805759ff52a34a97dd7df74fef56f}{therapist\+Menu\+Managers}} = new List$<$\mbox{\hyperlink{class_therapist_menu_manager}{Therapist\+Menu\+Manager}}$>$()
+\item 
+Transform \mbox{\hyperlink{class_network_character_manager_a421eef57bd03ad1dd9da4d4be06b6d91}{\+\_\+mirror}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_network_character_manager_aaffc4e5b2a8fe37c970b3916928f98be}\label{class_network_character_manager_aaffc4e5b2a8fe37c970b3916928f98be}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!CmdAddMovePosition@{CmdAddMovePosition}}
+\index{CmdAddMovePosition@{CmdAddMovePosition}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{CmdAddMovePosition()}{CmdAddMovePosition()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Cmd\+Add\+Move\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Adds new move position at the end of synclist ///. 
+
+\mbox{\Hypertarget{class_network_character_manager_aacc48156bb6a2500300270c5a4c0186f}\label{class_network_character_manager_aacc48156bb6a2500300270c5a4c0186f}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!CmdCancelTraining@{CmdCancelTraining}}
+\index{CmdCancelTraining@{CmdCancelTraining}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{CmdCancelTraining()}{CmdCancelTraining()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Cmd\+Cancel\+Training (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_character_manager_abc0aa4d2c10c5edb48f96fc8a8cb44a6}\label{class_network_character_manager_abc0aa4d2c10c5edb48f96fc8a8cb44a6}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!CmdClearAnimationMovePositions@{CmdClearAnimationMovePositions}}
+\index{CmdClearAnimationMovePositions@{CmdClearAnimationMovePositions}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{CmdClearAnimationMovePositions()}{CmdClearAnimationMovePositions()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Cmd\+Clear\+Animation\+Move\+Positions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_character_manager_a57576500889a23a66839848b6be1d73d}\label{class_network_character_manager_a57576500889a23a66839848b6be1d73d}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!CmdMovePatient@{CmdMovePatient}}
+\index{CmdMovePatient@{CmdMovePatient}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{CmdMovePatient()}{CmdMovePatient()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Cmd\+Move\+Patient (\begin{DoxyParamCaption}\item[{Vector3}]{offset,  }\item[{Network\+Identity}]{patient\+Id }\end{DoxyParamCaption})}
+
+
+
+Method to move patient object by offset. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & \\
+\hline
+{\em patient\+Id} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_network_character_manager_adc4bcce234bad509440708ba1c49f08e}\label{class_network_character_manager_adc4bcce234bad509440708ba1c49f08e}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!CmdMovePatientToSit@{CmdMovePatientToSit}}
+\index{CmdMovePatientToSit@{CmdMovePatientToSit}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{CmdMovePatientToSit()}{CmdMovePatientToSit()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Cmd\+Move\+Patient\+To\+Sit (\begin{DoxyParamCaption}\item[{Network\+Identity}]{patient\+Identity }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_character_manager_a187096451859a924281f721e63cd31bf}\label{class_network_character_manager_a187096451859a924281f721e63cd31bf}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!CmdMoveTable@{CmdMoveTable}}
+\index{CmdMoveTable@{CmdMoveTable}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{CmdMoveTable()}{CmdMoveTable()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Cmd\+Move\+Table (\begin{DoxyParamCaption}\item[{Vector3}]{offset,  }\item[{Network\+Identity}]{caller }\end{DoxyParamCaption})}
+
+
+
+Method to move table up or down. On top of moving table we also have to change ALL markers and target object as well. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & \\
+\hline
+{\em caller} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_network_character_manager_ae09da83a53b1c9827836ec4e11caa04f}\label{class_network_character_manager_ae09da83a53b1c9827836ec4e11caa04f}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!CmdProgressAnimationStep@{CmdProgressAnimationStep}}
+\index{CmdProgressAnimationStep@{CmdProgressAnimationStep}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{CmdProgressAnimationStep()}{CmdProgressAnimationStep()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Cmd\+Progress\+Animation\+Step (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_character_manager_a1af32ed85ef11c83dcf7f8663855870b}\label{class_network_character_manager_a1af32ed85ef11c83dcf7f8663855870b}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!CmdSetActiveArm@{CmdSetActiveArm}}
+\index{CmdSetActiveArm@{CmdSetActiveArm}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{CmdSetActiveArm()}{CmdSetActiveArm()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Cmd\+Set\+Active\+Arm (\begin{DoxyParamCaption}\item[{bool}]{is\+Left\+Animated,  }\item[{Network\+Identity}]{patient\+Id }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_character_manager_af1fffd69834b109e370f1ee081fe2781}\label{class_network_character_manager_af1fffd69834b109e370f1ee081fe2781}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!CmdSetAnimationStartPosition@{CmdSetAnimationStartPosition}}
+\index{CmdSetAnimationStartPosition@{CmdSetAnimationStartPosition}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{CmdSetAnimationStartPosition()}{CmdSetAnimationStartPosition()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Cmd\+Set\+Animation\+Start\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_character_manager_ae874f4913497d027a6f12e50773b9941}\label{class_network_character_manager_ae874f4913497d027a6f12e50773b9941}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!CmdSetArmRestPosition@{CmdSetArmRestPosition}}
+\index{CmdSetArmRestPosition@{CmdSetArmRestPosition}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{CmdSetArmRestPosition()}{CmdSetArmRestPosition()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Cmd\+Set\+Arm\+Rest\+Position (\begin{DoxyParamCaption}\item[{Network\+Identity}]{patient\+Identity }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_character_manager_a688e233077d8a603df7cbff81480b715}\label{class_network_character_manager_a688e233077d8a603df7cbff81480b715}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!CmdSetItemAuthority@{CmdSetItemAuthority}}
+\index{CmdSetItemAuthority@{CmdSetItemAuthority}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{CmdSetItemAuthority()}{CmdSetItemAuthority()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Cmd\+Set\+Item\+Authority (\begin{DoxyParamCaption}\item[{Network\+Identity}]{item,  }\item[{Network\+Identity}]{new\+Player\+Owner }\end{DoxyParamCaption})}
+
+
+
+Command wrapper to change item authority. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & \\
+\hline
+{\em new\+Player\+Owner} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_network_character_manager_a2673c91a7122dd1cd99fe5bf7086f343}\label{class_network_character_manager_a2673c91a7122dd1cd99fe5bf7086f343}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!CmdSetLockPosition@{CmdSetLockPosition}}
+\index{CmdSetLockPosition@{CmdSetLockPosition}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{CmdSetLockPosition()}{CmdSetLockPosition()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Cmd\+Set\+Lock\+Position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}}]{lock\+Target\+Pos\+Rot }\end{DoxyParamCaption})}
+
+
+
+Command wrapper for setting lock position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lock\+Target\+Pos\+Rot} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_network_character_manager_a560dfa424330a7881640bb82da01b334}\label{class_network_character_manager_a560dfa424330a7881640bb82da01b334}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!CmdSpawnCorrectTarget@{CmdSpawnCorrectTarget}}
+\index{CmdSpawnCorrectTarget@{CmdSpawnCorrectTarget}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{CmdSpawnCorrectTarget()}{CmdSpawnCorrectTarget()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Cmd\+Spawn\+Correct\+Target (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}}}]{\+\_\+old\+Anim\+Type,  }\item[{\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}}}]{\+\_\+new\+Anim\+Type }\end{DoxyParamCaption})}
+
+
+
+Command wrapper to spawn correct target object. 
+
+TARGET OBJECT SPAWNING
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+old\+Anim\+Type} & \\
+\hline
+{\em \+\_\+new\+Anim\+Type} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_network_character_manager_a3b72d29e02fe25e25d21109f3556bd25}\label{class_network_character_manager_a3b72d29e02fe25e25d21109f3556bd25}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!CmdStartAnimationShowcase@{CmdStartAnimationShowcase}}
+\index{CmdStartAnimationShowcase@{CmdStartAnimationShowcase}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{CmdStartAnimationShowcase()}{CmdStartAnimationShowcase()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Cmd\+Start\+Animation\+Showcase (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+CALLING ANIMATIONS ON CLIENTS server calls starts animation on every client separately, clients decide what to do with animation \mbox{\Hypertarget{class_network_character_manager_abf6b797ba17764d4c1c47cd132c3fe39}\label{class_network_character_manager_abf6b797ba17764d4c1c47cd132c3fe39}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!CmdStartTraining@{CmdStartTraining}}
+\index{CmdStartTraining@{CmdStartTraining}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{CmdStartTraining()}{CmdStartTraining()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Cmd\+Start\+Training (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_character_manager_a5672047037c04ad6f695edfa8c0be714}\label{class_network_character_manager_a5672047037c04ad6f695edfa8c0be714}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!CmdStopTraining@{CmdStopTraining}}
+\index{CmdStopTraining@{CmdStopTraining}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{CmdStopTraining()}{CmdStopTraining()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Cmd\+Stop\+Training (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_character_manager_a8a96881861af72cd262b42248da332f5}\label{class_network_character_manager_a8a96881861af72cd262b42248da332f5}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!CmdUpdateAnimType@{CmdUpdateAnimType}}
+\index{CmdUpdateAnimType@{CmdUpdateAnimType}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{CmdUpdateAnimType()}{CmdUpdateAnimType()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Cmd\+Update\+Anim\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}}}]{\+\_\+anim\+Type }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_character_manager_a2d2ea7aee43b18c77062c49471148b96}\label{class_network_character_manager_a2d2ea7aee43b18c77062c49471148b96}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!CmdUpdateArmDuration@{CmdUpdateArmDuration}}
+\index{CmdUpdateArmDuration@{CmdUpdateArmDuration}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{CmdUpdateArmDuration()}{CmdUpdateArmDuration()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Cmd\+Update\+Arm\+Duration (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_character_manager_acd3248bb66e6ed898354eb4a78fcebee}\label{class_network_character_manager_acd3248bb66e6ed898354eb4a78fcebee}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!CmdUpdateHandDuration@{CmdUpdateHandDuration}}
+\index{CmdUpdateHandDuration@{CmdUpdateHandDuration}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{CmdUpdateHandDuration()}{CmdUpdateHandDuration()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Cmd\+Update\+Hand\+Duration (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_character_manager_af4c38fd52b73083ab78b619adf97101c}\label{class_network_character_manager_af4c38fd52b73083ab78b619adf97101c}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!CmdUpdateMoveDuration@{CmdUpdateMoveDuration}}
+\index{CmdUpdateMoveDuration@{CmdUpdateMoveDuration}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{CmdUpdateMoveDuration()}{CmdUpdateMoveDuration()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Cmd\+Update\+Move\+Duration (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_character_manager_a235de8ac95f7dd4ce3db3e0ae4779ed1}\label{class_network_character_manager_a235de8ac95f7dd4ce3db3e0ae4779ed1}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!CmdUpdateRepetitions@{CmdUpdateRepetitions}}
+\index{CmdUpdateRepetitions@{CmdUpdateRepetitions}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{CmdUpdateRepetitions()}{CmdUpdateRepetitions()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Cmd\+Update\+Repetitions (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_character_manager_ad1e9ee348338c1edcc9afd8ab089b97e}\label{class_network_character_manager_ad1e9ee348338c1edcc9afd8ab089b97e}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!CmdUpdateWaitDuration@{CmdUpdateWaitDuration}}
+\index{CmdUpdateWaitDuration@{CmdUpdateWaitDuration}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{CmdUpdateWaitDuration()}{CmdUpdateWaitDuration()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Cmd\+Update\+Wait\+Duration (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_character_manager_afd0bd6669b184d3fc60b6a56c2aa2561}\label{class_network_character_manager_afd0bd6669b184d3fc60b6a56c2aa2561}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!getPosRotFromCurrentObject@{getPosRotFromCurrentObject}}
+\index{getPosRotFromCurrentObject@{getPosRotFromCurrentObject}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{getPosRotFromCurrentObject()}{getPosRotFromCurrentObject()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} Network\+Character\+Manager.\+get\+Pos\+Rot\+From\+Current\+Object (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Helper method for getting pos\+Rot of current target object. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_network_character_manager_a297c5c9b71ded4a4397efa7248460981}\label{class_network_character_manager_a297c5c9b71ded4a4397efa7248460981}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!isTargetInBounds@{isTargetInBounds}}
+\index{isTargetInBounds@{isTargetInBounds}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{isTargetInBounds()}{isTargetInBounds()}}
+{\footnotesize\ttfamily bool Network\+Character\+Manager.\+is\+Target\+In\+Bounds (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}}]{target\+Pos\+Rot\+Mapping }\end{DoxyParamCaption})}
+
+
+
+Checks if object is above table AND in range of arm. If there is no active patient only checks if object is above table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em target\+Pos\+Rot\+Mapping} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_network_character_manager_a1b6d10af18eb023fda28eacce7a84546}\label{class_network_character_manager_a1b6d10af18eb023fda28eacce7a84546}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!OnStartClient@{OnStartClient}}
+\index{OnStartClient@{OnStartClient}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{OnStartClient()}{OnStartClient()}}
+{\footnotesize\ttfamily override void Network\+Character\+Manager.\+On\+Start\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_character_manager_aa0c55df17ddc7da0607e564bd4a234bc}\label{class_network_character_manager_aa0c55df17ddc7da0607e564bd4a234bc}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!pauseCountdown@{pauseCountdown}}
+\index{pauseCountdown@{pauseCountdown}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{pauseCountdown()}{pauseCountdown()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+pause\+Countdown (\begin{DoxyParamCaption}\item[{string}]{extra\+Text }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_character_manager_a86f008a4ab1ecb68fa258d35d5bf54c9}\label{class_network_character_manager_a86f008a4ab1ecb68fa258d35d5bf54c9}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!RpcSpawnCorrectTarget@{RpcSpawnCorrectTarget}}
+\index{RpcSpawnCorrectTarget@{RpcSpawnCorrectTarget}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{RpcSpawnCorrectTarget()}{RpcSpawnCorrectTarget()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Rpc\+Spawn\+Correct\+Target (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}}}]{\+\_\+old\+Anim\+Type,  }\item[{\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}}}]{\+\_\+new\+Anim\+Type }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_character_manager_af4ce20d2f1fa7abd93613d71ec49e2af}\label{class_network_character_manager_af4ce20d2f1fa7abd93613d71ec49e2af}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!setAnimationStartPosition@{setAnimationStartPosition}}
+\index{setAnimationStartPosition@{setAnimationStartPosition}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{setAnimationStartPosition()}{setAnimationStartPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+set\+Animation\+Start\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Changes or Adds new start position. 
+
+\mbox{\Hypertarget{class_network_character_manager_a38d676fc5c4dbca9ed95b688e46cd1d9}\label{class_network_character_manager_a38d676fc5c4dbca9ed95b688e46cd1d9}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!setAnimationStartPosition@{setAnimationStartPosition}}
+\index{setAnimationStartPosition@{setAnimationStartPosition}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{setAnimationStartPosition()}{setAnimationStartPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+set\+Animation\+Start\+Position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}}]{target\+Pos\+Rot\+Mapping }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_character_manager_a5771067ce618e454f25548ef7dc4db4f}\label{class_network_character_manager_a5771067ce618e454f25548ef7dc4db4f}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!setItemAuthority@{setItemAuthority}}
+\index{setItemAuthority@{setItemAuthority}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{setItemAuthority()}{setItemAuthority()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+set\+Item\+Authority (\begin{DoxyParamCaption}\item[{Network\+Identity}]{item,  }\item[{Network\+Identity}]{new\+Player\+Owner }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_character_manager_ad5271e4100b1d34bf542a137ccb36bbe}\label{class_network_character_manager_ad5271e4100b1d34bf542a137ccb36bbe}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!setLockPosition@{setLockPosition}}
+\index{setLockPosition@{setLockPosition}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{setLockPosition()}{setLockPosition()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+set\+Lock\+Position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}}]{lock\+Target\+Pos\+Rot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sets the lock position at the end of synclist. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lock\+Target\+Pos\+Rot} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_network_character_manager_a2b1b3359a334662eb7482397f622359a}\label{class_network_character_manager_a2b1b3359a334662eb7482397f622359a}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!spawnCorrectTarget@{spawnCorrectTarget}}
+\index{spawnCorrectTarget@{spawnCorrectTarget}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{spawnCorrectTarget()}{spawnCorrectTarget()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+spawn\+Correct\+Target (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}}}]{\+\_\+old\+Anim\+Type,  }\item[{\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}}}]{\+\_\+new\+Anim\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Method called on server, objects are then spawned on all clients. Refer to \href{https://mirror-networking.gitbook.io/docs/guides/gameobjects/spawning-gameobjects}{\texttt{ https\+://mirror-\/networking.\+gitbook.\+io/docs/guides/gameobjects/spawning-\/gameobjects}} for more details. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+old\+Anim\+Type} & \\
+\hline
+{\em \+\_\+new\+Anim\+Type} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_network_character_manager_a21d1e3e55ac34ae5376f61429e11bd95}\label{class_network_character_manager_a21d1e3e55ac34ae5376f61429e11bd95}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!spawnCorrectTargetFakes@{spawnCorrectTargetFakes}}
+\index{spawnCorrectTargetFakes@{spawnCorrectTargetFakes}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{spawnCorrectTargetFakes()}{spawnCorrectTargetFakes()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+spawn\+Correct\+Target\+Fakes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}}}]{\+\_\+old\+Anim\+Type,  }\item[{\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}}}]{\+\_\+new\+Anim\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_character_manager_a874cb2771e80202fdce1d0f9b8903808}\label{class_network_character_manager_a874cb2771e80202fdce1d0f9b8903808}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!Start@{Start}}
+\index{Start@{Start}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_character_manager_af4090bda718dcaad2d88d8218d2b5531}\label{class_network_character_manager_af4090bda718dcaad2d88d8218d2b5531}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!startCountdown@{startCountdown}}
+\index{startCountdown@{startCountdown}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{startCountdown()}{startCountdown()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+start\+Countdown (\begin{DoxyParamCaption}\item[{float}]{duration,  }\item[{string}]{extra\+Text }\end{DoxyParamCaption})}
+
+TRAINING + COUNTDOWN \mbox{\Hypertarget{class_network_character_manager_aa9b6262c19e3d31c8121fced36d4a7e1}\label{class_network_character_manager_aa9b6262c19e3d31c8121fced36d4a7e1}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!stopCountdown@{stopCountdown}}
+\index{stopCountdown@{stopCountdown}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{stopCountdown()}{stopCountdown()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+stop\+Countdown (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_character_manager_a2848a3600ac9b8157f55d5ed4cee209d}\label{class_network_character_manager_a2848a3600ac9b8157f55d5ed4cee209d}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!TargetMoveObjects@{TargetMoveObjects}}
+\index{TargetMoveObjects@{TargetMoveObjects}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{TargetMoveObjects()}{TargetMoveObjects()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Target\+Move\+Objects (\begin{DoxyParamCaption}\item[{Network\+Connection}]{connection,  }\item[{Vector3}]{offset }\end{DoxyParamCaption})}
+
+
+
+Moving target object(s) on client. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em connection} & \\
+\hline
+{\em offset} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_network_character_manager_ae6fdb9a98e009654d07b3c81df47c5a7}\label{class_network_character_manager_ae6fdb9a98e009654d07b3c81df47c5a7}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!TargetMovePatient@{TargetMovePatient}}
+\index{TargetMovePatient@{TargetMovePatient}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{TargetMovePatient()}{TargetMovePatient()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Target\+Move\+Patient (\begin{DoxyParamCaption}\item[{Network\+Connection}]{connection,  }\item[{Vector3}]{offset }\end{DoxyParamCaption})}
+
+
+
+Method to move patient camera. Moved patient based on direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em connection} & \\
+\hline
+{\em offset} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_network_character_manager_a8b977fdbc0d3c3a7a4bcd31bbd9e96e6}\label{class_network_character_manager_a8b977fdbc0d3c3a7a4bcd31bbd9e96e6}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!TargetMovePatientToSit@{TargetMovePatientToSit}}
+\index{TargetMovePatientToSit@{TargetMovePatientToSit}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{TargetMovePatientToSit()}{TargetMovePatientToSit()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Target\+Move\+Patient\+To\+Sit (\begin{DoxyParamCaption}\item[{Network\+Connection}]{connection }\end{DoxyParamCaption})}
+
+
+
+Method to teleport patient behind table AND rotate them to look in the direction \textquotesingle{}Patient\+Sit\+Position\+Object\textquotesingle{} is rotated. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em connection} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_network_character_manager_a0b790f988326cdf9e926efa694cf867c}\label{class_network_character_manager_a0b790f988326cdf9e926efa694cf867c}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!TargetTransformObject@{TargetTransformObject}}
+\index{TargetTransformObject@{TargetTransformObject}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{TargetTransformObject()}{TargetTransformObject()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+Target\+Transform\+Object (\begin{DoxyParamCaption}\item[{Network\+Connection}]{connection,  }\item[{\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}}]{mapping,  }\item[{Network\+Identity}]{item\+Id,  }\item[{bool}]{reset\+Start\+Post }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_character_manager_ac559d22d4f21cc1f700e06d7af712731}\label{class_network_character_manager_ac559d22d4f21cc1f700e06d7af712731}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!trainingStarted@{trainingStarted}}
+\index{trainingStarted@{trainingStarted}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{trainingStarted()}{trainingStarted()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+training\+Started (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_character_manager_a8b89b51e119ddd82be2cb2e28eaa65e6}\label{class_network_character_manager_a8b89b51e119ddd82be2cb2e28eaa65e6}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!trainingStopped@{trainingStopped}}
+\index{trainingStopped@{trainingStopped}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{trainingStopped()}{trainingStopped()}}
+{\footnotesize\ttfamily void Network\+Character\+Manager.\+training\+Stopped (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_network_character_manager_a421eef57bd03ad1dd9da4d4be06b6d91}\label{class_network_character_manager_a421eef57bd03ad1dd9da4d4be06b6d91}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!\_mirror@{\_mirror}}
+\index{\_mirror@{\_mirror}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{\_mirror}{\_mirror}}
+{\footnotesize\ttfamily Transform Network\+Character\+Manager.\+\_\+mirror\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_character_manager_ab9c894901e3e5205a47c04031e6fddc9}\label{class_network_character_manager_ab9c894901e3e5205a47c04031e6fddc9}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!animSettingsManager@{animSettingsManager}}
+\index{animSettingsManager@{animSettingsManager}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{animSettingsManager}{animSettingsManager}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_animation_settings_manager}{Animation\+Settings\+Manager}} Network\+Character\+Manager.\+anim\+Settings\+Manager\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_character_manager_a657b6ee4fc4320ad78bd8e53c9374d08}\label{class_network_character_manager_a657b6ee4fc4320ad78bd8e53c9374d08}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!countdownManagers@{countdownManagers}}
+\index{countdownManagers@{countdownManagers}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{countdownManagers}{countdownManagers}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_countdown_manager}{Countdown\+Manager}}$>$ Network\+Character\+Manager.\+countdown\+Managers = new List$<$\mbox{\hyperlink{class_countdown_manager}{Countdown\+Manager}}$>$()\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_character_manager_aacf518be52741fbab7844fac131cde7f}\label{class_network_character_manager_aacf518be52741fbab7844fac131cde7f}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!spawnArea@{spawnArea}}
+\index{spawnArea@{spawnArea}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{spawnArea}{spawnArea}}
+{\footnotesize\ttfamily Game\+Object Network\+Character\+Manager.\+spawn\+Area\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_character_manager_aad76855eb91eeef4c971ad4593a469f8}\label{class_network_character_manager_aad76855eb91eeef4c971ad4593a469f8}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!targetPrefabs@{targetPrefabs}}
+\index{targetPrefabs@{targetPrefabs}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{targetPrefabs}{targetPrefabs}}
+{\footnotesize\ttfamily List$<$Game\+Object$>$ Network\+Character\+Manager.\+target\+Prefabs = new List$<$Game\+Object$>$()\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_character_manager_abb2805759ff52a34a97dd7df74fef56f}\label{class_network_character_manager_abb2805759ff52a34a97dd7df74fef56f}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!therapistMenuManagers@{therapistMenuManagers}}
+\index{therapistMenuManagers@{therapistMenuManagers}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{therapistMenuManagers}{therapistMenuManagers}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_therapist_menu_manager}{Therapist\+Menu\+Manager}}$>$ Network\+Character\+Manager.\+therapist\+Menu\+Managers = new List$<$\mbox{\hyperlink{class_therapist_menu_manager}{Therapist\+Menu\+Manager}}$>$()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\Hypertarget{class_network_character_manager_ae4e486021c9dfd52321df349a556d00e}\label{class_network_character_manager_ae4e486021c9dfd52321df349a556d00e}} 
+\index{NetworkCharacterManager@{NetworkCharacterManager}!localNetworkClientInstance@{localNetworkClientInstance}}
+\index{localNetworkClientInstance@{localNetworkClientInstance}!NetworkCharacterManager@{NetworkCharacterManager}}
+\doxysubsubsection{\texorpdfstring{localNetworkClientInstance}{localNetworkClientInstance}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_network_character_manager}{Network\+Character\+Manager}} Network\+Character\+Manager.\+local\+Network\+Client\+Instance\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [private set]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Unity/\+Unity\+Projects/\+Masters\+Thesis/\+Assets/\+\_\+\+Neuro\+Rehab/\+Scripts/\+Managers/\+Character\+Manager/\mbox{\hyperlink{_network_character_manager_8cs}{Network\+Character\+Manager.\+cs}}\end{DoxyCompactItemize}

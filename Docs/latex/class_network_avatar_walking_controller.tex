@@ -1,0 +1,333 @@
+\hypertarget{class_network_avatar_walking_controller}{}\doxysection{Network\+Avatar\+Walking\+Controller Class Reference}
+\label{class_network_avatar_walking_controller}\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+Inheritance diagram for Network\+Avatar\+Walking\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_network_avatar_walking_controller}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_network_avatar_walking_controller_a4993c3e9687f97cdc008e0aa6a9f9b8b}{CMDUpdate\+Is\+Walking}} (bool \+\_\+is\+Walking)
+\item 
+void \mbox{\hyperlink{class_network_avatar_walking_controller_a540db533792a6d189bb29043f46577a7}{CMDUpdate\+Is\+Strafing}} (bool \+\_\+is\+Strafing)
+\item 
+void \mbox{\hyperlink{class_network_avatar_walking_controller_acb0019c2883fa53ecc79dd08a9dbf00c}{CMDUpdate\+Walking\+Speed}} (float \+\_\+walking\+Speed)
+\item 
+void \mbox{\hyperlink{class_network_avatar_walking_controller_a234ee3fddf5ff8dd8756279bd1e51bd3}{CMDUpdate\+Strafe\+Direction}} (float \+\_\+direction)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_network_avatar_walking_controller_a5d4c3dfe3339e7f3a98a42e0a6fa8840}{Start}} ()
+\item 
+void \mbox{\hyperlink{class_network_avatar_walking_controller_abd832b19dc82a5e8cf2be311b77f3cb3}{On\+Enable}} ()
+\item 
+void \mbox{\hyperlink{class_network_avatar_walking_controller_af43628363c0a919574aefe19d7d61005}{On\+Disable}} ()
+\item 
+void \mbox{\hyperlink{class_network_avatar_walking_controller_ac5a84d4f78a99cb4b91c1167ea7ea2a2}{init\+Animator}} ()
+\item 
+void \mbox{\hyperlink{class_network_avatar_walking_controller_a788e60cdddd9d2ac4a9057ce9288740d}{Update}} ()
+\item 
+void \mbox{\hyperlink{class_network_avatar_walking_controller_ae1fc34af29bdeee6dd368aed602578ee}{animate\+Head\+Movement}} (Input\+Action.\+Callback\+Context obj)
+\item 
+void \mbox{\hyperlink{class_network_avatar_walking_controller_ad0701ef36821e25db29b1702f6d2ebe2}{update\+Start\+Animation}} (Input\+Action.\+Callback\+Context obj)
+\begin{DoxyCompactList}\small\item\em Event called when movement is done, updates Sync\+Vars on Server. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_network_avatar_walking_controller_a43ce6303fcf7ff20ab26e3fabc39d5f9}{handle\+Movement}} (Vector2 movement\+Vector)
+\item 
+void \mbox{\hyperlink{class_network_avatar_walking_controller_a41f828126e19e2705e25652bb84212ba}{update\+Stop\+Animation}} (Input\+Action.\+Callback\+Context obj)
+\item 
+void \mbox{\hyperlink{class_network_avatar_walking_controller_a880ace42b38609c5e4146e4fe0f9a3e5}{animate\+Legs}} ()
+\begin{DoxyCompactList}\small\item\em Setting Animator variables. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_network_avatar_walking_controller_af74400085efa0561af07d9b9a249ff20}{stop\+Animate\+Legs}} ()
+\begin{DoxyCompactList}\small\item\em Stoppings animations on animator. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_network_avatar_walking_controller_affdb74c24a4202b03dd12cb9c7f51f33}{change\+Is\+Walking}} (bool \+\_\+old, bool \+\_\+new)
+\item 
+void \mbox{\hyperlink{class_network_avatar_walking_controller_ac03e8cb01f59e77162022c4006db216c}{change\+Walking\+Speed}} (float \+\_\+old, float \+\_\+new)
+\item 
+void \mbox{\hyperlink{class_network_avatar_walking_controller_a7bf99df558ae5fc4d1c03aac10cdc0f8}{change\+Is\+Strafing}} (bool \+\_\+old, bool \+\_\+new)
+\item 
+void \mbox{\hyperlink{class_network_avatar_walking_controller_a695d0575bdf12f52af3cdc7982680de4}{change\+Strafe\+Speed}} (float \+\_\+old, float \+\_\+new)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_avatar_model_manager}{Avatar\+Model\+Manager}} \mbox{\hyperlink{class_network_avatar_walking_controller_adaf0d51938f2c7b53761636d26c5b621}{avatar\+Model\+Manager}}
+\item 
+Transform \mbox{\hyperlink{class_network_avatar_walking_controller_aee5213f37fdc2e226f2168ff8196991a}{camera\+Transform}}
+\item 
+Input\+Action\+Reference \mbox{\hyperlink{class_network_avatar_walking_controller_ace90634fa9ed784d4cacf5a73f02fdd8}{head\+Move}}
+\item 
+Input\+Action\+Reference \mbox{\hyperlink{class_network_avatar_walking_controller_a5cc87ce9b7e8b172c8c93b694ef9b92a}{move}}
+\item 
+Animator \mbox{\hyperlink{class_network_avatar_walking_controller_a563413e3752d4e0d9cc0bdd04f10b3c7}{male\+Animator}}
+\item 
+Animator \mbox{\hyperlink{class_network_avatar_walking_controller_abba50e1a09f28f11dcb2b96cf53be698}{female\+Animator}}
+\item 
+Animator \mbox{\hyperlink{class_network_avatar_walking_controller_ae1a6fefd80f1cf1a0b607becf8723175}{animator}}
+\item 
+bool \mbox{\hyperlink{class_network_avatar_walking_controller_a497a75e90fcf47dcbd34de6e19315a92}{is\+Walking}}
+\item 
+float \mbox{\hyperlink{class_network_avatar_walking_controller_a65c428ed7cd00bc16a10b8cc7a6e1e9f}{walking\+Speed}}
+\item 
+bool \mbox{\hyperlink{class_network_avatar_walking_controller_ab6b26d3b2410ac26cca27786e9cf7d93}{is\+Strafing}}
+\item 
+float \mbox{\hyperlink{class_network_avatar_walking_controller_ab73decd652baa08ee17f06f508490102}{strafe\+Direction}}
+\item 
+bool \mbox{\hyperlink{class_network_avatar_walking_controller_af6129786afc7a03437291b40452c6d03}{is\+Animating\+Legs}} = false
+\item 
+bool \mbox{\hyperlink{class_network_avatar_walking_controller_af61b4823bd0170410d4b9e69458b6c9d}{is\+Animating\+Head}} = false
+\item 
+Vector3 \mbox{\hyperlink{class_network_avatar_walking_controller_ad3424782ac27b5af002659e9038e4f62}{last\+Head\+Position}} = Vector3.\+zero
+\item 
+float \mbox{\hyperlink{class_network_avatar_walking_controller_ace4df00a9afd394ca10138ac4d89ca5f}{last\+Head\+Movement\+Time}}
+\item 
+float \mbox{\hyperlink{class_network_avatar_walking_controller_a226b03721a29c0a123dbd2e623726a55}{head\+Move\+Duration}} = 0.\+7f
+\item 
+float \mbox{\hyperlink{class_network_avatar_walking_controller_af2f5427f958b60be8b599087cdcfe262}{head\+Move\+Treshold}} = 0.\+07f
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_network_avatar_walking_controller_ae1fc34af29bdeee6dd368aed602578ee}\label{class_network_avatar_walking_controller_ae1fc34af29bdeee6dd368aed602578ee}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!animateHeadMovement@{animateHeadMovement}}
+\index{animateHeadMovement@{animateHeadMovement}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{animateHeadMovement()}{animateHeadMovement()}}
+{\footnotesize\ttfamily void Network\+Avatar\+Walking\+Controller.\+animate\+Head\+Movement (\begin{DoxyParamCaption}\item[{Input\+Action\+::\+Callback\+Context}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_a880ace42b38609c5e4146e4fe0f9a3e5}\label{class_network_avatar_walking_controller_a880ace42b38609c5e4146e4fe0f9a3e5}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!animateLegs@{animateLegs}}
+\index{animateLegs@{animateLegs}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{animateLegs()}{animateLegs()}}
+{\footnotesize\ttfamily void Network\+Avatar\+Walking\+Controller.\+animate\+Legs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Setting Animator variables. 
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_a7bf99df558ae5fc4d1c03aac10cdc0f8}\label{class_network_avatar_walking_controller_a7bf99df558ae5fc4d1c03aac10cdc0f8}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!changeIsStrafing@{changeIsStrafing}}
+\index{changeIsStrafing@{changeIsStrafing}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{changeIsStrafing()}{changeIsStrafing()}}
+{\footnotesize\ttfamily void Network\+Avatar\+Walking\+Controller.\+change\+Is\+Strafing (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+old,  }\item[{bool}]{\+\_\+new }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_affdb74c24a4202b03dd12cb9c7f51f33}\label{class_network_avatar_walking_controller_affdb74c24a4202b03dd12cb9c7f51f33}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!changeIsWalking@{changeIsWalking}}
+\index{changeIsWalking@{changeIsWalking}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{changeIsWalking()}{changeIsWalking()}}
+{\footnotesize\ttfamily void Network\+Avatar\+Walking\+Controller.\+change\+Is\+Walking (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+old,  }\item[{bool}]{\+\_\+new }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_a695d0575bdf12f52af3cdc7982680de4}\label{class_network_avatar_walking_controller_a695d0575bdf12f52af3cdc7982680de4}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!changeStrafeSpeed@{changeStrafeSpeed}}
+\index{changeStrafeSpeed@{changeStrafeSpeed}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{changeStrafeSpeed()}{changeStrafeSpeed()}}
+{\footnotesize\ttfamily void Network\+Avatar\+Walking\+Controller.\+change\+Strafe\+Speed (\begin{DoxyParamCaption}\item[{float}]{\+\_\+old,  }\item[{float}]{\+\_\+new }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_ac03e8cb01f59e77162022c4006db216c}\label{class_network_avatar_walking_controller_ac03e8cb01f59e77162022c4006db216c}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!changeWalkingSpeed@{changeWalkingSpeed}}
+\index{changeWalkingSpeed@{changeWalkingSpeed}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{changeWalkingSpeed()}{changeWalkingSpeed()}}
+{\footnotesize\ttfamily void Network\+Avatar\+Walking\+Controller.\+change\+Walking\+Speed (\begin{DoxyParamCaption}\item[{float}]{\+\_\+old,  }\item[{float}]{\+\_\+new }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_a540db533792a6d189bb29043f46577a7}\label{class_network_avatar_walking_controller_a540db533792a6d189bb29043f46577a7}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!CMDUpdateIsStrafing@{CMDUpdateIsStrafing}}
+\index{CMDUpdateIsStrafing@{CMDUpdateIsStrafing}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{CMDUpdateIsStrafing()}{CMDUpdateIsStrafing()}}
+{\footnotesize\ttfamily void Network\+Avatar\+Walking\+Controller.\+CMDUpdate\+Is\+Strafing (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+is\+Strafing }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_a4993c3e9687f97cdc008e0aa6a9f9b8b}\label{class_network_avatar_walking_controller_a4993c3e9687f97cdc008e0aa6a9f9b8b}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!CMDUpdateIsWalking@{CMDUpdateIsWalking}}
+\index{CMDUpdateIsWalking@{CMDUpdateIsWalking}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{CMDUpdateIsWalking()}{CMDUpdateIsWalking()}}
+{\footnotesize\ttfamily void Network\+Avatar\+Walking\+Controller.\+CMDUpdate\+Is\+Walking (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+is\+Walking }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_a234ee3fddf5ff8dd8756279bd1e51bd3}\label{class_network_avatar_walking_controller_a234ee3fddf5ff8dd8756279bd1e51bd3}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!CMDUpdateStrafeDirection@{CMDUpdateStrafeDirection}}
+\index{CMDUpdateStrafeDirection@{CMDUpdateStrafeDirection}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{CMDUpdateStrafeDirection()}{CMDUpdateStrafeDirection()}}
+{\footnotesize\ttfamily void Network\+Avatar\+Walking\+Controller.\+CMDUpdate\+Strafe\+Direction (\begin{DoxyParamCaption}\item[{float}]{\+\_\+direction }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_acb0019c2883fa53ecc79dd08a9dbf00c}\label{class_network_avatar_walking_controller_acb0019c2883fa53ecc79dd08a9dbf00c}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!CMDUpdateWalkingSpeed@{CMDUpdateWalkingSpeed}}
+\index{CMDUpdateWalkingSpeed@{CMDUpdateWalkingSpeed}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{CMDUpdateWalkingSpeed()}{CMDUpdateWalkingSpeed()}}
+{\footnotesize\ttfamily void Network\+Avatar\+Walking\+Controller.\+CMDUpdate\+Walking\+Speed (\begin{DoxyParamCaption}\item[{float}]{\+\_\+walking\+Speed }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_a43ce6303fcf7ff20ab26e3fabc39d5f9}\label{class_network_avatar_walking_controller_a43ce6303fcf7ff20ab26e3fabc39d5f9}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!handleMovement@{handleMovement}}
+\index{handleMovement@{handleMovement}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{handleMovement()}{handleMovement()}}
+{\footnotesize\ttfamily void Network\+Avatar\+Walking\+Controller.\+handle\+Movement (\begin{DoxyParamCaption}\item[{Vector2}]{movement\+Vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_ac5a84d4f78a99cb4b91c1167ea7ea2a2}\label{class_network_avatar_walking_controller_ac5a84d4f78a99cb4b91c1167ea7ea2a2}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!initAnimator@{initAnimator}}
+\index{initAnimator@{initAnimator}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{initAnimator()}{initAnimator()}}
+{\footnotesize\ttfamily void Network\+Avatar\+Walking\+Controller.\+init\+Animator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_af43628363c0a919574aefe19d7d61005}\label{class_network_avatar_walking_controller_af43628363c0a919574aefe19d7d61005}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!OnDisable@{OnDisable}}
+\index{OnDisable@{OnDisable}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{OnDisable()}{OnDisable()}}
+{\footnotesize\ttfamily void Network\+Avatar\+Walking\+Controller.\+On\+Disable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_abd832b19dc82a5e8cf2be311b77f3cb3}\label{class_network_avatar_walking_controller_abd832b19dc82a5e8cf2be311b77f3cb3}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!OnEnable@{OnEnable}}
+\index{OnEnable@{OnEnable}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{OnEnable()}{OnEnable()}}
+{\footnotesize\ttfamily void Network\+Avatar\+Walking\+Controller.\+On\+Enable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_a5d4c3dfe3339e7f3a98a42e0a6fa8840}\label{class_network_avatar_walking_controller_a5d4c3dfe3339e7f3a98a42e0a6fa8840}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!Start@{Start}}
+\index{Start@{Start}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void Network\+Avatar\+Walking\+Controller.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_af74400085efa0561af07d9b9a249ff20}\label{class_network_avatar_walking_controller_af74400085efa0561af07d9b9a249ff20}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!stopAnimateLegs@{stopAnimateLegs}}
+\index{stopAnimateLegs@{stopAnimateLegs}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{stopAnimateLegs()}{stopAnimateLegs()}}
+{\footnotesize\ttfamily void Network\+Avatar\+Walking\+Controller.\+stop\+Animate\+Legs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Stoppings animations on animator. 
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_a788e60cdddd9d2ac4a9057ce9288740d}\label{class_network_avatar_walking_controller_a788e60cdddd9d2ac4a9057ce9288740d}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!Update@{Update}}
+\index{Update@{Update}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Network\+Avatar\+Walking\+Controller.\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_ad0701ef36821e25db29b1702f6d2ebe2}\label{class_network_avatar_walking_controller_ad0701ef36821e25db29b1702f6d2ebe2}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!updateStartAnimation@{updateStartAnimation}}
+\index{updateStartAnimation@{updateStartAnimation}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{updateStartAnimation()}{updateStartAnimation()}}
+{\footnotesize\ttfamily void Network\+Avatar\+Walking\+Controller.\+update\+Start\+Animation (\begin{DoxyParamCaption}\item[{Input\+Action\+::\+Callback\+Context}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Event called when movement is done, updates Sync\+Vars on Server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_network_avatar_walking_controller_a41f828126e19e2705e25652bb84212ba}\label{class_network_avatar_walking_controller_a41f828126e19e2705e25652bb84212ba}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!updateStopAnimation@{updateStopAnimation}}
+\index{updateStopAnimation@{updateStopAnimation}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{updateStopAnimation()}{updateStopAnimation()}}
+{\footnotesize\ttfamily void Network\+Avatar\+Walking\+Controller.\+update\+Stop\+Animation (\begin{DoxyParamCaption}\item[{Input\+Action\+::\+Callback\+Context}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_network_avatar_walking_controller_ae1a6fefd80f1cf1a0b607becf8723175}\label{class_network_avatar_walking_controller_ae1a6fefd80f1cf1a0b607becf8723175}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!animator@{animator}}
+\index{animator@{animator}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{animator}{animator}}
+{\footnotesize\ttfamily Animator Network\+Avatar\+Walking\+Controller.\+animator\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_adaf0d51938f2c7b53761636d26c5b621}\label{class_network_avatar_walking_controller_adaf0d51938f2c7b53761636d26c5b621}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!avatarModelManager@{avatarModelManager}}
+\index{avatarModelManager@{avatarModelManager}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{avatarModelManager}{avatarModelManager}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_avatar_model_manager}{Avatar\+Model\+Manager}} Network\+Avatar\+Walking\+Controller.\+avatar\+Model\+Manager\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_aee5213f37fdc2e226f2168ff8196991a}\label{class_network_avatar_walking_controller_aee5213f37fdc2e226f2168ff8196991a}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!cameraTransform@{cameraTransform}}
+\index{cameraTransform@{cameraTransform}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{cameraTransform}{cameraTransform}}
+{\footnotesize\ttfamily Transform Network\+Avatar\+Walking\+Controller.\+camera\+Transform\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_abba50e1a09f28f11dcb2b96cf53be698}\label{class_network_avatar_walking_controller_abba50e1a09f28f11dcb2b96cf53be698}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!femaleAnimator@{femaleAnimator}}
+\index{femaleAnimator@{femaleAnimator}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{femaleAnimator}{femaleAnimator}}
+{\footnotesize\ttfamily Animator Network\+Avatar\+Walking\+Controller.\+female\+Animator\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_ace90634fa9ed784d4cacf5a73f02fdd8}\label{class_network_avatar_walking_controller_ace90634fa9ed784d4cacf5a73f02fdd8}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!headMove@{headMove}}
+\index{headMove@{headMove}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{headMove}{headMove}}
+{\footnotesize\ttfamily Input\+Action\+Reference Network\+Avatar\+Walking\+Controller.\+head\+Move\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_a226b03721a29c0a123dbd2e623726a55}\label{class_network_avatar_walking_controller_a226b03721a29c0a123dbd2e623726a55}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!headMoveDuration@{headMoveDuration}}
+\index{headMoveDuration@{headMoveDuration}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{headMoveDuration}{headMoveDuration}}
+{\footnotesize\ttfamily float Network\+Avatar\+Walking\+Controller.\+head\+Move\+Duration = 0.\+7f\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_af2f5427f958b60be8b599087cdcfe262}\label{class_network_avatar_walking_controller_af2f5427f958b60be8b599087cdcfe262}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!headMoveTreshold@{headMoveTreshold}}
+\index{headMoveTreshold@{headMoveTreshold}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{headMoveTreshold}{headMoveTreshold}}
+{\footnotesize\ttfamily float Network\+Avatar\+Walking\+Controller.\+head\+Move\+Treshold = 0.\+07f\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_af61b4823bd0170410d4b9e69458b6c9d}\label{class_network_avatar_walking_controller_af61b4823bd0170410d4b9e69458b6c9d}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!isAnimatingHead@{isAnimatingHead}}
+\index{isAnimatingHead@{isAnimatingHead}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{isAnimatingHead}{isAnimatingHead}}
+{\footnotesize\ttfamily bool Network\+Avatar\+Walking\+Controller.\+is\+Animating\+Head = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_af6129786afc7a03437291b40452c6d03}\label{class_network_avatar_walking_controller_af6129786afc7a03437291b40452c6d03}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!isAnimatingLegs@{isAnimatingLegs}}
+\index{isAnimatingLegs@{isAnimatingLegs}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{isAnimatingLegs}{isAnimatingLegs}}
+{\footnotesize\ttfamily bool Network\+Avatar\+Walking\+Controller.\+is\+Animating\+Legs = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_ab6b26d3b2410ac26cca27786e9cf7d93}\label{class_network_avatar_walking_controller_ab6b26d3b2410ac26cca27786e9cf7d93}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!isStrafing@{isStrafing}}
+\index{isStrafing@{isStrafing}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{isStrafing}{isStrafing}}
+{\footnotesize\ttfamily bool Network\+Avatar\+Walking\+Controller.\+is\+Strafing\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_a497a75e90fcf47dcbd34de6e19315a92}\label{class_network_avatar_walking_controller_a497a75e90fcf47dcbd34de6e19315a92}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!isWalking@{isWalking}}
+\index{isWalking@{isWalking}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{isWalking}{isWalking}}
+{\footnotesize\ttfamily bool Network\+Avatar\+Walking\+Controller.\+is\+Walking\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_ace4df00a9afd394ca10138ac4d89ca5f}\label{class_network_avatar_walking_controller_ace4df00a9afd394ca10138ac4d89ca5f}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!lastHeadMovementTime@{lastHeadMovementTime}}
+\index{lastHeadMovementTime@{lastHeadMovementTime}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{lastHeadMovementTime}{lastHeadMovementTime}}
+{\footnotesize\ttfamily float Network\+Avatar\+Walking\+Controller.\+last\+Head\+Movement\+Time\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_ad3424782ac27b5af002659e9038e4f62}\label{class_network_avatar_walking_controller_ad3424782ac27b5af002659e9038e4f62}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!lastHeadPosition@{lastHeadPosition}}
+\index{lastHeadPosition@{lastHeadPosition}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{lastHeadPosition}{lastHeadPosition}}
+{\footnotesize\ttfamily Vector3 Network\+Avatar\+Walking\+Controller.\+last\+Head\+Position = Vector3.\+zero\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_a563413e3752d4e0d9cc0bdd04f10b3c7}\label{class_network_avatar_walking_controller_a563413e3752d4e0d9cc0bdd04f10b3c7}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!maleAnimator@{maleAnimator}}
+\index{maleAnimator@{maleAnimator}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{maleAnimator}{maleAnimator}}
+{\footnotesize\ttfamily Animator Network\+Avatar\+Walking\+Controller.\+male\+Animator\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_a5cc87ce9b7e8b172c8c93b694ef9b92a}\label{class_network_avatar_walking_controller_a5cc87ce9b7e8b172c8c93b694ef9b92a}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!move@{move}}
+\index{move@{move}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{move}{move}}
+{\footnotesize\ttfamily Input\+Action\+Reference Network\+Avatar\+Walking\+Controller.\+move\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_ab73decd652baa08ee17f06f508490102}\label{class_network_avatar_walking_controller_ab73decd652baa08ee17f06f508490102}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!strafeDirection@{strafeDirection}}
+\index{strafeDirection@{strafeDirection}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{strafeDirection}{strafeDirection}}
+{\footnotesize\ttfamily float Network\+Avatar\+Walking\+Controller.\+strafe\+Direction\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_network_avatar_walking_controller_a65c428ed7cd00bc16a10b8cc7a6e1e9f}\label{class_network_avatar_walking_controller_a65c428ed7cd00bc16a10b8cc7a6e1e9f}} 
+\index{NetworkAvatarWalkingController@{NetworkAvatarWalkingController}!walkingSpeed@{walkingSpeed}}
+\index{walkingSpeed@{walkingSpeed}!NetworkAvatarWalkingController@{NetworkAvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{walkingSpeed}{walkingSpeed}}
+{\footnotesize\ttfamily float Network\+Avatar\+Walking\+Controller.\+walking\+Speed\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Unity/\+Unity\+Projects/\+Masters\+Thesis/\+Assets/\+\_\+\+Neuro\+Rehab/\+Scripts/\+Avatar/\mbox{\hyperlink{_network_avatar_walking_controller_8cs}{Network\+Avatar\+Walking\+Controller.\+cs}}\end{DoxyCompactItemize}

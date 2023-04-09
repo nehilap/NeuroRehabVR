@@ -1,0 +1,113 @@
+\hypertarget{class_map_transforms}{}\doxysection{Map\+Transforms Class Reference}
+\label{class_map_transforms}\index{MapTransforms@{MapTransforms}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_map_transforms_a439e3e3e9f96a03158e4ec3ebb882fae}{map\+Transforms}} ()
+\item 
+void \mbox{\hyperlink{class_map_transforms_a211a0a4d287a203142e221ebdf5233a6}{map\+Transforms\+Debug}} (Transform transform)
+\item 
+void \mbox{\hyperlink{class_map_transforms_ad088c9d4c28d0513786d30f172e70c53}{set\+Multi}} (float multiplier, bool ignore\+Multi=false)
+\begin{DoxyCompactList}\small\item\em Setting multiplier of offsets. We use extra variable so that we don\textquotesingle{}t have to recalculate scale every update, just once at the beginning. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_map_transforms_ae7f63ba10dfc3a0a03bfdec4c665247b}{follow\+VRTarget}} = true
+\item 
+Transform \mbox{\hyperlink{class_map_transforms_a6ab260ae13c73cf55a7e6829f301a99e}{vr\+Target}}
+\item 
+Transform \mbox{\hyperlink{class_map_transforms_a6b6885c577e3c1e0ecb60af021f730d3}{ik\+Target}}
+\item 
+Vector3 \mbox{\hyperlink{class_map_transforms_a14c92e84a14fc16501b9923d4a4d70ab}{position\+Offset}}
+\item 
+Vector3 \mbox{\hyperlink{class_map_transforms_aaa57f3cae530dff671889dfc98304775}{rotation\+Offset}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Vector3 \mbox{\hyperlink{class_map_transforms_adc6733f56fbb1924a6555c299b155c60}{actual\+Pos\+Offset}}
+\item 
+Vector3 \mbox{\hyperlink{class_map_transforms_ae418570198f38c49500dd40dee233bb7}{actual\+Rot\+Offset}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_map_transforms_a439e3e3e9f96a03158e4ec3ebb882fae}\label{class_map_transforms_a439e3e3e9f96a03158e4ec3ebb882fae}} 
+\index{MapTransforms@{MapTransforms}!mapTransforms@{mapTransforms}}
+\index{mapTransforms@{mapTransforms}!MapTransforms@{MapTransforms}}
+\doxysubsubsection{\texorpdfstring{mapTransforms()}{mapTransforms()}}
+{\footnotesize\ttfamily void Map\+Transforms.\+map\+Transforms (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_map_transforms_a211a0a4d287a203142e221ebdf5233a6}\label{class_map_transforms_a211a0a4d287a203142e221ebdf5233a6}} 
+\index{MapTransforms@{MapTransforms}!mapTransformsDebug@{mapTransformsDebug}}
+\index{mapTransformsDebug@{mapTransformsDebug}!MapTransforms@{MapTransforms}}
+\doxysubsubsection{\texorpdfstring{mapTransformsDebug()}{mapTransformsDebug()}}
+{\footnotesize\ttfamily void Map\+Transforms.\+map\+Transforms\+Debug (\begin{DoxyParamCaption}\item[{Transform}]{transform }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_map_transforms_ad088c9d4c28d0513786d30f172e70c53}\label{class_map_transforms_ad088c9d4c28d0513786d30f172e70c53}} 
+\index{MapTransforms@{MapTransforms}!setMulti@{setMulti}}
+\index{setMulti@{setMulti}!MapTransforms@{MapTransforms}}
+\doxysubsubsection{\texorpdfstring{setMulti()}{setMulti()}}
+{\footnotesize\ttfamily void Map\+Transforms.\+set\+Multi (\begin{DoxyParamCaption}\item[{float}]{multiplier,  }\item[{bool}]{ignore\+Multi = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Setting multiplier of offsets. We use extra variable so that we don\textquotesingle{}t have to recalculate scale every update, just once at the beginning. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em multiplier} & \\
+\hline
+{\em ignore\+Multi} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_map_transforms_adc6733f56fbb1924a6555c299b155c60}\label{class_map_transforms_adc6733f56fbb1924a6555c299b155c60}} 
+\index{MapTransforms@{MapTransforms}!actualPosOffset@{actualPosOffset}}
+\index{actualPosOffset@{actualPosOffset}!MapTransforms@{MapTransforms}}
+\doxysubsubsection{\texorpdfstring{actualPosOffset}{actualPosOffset}}
+{\footnotesize\ttfamily Vector3 Map\+Transforms.\+actual\+Pos\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_map_transforms_ae418570198f38c49500dd40dee233bb7}\label{class_map_transforms_ae418570198f38c49500dd40dee233bb7}} 
+\index{MapTransforms@{MapTransforms}!actualRotOffset@{actualRotOffset}}
+\index{actualRotOffset@{actualRotOffset}!MapTransforms@{MapTransforms}}
+\doxysubsubsection{\texorpdfstring{actualRotOffset}{actualRotOffset}}
+{\footnotesize\ttfamily Vector3 Map\+Transforms.\+actual\+Rot\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_map_transforms_ae7f63ba10dfc3a0a03bfdec4c665247b}\label{class_map_transforms_ae7f63ba10dfc3a0a03bfdec4c665247b}} 
+\index{MapTransforms@{MapTransforms}!followVRTarget@{followVRTarget}}
+\index{followVRTarget@{followVRTarget}!MapTransforms@{MapTransforms}}
+\doxysubsubsection{\texorpdfstring{followVRTarget}{followVRTarget}}
+{\footnotesize\ttfamily bool Map\+Transforms.\+follow\+VRTarget = true}
+
+\mbox{\Hypertarget{class_map_transforms_a6b6885c577e3c1e0ecb60af021f730d3}\label{class_map_transforms_a6b6885c577e3c1e0ecb60af021f730d3}} 
+\index{MapTransforms@{MapTransforms}!ikTarget@{ikTarget}}
+\index{ikTarget@{ikTarget}!MapTransforms@{MapTransforms}}
+\doxysubsubsection{\texorpdfstring{ikTarget}{ikTarget}}
+{\footnotesize\ttfamily Transform Map\+Transforms.\+ik\+Target}
+
+\mbox{\Hypertarget{class_map_transforms_a14c92e84a14fc16501b9923d4a4d70ab}\label{class_map_transforms_a14c92e84a14fc16501b9923d4a4d70ab}} 
+\index{MapTransforms@{MapTransforms}!positionOffset@{positionOffset}}
+\index{positionOffset@{positionOffset}!MapTransforms@{MapTransforms}}
+\doxysubsubsection{\texorpdfstring{positionOffset}{positionOffset}}
+{\footnotesize\ttfamily Vector3 Map\+Transforms.\+position\+Offset}
+
+\mbox{\Hypertarget{class_map_transforms_aaa57f3cae530dff671889dfc98304775}\label{class_map_transforms_aaa57f3cae530dff671889dfc98304775}} 
+\index{MapTransforms@{MapTransforms}!rotationOffset@{rotationOffset}}
+\index{rotationOffset@{rotationOffset}!MapTransforms@{MapTransforms}}
+\doxysubsubsection{\texorpdfstring{rotationOffset}{rotationOffset}}
+{\footnotesize\ttfamily Vector3 Map\+Transforms.\+rotation\+Offset}
+
+\mbox{\Hypertarget{class_map_transforms_a6ab260ae13c73cf55a7e6829f301a99e}\label{class_map_transforms_a6ab260ae13c73cf55a7e6829f301a99e}} 
+\index{MapTransforms@{MapTransforms}!vrTarget@{vrTarget}}
+\index{vrTarget@{vrTarget}!MapTransforms@{MapTransforms}}
+\doxysubsubsection{\texorpdfstring{vrTarget}{vrTarget}}
+{\footnotesize\ttfamily Transform Map\+Transforms.\+vr\+Target}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Unity/\+Unity\+Projects/\+Masters\+Thesis/\+Assets/\+\_\+\+Neuro\+Rehab/\+Scripts/\+Avatar/\mbox{\hyperlink{_avatar_controller_8cs}{Avatar\+Controller.\+cs}}\end{DoxyCompactItemize}

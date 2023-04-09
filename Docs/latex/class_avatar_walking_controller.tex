@@ -1,0 +1,178 @@
+\hypertarget{class_avatar_walking_controller}{}\doxysection{Avatar\+Walking\+Controller Class Reference}
+\label{class_avatar_walking_controller}\index{AvatarWalkingController@{AvatarWalkingController}}
+Inheritance diagram for Avatar\+Walking\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_avatar_walking_controller}
+\end{center}
+\end{figure}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_avatar_walking_controller_abfbfcf02f8af42590fdff492ea2225ca}{On\+Enable}} ()
+\item 
+void \mbox{\hyperlink{class_avatar_walking_controller_a5c9dc7afb8349658cae9b4e76ea62032}{On\+Disable}} ()
+\item 
+void \mbox{\hyperlink{class_avatar_walking_controller_ab1098c7cc4561ed885eaceeb271c2797}{Update}} ()
+\item 
+void \mbox{\hyperlink{class_avatar_walking_controller_aff570ee64cf914c84cf63411971174cc}{animate\+Head\+Movement}} (Input\+Action.\+Callback\+Context obj)
+\item 
+void \mbox{\hyperlink{class_avatar_walking_controller_a5141d8f3aca497cc0d44b37d7d7fe589}{animate\+Legs\+Action}} (Input\+Action.\+Callback\+Context obj)
+\begin{DoxyCompactList}\small\item\em Event used to set Animator variables. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_avatar_walking_controller_aa8c86b3fb044f6c561dfc5922ccd89ed}{handle\+Movement}} (Vector2 movement\+Vector)
+\item 
+void \mbox{\hyperlink{class_avatar_walking_controller_a65163183197502af0066f7c509603b6a}{stop\+Animate\+Legs\+Action}} (Input\+Action.\+Callback\+Context obj)
+\item 
+void \mbox{\hyperlink{class_avatar_walking_controller_a201f64760413d46bec98060b5b29c13b}{stop\+Animate\+Legs}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Animator \mbox{\hyperlink{class_avatar_walking_controller_aaa326b0600d87b5914b74d2325d60b83}{animator}}
+\item 
+Input\+Action\+Reference \mbox{\hyperlink{class_avatar_walking_controller_ace7e69ddab532239f6bbea65b7b00235}{move}}
+\item 
+Input\+Action\+Reference \mbox{\hyperlink{class_avatar_walking_controller_abc6d0466f1717e72b4790591930b880f}{head\+Move}}
+\item 
+Transform \mbox{\hyperlink{class_avatar_walking_controller_afdc74120677a80c1fc795dc5699bb936}{camera\+Transform}}
+\item 
+float \mbox{\hyperlink{class_avatar_walking_controller_a5b67c7fa0d2d9e81989409caf20ca207}{head\+Move\+Duration}} = 0.\+7f
+\item 
+float \mbox{\hyperlink{class_avatar_walking_controller_a4bb1ae9afece163359de24d97cb0d36b}{head\+Move\+Treshold}} = 0.\+12f
+\item 
+bool \mbox{\hyperlink{class_avatar_walking_controller_a43af03faf73185121e1d1c34b1e26d36}{is\+Animating\+Legs}} = false
+\item 
+bool \mbox{\hyperlink{class_avatar_walking_controller_ae9dcf1a0e38094584b1e496454f2920c}{is\+Animating\+Head}} = false
+\item 
+Vector3 \mbox{\hyperlink{class_avatar_walking_controller_abf3030733c669e72cbf3c976689870a5}{last\+Head\+Position}} = Vector3.\+zero
+\item 
+float \mbox{\hyperlink{class_avatar_walking_controller_a078321288fdeb5b557cd1cd7846eb871}{last\+Head\+Movement\+Time}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_avatar_walking_controller_aff570ee64cf914c84cf63411971174cc}\label{class_avatar_walking_controller_aff570ee64cf914c84cf63411971174cc}} 
+\index{AvatarWalkingController@{AvatarWalkingController}!animateHeadMovement@{animateHeadMovement}}
+\index{animateHeadMovement@{animateHeadMovement}!AvatarWalkingController@{AvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{animateHeadMovement()}{animateHeadMovement()}}
+{\footnotesize\ttfamily void Avatar\+Walking\+Controller.\+animate\+Head\+Movement (\begin{DoxyParamCaption}\item[{Input\+Action\+::\+Callback\+Context}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_walking_controller_a5141d8f3aca497cc0d44b37d7d7fe589}\label{class_avatar_walking_controller_a5141d8f3aca497cc0d44b37d7d7fe589}} 
+\index{AvatarWalkingController@{AvatarWalkingController}!animateLegsAction@{animateLegsAction}}
+\index{animateLegsAction@{animateLegsAction}!AvatarWalkingController@{AvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{animateLegsAction()}{animateLegsAction()}}
+{\footnotesize\ttfamily void Avatar\+Walking\+Controller.\+animate\+Legs\+Action (\begin{DoxyParamCaption}\item[{Input\+Action\+::\+Callback\+Context}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Event used to set Animator variables. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_avatar_walking_controller_aa8c86b3fb044f6c561dfc5922ccd89ed}\label{class_avatar_walking_controller_aa8c86b3fb044f6c561dfc5922ccd89ed}} 
+\index{AvatarWalkingController@{AvatarWalkingController}!handleMovement@{handleMovement}}
+\index{handleMovement@{handleMovement}!AvatarWalkingController@{AvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{handleMovement()}{handleMovement()}}
+{\footnotesize\ttfamily void Avatar\+Walking\+Controller.\+handle\+Movement (\begin{DoxyParamCaption}\item[{Vector2}]{movement\+Vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_walking_controller_a5c9dc7afb8349658cae9b4e76ea62032}\label{class_avatar_walking_controller_a5c9dc7afb8349658cae9b4e76ea62032}} 
+\index{AvatarWalkingController@{AvatarWalkingController}!OnDisable@{OnDisable}}
+\index{OnDisable@{OnDisable}!AvatarWalkingController@{AvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{OnDisable()}{OnDisable()}}
+{\footnotesize\ttfamily void Avatar\+Walking\+Controller.\+On\+Disable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_walking_controller_abfbfcf02f8af42590fdff492ea2225ca}\label{class_avatar_walking_controller_abfbfcf02f8af42590fdff492ea2225ca}} 
+\index{AvatarWalkingController@{AvatarWalkingController}!OnEnable@{OnEnable}}
+\index{OnEnable@{OnEnable}!AvatarWalkingController@{AvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{OnEnable()}{OnEnable()}}
+{\footnotesize\ttfamily void Avatar\+Walking\+Controller.\+On\+Enable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_walking_controller_a201f64760413d46bec98060b5b29c13b}\label{class_avatar_walking_controller_a201f64760413d46bec98060b5b29c13b}} 
+\index{AvatarWalkingController@{AvatarWalkingController}!stopAnimateLegs@{stopAnimateLegs}}
+\index{stopAnimateLegs@{stopAnimateLegs}!AvatarWalkingController@{AvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{stopAnimateLegs()}{stopAnimateLegs()}}
+{\footnotesize\ttfamily void Avatar\+Walking\+Controller.\+stop\+Animate\+Legs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_walking_controller_a65163183197502af0066f7c509603b6a}\label{class_avatar_walking_controller_a65163183197502af0066f7c509603b6a}} 
+\index{AvatarWalkingController@{AvatarWalkingController}!stopAnimateLegsAction@{stopAnimateLegsAction}}
+\index{stopAnimateLegsAction@{stopAnimateLegsAction}!AvatarWalkingController@{AvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{stopAnimateLegsAction()}{stopAnimateLegsAction()}}
+{\footnotesize\ttfamily void Avatar\+Walking\+Controller.\+stop\+Animate\+Legs\+Action (\begin{DoxyParamCaption}\item[{Input\+Action\+::\+Callback\+Context}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_walking_controller_ab1098c7cc4561ed885eaceeb271c2797}\label{class_avatar_walking_controller_ab1098c7cc4561ed885eaceeb271c2797}} 
+\index{AvatarWalkingController@{AvatarWalkingController}!Update@{Update}}
+\index{Update@{Update}!AvatarWalkingController@{AvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Avatar\+Walking\+Controller.\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_avatar_walking_controller_aaa326b0600d87b5914b74d2325d60b83}\label{class_avatar_walking_controller_aaa326b0600d87b5914b74d2325d60b83}} 
+\index{AvatarWalkingController@{AvatarWalkingController}!animator@{animator}}
+\index{animator@{animator}!AvatarWalkingController@{AvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{animator}{animator}}
+{\footnotesize\ttfamily Animator Avatar\+Walking\+Controller.\+animator\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_walking_controller_afdc74120677a80c1fc795dc5699bb936}\label{class_avatar_walking_controller_afdc74120677a80c1fc795dc5699bb936}} 
+\index{AvatarWalkingController@{AvatarWalkingController}!cameraTransform@{cameraTransform}}
+\index{cameraTransform@{cameraTransform}!AvatarWalkingController@{AvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{cameraTransform}{cameraTransform}}
+{\footnotesize\ttfamily Transform Avatar\+Walking\+Controller.\+camera\+Transform\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_walking_controller_abc6d0466f1717e72b4790591930b880f}\label{class_avatar_walking_controller_abc6d0466f1717e72b4790591930b880f}} 
+\index{AvatarWalkingController@{AvatarWalkingController}!headMove@{headMove}}
+\index{headMove@{headMove}!AvatarWalkingController@{AvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{headMove}{headMove}}
+{\footnotesize\ttfamily Input\+Action\+Reference Avatar\+Walking\+Controller.\+head\+Move\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_walking_controller_a5b67c7fa0d2d9e81989409caf20ca207}\label{class_avatar_walking_controller_a5b67c7fa0d2d9e81989409caf20ca207}} 
+\index{AvatarWalkingController@{AvatarWalkingController}!headMoveDuration@{headMoveDuration}}
+\index{headMoveDuration@{headMoveDuration}!AvatarWalkingController@{AvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{headMoveDuration}{headMoveDuration}}
+{\footnotesize\ttfamily float Avatar\+Walking\+Controller.\+head\+Move\+Duration = 0.\+7f\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_walking_controller_a4bb1ae9afece163359de24d97cb0d36b}\label{class_avatar_walking_controller_a4bb1ae9afece163359de24d97cb0d36b}} 
+\index{AvatarWalkingController@{AvatarWalkingController}!headMoveTreshold@{headMoveTreshold}}
+\index{headMoveTreshold@{headMoveTreshold}!AvatarWalkingController@{AvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{headMoveTreshold}{headMoveTreshold}}
+{\footnotesize\ttfamily float Avatar\+Walking\+Controller.\+head\+Move\+Treshold = 0.\+12f\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_walking_controller_ae9dcf1a0e38094584b1e496454f2920c}\label{class_avatar_walking_controller_ae9dcf1a0e38094584b1e496454f2920c}} 
+\index{AvatarWalkingController@{AvatarWalkingController}!isAnimatingHead@{isAnimatingHead}}
+\index{isAnimatingHead@{isAnimatingHead}!AvatarWalkingController@{AvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{isAnimatingHead}{isAnimatingHead}}
+{\footnotesize\ttfamily bool Avatar\+Walking\+Controller.\+is\+Animating\+Head = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_walking_controller_a43af03faf73185121e1d1c34b1e26d36}\label{class_avatar_walking_controller_a43af03faf73185121e1d1c34b1e26d36}} 
+\index{AvatarWalkingController@{AvatarWalkingController}!isAnimatingLegs@{isAnimatingLegs}}
+\index{isAnimatingLegs@{isAnimatingLegs}!AvatarWalkingController@{AvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{isAnimatingLegs}{isAnimatingLegs}}
+{\footnotesize\ttfamily bool Avatar\+Walking\+Controller.\+is\+Animating\+Legs = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_walking_controller_a078321288fdeb5b557cd1cd7846eb871}\label{class_avatar_walking_controller_a078321288fdeb5b557cd1cd7846eb871}} 
+\index{AvatarWalkingController@{AvatarWalkingController}!lastHeadMovementTime@{lastHeadMovementTime}}
+\index{lastHeadMovementTime@{lastHeadMovementTime}!AvatarWalkingController@{AvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{lastHeadMovementTime}{lastHeadMovementTime}}
+{\footnotesize\ttfamily float Avatar\+Walking\+Controller.\+last\+Head\+Movement\+Time\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_walking_controller_abf3030733c669e72cbf3c976689870a5}\label{class_avatar_walking_controller_abf3030733c669e72cbf3c976689870a5}} 
+\index{AvatarWalkingController@{AvatarWalkingController}!lastHeadPosition@{lastHeadPosition}}
+\index{lastHeadPosition@{lastHeadPosition}!AvatarWalkingController@{AvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{lastHeadPosition}{lastHeadPosition}}
+{\footnotesize\ttfamily Vector3 Avatar\+Walking\+Controller.\+last\+Head\+Position = Vector3.\+zero\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_walking_controller_ace7e69ddab532239f6bbea65b7b00235}\label{class_avatar_walking_controller_ace7e69ddab532239f6bbea65b7b00235}} 
+\index{AvatarWalkingController@{AvatarWalkingController}!move@{move}}
+\index{move@{move}!AvatarWalkingController@{AvatarWalkingController}}
+\doxysubsubsection{\texorpdfstring{move}{move}}
+{\footnotesize\ttfamily Input\+Action\+Reference Avatar\+Walking\+Controller.\+move\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Unity/\+Unity\+Projects/\+Masters\+Thesis/\+Assets/\+\_\+\+Neuro\+Rehab/\+Scripts/\+Avatar/\mbox{\hyperlink{_avatar_walking_controller_8cs}{Avatar\+Walking\+Controller.\+cs}}\end{DoxyCompactItemize}

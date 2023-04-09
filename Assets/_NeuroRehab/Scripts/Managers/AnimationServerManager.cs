@@ -4,6 +4,7 @@ using Mirror;
 using ShadowGroveGames.SimpleHttpAndRestServer.Scripts;
 using System.Collections;
 using Enums;
+using NeuroRehab.Mappings;
 
 public class AnimationServerManager : NetworkBehaviour {
 
@@ -49,7 +50,7 @@ public class AnimationServerManager : NetworkBehaviour {
 		isAnimationTriggered = false;
 
 		Debug.Log("Listening to animation events - Canceled");
-		yield return new WaitForSecondsRealtime(2.5f);
+		yield return new WaitForSecondsRealtime(1f);
 		RpcStopTraining("Training cancelled - no activity from patient", MessageType.WARNING);
 	}
 
@@ -65,7 +66,7 @@ public class AnimationServerManager : NetworkBehaviour {
 			Debug.Log("Seconds since last animation step: " + (currentTime - lastAnimationTrigger).TotalSeconds);
 			if ((currentTime - lastAnimationTrigger).TotalSeconds <= animSettingsManager.waitDuration) {
 				Debug.Log("Starting arm animation");
-				RpcStartActualAnimation(false, currentRepetitions + "/" + animSettingsManager.repetitions);
+				RpcStartActualAnimation(false, (currentRepetitions + 1) + "/" + animSettingsManager.repetitions);
 				isAnimationTriggered = true;
 
 				if (trainingCoroutine != null) {
@@ -114,16 +115,8 @@ public class AnimationServerManager : NetworkBehaviour {
 	/// <returns>Whether we succesfully started listening to new moves</returns>
 	[Server]
 	public bool startTraining() {
-		if (CharacterManager.activePatientInstance == null) {
-			MessageManager.Instance.RpcInformClients("No patient present! Can't start training.", MessageType.WARNING);
+		if (!canTrainingStart()) {
 			return false;
-		}
-		if (isTrainingRunning) {
-			DateTime currentTime = DateTime.Now;
-			if ((currentTime - lastAnimationTrigger).TotalSeconds <= animSettingsManager.waitDuration) {
-				MessageManager.Instance.RpcInformClients("Training already started! Can't start new training.", MessageType.WARNING);
-				return false;
-			}
 		}
 
 		Debug.Log("Listening to animation events - STARTED");
@@ -141,6 +134,36 @@ public class AnimationServerManager : NetworkBehaviour {
 		return true;
 	}
 
+	[Server]
+	private bool canTrainingStart() {
+		if (CharacterManager.activePatientInstance == null) {
+			MessageManager.Instance.RpcInformClients("No patient present! Can't start training.", MessageType.WARNING);
+			return false;
+		}
+		if (isTrainingRunning) {
+			DateTime currentTime = DateTime.Now;
+			if ((currentTime - lastAnimationTrigger).TotalSeconds <= animSettingsManager.waitDuration) {
+				MessageManager.Instance.RpcInformClients("Training already started! Can't start new training.", MessageType.WARNING);
+				return false;
+			}
+		}
+
+		SyncList<PosRotMapping> currentAnimationSetup = animSettingsManager.getCurrentAnimationSetup();
+		if (currentAnimationSetup.Count < 1) {
+			string errorMessage = "Too few animation positions set: '" + currentAnimationSetup.Count + "'!";
+			Debug.LogError(errorMessage);
+			MessageManager.Instance.RpcInformClients(errorMessage, MessageType.WARNING);
+			return false;
+		}
+		if (animSettingsManager.animType == AnimationType.Key && currentAnimationSetup.Count != 2) {
+			string errorMessage = "'Key' animation requires '2' positions set!";
+			Debug.LogError(errorMessage);
+			MessageManager.Instance.RpcInformClients(errorMessage, MessageType.WARNING);
+			return false;
+		}
+		return true;
+	}
+
 	/// <summary>
 	/// Stops animation listening and ends all animations
 	/// </summary>
@@ -153,8 +176,17 @@ public class AnimationServerManager : NetworkBehaviour {
 		isTrainingRunning = false;
 		currentRepetitions = 0;
 
-		// RpcStopActualAnimation();
 		RpcStopTraining();
+	}
+
+	[Server]
+	public void cancelTrainingOnServer() {
+		if (!isTrainingRunning) {
+			return;
+		}
+		Debug.Log("Listening to animation events - CANCELED");
+		isTrainingRunning = false;
+		currentRepetitions = 0;
 	}
 
 	[ClientRpc]
@@ -163,10 +195,14 @@ public class AnimationServerManager : NetworkBehaviour {
 		if (CharacterManager.activePatientInstance == null) {
 			return;
 		}
-		bool result = CharacterManager.activePatientInstance.activeArmAnimationController.startAnimation(isShowcase);
+		bool animationResult = CharacterManager.activePatientInstance.activeArmAnimationController.startAnimation(isShowcase);
 
-		if (!result) {
+		if (!isShowcase && !animationResult) {
 			clientStopTraining();
+
+			if (SettingsManager.Instance.roleSettings.characterRole == UserRole.Patient) {
+				NetworkCharacterManager.localNetworkClientInstance.CmdCancelTraining();
+			}
 		}
 
 		NetworkCharacterManager.localNetworkClientInstance.pauseCountdown(extraText);
@@ -197,7 +233,7 @@ public class AnimationServerManager : NetworkBehaviour {
 
 	[ClientRpc]
 	public void RpcStopTraining(string message, MessageType messageType) {
-		clientStopTraining("Training stopped.", messageType);
+		clientStopTraining(message, messageType);
 	}
 
 	[ClientRpc]

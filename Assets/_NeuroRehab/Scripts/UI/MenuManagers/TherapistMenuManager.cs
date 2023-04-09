@@ -10,11 +10,11 @@ public class TherapistMenuManager : MonoBehaviour {
 	}
 
 	public void playAnimationHandler() {
-		NetworkCharacterManager.localNetworkClientInstance.CmdStartAnimation();
+		NetworkCharacterManager.localNetworkClientInstance.CmdStartTraining();
 	}
 
 	public void stopAnimationHandler() {
-		NetworkCharacterManager.localNetworkClientInstance.CmdStopAnimation();
+		NetworkCharacterManager.localNetworkClientInstance.CmdStopTraining();
 	}
 
 	public void setArmRestHandler() {

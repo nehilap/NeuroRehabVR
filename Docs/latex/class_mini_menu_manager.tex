@@ -1,0 +1,220 @@
+\hypertarget{class_mini_menu_manager}{}\doxysection{Mini\+Menu\+Manager Class Reference}
+\label{class_mini_menu_manager}\index{MiniMenuManager@{MiniMenuManager}}
+Inheritance diagram for Mini\+Menu\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_mini_menu_manager}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_mini_menu_manager_a5b789e91576c6449d4f65867fbb48fe4}{is\+Menu\+Showing}} = false
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_mini_menu_manager_ac72153eba0d6b5944fea2008fbe71a11}{Awake}} ()
+\item 
+void \mbox{\hyperlink{class_mini_menu_manager_a38e321aeefb5d1d097eed63067ed6e4a}{Start}} ()
+\item 
+void \mbox{\hyperlink{class_mini_menu_manager_a0db8ee6cd9a86f87a3707ea4204c0857}{init\+Menu}} ()
+\item 
+void \mbox{\hyperlink{class_mini_menu_manager_ab9f8900bb995badfdbfa0352c0050be3}{On\+Enable}} ()
+\item 
+void \mbox{\hyperlink{class_mini_menu_manager_a9d3760ecfc422f2360337c28d3ae473e}{On\+Disable}} ()
+\item 
+void \mbox{\hyperlink{class_mini_menu_manager_a39a0742e06a36e47f5e06f0938ef10db}{trigger\+Menu}} (Input\+Action.\+Callback\+Context obj)
+\item 
+void \mbox{\hyperlink{class_mini_menu_manager_a37e275140077ed528fe9c826b0e61b45}{reset\+Menu}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Input\+Action\+Reference \mbox{\hyperlink{class_mini_menu_manager_a2a1de10a13b8242ffd5924e96fe95295}{menu\+Action}}
+\item 
+bool \mbox{\hyperlink{class_mini_menu_manager_a962c67156a908ddb1fb2f01b8d465a84}{lock\+Cursor}}
+\item 
+bool \mbox{\hyperlink{class_mini_menu_manager_a3d05be16d480ced2e91e7edc210ca580}{is\+Sticky\+Parent}} = true
+\item 
+Transform \mbox{\hyperlink{class_mini_menu_manager_a3c8e3b143fba818301e55ed245b44a77}{menu\+Holder}}
+\item 
+Game\+Object \mbox{\hyperlink{class_mini_menu_manager_a8a32eefcbeee90fa357faeba8db9fb48}{menu\+To\+Show}}
+\item 
+string \mbox{\hyperlink{class_mini_menu_manager_a96874fe6313d6ba2841ae21cabf08c09}{menu\+Name\+To\+Show}}
+\item 
+Vector3 \mbox{\hyperlink{class_mini_menu_manager_a28fb074763713457016bfe9bb6808e26}{position\+Offset}}
+\item 
+Vector3 \mbox{\hyperlink{class_mini_menu_manager_af6881319a46dec2bc0c3cffecce8128d}{scale}}
+\item 
+bool \mbox{\hyperlink{class_mini_menu_manager_aa3d106843a29933dbfd72924738de10b}{offset\+By\+Width}}
+\item 
+bool \mbox{\hyperlink{class_mini_menu_manager_a2ee5103f267c509007d60c3022dcfa60}{offset\+By\+Height}}
+\item 
+\mbox{\hyperlink{class_mini_menu_visibility_manager}{Mini\+Menu\+Visibility\+Manager}} \mbox{\hyperlink{class_mini_menu_manager_a2eefdc7245b937a2f03661120d3eb976}{mini\+Menu\+Visibility\+Manager}}
+\item 
+Game\+Object \mbox{\hyperlink{class_mini_menu_manager_a60edabefbdab4d746e8748f632497003}{reticle}}
+\item 
+Vector3 \mbox{\hyperlink{class_mini_menu_manager_a81edd19c0806fbc1f070e0834705f9e9}{original\+Menu\+Position}}
+\item 
+Vector3 \mbox{\hyperlink{class_mini_menu_manager_a911aea0ac710b66748c35d6bc9c01b6d}{original\+Menu\+Scale}}
+\item 
+Transform \mbox{\hyperlink{class_mini_menu_manager_a2b2a9f63fd6ef31c22905d47b517a52d}{original\+Menu\+Parent}}
+\item 
+bool \mbox{\hyperlink{class_mini_menu_manager_a274d4527444eeee84b9e5e98b1e4ae0d}{menu\+Initialized}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_mini_menu_manager_ac72153eba0d6b5944fea2008fbe71a11}\label{class_mini_menu_manager_ac72153eba0d6b5944fea2008fbe71a11}} 
+\index{MiniMenuManager@{MiniMenuManager}!Awake@{Awake}}
+\index{Awake@{Awake}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void Mini\+Menu\+Manager.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mini_menu_manager_a0db8ee6cd9a86f87a3707ea4204c0857}\label{class_mini_menu_manager_a0db8ee6cd9a86f87a3707ea4204c0857}} 
+\index{MiniMenuManager@{MiniMenuManager}!initMenu@{initMenu}}
+\index{initMenu@{initMenu}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{initMenu()}{initMenu()}}
+{\footnotesize\ttfamily void Mini\+Menu\+Manager.\+init\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mini_menu_manager_a9d3760ecfc422f2360337c28d3ae473e}\label{class_mini_menu_manager_a9d3760ecfc422f2360337c28d3ae473e}} 
+\index{MiniMenuManager@{MiniMenuManager}!OnDisable@{OnDisable}}
+\index{OnDisable@{OnDisable}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{OnDisable()}{OnDisable()}}
+{\footnotesize\ttfamily void Mini\+Menu\+Manager.\+On\+Disable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mini_menu_manager_ab9f8900bb995badfdbfa0352c0050be3}\label{class_mini_menu_manager_ab9f8900bb995badfdbfa0352c0050be3}} 
+\index{MiniMenuManager@{MiniMenuManager}!OnEnable@{OnEnable}}
+\index{OnEnable@{OnEnable}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{OnEnable()}{OnEnable()}}
+{\footnotesize\ttfamily void Mini\+Menu\+Manager.\+On\+Enable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mini_menu_manager_a37e275140077ed528fe9c826b0e61b45}\label{class_mini_menu_manager_a37e275140077ed528fe9c826b0e61b45}} 
+\index{MiniMenuManager@{MiniMenuManager}!resetMenu@{resetMenu}}
+\index{resetMenu@{resetMenu}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{resetMenu()}{resetMenu()}}
+{\footnotesize\ttfamily void Mini\+Menu\+Manager.\+reset\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mini_menu_manager_a38e321aeefb5d1d097eed63067ed6e4a}\label{class_mini_menu_manager_a38e321aeefb5d1d097eed63067ed6e4a}} 
+\index{MiniMenuManager@{MiniMenuManager}!Start@{Start}}
+\index{Start@{Start}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void Mini\+Menu\+Manager.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mini_menu_manager_a39a0742e06a36e47f5e06f0938ef10db}\label{class_mini_menu_manager_a39a0742e06a36e47f5e06f0938ef10db}} 
+\index{MiniMenuManager@{MiniMenuManager}!triggerMenu@{triggerMenu}}
+\index{triggerMenu@{triggerMenu}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{triggerMenu()}{triggerMenu()}}
+{\footnotesize\ttfamily void Mini\+Menu\+Manager.\+trigger\+Menu (\begin{DoxyParamCaption}\item[{Input\+Action\+::\+Callback\+Context}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_mini_menu_manager_a5b789e91576c6449d4f65867fbb48fe4}\label{class_mini_menu_manager_a5b789e91576c6449d4f65867fbb48fe4}} 
+\index{MiniMenuManager@{MiniMenuManager}!isMenuShowing@{isMenuShowing}}
+\index{isMenuShowing@{isMenuShowing}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{isMenuShowing}{isMenuShowing}}
+{\footnotesize\ttfamily bool Mini\+Menu\+Manager.\+is\+Menu\+Showing = false}
+
+\mbox{\Hypertarget{class_mini_menu_manager_a3d05be16d480ced2e91e7edc210ca580}\label{class_mini_menu_manager_a3d05be16d480ced2e91e7edc210ca580}} 
+\index{MiniMenuManager@{MiniMenuManager}!isStickyParent@{isStickyParent}}
+\index{isStickyParent@{isStickyParent}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{isStickyParent}{isStickyParent}}
+{\footnotesize\ttfamily bool Mini\+Menu\+Manager.\+is\+Sticky\+Parent = true\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mini_menu_manager_a962c67156a908ddb1fb2f01b8d465a84}\label{class_mini_menu_manager_a962c67156a908ddb1fb2f01b8d465a84}} 
+\index{MiniMenuManager@{MiniMenuManager}!lockCursor@{lockCursor}}
+\index{lockCursor@{lockCursor}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{lockCursor}{lockCursor}}
+{\footnotesize\ttfamily bool Mini\+Menu\+Manager.\+lock\+Cursor\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mini_menu_manager_a2a1de10a13b8242ffd5924e96fe95295}\label{class_mini_menu_manager_a2a1de10a13b8242ffd5924e96fe95295}} 
+\index{MiniMenuManager@{MiniMenuManager}!menuAction@{menuAction}}
+\index{menuAction@{menuAction}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{menuAction}{menuAction}}
+{\footnotesize\ttfamily Input\+Action\+Reference Mini\+Menu\+Manager.\+menu\+Action\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mini_menu_manager_a3c8e3b143fba818301e55ed245b44a77}\label{class_mini_menu_manager_a3c8e3b143fba818301e55ed245b44a77}} 
+\index{MiniMenuManager@{MiniMenuManager}!menuHolder@{menuHolder}}
+\index{menuHolder@{menuHolder}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{menuHolder}{menuHolder}}
+{\footnotesize\ttfamily Transform Mini\+Menu\+Manager.\+menu\+Holder\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mini_menu_manager_a274d4527444eeee84b9e5e98b1e4ae0d}\label{class_mini_menu_manager_a274d4527444eeee84b9e5e98b1e4ae0d}} 
+\index{MiniMenuManager@{MiniMenuManager}!menuInitialized@{menuInitialized}}
+\index{menuInitialized@{menuInitialized}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{menuInitialized}{menuInitialized}}
+{\footnotesize\ttfamily bool Mini\+Menu\+Manager.\+menu\+Initialized = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mini_menu_manager_a96874fe6313d6ba2841ae21cabf08c09}\label{class_mini_menu_manager_a96874fe6313d6ba2841ae21cabf08c09}} 
+\index{MiniMenuManager@{MiniMenuManager}!menuNameToShow@{menuNameToShow}}
+\index{menuNameToShow@{menuNameToShow}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{menuNameToShow}{menuNameToShow}}
+{\footnotesize\ttfamily string Mini\+Menu\+Manager.\+menu\+Name\+To\+Show\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mini_menu_manager_a8a32eefcbeee90fa357faeba8db9fb48}\label{class_mini_menu_manager_a8a32eefcbeee90fa357faeba8db9fb48}} 
+\index{MiniMenuManager@{MiniMenuManager}!menuToShow@{menuToShow}}
+\index{menuToShow@{menuToShow}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{menuToShow}{menuToShow}}
+{\footnotesize\ttfamily Game\+Object Mini\+Menu\+Manager.\+menu\+To\+Show\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mini_menu_manager_a2eefdc7245b937a2f03661120d3eb976}\label{class_mini_menu_manager_a2eefdc7245b937a2f03661120d3eb976}} 
+\index{MiniMenuManager@{MiniMenuManager}!miniMenuVisibilityManager@{miniMenuVisibilityManager}}
+\index{miniMenuVisibilityManager@{miniMenuVisibilityManager}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{miniMenuVisibilityManager}{miniMenuVisibilityManager}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_mini_menu_visibility_manager}{Mini\+Menu\+Visibility\+Manager}} Mini\+Menu\+Manager.\+mini\+Menu\+Visibility\+Manager\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mini_menu_manager_a2ee5103f267c509007d60c3022dcfa60}\label{class_mini_menu_manager_a2ee5103f267c509007d60c3022dcfa60}} 
+\index{MiniMenuManager@{MiniMenuManager}!offsetByHeight@{offsetByHeight}}
+\index{offsetByHeight@{offsetByHeight}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{offsetByHeight}{offsetByHeight}}
+{\footnotesize\ttfamily bool Mini\+Menu\+Manager.\+offset\+By\+Height\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mini_menu_manager_aa3d106843a29933dbfd72924738de10b}\label{class_mini_menu_manager_aa3d106843a29933dbfd72924738de10b}} 
+\index{MiniMenuManager@{MiniMenuManager}!offsetByWidth@{offsetByWidth}}
+\index{offsetByWidth@{offsetByWidth}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{offsetByWidth}{offsetByWidth}}
+{\footnotesize\ttfamily bool Mini\+Menu\+Manager.\+offset\+By\+Width\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mini_menu_manager_a2b2a9f63fd6ef31c22905d47b517a52d}\label{class_mini_menu_manager_a2b2a9f63fd6ef31c22905d47b517a52d}} 
+\index{MiniMenuManager@{MiniMenuManager}!originalMenuParent@{originalMenuParent}}
+\index{originalMenuParent@{originalMenuParent}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{originalMenuParent}{originalMenuParent}}
+{\footnotesize\ttfamily Transform Mini\+Menu\+Manager.\+original\+Menu\+Parent\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mini_menu_manager_a81edd19c0806fbc1f070e0834705f9e9}\label{class_mini_menu_manager_a81edd19c0806fbc1f070e0834705f9e9}} 
+\index{MiniMenuManager@{MiniMenuManager}!originalMenuPosition@{originalMenuPosition}}
+\index{originalMenuPosition@{originalMenuPosition}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{originalMenuPosition}{originalMenuPosition}}
+{\footnotesize\ttfamily Vector3 Mini\+Menu\+Manager.\+original\+Menu\+Position\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mini_menu_manager_a911aea0ac710b66748c35d6bc9c01b6d}\label{class_mini_menu_manager_a911aea0ac710b66748c35d6bc9c01b6d}} 
+\index{MiniMenuManager@{MiniMenuManager}!originalMenuScale@{originalMenuScale}}
+\index{originalMenuScale@{originalMenuScale}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{originalMenuScale}{originalMenuScale}}
+{\footnotesize\ttfamily Vector3 Mini\+Menu\+Manager.\+original\+Menu\+Scale\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mini_menu_manager_a28fb074763713457016bfe9bb6808e26}\label{class_mini_menu_manager_a28fb074763713457016bfe9bb6808e26}} 
+\index{MiniMenuManager@{MiniMenuManager}!positionOffset@{positionOffset}}
+\index{positionOffset@{positionOffset}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{positionOffset}{positionOffset}}
+{\footnotesize\ttfamily Vector3 Mini\+Menu\+Manager.\+position\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mini_menu_manager_a60edabefbdab4d746e8748f632497003}\label{class_mini_menu_manager_a60edabefbdab4d746e8748f632497003}} 
+\index{MiniMenuManager@{MiniMenuManager}!reticle@{reticle}}
+\index{reticle@{reticle}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{reticle}{reticle}}
+{\footnotesize\ttfamily Game\+Object Mini\+Menu\+Manager.\+reticle\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mini_menu_manager_af6881319a46dec2bc0c3cffecce8128d}\label{class_mini_menu_manager_af6881319a46dec2bc0c3cffecce8128d}} 
+\index{MiniMenuManager@{MiniMenuManager}!scale@{scale}}
+\index{scale@{scale}!MiniMenuManager@{MiniMenuManager}}
+\doxysubsubsection{\texorpdfstring{scale}{scale}}
+{\footnotesize\ttfamily Vector3 Mini\+Menu\+Manager.\+scale\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Unity/\+Unity\+Projects/\+Masters\+Thesis/\+Assets/\+\_\+\+Neuro\+Rehab/\+Scripts/\+UI/\+Menu\+Managers/\+Mini\+Menu/\mbox{\hyperlink{_mini_menu_manager_8cs}{Mini\+Menu\+Manager.\+cs}}\end{DoxyCompactItemize}

@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 3896386012531891369}
   - component: {fileID: 4193366303458920431}
   m_Layer: 0
-  m_Name: Image
+  m_Name: Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -224,8 +224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a488aaa16f707479c065ca1ca3c37d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_color1: {r: 1, g: 0.26475945, b: 0, a: 1}
-  m_color2: {r: 0, g: 1, b: 0.07667947, a: 1}
+  m_color1: {r: 0, g: 0.1876803, b: 0.5377358, a: 1}
+  m_color2: {r: 0, g: 0.6139302, b: 1, a: 1}
   m_angle: -90
   m_ignoreRatio: 1
 --- !u!1 &3896386013406978956
@@ -548,7 +548,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ce268afecfceadd439c10b19cb6cd51a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 039a2d4d6839a4f49a1223b58ec09488, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -557,7 +557,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 20
+  m_PixelsPerUnitMultiplier: 120
 --- !u!114 &4995002684745936123
 MonoBehaviour:
   m_ObjectHideFlags: 0

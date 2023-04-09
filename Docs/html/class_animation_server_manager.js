@@ -1,0 +1,27 @@
+var class_animation_server_manager =
+[
+    [ "cancelTrainingOnServer", "class_animation_server_manager.html#acbc5e0dc40d460f9209b07374c89f2ba", null ],
+    [ "canTrainingStart", "class_animation_server_manager.html#a9fa1eda4486d2dd68538bc94b7111563", null ],
+    [ "clientStopTraining", "class_animation_server_manager.html#ae281562d1606dd0fb522e40109f7b2c3", null ],
+    [ "clientStopTraining", "class_animation_server_manager.html#a201b472fa5ed36426dd68aeb7edf8087", null ],
+    [ "moveArm", "class_animation_server_manager.html#aebb4f105234cbeff27f7bb325359dc54", null ],
+    [ "progressAnimationStep", "class_animation_server_manager.html#a3c024a7caafe2025c3015de247123da2", null ],
+    [ "RpcStartActualAnimation", "class_animation_server_manager.html#a4c7e9db80c3bae8c2eddc9fe577443e4", null ],
+    [ "RpcStartCountdown", "class_animation_server_manager.html#a022338e0433e3bdc2b7ca7366e3853fd", null ],
+    [ "RpcStartTraining", "class_animation_server_manager.html#a529635ea18cfb16590b08fed7574f19c", null ],
+    [ "RpcStopActualAnimation", "class_animation_server_manager.html#a7d4c9aaf8cf51f70ca69825517bec419", null ],
+    [ "RpcStopTraining", "class_animation_server_manager.html#a155b4d7d30d3ddd9cd2b9f02ce4116b6", null ],
+    [ "RpcStopTraining", "class_animation_server_manager.html#a63050029d7ca2d15a68291d5e5262a99", null ],
+    [ "Start", "class_animation_server_manager.html#a39d75f5d385ac98bc96a77fe527f65a6", null ],
+    [ "startTraining", "class_animation_server_manager.html#af690256c779a05e53c99c52b8940d277", null ],
+    [ "stopTraining", "class_animation_server_manager.html#a5d959046bcf4f865cc3c77c349a38a85", null ],
+    [ "waitDurationCoroutine", "class_animation_server_manager.html#a7f5e5f1bc6f3f301ec1318cb49a5b596", null ],
+    [ "_instance", "class_animation_server_manager.html#a0d24c690b4b3f0c8945c81f69239b81a", null ],
+    [ "animSettingsManager", "class_animation_server_manager.html#a19021bd3fc5833ee881143125c3ee084", null ],
+    [ "currentRepetitions", "class_animation_server_manager.html#ac6e202a7ed4fee1d64670accd0a90815", null ],
+    [ "isAnimationTriggered", "class_animation_server_manager.html#a4a0e454c18762e630efc9efeaf03cee0", null ],
+    [ "isTrainingRunning", "class_animation_server_manager.html#a955ba6b128ff2a72e2b84150be1d8946", null ],
+    [ "lastAnimationTrigger", "class_animation_server_manager.html#a9949f5dbb1bc55fcc5ea190595e8057a", null ],
+    [ "trainingCoroutine", "class_animation_server_manager.html#a77c2695fe13b42c982c54828bd429d81", null ],
+    [ "Instance", "class_animation_server_manager.html#a2528fe4986d791ea4c23af8a2f03b8c9", null ]
+];

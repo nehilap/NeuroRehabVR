@@ -1,0 +1,215 @@
+\hypertarget{class_avatar_lower_body_animation_controller}{}\doxysection{Avatar\+Lower\+Body\+Animation\+Controller Class Reference}
+\label{class_avatar_lower_body_animation_controller}\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+Inheritance diagram for Avatar\+Lower\+Body\+Animation\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_avatar_lower_body_animation_controller}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_avatar_lower_body_animation_controller_aa3a31dacaeb1ed143a4b907367e22240}{reset\+Height}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_avatar_lower_body_animation_controller_a2c3c8ba184ac8fc6b47d2723118f4ae9}{offset\+Distance}}
+\item 
+bool \mbox{\hyperlink{class_avatar_lower_body_animation_controller_a5b9a2753ad30baaf7c7a4bc23f5e2a40}{offset\+Preset}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_avatar_lower_body_animation_controller_a9f08a3a8b8534fb6558f7cbbb81476fd}{On\+Enable}} ()
+\item 
+void \mbox{\hyperlink{class_avatar_lower_body_animation_controller_a41c7f744353ea3f804ab45c525347876}{reset\+Values}} ()
+\item 
+void \mbox{\hyperlink{class_avatar_lower_body_animation_controller_abc4a6241a08266d270f99005a7a86f55}{On\+Animator\+IK}} (int layer\+Index)
+\item 
+void \mbox{\hyperlink{class_avatar_lower_body_animation_controller_a3a5f89424e691464fcb29c122a4a4e64}{calculate\+Foot}} (bool is\+Foot\+Down, Raycast\+Hit foot\+Hit, Avatar\+IKGoal goal, float foot\+Position\+Weight, float foot\+Rotation\+Weight)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Animator \mbox{\hyperlink{class_avatar_lower_body_animation_controller_a2b57ff61bb87780fd440f8f6ba3d63d8}{animator}}
+\item 
+float \mbox{\hyperlink{class_avatar_lower_body_animation_controller_af4519ad5cc5f0bbc9948eba60d43e78a}{left\+Foot\+Position\+Weight}}
+\item 
+float \mbox{\hyperlink{class_avatar_lower_body_animation_controller_a0a5914693cc1d9791dd7adad871d9a42}{right\+Foot\+Position\+Weight}}
+\item 
+float \mbox{\hyperlink{class_avatar_lower_body_animation_controller_a96de7bd1df44e143fa9be1018e1fd420}{left\+Foot\+Rotation\+Weight}}
+\item 
+float \mbox{\hyperlink{class_avatar_lower_body_animation_controller_a36c941469e6e4852defb309f657b1bee}{right\+Foot\+Rotation\+Weight}}
+\item 
+Vector3 \mbox{\hyperlink{class_avatar_lower_body_animation_controller_a55e0e1c51e482c0fc371be8d3d1d0474}{foot\+Offset}}
+\item 
+Vector3 \mbox{\hyperlink{class_avatar_lower_body_animation_controller_a5deca0eed082e56ad328a6038dc82f75}{internal\+Foot\+Offset}}
+\item 
+Vector3 \mbox{\hyperlink{class_avatar_lower_body_animation_controller_abff61b54a9e856e0ce7d2f5f31b23910}{raycast\+Left\+Offset}}
+\item 
+Vector3 \mbox{\hyperlink{class_avatar_lower_body_animation_controller_a276516ea76e95163477a207182df8744}{internal\+Raycast\+Left\+Offset}}
+\item 
+Vector3 \mbox{\hyperlink{class_avatar_lower_body_animation_controller_a81a157f0ba3c55dc99fbd5f47c14a263}{raycast\+Right\+Offset}}
+\item 
+Vector3 \mbox{\hyperlink{class_avatar_lower_body_animation_controller_a4b74fe102aa1dcc50800bb7365409f93}{internal\+Raycast\+Right\+Offset}}
+\item 
+Layer\+Mask \mbox{\hyperlink{class_avatar_lower_body_animation_controller_a2d3f230ba743952ebcbd3cfb884fce3e}{ground\+Layer}}
+\item 
+Transform \mbox{\hyperlink{class_avatar_lower_body_animation_controller_aa5f5f2334866b5d970978f2757eb2f2b}{offset\+Transform}}
+\item 
+\mbox{\hyperlink{class_avatar_controller}{Avatar\+Controller}} \mbox{\hyperlink{class_avatar_lower_body_animation_controller_a356470f81df306990dffd0992cdf1d0e}{avatar\+Controller}}
+\item 
+float \mbox{\hyperlink{class_avatar_lower_body_animation_controller_ab735b37eb431ed6cc52f1e00f1ecf074}{ground\+Offset}}
+\item 
+readonly float \mbox{\hyperlink{class_avatar_lower_body_animation_controller_a293321c583487efd12ff7fbffc685703}{ground\+Offset\+Const}} = 0.\+15f
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_avatar_lower_body_animation_controller_a3a5f89424e691464fcb29c122a4a4e64}\label{class_avatar_lower_body_animation_controller_a3a5f89424e691464fcb29c122a4a4e64}} 
+\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}!calculateFoot@{calculateFoot}}
+\index{calculateFoot@{calculateFoot}!AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+\doxysubsubsection{\texorpdfstring{calculateFoot()}{calculateFoot()}}
+{\footnotesize\ttfamily void Avatar\+Lower\+Body\+Animation\+Controller.\+calculate\+Foot (\begin{DoxyParamCaption}\item[{bool}]{is\+Foot\+Down,  }\item[{Raycast\+Hit}]{foot\+Hit,  }\item[{Avatar\+IKGoal}]{goal,  }\item[{float}]{foot\+Position\+Weight,  }\item[{float}]{foot\+Rotation\+Weight }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_lower_body_animation_controller_abc4a6241a08266d270f99005a7a86f55}\label{class_avatar_lower_body_animation_controller_abc4a6241a08266d270f99005a7a86f55}} 
+\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}!OnAnimatorIK@{OnAnimatorIK}}
+\index{OnAnimatorIK@{OnAnimatorIK}!AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+\doxysubsubsection{\texorpdfstring{OnAnimatorIK()}{OnAnimatorIK()}}
+{\footnotesize\ttfamily void Avatar\+Lower\+Body\+Animation\+Controller.\+On\+Animator\+IK (\begin{DoxyParamCaption}\item[{int}]{layer\+Index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_lower_body_animation_controller_a9f08a3a8b8534fb6558f7cbbb81476fd}\label{class_avatar_lower_body_animation_controller_a9f08a3a8b8534fb6558f7cbbb81476fd}} 
+\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}!OnEnable@{OnEnable}}
+\index{OnEnable@{OnEnable}!AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+\doxysubsubsection{\texorpdfstring{OnEnable()}{OnEnable()}}
+{\footnotesize\ttfamily void Avatar\+Lower\+Body\+Animation\+Controller.\+On\+Enable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_lower_body_animation_controller_aa3a31dacaeb1ed143a4b907367e22240}\label{class_avatar_lower_body_animation_controller_aa3a31dacaeb1ed143a4b907367e22240}} 
+\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}!resetHeight@{resetHeight}}
+\index{resetHeight@{resetHeight}!AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+\doxysubsubsection{\texorpdfstring{resetHeight()}{resetHeight()}}
+{\footnotesize\ttfamily void Avatar\+Lower\+Body\+Animation\+Controller.\+reset\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_avatar_lower_body_animation_controller_a41c7f744353ea3f804ab45c525347876}\label{class_avatar_lower_body_animation_controller_a41c7f744353ea3f804ab45c525347876}} 
+\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}!resetValues@{resetValues}}
+\index{resetValues@{resetValues}!AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+\doxysubsubsection{\texorpdfstring{resetValues()}{resetValues()}}
+{\footnotesize\ttfamily void Avatar\+Lower\+Body\+Animation\+Controller.\+reset\+Values (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_avatar_lower_body_animation_controller_a2b57ff61bb87780fd440f8f6ba3d63d8}\label{class_avatar_lower_body_animation_controller_a2b57ff61bb87780fd440f8f6ba3d63d8}} 
+\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}!animator@{animator}}
+\index{animator@{animator}!AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+\doxysubsubsection{\texorpdfstring{animator}{animator}}
+{\footnotesize\ttfamily Animator Avatar\+Lower\+Body\+Animation\+Controller.\+animator\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_lower_body_animation_controller_a356470f81df306990dffd0992cdf1d0e}\label{class_avatar_lower_body_animation_controller_a356470f81df306990dffd0992cdf1d0e}} 
+\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}!avatarController@{avatarController}}
+\index{avatarController@{avatarController}!AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+\doxysubsubsection{\texorpdfstring{avatarController}{avatarController}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_avatar_controller}{Avatar\+Controller}} Avatar\+Lower\+Body\+Animation\+Controller.\+avatar\+Controller\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_lower_body_animation_controller_a55e0e1c51e482c0fc371be8d3d1d0474}\label{class_avatar_lower_body_animation_controller_a55e0e1c51e482c0fc371be8d3d1d0474}} 
+\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}!footOffset@{footOffset}}
+\index{footOffset@{footOffset}!AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+\doxysubsubsection{\texorpdfstring{footOffset}{footOffset}}
+{\footnotesize\ttfamily Vector3 Avatar\+Lower\+Body\+Animation\+Controller.\+foot\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_lower_body_animation_controller_a2d3f230ba743952ebcbd3cfb884fce3e}\label{class_avatar_lower_body_animation_controller_a2d3f230ba743952ebcbd3cfb884fce3e}} 
+\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}!groundLayer@{groundLayer}}
+\index{groundLayer@{groundLayer}!AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+\doxysubsubsection{\texorpdfstring{groundLayer}{groundLayer}}
+{\footnotesize\ttfamily Layer\+Mask Avatar\+Lower\+Body\+Animation\+Controller.\+ground\+Layer\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_lower_body_animation_controller_ab735b37eb431ed6cc52f1e00f1ecf074}\label{class_avatar_lower_body_animation_controller_ab735b37eb431ed6cc52f1e00f1ecf074}} 
+\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}!groundOffset@{groundOffset}}
+\index{groundOffset@{groundOffset}!AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+\doxysubsubsection{\texorpdfstring{groundOffset}{groundOffset}}
+{\footnotesize\ttfamily float Avatar\+Lower\+Body\+Animation\+Controller.\+ground\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_lower_body_animation_controller_a293321c583487efd12ff7fbffc685703}\label{class_avatar_lower_body_animation_controller_a293321c583487efd12ff7fbffc685703}} 
+\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}!groundOffsetConst@{groundOffsetConst}}
+\index{groundOffsetConst@{groundOffsetConst}!AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+\doxysubsubsection{\texorpdfstring{groundOffsetConst}{groundOffsetConst}}
+{\footnotesize\ttfamily readonly float Avatar\+Lower\+Body\+Animation\+Controller.\+ground\+Offset\+Const = 0.\+15f\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_lower_body_animation_controller_a5deca0eed082e56ad328a6038dc82f75}\label{class_avatar_lower_body_animation_controller_a5deca0eed082e56ad328a6038dc82f75}} 
+\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}!internalFootOffset@{internalFootOffset}}
+\index{internalFootOffset@{internalFootOffset}!AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+\doxysubsubsection{\texorpdfstring{internalFootOffset}{internalFootOffset}}
+{\footnotesize\ttfamily Vector3 Avatar\+Lower\+Body\+Animation\+Controller.\+internal\+Foot\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_lower_body_animation_controller_a276516ea76e95163477a207182df8744}\label{class_avatar_lower_body_animation_controller_a276516ea76e95163477a207182df8744}} 
+\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}!internalRaycastLeftOffset@{internalRaycastLeftOffset}}
+\index{internalRaycastLeftOffset@{internalRaycastLeftOffset}!AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+\doxysubsubsection{\texorpdfstring{internalRaycastLeftOffset}{internalRaycastLeftOffset}}
+{\footnotesize\ttfamily Vector3 Avatar\+Lower\+Body\+Animation\+Controller.\+internal\+Raycast\+Left\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_lower_body_animation_controller_a4b74fe102aa1dcc50800bb7365409f93}\label{class_avatar_lower_body_animation_controller_a4b74fe102aa1dcc50800bb7365409f93}} 
+\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}!internalRaycastRightOffset@{internalRaycastRightOffset}}
+\index{internalRaycastRightOffset@{internalRaycastRightOffset}!AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+\doxysubsubsection{\texorpdfstring{internalRaycastRightOffset}{internalRaycastRightOffset}}
+{\footnotesize\ttfamily Vector3 Avatar\+Lower\+Body\+Animation\+Controller.\+internal\+Raycast\+Right\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_lower_body_animation_controller_af4519ad5cc5f0bbc9948eba60d43e78a}\label{class_avatar_lower_body_animation_controller_af4519ad5cc5f0bbc9948eba60d43e78a}} 
+\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}!leftFootPositionWeight@{leftFootPositionWeight}}
+\index{leftFootPositionWeight@{leftFootPositionWeight}!AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+\doxysubsubsection{\texorpdfstring{leftFootPositionWeight}{leftFootPositionWeight}}
+{\footnotesize\ttfamily float Avatar\+Lower\+Body\+Animation\+Controller.\+left\+Foot\+Position\+Weight\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_lower_body_animation_controller_a96de7bd1df44e143fa9be1018e1fd420}\label{class_avatar_lower_body_animation_controller_a96de7bd1df44e143fa9be1018e1fd420}} 
+\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}!leftFootRotationWeight@{leftFootRotationWeight}}
+\index{leftFootRotationWeight@{leftFootRotationWeight}!AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+\doxysubsubsection{\texorpdfstring{leftFootRotationWeight}{leftFootRotationWeight}}
+{\footnotesize\ttfamily float Avatar\+Lower\+Body\+Animation\+Controller.\+left\+Foot\+Rotation\+Weight\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_lower_body_animation_controller_a2c3c8ba184ac8fc6b47d2723118f4ae9}\label{class_avatar_lower_body_animation_controller_a2c3c8ba184ac8fc6b47d2723118f4ae9}} 
+\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}!offsetDistance@{offsetDistance}}
+\index{offsetDistance@{offsetDistance}!AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+\doxysubsubsection{\texorpdfstring{offsetDistance}{offsetDistance}}
+{\footnotesize\ttfamily float Avatar\+Lower\+Body\+Animation\+Controller.\+offset\+Distance}
+
+\mbox{\Hypertarget{class_avatar_lower_body_animation_controller_a5b9a2753ad30baaf7c7a4bc23f5e2a40}\label{class_avatar_lower_body_animation_controller_a5b9a2753ad30baaf7c7a4bc23f5e2a40}} 
+\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}!offsetPreset@{offsetPreset}}
+\index{offsetPreset@{offsetPreset}!AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+\doxysubsubsection{\texorpdfstring{offsetPreset}{offsetPreset}}
+{\footnotesize\ttfamily bool Avatar\+Lower\+Body\+Animation\+Controller.\+offset\+Preset}
+
+\mbox{\Hypertarget{class_avatar_lower_body_animation_controller_aa5f5f2334866b5d970978f2757eb2f2b}\label{class_avatar_lower_body_animation_controller_aa5f5f2334866b5d970978f2757eb2f2b}} 
+\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}!offsetTransform@{offsetTransform}}
+\index{offsetTransform@{offsetTransform}!AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+\doxysubsubsection{\texorpdfstring{offsetTransform}{offsetTransform}}
+{\footnotesize\ttfamily Transform Avatar\+Lower\+Body\+Animation\+Controller.\+offset\+Transform\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_lower_body_animation_controller_abff61b54a9e856e0ce7d2f5f31b23910}\label{class_avatar_lower_body_animation_controller_abff61b54a9e856e0ce7d2f5f31b23910}} 
+\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}!raycastLeftOffset@{raycastLeftOffset}}
+\index{raycastLeftOffset@{raycastLeftOffset}!AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+\doxysubsubsection{\texorpdfstring{raycastLeftOffset}{raycastLeftOffset}}
+{\footnotesize\ttfamily Vector3 Avatar\+Lower\+Body\+Animation\+Controller.\+raycast\+Left\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_lower_body_animation_controller_a81a157f0ba3c55dc99fbd5f47c14a263}\label{class_avatar_lower_body_animation_controller_a81a157f0ba3c55dc99fbd5f47c14a263}} 
+\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}!raycastRightOffset@{raycastRightOffset}}
+\index{raycastRightOffset@{raycastRightOffset}!AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+\doxysubsubsection{\texorpdfstring{raycastRightOffset}{raycastRightOffset}}
+{\footnotesize\ttfamily Vector3 Avatar\+Lower\+Body\+Animation\+Controller.\+raycast\+Right\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_lower_body_animation_controller_a0a5914693cc1d9791dd7adad871d9a42}\label{class_avatar_lower_body_animation_controller_a0a5914693cc1d9791dd7adad871d9a42}} 
+\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}!rightFootPositionWeight@{rightFootPositionWeight}}
+\index{rightFootPositionWeight@{rightFootPositionWeight}!AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+\doxysubsubsection{\texorpdfstring{rightFootPositionWeight}{rightFootPositionWeight}}
+{\footnotesize\ttfamily float Avatar\+Lower\+Body\+Animation\+Controller.\+right\+Foot\+Position\+Weight\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_lower_body_animation_controller_a36c941469e6e4852defb309f657b1bee}\label{class_avatar_lower_body_animation_controller_a36c941469e6e4852defb309f657b1bee}} 
+\index{AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}!rightFootRotationWeight@{rightFootRotationWeight}}
+\index{rightFootRotationWeight@{rightFootRotationWeight}!AvatarLowerBodyAnimationController@{AvatarLowerBodyAnimationController}}
+\doxysubsubsection{\texorpdfstring{rightFootRotationWeight}{rightFootRotationWeight}}
+{\footnotesize\ttfamily float Avatar\+Lower\+Body\+Animation\+Controller.\+right\+Foot\+Rotation\+Weight\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Unity/\+Unity\+Projects/\+Masters\+Thesis/\+Assets/\+\_\+\+Neuro\+Rehab/\+Scripts/\+Avatar/\mbox{\hyperlink{_avatar_lower_body_animation_controller_8cs}{Avatar\+Lower\+Body\+Animation\+Controller.\+cs}}\end{DoxyCompactItemize}

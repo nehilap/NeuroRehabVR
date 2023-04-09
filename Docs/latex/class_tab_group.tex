@@ -1,0 +1,116 @@
+\hypertarget{class_tab_group}{}\doxysection{Tab\+Group Class Reference}
+\label{class_tab_group}\index{TabGroup@{TabGroup}}
+Inheritance diagram for Tab\+Group\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_tab_group}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_tab_group_a05d993668b297d6653dfc07e5b89f399}{register\+Button}} (\mbox{\hyperlink{class_tab_group_button}{Tab\+Group\+Button}} tab\+Button, bool is\+Active)
+\item 
+void \mbox{\hyperlink{class_tab_group_aaccd9183dcafc56702b75e853e564ea5}{On\+Tab\+Enter}} (\mbox{\hyperlink{class_tab_group_button}{Tab\+Group\+Button}} tab\+Button)
+\item 
+void \mbox{\hyperlink{class_tab_group_ab880125755f42bf725d06df82a37af04}{On\+Tab\+Exit}} (\mbox{\hyperlink{class_tab_group_button}{Tab\+Group\+Button}} tab\+Button)
+\item 
+void \mbox{\hyperlink{class_tab_group_a048d891f0e5ecad18ebcc9bd650c2f13}{On\+Tab\+Selected}} (\mbox{\hyperlink{class_tab_group_button}{Tab\+Group\+Button}} tab\+Button)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_tab_group_a47ceef7bd04b6b04aba1abc1fd149283}{reset\+Tabs}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ \mbox{\hyperlink{class_tab_group_button}{Tab\+Group\+Button}} $>$ \mbox{\hyperlink{class_tab_group_a4388e81ec15ab1ac1a876b86ea7f5e4e}{tab\+Buttons}} = new List$<$\mbox{\hyperlink{class_tab_group_button}{Tab\+Group\+Button}}$>$()
+\item 
+Sprite \mbox{\hyperlink{class_tab_group_a68758a1aa6447827fe390b2eccaf0b76}{tab\+Idle}}
+\item 
+Sprite \mbox{\hyperlink{class_tab_group_afde086c1ca954ee255e534079a0735ea}{tab\+Hover}}
+\item 
+Sprite \mbox{\hyperlink{class_tab_group_aa5e1a4a1761eedcc0d80c482c18688a9}{tab\+Active}}
+\item 
+List$<$ Game\+Object $>$ \mbox{\hyperlink{class_tab_group_a8dcff7d290c199a234475cc84bf4a488}{tab\+Objects}} = new List$<$Game\+Object$>$()
+\item 
+\mbox{\hyperlink{class_tab_group_button}{Tab\+Group\+Button}} \mbox{\hyperlink{class_tab_group_ac24c4be1a46cc27c54dc79cbf99133e1}{selected\+Tab\+Button}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_tab_group_aaccd9183dcafc56702b75e853e564ea5}\label{class_tab_group_aaccd9183dcafc56702b75e853e564ea5}} 
+\index{TabGroup@{TabGroup}!OnTabEnter@{OnTabEnter}}
+\index{OnTabEnter@{OnTabEnter}!TabGroup@{TabGroup}}
+\doxysubsubsection{\texorpdfstring{OnTabEnter()}{OnTabEnter()}}
+{\footnotesize\ttfamily void Tab\+Group.\+On\+Tab\+Enter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tab_group_button}{Tab\+Group\+Button}}}]{tab\+Button }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_tab_group_ab880125755f42bf725d06df82a37af04}\label{class_tab_group_ab880125755f42bf725d06df82a37af04}} 
+\index{TabGroup@{TabGroup}!OnTabExit@{OnTabExit}}
+\index{OnTabExit@{OnTabExit}!TabGroup@{TabGroup}}
+\doxysubsubsection{\texorpdfstring{OnTabExit()}{OnTabExit()}}
+{\footnotesize\ttfamily void Tab\+Group.\+On\+Tab\+Exit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tab_group_button}{Tab\+Group\+Button}}}]{tab\+Button }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_tab_group_a048d891f0e5ecad18ebcc9bd650c2f13}\label{class_tab_group_a048d891f0e5ecad18ebcc9bd650c2f13}} 
+\index{TabGroup@{TabGroup}!OnTabSelected@{OnTabSelected}}
+\index{OnTabSelected@{OnTabSelected}!TabGroup@{TabGroup}}
+\doxysubsubsection{\texorpdfstring{OnTabSelected()}{OnTabSelected()}}
+{\footnotesize\ttfamily void Tab\+Group.\+On\+Tab\+Selected (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tab_group_button}{Tab\+Group\+Button}}}]{tab\+Button }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_tab_group_a05d993668b297d6653dfc07e5b89f399}\label{class_tab_group_a05d993668b297d6653dfc07e5b89f399}} 
+\index{TabGroup@{TabGroup}!registerButton@{registerButton}}
+\index{registerButton@{registerButton}!TabGroup@{TabGroup}}
+\doxysubsubsection{\texorpdfstring{registerButton()}{registerButton()}}
+{\footnotesize\ttfamily void Tab\+Group.\+register\+Button (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tab_group_button}{Tab\+Group\+Button}}}]{tab\+Button,  }\item[{bool}]{is\+Active }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_tab_group_a47ceef7bd04b6b04aba1abc1fd149283}\label{class_tab_group_a47ceef7bd04b6b04aba1abc1fd149283}} 
+\index{TabGroup@{TabGroup}!resetTabs@{resetTabs}}
+\index{resetTabs@{resetTabs}!TabGroup@{TabGroup}}
+\doxysubsubsection{\texorpdfstring{resetTabs()}{resetTabs()}}
+{\footnotesize\ttfamily void Tab\+Group.\+reset\+Tabs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_tab_group_ac24c4be1a46cc27c54dc79cbf99133e1}\label{class_tab_group_ac24c4be1a46cc27c54dc79cbf99133e1}} 
+\index{TabGroup@{TabGroup}!selectedTabButton@{selectedTabButton}}
+\index{selectedTabButton@{selectedTabButton}!TabGroup@{TabGroup}}
+\doxysubsubsection{\texorpdfstring{selectedTabButton}{selectedTabButton}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tab_group_button}{Tab\+Group\+Button}} Tab\+Group.\+selected\+Tab\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_tab_group_aa5e1a4a1761eedcc0d80c482c18688a9}\label{class_tab_group_aa5e1a4a1761eedcc0d80c482c18688a9}} 
+\index{TabGroup@{TabGroup}!tabActive@{tabActive}}
+\index{tabActive@{tabActive}!TabGroup@{TabGroup}}
+\doxysubsubsection{\texorpdfstring{tabActive}{tabActive}}
+{\footnotesize\ttfamily Sprite Tab\+Group.\+tab\+Active\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_tab_group_a4388e81ec15ab1ac1a876b86ea7f5e4e}\label{class_tab_group_a4388e81ec15ab1ac1a876b86ea7f5e4e}} 
+\index{TabGroup@{TabGroup}!tabButtons@{tabButtons}}
+\index{tabButtons@{tabButtons}!TabGroup@{TabGroup}}
+\doxysubsubsection{\texorpdfstring{tabButtons}{tabButtons}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_tab_group_button}{Tab\+Group\+Button}}$>$ Tab\+Group.\+tab\+Buttons = new List$<$\mbox{\hyperlink{class_tab_group_button}{Tab\+Group\+Button}}$>$()\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_tab_group_afde086c1ca954ee255e534079a0735ea}\label{class_tab_group_afde086c1ca954ee255e534079a0735ea}} 
+\index{TabGroup@{TabGroup}!tabHover@{tabHover}}
+\index{tabHover@{tabHover}!TabGroup@{TabGroup}}
+\doxysubsubsection{\texorpdfstring{tabHover}{tabHover}}
+{\footnotesize\ttfamily Sprite Tab\+Group.\+tab\+Hover\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_tab_group_a68758a1aa6447827fe390b2eccaf0b76}\label{class_tab_group_a68758a1aa6447827fe390b2eccaf0b76}} 
+\index{TabGroup@{TabGroup}!tabIdle@{tabIdle}}
+\index{tabIdle@{tabIdle}!TabGroup@{TabGroup}}
+\doxysubsubsection{\texorpdfstring{tabIdle}{tabIdle}}
+{\footnotesize\ttfamily Sprite Tab\+Group.\+tab\+Idle\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_tab_group_a8dcff7d290c199a234475cc84bf4a488}\label{class_tab_group_a8dcff7d290c199a234475cc84bf4a488}} 
+\index{TabGroup@{TabGroup}!tabObjects@{tabObjects}}
+\index{tabObjects@{tabObjects}!TabGroup@{TabGroup}}
+\doxysubsubsection{\texorpdfstring{tabObjects}{tabObjects}}
+{\footnotesize\ttfamily List$<$Game\+Object$>$ Tab\+Group.\+tab\+Objects = new List$<$Game\+Object$>$()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Unity/\+Unity\+Projects/\+Masters\+Thesis/\+Assets/\+\_\+\+Neuro\+Rehab/\+Scripts/\+UI/\+Menu\+Managers/\+Tab\+Menu/\mbox{\hyperlink{_tab_group_8cs}{Tab\+Group.\+cs}}\end{DoxyCompactItemize}

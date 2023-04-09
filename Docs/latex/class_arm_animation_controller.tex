@@ -1,0 +1,562 @@
+\hypertarget{class_arm_animation_controller}{}\doxysection{Arm\+Animation\+Controller Class Reference}
+\label{class_arm_animation_controller}\index{ArmAnimationController@{ArmAnimationController}}
+Inheritance diagram for Arm\+Animation\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_arm_animation_controller}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_arm_animation_controller_a7eae5be5106a4eac47baacd8d2e0e089}{align\+Arm\+Rest\+Target\+With\+Table}} ()
+\item 
+void \mbox{\hyperlink{class_arm_animation_controller_afcc7c040c34417862beb14bff2417434}{init\+Elements}} ()
+\item 
+bool \mbox{\hyperlink{class_arm_animation_controller_aafb8598050a33fade84a2487e5b4ac00}{start\+Animation}} (bool is\+Fake\+Animation)
+\item 
+void \mbox{\hyperlink{class_arm_animation_controller_a5fd7c20b3ef968cc8a5a1ea64636b9e8}{stop\+Animation}} (bool inform\+Server=false)
+\item 
+void \mbox{\hyperlink{class_arm_animation_controller_af407009b372a6ef7dba562fbdc46fcea}{set\+Arm\+Rest\+Position}} (bool \+\_\+is\+Arm\+Resting)
+\item 
+bool \mbox{\hyperlink{class_arm_animation_controller_ae5ae3ec22a7c6447c3835afb9d4f9efe}{is\+Target\+In\+Range}} (Vector3 target\+Position)
+\item 
+float \mbox{\hyperlink{class_arm_animation_controller_a65a59a248db8987db66ac047d636de78}{calculate\+Arm\+Length}} ()
+\item 
+float \mbox{\hyperlink{class_arm_animation_controller_a5ce830f996427aeee9a6686e5a2575f4}{get\+Arm\+Length}} ()
+\item 
+float \mbox{\hyperlink{class_arm_animation_controller_afa2e621969f590330cdded9886f515f8}{get\+Arm\+Range\+Slack}} ()
+\item 
+Vector3 \mbox{\hyperlink{class_arm_animation_controller_a4b8a80babbf799add3d5c02a055044da}{get\+Arm\+Range\+Position}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_arm_animation_controller_ac67ec3f4907901d4829978da94875daf}{Print\+Vector3}} (Vector3 message, int type=1)
+\begin{DoxyCompactList}\small\item\em Helper method for printing vectors with more decimal places. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_arm_animation_controller_a8066094223647bae67d86463a5179674}{is\+Left}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_arm_animation_controller_a90e01efdf26bef76802b2c88040b2e4e}{Start}} ()
+\item 
+void \mbox{\hyperlink{class_arm_animation_controller_abed5d6df613e9450725e3427bf8b892f}{On\+Enable}} ()
+\item 
+void \mbox{\hyperlink{class_arm_animation_controller_abecde48d10966ff5f419c3d0833cdb08}{On\+Disable}} ()
+\item 
+void \mbox{\hyperlink{class_arm_animation_controller_a4d729e76c6cb10e0efd115a7714c8fe3}{Late\+Update}} ()
+\item 
+IEnumerator \mbox{\hyperlink{class_arm_animation_controller_aaed2aef9540f7918abe544331b8323c8}{arm\+Start\+Animation\+Lerp}} (bool is\+Fake\+Animation)
+\begin{DoxyCompactList}\small\item\em Coroutine for animation control. Refer to \href{https://gamedevbeginner.com/coroutines-in-unity-when-and-how-to-use-them/}{\texttt{ https\+://gamedevbeginner.\+com/coroutines-\/in-\/unity-\/when-\/and-\/how-\/to-\/use-\/them/}} for more details. \end{DoxyCompactList}\item 
+IEnumerator \mbox{\hyperlink{class_arm_animation_controller_a8cb7362d23c4587a5215050421a9fefb}{arm\+Stop\+Animation\+Lerp}} (bool inform\+Server)
+\begin{DoxyCompactList}\small\item\em Coroutine -\/ Animation control for stopping animation. \end{DoxyCompactList}\item 
+IEnumerator \mbox{\hyperlink{class_arm_animation_controller_a16f9d8b50afff86b421864849c41dd6a}{rest\+Arm\+Start\+Animation}} ()
+\item 
+IEnumerator \mbox{\hyperlink{class_arm_animation_controller_ac6be927590745e92279eace21a67ae17}{rest\+Arm\+Stop\+Animation}} ()
+\item 
+IEnumerator \mbox{\hyperlink{class_arm_animation_controller_a818ba6568f6f5aeabcbafe5201692219}{simple\+Rig\+Lerp}} (Rig rig, float lerp\+Duration, float start\+Lerp\+Value, float end\+Lerp\+Value)
+\begin{DoxyCompactList}\small\item\em Coroutine for Linear interpolation for weights, we slowly move arm towards our goal. Refer to \href{https://gamedevbeginner.com/the-right-way-to-lerp-in-unity-with-examples/}{\texttt{ https\+://gamedevbeginner.\+com/the-\/right-\/way-\/to-\/lerp-\/in-\/unity-\/with-\/examples/}} for more details. \end{DoxyCompactList}\item 
+IEnumerator \mbox{\hyperlink{class_arm_animation_controller_a7f1fcfd3db701d2097367571bbae9cba}{reverse\+Dual\+Rig\+Lerp}} (Rig rig\+To\+Start, Rig rig\+To\+Stop, float lerp\+Duration, float start\+Lerp\+Value, float end\+Lerp\+Value)
+\item 
+IEnumerator \mbox{\hyperlink{class_arm_animation_controller_a3cdfd29dca954a5a79f094f9546e678f}{multi\+Rig\+Lerp}} (\mbox{\hyperlink{class_rig_lerp}{Rig\+Lerp}}\mbox{[}$\,$\mbox{]} rig\+Lerps, float lerp\+Duration)
+\begin{DoxyCompactList}\small\item\em Coroutine that is the same as simple\+Rig\+Lerp but for as many rigs as needed. \end{DoxyCompactList}\item 
+IEnumerator \mbox{\hyperlink{class_arm_animation_controller_ab84a1d7a750a17a1be93725d1f54373d}{lerp\+Transform}} (Game\+Object start\+Target, \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} start\+Mapping, \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} end\+Mapping, float duration, bool align\+Transforms=false)
+\begin{DoxyCompactList}\small\item\em Coroutine for smooth transform movements. \end{DoxyCompactList}\item 
+IEnumerator \mbox{\hyperlink{class_arm_animation_controller_a5c00635542d4d8f1f3b7e97c26a44b41}{align\+Transform\+Wrapper}} (float duration)
+\begin{DoxyCompactList}\small\item\em Coroutine to align Wrapper used for smooth aligning of objects. \end{DoxyCompactList}\item 
+IEnumerator \mbox{\hyperlink{class_arm_animation_controller_a0b88c08fed70be7a70e95419be87530d}{move\+Cup\+Up\+And\+Down}} (\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} current\+Anim\+Setup, float wait\+Duration, float cup\+Move\+Duration)
+\begin{DoxyCompactList}\small\item\em Coroutine for smooth cup movement, currently we move 0.\+20m up; Could be changed in the future via Therapist, but it seems to be good amount of movement up and down for now. \end{DoxyCompactList}\item 
+IEnumerator \mbox{\hyperlink{class_arm_animation_controller_a8e981dfcedca58dc7ce7b2af7ee5adeb}{handle\+Key\+Animation}} (\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} last\+Mapping, \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} initial\+Mapping, float wait\+Duration, float key\+Turn\+Duration)
+\begin{DoxyCompactList}\small\item\em Coroutine to rotate the key and move key to it\textquotesingle{}s initial position. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_arm_animation_controller_a6c4478b4d3901a12f0966d29ab927274}{calculate\+Animation\+Duration}} (\mbox{\hyperlink{class_animation_settings_manager}{Animation\+Settings\+Manager}} \+\_\+animation\+Settings\+Manager, float \+\_\+wait\+Duration, float \+\_\+key\+Turn\+Duration)
+\begin{DoxyCompactList}\small\item\em Algorithm used to calculate FULL duration of animation with all it\textquotesingle{}s wait times etc., so that main client knows how long to align transforms. We take into account that some positions are not in range. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_enums_a8c5e504c899ae3e9da065b1ed9b88a81}{Enums.\+Animation\+State}} \mbox{\hyperlink{class_arm_animation_controller_a2d7b2409f8eee4534863525f56484ebf}{anim\+State}} = \mbox{\hyperlink{namespace_enums_a8c5e504c899ae3e9da065b1ed9b88a81ac23e2b09ebe6bf4cb5e2a9abe85c0be2}{Enums.\+Animation\+State.\+Stopped}}
+\item 
+Rig \mbox{\hyperlink{class_arm_animation_controller_a4e3e2ab3dcf5dca6a00a47ae0f177670}{rest\+Arm\+Rig}}
+\item 
+Rig \mbox{\hyperlink{class_arm_animation_controller_a0008a86eb263e26b66770cf7151f4bd4}{arm\+Rig}}
+\item 
+Rig \mbox{\hyperlink{class_arm_animation_controller_a2485f1c9a2cf2055430caef79c9c30a4}{hand\+Rig}}
+\item 
+Renderer\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_arm_animation_controller_adb1547a466feda69f045e69c7cb90ebb}{arm\+Objects}}
+\item 
+Renderer\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_arm_animation_controller_aea918b1f66ec30c59bdd02b6bb50d60c}{fake\+Arm\+Objects}}
+\item 
+\mbox{\hyperlink{class_targets_helper}{Targets\+Helper}} \mbox{\hyperlink{class_arm_animation_controller_ab4f1c32ee286caf0dff1f17abba93f68}{targets\+Helper\+Object}}
+\item 
+Vector3 \mbox{\hyperlink{class_arm_animation_controller_ae57201091a5bab374bb21b08a5d20d4c}{arm\+Rest\+Offset}}
+\item 
+Game\+Object \mbox{\hyperlink{class_arm_animation_controller_abd76d92a17e122036098149a8bad35c1}{target\+Object}}
+\item 
+\mbox{\hyperlink{class_animation_settings_manager}{Animation\+Settings\+Manager}} \mbox{\hyperlink{class_arm_animation_controller_a290083f11be6c9cdd7bbdf3cdadebb97}{anim\+Settings\+Manager}}
+\item 
+Game\+Object \mbox{\hyperlink{class_arm_animation_controller_a1459f11f83e7ea85a0efb5170ebb6c17}{arm\+Rest\+Helper\+Object}}
+\item 
+bool \mbox{\hyperlink{class_arm_animation_controller_a7b5a759a6751a35b9cdb31077c2ef01b}{is\+Arm\+Resting}} = false
+\item 
+\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} \mbox{\hyperlink{class_arm_animation_controller_afb74803aacc57fe555f2091fd4e2df23}{original\+Arm\+Rest\+Pos\+Rot}}
+\item 
+\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_animation_mapping}{Animation\+Mapping}} \mbox{\hyperlink{class_arm_animation_controller_a3f641f7ad83a8382d1fd665ab746da63}{animation\+Mapping}}
+\item 
+\mbox{\hyperlink{class_avatar_controller}{Avatar\+Controller}} \mbox{\hyperlink{class_arm_animation_controller_a9b8f6a90316a57af85cf6a5caa3ca310}{avatar\+Controller}}
+\item 
+Mesh\+Filter \mbox{\hyperlink{class_arm_animation_controller_a9701b935076759394ca7249abb28ea0d}{arm\+Range\+Mesh}}
+\item 
+float \mbox{\hyperlink{class_arm_animation_controller_ad73a3889905fdbfc3d27754adfa03f3b}{arm\+Range\+Slack}} = 0.\+01f
+\item 
+Transform \mbox{\hyperlink{class_arm_animation_controller_a03d9e3009328db6b27f09a3d9172e8bf}{\+\_\+mirror}}
+\item 
+float \mbox{\hyperlink{class_arm_animation_controller_a2628a60912f2f1ec499062f97a287de5}{arm\+Length}}
+\item 
+bool \mbox{\hyperlink{class_arm_animation_controller_a1ca369dc14d1c400688dc7882a3d7f89}{initialized}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_arm_animation_controller_a7eae5be5106a4eac47baacd8d2e0e089}\label{class_arm_animation_controller_a7eae5be5106a4eac47baacd8d2e0e089}} 
+\index{ArmAnimationController@{ArmAnimationController}!alignArmRestTargetWithTable@{alignArmRestTargetWithTable}}
+\index{alignArmRestTargetWithTable@{alignArmRestTargetWithTable}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{alignArmRestTargetWithTable()}{alignArmRestTargetWithTable()}}
+{\footnotesize\ttfamily void Arm\+Animation\+Controller.\+align\+Arm\+Rest\+Target\+With\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_arm_animation_controller_a5c00635542d4d8f1f3b7e97c26a44b41}\label{class_arm_animation_controller_a5c00635542d4d8f1f3b7e97c26a44b41}} 
+\index{ArmAnimationController@{ArmAnimationController}!alignTransformWrapper@{alignTransformWrapper}}
+\index{alignTransformWrapper@{alignTransformWrapper}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{alignTransformWrapper()}{alignTransformWrapper()}}
+{\footnotesize\ttfamily IEnumerator Arm\+Animation\+Controller.\+align\+Transform\+Wrapper (\begin{DoxyParamCaption}\item[{float}]{duration }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Coroutine to align Wrapper used for smooth aligning of objects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em duration} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_arm_animation_controller_aaed2aef9540f7918abe544331b8323c8}\label{class_arm_animation_controller_aaed2aef9540f7918abe544331b8323c8}} 
+\index{ArmAnimationController@{ArmAnimationController}!armStartAnimationLerp@{armStartAnimationLerp}}
+\index{armStartAnimationLerp@{armStartAnimationLerp}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{armStartAnimationLerp()}{armStartAnimationLerp()}}
+{\footnotesize\ttfamily IEnumerator Arm\+Animation\+Controller.\+arm\+Start\+Animation\+Lerp (\begin{DoxyParamCaption}\item[{bool}]{is\+Fake\+Animation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Coroutine for animation control. Refer to \href{https://gamedevbeginner.com/coroutines-in-unity-when-and-how-to-use-them/}{\texttt{ https\+://gamedevbeginner.\+com/coroutines-\/in-\/unity-\/when-\/and-\/how-\/to-\/use-\/them/}} for more details. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em is\+Fake\+Animation} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_arm_animation_controller_a8cb7362d23c4587a5215050421a9fefb}\label{class_arm_animation_controller_a8cb7362d23c4587a5215050421a9fefb}} 
+\index{ArmAnimationController@{ArmAnimationController}!armStopAnimationLerp@{armStopAnimationLerp}}
+\index{armStopAnimationLerp@{armStopAnimationLerp}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{armStopAnimationLerp()}{armStopAnimationLerp()}}
+{\footnotesize\ttfamily IEnumerator Arm\+Animation\+Controller.\+arm\+Stop\+Animation\+Lerp (\begin{DoxyParamCaption}\item[{bool}]{inform\+Server }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Coroutine -\/ Animation control for stopping animation. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_arm_animation_controller_a6c4478b4d3901a12f0966d29ab927274}\label{class_arm_animation_controller_a6c4478b4d3901a12f0966d29ab927274}} 
+\index{ArmAnimationController@{ArmAnimationController}!calculateAnimationDuration@{calculateAnimationDuration}}
+\index{calculateAnimationDuration@{calculateAnimationDuration}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{calculateAnimationDuration()}{calculateAnimationDuration()}}
+{\footnotesize\ttfamily float Arm\+Animation\+Controller.\+calculate\+Animation\+Duration (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_animation_settings_manager}{Animation\+Settings\+Manager}}}]{\+\_\+animation\+Settings\+Manager,  }\item[{float}]{\+\_\+wait\+Duration,  }\item[{float}]{\+\_\+key\+Turn\+Duration }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Algorithm used to calculate FULL duration of animation with all it\textquotesingle{}s wait times etc., so that main client knows how long to align transforms. We take into account that some positions are not in range. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+animation\+Settings\+Manager} & \\
+\hline
+{\em \+\_\+wait\+Duration} & \\
+\hline
+{\em \+\_\+key\+Turn\+Duration} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_arm_animation_controller_a65a59a248db8987db66ac047d636de78}\label{class_arm_animation_controller_a65a59a248db8987db66ac047d636de78}} 
+\index{ArmAnimationController@{ArmAnimationController}!calculateArmLength@{calculateArmLength}}
+\index{calculateArmLength@{calculateArmLength}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{calculateArmLength()}{calculateArmLength()}}
+{\footnotesize\ttfamily float Arm\+Animation\+Controller.\+calculate\+Arm\+Length (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_arm_animation_controller_a5ce830f996427aeee9a6686e5a2575f4}\label{class_arm_animation_controller_a5ce830f996427aeee9a6686e5a2575f4}} 
+\index{ArmAnimationController@{ArmAnimationController}!getArmLength@{getArmLength}}
+\index{getArmLength@{getArmLength}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{getArmLength()}{getArmLength()}}
+{\footnotesize\ttfamily float Arm\+Animation\+Controller.\+get\+Arm\+Length (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_arm_animation_controller_a4b8a80babbf799add3d5c02a055044da}\label{class_arm_animation_controller_a4b8a80babbf799add3d5c02a055044da}} 
+\index{ArmAnimationController@{ArmAnimationController}!getArmRangePosition@{getArmRangePosition}}
+\index{getArmRangePosition@{getArmRangePosition}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{getArmRangePosition()}{getArmRangePosition()}}
+{\footnotesize\ttfamily Vector3 Arm\+Animation\+Controller.\+get\+Arm\+Range\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_arm_animation_controller_afa2e621969f590330cdded9886f515f8}\label{class_arm_animation_controller_afa2e621969f590330cdded9886f515f8}} 
+\index{ArmAnimationController@{ArmAnimationController}!getArmRangeSlack@{getArmRangeSlack}}
+\index{getArmRangeSlack@{getArmRangeSlack}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{getArmRangeSlack()}{getArmRangeSlack()}}
+{\footnotesize\ttfamily float Arm\+Animation\+Controller.\+get\+Arm\+Range\+Slack (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_arm_animation_controller_a8e981dfcedca58dc7ce7b2af7ee5adeb}\label{class_arm_animation_controller_a8e981dfcedca58dc7ce7b2af7ee5adeb}} 
+\index{ArmAnimationController@{ArmAnimationController}!handleKeyAnimation@{handleKeyAnimation}}
+\index{handleKeyAnimation@{handleKeyAnimation}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{handleKeyAnimation()}{handleKeyAnimation()}}
+{\footnotesize\ttfamily IEnumerator Arm\+Animation\+Controller.\+handle\+Key\+Animation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}}]{last\+Mapping,  }\item[{\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}}]{initial\+Mapping,  }\item[{float}]{wait\+Duration,  }\item[{float}]{key\+Turn\+Duration }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Coroutine to rotate the key and move key to it\textquotesingle{}s initial position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em last\+Mapping} & \\
+\hline
+{\em initial\+Mapping} & \\
+\hline
+{\em wait\+Duration} & \\
+\hline
+{\em key\+Turn\+Duration} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_arm_animation_controller_afcc7c040c34417862beb14bff2417434}\label{class_arm_animation_controller_afcc7c040c34417862beb14bff2417434}} 
+\index{ArmAnimationController@{ArmAnimationController}!initElements@{initElements}}
+\index{initElements@{initElements}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{initElements()}{initElements()}}
+{\footnotesize\ttfamily void Arm\+Animation\+Controller.\+init\+Elements (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_arm_animation_controller_ae5ae3ec22a7c6447c3835afb9d4f9efe}\label{class_arm_animation_controller_ae5ae3ec22a7c6447c3835afb9d4f9efe}} 
+\index{ArmAnimationController@{ArmAnimationController}!isTargetInRange@{isTargetInRange}}
+\index{isTargetInRange@{isTargetInRange}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{isTargetInRange()}{isTargetInRange()}}
+{\footnotesize\ttfamily bool Arm\+Animation\+Controller.\+is\+Target\+In\+Range (\begin{DoxyParamCaption}\item[{Vector3}]{target\+Position }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_arm_animation_controller_a4d729e76c6cb10e0efd115a7714c8fe3}\label{class_arm_animation_controller_a4d729e76c6cb10e0efd115a7714c8fe3}} 
+\index{ArmAnimationController@{ArmAnimationController}!LateUpdate@{LateUpdate}}
+\index{LateUpdate@{LateUpdate}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{LateUpdate()}{LateUpdate()}}
+{\footnotesize\ttfamily void Arm\+Animation\+Controller.\+Late\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_ab84a1d7a750a17a1be93725d1f54373d}\label{class_arm_animation_controller_ab84a1d7a750a17a1be93725d1f54373d}} 
+\index{ArmAnimationController@{ArmAnimationController}!lerpTransform@{lerpTransform}}
+\index{lerpTransform@{lerpTransform}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{lerpTransform()}{lerpTransform()}}
+{\footnotesize\ttfamily IEnumerator Arm\+Animation\+Controller.\+lerp\+Transform (\begin{DoxyParamCaption}\item[{Game\+Object}]{start\+Target,  }\item[{\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}}]{start\+Mapping,  }\item[{\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}}]{end\+Mapping,  }\item[{float}]{duration,  }\item[{bool}]{align\+Transforms = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Coroutine for smooth transform movements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+Target} & The object might not be where we want to start animation\\
+\hline
+{\em start\+Mapping} & \\
+\hline
+{\em end\+Mapping} & \\
+\hline
+{\em duration} & \\
+\hline
+{\em align\+Transforms} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_arm_animation_controller_a0b88c08fed70be7a70e95419be87530d}\label{class_arm_animation_controller_a0b88c08fed70be7a70e95419be87530d}} 
+\index{ArmAnimationController@{ArmAnimationController}!moveCupUpAndDown@{moveCupUpAndDown}}
+\index{moveCupUpAndDown@{moveCupUpAndDown}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{moveCupUpAndDown()}{moveCupUpAndDown()}}
+{\footnotesize\ttfamily IEnumerator Arm\+Animation\+Controller.\+move\+Cup\+Up\+And\+Down (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}}]{current\+Anim\+Setup,  }\item[{float}]{wait\+Duration,  }\item[{float}]{cup\+Move\+Duration }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Coroutine for smooth cup movement, currently we move 0.\+20m up; Could be changed in the future via Therapist, but it seems to be good amount of movement up and down for now. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Anim\+Setup} & \\
+\hline
+{\em wait\+Duration} & \\
+\hline
+{\em cup\+Move\+Duration} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_arm_animation_controller_a3cdfd29dca954a5a79f094f9546e678f}\label{class_arm_animation_controller_a3cdfd29dca954a5a79f094f9546e678f}} 
+\index{ArmAnimationController@{ArmAnimationController}!multiRigLerp@{multiRigLerp}}
+\index{multiRigLerp@{multiRigLerp}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{multiRigLerp()}{multiRigLerp()}}
+{\footnotesize\ttfamily IEnumerator Arm\+Animation\+Controller.\+multi\+Rig\+Lerp (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rig_lerp}{Rig\+Lerp}}\mbox{[}$\,$\mbox{]}}]{rig\+Lerps,  }\item[{float}]{lerp\+Duration }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Coroutine that is the same as simple\+Rig\+Lerp but for as many rigs as needed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rig\+Lerps} & \\
+\hline
+{\em lerp\+Duration} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_arm_animation_controller_abecde48d10966ff5f419c3d0833cdb08}\label{class_arm_animation_controller_abecde48d10966ff5f419c3d0833cdb08}} 
+\index{ArmAnimationController@{ArmAnimationController}!OnDisable@{OnDisable}}
+\index{OnDisable@{OnDisable}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{OnDisable()}{OnDisable()}}
+{\footnotesize\ttfamily void Arm\+Animation\+Controller.\+On\+Disable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_abed5d6df613e9450725e3427bf8b892f}\label{class_arm_animation_controller_abed5d6df613e9450725e3427bf8b892f}} 
+\index{ArmAnimationController@{ArmAnimationController}!OnEnable@{OnEnable}}
+\index{OnEnable@{OnEnable}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{OnEnable()}{OnEnable()}}
+{\footnotesize\ttfamily void Arm\+Animation\+Controller.\+On\+Enable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_ac67ec3f4907901d4829978da94875daf}\label{class_arm_animation_controller_ac67ec3f4907901d4829978da94875daf}} 
+\index{ArmAnimationController@{ArmAnimationController}!PrintVector3@{PrintVector3}}
+\index{PrintVector3@{PrintVector3}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{PrintVector3()}{PrintVector3()}}
+{\footnotesize\ttfamily static void Arm\+Animation\+Controller.\+Print\+Vector3 (\begin{DoxyParamCaption}\item[{Vector3}]{message,  }\item[{int}]{type = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Helper method for printing vectors with more decimal places. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & Vector printed\\
+\hline
+{\em type} & Not mandatory\+: 1 -\/ Log; 2 -\/ Warning; 3 -\/ Error\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_arm_animation_controller_a16f9d8b50afff86b421864849c41dd6a}\label{class_arm_animation_controller_a16f9d8b50afff86b421864849c41dd6a}} 
+\index{ArmAnimationController@{ArmAnimationController}!restArmStartAnimation@{restArmStartAnimation}}
+\index{restArmStartAnimation@{restArmStartAnimation}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{restArmStartAnimation()}{restArmStartAnimation()}}
+{\footnotesize\ttfamily IEnumerator Arm\+Animation\+Controller.\+rest\+Arm\+Start\+Animation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_ac6be927590745e92279eace21a67ae17}\label{class_arm_animation_controller_ac6be927590745e92279eace21a67ae17}} 
+\index{ArmAnimationController@{ArmAnimationController}!restArmStopAnimation@{restArmStopAnimation}}
+\index{restArmStopAnimation@{restArmStopAnimation}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{restArmStopAnimation()}{restArmStopAnimation()}}
+{\footnotesize\ttfamily IEnumerator Arm\+Animation\+Controller.\+rest\+Arm\+Stop\+Animation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_a7f1fcfd3db701d2097367571bbae9cba}\label{class_arm_animation_controller_a7f1fcfd3db701d2097367571bbae9cba}} 
+\index{ArmAnimationController@{ArmAnimationController}!reverseDualRigLerp@{reverseDualRigLerp}}
+\index{reverseDualRigLerp@{reverseDualRigLerp}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{reverseDualRigLerp()}{reverseDualRigLerp()}}
+{\footnotesize\ttfamily IEnumerator Arm\+Animation\+Controller.\+reverse\+Dual\+Rig\+Lerp (\begin{DoxyParamCaption}\item[{Rig}]{rig\+To\+Start,  }\item[{Rig}]{rig\+To\+Stop,  }\item[{float}]{lerp\+Duration,  }\item[{float}]{start\+Lerp\+Value,  }\item[{float}]{end\+Lerp\+Value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_af407009b372a6ef7dba562fbdc46fcea}\label{class_arm_animation_controller_af407009b372a6ef7dba562fbdc46fcea}} 
+\index{ArmAnimationController@{ArmAnimationController}!setArmRestPosition@{setArmRestPosition}}
+\index{setArmRestPosition@{setArmRestPosition}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{setArmRestPosition()}{setArmRestPosition()}}
+{\footnotesize\ttfamily void Arm\+Animation\+Controller.\+set\+Arm\+Rest\+Position (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+is\+Arm\+Resting }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_arm_animation_controller_a818ba6568f6f5aeabcbafe5201692219}\label{class_arm_animation_controller_a818ba6568f6f5aeabcbafe5201692219}} 
+\index{ArmAnimationController@{ArmAnimationController}!simpleRigLerp@{simpleRigLerp}}
+\index{simpleRigLerp@{simpleRigLerp}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{simpleRigLerp()}{simpleRigLerp()}}
+{\footnotesize\ttfamily IEnumerator Arm\+Animation\+Controller.\+simple\+Rig\+Lerp (\begin{DoxyParamCaption}\item[{Rig}]{rig,  }\item[{float}]{lerp\+Duration,  }\item[{float}]{start\+Lerp\+Value,  }\item[{float}]{end\+Lerp\+Value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Coroutine for Linear interpolation for weights, we slowly move arm towards our goal. Refer to \href{https://gamedevbeginner.com/the-right-way-to-lerp-in-unity-with-examples/}{\texttt{ https\+://gamedevbeginner.\+com/the-\/right-\/way-\/to-\/lerp-\/in-\/unity-\/with-\/examples/}} for more details. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rig} & \\
+\hline
+{\em lerp\+Duration} & \\
+\hline
+{\em start\+Lerp\+Value} & \\
+\hline
+{\em end\+Lerp\+Value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_arm_animation_controller_a90e01efdf26bef76802b2c88040b2e4e}\label{class_arm_animation_controller_a90e01efdf26bef76802b2c88040b2e4e}} 
+\index{ArmAnimationController@{ArmAnimationController}!Start@{Start}}
+\index{Start@{Start}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void Arm\+Animation\+Controller.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_aafb8598050a33fade84a2487e5b4ac00}\label{class_arm_animation_controller_aafb8598050a33fade84a2487e5b4ac00}} 
+\index{ArmAnimationController@{ArmAnimationController}!startAnimation@{startAnimation}}
+\index{startAnimation@{startAnimation}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{startAnimation()}{startAnimation()}}
+{\footnotesize\ttfamily bool Arm\+Animation\+Controller.\+start\+Animation (\begin{DoxyParamCaption}\item[{bool}]{is\+Fake\+Animation }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_arm_animation_controller_a5fd7c20b3ef968cc8a5a1ea64636b9e8}\label{class_arm_animation_controller_a5fd7c20b3ef968cc8a5a1ea64636b9e8}} 
+\index{ArmAnimationController@{ArmAnimationController}!stopAnimation@{stopAnimation}}
+\index{stopAnimation@{stopAnimation}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{stopAnimation()}{stopAnimation()}}
+{\footnotesize\ttfamily void Arm\+Animation\+Controller.\+stop\+Animation (\begin{DoxyParamCaption}\item[{bool}]{inform\+Server = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_arm_animation_controller_a03d9e3009328db6b27f09a3d9172e8bf}\label{class_arm_animation_controller_a03d9e3009328db6b27f09a3d9172e8bf}} 
+\index{ArmAnimationController@{ArmAnimationController}!\_mirror@{\_mirror}}
+\index{\_mirror@{\_mirror}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{\_mirror}{\_mirror}}
+{\footnotesize\ttfamily Transform Arm\+Animation\+Controller.\+\_\+mirror\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_a3f641f7ad83a8382d1fd665ab746da63}\label{class_arm_animation_controller_a3f641f7ad83a8382d1fd665ab746da63}} 
+\index{ArmAnimationController@{ArmAnimationController}!animationMapping@{animationMapping}}
+\index{animationMapping@{animationMapping}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{animationMapping}{animationMapping}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_animation_mapping}{Animation\+Mapping}} Arm\+Animation\+Controller.\+animation\+Mapping\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_a290083f11be6c9cdd7bbdf3cdadebb97}\label{class_arm_animation_controller_a290083f11be6c9cdd7bbdf3cdadebb97}} 
+\index{ArmAnimationController@{ArmAnimationController}!animSettingsManager@{animSettingsManager}}
+\index{animSettingsManager@{animSettingsManager}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{animSettingsManager}{animSettingsManager}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_animation_settings_manager}{Animation\+Settings\+Manager}} Arm\+Animation\+Controller.\+anim\+Settings\+Manager\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_a2d7b2409f8eee4534863525f56484ebf}\label{class_arm_animation_controller_a2d7b2409f8eee4534863525f56484ebf}} 
+\index{ArmAnimationController@{ArmAnimationController}!animState@{animState}}
+\index{animState@{animState}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{animState}{animState}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_enums_a8c5e504c899ae3e9da065b1ed9b88a81}{Enums.\+Animation\+State}} Arm\+Animation\+Controller.\+anim\+State = \mbox{\hyperlink{namespace_enums_a8c5e504c899ae3e9da065b1ed9b88a81ac23e2b09ebe6bf4cb5e2a9abe85c0be2}{Enums.\+Animation\+State.\+Stopped}}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_a2628a60912f2f1ec499062f97a287de5}\label{class_arm_animation_controller_a2628a60912f2f1ec499062f97a287de5}} 
+\index{ArmAnimationController@{ArmAnimationController}!armLength@{armLength}}
+\index{armLength@{armLength}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{armLength}{armLength}}
+{\footnotesize\ttfamily float Arm\+Animation\+Controller.\+arm\+Length\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_adb1547a466feda69f045e69c7cb90ebb}\label{class_arm_animation_controller_adb1547a466feda69f045e69c7cb90ebb}} 
+\index{ArmAnimationController@{ArmAnimationController}!armObjects@{armObjects}}
+\index{armObjects@{armObjects}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{armObjects}{armObjects}}
+{\footnotesize\ttfamily Renderer \mbox{[}$\,$\mbox{]} Arm\+Animation\+Controller.\+arm\+Objects\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_a9701b935076759394ca7249abb28ea0d}\label{class_arm_animation_controller_a9701b935076759394ca7249abb28ea0d}} 
+\index{ArmAnimationController@{ArmAnimationController}!armRangeMesh@{armRangeMesh}}
+\index{armRangeMesh@{armRangeMesh}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{armRangeMesh}{armRangeMesh}}
+{\footnotesize\ttfamily Mesh\+Filter Arm\+Animation\+Controller.\+arm\+Range\+Mesh\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_ad73a3889905fdbfc3d27754adfa03f3b}\label{class_arm_animation_controller_ad73a3889905fdbfc3d27754adfa03f3b}} 
+\index{ArmAnimationController@{ArmAnimationController}!armRangeSlack@{armRangeSlack}}
+\index{armRangeSlack@{armRangeSlack}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{armRangeSlack}{armRangeSlack}}
+{\footnotesize\ttfamily float Arm\+Animation\+Controller.\+arm\+Range\+Slack = 0.\+01f\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_a1459f11f83e7ea85a0efb5170ebb6c17}\label{class_arm_animation_controller_a1459f11f83e7ea85a0efb5170ebb6c17}} 
+\index{ArmAnimationController@{ArmAnimationController}!armRestHelperObject@{armRestHelperObject}}
+\index{armRestHelperObject@{armRestHelperObject}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{armRestHelperObject}{armRestHelperObject}}
+{\footnotesize\ttfamily Game\+Object Arm\+Animation\+Controller.\+arm\+Rest\+Helper\+Object\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_ae57201091a5bab374bb21b08a5d20d4c}\label{class_arm_animation_controller_ae57201091a5bab374bb21b08a5d20d4c}} 
+\index{ArmAnimationController@{ArmAnimationController}!armRestOffset@{armRestOffset}}
+\index{armRestOffset@{armRestOffset}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{armRestOffset}{armRestOffset}}
+{\footnotesize\ttfamily Vector3 Arm\+Animation\+Controller.\+arm\+Rest\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_a0008a86eb263e26b66770cf7151f4bd4}\label{class_arm_animation_controller_a0008a86eb263e26b66770cf7151f4bd4}} 
+\index{ArmAnimationController@{ArmAnimationController}!armRig@{armRig}}
+\index{armRig@{armRig}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{armRig}{armRig}}
+{\footnotesize\ttfamily Rig Arm\+Animation\+Controller.\+arm\+Rig\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_a9b8f6a90316a57af85cf6a5caa3ca310}\label{class_arm_animation_controller_a9b8f6a90316a57af85cf6a5caa3ca310}} 
+\index{ArmAnimationController@{ArmAnimationController}!avatarController@{avatarController}}
+\index{avatarController@{avatarController}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{avatarController}{avatarController}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_avatar_controller}{Avatar\+Controller}} Arm\+Animation\+Controller.\+avatar\+Controller\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_aea918b1f66ec30c59bdd02b6bb50d60c}\label{class_arm_animation_controller_aea918b1f66ec30c59bdd02b6bb50d60c}} 
+\index{ArmAnimationController@{ArmAnimationController}!fakeArmObjects@{fakeArmObjects}}
+\index{fakeArmObjects@{fakeArmObjects}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{fakeArmObjects}{fakeArmObjects}}
+{\footnotesize\ttfamily Renderer \mbox{[}$\,$\mbox{]} Arm\+Animation\+Controller.\+fake\+Arm\+Objects\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_a2485f1c9a2cf2055430caef79c9c30a4}\label{class_arm_animation_controller_a2485f1c9a2cf2055430caef79c9c30a4}} 
+\index{ArmAnimationController@{ArmAnimationController}!handRig@{handRig}}
+\index{handRig@{handRig}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{handRig}{handRig}}
+{\footnotesize\ttfamily Rig Arm\+Animation\+Controller.\+hand\+Rig\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_a1ca369dc14d1c400688dc7882a3d7f89}\label{class_arm_animation_controller_a1ca369dc14d1c400688dc7882a3d7f89}} 
+\index{ArmAnimationController@{ArmAnimationController}!initialized@{initialized}}
+\index{initialized@{initialized}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{initialized}{initialized}}
+{\footnotesize\ttfamily bool Arm\+Animation\+Controller.\+initialized = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_a7b5a759a6751a35b9cdb31077c2ef01b}\label{class_arm_animation_controller_a7b5a759a6751a35b9cdb31077c2ef01b}} 
+\index{ArmAnimationController@{ArmAnimationController}!isArmResting@{isArmResting}}
+\index{isArmResting@{isArmResting}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{isArmResting}{isArmResting}}
+{\footnotesize\ttfamily bool Arm\+Animation\+Controller.\+is\+Arm\+Resting = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_a8066094223647bae67d86463a5179674}\label{class_arm_animation_controller_a8066094223647bae67d86463a5179674}} 
+\index{ArmAnimationController@{ArmAnimationController}!isLeft@{isLeft}}
+\index{isLeft@{isLeft}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{isLeft}{isLeft}}
+{\footnotesize\ttfamily bool Arm\+Animation\+Controller.\+is\+Left}
+
+\mbox{\Hypertarget{class_arm_animation_controller_afb74803aacc57fe555f2091fd4e2df23}\label{class_arm_animation_controller_afb74803aacc57fe555f2091fd4e2df23}} 
+\index{ArmAnimationController@{ArmAnimationController}!originalArmRestPosRot@{originalArmRestPosRot}}
+\index{originalArmRestPosRot@{originalArmRestPosRot}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{originalArmRestPosRot}{originalArmRestPosRot}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} Arm\+Animation\+Controller.\+original\+Arm\+Rest\+Pos\+Rot\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_a4e3e2ab3dcf5dca6a00a47ae0f177670}\label{class_arm_animation_controller_a4e3e2ab3dcf5dca6a00a47ae0f177670}} 
+\index{ArmAnimationController@{ArmAnimationController}!restArmRig@{restArmRig}}
+\index{restArmRig@{restArmRig}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{restArmRig}{restArmRig}}
+{\footnotesize\ttfamily Rig Arm\+Animation\+Controller.\+rest\+Arm\+Rig\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_abd76d92a17e122036098149a8bad35c1}\label{class_arm_animation_controller_abd76d92a17e122036098149a8bad35c1}} 
+\index{ArmAnimationController@{ArmAnimationController}!targetObject@{targetObject}}
+\index{targetObject@{targetObject}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{targetObject}{targetObject}}
+{\footnotesize\ttfamily Game\+Object Arm\+Animation\+Controller.\+target\+Object\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_arm_animation_controller_ab4f1c32ee286caf0dff1f17abba93f68}\label{class_arm_animation_controller_ab4f1c32ee286caf0dff1f17abba93f68}} 
+\index{ArmAnimationController@{ArmAnimationController}!targetsHelperObject@{targetsHelperObject}}
+\index{targetsHelperObject@{targetsHelperObject}!ArmAnimationController@{ArmAnimationController}}
+\doxysubsubsection{\texorpdfstring{targetsHelperObject}{targetsHelperObject}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_targets_helper}{Targets\+Helper}} Arm\+Animation\+Controller.\+targets\+Helper\+Object\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Unity/\+Unity\+Projects/\+Masters\+Thesis/\+Assets/\+\_\+\+Neuro\+Rehab/\+Scripts/\+Animations/\mbox{\hyperlink{_arm_animation_controller_8cs}{Arm\+Animation\+Controller.\+cs}}\end{DoxyCompactItemize}

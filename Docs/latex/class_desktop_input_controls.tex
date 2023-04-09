@@ -1,0 +1,228 @@
+\hypertarget{class_desktop_input_controls}{}\doxysection{Desktop\+Input\+Controls Class Reference}
+\label{class_desktop_input_controls}\index{DesktopInputControls@{DesktopInputControls}}
+Inheritance diagram for Desktop\+Input\+Controls\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_desktop_input_controls}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_desktop_input_controls_1_1_desktop_actions}{Desktop\+Actions}}
+\item 
+interface \mbox{\hyperlink{interface_desktop_input_controls_1_1_i_desktop_actions}{IDesktop\+Actions}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_desktop_input_controls_a3c2725bc0b2aa32cf7cc2646d2e32cfe}{Desktop\+Input\+Controls}} ()
+\item 
+void \mbox{\hyperlink{class_desktop_input_controls_a4c9eb53ccabd54bb797ba12224158adb}{Dispose}} ()
+\item 
+bool \mbox{\hyperlink{class_desktop_input_controls_a02060ad0340e3e51f5c8ceb16fef75e9}{Contains}} (Input\+Action action)
+\item 
+IEnumerator$<$ Input\+Action $>$ \mbox{\hyperlink{class_desktop_input_controls_a231acd6f022c56cb89ad32b0028b5270}{Get\+Enumerator}} ()
+\item 
+void \mbox{\hyperlink{class_desktop_input_controls_aca8a4320f6d3057dce959b44a08e6000}{Enable}} ()
+\item 
+void \mbox{\hyperlink{class_desktop_input_controls_ac3d8bb88069148632816ae63aac83fcc}{Disable}} ()
+\item 
+Input\+Action \mbox{\hyperlink{class_desktop_input_controls_ae02a992dcaf0932a0d63dd276fcc97ec}{Find\+Action}} (string action\+Name\+Or\+Id, bool throw\+If\+Not\+Found=false)
+\item 
+int \mbox{\hyperlink{class_desktop_input_controls_ac1c0acca44d4c1b27adf977a4d824e32}{Find\+Binding}} (Input\+Binding \mbox{\hyperlink{class_desktop_input_controls_a4d7c44cce08f5dbeb96e8cfbee74ceb7}{binding\+Mask}}, out Input\+Action action)
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Input\+Action\+Asset \mbox{\hyperlink{class_desktop_input_controls_a8b7f293b3371fc8fde95e9e30e9aea73}{asset}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+Input\+Binding? \mbox{\hyperlink{class_desktop_input_controls_a4d7c44cce08f5dbeb96e8cfbee74ceb7}{binding\+Mask}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Read\+Only\+Array$<$ Input\+Device $>$? \mbox{\hyperlink{class_desktop_input_controls_addd731ad08ec01e7a09b169feb9e37e7}{devices}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Read\+Only\+Array$<$ Input\+Control\+Scheme $>$ \mbox{\hyperlink{class_desktop_input_controls_a2b45cfc762737c811140aa8dca024ebb}{control\+Schemes}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+IEnumerable$<$ Input\+Binding $>$ \mbox{\hyperlink{class_desktop_input_controls_a10c9eefa3f5040dd44ecfd5df1066cf6}{bindings}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\hyperlink{struct_desktop_input_controls_1_1_desktop_actions}{Desktop\+Actions}} \mbox{\hyperlink{class_desktop_input_controls_a6f3b2398d4b2e528811512a750415554}{Desktop}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+IEnumerator IEnumerable. \mbox{\hyperlink{class_desktop_input_controls_a174a3395435c7a1dd15b0f2b91327fea}{Get\+Enumerator}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly Input\+Action\+Map \mbox{\hyperlink{class_desktop_input_controls_a18c56060102dc0ec0560d82cec29a966}{m\+\_\+\+Desktop}}
+\item 
+\mbox{\hyperlink{interface_desktop_input_controls_1_1_i_desktop_actions}{IDesktop\+Actions}} \mbox{\hyperlink{class_desktop_input_controls_a7673cccb7f91fc4dfc659ebef36399f6}{m\+\_\+\+Desktop\+Actions\+Callback\+Interface}}
+\item 
+readonly Input\+Action \mbox{\hyperlink{class_desktop_input_controls_a5afccf04c2e196f6ca51a3178e0f71ac}{m\+\_\+\+Desktop\+\_\+\+Move}}
+\item 
+readonly Input\+Action \mbox{\hyperlink{class_desktop_input_controls_a4ca487a1cacd731544b05b1b132620e0}{m\+\_\+\+Desktop\+\_\+\+MouseX}}
+\item 
+readonly Input\+Action \mbox{\hyperlink{class_desktop_input_controls_ade9b58e42d0086b2a08702a631e5639f}{m\+\_\+\+Desktop\+\_\+\+MouseY}}
+\item 
+readonly Input\+Action \mbox{\hyperlink{class_desktop_input_controls_a1a15ef6bed1ff6f5a2c3254cecd02abd}{m\+\_\+\+Desktop\+\_\+\+Menu}}
+\item 
+readonly Input\+Action \mbox{\hyperlink{class_desktop_input_controls_afc3c360b98043794898ee249785dbad7}{m\+\_\+\+Desktop\+\_\+\+Grab}}
+\item 
+readonly Input\+Action \mbox{\hyperlink{class_desktop_input_controls_a5c90546d34d050bc87f423caa5884ea7}{m\+\_\+\+Desktop\+\_\+\+Mouse\+Click}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_desktop_input_controls_a3c2725bc0b2aa32cf7cc2646d2e32cfe}\label{class_desktop_input_controls_a3c2725bc0b2aa32cf7cc2646d2e32cfe}} 
+\index{DesktopInputControls@{DesktopInputControls}!DesktopInputControls@{DesktopInputControls}}
+\index{DesktopInputControls@{DesktopInputControls}!DesktopInputControls@{DesktopInputControls}}
+\doxysubsubsection{\texorpdfstring{DesktopInputControls()}{DesktopInputControls()}}
+{\footnotesize\ttfamily Desktop\+Input\+Controls.\+Desktop\+Input\+Controls (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_desktop_input_controls_a02060ad0340e3e51f5c8ceb16fef75e9}\label{class_desktop_input_controls_a02060ad0340e3e51f5c8ceb16fef75e9}} 
+\index{DesktopInputControls@{DesktopInputControls}!Contains@{Contains}}
+\index{Contains@{Contains}!DesktopInputControls@{DesktopInputControls}}
+\doxysubsubsection{\texorpdfstring{Contains()}{Contains()}}
+{\footnotesize\ttfamily bool Desktop\+Input\+Controls.\+Contains (\begin{DoxyParamCaption}\item[{Input\+Action}]{action }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_desktop_input_controls_ac3d8bb88069148632816ae63aac83fcc}\label{class_desktop_input_controls_ac3d8bb88069148632816ae63aac83fcc}} 
+\index{DesktopInputControls@{DesktopInputControls}!Disable@{Disable}}
+\index{Disable@{Disable}!DesktopInputControls@{DesktopInputControls}}
+\doxysubsubsection{\texorpdfstring{Disable()}{Disable()}}
+{\footnotesize\ttfamily void Desktop\+Input\+Controls.\+Disable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_desktop_input_controls_a4c9eb53ccabd54bb797ba12224158adb}\label{class_desktop_input_controls_a4c9eb53ccabd54bb797ba12224158adb}} 
+\index{DesktopInputControls@{DesktopInputControls}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!DesktopInputControls@{DesktopInputControls}}
+\doxysubsubsection{\texorpdfstring{Dispose()}{Dispose()}}
+{\footnotesize\ttfamily void Desktop\+Input\+Controls.\+Dispose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_desktop_input_controls_aca8a4320f6d3057dce959b44a08e6000}\label{class_desktop_input_controls_aca8a4320f6d3057dce959b44a08e6000}} 
+\index{DesktopInputControls@{DesktopInputControls}!Enable@{Enable}}
+\index{Enable@{Enable}!DesktopInputControls@{DesktopInputControls}}
+\doxysubsubsection{\texorpdfstring{Enable()}{Enable()}}
+{\footnotesize\ttfamily void Desktop\+Input\+Controls.\+Enable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_desktop_input_controls_ae02a992dcaf0932a0d63dd276fcc97ec}\label{class_desktop_input_controls_ae02a992dcaf0932a0d63dd276fcc97ec}} 
+\index{DesktopInputControls@{DesktopInputControls}!FindAction@{FindAction}}
+\index{FindAction@{FindAction}!DesktopInputControls@{DesktopInputControls}}
+\doxysubsubsection{\texorpdfstring{FindAction()}{FindAction()}}
+{\footnotesize\ttfamily Input\+Action Desktop\+Input\+Controls.\+Find\+Action (\begin{DoxyParamCaption}\item[{string}]{action\+Name\+Or\+Id,  }\item[{bool}]{throw\+If\+Not\+Found = {\ttfamily false} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_desktop_input_controls_ac1c0acca44d4c1b27adf977a4d824e32}\label{class_desktop_input_controls_ac1c0acca44d4c1b27adf977a4d824e32}} 
+\index{DesktopInputControls@{DesktopInputControls}!FindBinding@{FindBinding}}
+\index{FindBinding@{FindBinding}!DesktopInputControls@{DesktopInputControls}}
+\doxysubsubsection{\texorpdfstring{FindBinding()}{FindBinding()}}
+{\footnotesize\ttfamily int Desktop\+Input\+Controls.\+Find\+Binding (\begin{DoxyParamCaption}\item[{Input\+Binding}]{binding\+Mask,  }\item[{out Input\+Action}]{action }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_desktop_input_controls_a231acd6f022c56cb89ad32b0028b5270}\label{class_desktop_input_controls_a231acd6f022c56cb89ad32b0028b5270}} 
+\index{DesktopInputControls@{DesktopInputControls}!GetEnumerator@{GetEnumerator}}
+\index{GetEnumerator@{GetEnumerator}!DesktopInputControls@{DesktopInputControls}}
+\doxysubsubsection{\texorpdfstring{GetEnumerator()}{GetEnumerator()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily IEnumerator$<$ Input\+Action $>$ Desktop\+Input\+Controls.\+Get\+Enumerator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_desktop_input_controls_a174a3395435c7a1dd15b0f2b91327fea}\label{class_desktop_input_controls_a174a3395435c7a1dd15b0f2b91327fea}} 
+\index{DesktopInputControls@{DesktopInputControls}!GetEnumerator@{GetEnumerator}}
+\index{GetEnumerator@{GetEnumerator}!DesktopInputControls@{DesktopInputControls}}
+\doxysubsubsection{\texorpdfstring{GetEnumerator()}{GetEnumerator()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily IEnumerator IEnumerable. Desktop\+Input\+Controls.\+Get\+Enumerator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_desktop_input_controls_a18c56060102dc0ec0560d82cec29a966}\label{class_desktop_input_controls_a18c56060102dc0ec0560d82cec29a966}} 
+\index{DesktopInputControls@{DesktopInputControls}!m\_Desktop@{m\_Desktop}}
+\index{m\_Desktop@{m\_Desktop}!DesktopInputControls@{DesktopInputControls}}
+\doxysubsubsection{\texorpdfstring{m\_Desktop}{m\_Desktop}}
+{\footnotesize\ttfamily readonly Input\+Action\+Map Desktop\+Input\+Controls.\+m\+\_\+\+Desktop\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_desktop_input_controls_afc3c360b98043794898ee249785dbad7}\label{class_desktop_input_controls_afc3c360b98043794898ee249785dbad7}} 
+\index{DesktopInputControls@{DesktopInputControls}!m\_Desktop\_Grab@{m\_Desktop\_Grab}}
+\index{m\_Desktop\_Grab@{m\_Desktop\_Grab}!DesktopInputControls@{DesktopInputControls}}
+\doxysubsubsection{\texorpdfstring{m\_Desktop\_Grab}{m\_Desktop\_Grab}}
+{\footnotesize\ttfamily readonly Input\+Action Desktop\+Input\+Controls.\+m\+\_\+\+Desktop\+\_\+\+Grab\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_desktop_input_controls_a1a15ef6bed1ff6f5a2c3254cecd02abd}\label{class_desktop_input_controls_a1a15ef6bed1ff6f5a2c3254cecd02abd}} 
+\index{DesktopInputControls@{DesktopInputControls}!m\_Desktop\_Menu@{m\_Desktop\_Menu}}
+\index{m\_Desktop\_Menu@{m\_Desktop\_Menu}!DesktopInputControls@{DesktopInputControls}}
+\doxysubsubsection{\texorpdfstring{m\_Desktop\_Menu}{m\_Desktop\_Menu}}
+{\footnotesize\ttfamily readonly Input\+Action Desktop\+Input\+Controls.\+m\+\_\+\+Desktop\+\_\+\+Menu\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_desktop_input_controls_a5c90546d34d050bc87f423caa5884ea7}\label{class_desktop_input_controls_a5c90546d34d050bc87f423caa5884ea7}} 
+\index{DesktopInputControls@{DesktopInputControls}!m\_Desktop\_MouseClick@{m\_Desktop\_MouseClick}}
+\index{m\_Desktop\_MouseClick@{m\_Desktop\_MouseClick}!DesktopInputControls@{DesktopInputControls}}
+\doxysubsubsection{\texorpdfstring{m\_Desktop\_MouseClick}{m\_Desktop\_MouseClick}}
+{\footnotesize\ttfamily readonly Input\+Action Desktop\+Input\+Controls.\+m\+\_\+\+Desktop\+\_\+\+Mouse\+Click\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_desktop_input_controls_a4ca487a1cacd731544b05b1b132620e0}\label{class_desktop_input_controls_a4ca487a1cacd731544b05b1b132620e0}} 
+\index{DesktopInputControls@{DesktopInputControls}!m\_Desktop\_MouseX@{m\_Desktop\_MouseX}}
+\index{m\_Desktop\_MouseX@{m\_Desktop\_MouseX}!DesktopInputControls@{DesktopInputControls}}
+\doxysubsubsection{\texorpdfstring{m\_Desktop\_MouseX}{m\_Desktop\_MouseX}}
+{\footnotesize\ttfamily readonly Input\+Action Desktop\+Input\+Controls.\+m\+\_\+\+Desktop\+\_\+\+MouseX\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_desktop_input_controls_ade9b58e42d0086b2a08702a631e5639f}\label{class_desktop_input_controls_ade9b58e42d0086b2a08702a631e5639f}} 
+\index{DesktopInputControls@{DesktopInputControls}!m\_Desktop\_MouseY@{m\_Desktop\_MouseY}}
+\index{m\_Desktop\_MouseY@{m\_Desktop\_MouseY}!DesktopInputControls@{DesktopInputControls}}
+\doxysubsubsection{\texorpdfstring{m\_Desktop\_MouseY}{m\_Desktop\_MouseY}}
+{\footnotesize\ttfamily readonly Input\+Action Desktop\+Input\+Controls.\+m\+\_\+\+Desktop\+\_\+\+MouseY\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_desktop_input_controls_a5afccf04c2e196f6ca51a3178e0f71ac}\label{class_desktop_input_controls_a5afccf04c2e196f6ca51a3178e0f71ac}} 
+\index{DesktopInputControls@{DesktopInputControls}!m\_Desktop\_Move@{m\_Desktop\_Move}}
+\index{m\_Desktop\_Move@{m\_Desktop\_Move}!DesktopInputControls@{DesktopInputControls}}
+\doxysubsubsection{\texorpdfstring{m\_Desktop\_Move}{m\_Desktop\_Move}}
+{\footnotesize\ttfamily readonly Input\+Action Desktop\+Input\+Controls.\+m\+\_\+\+Desktop\+\_\+\+Move\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_desktop_input_controls_a7673cccb7f91fc4dfc659ebef36399f6}\label{class_desktop_input_controls_a7673cccb7f91fc4dfc659ebef36399f6}} 
+\index{DesktopInputControls@{DesktopInputControls}!m\_DesktopActionsCallbackInterface@{m\_DesktopActionsCallbackInterface}}
+\index{m\_DesktopActionsCallbackInterface@{m\_DesktopActionsCallbackInterface}!DesktopInputControls@{DesktopInputControls}}
+\doxysubsubsection{\texorpdfstring{m\_DesktopActionsCallbackInterface}{m\_DesktopActionsCallbackInterface}}
+{\footnotesize\ttfamily \mbox{\hyperlink{interface_desktop_input_controls_1_1_i_desktop_actions}{IDesktop\+Actions}} Desktop\+Input\+Controls.\+m\+\_\+\+Desktop\+Actions\+Callback\+Interface\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\Hypertarget{class_desktop_input_controls_a8b7f293b3371fc8fde95e9e30e9aea73}\label{class_desktop_input_controls_a8b7f293b3371fc8fde95e9e30e9aea73}} 
+\index{DesktopInputControls@{DesktopInputControls}!asset@{asset}}
+\index{asset@{asset}!DesktopInputControls@{DesktopInputControls}}
+\doxysubsubsection{\texorpdfstring{asset}{asset}}
+{\footnotesize\ttfamily Input\+Action\+Asset Desktop\+Input\+Controls.\+asset\hspace{0.3cm}{\ttfamily [get]}}
+
+\mbox{\Hypertarget{class_desktop_input_controls_a4d7c44cce08f5dbeb96e8cfbee74ceb7}\label{class_desktop_input_controls_a4d7c44cce08f5dbeb96e8cfbee74ceb7}} 
+\index{DesktopInputControls@{DesktopInputControls}!bindingMask@{bindingMask}}
+\index{bindingMask@{bindingMask}!DesktopInputControls@{DesktopInputControls}}
+\doxysubsubsection{\texorpdfstring{bindingMask}{bindingMask}}
+{\footnotesize\ttfamily Input\+Binding? Desktop\+Input\+Controls.\+binding\+Mask\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\mbox{\Hypertarget{class_desktop_input_controls_a10c9eefa3f5040dd44ecfd5df1066cf6}\label{class_desktop_input_controls_a10c9eefa3f5040dd44ecfd5df1066cf6}} 
+\index{DesktopInputControls@{DesktopInputControls}!bindings@{bindings}}
+\index{bindings@{bindings}!DesktopInputControls@{DesktopInputControls}}
+\doxysubsubsection{\texorpdfstring{bindings}{bindings}}
+{\footnotesize\ttfamily IEnumerable$<$Input\+Binding$>$ Desktop\+Input\+Controls.\+bindings\hspace{0.3cm}{\ttfamily [get]}}
+
+\mbox{\Hypertarget{class_desktop_input_controls_a2b45cfc762737c811140aa8dca024ebb}\label{class_desktop_input_controls_a2b45cfc762737c811140aa8dca024ebb}} 
+\index{DesktopInputControls@{DesktopInputControls}!controlSchemes@{controlSchemes}}
+\index{controlSchemes@{controlSchemes}!DesktopInputControls@{DesktopInputControls}}
+\doxysubsubsection{\texorpdfstring{controlSchemes}{controlSchemes}}
+{\footnotesize\ttfamily Read\+Only\+Array$<$Input\+Control\+Scheme$>$ Desktop\+Input\+Controls.\+control\+Schemes\hspace{0.3cm}{\ttfamily [get]}}
+
+\mbox{\Hypertarget{class_desktop_input_controls_a6f3b2398d4b2e528811512a750415554}\label{class_desktop_input_controls_a6f3b2398d4b2e528811512a750415554}} 
+\index{DesktopInputControls@{DesktopInputControls}!Desktop@{Desktop}}
+\index{Desktop@{Desktop}!DesktopInputControls@{DesktopInputControls}}
+\doxysubsubsection{\texorpdfstring{Desktop}{Desktop}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_desktop_input_controls_1_1_desktop_actions}{Desktop\+Actions}} Desktop\+Input\+Controls.\+Desktop\hspace{0.3cm}{\ttfamily [get]}}
+
+\mbox{\Hypertarget{class_desktop_input_controls_addd731ad08ec01e7a09b169feb9e37e7}\label{class_desktop_input_controls_addd731ad08ec01e7a09b169feb9e37e7}} 
+\index{DesktopInputControls@{DesktopInputControls}!devices@{devices}}
+\index{devices@{devices}!DesktopInputControls@{DesktopInputControls}}
+\doxysubsubsection{\texorpdfstring{devices}{devices}}
+{\footnotesize\ttfamily Read\+Only\+Array$<$Input\+Device$>$? Desktop\+Input\+Controls.\+devices\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Unity/\+Unity\+Projects/\+Masters\+Thesis/\+Assets/\+\_\+\+Neuro\+Rehab/\+Scripts/\+Desktop\+Client/\mbox{\hyperlink{_desktop_input_controls_8cs}{Desktop\+Input\+Controls.\+cs}}\end{DoxyCompactItemize}

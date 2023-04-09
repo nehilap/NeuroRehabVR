@@ -1,0 +1,132 @@
+\hypertarget{class_avatar_setup}{}\doxysection{Avatar\+Setup Class Reference}
+\label{class_avatar_setup}\index{AvatarSetup@{AvatarSetup}}
+Inheritance diagram for Avatar\+Setup\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_avatar_setup}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_avatar_setup_a2fcd7f046033a2eb4a3b8c38bae16097}{setup\+Model}} (Game\+Object model)
+\begin{DoxyCompactList}\small\item\em Method to change actual Avatar model. We replace mesh instead of changing whole object, otherwise it would break bunch of stuff + we would have to make perfect setup for every single Avatar variation (ineffective). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_avatar_setup_a6688c482007251ad20c06365e1dd5850}{Awake}} ()
+\item 
+void \mbox{\hyperlink{class_avatar_setup_a84cfe43abfa2898e0db0fa3793494db1}{On\+Disable}} ()
+\item 
+void \mbox{\hyperlink{class_avatar_setup_aa857bd97de09aaaf1bfb5897f5956ecf}{update\+Mesh}} (Skinned\+Mesh\+Renderer origin, Skinned\+Mesh\+Renderer target)
+\begin{DoxyCompactList}\small\item\em We update mesh, bones and materials. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_avatar_setup_a3f28ae7faad691277e19a84087ec0f93}{setup\+Avatar\+Parts}} ()
+\begin{DoxyCompactList}\small\item\em Load all objects into variable, so that we don\textquotesingle{}t have to do it every time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Game\+Object \mbox{\hyperlink{class_avatar_setup_af9555250246af6c0a4405da461a578fc}{model\+To\+Use}}
+\item 
+List$<$ Transform $>$ \mbox{\hyperlink{class_avatar_setup_a5488535052ebd92defc65edf7e38134f}{current\+Avatar\+Objects}} = new List$<$Transform$>$()
+\item 
+Transform \mbox{\hyperlink{class_avatar_setup_a9ce04b978effa815801bba6d475013e9}{root\+Bone}}
+\item 
+string\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_avatar_setup_a3d8b7c2591986d46ca4ba68eeb77a603}{excluded\+Names}}
+\item 
+Dictionary$<$ string, Transform $>$ \mbox{\hyperlink{class_avatar_setup_ae0a34b682379be9374e55b6cd34dadf2}{all\+Bones}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_avatar_setup_a6688c482007251ad20c06365e1dd5850}\label{class_avatar_setup_a6688c482007251ad20c06365e1dd5850}} 
+\index{AvatarSetup@{AvatarSetup}!Awake@{Awake}}
+\index{Awake@{Awake}!AvatarSetup@{AvatarSetup}}
+\doxysubsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void Avatar\+Setup.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_setup_a84cfe43abfa2898e0db0fa3793494db1}\label{class_avatar_setup_a84cfe43abfa2898e0db0fa3793494db1}} 
+\index{AvatarSetup@{AvatarSetup}!OnDisable@{OnDisable}}
+\index{OnDisable@{OnDisable}!AvatarSetup@{AvatarSetup}}
+\doxysubsubsection{\texorpdfstring{OnDisable()}{OnDisable()}}
+{\footnotesize\ttfamily void Avatar\+Setup.\+On\+Disable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_setup_a3f28ae7faad691277e19a84087ec0f93}\label{class_avatar_setup_a3f28ae7faad691277e19a84087ec0f93}} 
+\index{AvatarSetup@{AvatarSetup}!setupAvatarParts@{setupAvatarParts}}
+\index{setupAvatarParts@{setupAvatarParts}!AvatarSetup@{AvatarSetup}}
+\doxysubsubsection{\texorpdfstring{setupAvatarParts()}{setupAvatarParts()}}
+{\footnotesize\ttfamily void Avatar\+Setup.\+setup\+Avatar\+Parts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Load all objects into variable, so that we don\textquotesingle{}t have to do it every time. 
+
+\mbox{\Hypertarget{class_avatar_setup_a2fcd7f046033a2eb4a3b8c38bae16097}\label{class_avatar_setup_a2fcd7f046033a2eb4a3b8c38bae16097}} 
+\index{AvatarSetup@{AvatarSetup}!setupModel@{setupModel}}
+\index{setupModel@{setupModel}!AvatarSetup@{AvatarSetup}}
+\doxysubsubsection{\texorpdfstring{setupModel()}{setupModel()}}
+{\footnotesize\ttfamily void Avatar\+Setup.\+setup\+Model (\begin{DoxyParamCaption}\item[{Game\+Object}]{model }\end{DoxyParamCaption})}
+
+
+
+Method to change actual Avatar model. We replace mesh instead of changing whole object, otherwise it would break bunch of stuff + we would have to make perfect setup for every single Avatar variation (ineffective). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & Model that will be used\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_avatar_setup_aa857bd97de09aaaf1bfb5897f5956ecf}\label{class_avatar_setup_aa857bd97de09aaaf1bfb5897f5956ecf}} 
+\index{AvatarSetup@{AvatarSetup}!updateMesh@{updateMesh}}
+\index{updateMesh@{updateMesh}!AvatarSetup@{AvatarSetup}}
+\doxysubsubsection{\texorpdfstring{updateMesh()}{updateMesh()}}
+{\footnotesize\ttfamily void Avatar\+Setup.\+update\+Mesh (\begin{DoxyParamCaption}\item[{Skinned\+Mesh\+Renderer}]{origin,  }\item[{Skinned\+Mesh\+Renderer}]{target }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+We update mesh, bones and materials. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em origin} & \\
+\hline
+{\em target} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_avatar_setup_ae0a34b682379be9374e55b6cd34dadf2}\label{class_avatar_setup_ae0a34b682379be9374e55b6cd34dadf2}} 
+\index{AvatarSetup@{AvatarSetup}!allBones@{allBones}}
+\index{allBones@{allBones}!AvatarSetup@{AvatarSetup}}
+\doxysubsubsection{\texorpdfstring{allBones}{allBones}}
+{\footnotesize\ttfamily Dictionary$<$string, Transform$>$ Avatar\+Setup.\+all\+Bones\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_setup_a5488535052ebd92defc65edf7e38134f}\label{class_avatar_setup_a5488535052ebd92defc65edf7e38134f}} 
+\index{AvatarSetup@{AvatarSetup}!currentAvatarObjects@{currentAvatarObjects}}
+\index{currentAvatarObjects@{currentAvatarObjects}!AvatarSetup@{AvatarSetup}}
+\doxysubsubsection{\texorpdfstring{currentAvatarObjects}{currentAvatarObjects}}
+{\footnotesize\ttfamily List$<$Transform$>$ Avatar\+Setup.\+current\+Avatar\+Objects = new List$<$Transform$>$()\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_setup_a3d8b7c2591986d46ca4ba68eeb77a603}\label{class_avatar_setup_a3d8b7c2591986d46ca4ba68eeb77a603}} 
+\index{AvatarSetup@{AvatarSetup}!excludedNames@{excludedNames}}
+\index{excludedNames@{excludedNames}!AvatarSetup@{AvatarSetup}}
+\doxysubsubsection{\texorpdfstring{excludedNames}{excludedNames}}
+{\footnotesize\ttfamily string \mbox{[}$\,$\mbox{]} Avatar\+Setup.\+excluded\+Names\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_setup_af9555250246af6c0a4405da461a578fc}\label{class_avatar_setup_af9555250246af6c0a4405da461a578fc}} 
+\index{AvatarSetup@{AvatarSetup}!modelToUse@{modelToUse}}
+\index{modelToUse@{modelToUse}!AvatarSetup@{AvatarSetup}}
+\doxysubsubsection{\texorpdfstring{modelToUse}{modelToUse}}
+{\footnotesize\ttfamily Game\+Object Avatar\+Setup.\+model\+To\+Use\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_setup_a9ce04b978effa815801bba6d475013e9}\label{class_avatar_setup_a9ce04b978effa815801bba6d475013e9}} 
+\index{AvatarSetup@{AvatarSetup}!rootBone@{rootBone}}
+\index{rootBone@{rootBone}!AvatarSetup@{AvatarSetup}}
+\doxysubsubsection{\texorpdfstring{rootBone}{rootBone}}
+{\footnotesize\ttfamily Transform Avatar\+Setup.\+root\+Bone\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Unity/\+Unity\+Projects/\+Masters\+Thesis/\+Assets/\+\_\+\+Neuro\+Rehab/\+Scripts/\+Avatar/\mbox{\hyperlink{_avatar_setup_8cs}{Avatar\+Setup.\+cs}}\end{DoxyCompactItemize}

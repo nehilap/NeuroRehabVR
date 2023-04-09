@@ -440,13 +440,18 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	}
 
 	[Command]
-	public void CmdStartAnimation() {
+	public void CmdStartTraining() {
 		AnimationServerManager.Instance.startTraining();
 	}
 
 	[Command]
-	public void CmdStopAnimation() {
+	public void CmdStopTraining() {
 		AnimationServerManager.Instance.stopTraining();
+	}
+
+	[Command]
+	public void CmdCancelTraining() {
+		AnimationServerManager.Instance.cancelTrainingOnServer();
 	}
 
 	[Command]

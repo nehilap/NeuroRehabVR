@@ -1,0 +1,350 @@
+\hypertarget{class_character_manager}{}\doxysection{Character\+Manager Class Reference}
+\label{class_character_manager}\index{CharacterManager@{CharacterManager}}
+Inheritance diagram for Character\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_character_manager}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \mbox{\hyperlink{class_character_manager_a99818278a7a213f4a706666700ca6214}{On\+Start\+Local\+Player}} ()
+\item 
+override void \mbox{\hyperlink{class_character_manager_ad2da63928329ef01f9f0a33ab6c1eb46}{On\+Stop\+Client}} ()
+\item 
+virtual void \mbox{\hyperlink{class_character_manager_a1a85f8a5ac73f2dc08dd9e4cb92dcb32}{Start}} ()
+\item 
+virtual void \mbox{\hyperlink{class_character_manager_aa75a3491fe477e35d2d48430437b7b43}{change\+Animated\+Arm}} (bool \+\_\+old, bool \+\_\+new)
+\begin{DoxyCompactList}\small\item\em Method used to change active animated arm. First we change active arm variable. If arm is in resting position we make sure it stays that way. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_character_manager_a1a0c4eaf061ac39a806892bc2af0f921}{show\+Arm\+Range\+Marker}} ()
+\item 
+void \mbox{\hyperlink{class_character_manager_a8ac9080bec77a8471fe7202b5c50bd70}{hide\+Arm\+Range\+Marker}} ()
+\item 
+abstract void \mbox{\hyperlink{class_character_manager_a957daf953fc3bce4f367f61f7e22d204}{teleport\+Character}} (Transform target\+Position, Transform look\+Target=null)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_character_manager_a61654587be1976175a27904a7f2a3bef}{is\+Patient}}
+\item 
+bool \mbox{\hyperlink{class_character_manager_abe421dc7d79c8df5a813cd3d74c5de87}{is\+Female}}
+\item 
+int \mbox{\hyperlink{class_character_manager_af5444e88b04bd490ee46ce4c66453237}{avatar\+Number}}
+\item 
+float \mbox{\hyperlink{class_character_manager_aa87eee1d3eab6a2fb9f18acf8007dd69}{avatar\+Size\+Multiplier}}
+\item 
+float \mbox{\hyperlink{class_character_manager_aecb60366a54415f9cb77a94288abf3b1}{avatar\+Offset\+Distance}}
+\item 
+bool \mbox{\hyperlink{class_character_manager_add6ac97611e77c115f1e79b190fbd3f6}{is\+Left\+Arm\+Animated}} = false
+\item 
+bool \mbox{\hyperlink{class_character_manager_a64c73acb250e8c88bd3920edb503848e}{is\+Arm\+Resting}}
+\item 
+Game\+Object \mbox{\hyperlink{class_character_manager_a7d34140be42fb8106c4d7c139da7d33f}{active\+Avatar\+Object}}
+\item 
+\mbox{\hyperlink{class_arm_animation_controller}{Arm\+Animation\+Controller}} \mbox{\hyperlink{class_character_manager_a4dc5a2a8df71ac679bae0ef2c8ad72f6}{active\+Arm\+Animation\+Controller}}
+\item 
+Transform \mbox{\hyperlink{class_character_manager_a7f87202f848b8978ba2af824195f8303}{offset\+Object}}
+\item 
+Game\+Object \mbox{\hyperlink{class_character_manager_aac6c0a8d4abce03ef06fce9518689408}{camera\+Object}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_character_manager_a0dd9c8edb3fe4bd08e7d5c5f65a7eb55}{change\+Arm\+Resting\+State}} (bool \+\_\+old, bool \+\_\+new)
+\begin{DoxyCompactList}\small\item\em Handler triggered by Sync\+Var used to change rest state of active arm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_character_manager}{Character\+Manager}} \mbox{\hyperlink{class_character_manager_a5a834dc5edc3abc03c489be455df963e}{local\+Client\+Instance}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\item 
+static \mbox{\hyperlink{class_character_manager}{Character\+Manager}} \mbox{\hyperlink{class_character_manager_a223bca2a2d4970d6f61d9ffea35ffc6f}{active\+Patient\+Instance}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\item 
+Game\+Object \mbox{\hyperlink{class_character_manager_a5dc9a76779f0e30e0eec573789306392}{active\+Arm\+Range\+Marker}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Game\+Object\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_character_manager_a15640434f8f91a81b80cc760633e79c6}{Find\+Game\+Objects\+In\+Layer}} (int layer)
+\begin{DoxyCompactList}\small\item\em We search through all objects loaded in scene in certain laye. Ideally shouldn\textquotesingle{}t be used too much when there are too many objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ Game\+Object $>$ \mbox{\hyperlink{class_character_manager_a234b3aca10fcb4b9fd14da969350f56a}{avatar\+Male\+Prefabs}} = new List$<$Game\+Object$>$()
+\item 
+List$<$ Game\+Object $>$ \mbox{\hyperlink{class_character_manager_a2fe4beb74fd3e01ca1fcc582f28e5d4e}{avatar\+Female\+Prefabs}} = new List$<$Game\+Object$>$()
+\item 
+Game\+Object\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_character_manager_ac76e4677f139f27c22ec5e706ee15e4a}{items\+To\+Activate}}
+\item 
+\mbox{\hyperlink{class_avatar_walking_controller}{Avatar\+Walking\+Controller}}\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_character_manager_af43ffc2518e57a04427920666bbb333d}{avatar\+Walking\+Controllers}}
+\item 
+\mbox{\hyperlink{class_network_avatar_walking_controller}{Network\+Avatar\+Walking\+Controller}} \mbox{\hyperlink{class_character_manager_a049c00b4cbcd391132a22cb73c84fbb2}{network\+Avatar\+Walking\+Controller}}
+\item 
+Game\+Object\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_character_manager_a355b6629829fe753e33d76aec3823800}{objects\+To\+Cull}}
+\item 
+Game\+Object\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_character_manager_a25a3ef4932f7f32fd75f523f68cc7f71}{avatars}}
+\item 
+Mono\+Behaviour\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_character_manager_a4311d0109928492b6b2a7e58d6f9fdf3}{components\+To\+Disable}}
+\item 
+Mono\+Behaviour\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_character_manager_af7e0e2754d5a2311577c8596efa417b0}{components\+To\+Enable}}
+\item 
+Mono\+Behaviour\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_character_manager_a1d09405dfb84b0d68e68c37aa42a485e}{components\+To\+Enable\+Locally}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_character_manager_aa75a3491fe477e35d2d48430437b7b43}\label{class_character_manager_aa75a3491fe477e35d2d48430437b7b43}} 
+\index{CharacterManager@{CharacterManager}!changeAnimatedArm@{changeAnimatedArm}}
+\index{changeAnimatedArm@{changeAnimatedArm}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{changeAnimatedArm()}{changeAnimatedArm()}}
+{\footnotesize\ttfamily virtual void Character\+Manager.\+change\+Animated\+Arm (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+old,  }\item[{bool}]{\+\_\+new }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Method used to change active animated arm. First we change active arm variable. If arm is in resting position we make sure it stays that way. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+old} & \\
+\hline
+{\em \+\_\+new} & \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{class_x_r_character_manager_a0d50706631cca6a3eb94d40daf8bfa04}{XRCharacter\+Manager}}.
+
+\mbox{\Hypertarget{class_character_manager_a0dd9c8edb3fe4bd08e7d5c5f65a7eb55}\label{class_character_manager_a0dd9c8edb3fe4bd08e7d5c5f65a7eb55}} 
+\index{CharacterManager@{CharacterManager}!changeArmRestingState@{changeArmRestingState}}
+\index{changeArmRestingState@{changeArmRestingState}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{changeArmRestingState()}{changeArmRestingState()}}
+{\footnotesize\ttfamily void Character\+Manager.\+change\+Arm\+Resting\+State (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+old,  }\item[{bool}]{\+\_\+new }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Handler triggered by Sync\+Var used to change rest state of active arm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+old} & \\
+\hline
+{\em \+\_\+new} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_character_manager_a15640434f8f91a81b80cc760633e79c6}\label{class_character_manager_a15640434f8f91a81b80cc760633e79c6}} 
+\index{CharacterManager@{CharacterManager}!FindGameObjectsInLayer@{FindGameObjectsInLayer}}
+\index{FindGameObjectsInLayer@{FindGameObjectsInLayer}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{FindGameObjectsInLayer()}{FindGameObjectsInLayer()}}
+{\footnotesize\ttfamily Game\+Object\mbox{[}$\,$\mbox{]} Character\+Manager.\+Find\+Game\+Objects\+In\+Layer (\begin{DoxyParamCaption}\item[{int}]{layer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+We search through all objects loaded in scene in certain laye. Ideally shouldn\textquotesingle{}t be used too much when there are too many objects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em layer} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+List of Gameobjects in layer
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_character_manager_a8ac9080bec77a8471fe7202b5c50bd70}\label{class_character_manager_a8ac9080bec77a8471fe7202b5c50bd70}} 
+\index{CharacterManager@{CharacterManager}!hideArmRangeMarker@{hideArmRangeMarker}}
+\index{hideArmRangeMarker@{hideArmRangeMarker}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{hideArmRangeMarker()}{hideArmRangeMarker()}}
+{\footnotesize\ttfamily void Character\+Manager.\+hide\+Arm\+Range\+Marker (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_character_manager_a99818278a7a213f4a706666700ca6214}\label{class_character_manager_a99818278a7a213f4a706666700ca6214}} 
+\index{CharacterManager@{CharacterManager}!OnStartLocalPlayer@{OnStartLocalPlayer}}
+\index{OnStartLocalPlayer@{OnStartLocalPlayer}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{OnStartLocalPlayer()}{OnStartLocalPlayer()}}
+{\footnotesize\ttfamily override void Character\+Manager.\+On\+Start\+Local\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_character_manager_ad2da63928329ef01f9f0a33ab6c1eb46}\label{class_character_manager_ad2da63928329ef01f9f0a33ab6c1eb46}} 
+\index{CharacterManager@{CharacterManager}!OnStopClient@{OnStopClient}}
+\index{OnStopClient@{OnStopClient}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{OnStopClient()}{OnStopClient()}}
+{\footnotesize\ttfamily override void Character\+Manager.\+On\+Stop\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_character_manager_a1a0c4eaf061ac39a806892bc2af0f921}\label{class_character_manager_a1a0c4eaf061ac39a806892bc2af0f921}} 
+\index{CharacterManager@{CharacterManager}!showArmRangeMarker@{showArmRangeMarker}}
+\index{showArmRangeMarker@{showArmRangeMarker}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{showArmRangeMarker()}{showArmRangeMarker()}}
+{\footnotesize\ttfamily void Character\+Manager.\+show\+Arm\+Range\+Marker (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_character_manager_a1a85f8a5ac73f2dc08dd9e4cb92dcb32}\label{class_character_manager_a1a85f8a5ac73f2dc08dd9e4cb92dcb32}} 
+\index{CharacterManager@{CharacterManager}!Start@{Start}}
+\index{Start@{Start}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily virtual void Character\+Manager.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_desktop_character_manager_a8f86b968232667ba5017626967ee460e}{Desktop\+Character\+Manager}}, and \mbox{\hyperlink{class_x_r_character_manager_acec2dc76fddc1c0f352a6eec03db0454}{XRCharacter\+Manager}}.
+
+\mbox{\Hypertarget{class_character_manager_a957daf953fc3bce4f367f61f7e22d204}\label{class_character_manager_a957daf953fc3bce4f367f61f7e22d204}} 
+\index{CharacterManager@{CharacterManager}!teleportCharacter@{teleportCharacter}}
+\index{teleportCharacter@{teleportCharacter}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{teleportCharacter()}{teleportCharacter()}}
+{\footnotesize\ttfamily abstract void Character\+Manager.\+teleport\+Character (\begin{DoxyParamCaption}\item[{Transform}]{target\+Position,  }\item[{Transform}]{look\+Target = {\ttfamily null} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_desktop_character_manager_a8e5a31206adbb7641f9450c73c9d8205}{Desktop\+Character\+Manager}}, and \mbox{\hyperlink{class_x_r_character_manager_ac118d3178e65504fb18e8677a893480f}{XRCharacter\+Manager}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_character_manager_a4dc5a2a8df71ac679bae0ef2c8ad72f6}\label{class_character_manager_a4dc5a2a8df71ac679bae0ef2c8ad72f6}} 
+\index{CharacterManager@{CharacterManager}!activeArmAnimationController@{activeArmAnimationController}}
+\index{activeArmAnimationController@{activeArmAnimationController}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{activeArmAnimationController}{activeArmAnimationController}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_arm_animation_controller}{Arm\+Animation\+Controller}} Character\+Manager.\+active\+Arm\+Animation\+Controller}
+
+\mbox{\Hypertarget{class_character_manager_a7d34140be42fb8106c4d7c139da7d33f}\label{class_character_manager_a7d34140be42fb8106c4d7c139da7d33f}} 
+\index{CharacterManager@{CharacterManager}!activeAvatarObject@{activeAvatarObject}}
+\index{activeAvatarObject@{activeAvatarObject}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{activeAvatarObject}{activeAvatarObject}}
+{\footnotesize\ttfamily Game\+Object Character\+Manager.\+active\+Avatar\+Object}
+
+\mbox{\Hypertarget{class_character_manager_a2fe4beb74fd3e01ca1fcc582f28e5d4e}\label{class_character_manager_a2fe4beb74fd3e01ca1fcc582f28e5d4e}} 
+\index{CharacterManager@{CharacterManager}!avatarFemalePrefabs@{avatarFemalePrefabs}}
+\index{avatarFemalePrefabs@{avatarFemalePrefabs}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{avatarFemalePrefabs}{avatarFemalePrefabs}}
+{\footnotesize\ttfamily List$<$Game\+Object$>$ Character\+Manager.\+avatar\+Female\+Prefabs = new List$<$Game\+Object$>$()\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_character_manager_a234b3aca10fcb4b9fd14da969350f56a}\label{class_character_manager_a234b3aca10fcb4b9fd14da969350f56a}} 
+\index{CharacterManager@{CharacterManager}!avatarMalePrefabs@{avatarMalePrefabs}}
+\index{avatarMalePrefabs@{avatarMalePrefabs}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{avatarMalePrefabs}{avatarMalePrefabs}}
+{\footnotesize\ttfamily List$<$Game\+Object$>$ Character\+Manager.\+avatar\+Male\+Prefabs = new List$<$Game\+Object$>$()\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_character_manager_af5444e88b04bd490ee46ce4c66453237}\label{class_character_manager_af5444e88b04bd490ee46ce4c66453237}} 
+\index{CharacterManager@{CharacterManager}!avatarNumber@{avatarNumber}}
+\index{avatarNumber@{avatarNumber}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{avatarNumber}{avatarNumber}}
+{\footnotesize\ttfamily int Character\+Manager.\+avatar\+Number}
+
+\mbox{\Hypertarget{class_character_manager_aecb60366a54415f9cb77a94288abf3b1}\label{class_character_manager_aecb60366a54415f9cb77a94288abf3b1}} 
+\index{CharacterManager@{CharacterManager}!avatarOffsetDistance@{avatarOffsetDistance}}
+\index{avatarOffsetDistance@{avatarOffsetDistance}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{avatarOffsetDistance}{avatarOffsetDistance}}
+{\footnotesize\ttfamily float Character\+Manager.\+avatar\+Offset\+Distance}
+
+\mbox{\Hypertarget{class_character_manager_a25a3ef4932f7f32fd75f523f68cc7f71}\label{class_character_manager_a25a3ef4932f7f32fd75f523f68cc7f71}} 
+\index{CharacterManager@{CharacterManager}!avatars@{avatars}}
+\index{avatars@{avatars}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{avatars}{avatars}}
+{\footnotesize\ttfamily Game\+Object \mbox{[}$\,$\mbox{]} Character\+Manager.\+avatars\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_character_manager_aa87eee1d3eab6a2fb9f18acf8007dd69}\label{class_character_manager_aa87eee1d3eab6a2fb9f18acf8007dd69}} 
+\index{CharacterManager@{CharacterManager}!avatarSizeMultiplier@{avatarSizeMultiplier}}
+\index{avatarSizeMultiplier@{avatarSizeMultiplier}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{avatarSizeMultiplier}{avatarSizeMultiplier}}
+{\footnotesize\ttfamily float Character\+Manager.\+avatar\+Size\+Multiplier}
+
+\mbox{\Hypertarget{class_character_manager_af43ffc2518e57a04427920666bbb333d}\label{class_character_manager_af43ffc2518e57a04427920666bbb333d}} 
+\index{CharacterManager@{CharacterManager}!avatarWalkingControllers@{avatarWalkingControllers}}
+\index{avatarWalkingControllers@{avatarWalkingControllers}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{avatarWalkingControllers}{avatarWalkingControllers}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_avatar_walking_controller}{Avatar\+Walking\+Controller}} \mbox{[}$\,$\mbox{]} Character\+Manager.\+avatar\+Walking\+Controllers\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_character_manager_aac6c0a8d4abce03ef06fce9518689408}\label{class_character_manager_aac6c0a8d4abce03ef06fce9518689408}} 
+\index{CharacterManager@{CharacterManager}!cameraObject@{cameraObject}}
+\index{cameraObject@{cameraObject}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{cameraObject}{cameraObject}}
+{\footnotesize\ttfamily Game\+Object Character\+Manager.\+camera\+Object}
+
+\mbox{\Hypertarget{class_character_manager_a4311d0109928492b6b2a7e58d6f9fdf3}\label{class_character_manager_a4311d0109928492b6b2a7e58d6f9fdf3}} 
+\index{CharacterManager@{CharacterManager}!componentsToDisable@{componentsToDisable}}
+\index{componentsToDisable@{componentsToDisable}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{componentsToDisable}{componentsToDisable}}
+{\footnotesize\ttfamily Mono\+Behaviour \mbox{[}$\,$\mbox{]} Character\+Manager.\+components\+To\+Disable\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_character_manager_af7e0e2754d5a2311577c8596efa417b0}\label{class_character_manager_af7e0e2754d5a2311577c8596efa417b0}} 
+\index{CharacterManager@{CharacterManager}!componentsToEnable@{componentsToEnable}}
+\index{componentsToEnable@{componentsToEnable}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{componentsToEnable}{componentsToEnable}}
+{\footnotesize\ttfamily Mono\+Behaviour \mbox{[}$\,$\mbox{]} Character\+Manager.\+components\+To\+Enable\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_character_manager_a1d09405dfb84b0d68e68c37aa42a485e}\label{class_character_manager_a1d09405dfb84b0d68e68c37aa42a485e}} 
+\index{CharacterManager@{CharacterManager}!componentsToEnableLocally@{componentsToEnableLocally}}
+\index{componentsToEnableLocally@{componentsToEnableLocally}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{componentsToEnableLocally}{componentsToEnableLocally}}
+{\footnotesize\ttfamily Mono\+Behaviour \mbox{[}$\,$\mbox{]} Character\+Manager.\+components\+To\+Enable\+Locally\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_character_manager_a64c73acb250e8c88bd3920edb503848e}\label{class_character_manager_a64c73acb250e8c88bd3920edb503848e}} 
+\index{CharacterManager@{CharacterManager}!isArmResting@{isArmResting}}
+\index{isArmResting@{isArmResting}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{isArmResting}{isArmResting}}
+{\footnotesize\ttfamily bool Character\+Manager.\+is\+Arm\+Resting}
+
+\mbox{\Hypertarget{class_character_manager_abe421dc7d79c8df5a813cd3d74c5de87}\label{class_character_manager_abe421dc7d79c8df5a813cd3d74c5de87}} 
+\index{CharacterManager@{CharacterManager}!isFemale@{isFemale}}
+\index{isFemale@{isFemale}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{isFemale}{isFemale}}
+{\footnotesize\ttfamily bool Character\+Manager.\+is\+Female}
+
+\mbox{\Hypertarget{class_character_manager_add6ac97611e77c115f1e79b190fbd3f6}\label{class_character_manager_add6ac97611e77c115f1e79b190fbd3f6}} 
+\index{CharacterManager@{CharacterManager}!isLeftArmAnimated@{isLeftArmAnimated}}
+\index{isLeftArmAnimated@{isLeftArmAnimated}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{isLeftArmAnimated}{isLeftArmAnimated}}
+{\footnotesize\ttfamily bool Character\+Manager.\+is\+Left\+Arm\+Animated = false}
+
+\mbox{\Hypertarget{class_character_manager_a61654587be1976175a27904a7f2a3bef}\label{class_character_manager_a61654587be1976175a27904a7f2a3bef}} 
+\index{CharacterManager@{CharacterManager}!isPatient@{isPatient}}
+\index{isPatient@{isPatient}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{isPatient}{isPatient}}
+{\footnotesize\ttfamily bool Character\+Manager.\+is\+Patient}
+
+\mbox{\Hypertarget{class_character_manager_ac76e4677f139f27c22ec5e706ee15e4a}\label{class_character_manager_ac76e4677f139f27c22ec5e706ee15e4a}} 
+\index{CharacterManager@{CharacterManager}!itemsToActivate@{itemsToActivate}}
+\index{itemsToActivate@{itemsToActivate}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{itemsToActivate}{itemsToActivate}}
+{\footnotesize\ttfamily Game\+Object \mbox{[}$\,$\mbox{]} Character\+Manager.\+items\+To\+Activate\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_character_manager_a049c00b4cbcd391132a22cb73c84fbb2}\label{class_character_manager_a049c00b4cbcd391132a22cb73c84fbb2}} 
+\index{CharacterManager@{CharacterManager}!networkAvatarWalkingController@{networkAvatarWalkingController}}
+\index{networkAvatarWalkingController@{networkAvatarWalkingController}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{networkAvatarWalkingController}{networkAvatarWalkingController}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_network_avatar_walking_controller}{Network\+Avatar\+Walking\+Controller}} Character\+Manager.\+network\+Avatar\+Walking\+Controller\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_character_manager_a355b6629829fe753e33d76aec3823800}\label{class_character_manager_a355b6629829fe753e33d76aec3823800}} 
+\index{CharacterManager@{CharacterManager}!objectsToCull@{objectsToCull}}
+\index{objectsToCull@{objectsToCull}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{objectsToCull}{objectsToCull}}
+{\footnotesize\ttfamily Game\+Object \mbox{[}$\,$\mbox{]} Character\+Manager.\+objects\+To\+Cull\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_character_manager_a7f87202f848b8978ba2af824195f8303}\label{class_character_manager_a7f87202f848b8978ba2af824195f8303}} 
+\index{CharacterManager@{CharacterManager}!offsetObject@{offsetObject}}
+\index{offsetObject@{offsetObject}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{offsetObject}{offsetObject}}
+{\footnotesize\ttfamily Transform Character\+Manager.\+offset\+Object}
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\Hypertarget{class_character_manager_a5dc9a76779f0e30e0eec573789306392}\label{class_character_manager_a5dc9a76779f0e30e0eec573789306392}} 
+\index{CharacterManager@{CharacterManager}!activeArmRangeMarker@{activeArmRangeMarker}}
+\index{activeArmRangeMarker@{activeArmRangeMarker}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{activeArmRangeMarker}{activeArmRangeMarker}}
+{\footnotesize\ttfamily Game\+Object Character\+Manager.\+active\+Arm\+Range\+Marker\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_character_manager_a223bca2a2d4970d6f61d9ffea35ffc6f}\label{class_character_manager_a223bca2a2d4970d6f61d9ffea35ffc6f}} 
+\index{CharacterManager@{CharacterManager}!activePatientInstance@{activePatientInstance}}
+\index{activePatientInstance@{activePatientInstance}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{activePatientInstance}{activePatientInstance}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_character_manager}{Character\+Manager}} Character\+Manager.\+active\+Patient\+Instance\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [private set]}}
+
+\mbox{\Hypertarget{class_character_manager_a5a834dc5edc3abc03c489be455df963e}\label{class_character_manager_a5a834dc5edc3abc03c489be455df963e}} 
+\index{CharacterManager@{CharacterManager}!localClientInstance@{localClientInstance}}
+\index{localClientInstance@{localClientInstance}!CharacterManager@{CharacterManager}}
+\doxysubsubsection{\texorpdfstring{localClientInstance}{localClientInstance}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_character_manager}{Character\+Manager}} Character\+Manager.\+local\+Client\+Instance\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [private set]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Unity/\+Unity\+Projects/\+Masters\+Thesis/\+Assets/\+\_\+\+Neuro\+Rehab/\+Scripts/\+Managers/\+Character\+Manager/\mbox{\hyperlink{_character_manager_8cs}{Character\+Manager.\+cs}}\end{DoxyCompactItemize}

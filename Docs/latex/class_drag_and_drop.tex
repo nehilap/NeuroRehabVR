@@ -1,0 +1,137 @@
+\hypertarget{class_drag_and_drop}{}\doxysection{Drag\+And\+Drop Class Reference}
+\label{class_drag_and_drop}\index{DragAndDrop@{DragAndDrop}}
+Inheritance diagram for Drag\+And\+Drop\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_drag_and_drop}
+\end{center}
+\end{figure}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_drag_and_drop_ae7378e28e90742f0de2885a9e2af9cd0}{Awake}} ()
+\item 
+void \mbox{\hyperlink{class_drag_and_drop_a5b51d169cefe175b443ca512d1d447cf}{On\+Enable}} ()
+\item 
+void \mbox{\hyperlink{class_drag_and_drop_a45f476fb8973ddbd039a08b45cf9bb98}{On\+Disable}} ()
+\item 
+void \mbox{\hyperlink{class_drag_and_drop_a6840e3e5a771537f4b29d915a7764e6b}{mouse\+Pressed}} (Input\+Action.\+Callback\+Context obj)
+\item 
+IEnumerator \mbox{\hyperlink{class_drag_and_drop_a2a4eec26804aac6cffcafe6c51d83d31}{drag\+Update}} (Game\+Object dragged\+Object)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Input\+Action\+Reference \mbox{\hyperlink{class_drag_and_drop_a4e25aa5060f30c1ac758523027bd8e86}{mouse\+Click}}
+\item 
+\mbox{\hyperlink{class_mini_menu_manager}{Mini\+Menu\+Manager}} \mbox{\hyperlink{class_drag_and_drop_a50d4f4878055f9eff9f2bb8f6db2ee03}{mini\+Menu\+Manager}}
+\item 
+float \mbox{\hyperlink{class_drag_and_drop_a9a33937e5723c87cb045894853bb9c07}{mouse\+Physics\+Drag\+Speed}} = 10f
+\item 
+float \mbox{\hyperlink{class_drag_and_drop_ae088bc046aae71585654a07e73e84f6a}{mouse\+Drag\+Speed}} = 0.\+1f
+\item 
+Camera \mbox{\hyperlink{class_drag_and_drop_a917c61a2c7490ac90548913e4a484882}{main\+Camera}}
+\item 
+Layer\+Mask \mbox{\hyperlink{class_drag_and_drop_ab1359dfab1c200ef16fbef0b14214d5a}{layers\+To\+Ignore}}
+\item 
+float \mbox{\hyperlink{class_drag_and_drop_a0c59a43c4eff3f796dee2c16aba76e51}{ray\+Length}} = 10f
+\item 
+Wait\+For\+Fixed\+Update \mbox{\hyperlink{class_drag_and_drop_ade439c1ab0b7d503e86b3b27544d0360}{wait\+For\+Fixed\+Update}} = new Wait\+For\+Fixed\+Update()
+\item 
+Vector3 \mbox{\hyperlink{class_drag_and_drop_a18da7198037e7bb9117759cb2d8e700a}{velocity}} = Vector3.\+zero
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_drag_and_drop_ae7378e28e90742f0de2885a9e2af9cd0}\label{class_drag_and_drop_ae7378e28e90742f0de2885a9e2af9cd0}} 
+\index{DragAndDrop@{DragAndDrop}!Awake@{Awake}}
+\index{Awake@{Awake}!DragAndDrop@{DragAndDrop}}
+\doxysubsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void Drag\+And\+Drop.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_drag_and_drop_a2a4eec26804aac6cffcafe6c51d83d31}\label{class_drag_and_drop_a2a4eec26804aac6cffcafe6c51d83d31}} 
+\index{DragAndDrop@{DragAndDrop}!dragUpdate@{dragUpdate}}
+\index{dragUpdate@{dragUpdate}!DragAndDrop@{DragAndDrop}}
+\doxysubsubsection{\texorpdfstring{dragUpdate()}{dragUpdate()}}
+{\footnotesize\ttfamily IEnumerator Drag\+And\+Drop.\+drag\+Update (\begin{DoxyParamCaption}\item[{Game\+Object}]{dragged\+Object }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_drag_and_drop_a6840e3e5a771537f4b29d915a7764e6b}\label{class_drag_and_drop_a6840e3e5a771537f4b29d915a7764e6b}} 
+\index{DragAndDrop@{DragAndDrop}!mousePressed@{mousePressed}}
+\index{mousePressed@{mousePressed}!DragAndDrop@{DragAndDrop}}
+\doxysubsubsection{\texorpdfstring{mousePressed()}{mousePressed()}}
+{\footnotesize\ttfamily void Drag\+And\+Drop.\+mouse\+Pressed (\begin{DoxyParamCaption}\item[{Input\+Action\+::\+Callback\+Context}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_drag_and_drop_a45f476fb8973ddbd039a08b45cf9bb98}\label{class_drag_and_drop_a45f476fb8973ddbd039a08b45cf9bb98}} 
+\index{DragAndDrop@{DragAndDrop}!OnDisable@{OnDisable}}
+\index{OnDisable@{OnDisable}!DragAndDrop@{DragAndDrop}}
+\doxysubsubsection{\texorpdfstring{OnDisable()}{OnDisable()}}
+{\footnotesize\ttfamily void Drag\+And\+Drop.\+On\+Disable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_drag_and_drop_a5b51d169cefe175b443ca512d1d447cf}\label{class_drag_and_drop_a5b51d169cefe175b443ca512d1d447cf}} 
+\index{DragAndDrop@{DragAndDrop}!OnEnable@{OnEnable}}
+\index{OnEnable@{OnEnable}!DragAndDrop@{DragAndDrop}}
+\doxysubsubsection{\texorpdfstring{OnEnable()}{OnEnable()}}
+{\footnotesize\ttfamily void Drag\+And\+Drop.\+On\+Enable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_drag_and_drop_ab1359dfab1c200ef16fbef0b14214d5a}\label{class_drag_and_drop_ab1359dfab1c200ef16fbef0b14214d5a}} 
+\index{DragAndDrop@{DragAndDrop}!layersToIgnore@{layersToIgnore}}
+\index{layersToIgnore@{layersToIgnore}!DragAndDrop@{DragAndDrop}}
+\doxysubsubsection{\texorpdfstring{layersToIgnore}{layersToIgnore}}
+{\footnotesize\ttfamily Layer\+Mask Drag\+And\+Drop.\+layers\+To\+Ignore\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_drag_and_drop_a917c61a2c7490ac90548913e4a484882}\label{class_drag_and_drop_a917c61a2c7490ac90548913e4a484882}} 
+\index{DragAndDrop@{DragAndDrop}!mainCamera@{mainCamera}}
+\index{mainCamera@{mainCamera}!DragAndDrop@{DragAndDrop}}
+\doxysubsubsection{\texorpdfstring{mainCamera}{mainCamera}}
+{\footnotesize\ttfamily Camera Drag\+And\+Drop.\+main\+Camera\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_drag_and_drop_a50d4f4878055f9eff9f2bb8f6db2ee03}\label{class_drag_and_drop_a50d4f4878055f9eff9f2bb8f6db2ee03}} 
+\index{DragAndDrop@{DragAndDrop}!miniMenuManager@{miniMenuManager}}
+\index{miniMenuManager@{miniMenuManager}!DragAndDrop@{DragAndDrop}}
+\doxysubsubsection{\texorpdfstring{miniMenuManager}{miniMenuManager}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_mini_menu_manager}{Mini\+Menu\+Manager}} Drag\+And\+Drop.\+mini\+Menu\+Manager\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_drag_and_drop_a4e25aa5060f30c1ac758523027bd8e86}\label{class_drag_and_drop_a4e25aa5060f30c1ac758523027bd8e86}} 
+\index{DragAndDrop@{DragAndDrop}!mouseClick@{mouseClick}}
+\index{mouseClick@{mouseClick}!DragAndDrop@{DragAndDrop}}
+\doxysubsubsection{\texorpdfstring{mouseClick}{mouseClick}}
+{\footnotesize\ttfamily Input\+Action\+Reference Drag\+And\+Drop.\+mouse\+Click\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_drag_and_drop_ae088bc046aae71585654a07e73e84f6a}\label{class_drag_and_drop_ae088bc046aae71585654a07e73e84f6a}} 
+\index{DragAndDrop@{DragAndDrop}!mouseDragSpeed@{mouseDragSpeed}}
+\index{mouseDragSpeed@{mouseDragSpeed}!DragAndDrop@{DragAndDrop}}
+\doxysubsubsection{\texorpdfstring{mouseDragSpeed}{mouseDragSpeed}}
+{\footnotesize\ttfamily float Drag\+And\+Drop.\+mouse\+Drag\+Speed = 0.\+1f\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_drag_and_drop_a9a33937e5723c87cb045894853bb9c07}\label{class_drag_and_drop_a9a33937e5723c87cb045894853bb9c07}} 
+\index{DragAndDrop@{DragAndDrop}!mousePhysicsDragSpeed@{mousePhysicsDragSpeed}}
+\index{mousePhysicsDragSpeed@{mousePhysicsDragSpeed}!DragAndDrop@{DragAndDrop}}
+\doxysubsubsection{\texorpdfstring{mousePhysicsDragSpeed}{mousePhysicsDragSpeed}}
+{\footnotesize\ttfamily float Drag\+And\+Drop.\+mouse\+Physics\+Drag\+Speed = 10f\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_drag_and_drop_a0c59a43c4eff3f796dee2c16aba76e51}\label{class_drag_and_drop_a0c59a43c4eff3f796dee2c16aba76e51}} 
+\index{DragAndDrop@{DragAndDrop}!rayLength@{rayLength}}
+\index{rayLength@{rayLength}!DragAndDrop@{DragAndDrop}}
+\doxysubsubsection{\texorpdfstring{rayLength}{rayLength}}
+{\footnotesize\ttfamily float Drag\+And\+Drop.\+ray\+Length = 10f\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_drag_and_drop_a18da7198037e7bb9117759cb2d8e700a}\label{class_drag_and_drop_a18da7198037e7bb9117759cb2d8e700a}} 
+\index{DragAndDrop@{DragAndDrop}!velocity@{velocity}}
+\index{velocity@{velocity}!DragAndDrop@{DragAndDrop}}
+\doxysubsubsection{\texorpdfstring{velocity}{velocity}}
+{\footnotesize\ttfamily Vector3 Drag\+And\+Drop.\+velocity = Vector3.\+zero\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_drag_and_drop_ade439c1ab0b7d503e86b3b27544d0360}\label{class_drag_and_drop_ade439c1ab0b7d503e86b3b27544d0360}} 
+\index{DragAndDrop@{DragAndDrop}!waitForFixedUpdate@{waitForFixedUpdate}}
+\index{waitForFixedUpdate@{waitForFixedUpdate}!DragAndDrop@{DragAndDrop}}
+\doxysubsubsection{\texorpdfstring{waitForFixedUpdate}{waitForFixedUpdate}}
+{\footnotesize\ttfamily Wait\+For\+Fixed\+Update Drag\+And\+Drop.\+wait\+For\+Fixed\+Update = new Wait\+For\+Fixed\+Update()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Unity/\+Unity\+Projects/\+Masters\+Thesis/\+Assets/\+\_\+\+Neuro\+Rehab/\+Scripts/\+Desktop\+Client/\mbox{\hyperlink{_drag_and_drop_8cs}{Drag\+And\+Drop.\+cs}}\end{DoxyCompactItemize}

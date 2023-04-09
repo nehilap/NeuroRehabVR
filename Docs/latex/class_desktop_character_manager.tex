@@ -1,0 +1,127 @@
+\hypertarget{class_desktop_character_manager}{}\doxysection{Desktop\+Character\+Manager Class Reference}
+\label{class_desktop_character_manager}\index{DesktopCharacterManager@{DesktopCharacterManager}}
+Inheritance diagram for Desktop\+Character\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_desktop_character_manager}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \mbox{\hyperlink{class_desktop_character_manager_a61b11ef21b6c4f68b82e61f0c48d8a54}{On\+Start\+Local\+Player}} ()
+\item 
+override void \mbox{\hyperlink{class_desktop_character_manager_aa75db512c5a8a3d3ae8854b27fc3ba7d}{On\+Stop\+Client}} ()
+\item 
+override void \mbox{\hyperlink{class_desktop_character_manager_a8f86b968232667ba5017626967ee460e}{Start}} ()
+\item 
+override void \mbox{\hyperlink{class_desktop_character_manager_a8e5a31206adbb7641f9450c73c9d8205}{teleport\+Character}} (Transform target\+Position, Transform look\+Target=null)
+\begin{DoxyCompactList}\small\item\em Teleports character to specific location and rotates it to look at target. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_character_manager}{Character\+Manager}}}
+\begin{DoxyCompactItemize}
+\item 
+override void \mbox{\hyperlink{class_character_manager_a99818278a7a213f4a706666700ca6214}{On\+Start\+Local\+Player}} ()
+\item 
+override void \mbox{\hyperlink{class_character_manager_ad2da63928329ef01f9f0a33ab6c1eb46}{On\+Stop\+Client}} ()
+\item 
+virtual void \mbox{\hyperlink{class_character_manager_a1a85f8a5ac73f2dc08dd9e4cb92dcb32}{Start}} ()
+\item 
+virtual void \mbox{\hyperlink{class_character_manager_aa75a3491fe477e35d2d48430437b7b43}{change\+Animated\+Arm}} (bool \+\_\+old, bool \+\_\+new)
+\begin{DoxyCompactList}\small\item\em Method used to change active animated arm. First we change active arm variable. If arm is in resting position we make sure it stays that way. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_character_manager_a1a0c4eaf061ac39a806892bc2af0f921}{show\+Arm\+Range\+Marker}} ()
+\item 
+void \mbox{\hyperlink{class_character_manager_a8ac9080bec77a8471fe7202b5c50bd70}{hide\+Arm\+Range\+Marker}} ()
+\item 
+abstract void \mbox{\hyperlink{class_character_manager_a957daf953fc3bce4f367f61f7e22d204}{teleport\+Character}} (Transform target\+Position, Transform look\+Target=null)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+\doxysubsubsection*{Public Attributes inherited from \mbox{\hyperlink{class_character_manager}{Character\+Manager}}}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_character_manager_a61654587be1976175a27904a7f2a3bef}{is\+Patient}}
+\item 
+bool \mbox{\hyperlink{class_character_manager_abe421dc7d79c8df5a813cd3d74c5de87}{is\+Female}}
+\item 
+int \mbox{\hyperlink{class_character_manager_af5444e88b04bd490ee46ce4c66453237}{avatar\+Number}}
+\item 
+float \mbox{\hyperlink{class_character_manager_aa87eee1d3eab6a2fb9f18acf8007dd69}{avatar\+Size\+Multiplier}}
+\item 
+float \mbox{\hyperlink{class_character_manager_aecb60366a54415f9cb77a94288abf3b1}{avatar\+Offset\+Distance}}
+\item 
+bool \mbox{\hyperlink{class_character_manager_add6ac97611e77c115f1e79b190fbd3f6}{is\+Left\+Arm\+Animated}} = false
+\item 
+bool \mbox{\hyperlink{class_character_manager_a64c73acb250e8c88bd3920edb503848e}{is\+Arm\+Resting}}
+\item 
+Game\+Object \mbox{\hyperlink{class_character_manager_a7d34140be42fb8106c4d7c139da7d33f}{active\+Avatar\+Object}}
+\item 
+\mbox{\hyperlink{class_arm_animation_controller}{Arm\+Animation\+Controller}} \mbox{\hyperlink{class_character_manager_a4dc5a2a8df71ac679bae0ef2c8ad72f6}{active\+Arm\+Animation\+Controller}}
+\item 
+Transform \mbox{\hyperlink{class_character_manager_a7f87202f848b8978ba2af824195f8303}{offset\+Object}}
+\item 
+Game\+Object \mbox{\hyperlink{class_character_manager_aac6c0a8d4abce03ef06fce9518689408}{camera\+Object}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_character_manager}{Character\+Manager}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_character_manager_a0dd9c8edb3fe4bd08e7d5c5f65a7eb55}{change\+Arm\+Resting\+State}} (bool \+\_\+old, bool \+\_\+new)
+\begin{DoxyCompactList}\small\item\em Handler triggered by Sync\+Var used to change rest state of active arm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties inherited from \mbox{\hyperlink{class_character_manager}{Character\+Manager}}}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_character_manager}{Character\+Manager}} \mbox{\hyperlink{class_character_manager_a5a834dc5edc3abc03c489be455df963e}{local\+Client\+Instance}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\item 
+static \mbox{\hyperlink{class_character_manager}{Character\+Manager}} \mbox{\hyperlink{class_character_manager_a223bca2a2d4970d6f61d9ffea35ffc6f}{active\+Patient\+Instance}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\item 
+Game\+Object \mbox{\hyperlink{class_character_manager_a5dc9a76779f0e30e0eec573789306392}{active\+Arm\+Range\+Marker}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_desktop_character_manager_a61b11ef21b6c4f68b82e61f0c48d8a54}\label{class_desktop_character_manager_a61b11ef21b6c4f68b82e61f0c48d8a54}} 
+\index{DesktopCharacterManager@{DesktopCharacterManager}!OnStartLocalPlayer@{OnStartLocalPlayer}}
+\index{OnStartLocalPlayer@{OnStartLocalPlayer}!DesktopCharacterManager@{DesktopCharacterManager}}
+\doxysubsubsection{\texorpdfstring{OnStartLocalPlayer()}{OnStartLocalPlayer()}}
+{\footnotesize\ttfamily override void Desktop\+Character\+Manager.\+On\+Start\+Local\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_desktop_character_manager_aa75db512c5a8a3d3ae8854b27fc3ba7d}\label{class_desktop_character_manager_aa75db512c5a8a3d3ae8854b27fc3ba7d}} 
+\index{DesktopCharacterManager@{DesktopCharacterManager}!OnStopClient@{OnStopClient}}
+\index{OnStopClient@{OnStopClient}!DesktopCharacterManager@{DesktopCharacterManager}}
+\doxysubsubsection{\texorpdfstring{OnStopClient()}{OnStopClient()}}
+{\footnotesize\ttfamily override void Desktop\+Character\+Manager.\+On\+Stop\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_desktop_character_manager_a8f86b968232667ba5017626967ee460e}\label{class_desktop_character_manager_a8f86b968232667ba5017626967ee460e}} 
+\index{DesktopCharacterManager@{DesktopCharacterManager}!Start@{Start}}
+\index{Start@{Start}!DesktopCharacterManager@{DesktopCharacterManager}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily override void Desktop\+Character\+Manager.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_character_manager_a1a85f8a5ac73f2dc08dd9e4cb92dcb32}{Character\+Manager}}.
+
+\mbox{\Hypertarget{class_desktop_character_manager_a8e5a31206adbb7641f9450c73c9d8205}\label{class_desktop_character_manager_a8e5a31206adbb7641f9450c73c9d8205}} 
+\index{DesktopCharacterManager@{DesktopCharacterManager}!teleportCharacter@{teleportCharacter}}
+\index{teleportCharacter@{teleportCharacter}!DesktopCharacterManager@{DesktopCharacterManager}}
+\doxysubsubsection{\texorpdfstring{teleportCharacter()}{teleportCharacter()}}
+{\footnotesize\ttfamily override void Desktop\+Character\+Manager.\+teleport\+Character (\begin{DoxyParamCaption}\item[{Transform}]{target\+Position,  }\item[{Transform}]{look\+Target = {\ttfamily null} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Teleports character to specific location and rotates it to look at target. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em target\+Position} & \\
+\hline
+{\em look\+Target} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_character_manager_a957daf953fc3bce4f367f61f7e22d204}{Character\+Manager}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Unity/\+Unity\+Projects/\+Masters\+Thesis/\+Assets/\+\_\+\+Neuro\+Rehab/\+Scripts/\+Managers/\+Character\+Manager/\mbox{\hyperlink{_desktop_character_manager_8cs}{Desktop\+Character\+Manager.\+cs}}\end{DoxyCompactItemize}

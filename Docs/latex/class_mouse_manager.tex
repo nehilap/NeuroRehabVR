@@ -1,0 +1,84 @@
+\hypertarget{class_mouse_manager}{}\doxysection{Mouse\+Manager Class Reference}
+\label{class_mouse_manager}\index{MouseManager@{MouseManager}}
+
+
+Class used to manage mouse triggers and mouse visibility. Used when there are multiple events that cause mouse to become visible (such as Grab + Menu)  
+
+
+Inheritance diagram for Mouse\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_mouse_manager}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_mouse_manager_a804fa18b1b04c2f6c56e7007b9ae39b6}{active\+Triggers}} = 0
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_mouse_manager_a5db8a5ea5dbcda54ec4e06f0092c395a}{Awake}} ()
+\item 
+void \mbox{\hyperlink{class_mouse_manager_aacca34ead43adc237104bfe4f4c5b51c}{On\+Enable}} ()
+\item 
+void \mbox{\hyperlink{class_mouse_manager_a725d6c773ce7ade058ca67a366a3c257}{On\+Disable}} ()
+\item 
+void \mbox{\hyperlink{class_mouse_manager_aa2169d1b5903edcba9d3944f4cef93a1}{trigger\+Visibility}} (Input\+Action.\+Callback\+Context obj)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Input\+Action\+Reference\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_mouse_manager_ac6493a0f493a5e67940acaa4144108b7}{mouse\+Visibility\+Triggers}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class used to manage mouse triggers and mouse visibility. Used when there are multiple events that cause mouse to become visible (such as Grab + Menu) 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_mouse_manager_a5db8a5ea5dbcda54ec4e06f0092c395a}\label{class_mouse_manager_a5db8a5ea5dbcda54ec4e06f0092c395a}} 
+\index{MouseManager@{MouseManager}!Awake@{Awake}}
+\index{Awake@{Awake}!MouseManager@{MouseManager}}
+\doxysubsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void Mouse\+Manager.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mouse_manager_a725d6c773ce7ade058ca67a366a3c257}\label{class_mouse_manager_a725d6c773ce7ade058ca67a366a3c257}} 
+\index{MouseManager@{MouseManager}!OnDisable@{OnDisable}}
+\index{OnDisable@{OnDisable}!MouseManager@{MouseManager}}
+\doxysubsubsection{\texorpdfstring{OnDisable()}{OnDisable()}}
+{\footnotesize\ttfamily void Mouse\+Manager.\+On\+Disable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mouse_manager_aacca34ead43adc237104bfe4f4c5b51c}\label{class_mouse_manager_aacca34ead43adc237104bfe4f4c5b51c}} 
+\index{MouseManager@{MouseManager}!OnEnable@{OnEnable}}
+\index{OnEnable@{OnEnable}!MouseManager@{MouseManager}}
+\doxysubsubsection{\texorpdfstring{OnEnable()}{OnEnable()}}
+{\footnotesize\ttfamily void Mouse\+Manager.\+On\+Enable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mouse_manager_aa2169d1b5903edcba9d3944f4cef93a1}\label{class_mouse_manager_aa2169d1b5903edcba9d3944f4cef93a1}} 
+\index{MouseManager@{MouseManager}!triggerVisibility@{triggerVisibility}}
+\index{triggerVisibility@{triggerVisibility}!MouseManager@{MouseManager}}
+\doxysubsubsection{\texorpdfstring{triggerVisibility()}{triggerVisibility()}}
+{\footnotesize\ttfamily void Mouse\+Manager.\+trigger\+Visibility (\begin{DoxyParamCaption}\item[{Input\+Action\+::\+Callback\+Context}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_mouse_manager_a804fa18b1b04c2f6c56e7007b9ae39b6}\label{class_mouse_manager_a804fa18b1b04c2f6c56e7007b9ae39b6}} 
+\index{MouseManager@{MouseManager}!activeTriggers@{activeTriggers}}
+\index{activeTriggers@{activeTriggers}!MouseManager@{MouseManager}}
+\doxysubsubsection{\texorpdfstring{activeTriggers}{activeTriggers}}
+{\footnotesize\ttfamily int Mouse\+Manager.\+active\+Triggers = 0}
+
+\mbox{\Hypertarget{class_mouse_manager_ac6493a0f493a5e67940acaa4144108b7}\label{class_mouse_manager_ac6493a0f493a5e67940acaa4144108b7}} 
+\index{MouseManager@{MouseManager}!mouseVisibilityTriggers@{mouseVisibilityTriggers}}
+\index{mouseVisibilityTriggers@{mouseVisibilityTriggers}!MouseManager@{MouseManager}}
+\doxysubsubsection{\texorpdfstring{mouseVisibilityTriggers}{mouseVisibilityTriggers}}
+{\footnotesize\ttfamily Input\+Action\+Reference \mbox{[}$\,$\mbox{]} Mouse\+Manager.\+mouse\+Visibility\+Triggers\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Unity/\+Unity\+Projects/\+Masters\+Thesis/\+Assets/\+\_\+\+Neuro\+Rehab/\+Scripts/\+Desktop\+Client/\mbox{\hyperlink{_mouse_manager_8cs}{Mouse\+Manager.\+cs}}\end{DoxyCompactItemize}

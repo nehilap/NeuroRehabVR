@@ -1,0 +1,395 @@
+\hypertarget{class_animation_settings_manager}{}\doxysection{Animation\+Settings\+Manager Class Reference}
+\label{class_animation_settings_manager}\index{AnimationSettingsManager@{AnimationSettingsManager}}
+Inheritance diagram for Animation\+Settings\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_animation_settings_manager}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_animation_settings_manager_ab952dabcf44862be34ad14597e3fa5b9}{Start}} ()
+\item 
+void \mbox{\hyperlink{class_animation_settings_manager_acfac96189ec50dfe790ed0add81fc8c2}{set\+Anim\+Type}} (\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \+\_\+anim\+Type)
+\item 
+Sync\+List$<$ \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} $>$ \mbox{\hyperlink{class_animation_settings_manager_a8714ab076fcbbabf2c31f949b588ccf7}{get\+Current\+Animation\+Setup}} ()
+\item 
+Sync\+List$<$ \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} $>$ \mbox{\hyperlink{class_animation_settings_manager_a8e3d67e1856e4c0b83aaebc66281a6e6}{get\+Animation\+Setup\+By\+Anim\+Type}} (\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \+\_\+anim\+Type)
+\item 
+List$<$ Sync\+List$<$ \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} $>$ $>$ \mbox{\hyperlink{class_animation_settings_manager_ab3d4201b849dcb866c8d9e2d14d7673a}{get\+All\+Animation\+Setups}} ()
+\item 
+void \mbox{\hyperlink{class_animation_settings_manager_a7ee4456a77b600941fecf00f55c78198}{arm\+Duration\+Slider\+Handler}} (float value)
+\item 
+void \mbox{\hyperlink{class_animation_settings_manager_af28f307a832d3a7407d7dd4951346bb0}{hand\+Duration\+Slider\+Handler}} (float value)
+\item 
+void \mbox{\hyperlink{class_animation_settings_manager_af9210222165a43df180d5460d068dfc8}{wait\+Duration\+Slider\+Handler}} (float value)
+\item 
+void \mbox{\hyperlink{class_animation_settings_manager_a5ecdd3dfb62101ac90bd6d104aacba4a}{move\+Duration\+Slider\+Handler}} (float value)
+\item 
+void \mbox{\hyperlink{class_animation_settings_manager_a1ee564722b1410c81539e1b32c4a18c2}{repetitions\+Slider\+Handler}} (float value)
+\item 
+void \mbox{\hyperlink{class_animation_settings_manager_a25ed878a5f8f1253bb79827ec1e9eae1}{animation\+Type\+Dropdown\+Handler}} (TMP\+\_\+\+Dropdown dropdown)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_animation_settings_manager_a07315d13b47b00ad4bc88b025017fa19}{arm\+Move\+Duration}} = 1.\+5f
+\item 
+float \mbox{\hyperlink{class_animation_settings_manager_a792eef3d8d517aa551d0b1d06425432c}{hand\+Move\+Duration}} = 1.\+5f
+\item 
+float \mbox{\hyperlink{class_animation_settings_manager_a3dc8062b54bfca941f3fc10ae469135f}{wait\+Duration}} = 10f
+\item 
+float \mbox{\hyperlink{class_animation_settings_manager_aa0388301786508bce7fc18c9bee4b43f}{move\+Duration}} = 4f
+\item 
+int \mbox{\hyperlink{class_animation_settings_manager_affb950f8154e9856156c9d9504fd1935}{repetitions}} = 5
+\item 
+\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \mbox{\hyperlink{class_animation_settings_manager_a76dedb4b0d51c8f5542b6a621f85d4fd}{anim\+Type}} = Animation\+Type.\+Block
+\item 
+TMP\+\_\+\+Text \mbox{\hyperlink{class_animation_settings_manager_a18d6cdfb0cd6f5f09ecaeaf40a0a9fe7}{arm\+Move\+Text\+Value}}
+\item 
+Slider \mbox{\hyperlink{class_animation_settings_manager_a0aa1cf22c5dab529aa878e2f59be5e85}{arm\+Move\+Slider}}
+\item 
+TMP\+\_\+\+Text \mbox{\hyperlink{class_animation_settings_manager_a3a7dc6b0081d2be7d319fffc76cecbfd}{hand\+Move\+Text\+Value}}
+\item 
+Slider \mbox{\hyperlink{class_animation_settings_manager_ae1d824c03a06150fa7e96349808cf06a}{hand\+Move\+Slider}}
+\item 
+TMP\+\_\+\+Text \mbox{\hyperlink{class_animation_settings_manager_a136fe25b36f6995f036f6e32f2d6d95c}{wait\+Dur\+Text\+Value}}
+\item 
+Slider \mbox{\hyperlink{class_animation_settings_manager_aefb517ecddeb04793ce4368d4a72f527}{wait\+Dur\+Slider}}
+\item 
+TMP\+\_\+\+Text \mbox{\hyperlink{class_animation_settings_manager_a4cdbe70b85b6f406908db81d5d97c623}{move\+Dur\+Text\+Value}}
+\item 
+Slider \mbox{\hyperlink{class_animation_settings_manager_a9cfdcbea42e7be36d397cf17016901b5}{move\+Dur\+Slider}}
+\item 
+TMP\+\_\+\+Text \mbox{\hyperlink{class_animation_settings_manager_a4fd5e28665953e759f61e07053bc92ae}{repetitions\+Text\+Value}}
+\item 
+Slider \mbox{\hyperlink{class_animation_settings_manager_ab69b7d35da34f33f26cd49495eb68b88}{repetitions\+Slider}}
+\item 
+TMP\+\_\+\+Dropdown \mbox{\hyperlink{class_animation_settings_manager_a367f198e4616ba74c2637e4c1ca8c3b2}{anim\+Type\+Dropdown}}
+\item 
+readonly Sync\+List$<$ \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} $>$ \mbox{\hyperlink{class_animation_settings_manager_afab28c8bebf53e588a4e2638e5f9e7e6}{block\+Setup}} = new Sync\+List$<$\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}$>$()
+\item 
+readonly Sync\+List$<$ \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} $>$ \mbox{\hyperlink{class_animation_settings_manager_ad49addaf184e73926d2360f524807f5f}{cube\+Setup}} = new Sync\+List$<$\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}$>$()
+\item 
+readonly Sync\+List$<$ \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} $>$ \mbox{\hyperlink{class_animation_settings_manager_a5546a6f4fd0e8ebda64a23937eb37610}{cup\+Setup}} = new Sync\+List$<$\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}$>$()
+\item 
+readonly Sync\+List$<$ \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} $>$ \mbox{\hyperlink{class_animation_settings_manager_a81fccbc9f653147af82104ed52d17fc1}{key\+Setup}} = new Sync\+List$<$\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}$>$()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_animation_settings_manager_a67dfbdaa737f3a5e8b39322c985dac60}{change\+Arm\+Move\+Duration\+Elements}} (float \+\_\+old, float \+\_\+new)
+\item 
+void \mbox{\hyperlink{class_animation_settings_manager_ad2b72b5aa3c8fb58034a91f60693893a}{change\+Hand\+Move\+Duration\+Elements}} (float \+\_\+old, float \+\_\+new)
+\item 
+void \mbox{\hyperlink{class_animation_settings_manager_a3c8e14c2d7eb15c30d729de7bf3feebd}{change\+Wait\+Duration\+Elements}} (float \+\_\+old, float \+\_\+new)
+\item 
+void \mbox{\hyperlink{class_animation_settings_manager_a6261416a4ae109b2644f54a291c704ae}{change\+Move\+Duration\+Elements}} (float \+\_\+old, float \+\_\+new)
+\item 
+void \mbox{\hyperlink{class_animation_settings_manager_ab1e7e1af023dbf81514b7c1aba89a449}{change\+Repetitions\+Elements}} (int \+\_\+old, int \+\_\+new)
+\item 
+void \mbox{\hyperlink{class_animation_settings_manager_a0e187eed903d1858904c8166b1a76ca2}{change\+Anim\+Type\+Value}} (\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \+\_\+old, \mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \+\_\+new)
+\item 
+void \mbox{\hyperlink{class_animation_settings_manager_adde86d1df1a26bd601a86dfb73f8592b}{set\+All\+Elements}} ()
+\item 
+void \mbox{\hyperlink{class_animation_settings_manager_a831e01a8824cb7672be74ce71633a3ef}{on\+Animation\+Setup\+Updated}} (Sync\+List$<$ \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} $>$.Operation op, int index, \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} old\+Item, \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} new\+Item)
+\item 
+void \mbox{\hyperlink{class_animation_settings_manager_a3768cb915acf783ad34fef8719eec766}{setup\+Markers}} ()
+\begin{DoxyCompactList}\small\item\em Method that re-\/creates all markers locally only. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Button \mbox{\hyperlink{class_animation_settings_manager_ae79d1bdc3b0e75f86ee735d9a28e9986}{register\+Move\+Position\+Button}}
+\item 
+List$<$ Game\+Object $>$ \mbox{\hyperlink{class_animation_settings_manager_a4096c47f95248af60a66f3262bfb9258}{marker\+Prefabs}} = new List$<$Game\+Object$>$()
+\item 
+Transform \mbox{\hyperlink{class_animation_settings_manager_a855d7fa00157f1cf6df5b0747cd58720}{marker\+Parent}}
+\item 
+List$<$ Game\+Object $>$ \mbox{\hyperlink{class_animation_settings_manager_ad3255b8db00316620aee75d8593a81fc}{spawned\+Markers}} = new List$<$Game\+Object$>$()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_animation_settings_manager_a25ed878a5f8f1253bb79827ec1e9eae1}\label{class_animation_settings_manager_a25ed878a5f8f1253bb79827ec1e9eae1}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!animationTypeDropdownHandler@{animationTypeDropdownHandler}}
+\index{animationTypeDropdownHandler@{animationTypeDropdownHandler}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{animationTypeDropdownHandler()}{animationTypeDropdownHandler()}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+animation\+Type\+Dropdown\+Handler (\begin{DoxyParamCaption}\item[{TMP\+\_\+\+Dropdown}]{dropdown }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a7ee4456a77b600941fecf00f55c78198}\label{class_animation_settings_manager_a7ee4456a77b600941fecf00f55c78198}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!armDurationSliderHandler@{armDurationSliderHandler}}
+\index{armDurationSliderHandler@{armDurationSliderHandler}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{armDurationSliderHandler()}{armDurationSliderHandler()}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+arm\+Duration\+Slider\+Handler (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a0e187eed903d1858904c8166b1a76ca2}\label{class_animation_settings_manager_a0e187eed903d1858904c8166b1a76ca2}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!changeAnimTypeValue@{changeAnimTypeValue}}
+\index{changeAnimTypeValue@{changeAnimTypeValue}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{changeAnimTypeValue()}{changeAnimTypeValue()}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+change\+Anim\+Type\+Value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}}}]{\+\_\+old,  }\item[{\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}}}]{\+\_\+new }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a67dfbdaa737f3a5e8b39322c985dac60}\label{class_animation_settings_manager_a67dfbdaa737f3a5e8b39322c985dac60}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!changeArmMoveDurationElements@{changeArmMoveDurationElements}}
+\index{changeArmMoveDurationElements@{changeArmMoveDurationElements}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{changeArmMoveDurationElements()}{changeArmMoveDurationElements()}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+change\+Arm\+Move\+Duration\+Elements (\begin{DoxyParamCaption}\item[{float}]{\+\_\+old,  }\item[{float}]{\+\_\+new }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_animation_settings_manager_ad2b72b5aa3c8fb58034a91f60693893a}\label{class_animation_settings_manager_ad2b72b5aa3c8fb58034a91f60693893a}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!changeHandMoveDurationElements@{changeHandMoveDurationElements}}
+\index{changeHandMoveDurationElements@{changeHandMoveDurationElements}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{changeHandMoveDurationElements()}{changeHandMoveDurationElements()}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+change\+Hand\+Move\+Duration\+Elements (\begin{DoxyParamCaption}\item[{float}]{\+\_\+old,  }\item[{float}]{\+\_\+new }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a6261416a4ae109b2644f54a291c704ae}\label{class_animation_settings_manager_a6261416a4ae109b2644f54a291c704ae}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!changeMoveDurationElements@{changeMoveDurationElements}}
+\index{changeMoveDurationElements@{changeMoveDurationElements}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{changeMoveDurationElements()}{changeMoveDurationElements()}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+change\+Move\+Duration\+Elements (\begin{DoxyParamCaption}\item[{float}]{\+\_\+old,  }\item[{float}]{\+\_\+new }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_animation_settings_manager_ab1e7e1af023dbf81514b7c1aba89a449}\label{class_animation_settings_manager_ab1e7e1af023dbf81514b7c1aba89a449}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!changeRepetitionsElements@{changeRepetitionsElements}}
+\index{changeRepetitionsElements@{changeRepetitionsElements}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{changeRepetitionsElements()}{changeRepetitionsElements()}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+change\+Repetitions\+Elements (\begin{DoxyParamCaption}\item[{int}]{\+\_\+old,  }\item[{int}]{\+\_\+new }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a3c8e14c2d7eb15c30d729de7bf3feebd}\label{class_animation_settings_manager_a3c8e14c2d7eb15c30d729de7bf3feebd}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!changeWaitDurationElements@{changeWaitDurationElements}}
+\index{changeWaitDurationElements@{changeWaitDurationElements}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{changeWaitDurationElements()}{changeWaitDurationElements()}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+change\+Wait\+Duration\+Elements (\begin{DoxyParamCaption}\item[{float}]{\+\_\+old,  }\item[{float}]{\+\_\+new }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_animation_settings_manager_ab3d4201b849dcb866c8d9e2d14d7673a}\label{class_animation_settings_manager_ab3d4201b849dcb866c8d9e2d14d7673a}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!getAllAnimationSetups@{getAllAnimationSetups}}
+\index{getAllAnimationSetups@{getAllAnimationSetups}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{getAllAnimationSetups()}{getAllAnimationSetups()}}
+{\footnotesize\ttfamily List$<$ Sync\+List$<$ \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} $>$ $>$ Animation\+Settings\+Manager.\+get\+All\+Animation\+Setups (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a8e3d67e1856e4c0b83aaebc66281a6e6}\label{class_animation_settings_manager_a8e3d67e1856e4c0b83aaebc66281a6e6}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!getAnimationSetupByAnimType@{getAnimationSetupByAnimType}}
+\index{getAnimationSetupByAnimType@{getAnimationSetupByAnimType}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{getAnimationSetupByAnimType()}{getAnimationSetupByAnimType()}}
+{\footnotesize\ttfamily Sync\+List$<$ \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} $>$ Animation\+Settings\+Manager.\+get\+Animation\+Setup\+By\+Anim\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}}}]{\+\_\+anim\+Type }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a8714ab076fcbbabf2c31f949b588ccf7}\label{class_animation_settings_manager_a8714ab076fcbbabf2c31f949b588ccf7}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!getCurrentAnimationSetup@{getCurrentAnimationSetup}}
+\index{getCurrentAnimationSetup@{getCurrentAnimationSetup}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{getCurrentAnimationSetup()}{getCurrentAnimationSetup()}}
+{\footnotesize\ttfamily Sync\+List$<$ \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} $>$ Animation\+Settings\+Manager.\+get\+Current\+Animation\+Setup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_animation_settings_manager_af28f307a832d3a7407d7dd4951346bb0}\label{class_animation_settings_manager_af28f307a832d3a7407d7dd4951346bb0}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!handDurationSliderHandler@{handDurationSliderHandler}}
+\index{handDurationSliderHandler@{handDurationSliderHandler}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{handDurationSliderHandler()}{handDurationSliderHandler()}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+hand\+Duration\+Slider\+Handler (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a5ecdd3dfb62101ac90bd6d104aacba4a}\label{class_animation_settings_manager_a5ecdd3dfb62101ac90bd6d104aacba4a}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!moveDurationSliderHandler@{moveDurationSliderHandler}}
+\index{moveDurationSliderHandler@{moveDurationSliderHandler}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{moveDurationSliderHandler()}{moveDurationSliderHandler()}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+move\+Duration\+Slider\+Handler (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a831e01a8824cb7672be74ce71633a3ef}\label{class_animation_settings_manager_a831e01a8824cb7672be74ce71633a3ef}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!onAnimationSetupUpdated@{onAnimationSetupUpdated}}
+\index{onAnimationSetupUpdated@{onAnimationSetupUpdated}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{onAnimationSetupUpdated()}{onAnimationSetupUpdated()}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+on\+Animation\+Setup\+Updated (\begin{DoxyParamCaption}\item[{Sync\+List$<$ \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} $>$\+::\+Operation}]{op,  }\item[{int}]{index,  }\item[{\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}}]{old\+Item,  }\item[{\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}}]{new\+Item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a1ee564722b1410c81539e1b32c4a18c2}\label{class_animation_settings_manager_a1ee564722b1410c81539e1b32c4a18c2}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!repetitionsSliderHandler@{repetitionsSliderHandler}}
+\index{repetitionsSliderHandler@{repetitionsSliderHandler}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{repetitionsSliderHandler()}{repetitionsSliderHandler()}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+repetitions\+Slider\+Handler (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_animation_settings_manager_adde86d1df1a26bd601a86dfb73f8592b}\label{class_animation_settings_manager_adde86d1df1a26bd601a86dfb73f8592b}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!setAllElements@{setAllElements}}
+\index{setAllElements@{setAllElements}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{setAllElements()}{setAllElements()}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+set\+All\+Elements (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_animation_settings_manager_acfac96189ec50dfe790ed0add81fc8c2}\label{class_animation_settings_manager_acfac96189ec50dfe790ed0add81fc8c2}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!setAnimType@{setAnimType}}
+\index{setAnimType@{setAnimType}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{setAnimType()}{setAnimType()}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+set\+Anim\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}}}]{\+\_\+anim\+Type }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a3768cb915acf783ad34fef8719eec766}\label{class_animation_settings_manager_a3768cb915acf783ad34fef8719eec766}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!setupMarkers@{setupMarkers}}
+\index{setupMarkers@{setupMarkers}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{setupMarkers()}{setupMarkers()}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+setup\+Markers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Method that re-\/creates all markers locally only. 
+
+\mbox{\Hypertarget{class_animation_settings_manager_ab952dabcf44862be34ad14597e3fa5b9}\label{class_animation_settings_manager_ab952dabcf44862be34ad14597e3fa5b9}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!Start@{Start}}
+\index{Start@{Start}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_animation_settings_manager_af9210222165a43df180d5460d068dfc8}\label{class_animation_settings_manager_af9210222165a43df180d5460d068dfc8}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!waitDurationSliderHandler@{waitDurationSliderHandler}}
+\index{waitDurationSliderHandler@{waitDurationSliderHandler}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{waitDurationSliderHandler()}{waitDurationSliderHandler()}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+wait\+Duration\+Slider\+Handler (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_animation_settings_manager_a76dedb4b0d51c8f5542b6a621f85d4fd}\label{class_animation_settings_manager_a76dedb4b0d51c8f5542b6a621f85d4fd}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!animType@{animType}}
+\index{animType@{animType}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{animType}{animType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} Animation\+Settings\+Manager.\+anim\+Type = Animation\+Type.\+Block}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a367f198e4616ba74c2637e4c1ca8c3b2}\label{class_animation_settings_manager_a367f198e4616ba74c2637e4c1ca8c3b2}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!animTypeDropdown@{animTypeDropdown}}
+\index{animTypeDropdown@{animTypeDropdown}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{animTypeDropdown}{animTypeDropdown}}
+{\footnotesize\ttfamily TMP\+\_\+\+Dropdown Animation\+Settings\+Manager.\+anim\+Type\+Dropdown}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a07315d13b47b00ad4bc88b025017fa19}\label{class_animation_settings_manager_a07315d13b47b00ad4bc88b025017fa19}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!armMoveDuration@{armMoveDuration}}
+\index{armMoveDuration@{armMoveDuration}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{armMoveDuration}{armMoveDuration}}
+{\footnotesize\ttfamily float Animation\+Settings\+Manager.\+arm\+Move\+Duration = 1.\+5f}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a0aa1cf22c5dab529aa878e2f59be5e85}\label{class_animation_settings_manager_a0aa1cf22c5dab529aa878e2f59be5e85}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!armMoveSlider@{armMoveSlider}}
+\index{armMoveSlider@{armMoveSlider}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{armMoveSlider}{armMoveSlider}}
+{\footnotesize\ttfamily Slider Animation\+Settings\+Manager.\+arm\+Move\+Slider}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a18d6cdfb0cd6f5f09ecaeaf40a0a9fe7}\label{class_animation_settings_manager_a18d6cdfb0cd6f5f09ecaeaf40a0a9fe7}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!armMoveTextValue@{armMoveTextValue}}
+\index{armMoveTextValue@{armMoveTextValue}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{armMoveTextValue}{armMoveTextValue}}
+{\footnotesize\ttfamily TMP\+\_\+\+Text Animation\+Settings\+Manager.\+arm\+Move\+Text\+Value}
+
+\mbox{\Hypertarget{class_animation_settings_manager_afab28c8bebf53e588a4e2638e5f9e7e6}\label{class_animation_settings_manager_afab28c8bebf53e588a4e2638e5f9e7e6}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!blockSetup@{blockSetup}}
+\index{blockSetup@{blockSetup}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{blockSetup}{blockSetup}}
+{\footnotesize\ttfamily readonly Sync\+List$<$\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}$>$ Animation\+Settings\+Manager.\+block\+Setup = new Sync\+List$<$\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}$>$()}
+
+\mbox{\Hypertarget{class_animation_settings_manager_ad49addaf184e73926d2360f524807f5f}\label{class_animation_settings_manager_ad49addaf184e73926d2360f524807f5f}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!cubeSetup@{cubeSetup}}
+\index{cubeSetup@{cubeSetup}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{cubeSetup}{cubeSetup}}
+{\footnotesize\ttfamily readonly Sync\+List$<$\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}$>$ Animation\+Settings\+Manager.\+cube\+Setup = new Sync\+List$<$\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}$>$()}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a5546a6f4fd0e8ebda64a23937eb37610}\label{class_animation_settings_manager_a5546a6f4fd0e8ebda64a23937eb37610}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!cupSetup@{cupSetup}}
+\index{cupSetup@{cupSetup}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{cupSetup}{cupSetup}}
+{\footnotesize\ttfamily readonly Sync\+List$<$\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}$>$ Animation\+Settings\+Manager.\+cup\+Setup = new Sync\+List$<$\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}$>$()}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a792eef3d8d517aa551d0b1d06425432c}\label{class_animation_settings_manager_a792eef3d8d517aa551d0b1d06425432c}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!handMoveDuration@{handMoveDuration}}
+\index{handMoveDuration@{handMoveDuration}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{handMoveDuration}{handMoveDuration}}
+{\footnotesize\ttfamily float Animation\+Settings\+Manager.\+hand\+Move\+Duration = 1.\+5f}
+
+\mbox{\Hypertarget{class_animation_settings_manager_ae1d824c03a06150fa7e96349808cf06a}\label{class_animation_settings_manager_ae1d824c03a06150fa7e96349808cf06a}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!handMoveSlider@{handMoveSlider}}
+\index{handMoveSlider@{handMoveSlider}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{handMoveSlider}{handMoveSlider}}
+{\footnotesize\ttfamily Slider Animation\+Settings\+Manager.\+hand\+Move\+Slider}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a3a7dc6b0081d2be7d319fffc76cecbfd}\label{class_animation_settings_manager_a3a7dc6b0081d2be7d319fffc76cecbfd}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!handMoveTextValue@{handMoveTextValue}}
+\index{handMoveTextValue@{handMoveTextValue}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{handMoveTextValue}{handMoveTextValue}}
+{\footnotesize\ttfamily TMP\+\_\+\+Text Animation\+Settings\+Manager.\+hand\+Move\+Text\+Value}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a81fccbc9f653147af82104ed52d17fc1}\label{class_animation_settings_manager_a81fccbc9f653147af82104ed52d17fc1}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!keySetup@{keySetup}}
+\index{keySetup@{keySetup}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{keySetup}{keySetup}}
+{\footnotesize\ttfamily readonly Sync\+List$<$\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}$>$ Animation\+Settings\+Manager.\+key\+Setup = new Sync\+List$<$\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}$>$()}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a855d7fa00157f1cf6df5b0747cd58720}\label{class_animation_settings_manager_a855d7fa00157f1cf6df5b0747cd58720}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!markerParent@{markerParent}}
+\index{markerParent@{markerParent}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{markerParent}{markerParent}}
+{\footnotesize\ttfamily Transform Animation\+Settings\+Manager.\+marker\+Parent\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a4096c47f95248af60a66f3262bfb9258}\label{class_animation_settings_manager_a4096c47f95248af60a66f3262bfb9258}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!markerPrefabs@{markerPrefabs}}
+\index{markerPrefabs@{markerPrefabs}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{markerPrefabs}{markerPrefabs}}
+{\footnotesize\ttfamily List$<$Game\+Object$>$ Animation\+Settings\+Manager.\+marker\+Prefabs = new List$<$Game\+Object$>$()\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_animation_settings_manager_aa0388301786508bce7fc18c9bee4b43f}\label{class_animation_settings_manager_aa0388301786508bce7fc18c9bee4b43f}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!moveDuration@{moveDuration}}
+\index{moveDuration@{moveDuration}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{moveDuration}{moveDuration}}
+{\footnotesize\ttfamily float Animation\+Settings\+Manager.\+move\+Duration = 4f}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a9cfdcbea42e7be36d397cf17016901b5}\label{class_animation_settings_manager_a9cfdcbea42e7be36d397cf17016901b5}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!moveDurSlider@{moveDurSlider}}
+\index{moveDurSlider@{moveDurSlider}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{moveDurSlider}{moveDurSlider}}
+{\footnotesize\ttfamily Slider Animation\+Settings\+Manager.\+move\+Dur\+Slider}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a4cdbe70b85b6f406908db81d5d97c623}\label{class_animation_settings_manager_a4cdbe70b85b6f406908db81d5d97c623}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!moveDurTextValue@{moveDurTextValue}}
+\index{moveDurTextValue@{moveDurTextValue}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{moveDurTextValue}{moveDurTextValue}}
+{\footnotesize\ttfamily TMP\+\_\+\+Text Animation\+Settings\+Manager.\+move\+Dur\+Text\+Value}
+
+\mbox{\Hypertarget{class_animation_settings_manager_ae79d1bdc3b0e75f86ee735d9a28e9986}\label{class_animation_settings_manager_ae79d1bdc3b0e75f86ee735d9a28e9986}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!registerMovePositionButton@{registerMovePositionButton}}
+\index{registerMovePositionButton@{registerMovePositionButton}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{registerMovePositionButton}{registerMovePositionButton}}
+{\footnotesize\ttfamily Button Animation\+Settings\+Manager.\+register\+Move\+Position\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_animation_settings_manager_affb950f8154e9856156c9d9504fd1935}\label{class_animation_settings_manager_affb950f8154e9856156c9d9504fd1935}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!repetitions@{repetitions}}
+\index{repetitions@{repetitions}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{repetitions}{repetitions}}
+{\footnotesize\ttfamily int Animation\+Settings\+Manager.\+repetitions = 5}
+
+\mbox{\Hypertarget{class_animation_settings_manager_ab69b7d35da34f33f26cd49495eb68b88}\label{class_animation_settings_manager_ab69b7d35da34f33f26cd49495eb68b88}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!repetitionsSlider@{repetitionsSlider}}
+\index{repetitionsSlider@{repetitionsSlider}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{repetitionsSlider}{repetitionsSlider}}
+{\footnotesize\ttfamily Slider Animation\+Settings\+Manager.\+repetitions\+Slider}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a4fd5e28665953e759f61e07053bc92ae}\label{class_animation_settings_manager_a4fd5e28665953e759f61e07053bc92ae}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!repetitionsTextValue@{repetitionsTextValue}}
+\index{repetitionsTextValue@{repetitionsTextValue}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{repetitionsTextValue}{repetitionsTextValue}}
+{\footnotesize\ttfamily TMP\+\_\+\+Text Animation\+Settings\+Manager.\+repetitions\+Text\+Value}
+
+\mbox{\Hypertarget{class_animation_settings_manager_ad3255b8db00316620aee75d8593a81fc}\label{class_animation_settings_manager_ad3255b8db00316620aee75d8593a81fc}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!spawnedMarkers@{spawnedMarkers}}
+\index{spawnedMarkers@{spawnedMarkers}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{spawnedMarkers}{spawnedMarkers}}
+{\footnotesize\ttfamily List$<$Game\+Object$>$ Animation\+Settings\+Manager.\+spawned\+Markers = new List$<$Game\+Object$>$()\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a3dc8062b54bfca941f3fc10ae469135f}\label{class_animation_settings_manager_a3dc8062b54bfca941f3fc10ae469135f}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!waitDuration@{waitDuration}}
+\index{waitDuration@{waitDuration}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{waitDuration}{waitDuration}}
+{\footnotesize\ttfamily float Animation\+Settings\+Manager.\+wait\+Duration = 10f}
+
+\mbox{\Hypertarget{class_animation_settings_manager_aefb517ecddeb04793ce4368d4a72f527}\label{class_animation_settings_manager_aefb517ecddeb04793ce4368d4a72f527}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!waitDurSlider@{waitDurSlider}}
+\index{waitDurSlider@{waitDurSlider}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{waitDurSlider}{waitDurSlider}}
+{\footnotesize\ttfamily Slider Animation\+Settings\+Manager.\+wait\+Dur\+Slider}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a136fe25b36f6995f036f6e32f2d6d95c}\label{class_animation_settings_manager_a136fe25b36f6995f036f6e32f2d6d95c}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!waitDurTextValue@{waitDurTextValue}}
+\index{waitDurTextValue@{waitDurTextValue}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{waitDurTextValue}{waitDurTextValue}}
+{\footnotesize\ttfamily TMP\+\_\+\+Text Animation\+Settings\+Manager.\+wait\+Dur\+Text\+Value}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Unity/\+Unity\+Projects/\+Masters\+Thesis/\+Assets/\+\_\+\+Neuro\+Rehab/\+Scripts/\+Managers/\mbox{\hyperlink{_animation_settings_manager_8cs}{Animation\+Settings\+Manager.\+cs}}\end{DoxyCompactItemize}

@@ -1,0 +1,117 @@
+\hypertarget{class_object_manager}{}\doxysection{Object\+Manager Class Reference}
+\label{class_object_manager}\index{ObjectManager@{ObjectManager}}
+Inheritance diagram for Object\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_object_manager}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ Game\+Object $>$ \mbox{\hyperlink{class_object_manager_aa3e208549f8516671471b61aa4bc9107}{get\+Objects\+By\+Name}} (string target\+Name)
+\item 
+Game\+Object \mbox{\hyperlink{class_object_manager_a3cb0a3f937297bac615de6df793cb693}{get\+First\+Object\+By\+Name}} (string target\+Name)
+\begin{DoxyCompactList}\small\item\em Method to get the first object in list of objects for specific name. \end{DoxyCompactList}\item 
+Dictionary$<$ string, List$<$ Game\+Object $>$ $>$ \mbox{\hyperlink{class_object_manager_a78aaa0b5a7d443cac5f606cd5284e861}{get\+Object\+List}} ()
+\begin{DoxyCompactList}\small\item\em Method that returns whole Dictionary. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_manager_a4c3cb746c2378a822576f4e08d668334}{add\+Object\+To\+List}} (string object\+Name, Game\+Object object\+To\+Add)
+\item 
+void \mbox{\hyperlink{class_object_manager_a402a0e6641688f029e0a816d025b8abb}{remove\+Object\+From\+List}} (string target\+Name, Game\+Object object\+To\+Remove)
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_object_manager}{Object\+Manager}} \mbox{\hyperlink{class_object_manager_a14e752ee911fd1415ad07c4dc48f3b82}{Instance}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Dictionary$<$ string, List$<$ Game\+Object $>$ $>$ \mbox{\hyperlink{class_object_manager_ae473d91fde73af8e81b74e14bfb77d2b}{object\+List}} = new Dictionary$<$string, List$<$Game\+Object$>$$>$()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_object_manager}{Object\+Manager}} \mbox{\hyperlink{class_object_manager_a708e9f5626356bff54f9b93b413c6ebc}{\+\_\+instance}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_object_manager_a4c3cb746c2378a822576f4e08d668334}\label{class_object_manager_a4c3cb746c2378a822576f4e08d668334}} 
+\index{ObjectManager@{ObjectManager}!addObjectToList@{addObjectToList}}
+\index{addObjectToList@{addObjectToList}!ObjectManager@{ObjectManager}}
+\doxysubsubsection{\texorpdfstring{addObjectToList()}{addObjectToList()}}
+{\footnotesize\ttfamily void Object\+Manager.\+add\+Object\+To\+List (\begin{DoxyParamCaption}\item[{string}]{object\+Name,  }\item[{Game\+Object}]{object\+To\+Add }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_object_manager_a3cb0a3f937297bac615de6df793cb693}\label{class_object_manager_a3cb0a3f937297bac615de6df793cb693}} 
+\index{ObjectManager@{ObjectManager}!getFirstObjectByName@{getFirstObjectByName}}
+\index{getFirstObjectByName@{getFirstObjectByName}!ObjectManager@{ObjectManager}}
+\doxysubsubsection{\texorpdfstring{getFirstObjectByName()}{getFirstObjectByName()}}
+{\footnotesize\ttfamily Game\+Object Object\+Manager.\+get\+First\+Object\+By\+Name (\begin{DoxyParamCaption}\item[{string}]{target\+Name }\end{DoxyParamCaption})}
+
+
+
+Method to get the first object in list of objects for specific name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em target\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_object_manager_a78aaa0b5a7d443cac5f606cd5284e861}\label{class_object_manager_a78aaa0b5a7d443cac5f606cd5284e861}} 
+\index{ObjectManager@{ObjectManager}!getObjectList@{getObjectList}}
+\index{getObjectList@{getObjectList}!ObjectManager@{ObjectManager}}
+\doxysubsubsection{\texorpdfstring{getObjectList()}{getObjectList()}}
+{\footnotesize\ttfamily Dictionary$<$ string, List$<$ Game\+Object $>$ $>$ Object\+Manager.\+get\+Object\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Method that returns whole Dictionary. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_object_manager_aa3e208549f8516671471b61aa4bc9107}\label{class_object_manager_aa3e208549f8516671471b61aa4bc9107}} 
+\index{ObjectManager@{ObjectManager}!getObjectsByName@{getObjectsByName}}
+\index{getObjectsByName@{getObjectsByName}!ObjectManager@{ObjectManager}}
+\doxysubsubsection{\texorpdfstring{getObjectsByName()}{getObjectsByName()}}
+{\footnotesize\ttfamily List$<$ Game\+Object $>$ Object\+Manager.\+get\+Objects\+By\+Name (\begin{DoxyParamCaption}\item[{string}]{target\+Name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_object_manager_a402a0e6641688f029e0a816d025b8abb}\label{class_object_manager_a402a0e6641688f029e0a816d025b8abb}} 
+\index{ObjectManager@{ObjectManager}!removeObjectFromList@{removeObjectFromList}}
+\index{removeObjectFromList@{removeObjectFromList}!ObjectManager@{ObjectManager}}
+\doxysubsubsection{\texorpdfstring{removeObjectFromList()}{removeObjectFromList()}}
+{\footnotesize\ttfamily void Object\+Manager.\+remove\+Object\+From\+List (\begin{DoxyParamCaption}\item[{string}]{target\+Name,  }\item[{Game\+Object}]{object\+To\+Remove }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_object_manager_a708e9f5626356bff54f9b93b413c6ebc}\label{class_object_manager_a708e9f5626356bff54f9b93b413c6ebc}} 
+\index{ObjectManager@{ObjectManager}!\_instance@{\_instance}}
+\index{\_instance@{\_instance}!ObjectManager@{ObjectManager}}
+\doxysubsubsection{\texorpdfstring{\_instance}{\_instance}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_object_manager}{Object\+Manager}} Object\+Manager.\+\_\+instance\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_object_manager_ae473d91fde73af8e81b74e14bfb77d2b}\label{class_object_manager_ae473d91fde73af8e81b74e14bfb77d2b}} 
+\index{ObjectManager@{ObjectManager}!objectList@{objectList}}
+\index{objectList@{objectList}!ObjectManager@{ObjectManager}}
+\doxysubsubsection{\texorpdfstring{objectList}{objectList}}
+{\footnotesize\ttfamily Dictionary$<$string, List$<$Game\+Object$>$ $>$ Object\+Manager.\+object\+List = new Dictionary$<$string, List$<$Game\+Object$>$$>$()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\Hypertarget{class_object_manager_a14e752ee911fd1415ad07c4dc48f3b82}\label{class_object_manager_a14e752ee911fd1415ad07c4dc48f3b82}} 
+\index{ObjectManager@{ObjectManager}!Instance@{Instance}}
+\index{Instance@{Instance}!ObjectManager@{ObjectManager}}
+\doxysubsubsection{\texorpdfstring{Instance}{Instance}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_object_manager}{Object\+Manager}} Object\+Manager.\+Instance\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Unity/\+Unity\+Projects/\+Masters\+Thesis/\+Assets/\+\_\+\+Neuro\+Rehab/\+Scripts/\+Managers/\+Object\+Manager/\mbox{\hyperlink{_object_manager_8cs}{Object\+Manager.\+cs}}\end{DoxyCompactItemize}

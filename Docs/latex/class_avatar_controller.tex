@@ -1,0 +1,258 @@
+\hypertarget{class_avatar_controller}{}\doxysection{Avatar\+Controller Class Reference}
+\label{class_avatar_controller}\index{AvatarController@{AvatarController}}
+Inheritance diagram for Avatar\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_avatar_controller}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_avatar_controller_af6b7cb7c8f66788a1edd59bbc5f6b8b7}{reset\+Height}} ()
+\item 
+float \mbox{\hyperlink{class_avatar_controller_af5d3ef3bddc0b086a001f4f88cf4d95c}{calculate\+Size\+Multiplier}} ()
+\item 
+float \mbox{\hyperlink{class_avatar_controller_a3addbd75154a4e7bf52708064fa3f06b}{calculate\+Standardized\+Size\+Multiplier}} ()
+\begin{DoxyCompactList}\small\item\em we use this to calculate how much should avatar be scaled in \char`\"{}multiplayer\char`\"{} settings \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_avatar_controller_ad30ff1f6340e16668870f72afd522edf}{reset\+Hand\+IKTargets}} ()
+\begin{DoxyCompactList}\small\item\em Initial ik\+Target position, which is used when arm is not resting. This method is used after changing arms, so that non resting position is not where arm was before it was changed into active animated arm, but next to \textquotesingle{}body\textquotesingle{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Game\+Object \mbox{\hyperlink{class_avatar_controller_a4fb820cb9dd676b8e3c28be5b0f36690}{right\+Arm\+Range\+Marker}}
+\item 
+Game\+Object \mbox{\hyperlink{class_avatar_controller_a26c845c5186a17c7b304fbe4f77bffd0}{left\+Arm\+Range\+Marker}}
+\item 
+\mbox{\hyperlink{class_map_transforms}{Map\+Transforms}} \mbox{\hyperlink{class_avatar_controller_a42e7e8a2cac7b95cabba54365715097c}{head}}
+\item 
+\mbox{\hyperlink{class_map_transforms}{Map\+Transforms}} \mbox{\hyperlink{class_avatar_controller_aedec7b6b69b1281c288ec6c4ee44e95a}{head\+Spine}}
+\item 
+\mbox{\hyperlink{class_map_transforms}{Map\+Transforms}} \mbox{\hyperlink{class_avatar_controller_afae6d21f352ce4d7324fbd2a918cc430}{left\+Hand}}
+\item 
+\mbox{\hyperlink{class_map_transforms}{Map\+Transforms}} \mbox{\hyperlink{class_avatar_controller_a81d8481bfb711b2d884a6928cc47d931}{right\+Hand}}
+\item 
+bool \mbox{\hyperlink{class_avatar_controller_a79954f1ba791dcae6cb47bae0dd082ef}{apply\+Turn}} = true
+\item 
+float \mbox{\hyperlink{class_avatar_controller_a599531c3ff1accad7adae8bee9ab5bd7}{size\+Multiplier}}
+\item 
+bool \mbox{\hyperlink{class_avatar_controller_a0e76af194c44ba80af3645af580bc1ba}{size\+Preset}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_avatar_controller_a6fca9255887e52a99fe05978c26e909f}{Awake}} ()
+\item 
+void \mbox{\hyperlink{class_avatar_controller_a9a11a6e03033051456dea538c796dfe2}{On\+Enable}} ()
+\item 
+void \mbox{\hyperlink{class_avatar_controller_ac4bd3fc9507fb72947daa931096b0671}{initialize\+Values}} ()
+\item 
+void \mbox{\hyperlink{class_avatar_controller_a925300f0b371d8d67925e0df5138c96e}{Update}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_avatar_controller_ace7be01433e0160394fd497758c79ff4}{turn\+Smoothness}}
+\item 
+Transform \mbox{\hyperlink{class_avatar_controller_acae9c23b0359c3eb5b8fa077ec25dd4b}{head\+Target}}
+\item 
+Vector3 \mbox{\hyperlink{class_avatar_controller_aa56cf198f55b4df31562bf82cb4d9041}{head\+Offset}}
+\item 
+Vector3 \mbox{\hyperlink{class_avatar_controller_aeee8b223301ba4f646ec690e9b6ca266}{origin\+Head\+Offset}}
+\item 
+float \mbox{\hyperlink{class_avatar_controller_a150841a302e3b210fb0217b625d95c95}{reference\+Height}} = 1.\+725f
+\item 
+float \mbox{\hyperlink{class_avatar_controller_a2bdf1aa1d1175de174f3099db5b797b8}{standardized\+Reference\+Height}} = 1.\+725f
+\item 
+bool \mbox{\hyperlink{class_avatar_controller_a99cd36c9a94021c5f31999a387d87d5f}{debug}}
+\item 
+\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} \mbox{\hyperlink{class_avatar_controller_ac95be05f20e706048b1ca63cf6ff4a66}{initial\+Left\+Pos\+Rot}}
+\item 
+\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} \mbox{\hyperlink{class_avatar_controller_a3a475f2c4df45b399d7869b0eed55305}{initial\+Right\+Pos\+Rot}}
+\item 
+bool \mbox{\hyperlink{class_avatar_controller_a2b823bdb843f7a0d9b1866342b08a230}{size\+Initialized}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_avatar_controller_a6fca9255887e52a99fe05978c26e909f}\label{class_avatar_controller_a6fca9255887e52a99fe05978c26e909f}} 
+\index{AvatarController@{AvatarController}!Awake@{Awake}}
+\index{Awake@{Awake}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{Awake()}{Awake()}}
+{\footnotesize\ttfamily void Avatar\+Controller.\+Awake (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_controller_af5d3ef3bddc0b086a001f4f88cf4d95c}\label{class_avatar_controller_af5d3ef3bddc0b086a001f4f88cf4d95c}} 
+\index{AvatarController@{AvatarController}!calculateSizeMultiplier@{calculateSizeMultiplier}}
+\index{calculateSizeMultiplier@{calculateSizeMultiplier}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{calculateSizeMultiplier()}{calculateSizeMultiplier()}}
+{\footnotesize\ttfamily float Avatar\+Controller.\+calculate\+Size\+Multiplier (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_avatar_controller_a3addbd75154a4e7bf52708064fa3f06b}\label{class_avatar_controller_a3addbd75154a4e7bf52708064fa3f06b}} 
+\index{AvatarController@{AvatarController}!calculateStandardizedSizeMultiplier@{calculateStandardizedSizeMultiplier}}
+\index{calculateStandardizedSizeMultiplier@{calculateStandardizedSizeMultiplier}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{calculateStandardizedSizeMultiplier()}{calculateStandardizedSizeMultiplier()}}
+{\footnotesize\ttfamily float Avatar\+Controller.\+calculate\+Standardized\+Size\+Multiplier (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+we use this to calculate how much should avatar be scaled in \char`\"{}multiplayer\char`\"{} settings 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_avatar_controller_ac4bd3fc9507fb72947daa931096b0671}\label{class_avatar_controller_ac4bd3fc9507fb72947daa931096b0671}} 
+\index{AvatarController@{AvatarController}!initializeValues@{initializeValues}}
+\index{initializeValues@{initializeValues}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{initializeValues()}{initializeValues()}}
+{\footnotesize\ttfamily void Avatar\+Controller.\+initialize\+Values (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_controller_a9a11a6e03033051456dea538c796dfe2}\label{class_avatar_controller_a9a11a6e03033051456dea538c796dfe2}} 
+\index{AvatarController@{AvatarController}!OnEnable@{OnEnable}}
+\index{OnEnable@{OnEnable}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{OnEnable()}{OnEnable()}}
+{\footnotesize\ttfamily void Avatar\+Controller.\+On\+Enable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_controller_ad30ff1f6340e16668870f72afd522edf}\label{class_avatar_controller_ad30ff1f6340e16668870f72afd522edf}} 
+\index{AvatarController@{AvatarController}!resetHandIKTargets@{resetHandIKTargets}}
+\index{resetHandIKTargets@{resetHandIKTargets}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{resetHandIKTargets()}{resetHandIKTargets()}}
+{\footnotesize\ttfamily void Avatar\+Controller.\+reset\+Hand\+IKTargets (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initial ik\+Target position, which is used when arm is not resting. This method is used after changing arms, so that non resting position is not where arm was before it was changed into active animated arm, but next to \textquotesingle{}body\textquotesingle{}. 
+
+\mbox{\Hypertarget{class_avatar_controller_af6b7cb7c8f66788a1edd59bbc5f6b8b7}\label{class_avatar_controller_af6b7cb7c8f66788a1edd59bbc5f6b8b7}} 
+\index{AvatarController@{AvatarController}!resetHeight@{resetHeight}}
+\index{resetHeight@{resetHeight}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{resetHeight()}{resetHeight()}}
+{\footnotesize\ttfamily void Avatar\+Controller.\+reset\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_avatar_controller_a925300f0b371d8d67925e0df5138c96e}\label{class_avatar_controller_a925300f0b371d8d67925e0df5138c96e}} 
+\index{AvatarController@{AvatarController}!Update@{Update}}
+\index{Update@{Update}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Avatar\+Controller.\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_avatar_controller_a79954f1ba791dcae6cb47bae0dd082ef}\label{class_avatar_controller_a79954f1ba791dcae6cb47bae0dd082ef}} 
+\index{AvatarController@{AvatarController}!applyTurn@{applyTurn}}
+\index{applyTurn@{applyTurn}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{applyTurn}{applyTurn}}
+{\footnotesize\ttfamily bool Avatar\+Controller.\+apply\+Turn = true}
+
+\mbox{\Hypertarget{class_avatar_controller_a99cd36c9a94021c5f31999a387d87d5f}\label{class_avatar_controller_a99cd36c9a94021c5f31999a387d87d5f}} 
+\index{AvatarController@{AvatarController}!debug@{debug}}
+\index{debug@{debug}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{debug}{debug}}
+{\footnotesize\ttfamily bool Avatar\+Controller.\+debug\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_controller_a42e7e8a2cac7b95cabba54365715097c}\label{class_avatar_controller_a42e7e8a2cac7b95cabba54365715097c}} 
+\index{AvatarController@{AvatarController}!head@{head}}
+\index{head@{head}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{head}{head}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_map_transforms}{Map\+Transforms}} Avatar\+Controller.\+head}
+
+\mbox{\Hypertarget{class_avatar_controller_aa56cf198f55b4df31562bf82cb4d9041}\label{class_avatar_controller_aa56cf198f55b4df31562bf82cb4d9041}} 
+\index{AvatarController@{AvatarController}!headOffset@{headOffset}}
+\index{headOffset@{headOffset}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{headOffset}{headOffset}}
+{\footnotesize\ttfamily Vector3 Avatar\+Controller.\+head\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_controller_aedec7b6b69b1281c288ec6c4ee44e95a}\label{class_avatar_controller_aedec7b6b69b1281c288ec6c4ee44e95a}} 
+\index{AvatarController@{AvatarController}!headSpine@{headSpine}}
+\index{headSpine@{headSpine}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{headSpine}{headSpine}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_map_transforms}{Map\+Transforms}} Avatar\+Controller.\+head\+Spine}
+
+\mbox{\Hypertarget{class_avatar_controller_acae9c23b0359c3eb5b8fa077ec25dd4b}\label{class_avatar_controller_acae9c23b0359c3eb5b8fa077ec25dd4b}} 
+\index{AvatarController@{AvatarController}!headTarget@{headTarget}}
+\index{headTarget@{headTarget}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{headTarget}{headTarget}}
+{\footnotesize\ttfamily Transform Avatar\+Controller.\+head\+Target\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_controller_ac95be05f20e706048b1ca63cf6ff4a66}\label{class_avatar_controller_ac95be05f20e706048b1ca63cf6ff4a66}} 
+\index{AvatarController@{AvatarController}!initialLeftPosRot@{initialLeftPosRot}}
+\index{initialLeftPosRot@{initialLeftPosRot}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{initialLeftPosRot}{initialLeftPosRot}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} Avatar\+Controller.\+initial\+Left\+Pos\+Rot\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_controller_a3a475f2c4df45b399d7869b0eed55305}\label{class_avatar_controller_a3a475f2c4df45b399d7869b0eed55305}} 
+\index{AvatarController@{AvatarController}!initialRightPosRot@{initialRightPosRot}}
+\index{initialRightPosRot@{initialRightPosRot}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{initialRightPosRot}{initialRightPosRot}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} Avatar\+Controller.\+initial\+Right\+Pos\+Rot\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_controller_a26c845c5186a17c7b304fbe4f77bffd0}\label{class_avatar_controller_a26c845c5186a17c7b304fbe4f77bffd0}} 
+\index{AvatarController@{AvatarController}!leftArmRangeMarker@{leftArmRangeMarker}}
+\index{leftArmRangeMarker@{leftArmRangeMarker}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{leftArmRangeMarker}{leftArmRangeMarker}}
+{\footnotesize\ttfamily Game\+Object Avatar\+Controller.\+left\+Arm\+Range\+Marker}
+
+\mbox{\Hypertarget{class_avatar_controller_afae6d21f352ce4d7324fbd2a918cc430}\label{class_avatar_controller_afae6d21f352ce4d7324fbd2a918cc430}} 
+\index{AvatarController@{AvatarController}!leftHand@{leftHand}}
+\index{leftHand@{leftHand}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{leftHand}{leftHand}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_map_transforms}{Map\+Transforms}} Avatar\+Controller.\+left\+Hand}
+
+\mbox{\Hypertarget{class_avatar_controller_aeee8b223301ba4f646ec690e9b6ca266}\label{class_avatar_controller_aeee8b223301ba4f646ec690e9b6ca266}} 
+\index{AvatarController@{AvatarController}!originHeadOffset@{originHeadOffset}}
+\index{originHeadOffset@{originHeadOffset}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{originHeadOffset}{originHeadOffset}}
+{\footnotesize\ttfamily Vector3 Avatar\+Controller.\+origin\+Head\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_controller_a150841a302e3b210fb0217b625d95c95}\label{class_avatar_controller_a150841a302e3b210fb0217b625d95c95}} 
+\index{AvatarController@{AvatarController}!referenceHeight@{referenceHeight}}
+\index{referenceHeight@{referenceHeight}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{referenceHeight}{referenceHeight}}
+{\footnotesize\ttfamily float Avatar\+Controller.\+reference\+Height = 1.\+725f\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_controller_a4fb820cb9dd676b8e3c28be5b0f36690}\label{class_avatar_controller_a4fb820cb9dd676b8e3c28be5b0f36690}} 
+\index{AvatarController@{AvatarController}!rightArmRangeMarker@{rightArmRangeMarker}}
+\index{rightArmRangeMarker@{rightArmRangeMarker}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{rightArmRangeMarker}{rightArmRangeMarker}}
+{\footnotesize\ttfamily Game\+Object Avatar\+Controller.\+right\+Arm\+Range\+Marker}
+
+\mbox{\Hypertarget{class_avatar_controller_a81d8481bfb711b2d884a6928cc47d931}\label{class_avatar_controller_a81d8481bfb711b2d884a6928cc47d931}} 
+\index{AvatarController@{AvatarController}!rightHand@{rightHand}}
+\index{rightHand@{rightHand}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{rightHand}{rightHand}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_map_transforms}{Map\+Transforms}} Avatar\+Controller.\+right\+Hand}
+
+\mbox{\Hypertarget{class_avatar_controller_a2b823bdb843f7a0d9b1866342b08a230}\label{class_avatar_controller_a2b823bdb843f7a0d9b1866342b08a230}} 
+\index{AvatarController@{AvatarController}!sizeInitialized@{sizeInitialized}}
+\index{sizeInitialized@{sizeInitialized}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{sizeInitialized}{sizeInitialized}}
+{\footnotesize\ttfamily bool Avatar\+Controller.\+size\+Initialized = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_controller_a599531c3ff1accad7adae8bee9ab5bd7}\label{class_avatar_controller_a599531c3ff1accad7adae8bee9ab5bd7}} 
+\index{AvatarController@{AvatarController}!sizeMultiplier@{sizeMultiplier}}
+\index{sizeMultiplier@{sizeMultiplier}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{sizeMultiplier}{sizeMultiplier}}
+{\footnotesize\ttfamily float Avatar\+Controller.\+size\+Multiplier}
+
+\mbox{\Hypertarget{class_avatar_controller_a0e76af194c44ba80af3645af580bc1ba}\label{class_avatar_controller_a0e76af194c44ba80af3645af580bc1ba}} 
+\index{AvatarController@{AvatarController}!sizePreset@{sizePreset}}
+\index{sizePreset@{sizePreset}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{sizePreset}{sizePreset}}
+{\footnotesize\ttfamily bool Avatar\+Controller.\+size\+Preset}
+
+\mbox{\Hypertarget{class_avatar_controller_a2bdf1aa1d1175de174f3099db5b797b8}\label{class_avatar_controller_a2bdf1aa1d1175de174f3099db5b797b8}} 
+\index{AvatarController@{AvatarController}!standardizedReferenceHeight@{standardizedReferenceHeight}}
+\index{standardizedReferenceHeight@{standardizedReferenceHeight}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{standardizedReferenceHeight}{standardizedReferenceHeight}}
+{\footnotesize\ttfamily float Avatar\+Controller.\+standardized\+Reference\+Height = 1.\+725f\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_avatar_controller_ace7be01433e0160394fd497758c79ff4}\label{class_avatar_controller_ace7be01433e0160394fd497758c79ff4}} 
+\index{AvatarController@{AvatarController}!turnSmoothness@{turnSmoothness}}
+\index{turnSmoothness@{turnSmoothness}!AvatarController@{AvatarController}}
+\doxysubsubsection{\texorpdfstring{turnSmoothness}{turnSmoothness}}
+{\footnotesize\ttfamily float Avatar\+Controller.\+turn\+Smoothness\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Unity/\+Unity\+Projects/\+Masters\+Thesis/\+Assets/\+\_\+\+Neuro\+Rehab/\+Scripts/\+Avatar/\mbox{\hyperlink{_avatar_controller_8cs}{Avatar\+Controller.\+cs}}\end{DoxyCompactItemize}

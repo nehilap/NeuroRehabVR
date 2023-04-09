@@ -1,0 +1,251 @@
+\hypertarget{class_animation_server_manager}{}\doxysection{Animation\+Server\+Manager Class Reference}
+\label{class_animation_server_manager}\index{AnimationServerManager@{AnimationServerManager}}
+Inheritance diagram for Animation\+Server\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_animation_server_manager}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_animation_server_manager_aebb4f105234cbeff27f7bb325359dc54}{move\+Arm}} ()
+\begin{DoxyCompactList}\small\item\em Starts animation if it\textquotesingle{}s in time and we still have repetitions left. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_animation_server_manager_a3c024a7caafe2025c3015de247123da2}{progress\+Animation\+Step}} ()
+\begin{DoxyCompactList}\small\item\em Marks animation step as done. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_animation_server_manager_af690256c779a05e53c99c52b8940d277}{start\+Training}} ()
+\begin{DoxyCompactList}\small\item\em Starts listening to animation move events. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_animation_server_manager_a5d959046bcf4f865cc3c77c349a38a85}{stop\+Training}} ()
+\begin{DoxyCompactList}\small\item\em Stops animation listening and ends all animations. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_animation_server_manager_acbc5e0dc40d460f9209b07374c89f2ba}{cancel\+Training\+On\+Server}} ()
+\item 
+void \mbox{\hyperlink{class_animation_server_manager_a4c7e9db80c3bae8c2eddc9fe577443e4}{Rpc\+Start\+Actual\+Animation}} (bool is\+Showcase, string extra\+Text)
+\item 
+void \mbox{\hyperlink{class_animation_server_manager_a7d4c9aaf8cf51f70ca69825517bec419}{Rpc\+Stop\+Actual\+Animation}} ()
+\item 
+void \mbox{\hyperlink{class_animation_server_manager_a529635ea18cfb16590b08fed7574f19c}{Rpc\+Start\+Training}} (float duration, string extra\+Text)
+\item 
+void \mbox{\hyperlink{class_animation_server_manager_a022338e0433e3bdc2b7ca7366e3853fd}{Rpc\+Start\+Countdown}} (float duration, string extra\+Text)
+\item 
+void \mbox{\hyperlink{class_animation_server_manager_a63050029d7ca2d15a68291d5e5262a99}{Rpc\+Stop\+Training}} (string message, \mbox{\hyperlink{namespace_enums_a8f5cd57359c31a81e43f2555cdaa5474}{Message\+Type}} message\+Type)
+\item 
+void \mbox{\hyperlink{class_animation_server_manager_a155b4d7d30d3ddd9cd2b9f02ce4116b6}{Rpc\+Stop\+Training}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_animation_server_manager}{Animation\+Server\+Manager}} \mbox{\hyperlink{class_animation_server_manager_a2528fe4986d791ea4c23af8a2f03b8c9}{Instance}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_animation_server_manager_a39d75f5d385ac98bc96a77fe527f65a6}{Start}} ()
+\item 
+IEnumerator \mbox{\hyperlink{class_animation_server_manager_a7f5e5f1bc6f3f301ec1318cb49a5b596}{wait\+Duration\+Coroutine}} (float duration)
+\item 
+bool \mbox{\hyperlink{class_animation_server_manager_a9fa1eda4486d2dd68538bc94b7111563}{can\+Training\+Start}} ()
+\item 
+void \mbox{\hyperlink{class_animation_server_manager_ae281562d1606dd0fb522e40109f7b2c3}{client\+Stop\+Training}} ()
+\item 
+void \mbox{\hyperlink{class_animation_server_manager_a201b472fa5ed36426dd68aeb7edf8087}{client\+Stop\+Training}} (string message, \mbox{\hyperlink{namespace_enums_a8f5cd57359c31a81e43f2555cdaa5474}{Message\+Type}} message\+Type)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_animation_settings_manager}{Animation\+Settings\+Manager}} \mbox{\hyperlink{class_animation_server_manager_a19021bd3fc5833ee881143125c3ee084}{anim\+Settings\+Manager}}
+\item 
+bool \mbox{\hyperlink{class_animation_server_manager_a955ba6b128ff2a72e2b84150be1d8946}{is\+Training\+Running}} = false
+\item 
+bool \mbox{\hyperlink{class_animation_server_manager_a4a0e454c18762e630efc9efeaf03cee0}{is\+Animation\+Triggered}} = false
+\item 
+Date\+Time \mbox{\hyperlink{class_animation_server_manager_a9949f5dbb1bc55fcc5ea190595e8057a}{last\+Animation\+Trigger}}
+\item 
+int \mbox{\hyperlink{class_animation_server_manager_ac6e202a7ed4fee1d64670accd0a90815}{current\+Repetitions}} = 0
+\item 
+Coroutine \mbox{\hyperlink{class_animation_server_manager_a77c2695fe13b42c982c54828bd429d81}{training\+Coroutine}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_animation_server_manager}{Animation\+Server\+Manager}} \mbox{\hyperlink{class_animation_server_manager_a0d24c690b4b3f0c8945c81f69239b81a}{\+\_\+instance}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_animation_server_manager_acbc5e0dc40d460f9209b07374c89f2ba}\label{class_animation_server_manager_acbc5e0dc40d460f9209b07374c89f2ba}} 
+\index{AnimationServerManager@{AnimationServerManager}!cancelTrainingOnServer@{cancelTrainingOnServer}}
+\index{cancelTrainingOnServer@{cancelTrainingOnServer}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{cancelTrainingOnServer()}{cancelTrainingOnServer()}}
+{\footnotesize\ttfamily void Animation\+Server\+Manager.\+cancel\+Training\+On\+Server (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_animation_server_manager_a9fa1eda4486d2dd68538bc94b7111563}\label{class_animation_server_manager_a9fa1eda4486d2dd68538bc94b7111563}} 
+\index{AnimationServerManager@{AnimationServerManager}!canTrainingStart@{canTrainingStart}}
+\index{canTrainingStart@{canTrainingStart}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{canTrainingStart()}{canTrainingStart()}}
+{\footnotesize\ttfamily bool Animation\+Server\+Manager.\+can\+Training\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_animation_server_manager_ae281562d1606dd0fb522e40109f7b2c3}\label{class_animation_server_manager_ae281562d1606dd0fb522e40109f7b2c3}} 
+\index{AnimationServerManager@{AnimationServerManager}!clientStopTraining@{clientStopTraining}}
+\index{clientStopTraining@{clientStopTraining}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{clientStopTraining()}{clientStopTraining()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Animation\+Server\+Manager.\+client\+Stop\+Training (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_animation_server_manager_a201b472fa5ed36426dd68aeb7edf8087}\label{class_animation_server_manager_a201b472fa5ed36426dd68aeb7edf8087}} 
+\index{AnimationServerManager@{AnimationServerManager}!clientStopTraining@{clientStopTraining}}
+\index{clientStopTraining@{clientStopTraining}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{clientStopTraining()}{clientStopTraining()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Animation\+Server\+Manager.\+client\+Stop\+Training (\begin{DoxyParamCaption}\item[{string}]{message,  }\item[{\mbox{\hyperlink{namespace_enums_a8f5cd57359c31a81e43f2555cdaa5474}{Message\+Type}}}]{message\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_animation_server_manager_aebb4f105234cbeff27f7bb325359dc54}\label{class_animation_server_manager_aebb4f105234cbeff27f7bb325359dc54}} 
+\index{AnimationServerManager@{AnimationServerManager}!moveArm@{moveArm}}
+\index{moveArm@{moveArm}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{moveArm()}{moveArm()}}
+{\footnotesize\ttfamily bool Animation\+Server\+Manager.\+move\+Arm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Starts animation if it\textquotesingle{}s in time and we still have repetitions left. 
+
+\begin{DoxyReturn}{Returns}
+Whether move was succesfully triggered
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_animation_server_manager_a3c024a7caafe2025c3015de247123da2}\label{class_animation_server_manager_a3c024a7caafe2025c3015de247123da2}} 
+\index{AnimationServerManager@{AnimationServerManager}!progressAnimationStep@{progressAnimationStep}}
+\index{progressAnimationStep@{progressAnimationStep}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{progressAnimationStep()}{progressAnimationStep()}}
+{\footnotesize\ttfamily void Animation\+Server\+Manager.\+progress\+Animation\+Step (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Marks animation step as done. 
+
+\mbox{\Hypertarget{class_animation_server_manager_a4c7e9db80c3bae8c2eddc9fe577443e4}\label{class_animation_server_manager_a4c7e9db80c3bae8c2eddc9fe577443e4}} 
+\index{AnimationServerManager@{AnimationServerManager}!RpcStartActualAnimation@{RpcStartActualAnimation}}
+\index{RpcStartActualAnimation@{RpcStartActualAnimation}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{RpcStartActualAnimation()}{RpcStartActualAnimation()}}
+{\footnotesize\ttfamily void Animation\+Server\+Manager.\+Rpc\+Start\+Actual\+Animation (\begin{DoxyParamCaption}\item[{bool}]{is\+Showcase,  }\item[{string}]{extra\+Text }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_animation_server_manager_a022338e0433e3bdc2b7ca7366e3853fd}\label{class_animation_server_manager_a022338e0433e3bdc2b7ca7366e3853fd}} 
+\index{AnimationServerManager@{AnimationServerManager}!RpcStartCountdown@{RpcStartCountdown}}
+\index{RpcStartCountdown@{RpcStartCountdown}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{RpcStartCountdown()}{RpcStartCountdown()}}
+{\footnotesize\ttfamily void Animation\+Server\+Manager.\+Rpc\+Start\+Countdown (\begin{DoxyParamCaption}\item[{float}]{duration,  }\item[{string}]{extra\+Text }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_animation_server_manager_a529635ea18cfb16590b08fed7574f19c}\label{class_animation_server_manager_a529635ea18cfb16590b08fed7574f19c}} 
+\index{AnimationServerManager@{AnimationServerManager}!RpcStartTraining@{RpcStartTraining}}
+\index{RpcStartTraining@{RpcStartTraining}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{RpcStartTraining()}{RpcStartTraining()}}
+{\footnotesize\ttfamily void Animation\+Server\+Manager.\+Rpc\+Start\+Training (\begin{DoxyParamCaption}\item[{float}]{duration,  }\item[{string}]{extra\+Text }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_animation_server_manager_a7d4c9aaf8cf51f70ca69825517bec419}\label{class_animation_server_manager_a7d4c9aaf8cf51f70ca69825517bec419}} 
+\index{AnimationServerManager@{AnimationServerManager}!RpcStopActualAnimation@{RpcStopActualAnimation}}
+\index{RpcStopActualAnimation@{RpcStopActualAnimation}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{RpcStopActualAnimation()}{RpcStopActualAnimation()}}
+{\footnotesize\ttfamily void Animation\+Server\+Manager.\+Rpc\+Stop\+Actual\+Animation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_animation_server_manager_a155b4d7d30d3ddd9cd2b9f02ce4116b6}\label{class_animation_server_manager_a155b4d7d30d3ddd9cd2b9f02ce4116b6}} 
+\index{AnimationServerManager@{AnimationServerManager}!RpcStopTraining@{RpcStopTraining}}
+\index{RpcStopTraining@{RpcStopTraining}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{RpcStopTraining()}{RpcStopTraining()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Animation\+Server\+Manager.\+Rpc\+Stop\+Training (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_animation_server_manager_a63050029d7ca2d15a68291d5e5262a99}\label{class_animation_server_manager_a63050029d7ca2d15a68291d5e5262a99}} 
+\index{AnimationServerManager@{AnimationServerManager}!RpcStopTraining@{RpcStopTraining}}
+\index{RpcStopTraining@{RpcStopTraining}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{RpcStopTraining()}{RpcStopTraining()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Animation\+Server\+Manager.\+Rpc\+Stop\+Training (\begin{DoxyParamCaption}\item[{string}]{message,  }\item[{\mbox{\hyperlink{namespace_enums_a8f5cd57359c31a81e43f2555cdaa5474}{Message\+Type}}}]{message\+Type }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_animation_server_manager_a39d75f5d385ac98bc96a77fe527f65a6}\label{class_animation_server_manager_a39d75f5d385ac98bc96a77fe527f65a6}} 
+\index{AnimationServerManager@{AnimationServerManager}!Start@{Start}}
+\index{Start@{Start}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void Animation\+Server\+Manager.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_animation_server_manager_af690256c779a05e53c99c52b8940d277}\label{class_animation_server_manager_af690256c779a05e53c99c52b8940d277}} 
+\index{AnimationServerManager@{AnimationServerManager}!startTraining@{startTraining}}
+\index{startTraining@{startTraining}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{startTraining()}{startTraining()}}
+{\footnotesize\ttfamily bool Animation\+Server\+Manager.\+start\+Training (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Starts listening to animation move events. 
+
+\begin{DoxyReturn}{Returns}
+Whether we succesfully started listening to new moves
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_animation_server_manager_a5d959046bcf4f865cc3c77c349a38a85}\label{class_animation_server_manager_a5d959046bcf4f865cc3c77c349a38a85}} 
+\index{AnimationServerManager@{AnimationServerManager}!stopTraining@{stopTraining}}
+\index{stopTraining@{stopTraining}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{stopTraining()}{stopTraining()}}
+{\footnotesize\ttfamily void Animation\+Server\+Manager.\+stop\+Training (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Stops animation listening and ends all animations. 
+
+\mbox{\Hypertarget{class_animation_server_manager_a7f5e5f1bc6f3f301ec1318cb49a5b596}\label{class_animation_server_manager_a7f5e5f1bc6f3f301ec1318cb49a5b596}} 
+\index{AnimationServerManager@{AnimationServerManager}!waitDurationCoroutine@{waitDurationCoroutine}}
+\index{waitDurationCoroutine@{waitDurationCoroutine}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{waitDurationCoroutine()}{waitDurationCoroutine()}}
+{\footnotesize\ttfamily IEnumerator Animation\+Server\+Manager.\+wait\+Duration\+Coroutine (\begin{DoxyParamCaption}\item[{float}]{duration }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_animation_server_manager_a0d24c690b4b3f0c8945c81f69239b81a}\label{class_animation_server_manager_a0d24c690b4b3f0c8945c81f69239b81a}} 
+\index{AnimationServerManager@{AnimationServerManager}!\_instance@{\_instance}}
+\index{\_instance@{\_instance}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{\_instance}{\_instance}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_animation_server_manager}{Animation\+Server\+Manager}} Animation\+Server\+Manager.\+\_\+instance\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_animation_server_manager_a19021bd3fc5833ee881143125c3ee084}\label{class_animation_server_manager_a19021bd3fc5833ee881143125c3ee084}} 
+\index{AnimationServerManager@{AnimationServerManager}!animSettingsManager@{animSettingsManager}}
+\index{animSettingsManager@{animSettingsManager}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{animSettingsManager}{animSettingsManager}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_animation_settings_manager}{Animation\+Settings\+Manager}} Animation\+Server\+Manager.\+anim\+Settings\+Manager\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_animation_server_manager_ac6e202a7ed4fee1d64670accd0a90815}\label{class_animation_server_manager_ac6e202a7ed4fee1d64670accd0a90815}} 
+\index{AnimationServerManager@{AnimationServerManager}!currentRepetitions@{currentRepetitions}}
+\index{currentRepetitions@{currentRepetitions}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{currentRepetitions}{currentRepetitions}}
+{\footnotesize\ttfamily int Animation\+Server\+Manager.\+current\+Repetitions = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_animation_server_manager_a4a0e454c18762e630efc9efeaf03cee0}\label{class_animation_server_manager_a4a0e454c18762e630efc9efeaf03cee0}} 
+\index{AnimationServerManager@{AnimationServerManager}!isAnimationTriggered@{isAnimationTriggered}}
+\index{isAnimationTriggered@{isAnimationTriggered}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{isAnimationTriggered}{isAnimationTriggered}}
+{\footnotesize\ttfamily bool Animation\+Server\+Manager.\+is\+Animation\+Triggered = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_animation_server_manager_a955ba6b128ff2a72e2b84150be1d8946}\label{class_animation_server_manager_a955ba6b128ff2a72e2b84150be1d8946}} 
+\index{AnimationServerManager@{AnimationServerManager}!isTrainingRunning@{isTrainingRunning}}
+\index{isTrainingRunning@{isTrainingRunning}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{isTrainingRunning}{isTrainingRunning}}
+{\footnotesize\ttfamily bool Animation\+Server\+Manager.\+is\+Training\+Running = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_animation_server_manager_a9949f5dbb1bc55fcc5ea190595e8057a}\label{class_animation_server_manager_a9949f5dbb1bc55fcc5ea190595e8057a}} 
+\index{AnimationServerManager@{AnimationServerManager}!lastAnimationTrigger@{lastAnimationTrigger}}
+\index{lastAnimationTrigger@{lastAnimationTrigger}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{lastAnimationTrigger}{lastAnimationTrigger}}
+{\footnotesize\ttfamily Date\+Time Animation\+Server\+Manager.\+last\+Animation\+Trigger\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_animation_server_manager_a77c2695fe13b42c982c54828bd429d81}\label{class_animation_server_manager_a77c2695fe13b42c982c54828bd429d81}} 
+\index{AnimationServerManager@{AnimationServerManager}!trainingCoroutine@{trainingCoroutine}}
+\index{trainingCoroutine@{trainingCoroutine}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{trainingCoroutine}{trainingCoroutine}}
+{\footnotesize\ttfamily Coroutine Animation\+Server\+Manager.\+training\+Coroutine\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\Hypertarget{class_animation_server_manager_a2528fe4986d791ea4c23af8a2f03b8c9}\label{class_animation_server_manager_a2528fe4986d791ea4c23af8a2f03b8c9}} 
+\index{AnimationServerManager@{AnimationServerManager}!Instance@{Instance}}
+\index{Instance@{Instance}!AnimationServerManager@{AnimationServerManager}}
+\doxysubsubsection{\texorpdfstring{Instance}{Instance}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_animation_server_manager}{Animation\+Server\+Manager}} Animation\+Server\+Manager.\+Instance\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Unity/\+Unity\+Projects/\+Masters\+Thesis/\+Assets/\+\_\+\+Neuro\+Rehab/\+Scripts/\+Managers/\mbox{\hyperlink{_animation_server_manager_8cs}{Animation\+Server\+Manager.\+cs}}\end{DoxyCompactItemize}

@@ -1,0 +1,308 @@
+\hypertarget{class_x_r_character_manager}{}\doxysection{XRCharacter\+Manager Class Reference}
+\label{class_x_r_character_manager}\index{XRCharacterManager@{XRCharacterManager}}
+Inheritance diagram for XRCharacter\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_x_r_character_manager}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \mbox{\hyperlink{class_x_r_character_manager_ade13e4230b4d5e900453d85a5c22c3f1}{On\+Start\+Local\+Player}} ()
+\item 
+override void \mbox{\hyperlink{class_x_r_character_manager_a36c6c1bf60b4668b4339455d454af911}{On\+Stop\+Client}} ()
+\item 
+override void \mbox{\hyperlink{class_x_r_character_manager_acec2dc76fddc1c0f352a6eec03db0454}{Start}} ()
+\item 
+void \mbox{\hyperlink{class_x_r_character_manager_aa888c71ecb2262a98827f8cc5ae7d21c}{change\+Controller\+Type}} (\mbox{\hyperlink{namespace_enums_afc9dc20ef762f0c310a514f76ba4aca5}{Controller\+Type}} \+\_\+old, \mbox{\hyperlink{namespace_enums_afc9dc20ef762f0c310a514f76ba4aca5}{Controller\+Type}} \+\_\+new)
+\begin{DoxyCompactList}\small\item\em Method to change controller model. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_x_r_character_manager_a660567c8afe09b6c3ca1869ba90ca672}{change\+HMDType}} (\mbox{\hyperlink{namespace_enums_a43c575cdf8ecae3080155c75265fe07a}{HMDType}} \+\_\+old, \mbox{\hyperlink{namespace_enums_a43c575cdf8ecae3080155c75265fe07a}{HMDType}} \+\_\+new)
+\begin{DoxyCompactList}\small\item\em Handler method that handles HMD type changes. In case of \textquotesingle{}Other\textquotesingle{} HMD type we reset Offset (this is in case you are using VR headset so that you are not too tall). The offset exists because simulated HMD would otherwise be on the ground. \end{DoxyCompactList}\item 
+override void \mbox{\hyperlink{class_x_r_character_manager_a0d50706631cca6a3eb94d40daf8bfa04}{change\+Animated\+Arm}} (bool \+\_\+old, bool \+\_\+new)
+\begin{DoxyCompactList}\small\item\em Handler method for changing active animated arm. \end{DoxyCompactList}\item 
+override void \mbox{\hyperlink{class_x_r_character_manager_ac118d3178e65504fb18e8677a893480f}{teleport\+Character}} (Transform target\+Position, Transform look\+Target=null)
+\begin{DoxyCompactList}\small\item\em Teleports character to specific location and rotates it to look in the direction of target\+Position transform. Lok\+Target is ignored on \mbox{\hyperlink{class_x_r_character_manager}{XRCharacter\+Manager}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_character_manager}{Character\+Manager}}}
+\begin{DoxyCompactItemize}
+\item 
+override void \mbox{\hyperlink{class_character_manager_a99818278a7a213f4a706666700ca6214}{On\+Start\+Local\+Player}} ()
+\item 
+override void \mbox{\hyperlink{class_character_manager_ad2da63928329ef01f9f0a33ab6c1eb46}{On\+Stop\+Client}} ()
+\item 
+virtual void \mbox{\hyperlink{class_character_manager_a1a85f8a5ac73f2dc08dd9e4cb92dcb32}{Start}} ()
+\item 
+virtual void \mbox{\hyperlink{class_character_manager_aa75a3491fe477e35d2d48430437b7b43}{change\+Animated\+Arm}} (bool \+\_\+old, bool \+\_\+new)
+\begin{DoxyCompactList}\small\item\em Method used to change active animated arm. First we change active arm variable. If arm is in resting position we make sure it stays that way. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_character_manager_a1a0c4eaf061ac39a806892bc2af0f921}{show\+Arm\+Range\+Marker}} ()
+\item 
+void \mbox{\hyperlink{class_character_manager_a8ac9080bec77a8471fe7202b5c50bd70}{hide\+Arm\+Range\+Marker}} ()
+\item 
+abstract void \mbox{\hyperlink{class_character_manager_a957daf953fc3bce4f367f61f7e22d204}{teleport\+Character}} (Transform target\+Position, Transform look\+Target=null)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_enums_afc9dc20ef762f0c310a514f76ba4aca5}{Controller\+Type}} \mbox{\hyperlink{class_x_r_character_manager_a5ee1a7bd6823e69b5b8d262c2979fd5e}{controller\+Type}}
+\item 
+\mbox{\hyperlink{namespace_enums_a43c575cdf8ecae3080155c75265fe07a}{HMDType}} \mbox{\hyperlink{class_x_r_character_manager_a1497c51ec4484ed741d2e6a51620ee98}{hmd\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes inherited from \mbox{\hyperlink{class_character_manager}{Character\+Manager}}}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_character_manager_a61654587be1976175a27904a7f2a3bef}{is\+Patient}}
+\item 
+bool \mbox{\hyperlink{class_character_manager_abe421dc7d79c8df5a813cd3d74c5de87}{is\+Female}}
+\item 
+int \mbox{\hyperlink{class_character_manager_af5444e88b04bd490ee46ce4c66453237}{avatar\+Number}}
+\item 
+float \mbox{\hyperlink{class_character_manager_aa87eee1d3eab6a2fb9f18acf8007dd69}{avatar\+Size\+Multiplier}}
+\item 
+float \mbox{\hyperlink{class_character_manager_aecb60366a54415f9cb77a94288abf3b1}{avatar\+Offset\+Distance}}
+\item 
+bool \mbox{\hyperlink{class_character_manager_add6ac97611e77c115f1e79b190fbd3f6}{is\+Left\+Arm\+Animated}} = false
+\item 
+bool \mbox{\hyperlink{class_character_manager_a64c73acb250e8c88bd3920edb503848e}{is\+Arm\+Resting}}
+\item 
+Game\+Object \mbox{\hyperlink{class_character_manager_a7d34140be42fb8106c4d7c139da7d33f}{active\+Avatar\+Object}}
+\item 
+\mbox{\hyperlink{class_arm_animation_controller}{Arm\+Animation\+Controller}} \mbox{\hyperlink{class_character_manager_a4dc5a2a8df71ac679bae0ef2c8ad72f6}{active\+Arm\+Animation\+Controller}}
+\item 
+Transform \mbox{\hyperlink{class_character_manager_a7f87202f848b8978ba2af824195f8303}{offset\+Object}}
+\item 
+Game\+Object \mbox{\hyperlink{class_character_manager_aac6c0a8d4abce03ef06fce9518689408}{camera\+Object}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_x_r_character_manager_a93048f244f5d5ff8f0c1865bdc144fa4}{Late\+Update}} ()
+\item 
+void \mbox{\hyperlink{class_x_r_character_manager_adaa930788ff5a1c9d70b74ca004403ea}{item\+Pick\+Up}} (Select\+Enter\+Event\+Args args)
+\begin{DoxyCompactList}\small\item\em Handler method for item pickup. We request authority from Server and we also show arm range if possible. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_x_r_character_manager_ad3fc07eef77b44f7e7059b89b20fd341}{item\+Release}} (Select\+Exit\+Event\+Args args)
+\begin{DoxyCompactList}\small\item\em Handler method for item release. We simply hide arm range. We don\textquotesingle{}t have to release authority, we can save up some processing this way... \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+XRBase\+Controller\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_x_r_character_manager_a36cd03968024292c7654a508c38412b3}{XRControllers}}
+\item 
+XRBase\+Controller\+Interactor\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_x_r_character_manager_a289572cf542b9518027492920cc9f218}{XRInteractors}}
+\item 
+Input\+Action\+Manager \mbox{\hyperlink{class_x_r_character_manager_a95956c48b43ca4abfbd193794cfdaba6}{input\+Action\+Manager}}
+\item 
+Game\+Object \mbox{\hyperlink{class_x_r_character_manager_ae3da70c6e55547793c0ac765dd0f9900}{xr\+Device\+Simulator}}
+\item 
+XROrigin \mbox{\hyperlink{class_x_r_character_manager_abb2202e7a00b8d5a050ae81e9745113b}{xr\+Origin}}
+\item 
+Character\+Controller \mbox{\hyperlink{class_x_r_character_manager_a6b0c2f613dd1eb8aac6c9543049036ce}{character\+Controller}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+\doxysubsubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_character_manager}{Character\+Manager}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_character_manager_a0dd9c8edb3fe4bd08e7d5c5f65a7eb55}{change\+Arm\+Resting\+State}} (bool \+\_\+old, bool \+\_\+new)
+\begin{DoxyCompactList}\small\item\em Handler triggered by Sync\+Var used to change rest state of active arm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties inherited from \mbox{\hyperlink{class_character_manager}{Character\+Manager}}}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_character_manager}{Character\+Manager}} \mbox{\hyperlink{class_character_manager_a5a834dc5edc3abc03c489be455df963e}{local\+Client\+Instance}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\item 
+static \mbox{\hyperlink{class_character_manager}{Character\+Manager}} \mbox{\hyperlink{class_character_manager_a223bca2a2d4970d6f61d9ffea35ffc6f}{active\+Patient\+Instance}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\item 
+Game\+Object \mbox{\hyperlink{class_character_manager_a5dc9a76779f0e30e0eec573789306392}{active\+Arm\+Range\+Marker}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_x_r_character_manager_a0d50706631cca6a3eb94d40daf8bfa04}\label{class_x_r_character_manager_a0d50706631cca6a3eb94d40daf8bfa04}} 
+\index{XRCharacterManager@{XRCharacterManager}!changeAnimatedArm@{changeAnimatedArm}}
+\index{changeAnimatedArm@{changeAnimatedArm}!XRCharacterManager@{XRCharacterManager}}
+\doxysubsubsection{\texorpdfstring{changeAnimatedArm()}{changeAnimatedArm()}}
+{\footnotesize\ttfamily override void XRCharacter\+Manager.\+change\+Animated\+Arm (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+old,  }\item[{bool}]{\+\_\+new }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Handler method for changing active animated arm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+old} & \\
+\hline
+{\em \+\_\+new} & \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_character_manager_aa75a3491fe477e35d2d48430437b7b43}{Character\+Manager}}.
+
+\mbox{\Hypertarget{class_x_r_character_manager_aa888c71ecb2262a98827f8cc5ae7d21c}\label{class_x_r_character_manager_aa888c71ecb2262a98827f8cc5ae7d21c}} 
+\index{XRCharacterManager@{XRCharacterManager}!changeControllerType@{changeControllerType}}
+\index{changeControllerType@{changeControllerType}!XRCharacterManager@{XRCharacterManager}}
+\doxysubsubsection{\texorpdfstring{changeControllerType()}{changeControllerType()}}
+{\footnotesize\ttfamily void XRCharacter\+Manager.\+change\+Controller\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_enums_afc9dc20ef762f0c310a514f76ba4aca5}{Controller\+Type}}}]{\+\_\+old,  }\item[{\mbox{\hyperlink{namespace_enums_afc9dc20ef762f0c310a514f76ba4aca5}{Controller\+Type}}}]{\+\_\+new }\end{DoxyParamCaption})}
+
+
+
+Method to change controller model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+old} & \\
+\hline
+{\em \+\_\+new} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_x_r_character_manager_a660567c8afe09b6c3ca1869ba90ca672}\label{class_x_r_character_manager_a660567c8afe09b6c3ca1869ba90ca672}} 
+\index{XRCharacterManager@{XRCharacterManager}!changeHMDType@{changeHMDType}}
+\index{changeHMDType@{changeHMDType}!XRCharacterManager@{XRCharacterManager}}
+\doxysubsubsection{\texorpdfstring{changeHMDType()}{changeHMDType()}}
+{\footnotesize\ttfamily void XRCharacter\+Manager.\+change\+HMDType (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_enums_a43c575cdf8ecae3080155c75265fe07a}{HMDType}}}]{\+\_\+old,  }\item[{\mbox{\hyperlink{namespace_enums_a43c575cdf8ecae3080155c75265fe07a}{HMDType}}}]{\+\_\+new }\end{DoxyParamCaption})}
+
+
+
+Handler method that handles HMD type changes. In case of \textquotesingle{}Other\textquotesingle{} HMD type we reset Offset (this is in case you are using VR headset so that you are not too tall). The offset exists because simulated HMD would otherwise be on the ground. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+old} & \\
+\hline
+{\em \+\_\+new} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_x_r_character_manager_adaa930788ff5a1c9d70b74ca004403ea}\label{class_x_r_character_manager_adaa930788ff5a1c9d70b74ca004403ea}} 
+\index{XRCharacterManager@{XRCharacterManager}!itemPickUp@{itemPickUp}}
+\index{itemPickUp@{itemPickUp}!XRCharacterManager@{XRCharacterManager}}
+\doxysubsubsection{\texorpdfstring{itemPickUp()}{itemPickUp()}}
+{\footnotesize\ttfamily void XRCharacter\+Manager.\+item\+Pick\+Up (\begin{DoxyParamCaption}\item[{Select\+Enter\+Event\+Args}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handler method for item pickup. We request authority from Server and we also show arm range if possible. 
+
+ITEM PICKUP / RELEASE these are the methods used for granting player an authority over items and then releasing the authority after the item is released this is used for certain VR functions to work as intended in multiplayer space such as grabbing an item
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Info about object grabbed\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_x_r_character_manager_ad3fc07eef77b44f7e7059b89b20fd341}\label{class_x_r_character_manager_ad3fc07eef77b44f7e7059b89b20fd341}} 
+\index{XRCharacterManager@{XRCharacterManager}!itemRelease@{itemRelease}}
+\index{itemRelease@{itemRelease}!XRCharacterManager@{XRCharacterManager}}
+\doxysubsubsection{\texorpdfstring{itemRelease()}{itemRelease()}}
+{\footnotesize\ttfamily void XRCharacter\+Manager.\+item\+Release (\begin{DoxyParamCaption}\item[{Select\+Exit\+Event\+Args}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handler method for item release. We simply hide arm range. We don\textquotesingle{}t have to release authority, we can save up some processing this way... 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_x_r_character_manager_a93048f244f5d5ff8f0c1865bdc144fa4}\label{class_x_r_character_manager_a93048f244f5d5ff8f0c1865bdc144fa4}} 
+\index{XRCharacterManager@{XRCharacterManager}!LateUpdate@{LateUpdate}}
+\index{LateUpdate@{LateUpdate}!XRCharacterManager@{XRCharacterManager}}
+\doxysubsubsection{\texorpdfstring{LateUpdate()}{LateUpdate()}}
+{\footnotesize\ttfamily void XRCharacter\+Manager.\+Late\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_character_manager_ade13e4230b4d5e900453d85a5c22c3f1}\label{class_x_r_character_manager_ade13e4230b4d5e900453d85a5c22c3f1}} 
+\index{XRCharacterManager@{XRCharacterManager}!OnStartLocalPlayer@{OnStartLocalPlayer}}
+\index{OnStartLocalPlayer@{OnStartLocalPlayer}!XRCharacterManager@{XRCharacterManager}}
+\doxysubsubsection{\texorpdfstring{OnStartLocalPlayer()}{OnStartLocalPlayer()}}
+{\footnotesize\ttfamily override void XRCharacter\+Manager.\+On\+Start\+Local\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_x_r_character_manager_a36c6c1bf60b4668b4339455d454af911}\label{class_x_r_character_manager_a36c6c1bf60b4668b4339455d454af911}} 
+\index{XRCharacterManager@{XRCharacterManager}!OnStopClient@{OnStopClient}}
+\index{OnStopClient@{OnStopClient}!XRCharacterManager@{XRCharacterManager}}
+\doxysubsubsection{\texorpdfstring{OnStopClient()}{OnStopClient()}}
+{\footnotesize\ttfamily override void XRCharacter\+Manager.\+On\+Stop\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_x_r_character_manager_acec2dc76fddc1c0f352a6eec03db0454}\label{class_x_r_character_manager_acec2dc76fddc1c0f352a6eec03db0454}} 
+\index{XRCharacterManager@{XRCharacterManager}!Start@{Start}}
+\index{Start@{Start}!XRCharacterManager@{XRCharacterManager}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily override void XRCharacter\+Manager.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_character_manager_a1a85f8a5ac73f2dc08dd9e4cb92dcb32}{Character\+Manager}}.
+
+\mbox{\Hypertarget{class_x_r_character_manager_ac118d3178e65504fb18e8677a893480f}\label{class_x_r_character_manager_ac118d3178e65504fb18e8677a893480f}} 
+\index{XRCharacterManager@{XRCharacterManager}!teleportCharacter@{teleportCharacter}}
+\index{teleportCharacter@{teleportCharacter}!XRCharacterManager@{XRCharacterManager}}
+\doxysubsubsection{\texorpdfstring{teleportCharacter()}{teleportCharacter()}}
+{\footnotesize\ttfamily override void XRCharacter\+Manager.\+teleport\+Character (\begin{DoxyParamCaption}\item[{Transform}]{target\+Position,  }\item[{Transform}]{look\+Target = {\ttfamily null} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Teleports character to specific location and rotates it to look in the direction of target\+Position transform. Lok\+Target is ignored on \mbox{\hyperlink{class_x_r_character_manager}{XRCharacter\+Manager}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em target\+Position} & \\
+\hline
+{\em look\+Target} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_character_manager_a957daf953fc3bce4f367f61f7e22d204}{Character\+Manager}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_x_r_character_manager_a6b0c2f613dd1eb8aac6c9543049036ce}\label{class_x_r_character_manager_a6b0c2f613dd1eb8aac6c9543049036ce}} 
+\index{XRCharacterManager@{XRCharacterManager}!characterController@{characterController}}
+\index{characterController@{characterController}!XRCharacterManager@{XRCharacterManager}}
+\doxysubsubsection{\texorpdfstring{characterController}{characterController}}
+{\footnotesize\ttfamily Character\+Controller XRCharacter\+Manager.\+character\+Controller\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_character_manager_a5ee1a7bd6823e69b5b8d262c2979fd5e}\label{class_x_r_character_manager_a5ee1a7bd6823e69b5b8d262c2979fd5e}} 
+\index{XRCharacterManager@{XRCharacterManager}!controllerType@{controllerType}}
+\index{controllerType@{controllerType}!XRCharacterManager@{XRCharacterManager}}
+\doxysubsubsection{\texorpdfstring{controllerType}{controllerType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_enums_afc9dc20ef762f0c310a514f76ba4aca5}{Controller\+Type}} XRCharacter\+Manager.\+controller\+Type}
+
+\mbox{\Hypertarget{class_x_r_character_manager_a1497c51ec4484ed741d2e6a51620ee98}\label{class_x_r_character_manager_a1497c51ec4484ed741d2e6a51620ee98}} 
+\index{XRCharacterManager@{XRCharacterManager}!hmdType@{hmdType}}
+\index{hmdType@{hmdType}!XRCharacterManager@{XRCharacterManager}}
+\doxysubsubsection{\texorpdfstring{hmdType}{hmdType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_enums_a43c575cdf8ecae3080155c75265fe07a}{HMDType}} XRCharacter\+Manager.\+hmd\+Type}
+
+\mbox{\Hypertarget{class_x_r_character_manager_a95956c48b43ca4abfbd193794cfdaba6}\label{class_x_r_character_manager_a95956c48b43ca4abfbd193794cfdaba6}} 
+\index{XRCharacterManager@{XRCharacterManager}!inputActionManager@{inputActionManager}}
+\index{inputActionManager@{inputActionManager}!XRCharacterManager@{XRCharacterManager}}
+\doxysubsubsection{\texorpdfstring{inputActionManager}{inputActionManager}}
+{\footnotesize\ttfamily Input\+Action\+Manager XRCharacter\+Manager.\+input\+Action\+Manager\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_character_manager_a36cd03968024292c7654a508c38412b3}\label{class_x_r_character_manager_a36cd03968024292c7654a508c38412b3}} 
+\index{XRCharacterManager@{XRCharacterManager}!XRControllers@{XRControllers}}
+\index{XRControllers@{XRControllers}!XRCharacterManager@{XRCharacterManager}}
+\doxysubsubsection{\texorpdfstring{XRControllers}{XRControllers}}
+{\footnotesize\ttfamily XRBase\+Controller \mbox{[}$\,$\mbox{]} XRCharacter\+Manager.\+XRControllers\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_character_manager_ae3da70c6e55547793c0ac765dd0f9900}\label{class_x_r_character_manager_ae3da70c6e55547793c0ac765dd0f9900}} 
+\index{XRCharacterManager@{XRCharacterManager}!xrDeviceSimulator@{xrDeviceSimulator}}
+\index{xrDeviceSimulator@{xrDeviceSimulator}!XRCharacterManager@{XRCharacterManager}}
+\doxysubsubsection{\texorpdfstring{xrDeviceSimulator}{xrDeviceSimulator}}
+{\footnotesize\ttfamily Game\+Object XRCharacter\+Manager.\+xr\+Device\+Simulator\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_character_manager_a289572cf542b9518027492920cc9f218}\label{class_x_r_character_manager_a289572cf542b9518027492920cc9f218}} 
+\index{XRCharacterManager@{XRCharacterManager}!XRInteractors@{XRInteractors}}
+\index{XRInteractors@{XRInteractors}!XRCharacterManager@{XRCharacterManager}}
+\doxysubsubsection{\texorpdfstring{XRInteractors}{XRInteractors}}
+{\footnotesize\ttfamily XRBase\+Controller\+Interactor \mbox{[}$\,$\mbox{]} XRCharacter\+Manager.\+XRInteractors\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_x_r_character_manager_abb2202e7a00b8d5a050ae81e9745113b}\label{class_x_r_character_manager_abb2202e7a00b8d5a050ae81e9745113b}} 
+\index{XRCharacterManager@{XRCharacterManager}!xrOrigin@{xrOrigin}}
+\index{xrOrigin@{xrOrigin}!XRCharacterManager@{XRCharacterManager}}
+\doxysubsubsection{\texorpdfstring{xrOrigin}{xrOrigin}}
+{\footnotesize\ttfamily XROrigin XRCharacter\+Manager.\+xr\+Origin\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Unity/\+Unity\+Projects/\+Masters\+Thesis/\+Assets/\+\_\+\+Neuro\+Rehab/\+Scripts/\+Managers/\+Character\+Manager/\mbox{\hyperlink{_x_r_character_manager_8cs}{XRCharacter\+Manager.\+cs}}\end{DoxyCompactItemize}
