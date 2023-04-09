@@ -347,6 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e636d5f63bf38ff45be2e8061293f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonAudioRate: 0.3
 --- !u!114 &17461887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1166,6 +1167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e636d5f63bf38ff45be2e8061293f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonAudioRate: 0.3
 --- !u!114 &80052892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2262,6 +2264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e636d5f63bf38ff45be2e8061293f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonAudioRate: 0.3
 --- !u!114 &221538495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2471,6 +2474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e636d5f63bf38ff45be2e8061293f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonAudioRate: 0.3
 --- !u!114 &232822683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3782,6 +3786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e636d5f63bf38ff45be2e8061293f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonAudioRate: 0.3
 --- !u!114 &400771550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4260,6 +4265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e636d5f63bf38ff45be2e8061293f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonAudioRate: 0.3
 --- !u!1 &465616717
 GameObject:
   m_ObjectHideFlags: 0
@@ -4483,6 +4489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e636d5f63bf38ff45be2e8061293f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonAudioRate: 0.3
 --- !u!1001 &474540183
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4607,6 +4614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e636d5f63bf38ff45be2e8061293f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonAudioRate: 0.3
 --- !u!114 &477916497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5713,6 +5721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e636d5f63bf38ff45be2e8061293f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonAudioRate: 0.3
 --- !u!1001 &666747302
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6125,6 +6134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e636d5f63bf38ff45be2e8061293f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonAudioRate: 0.3
 --- !u!1 &714727859
 GameObject:
   m_ObjectHideFlags: 0
@@ -6703,6 +6713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e636d5f63bf38ff45be2e8061293f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonAudioRate: 0.3
 --- !u!114 &786473960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7006,6 +7017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e636d5f63bf38ff45be2e8061293f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonAudioRate: 0.3
 --- !u!1001 &812700654
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7385,6 +7397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e636d5f63bf38ff45be2e8061293f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonAudioRate: 0.3
 --- !u!114 &832263931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7812,6 +7825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e636d5f63bf38ff45be2e8061293f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonAudioRate: 0.3
 --- !u!1001 &882609141
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8581,6 +8595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e636d5f63bf38ff45be2e8061293f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonAudioRate: 0.3
 --- !u!1001 &949578533
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9310,6 +9325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e636d5f63bf38ff45be2e8061293f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonAudioRate: 0.3
 --- !u!114 &1015843099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9596,6 +9612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e636d5f63bf38ff45be2e8061293f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonAudioRate: 0.3
 --- !u!114 &1057945179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9941,6 +9958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e636d5f63bf38ff45be2e8061293f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonAudioRate: 0.3
 --- !u!114 &1086359337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13360,6 +13378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e636d5f63bf38ff45be2e8061293f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonAudioRate: 0.3
 --- !u!114 &1553040048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14358,6 +14377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e636d5f63bf38ff45be2e8061293f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonAudioRate: 0.3
 --- !u!114 &1696916532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16934,6 +16954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e636d5f63bf38ff45be2e8061293f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonAudioRate: 0.3
 --- !u!1001 &1967876519
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17294,6 +17315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e636d5f63bf38ff45be2e8061293f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonAudioRate: 0.3
 --- !u!1001 &2035480423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18690,45 +18712,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 88408787}
     m_Modifications:
+    - target: {fileID: 3896386012525688340, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 3896386013406978956, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
       propertyPath: m_Name
       value: Countdown
       objectReference: {fileID: 0}
     - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
       propertyPath: m_RootOrder
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18741,22 +18735,6 @@ PrefabInstance:
     - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
       propertyPath: m_AnchoredPosition.x

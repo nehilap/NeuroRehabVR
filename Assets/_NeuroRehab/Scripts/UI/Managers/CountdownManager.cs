@@ -7,13 +7,13 @@ public class CountdownManager : MonoBehaviour {
 
 	[SerializeField] private Image countdownImage;
 	[SerializeField] private TMP_Text textField;
+	[SerializeField] private TMP_Text extraTextField;
 
 	private Coroutine coroutine;
-	private CanvasGroup canvasGroup;
+	private Fadeable fadeable;
 
 	private void Start() {
-		canvasGroup = gameObject.GetComponent<CanvasGroup>();
-		canvasGroup.alpha = 0f;
+		fadeable = gameObject.GetComponent<Fadeable>();
 	}
 
 	private IEnumerator countdownCoroutine(float duration) {
@@ -37,27 +37,20 @@ public class CountdownManager : MonoBehaviour {
 		countdownImage.fillAmount = 0f;
 	}
 
-	IEnumerator fadeAlpha(float startLerpValue, float endLerpValue, float lerpDuration) {
-		float lerpTimeElapsed = 0f;
-
-		while (lerpTimeElapsed < lerpDuration) {
-			float t = lerpTimeElapsed / lerpDuration;
-			canvasGroup.alpha = Mathf.Lerp(startLerpValue, endLerpValue, t);
-			lerpTimeElapsed += Time.deltaTime;
-			yield return null;
-		}
-		// lerp never reaches endValue, that is why we have to set it manually
-		canvasGroup.alpha = endLerpValue;
-	}
-
-	public void startCountdown(float duration) {
+	public void startCountdown(float duration, string extraText) {
 		if (coroutine != null) {
 			StopCoroutine(coroutine);
 		}
-		if (!Mathf.Approximately(canvasGroup.alpha, 1f)) {
-			StartCoroutine(fadeAlpha(0f, 1f, 0.5f));
+		if (!Mathf.Approximately(fadeable.canvasGroup.alpha, 1f)) {
+			StartCoroutine(fadeable.fadeAlpha(0f, 1f, 0.5f));
 		}
+		extraTextField.text = extraText;
 		coroutine = StartCoroutine(countdownCoroutine(duration));
+	}
+
+	public void stopCountdown(string extraText) {
+		extraTextField.text = extraText;
+		stopCountdown();
 	}
 
 	public void stopCountdown() {
@@ -67,6 +60,6 @@ public class CountdownManager : MonoBehaviour {
 	}
 
 	public void hideCountdown() {
-		StartCoroutine(fadeAlpha(1f, 0f, 0.5f));
+		StartCoroutine(fadeable.fadeAlpha(1f, 0f, 0.5f));
 	}
 }

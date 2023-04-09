@@ -50,13 +50,14 @@ public class AnimationServerManager : NetworkBehaviour {
 
 		Debug.Log("Listening to animation events - Canceled");
 		yield return new WaitForSecondsRealtime(2.5f);
-		RpcStopTraining();
+		RpcStopTraining("Training cancelled - no activity from patient", MessageType.WARNING);
 	}
 
 	/// <summary>
 	/// Starts animation if it's in time and we still have repetitions left
 	/// </summary>
 	/// <returns>Whether move was succesfully triggered</returns>
+	[Server]
 	public bool moveArm() {
 		//Debug.Log("Move arm called");
 		if (!isAnimationTriggered && isTrainingRunning) {
@@ -64,7 +65,7 @@ public class AnimationServerManager : NetworkBehaviour {
 			Debug.Log("Seconds since last animation step: " + (currentTime - lastAnimationTrigger).TotalSeconds);
 			if ((currentTime - lastAnimationTrigger).TotalSeconds <= animSettingsManager.waitDuration) {
 				Debug.Log("Starting arm animation");
-				RpcStartActualAnimation(false);
+				RpcStartActualAnimation(false, currentRepetitions + "/" + animSettingsManager.repetitions);
 				isAnimationTriggered = true;
 
 				if (trainingCoroutine != null) {
@@ -84,6 +85,7 @@ public class AnimationServerManager : NetworkBehaviour {
 	/// <summary>
 	/// Marks animation step as done
 	/// </summary>
+	[Server]
 	public void progressAnimationStep() {
 		if (!isTrainingRunning) {
 			return;
@@ -98,7 +100,7 @@ public class AnimationServerManager : NetworkBehaviour {
 
 			RpcStopTraining();
 		} else {
-			RpcStartCountdown();
+			RpcStartCountdown(animSettingsManager.waitDuration, currentRepetitions + "/" + animSettingsManager.repetitions);
 		}
 
 		trainingCoroutine = StartCoroutine(waitDurationCoroutine(animSettingsManager.waitDuration));
@@ -110,6 +112,7 @@ public class AnimationServerManager : NetworkBehaviour {
 	/// Starts listening to animation move events
 	/// </summary>
 	/// <returns>Whether we succesfully started listening to new moves</returns>
+	[Server]
 	public bool startTraining() {
 		if (CharacterManager.activePatientInstance == null) {
 			MessageManager.Instance.RpcInformClients("No patient present! Can't start training.", MessageType.WARNING);
@@ -129,7 +132,7 @@ public class AnimationServerManager : NetworkBehaviour {
 		lastAnimationTrigger = DateTime.Now;
 		currentRepetitions = 0;
 
-		RpcStartTraining();
+		RpcStartTraining(animSettingsManager.waitDuration, "0/" + animSettingsManager.repetitions);
 		if (trainingCoroutine != null) {
 			StopCoroutine(trainingCoroutine);
 		}
@@ -141,6 +144,7 @@ public class AnimationServerManager : NetworkBehaviour {
 	/// <summary>
 	/// Stops animation listening and ends all animations
 	/// </summary>
+	[Server]
 	public void stopTraining() {
 		if (!isTrainingRunning) {
 			return;
@@ -154,14 +158,18 @@ public class AnimationServerManager : NetworkBehaviour {
 	}
 
 	[ClientRpc]
-	public void RpcStartActualAnimation(bool isShowcase) {
+	public void RpcStartActualAnimation(bool isShowcase, string extraText) {
 		// Debug.Log(CharacterManager.activePatientInstance);
 		if (CharacterManager.activePatientInstance == null) {
 			return;
 		}
-		CharacterManager.activePatientInstance.activeArmAnimationController.startAnimation(isShowcase);
+		bool result = CharacterManager.activePatientInstance.activeArmAnimationController.startAnimation(isShowcase);
 
-		NetworkCharacterManager.localNetworkClientInstance.pauseCountdown();
+		if (!result) {
+			clientStopTraining();
+		}
+
+		NetworkCharacterManager.localNetworkClientInstance.pauseCountdown(extraText);
 	}
 
 	[ClientRpc]
@@ -174,8 +182,8 @@ public class AnimationServerManager : NetworkBehaviour {
 	}
 
 	[ClientRpc]
-	public void RpcStartTraining() {
-		NetworkCharacterManager.localNetworkClientInstance.startCountdown();
+	public void RpcStartTraining(float duration, string extraText) {
+		NetworkCharacterManager.localNetworkClientInstance.startCountdown(duration, extraText);
 
 		NetworkCharacterManager.localNetworkClientInstance.trainingStarted();
 
@@ -183,16 +191,31 @@ public class AnimationServerManager : NetworkBehaviour {
 	}
 
 	[ClientRpc]
-	public void RpcStartCountdown() {
-		NetworkCharacterManager.localNetworkClientInstance.startCountdown();
+	public void RpcStartCountdown(float duration, string extraText) {
+		NetworkCharacterManager.localNetworkClientInstance.startCountdown(duration, extraText);
+	}
+
+	[ClientRpc]
+	public void RpcStopTraining(string message, MessageType messageType) {
+		clientStopTraining("Training stopped.", messageType);
 	}
 
 	[ClientRpc]
 	public void RpcStopTraining() {
+		clientStopTraining("Training stopped.", MessageType.NORMAL);
+	}
+
+	[Client]
+	private void clientStopTraining() {
 		NetworkCharacterManager.localNetworkClientInstance.stopCountdown();
 
 		NetworkCharacterManager.localNetworkClientInstance.trainingStopped();
+	}
 
-		MessageManager.Instance.showMessage("Training stopped.", MessageType.NORMAL);
+	[Client]
+	private void clientStopTraining(string message, MessageType messageType) {
+		clientStopTraining();
+
+		MessageManager.Instance.showMessage(message, messageType);
 	}
 }

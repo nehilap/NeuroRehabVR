@@ -437,14 +437,14 @@ public class ArmAnimationController : MonoBehaviour {
 		return duration;
 	}
 
-	public void startAnimation(bool isFakeAnimation) {
+	public bool startAnimation(bool isFakeAnimation) {
 		if(animSettingsManager.animType == AnimationType.Off) {
 			Debug.LogError("No animation type specified");
-			return;
+			return false;
 		}
 		if(animState == Enums.AnimationState.Playing) {
 			Debug.LogError("There is an animation running already");
-			return;
+			return false;
 		}
 
 		string targetObjectName = animSettingsManager.animType.ToString();
@@ -453,24 +453,27 @@ public class ArmAnimationController : MonoBehaviour {
 
 		if (currentAnimationSetup.Count < 1) {
 			Debug.LogError("Too few animation positions set: '" + currentAnimationSetup.Count + "'");
-			return;
+			MessageManager.Instance.showMessage("Too few animation positions set: '" + currentAnimationSetup.Count + "'", MessageType.WARNING);
+			return false;
 		}
 		if (animSettingsManager.animType == AnimationType.Key && currentAnimationSetup.Count != 2) {
 			Debug.LogError("Too few animation positions set for 'Key': '" + currentAnimationSetup.Count + "'");
-			return;
+			MessageManager.Instance.showMessage("Too few animation positions set for 'Key': '" + currentAnimationSetup.Count + "'", MessageType.WARNING);
+			return false;
 		}
 
 		// Initial starting position HAS to be in arm range
 		if (!isTargetInRange(currentAnimationSetup[0].position)) {
 			float targetDistance = Vector3.Distance(currentAnimationSetup[0].position, armRangeMesh.transform.position);
 			Debug.LogWarning("Arm cannot grab object, too far away: " + targetDistance + "m > " + armLength + "m");
-			return;
+			MessageManager.Instance.showMessage("Arm cannot grab object, too far away: " + targetDistance + "m > " + armLength + "m!", MessageType.WARNING);
+			return false;
 		}
 
 		targetObject = ObjectManager.Instance.getFirstObjectByName(targetObjectName + (isFakeAnimation ? "_fake" : ""));
 		if (targetObject == null) {
 			Debug.LogError("Failed to find object: '" + targetObjectName + (isFakeAnimation ? "_fake" : "") + "'");
-			return;
+			return false;
 		}
 
 		// setup targetObject
@@ -499,7 +502,7 @@ public class ArmAnimationController : MonoBehaviour {
 			targetsHelperObject.pinkyTargetTemplate = targetUtility.PinkyChainIK_target_helper;
 		} else {
 			Debug.LogError("Failed to retrieve target helper objects from Target - " + targetObjectName);
-			return;
+			return false;
 		}
 
 		// We have to disable Gravity and Collider for the objects, so that they don't collide with stuff (for example key + lock)
@@ -512,6 +515,7 @@ public class ArmAnimationController : MonoBehaviour {
 		//animPart = AnimationPart.Arm;
 		// https://gamedevbeginner.com/coroutines-in-unity-when-and-how-to-use-them/
 		StartCoroutine(armStartAnimationLerp(isFakeAnimation));
+		return true;
 	}
 
 	public void stopAnimation(bool informServer = false) {

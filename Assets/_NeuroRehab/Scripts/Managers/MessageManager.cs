@@ -26,18 +26,19 @@ public class MessageManager : NetworkBehaviour {
 		}
 	}
 
-
 	[ClientRpc]
 	public void RpcInformClients(string message, MessageType messageType) {
 		showMessage(message, messageType);
 	}
 
+	[Client]
 	public void showMessage(string message, MessageType messageType) {
 		foreach (StatusMessageManager statusMessageManager in statusMessageManagers) {
 			statusMessageManager.showMessage(message, messageType);
 		}
 	}
 
+	[Client]
 	public void hideMessage() {
 		foreach (StatusMessageManager statusMessageManager in statusMessageManagers) {
 			statusMessageManager.hideMessage();

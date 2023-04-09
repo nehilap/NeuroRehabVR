@@ -365,13 +365,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7469488975668792932}
     m_Modifications:
+    - target: {fileID: 3428165123377618118, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
+      propertyPath: m_fontSize
+      value: 6.9
+      objectReference: {fileID: 0}
     - target: {fileID: 3896386012525688340, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
       propertyPath: m_text
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3896386012525688340, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
       propertyPath: m_fontSize
-      value: 22.35
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3896386012525688340, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
       propertyPath: m_fontSizeBase
@@ -415,11 +419,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
       propertyPath: m_LocalScale.x
@@ -443,7 +443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.015
+      value: -0.013
       objectReference: {fileID: 0}
     - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -466,10 +466,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -480,10 +476,6 @@ PrefabInstance:
     - target: {fileID: 3896386013406978959, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8824899710642608041, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 741ef58fed9126e4a994578d3528ce5f, type: 3}

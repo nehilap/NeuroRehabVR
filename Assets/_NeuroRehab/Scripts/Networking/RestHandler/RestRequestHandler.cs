@@ -4,10 +4,11 @@ using ShadowGroveGames.SimpleHttpAndRestServer.Scripts.Server;
 using ShadowGroveGames.SimpleHttpAndRestServer.Scripts.Server.Extensions;
 using System.Net;
 using UnityEngine;
+using Mirror;
 
 public class RestRequestHandler : MonoBehaviour {
 
-	[SimpleEventServerRouting(HttpConstants.MethodPost, "/move")]
+	[Server][SimpleEventServerRouting(HttpConstants.MethodPost, "/move")]
 	public void PostRawStringEndpoint(HttpListenerContext context) {
 		// Debug.Log(context.Request.GetStringBody());
 

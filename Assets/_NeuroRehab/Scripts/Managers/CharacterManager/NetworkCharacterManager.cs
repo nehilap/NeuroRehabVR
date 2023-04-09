@@ -436,7 +436,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 	[Command]
 	public void CmdStartAnimationShowcase() {
-		AnimationServerManager.Instance.RpcStartActualAnimation(true);
+		AnimationServerManager.Instance.RpcStartActualAnimation(true, "");
 	}
 
 	[Command]
@@ -644,15 +644,15 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	*
 	*/
 
-	public void startCountdown() {
+	public void startCountdown(float duration, string extraText) {
 		foreach (CountdownManager countdownManager in countdownManagers) {
-			countdownManager.startCountdown(animSettingsManager.waitDuration);
+			countdownManager.startCountdown(duration, extraText);
 		}
 	}
 
-	public void pauseCountdown() {
+	public void pauseCountdown(string extraText) {
 		foreach (CountdownManager countdownManager in countdownManagers) {
-			countdownManager.stopCountdown();
+			countdownManager.stopCountdown(extraText);
 		}
 	}
 

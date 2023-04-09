@@ -16,36 +16,22 @@ public class StatusMessageManager : MonoBehaviour {
 	[SerializeField] private float messageDuration = 3f;
 
 	private Coroutine coroutine;
-	private CanvasGroup canvasGroup;
+	private Fadeable fadeable;
 
 	void Start() {
-		canvasGroup = gameObject.GetComponent<CanvasGroup>();
-		canvasGroup.alpha = 0f;
+		fadeable = gameObject.GetComponent<Fadeable>();
 
 		hideBackgrounds();
 	}
 
 	private IEnumerator statusMessageCoroutine(string message) {
 		textField.text = message;
-		if (!Mathf.Approximately(canvasGroup.alpha, 1f)) {
-			yield return StartCoroutine(fadeAlpha(0f, 1f, fadeDuration));
+		if (!Mathf.Approximately(fadeable.canvasGroup.alpha, 1f)) {
+			yield return StartCoroutine(fadeable.fadeAlpha(0f, 1f, fadeDuration));
 		}
 
 		yield return new WaitForSecondsRealtime(messageDuration);
-		yield return StartCoroutine(fadeAlpha(1f, 0f, fadeDuration));
-	}
-
-	private IEnumerator fadeAlpha(float startLerpValue, float endLerpValue, float lerpDuration) {
-		float lerpTimeElapsed = 0f;
-
-		while (lerpTimeElapsed < lerpDuration) {
-			float t = lerpTimeElapsed / lerpDuration;
-			canvasGroup.alpha = Mathf.Lerp(startLerpValue, endLerpValue, t);
-			lerpTimeElapsed += Time.deltaTime;
-			yield return null;
-		}
-		// lerp never reaches endValue, that is why we have to set it manually
-		canvasGroup.alpha = endLerpValue;
+		yield return StartCoroutine(fadeable.fadeAlpha(1f, 0f, fadeDuration));
 	}
 
 	public void showMessage(string message, MessageType messageType) {
@@ -70,7 +56,7 @@ public class StatusMessageManager : MonoBehaviour {
 	}
 
 	public void hideMessage() {
-		StartCoroutine(fadeAlpha(1f, 0f, fadeDuration));
+		StartCoroutine(fadeable.fadeAlpha(1f, 0f, fadeDuration));
 		textField.text = "";
 	}
 
