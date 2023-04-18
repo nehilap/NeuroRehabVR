@@ -7,5 +7,6 @@ var searchData=
   ['player_4',['player',['../class_camera_movement.html#a2d9d47595f96750b2e466290b9935ff4',1,'CameraMovement']]],
   ['position_5',['position',['../class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping.html#a1b4594ba9d9f34d47b98e89ae6cef2e3',1,'NeuroRehab::Mappings::PosRotMapping']]],
   ['positiondiff_6',['positionDiff',['../class_follow_object.html#a94cd129e6daef65d5c4574dd1f2840d3',1,'FollowObject']]],
-  ['positionoffset_7',['positionOffset',['../class_map_transforms.html#a14c92e84a14fc16501b9923d4a4d70ab',1,'MapTransforms.positionOffset()'],['../class_mini_menu_manager.html#a28fb074763713457016bfe9bb6808e26',1,'MiniMenuManager.positionOffset()']]]
+  ['positionoffset_7',['positionOffset',['../class_map_transforms.html#a14c92e84a14fc16501b9923d4a4d70ab',1,'MapTransforms.positionOffset()'],['../class_mini_menu_manager.html#a28fb074763713457016bfe9bb6808e26',1,'MiniMenuManager.positionOffset()']]],
+  ['prevanimtype_8',['prevAnimType',['../class_animation_settings_manager.html#aa071c88cb0f107520318ce4ef8854ebb',1,'AnimationSettingsManager']]]
 ];

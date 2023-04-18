@@ -3,7 +3,6 @@ using Enums;
 using NeuroRehab.Mappings;
 using Mirror;
 using UnityEngine;
-using NeuroRehab.Utility;
 using Unity.XR.CoreUtils;
 
 public class NetworkCharacterManager : NetworkBehaviour {
@@ -12,17 +11,12 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 	[SerializeField] private AnimationSettingsManager animSettingsManager;
 
-	[SerializeField] private List<GameObject> targetPrefabs = new List<GameObject>();
-
-	[SerializeField] private GameObject spawnArea;
-
 	[SerializeField] private List<CountdownManager> countdownManagers = new List<CountdownManager>();
 	[SerializeField] private List<TherapistMenuManager> therapistMenuManagers = new List<TherapistMenuManager>();
 
 	private Transform _mirror;
 
 	void Start() {
-		spawnArea = ObjectManager.Instance.getFirstObjectByName("SpawnArea");
 		animSettingsManager = ObjectManager.Instance.getFirstObjectByName("AnimationSettingsManager")?.GetComponent<AnimationSettingsManager>();
 		List<GameObject> countdownObjects = ObjectManager.Instance.getObjectsByName("Countdown");
 		foreach (GameObject item in countdownObjects) {
@@ -38,13 +32,13 @@ public class NetworkCharacterManager : NetworkBehaviour {
 			}
 		}
 
-		if (spawnArea == null || animSettingsManager == null) {
-			Debug.LogError("'AnimationSettingsManager' or 'SpawnArea' not found");
+		if (animSettingsManager == null) {
+			Debug.LogError("'AnimationSettingsManager' not found");
 			return;
 		}
 
 		if (isLocalPlayer) {
-			spawnCorrectTargetFakes(AnimationType.Off, animSettingsManager.animType);
+			animSettingsManager.spawnCorrectTargetFakes(AnimationType.Off, animSettingsManager.animType);
 		}
 
 		_mirror = ObjectManager.Instance.getFirstObjectByName("MirrorPlane")?.transform;
@@ -131,10 +125,10 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	}
 
 	[Command]
-	public void CmdUpdateAnimType(AnimationType _animType) {
-		if (animSettingsManager.animType == _animType) return;
-
-		animSettingsManager.animType = _animType;
+	public void CmdUpdateAnimType(AnimationType _oldAnimType, AnimationType _newAnimType) {
+		if (animSettingsManager.animType == _newAnimType) return;
+		animSettingsManager.prevAnimType = _oldAnimType;
+		animSettingsManager.animType = _newAnimType;
 	}
 
 	/*
@@ -145,72 +139,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 	[Command]
 	public void CmdSetAnimationStartPosition() {
-		setAnimationStartPosition();
-	}
-
-	/// <summary>
-	/// Changes or Adds new start position
-	/// </summary>
-	private void setAnimationStartPosition() {
-		if (!isServer) {
-			return;
-		}
-
-		PosRotMapping targetPosRotMapping = getPosRotFromCurrentObject();
-		if (targetPosRotMapping == null) {
-			return;
-		}
-
-		if (!isTargetInBounds(targetPosRotMapping)) {
-			Debug.LogWarning("Cannot set target position - Out of range of Arm");
-			return;
-		}
-
-		// due to how SyncList works we can't simply change value in list element, we have to replace whole element
-		// https://mirror-networking.gitbook.io/docs/manual/guides/synchronization/synclists
-		if (animSettingsManager.getCurrentAnimationSetup().Count >= 1) {
-			animSettingsManager.getCurrentAnimationSetup()[0] = targetPosRotMapping;
-		} else {
-			animSettingsManager.getCurrentAnimationSetup().Add(targetPosRotMapping);
-		}
-	}
-
-	private void setAnimationStartPosition(PosRotMapping targetPosRotMapping) {
-		if (!isServer) {
-			return;
-		}
-
-		if (targetPosRotMapping == null) {
-			return;
-		}
-
-		if (!isTargetInBounds(targetPosRotMapping)) {
-			Debug.LogWarning("Cannot set target position - Out of range of Arm");
-			return;
-		}
-
-		// due to how SyncList works we can't simply change value in list element, we have to replace whole element
-		// https://mirror-networking.gitbook.io/docs/manual/guides/synchronization/synclists
-		if (animSettingsManager.getCurrentAnimationSetup().Count >= 1) {
-			animSettingsManager.getCurrentAnimationSetup()[0] = targetPosRotMapping;
-		} else {
-			animSettingsManager.getCurrentAnimationSetup().Add(targetPosRotMapping);
-		}
-	}
-
-	/// <summary>
-	/// Helper method for getting posRot of current target object
-	/// </summary>
-	/// <returns></returns>
-	private PosRotMapping getPosRotFromCurrentObject() {
-		GameObject targetObject = ObjectManager.Instance.getFirstObjectByName(animSettingsManager.animType.ToString());
-
-		if (targetObject == null) {
-			Debug.LogError("Failed to find object: " + animSettingsManager.animType.ToString());
-			return null;
-		}
-
-		return new PosRotMapping(targetObject.transform);
+		animSettingsManager.setAnimationStartPosition(true);
 	}
 
 	/// <summary>
@@ -222,11 +151,11 @@ public class NetworkCharacterManager : NetworkBehaviour {
 			return;
 		}
 
-		PosRotMapping movePosRotMapping = getPosRotFromCurrentObject();
+		PosRotMapping movePosRotMapping = animSettingsManager.getPosRotFromCurrentObject();
 		if (movePosRotMapping == null) {
 			return;
 		}
-		if (!isTargetInBounds(movePosRotMapping)) {
+		if (!animSettingsManager.isTargetInBounds(movePosRotMapping)) {
 			Debug.LogWarning("Cannot set target position - Out of range of Arm");
 			return;
 		}
@@ -239,77 +168,21 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	/// <param name="lockTargetPosRot"></param>
 	[Command]
 	public void CmdSetLockPosition(PosRotMapping lockTargetPosRot) {
-		setLockPosition(lockTargetPosRot);
+		animSettingsManager.setLockPosition(lockTargetPosRot);
 	}
 
-	/// <summary>
-	/// Sets the lock position at the end of synclist
-	/// </summary>
-	/// <param name="lockTargetPosRot"></param>
-	private void setLockPosition(PosRotMapping lockTargetPosRot) {
-		if (!isServer) {
-			return;
-		}
-
-		if (animSettingsManager.animType != AnimationType.Key) {
-			return;
-		}
-
-		if (!isTargetInBounds(lockTargetPosRot)) {
-			Debug.LogWarning("Cannot set Lock position - Out of range of Arm");
-			return;
-		}
-
-		// we only allow 2 positions in case of Key animation
-		int setupCount = animSettingsManager.getCurrentAnimationSetup().Count;
-		if (setupCount > 1) {
-			animSettingsManager.getCurrentAnimationSetup()[setupCount - 1] = lockTargetPosRot;
-		} else {
-			animSettingsManager.getCurrentAnimationSetup().Add(lockTargetPosRot);
-		}
-	}
-
-	/// <summary>
-	/// Checks if object is above table AND in range of arm. If there is no active patient only checks if object is above table
-	/// </summary>
-	/// <param name="targetPosRotMapping"></param>
-	/// <returns></returns>
-	public bool isTargetInBounds(PosRotMapping targetPosRotMapping) {
-		GameObject tableObject = ObjectManager.Instance.getFirstObjectByName("Table");
-
-		if (tableObject == null) {
-			return false;
-		}
-
-		RaycastHit[] hits = Physics.RaycastAll(targetPosRotMapping.position, Vector3.down, targetPosRotMapping.position.y);
-		bool isAboveTable = false;
-		foreach (RaycastHit hit in hits) {
-			if (hit.collider.gameObject.Equals(tableObject)) {
-				isAboveTable = true;
-				break;
-			}
-		}
-		if (!isAboveTable) {
-			Debug.LogWarning("Target Object not above Table");
-			return false;
-		}
-
-		if (CharacterManager.activePatientInstance != null) {
-			if (!CharacterManager.activePatientInstance.activeArmAnimationController.isTargetInRange(targetPosRotMapping.position)) {
-				float armLength = CharacterManager.activePatientInstance.activeArmAnimationController.getArmLength() + CharacterManager.activePatientInstance.activeArmAnimationController.getArmRangeSlack();
-				float targetDistance = Vector3.Distance(targetPosRotMapping.position, CharacterManager.activePatientInstance.activeArmAnimationController.getArmRangePosition());
-
-				Debug.LogWarning("Arm cannot reach object, too far away: " + targetDistance + "m > " + armLength + "m");
-				return false;
-			}
-		}
-
-		return true;
-	}
 
 	[Command]
-	public void CmdClearAnimationMovePositions() {
+	public void CmdClearMovePositions() {
 		animSettingsManager.getCurrentAnimationSetup().Clear();
+	}
+
+	/// <summary>
+	/// Deletes last move position
+	/// </summary>
+	[Command]
+	public void CmdDeleteMovePosition() {
+		animSettingsManager.getCurrentAnimationSetup().RemoveAt(animSettingsManager.getCurrentAnimationSetup().Count - 1);
 	}
 
 	/**
@@ -325,106 +198,13 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	/// <param name="_newAnimType"></param>
 	[Command]
 	public void CmdSpawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType) {
-		Debug.Log("Spawning object: '" + _newAnimType + "', old object: '" + _oldAnimType + "'");
 		if (_newAnimType == _oldAnimType) {
-			Debug.Log("Animation types equal, cancelling!");
+			Debug.Log("Animation types equal '" + _newAnimType + "'. Cancelling spawn!");
 			return;
 		}
 
-		spawnCorrectTarget(_oldAnimType, _newAnimType);
-
-		RpcSpawnCorrectTarget(_oldAnimType, _newAnimType);
-	}
-
-	[ClientRpc]
-	public void RpcSpawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType) {
-		spawnCorrectTargetFakes(_oldAnimType, _newAnimType);
-	}
-
-	/// <summary>
-	/// Method called on server, objects are then spawned on all clients. Refer to https://mirror-networking.gitbook.io/docs/guides/gameobjects/spawning-gameobjects for more details.
-	/// </summary>
-	/// <param name="_oldAnimType"></param>
-	/// <param name="_newAnimType"></param>
-	private void spawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType) {
-		for (int i = 0; i < targetPrefabs.Count; i++) {
-			if (targetPrefabs[i].name.Equals(_newAnimType.ToString())) {
-				float halfHeight = targetPrefabs[i].GetComponent<Renderer>().bounds.extents.y;
-				Vector3 rotation = targetPrefabs[i].transform.rotation.eulerAngles;
-
-				// if animation is Key AND patient is left handed, we flip the key
-				if (CharacterManager.activePatientInstance != null && _newAnimType == AnimationType.Key && CharacterManager.activePatientInstance.isLeftArmAnimated) {
-					rotation = new Vector3(-90f, 0f, -90f); // did not find effective algorithm to mirror the key, so it is what it is
-				}
-				GameObject newObject = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(0, halfHeight, 0), Quaternion.Euler(rotation));
-				newObject.gameObject.name = targetPrefabs[i].name;
-
-				NetworkServer.Spawn(newObject);
-				setAnimationStartPosition();
-			}
-
-			// we spawn three locks in this case
-			if (_newAnimType == AnimationType.Key) {
-				if (targetPrefabs[i].name.Equals("Lock")) {
-					float halfHeight = targetPrefabs[i].transform.lossyScale.y * targetPrefabs[i].GetComponent<MeshFilter>().sharedMesh.bounds.extents.y;
-
-					// Center
-					GameObject newLock1 = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(0, halfHeight, 0.25f), targetPrefabs[i].transform.rotation);
-					NetworkServer.Spawn(newLock1);
-					// Left
-					GameObject newLock2 = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(-0.3f, halfHeight, 0.18f), targetPrefabs[i].transform.rotation);
-					newLock2.transform.LookAt(spawnArea.transform.position + new Vector3(0, halfHeight, 0));
-					NetworkServer.Spawn(newLock2);
-					// Right
-					GameObject newLock3 = Instantiate(targetPrefabs[i], spawnArea.transform.position + new Vector3(+0.3f, halfHeight, 0.18f), targetPrefabs[i].transform.rotation);
-					newLock3.transform.LookAt(spawnArea.transform.position + new Vector3(0, halfHeight, 0));
-					NetworkServer.Spawn(newLock3);
-
-					setLockPosition(new PosRotMapping(newLock1.GetComponent<TargetUtility>().customTargetPos.transform));
-				}
-			}
-		}
-
-		// destroy old objects
-		List<GameObject> oldTargetsInScene = ObjectManager.Instance.getObjectsByName(_oldAnimType.ToString());
-		foreach (var item in oldTargetsInScene) {
-			NetworkServer.Destroy(item);
-		}
-		if (_oldAnimType == AnimationType.Key) {
-			oldTargetsInScene = ObjectManager.Instance.getObjectsByName("Lock");
-			foreach (var item in oldTargetsInScene) {
-				NetworkServer.Destroy(item);
-			}
-		}
-	}
-
-	private void spawnCorrectTargetFakes(AnimationType _oldAnimType, AnimationType _newAnimType) {
-		for (int i = 0; i < targetPrefabs.Count; i++) {
-			if (targetPrefabs[i].name.Equals(_newAnimType.ToString() + "_fake")) {
-				Vector3 rotation = targetPrefabs[i].transform.rotation.eulerAngles;
-
-				// if animation is Key AND patient is left handed, we flip the key
-				if (CharacterManager.activePatientInstance != null && _newAnimType == AnimationType.Key && CharacterManager.activePatientInstance.isLeftArmAnimated) {
-					rotation = new Vector3(-90f, 0f, -90f); // did not find effective algorithm to mirror the key, so it is what it is
-				}
-				GameObject newObject = Instantiate(targetPrefabs[i], spawnArea.transform.position, Quaternion.Euler(rotation));
-				newObject.gameObject.name = targetPrefabs[i].name;
-			}
-		}
-
-		// We de-activate fake here on client
-		List<GameObject> oldTargetsInScene = ObjectManager.Instance.getObjectsByName(_oldAnimType.ToString() + "_fake");
-		foreach (var item in oldTargetsInScene) {
-			Destroy(item);
-		}
-
-		// We de-activate fake here on client
-		oldTargetsInScene = ObjectManager.Instance.getObjectsByName(_oldAnimType.ToString());
-		foreach (var item in oldTargetsInScene) {
-			if (!item.activeSelf) {
-				Destroy(item);
-			}
-		}
+		animSettingsManager.spawnCorrectTarget(_oldAnimType, _newAnimType);
+		animSettingsManager.RpcSpawnCorrectTarget(_oldAnimType, _newAnimType);
 	}
 
 	/**
@@ -437,6 +217,11 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	[Command]
 	public void CmdStartAnimationShowcase() {
 		AnimationServerManager.Instance.RpcStartActualAnimation(true, "");
+	}
+
+	[Command]
+	public void CmdStartAnimation() {
+		AnimationServerManager.Instance.RpcStartActualAnimation(false, "");
 	}
 
 	[Command]
@@ -500,7 +285,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	/// <param name="caller"></param>
 	[Command]
 	public void CmdMoveTable(Vector3 offset, NetworkIdentity caller) {
-		List<GameObject> tableObjs =  ObjectManager.Instance.getObjectsByName("Table");
+		List<GameObject> tableObjs = ObjectManager.Instance.getObjectsByName("Table");
 		if (tableObjs.Count == 0) {
 			return;
 		}
@@ -535,6 +320,19 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 		// To keep sync direction consistent, we move target objects on caller Client
 		TargetMoveObjects(caller.connectionToClient, offset);
+	}
+
+	[Command]
+	public void CmdMoveArmRest(Vector3 offset) {
+		GameObject rightArmRest = ObjectManager.Instance.getFirstObjectByName("ArmRestHelperObjectRight");
+		GameObject leftArmRest = ObjectManager.Instance.getFirstObjectByName("ArmRestHelperObjectLeft");
+
+		if (rightArmRest) {
+			rightArmRest.transform.position += offset;
+		}
+		if (leftArmRest) {
+			leftArmRest.transform.position += offset;
+		}
 	}
 
 	/// <summary>
@@ -620,9 +418,9 @@ public class NetworkCharacterManager : NetworkBehaviour {
 		} else {
 			Vector3 rotation = targetObject.transform.rotation.eulerAngles;
 
-			for (int i = 0; i < targetPrefabs.Count; i++) {
-				if (targetPrefabs[i].name.Equals(animSettingsManager.animType.ToString())) {
-					rotation = targetPrefabs[i].transform.rotation.eulerAngles;
+			for (int i = 0; i < animSettingsManager.targetPrefabs.Count; i++) {
+				if (animSettingsManager.targetPrefabs[i].name.Equals(animSettingsManager.animType.ToString())) {
+					rotation = animSettingsManager.targetPrefabs[i].transform.rotation.eulerAngles;
 					break;
 				}
 			}
@@ -630,7 +428,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 			TargetTransformObject(patientId.connectionToClient, newMapping, targetObject.GetComponent<NetworkIdentity>(), true);
 		}
 
-		setAnimationStartPosition(newMapping);
+		animSettingsManager.setAnimationStartPosition(true, newMapping);
 	}
 
 	[TargetRpc]

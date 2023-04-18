@@ -17,7 +17,7 @@ var searchData=
   ['getmenustatus_14',['getMenuStatus',['../class_mini_menu_visibility_manager.html#a298ee107b6895715932bf92f9b6d041e',1,'MiniMenuVisibilityManager']]],
   ['getobjectlist_15',['getObjectList',['../class_object_manager.html#a78aaa0b5a7d443cac5f606cd5284e861',1,'ObjectManager']]],
   ['getobjectsbyname_16',['getObjectsByName',['../class_object_manager.html#aa3e208549f8516671471b61aa4bc9107',1,'ObjectManager']]],
-  ['getposrotfromcurrentobject_17',['getPosRotFromCurrentObject',['../class_network_character_manager.html#afd0bd6669b184d3fc60b6a56c2aa2561',1,'NetworkCharacterManager']]],
+  ['getposrotfromcurrentobject_17',['getPosRotFromCurrentObject',['../class_animation_settings_manager.html#a0520061ac867c92caed1efdce112d7dd',1,'AnimationSettingsManager']]],
   ['gettargetmappingbytype_18',['getTargetMappingByType',['../class_neuro_rehab_1_1_mappings_1_1_animation_mapping.html#a3953b99d7de8b6087e325f321ce9e08f',1,'NeuroRehab::Mappings::AnimationMapping']]],
   ['grab_19',['Grab',['../struct_desktop_input_controls_1_1_desktop_actions.html#a51d593a1631665a1d9a59730b29125b5',1,'DesktopInputControls::DesktopActions']]],
   ['groundlayer_20',['groundLayer',['../class_avatar_lower_body_animation_controller.html#a2d3f230ba743952ebcbd3cfb884fce3e',1,'AvatarLowerBodyAnimationController']]],

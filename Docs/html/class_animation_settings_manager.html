@@ -109,8 +109,8 @@ Inheritance diagram for AnimationSettingsManager:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab952dabcf44862be34ad14597e3fa5b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#ab952dabcf44862be34ad14597e3fa5b9">Start</a> ()</td></tr>
 <tr class="separator:ab952dabcf44862be34ad14597e3fa5b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acfac96189ec50dfe790ed0add81fc8c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#acfac96189ec50dfe790ed0add81fc8c2">setAnimType</a> (<a class="el" href="namespace_enums.html#a7d460e58252c18c80daed1241b47cc59">AnimationType</a> _animType)</td></tr>
-<tr class="separator:acfac96189ec50dfe790ed0add81fc8c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8ac4ac09508837c406f9728efd223b6"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#ab8ac4ac09508837c406f9728efd223b6">OnStartServer</a> ()</td></tr>
+<tr class="separator:ab8ac4ac09508837c406f9728efd223b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8714ab076fcbbabf2c31f949b588ccf7"><td class="memItemLeft" align="right" valign="top">SyncList&lt; <a class="el" href="class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping.html">PosRotMapping</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#a8714ab076fcbbabf2c31f949b588ccf7">getCurrentAnimationSetup</a> ()</td></tr>
 <tr class="separator:a8714ab076fcbbabf2c31f949b588ccf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e3d67e1856e4c0b83aaebc66281a6e6"><td class="memItemLeft" align="right" valign="top">SyncList&lt; <a class="el" href="class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping.html">PosRotMapping</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#a8e3d67e1856e4c0b83aaebc66281a6e6">getAnimationSetupByAnimType</a> (<a class="el" href="namespace_enums.html#a7d460e58252c18c80daed1241b47cc59">AnimationType</a> _animType)</td></tr>
@@ -129,6 +129,29 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1ee564722b1410c81539e1b32c4a18c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25ed878a5f8f1253bb79827ec1e9eae1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#a25ed878a5f8f1253bb79827ec1e9eae1">animationTypeDropdownHandler</a> (TMP_Dropdown dropdown)</td></tr>
 <tr class="separator:a25ed878a5f8f1253bb79827ec1e9eae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a200617d83264e38f9d9328fbdd54e35c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#a200617d83264e38f9d9328fbdd54e35c">RpcSpawnCorrectTarget</a> (<a class="el" href="namespace_enums.html#a7d460e58252c18c80daed1241b47cc59">AnimationType</a> _oldAnimType, <a class="el" href="namespace_enums.html#a7d460e58252c18c80daed1241b47cc59">AnimationType</a> _newAnimType)</td></tr>
+<tr class="separator:a200617d83264e38f9d9328fbdd54e35c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab56e4b1b509b3f78aea6e4315678b5a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#ab56e4b1b509b3f78aea6e4315678b5a5">spawnCorrectTarget</a> (<a class="el" href="namespace_enums.html#a7d460e58252c18c80daed1241b47cc59">AnimationType</a> _oldAnimType, <a class="el" href="namespace_enums.html#a7d460e58252c18c80daed1241b47cc59">AnimationType</a> _newAnimType)</td></tr>
+<tr class="memdesc:ab56e4b1b509b3f78aea6e4315678b5a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method called on server, old objects are then destroyed and new spawned on all clients. Refer to <a href="https://mirror-networking.gitbook.io/docs/guides/gameobjects/spawning-gameobjects">https://mirror-networking.gitbook.io/docs/guides/gameobjects/spawning-gameobjects</a> for more details.  <br /></td></tr>
+<tr class="separator:ab56e4b1b509b3f78aea6e4315678b5a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c538bf9931cc3b3357adf2c5fa808eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#a3c538bf9931cc3b3357adf2c5fa808eb">spawnCorrectTargetFakes</a> (<a class="el" href="namespace_enums.html#a7d460e58252c18c80daed1241b47cc59">AnimationType</a> _oldAnimType, <a class="el" href="namespace_enums.html#a7d460e58252c18c80daed1241b47cc59">AnimationType</a> _newAnimType)</td></tr>
+<tr class="memdesc:a3c538bf9931cc3b3357adf2c5fa808eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function used to destroy old objects and spawn new. Used only on client.  <br /></td></tr>
+<tr class="separator:a3c538bf9931cc3b3357adf2c5fa808eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4946b16f5a644f1c5dc146fd32841fec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#a4946b16f5a644f1c5dc146fd32841fec">setAnimationStartPosition</a> (bool forceNew)</td></tr>
+<tr class="memdesc:a4946b16f5a644f1c5dc146fd32841fec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function used for changing or adding start position for current chosen setup. Uses current position and rotation of target object.  <br /></td></tr>
+<tr class="separator:a4946b16f5a644f1c5dc146fd32841fec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ba975c96a6ec763b16bc0d37df501f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#a3ba975c96a6ec763b16bc0d37df501f0">setAnimationStartPosition</a> (bool forceNew, <a class="el" href="class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping.html">PosRotMapping</a> targetPosRotMapping)</td></tr>
+<tr class="memdesc:a3ba975c96a6ec763b16bc0d37df501f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function used for changing or adding start position for current chosen setup. Uses current custom position and rotation.  <br /></td></tr>
+<tr class="separator:a3ba975c96a6ec763b16bc0d37df501f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e0ba4ea6336c0be77f88f895b062286"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#a6e0ba4ea6336c0be77f88f895b062286">setLockPosition</a> (<a class="el" href="class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping.html">PosRotMapping</a> lockTargetPosRot)</td></tr>
+<tr class="memdesc:a6e0ba4ea6336c0be77f88f895b062286"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the lock position at the end of synclist.  <br /></td></tr>
+<tr class="separator:a6e0ba4ea6336c0be77f88f895b062286"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ef920a24eac1945289eebdddf65b56c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#a9ef920a24eac1945289eebdddf65b56c">isTargetInBounds</a> (<a class="el" href="class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping.html">PosRotMapping</a> targetPosRotMapping)</td></tr>
+<tr class="memdesc:a9ef920a24eac1945289eebdddf65b56c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if object is above table AND in range of arm. If there is no active patient only checks if object is above table.  <br /></td></tr>
+<tr class="separator:a9ef920a24eac1945289eebdddf65b56c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0520061ac867c92caed1efdce112d7dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping.html">PosRotMapping</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#a0520061ac867c92caed1efdce112d7dd">getPosRotFromCurrentObject</a> ()</td></tr>
+<tr class="memdesc:a0520061ac867c92caed1efdce112d7dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper method for getting posRot of current target object.  <br /></td></tr>
+<tr class="separator:a0520061ac867c92caed1efdce112d7dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -144,6 +167,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:affb950f8154e9856156c9d9504fd1935"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76dedb4b0d51c8f5542b6a621f85d4fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_enums.html#a7d460e58252c18c80daed1241b47cc59">AnimationType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#a76dedb4b0d51c8f5542b6a621f85d4fd">animType</a> = AnimationType.Block</td></tr>
 <tr class="separator:a76dedb4b0d51c8f5542b6a621f85d4fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa071c88cb0f107520318ce4ef8854ebb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_enums.html#a7d460e58252c18c80daed1241b47cc59">AnimationType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#aa071c88cb0f107520318ce4ef8854ebb">prevAnimType</a></td></tr>
+<tr class="separator:aa071c88cb0f107520318ce4ef8854ebb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18d6cdfb0cd6f5f09ecaeaf40a0a9fe7"><td class="memItemLeft" align="right" valign="top">TMP_Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#a18d6cdfb0cd6f5f09ecaeaf40a0a9fe7">armMoveTextValue</a></td></tr>
 <tr class="separator:a18d6cdfb0cd6f5f09ecaeaf40a0a9fe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0aa1cf22c5dab529aa878e2f59be5e85"><td class="memItemLeft" align="right" valign="top">Slider&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#a0aa1cf22c5dab529aa878e2f59be5e85">armMoveSlider</a></td></tr>
@@ -174,6 +199,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a5546a6f4fd0e8ebda64a23937eb37610"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81fccbc9f653147af82104ed52d17fc1"><td class="memItemLeft" align="right" valign="top">readonly SyncList&lt; <a class="el" href="class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping.html">PosRotMapping</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#a81fccbc9f653147af82104ed52d17fc1">keySetup</a> = new SyncList&lt;<a class="el" href="class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping.html">PosRotMapping</a>&gt;()</td></tr>
 <tr class="separator:a81fccbc9f653147af82104ed52d17fc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42a7b3a4cfb6fd3f9efa1bcf72b4b5cf"><td class="memItemLeft" align="right" valign="top">List&lt; GameObject &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#a42a7b3a4cfb6fd3f9efa1bcf72b4b5cf">targetPrefabs</a> = new List&lt;GameObject&gt;()</td></tr>
+<tr class="separator:a42a7b3a4cfb6fd3f9efa1bcf72b4b5cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -190,12 +217,17 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a0e187eed903d1858904c8166b1a76ca2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#a0e187eed903d1858904c8166b1a76ca2">changeAnimTypeValue</a> (<a class="el" href="namespace_enums.html#a7d460e58252c18c80daed1241b47cc59">AnimationType</a> _old, <a class="el" href="namespace_enums.html#a7d460e58252c18c80daed1241b47cc59">AnimationType</a> _new)</td></tr>
 <tr class="separator:a0e187eed903d1858904c8166b1a76ca2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adde86d1df1a26bd601a86dfb73f8592b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#adde86d1df1a26bd601a86dfb73f8592b">setAllElements</a> ()</td></tr>
+<tr class="memdesc:adde86d1df1a26bd601a86dfb73f8592b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method used to initialize UI elements: sliders, text and dropdown. Needed because when user connects, we have to set synced values to elements.  <br /></td></tr>
 <tr class="separator:adde86d1df1a26bd601a86dfb73f8592b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a831e01a8824cb7672be74ce71633a3ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#a831e01a8824cb7672be74ce71633a3ef">onAnimationSetupUpdated</a> (SyncList&lt; <a class="el" href="class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping.html">PosRotMapping</a> &gt;.Operation op, int index, <a class="el" href="class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping.html">PosRotMapping</a> oldItem, <a class="el" href="class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping.html">PosRotMapping</a> newItem)</td></tr>
+<tr class="memdesc:a831e01a8824cb7672be74ce71633a3ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method used for handling changes made to SyncList. Refer to <a href="https://mirror-networking.gitbook.io/docs/manual/guides/synchronization/synclists">https://mirror-networking.gitbook.io/docs/manual/guides/synchronization/synclists</a> for more information.  <br /></td></tr>
 <tr class="separator:a831e01a8824cb7672be74ce71633a3ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3768cb915acf783ad34fef8719eec766"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#a3768cb915acf783ad34fef8719eec766">setupMarkers</a> ()</td></tr>
 <tr class="memdesc:a3768cb915acf783ad34fef8719eec766"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method that re-creates all markers locally only.  <br /></td></tr>
 <tr class="separator:a3768cb915acf783ad34fef8719eec766"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad91bfc86e8e853a2863d13308e39ec9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#ad91bfc86e8e853a2863d13308e39ec9c">disableObjects</a> (<a class="el" href="namespace_enums.html#a7d460e58252c18c80daed1241b47cc59">AnimationType</a> _oldAnimType)</td></tr>
+<tr class="memdesc:ad91bfc86e8e853a2863d13308e39ec9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper method used for disabling colliders on old object to prevent new spawned to "bump" into them and be offset. This happens due to lag when information is delivered from server.  <br /></td></tr>
+<tr class="separator:ad91bfc86e8e853a2863d13308e39ec9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -207,6 +239,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a855d7fa00157f1cf6df5b0747cd58720"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3255b8db00316620aee75d8593a81fc"><td class="memItemLeft" align="right" valign="top">List&lt; GameObject &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#ad3255b8db00316620aee75d8593a81fc">spawnedMarkers</a> = new List&lt;GameObject&gt;()</td></tr>
 <tr class="separator:ad3255b8db00316620aee75d8593a81fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58c8b2155a814da281373bd604d90c16"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_animation_settings_manager.html#a58c8b2155a814da281373bd604d90c16">spawnArea</a></td></tr>
+<tr class="separator:a58c8b2155a814da281373bd604d90c16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a25ed878a5f8f1253bb79827ec1e9eae1" name="a25ed878a5f8f1253bb79827ec1e9eae1"></a>
@@ -461,6 +495,40 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="ad91bfc86e8e853a2863d13308e39ec9c" name="ad91bfc86e8e853a2863d13308e39ec9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad91bfc86e8e853a2863d13308e39ec9c">&#9670;&#160;</a></span>disableObjects()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AnimationSettingsManager.disableObjects </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_enums.html#a7d460e58252c18c80daed1241b47cc59">AnimationType</a>&#160;</td>
+          <td class="paramname"><em>_oldAnimType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Helper method used for disabling colliders on old object to prevent new spawned to "bump" into them and be offset. This happens due to lag when information is delivered from server. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_oldAnimType</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ab3d4201b849dcb866c8d9e2d14d7673a" name="ab3d4201b849dcb866c8d9e2d14d7673a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab3d4201b849dcb866c8d9e2d14d7673a">&#9670;&#160;</a></span>getAllAnimationSetups()</h2>
 
@@ -513,6 +581,26 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a0520061ac867c92caed1efdce112d7dd" name="a0520061ac867c92caed1efdce112d7dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0520061ac867c92caed1efdce112d7dd">&#9670;&#160;</a></span>getPosRotFromCurrentObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping.html">PosRotMapping</a> AnimationSettingsManager.getPosRotFromCurrentObject </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Helper method for getting posRot of current target object. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
 <a id="af28f307a832d3a7407d7dd4951346bb0" name="af28f307a832d3a7407d7dd4951346bb0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af28f307a832d3a7407d7dd4951346bb0">&#9670;&#160;</a></span>handDurationSliderHandler()</h2>
 
@@ -528,6 +616,33 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9ef920a24eac1945289eebdddf65b56c" name="a9ef920a24eac1945289eebdddf65b56c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ef920a24eac1945289eebdddf65b56c">&#9670;&#160;</a></span>isTargetInBounds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool AnimationSettingsManager.isTargetInBounds </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping.html">PosRotMapping</a>&#160;</td>
+          <td class="paramname"><em>targetPosRotMapping</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if object is above table AND in range of arm. If there is no active patient only checks if object is above table. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">targetPosRotMapping</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>
@@ -595,6 +710,34 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Method used for handling changes made to SyncList. Refer to <a href="https://mirror-networking.gitbook.io/docs/manual/guides/synchronization/synclists">https://mirror-networking.gitbook.io/docs/manual/guides/synchronization/synclists</a> for more information. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">op</td><td></td></tr>
+    <tr><td class="paramname">index</td><td></td></tr>
+    <tr><td class="paramname">oldItem</td><td></td></tr>
+    <tr><td class="paramname">newItem</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab8ac4ac09508837c406f9728efd223b6" name="ab8ac4ac09508837c406f9728efd223b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8ac4ac09508837c406f9728efd223b6">&#9670;&#160;</a></span>OnStartServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">override void AnimationSettingsManager.OnStartServer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
 </div>
 </div>
 <a id="a1ee564722b1410c81539e1b32c4a18c2" name="a1ee564722b1410c81539e1b32c4a18c2"></a>
@@ -609,6 +752,34 @@ Private Attributes</h2></td></tr>
           <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>value</em></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a200617d83264e38f9d9328fbdd54e35c" name="a200617d83264e38f9d9328fbdd54e35c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a200617d83264e38f9d9328fbdd54e35c">&#9670;&#160;</a></span>RpcSpawnCorrectTarget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AnimationSettingsManager.RpcSpawnCorrectTarget </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_enums.html#a7d460e58252c18c80daed1241b47cc59">AnimationType</a>&#160;</td>
+          <td class="paramname"><em>_oldAnimType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_enums.html#a7d460e58252c18c80daed1241b47cc59">AnimationType</a>&#160;</td>
+          <td class="paramname"><em>_newAnimType</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -638,23 +809,96 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Method used to initialize UI elements: sliders, text and dropdown. Needed because when user connects, we have to set synced values to elements. </p>
+
 </div>
 </div>
-<a id="acfac96189ec50dfe790ed0add81fc8c2" name="acfac96189ec50dfe790ed0add81fc8c2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acfac96189ec50dfe790ed0add81fc8c2">&#9670;&#160;</a></span>setAnimType()</h2>
+<a id="a4946b16f5a644f1c5dc146fd32841fec" name="a4946b16f5a644f1c5dc146fd32841fec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4946b16f5a644f1c5dc146fd32841fec">&#9670;&#160;</a></span>setAnimationStartPosition() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void AnimationSettingsManager.setAnimType </td>
+          <td class="memname">void AnimationSettingsManager.setAnimationStartPosition </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_enums.html#a7d460e58252c18c80daed1241b47cc59">AnimationType</a>&#160;</td>
-          <td class="paramname"><em>_animType</em></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>forceNew</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Function used for changing or adding start position for current chosen setup. Uses current position and rotation of target object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">forceNew</td><td>Used to determine whether we want to force rewrite first position no matter what</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3ba975c96a6ec763b16bc0d37df501f0" name="a3ba975c96a6ec763b16bc0d37df501f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ba975c96a6ec763b16bc0d37df501f0">&#9670;&#160;</a></span>setAnimationStartPosition() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AnimationSettingsManager.setAnimationStartPosition </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>forceNew</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping.html">PosRotMapping</a>&#160;</td>
+          <td class="paramname"><em>targetPosRotMapping</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function used for changing or adding start position for current chosen setup. Uses current custom position and rotation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">forceNew</td><td>Used to determine whether we want to force rewrite first position no matter what</td></tr>
+    <tr><td class="paramname">targetPosRotMapping</td><td>Custom position and rotation</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6e0ba4ea6336c0be77f88f895b062286" name="a6e0ba4ea6336c0be77f88f895b062286"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e0ba4ea6336c0be77f88f895b062286">&#9670;&#160;</a></span>setLockPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AnimationSettingsManager.setLockPosition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping.html">PosRotMapping</a>&#160;</td>
+          <td class="paramname"><em>lockTargetPosRot</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the lock position at the end of synclist. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lockTargetPosRot</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -682,6 +926,80 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Method that re-creates all markers locally only. </p>
+
+</div>
+</div>
+<a id="ab56e4b1b509b3f78aea6e4315678b5a5" name="ab56e4b1b509b3f78aea6e4315678b5a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab56e4b1b509b3f78aea6e4315678b5a5">&#9670;&#160;</a></span>spawnCorrectTarget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AnimationSettingsManager.spawnCorrectTarget </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_enums.html#a7d460e58252c18c80daed1241b47cc59">AnimationType</a>&#160;</td>
+          <td class="paramname"><em>_oldAnimType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_enums.html#a7d460e58252c18c80daed1241b47cc59">AnimationType</a>&#160;</td>
+          <td class="paramname"><em>_newAnimType</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Method called on server, old objects are then destroyed and new spawned on all clients. Refer to <a href="https://mirror-networking.gitbook.io/docs/guides/gameobjects/spawning-gameobjects">https://mirror-networking.gitbook.io/docs/guides/gameobjects/spawning-gameobjects</a> for more details. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_oldAnimType</td><td></td></tr>
+    <tr><td class="paramname">_newAnimType</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3c538bf9931cc3b3357adf2c5fa808eb" name="a3c538bf9931cc3b3357adf2c5fa808eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c538bf9931cc3b3357adf2c5fa808eb">&#9670;&#160;</a></span>spawnCorrectTargetFakes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AnimationSettingsManager.spawnCorrectTargetFakes </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_enums.html#a7d460e58252c18c80daed1241b47cc59">AnimationType</a>&#160;</td>
+          <td class="paramname"><em>_oldAnimType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_enums.html#a7d460e58252c18c80daed1241b47cc59">AnimationType</a>&#160;</td>
+          <td class="paramname"><em>_newAnimType</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function used to destroy old objects and spawn new. Used only on client. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_oldAnimType</td><td></td></tr>
+    <tr><td class="paramname">_newAnimType</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -975,6 +1293,20 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="aa071c88cb0f107520318ce4ef8854ebb" name="aa071c88cb0f107520318ce4ef8854ebb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa071c88cb0f107520318ce4ef8854ebb">&#9670;&#160;</a></span>prevAnimType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_enums.html#a7d460e58252c18c80daed1241b47cc59">AnimationType</a> AnimationSettingsManager.prevAnimType</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ae79d1bdc3b0e75f86ee735d9a28e9986" name="ae79d1bdc3b0e75f86ee735d9a28e9986"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae79d1bdc3b0e75f86ee735d9a28e9986">&#9670;&#160;</a></span>registerMovePositionButton</h2>
 
@@ -1039,6 +1371,28 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a58c8b2155a814da281373bd604d90c16" name="a58c8b2155a814da281373bd604d90c16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58c8b2155a814da281373bd604d90c16">&#9670;&#160;</a></span>spawnArea</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameObject AnimationSettingsManager.spawnArea</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ad3255b8db00316620aee75d8593a81fc" name="ad3255b8db00316620aee75d8593a81fc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad3255b8db00316620aee75d8593a81fc">&#9670;&#160;</a></span>spawnedMarkers</h2>
 
@@ -1057,6 +1411,20 @@ Private Attributes</h2></td></tr>
 <span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a42a7b3a4cfb6fd3f9efa1bcf72b4b5cf" name="a42a7b3a4cfb6fd3f9efa1bcf72b4b5cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42a7b3a4cfb6fd3f9efa1bcf72b4b5cf">&#9670;&#160;</a></span>targetPrefabs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;GameObject&gt; AnimationSettingsManager.targetPrefabs = new List&lt;GameObject&gt;()</td>
+        </tr>
+      </table>
 </div><div class="memdoc">
 
 </div>

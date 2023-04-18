@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Custom implementation of 'CharacterManager' for desktop client.
+/// </summary>
 public class DesktopCharacterManager : CharacterManager {
 
 

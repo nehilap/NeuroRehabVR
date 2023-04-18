@@ -11,7 +11,7 @@ Inheritance diagram for Animation\+Settings\+Manager\+:\begin{figure}[H]
 \item 
 void \mbox{\hyperlink{class_animation_settings_manager_ab952dabcf44862be34ad14597e3fa5b9}{Start}} ()
 \item 
-void \mbox{\hyperlink{class_animation_settings_manager_acfac96189ec50dfe790ed0add81fc8c2}{set\+Anim\+Type}} (\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \+\_\+anim\+Type)
+override void \mbox{\hyperlink{class_animation_settings_manager_ab8ac4ac09508837c406f9728efd223b6}{On\+Start\+Server}} ()
 \item 
 Sync\+List$<$ \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} $>$ \mbox{\hyperlink{class_animation_settings_manager_a8714ab076fcbbabf2c31f949b588ccf7}{get\+Current\+Animation\+Setup}} ()
 \item 
@@ -30,7 +30,23 @@ void \mbox{\hyperlink{class_animation_settings_manager_a5ecdd3dfb62101ac90bd6d10
 void \mbox{\hyperlink{class_animation_settings_manager_a1ee564722b1410c81539e1b32c4a18c2}{repetitions\+Slider\+Handler}} (float value)
 \item 
 void \mbox{\hyperlink{class_animation_settings_manager_a25ed878a5f8f1253bb79827ec1e9eae1}{animation\+Type\+Dropdown\+Handler}} (TMP\+\_\+\+Dropdown dropdown)
-\end{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_animation_settings_manager_a200617d83264e38f9d9328fbdd54e35c}{Rpc\+Spawn\+Correct\+Target}} (\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \+\_\+old\+Anim\+Type, \mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \+\_\+new\+Anim\+Type)
+\item 
+void \mbox{\hyperlink{class_animation_settings_manager_ab56e4b1b509b3f78aea6e4315678b5a5}{spawn\+Correct\+Target}} (\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \+\_\+old\+Anim\+Type, \mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \+\_\+new\+Anim\+Type)
+\begin{DoxyCompactList}\small\item\em Method called on server, old objects are then destroyed and new spawned on all clients. Refer to \href{https://mirror-networking.gitbook.io/docs/guides/gameobjects/spawning-gameobjects}{\texttt{ https\+://mirror-\/networking.\+gitbook.\+io/docs/guides/gameobjects/spawning-\/gameobjects}} for more details. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_animation_settings_manager_a3c538bf9931cc3b3357adf2c5fa808eb}{spawn\+Correct\+Target\+Fakes}} (\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \+\_\+old\+Anim\+Type, \mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \+\_\+new\+Anim\+Type)
+\begin{DoxyCompactList}\small\item\em Function used to destroy old objects and spawn new. Used only on client. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_animation_settings_manager_a4946b16f5a644f1c5dc146fd32841fec}{set\+Animation\+Start\+Position}} (bool force\+New)
+\begin{DoxyCompactList}\small\item\em Function used for changing or adding start position for current chosen setup. Uses current position and rotation of target object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_animation_settings_manager_a3ba975c96a6ec763b16bc0d37df501f0}{set\+Animation\+Start\+Position}} (bool force\+New, \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} target\+Pos\+Rot\+Mapping)
+\begin{DoxyCompactList}\small\item\em Function used for changing or adding start position for current chosen setup. Uses current custom position and rotation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_animation_settings_manager_a6e0ba4ea6336c0be77f88f895b062286}{set\+Lock\+Position}} (\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} lock\+Target\+Pos\+Rot)
+\begin{DoxyCompactList}\small\item\em Sets the lock position at the end of synclist. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_animation_settings_manager_a9ef920a24eac1945289eebdddf65b56c}{is\+Target\+In\+Bounds}} (\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} target\+Pos\+Rot\+Mapping)
+\begin{DoxyCompactList}\small\item\em Checks if object is above table AND in range of arm. If there is no active patient only checks if object is above table. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} \mbox{\hyperlink{class_animation_settings_manager_a0520061ac867c92caed1efdce112d7dd}{get\+Pos\+Rot\+From\+Current\+Object}} ()
+\begin{DoxyCompactList}\small\item\em Helper method for getting pos\+Rot of current target object. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -45,6 +61,8 @@ float \mbox{\hyperlink{class_animation_settings_manager_aa0388301786508bce7fc18c
 int \mbox{\hyperlink{class_animation_settings_manager_affb950f8154e9856156c9d9504fd1935}{repetitions}} = 5
 \item 
 \mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \mbox{\hyperlink{class_animation_settings_manager_a76dedb4b0d51c8f5542b6a621f85d4fd}{anim\+Type}} = Animation\+Type.\+Block
+\item 
+\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \mbox{\hyperlink{class_animation_settings_manager_aa071c88cb0f107520318ce4ef8854ebb}{prev\+Anim\+Type}}
 \item 
 TMP\+\_\+\+Text \mbox{\hyperlink{class_animation_settings_manager_a18d6cdfb0cd6f5f09ecaeaf40a0a9fe7}{arm\+Move\+Text\+Value}}
 \item 
@@ -75,6 +93,8 @@ readonly Sync\+List$<$ \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_r
 readonly Sync\+List$<$ \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} $>$ \mbox{\hyperlink{class_animation_settings_manager_a5546a6f4fd0e8ebda64a23937eb37610}{cup\+Setup}} = new Sync\+List$<$\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}$>$()
 \item 
 readonly Sync\+List$<$ \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} $>$ \mbox{\hyperlink{class_animation_settings_manager_a81fccbc9f653147af82104ed52d17fc1}{key\+Setup}} = new Sync\+List$<$\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}$>$()
+\item 
+List$<$ Game\+Object $>$ \mbox{\hyperlink{class_animation_settings_manager_a42a7b3a4cfb6fd3f9efa1bcf72b4b5cf}{target\+Prefabs}} = new List$<$Game\+Object$>$()
 \end{DoxyCompactItemize}
 \doxysubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
@@ -92,11 +112,13 @@ void \mbox{\hyperlink{class_animation_settings_manager_ab1e7e1af023dbf81514b7c1a
 void \mbox{\hyperlink{class_animation_settings_manager_a0e187eed903d1858904c8166b1a76ca2}{change\+Anim\+Type\+Value}} (\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \+\_\+old, \mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \+\_\+new)
 \item 
 void \mbox{\hyperlink{class_animation_settings_manager_adde86d1df1a26bd601a86dfb73f8592b}{set\+All\+Elements}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Method used to initialize UI elements\+: sliders, text and dropdown. Needed because when user connects, we have to set synced values to elements. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_animation_settings_manager_a831e01a8824cb7672be74ce71633a3ef}{on\+Animation\+Setup\+Updated}} (Sync\+List$<$ \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} $>$.Operation op, int index, \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} old\+Item, \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} new\+Item)
-\item 
+\begin{DoxyCompactList}\small\item\em Method used for handling changes made to Sync\+List. Refer to \href{https://mirror-networking.gitbook.io/docs/manual/guides/synchronization/synclists}{\texttt{ https\+://mirror-\/networking.\+gitbook.\+io/docs/manual/guides/synchronization/synclists}} for more information. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_animation_settings_manager_a3768cb915acf783ad34fef8719eec766}{setup\+Markers}} ()
-\begin{DoxyCompactList}\small\item\em Method that re-\/creates all markers locally only. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Method that re-\/creates all markers locally only. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_animation_settings_manager_ad91bfc86e8e853a2863d13308e39ec9c}{disable\+Objects}} (\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} \+\_\+old\+Anim\+Type)
+\begin{DoxyCompactList}\small\item\em Helper method used for disabling colliders on old object to prevent new spawned to \char`\"{}bump\char`\"{} into them and be offset. This happens due to lag when information is delivered from server. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -107,6 +129,8 @@ List$<$ Game\+Object $>$ \mbox{\hyperlink{class_animation_settings_manager_a4096
 Transform \mbox{\hyperlink{class_animation_settings_manager_a855d7fa00157f1cf6df5b0747cd58720}{marker\+Parent}}
 \item 
 List$<$ Game\+Object $>$ \mbox{\hyperlink{class_animation_settings_manager_ad3255b8db00316620aee75d8593a81fc}{spawned\+Markers}} = new List$<$Game\+Object$>$()
+\item 
+Game\+Object \mbox{\hyperlink{class_animation_settings_manager_a58c8b2155a814da281373bd604d90c16}{spawn\+Area}}
 \end{DoxyCompactItemize}
 
 
@@ -159,6 +183,21 @@ List$<$ Game\+Object $>$ \mbox{\hyperlink{class_animation_settings_manager_ad325
 \doxysubsubsection{\texorpdfstring{changeWaitDurationElements()}{changeWaitDurationElements()}}
 {\footnotesize\ttfamily void Animation\+Settings\+Manager.\+change\+Wait\+Duration\+Elements (\begin{DoxyParamCaption}\item[{float}]{\+\_\+old,  }\item[{float}]{\+\_\+new }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
+\mbox{\Hypertarget{class_animation_settings_manager_ad91bfc86e8e853a2863d13308e39ec9c}\label{class_animation_settings_manager_ad91bfc86e8e853a2863d13308e39ec9c}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!disableObjects@{disableObjects}}
+\index{disableObjects@{disableObjects}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{disableObjects()}{disableObjects()}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+disable\+Objects (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}}}]{\+\_\+old\+Anim\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Helper method used for disabling colliders on old object to prevent new spawned to \char`\"{}bump\char`\"{} into them and be offset. This happens due to lag when information is delivered from server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+old\+Anim\+Type} & \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{class_animation_settings_manager_ab3d4201b849dcb866c8d9e2d14d7673a}\label{class_animation_settings_manager_ab3d4201b849dcb866c8d9e2d14d7673a}} 
 \index{AnimationSettingsManager@{AnimationSettingsManager}!getAllAnimationSetups@{getAllAnimationSetups}}
 \index{getAllAnimationSetups@{getAllAnimationSetups}!AnimationSettingsManager@{AnimationSettingsManager}}
@@ -177,12 +216,43 @@ List$<$ Game\+Object $>$ \mbox{\hyperlink{class_animation_settings_manager_ad325
 \doxysubsubsection{\texorpdfstring{getCurrentAnimationSetup()}{getCurrentAnimationSetup()}}
 {\footnotesize\ttfamily Sync\+List$<$ \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} $>$ Animation\+Settings\+Manager.\+get\+Current\+Animation\+Setup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+\mbox{\Hypertarget{class_animation_settings_manager_a0520061ac867c92caed1efdce112d7dd}\label{class_animation_settings_manager_a0520061ac867c92caed1efdce112d7dd}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!getPosRotFromCurrentObject@{getPosRotFromCurrentObject}}
+\index{getPosRotFromCurrentObject@{getPosRotFromCurrentObject}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{getPosRotFromCurrentObject()}{getPosRotFromCurrentObject()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} Animation\+Settings\+Manager.\+get\+Pos\+Rot\+From\+Current\+Object (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Helper method for getting pos\+Rot of current target object. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_animation_settings_manager_af28f307a832d3a7407d7dd4951346bb0}\label{class_animation_settings_manager_af28f307a832d3a7407d7dd4951346bb0}} 
 \index{AnimationSettingsManager@{AnimationSettingsManager}!handDurationSliderHandler@{handDurationSliderHandler}}
 \index{handDurationSliderHandler@{handDurationSliderHandler}!AnimationSettingsManager@{AnimationSettingsManager}}
 \doxysubsubsection{\texorpdfstring{handDurationSliderHandler()}{handDurationSliderHandler()}}
 {\footnotesize\ttfamily void Animation\+Settings\+Manager.\+hand\+Duration\+Slider\+Handler (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
 
+\mbox{\Hypertarget{class_animation_settings_manager_a9ef920a24eac1945289eebdddf65b56c}\label{class_animation_settings_manager_a9ef920a24eac1945289eebdddf65b56c}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!isTargetInBounds@{isTargetInBounds}}
+\index{isTargetInBounds@{isTargetInBounds}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{isTargetInBounds()}{isTargetInBounds()}}
+{\footnotesize\ttfamily bool Animation\+Settings\+Manager.\+is\+Target\+In\+Bounds (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}}]{target\+Pos\+Rot\+Mapping }\end{DoxyParamCaption})}
+
+
+
+Checks if object is above table AND in range of arm. If there is no active patient only checks if object is above table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em target\+Pos\+Rot\+Mapping} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_animation_settings_manager_a5ecdd3dfb62101ac90bd6d104aacba4a}\label{class_animation_settings_manager_a5ecdd3dfb62101ac90bd6d104aacba4a}} 
 \index{AnimationSettingsManager@{AnimationSettingsManager}!moveDurationSliderHandler@{moveDurationSliderHandler}}
 \index{moveDurationSliderHandler@{moveDurationSliderHandler}!AnimationSettingsManager@{AnimationSettingsManager}}
@@ -195,11 +265,38 @@ List$<$ Game\+Object $>$ \mbox{\hyperlink{class_animation_settings_manager_ad325
 \doxysubsubsection{\texorpdfstring{onAnimationSetupUpdated()}{onAnimationSetupUpdated()}}
 {\footnotesize\ttfamily void Animation\+Settings\+Manager.\+on\+Animation\+Setup\+Updated (\begin{DoxyParamCaption}\item[{Sync\+List$<$ \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}} $>$\+::\+Operation}]{op,  }\item[{int}]{index,  }\item[{\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}}]{old\+Item,  }\item[{\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}}]{new\+Item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+Method used for handling changes made to Sync\+List. Refer to \href{https://mirror-networking.gitbook.io/docs/manual/guides/synchronization/synclists}{\texttt{ https\+://mirror-\/networking.\+gitbook.\+io/docs/manual/guides/synchronization/synclists}} for more information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em op} & \\
+\hline
+{\em index} & \\
+\hline
+{\em old\+Item} & \\
+\hline
+{\em new\+Item} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_animation_settings_manager_ab8ac4ac09508837c406f9728efd223b6}\label{class_animation_settings_manager_ab8ac4ac09508837c406f9728efd223b6}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!OnStartServer@{OnStartServer}}
+\index{OnStartServer@{OnStartServer}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{OnStartServer()}{OnStartServer()}}
+{\footnotesize\ttfamily override void Animation\+Settings\+Manager.\+On\+Start\+Server (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
 \mbox{\Hypertarget{class_animation_settings_manager_a1ee564722b1410c81539e1b32c4a18c2}\label{class_animation_settings_manager_a1ee564722b1410c81539e1b32c4a18c2}} 
 \index{AnimationSettingsManager@{AnimationSettingsManager}!repetitionsSliderHandler@{repetitionsSliderHandler}}
 \index{repetitionsSliderHandler@{repetitionsSliderHandler}!AnimationSettingsManager@{AnimationSettingsManager}}
 \doxysubsubsection{\texorpdfstring{repetitionsSliderHandler()}{repetitionsSliderHandler()}}
 {\footnotesize\ttfamily void Animation\+Settings\+Manager.\+repetitions\+Slider\+Handler (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a200617d83264e38f9d9328fbdd54e35c}\label{class_animation_settings_manager_a200617d83264e38f9d9328fbdd54e35c}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!RpcSpawnCorrectTarget@{RpcSpawnCorrectTarget}}
+\index{RpcSpawnCorrectTarget@{RpcSpawnCorrectTarget}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{RpcSpawnCorrectTarget()}{RpcSpawnCorrectTarget()}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+Rpc\+Spawn\+Correct\+Target (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}}}]{\+\_\+old\+Anim\+Type,  }\item[{\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}}}]{\+\_\+new\+Anim\+Type }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{class_animation_settings_manager_adde86d1df1a26bd601a86dfb73f8592b}\label{class_animation_settings_manager_adde86d1df1a26bd601a86dfb73f8592b}} 
 \index{AnimationSettingsManager@{AnimationSettingsManager}!setAllElements@{setAllElements}}
@@ -207,12 +304,57 @@ List$<$ Game\+Object $>$ \mbox{\hyperlink{class_animation_settings_manager_ad325
 \doxysubsubsection{\texorpdfstring{setAllElements()}{setAllElements()}}
 {\footnotesize\ttfamily void Animation\+Settings\+Manager.\+set\+All\+Elements (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
-\mbox{\Hypertarget{class_animation_settings_manager_acfac96189ec50dfe790ed0add81fc8c2}\label{class_animation_settings_manager_acfac96189ec50dfe790ed0add81fc8c2}} 
-\index{AnimationSettingsManager@{AnimationSettingsManager}!setAnimType@{setAnimType}}
-\index{setAnimType@{setAnimType}!AnimationSettingsManager@{AnimationSettingsManager}}
-\doxysubsubsection{\texorpdfstring{setAnimType()}{setAnimType()}}
-{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+set\+Anim\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}}}]{\+\_\+anim\+Type }\end{DoxyParamCaption})}
 
+
+Method used to initialize UI elements\+: sliders, text and dropdown. Needed because when user connects, we have to set synced values to elements. 
+
+\mbox{\Hypertarget{class_animation_settings_manager_a4946b16f5a644f1c5dc146fd32841fec}\label{class_animation_settings_manager_a4946b16f5a644f1c5dc146fd32841fec}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!setAnimationStartPosition@{setAnimationStartPosition}}
+\index{setAnimationStartPosition@{setAnimationStartPosition}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{setAnimationStartPosition()}{setAnimationStartPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+set\+Animation\+Start\+Position (\begin{DoxyParamCaption}\item[{bool}]{force\+New }\end{DoxyParamCaption})}
+
+
+
+Function used for changing or adding start position for current chosen setup. Uses current position and rotation of target object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em force\+New} & Used to determine whether we want to force rewrite first position no matter what\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_animation_settings_manager_a3ba975c96a6ec763b16bc0d37df501f0}\label{class_animation_settings_manager_a3ba975c96a6ec763b16bc0d37df501f0}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!setAnimationStartPosition@{setAnimationStartPosition}}
+\index{setAnimationStartPosition@{setAnimationStartPosition}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{setAnimationStartPosition()}{setAnimationStartPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+set\+Animation\+Start\+Position (\begin{DoxyParamCaption}\item[{bool}]{force\+New,  }\item[{\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}}]{target\+Pos\+Rot\+Mapping }\end{DoxyParamCaption})}
+
+
+
+Function used for changing or adding start position for current chosen setup. Uses current custom position and rotation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em force\+New} & Used to determine whether we want to force rewrite first position no matter what\\
+\hline
+{\em target\+Pos\+Rot\+Mapping} & Custom position and rotation\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_animation_settings_manager_a6e0ba4ea6336c0be77f88f895b062286}\label{class_animation_settings_manager_a6e0ba4ea6336c0be77f88f895b062286}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!setLockPosition@{setLockPosition}}
+\index{setLockPosition@{setLockPosition}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{setLockPosition()}{setLockPosition()}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+set\+Lock\+Position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}}]{lock\+Target\+Pos\+Rot }\end{DoxyParamCaption})}
+
+
+
+Sets the lock position at the end of synclist. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lock\+Target\+Pos\+Rot} & \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{class_animation_settings_manager_a3768cb915acf783ad34fef8719eec766}\label{class_animation_settings_manager_a3768cb915acf783ad34fef8719eec766}} 
 \index{AnimationSettingsManager@{AnimationSettingsManager}!setupMarkers@{setupMarkers}}
 \index{setupMarkers@{setupMarkers}!AnimationSettingsManager@{AnimationSettingsManager}}
@@ -223,6 +365,40 @@ List$<$ Game\+Object $>$ \mbox{\hyperlink{class_animation_settings_manager_ad325
 
 Method that re-\/creates all markers locally only. 
 
+\mbox{\Hypertarget{class_animation_settings_manager_ab56e4b1b509b3f78aea6e4315678b5a5}\label{class_animation_settings_manager_ab56e4b1b509b3f78aea6e4315678b5a5}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!spawnCorrectTarget@{spawnCorrectTarget}}
+\index{spawnCorrectTarget@{spawnCorrectTarget}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{spawnCorrectTarget()}{spawnCorrectTarget()}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+spawn\+Correct\+Target (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}}}]{\+\_\+old\+Anim\+Type,  }\item[{\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}}}]{\+\_\+new\+Anim\+Type }\end{DoxyParamCaption})}
+
+
+
+Method called on server, old objects are then destroyed and new spawned on all clients. Refer to \href{https://mirror-networking.gitbook.io/docs/guides/gameobjects/spawning-gameobjects}{\texttt{ https\+://mirror-\/networking.\+gitbook.\+io/docs/guides/gameobjects/spawning-\/gameobjects}} for more details. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+old\+Anim\+Type} & \\
+\hline
+{\em \+\_\+new\+Anim\+Type} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_animation_settings_manager_a3c538bf9931cc3b3357adf2c5fa808eb}\label{class_animation_settings_manager_a3c538bf9931cc3b3357adf2c5fa808eb}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!spawnCorrectTargetFakes@{spawnCorrectTargetFakes}}
+\index{spawnCorrectTargetFakes@{spawnCorrectTargetFakes}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{spawnCorrectTargetFakes()}{spawnCorrectTargetFakes()}}
+{\footnotesize\ttfamily void Animation\+Settings\+Manager.\+spawn\+Correct\+Target\+Fakes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}}}]{\+\_\+old\+Anim\+Type,  }\item[{\mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}}}]{\+\_\+new\+Anim\+Type }\end{DoxyParamCaption})}
+
+
+
+Function used to destroy old objects and spawn new. Used only on client. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+old\+Anim\+Type} & \\
+\hline
+{\em \+\_\+new\+Anim\+Type} & \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{class_animation_settings_manager_ab952dabcf44862be34ad14597e3fa5b9}\label{class_animation_settings_manager_ab952dabcf44862be34ad14597e3fa5b9}} 
 \index{AnimationSettingsManager@{AnimationSettingsManager}!Start@{Start}}
 \index{Start@{Start}!AnimationSettingsManager@{AnimationSettingsManager}}
@@ -340,6 +516,12 @@ Method that re-\/creates all markers locally only.
 \doxysubsubsection{\texorpdfstring{moveDurTextValue}{moveDurTextValue}}
 {\footnotesize\ttfamily TMP\+\_\+\+Text Animation\+Settings\+Manager.\+move\+Dur\+Text\+Value}
 
+\mbox{\Hypertarget{class_animation_settings_manager_aa071c88cb0f107520318ce4ef8854ebb}\label{class_animation_settings_manager_aa071c88cb0f107520318ce4ef8854ebb}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!prevAnimType@{prevAnimType}}
+\index{prevAnimType@{prevAnimType}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{prevAnimType}{prevAnimType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_enums_a7d460e58252c18c80daed1241b47cc59}{Animation\+Type}} Animation\+Settings\+Manager.\+prev\+Anim\+Type}
+
 \mbox{\Hypertarget{class_animation_settings_manager_ae79d1bdc3b0e75f86ee735d9a28e9986}\label{class_animation_settings_manager_ae79d1bdc3b0e75f86ee735d9a28e9986}} 
 \index{AnimationSettingsManager@{AnimationSettingsManager}!registerMovePositionButton@{registerMovePositionButton}}
 \index{registerMovePositionButton@{registerMovePositionButton}!AnimationSettingsManager@{AnimationSettingsManager}}
@@ -364,11 +546,23 @@ Method that re-\/creates all markers locally only.
 \doxysubsubsection{\texorpdfstring{repetitionsTextValue}{repetitionsTextValue}}
 {\footnotesize\ttfamily TMP\+\_\+\+Text Animation\+Settings\+Manager.\+repetitions\+Text\+Value}
 
+\mbox{\Hypertarget{class_animation_settings_manager_a58c8b2155a814da281373bd604d90c16}\label{class_animation_settings_manager_a58c8b2155a814da281373bd604d90c16}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!spawnArea@{spawnArea}}
+\index{spawnArea@{spawnArea}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{spawnArea}{spawnArea}}
+{\footnotesize\ttfamily Game\+Object Animation\+Settings\+Manager.\+spawn\+Area\hspace{0.3cm}{\ttfamily [private]}}
+
 \mbox{\Hypertarget{class_animation_settings_manager_ad3255b8db00316620aee75d8593a81fc}\label{class_animation_settings_manager_ad3255b8db00316620aee75d8593a81fc}} 
 \index{AnimationSettingsManager@{AnimationSettingsManager}!spawnedMarkers@{spawnedMarkers}}
 \index{spawnedMarkers@{spawnedMarkers}!AnimationSettingsManager@{AnimationSettingsManager}}
 \doxysubsubsection{\texorpdfstring{spawnedMarkers}{spawnedMarkers}}
 {\footnotesize\ttfamily List$<$Game\+Object$>$ Animation\+Settings\+Manager.\+spawned\+Markers = new List$<$Game\+Object$>$()\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_animation_settings_manager_a42a7b3a4cfb6fd3f9efa1bcf72b4b5cf}\label{class_animation_settings_manager_a42a7b3a4cfb6fd3f9efa1bcf72b4b5cf}} 
+\index{AnimationSettingsManager@{AnimationSettingsManager}!targetPrefabs@{targetPrefabs}}
+\index{targetPrefabs@{targetPrefabs}!AnimationSettingsManager@{AnimationSettingsManager}}
+\doxysubsubsection{\texorpdfstring{targetPrefabs}{targetPrefabs}}
+{\footnotesize\ttfamily List$<$Game\+Object$>$ Animation\+Settings\+Manager.\+target\+Prefabs = new List$<$Game\+Object$>$()}
 
 \mbox{\Hypertarget{class_animation_settings_manager_a3dc8062b54bfca941f3fc10ae469135f}\label{class_animation_settings_manager_a3dc8062b54bfca941f3fc10ae469135f}} 
 \index{AnimationSettingsManager@{AnimationSettingsManager}!waitDuration@{waitDuration}}

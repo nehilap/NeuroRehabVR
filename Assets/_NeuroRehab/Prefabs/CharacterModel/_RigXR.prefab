@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e32f4711edaf30e44b83054103d1500c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: -0.08, y: 0, z: -0.08}
+  offset: {x: -0.15, y: 0, z: -0.15}
   objectCollider: {fileID: 4780519034791358179}
   useWorldPos: 0
   offsetObject: {fileID: 0}
@@ -819,7 +819,7 @@ GameObject:
   - component: {fileID: 5909644037636158253}
   - component: {fileID: 5909644037636158251}
   - component: {fileID: 5909644037636158248}
-  - component: {fileID: 5909644037636158249}
+  - component: {fileID: 4345424882976421975}
   m_Layer: 0
   m_Name: Locomotion
   m_TagString: Untagged
@@ -937,7 +937,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -6493913391331992944, guid: c348712bda248c246b8c49b3db54643f, type: 3}
---- !u!114 &5909644037636158249
+--- !u!114 &4345424882976421975
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -946,12 +946,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5909644037636158247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af6bf904e410ee8479f9093d8830d1f8, type: 3}
+  m_Script: {fileID: 11500000, guid: a0546cc627a308f45b3c8488acac111b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_LocomotionProvider: {fileID: 5909644037636158251}
   m_MinHeight: 1
   m_MaxHeight: 2
+  headCollider: {fileID: 8518121536414204929}
 --- !u!1 &7506213322437507940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,11 +1325,11 @@ PrefabInstance:
       objectReference: {fileID: 5308743743746186650}
     - target: {fileID: 5320752503591782335, guid: b91fac11c333f274ca15b1834e69e3d4, type: 3}
       propertyPath: scale.x
-      value: 2.5
+      value: 0.025
       objectReference: {fileID: 0}
     - target: {fileID: 5320752503591782335, guid: b91fac11c333f274ca15b1834e69e3d4, type: 3}
       propertyPath: scale.y
-      value: 2.5
+      value: 0.025
       objectReference: {fileID: 0}
     - target: {fileID: 5320752503591782335, guid: b91fac11c333f274ca15b1834e69e3d4, type: 3}
       propertyPath: menuToShow
@@ -1340,7 +1341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5320752503591782335, guid: b91fac11c333f274ca15b1834e69e3d4, type: 3}
       propertyPath: positionOffset.y
-      value: -3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5320752503591782335, guid: b91fac11c333f274ca15b1834e69e3d4, type: 3}
       propertyPath: miniMenuVisibilityManager
@@ -1474,11 +1475,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7456554362324290176, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
       propertyPath: scale.x
-      value: 2.5
+      value: 0.025
       objectReference: {fileID: 0}
     - target: {fileID: 7456554362324290176, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
       propertyPath: scale.y
-      value: 2.5
+      value: 0.025
       objectReference: {fileID: 0}
     - target: {fileID: 7456554362324290176, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
       propertyPath: menuNameToShow
@@ -1486,7 +1487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7456554362324290176, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
       propertyPath: positionOffset.y
-      value: -3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7456554362324290176, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
       propertyPath: miniMenuVisibilityManager
@@ -1704,6 +1705,10 @@ PrefabInstance:
       propertyPath: rightHand.vrTarget
       value: 
       objectReference: {fileID: 1571454159175265651}
+    - target: {fileID: 7634075933599394607, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: head.rotationOffset.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8543358796385947776, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
       propertyPath: m_IsActive
       value: 0

@@ -5,5 +5,7 @@ var dir_b120506e1fb8d0f8936bbec78efc628b =
     [ "ButtonClickAudio.cs", "_button_click_audio_8cs.html", "_button_click_audio_8cs" ],
     [ "CustomLog.cs", "_custom_log_8cs.html", "_custom_log_8cs" ],
     [ "Fadeable.cs", "_fadeable_8cs.html", "_fadeable_8cs" ],
-    [ "InputBindingText.cs", "_input_binding_text_8cs.html", "_input_binding_text_8cs" ]
+    [ "InputBindingText.cs", "_input_binding_text_8cs.html", "_input_binding_text_8cs" ],
+    [ "MarkerNumber.cs", "_marker_number_8cs.html", "_marker_number_8cs" ],
+    [ "StatusMessage.cs", "_status_message_8cs.html", "_status_message_8cs" ]
 ];

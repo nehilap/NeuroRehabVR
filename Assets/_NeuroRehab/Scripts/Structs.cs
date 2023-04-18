@@ -2,7 +2,9 @@ using Enums;
 using Mirror;
 
 namespace Structs {
-	// Message used to inform server which prefab to use when spawning a character
+	/// <summary>
+	/// Structure used as message to inform server what settings to apply to User Prefab when spawning a character
+	/// </summary>
 	public struct CharacterMessage : NetworkMessage
 	{
 		public UserRole role;

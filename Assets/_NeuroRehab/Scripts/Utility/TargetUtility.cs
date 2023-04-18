@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Utility class containing references for helper objects, renderers or customTargetPosition if required.
+/// </summary>
 namespace NeuroRehab.Utility {
 	public class TargetUtility : MonoBehaviour {
 		[SerializeField] public GameObject ArmIK_target_helper;

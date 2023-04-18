@@ -1,5 +1,10 @@
 \hypertarget{class_therapist_menu_manager}{}\doxysection{Therapist\+Menu\+Manager Class Reference}
 \label{class_therapist_menu_manager}\index{TherapistMenuManager@{TherapistMenuManager}}
+
+
+Class containing handlers for UI elements -\/ Therapist Menu.  
+
+
 Inheritance diagram for Therapist\+Menu\+Manager\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -13,6 +18,8 @@ void \mbox{\hyperlink{class_therapist_menu_manager_a116f01a5bf2eca3167d9e9a6b483
 \item 
 void \mbox{\hyperlink{class_therapist_menu_manager_a9d609ac7520ed8568467dbdc63cc47a3}{play\+Animation\+Handler}} ()
 \item 
+void \mbox{\hyperlink{class_therapist_menu_manager_a80eec31c467366a015de73e0a26a79a0}{start\+Training\+Handler}} ()
+\item 
 void \mbox{\hyperlink{class_therapist_menu_manager_a2e6da205a8faa07ae3e16523725a51f6}{stop\+Animation\+Handler}} ()
 \item 
 void \mbox{\hyperlink{class_therapist_menu_manager_af0d6d401996cbb30ab72bd33d6ad4923}{set\+Arm\+Rest\+Handler}} ()
@@ -23,9 +30,11 @@ void \mbox{\hyperlink{class_therapist_menu_manager_a7743a765b4a0e3d6ece4142df5db
 \item 
 void \mbox{\hyperlink{class_therapist_menu_manager_a3bea38ef6021b0fa9fc5fe8da3086b03}{set\+Animation\+Start\+Position\+Handler}} ()
 \item 
-void \mbox{\hyperlink{class_therapist_menu_manager_a1f3cc967ece033a601fa58682b663694}{set\+Animation\+End\+Position\+Handler}} ()
+void \mbox{\hyperlink{class_therapist_menu_manager_a4beb324f8c9ddf2913dc999f4118500a}{set\+Animation\+Move\+Position\+Handler}} ()
 \item 
 void \mbox{\hyperlink{class_therapist_menu_manager_ac719a3726be79023dacb38a4a9e2ab1d}{clear\+Animation\+End\+Position\+Handler}} ()
+\item 
+void \mbox{\hyperlink{class_therapist_menu_manager_a20d0eff9e9bcbf613e37d09b80e14e98}{delete\+Last\+Animation\+Move\+Position\+Handler}} ()
 \item 
 void \mbox{\hyperlink{class_therapist_menu_manager_ab64c450fd19ee3d0be4b28479c8418ce}{move\+Table\+Up\+Handler}} ()
 \item 
@@ -39,6 +48,14 @@ void \mbox{\hyperlink{class_therapist_menu_manager_ae828113a6bea41289b335b2b0ac4
 \item 
 void \mbox{\hyperlink{class_therapist_menu_manager_a0509768fd6f77b94f0188c1b798b125e}{move\+Patient\+Left\+Handler}} ()
 \item 
+void \mbox{\hyperlink{class_therapist_menu_manager_a44aa76c7c7a82a68f8252918b95581e4}{move\+Arm\+Rest\+Forward\+Handler}} ()
+\item 
+void \mbox{\hyperlink{class_therapist_menu_manager_a8fc3968b87a71c059c98243a7c2a2d0b}{move\+Arm\+Rest\+Backwards\+Handler}} ()
+\item 
+void \mbox{\hyperlink{class_therapist_menu_manager_a02ab207968c7409c530391e281c77bba}{move\+Arm\+Rest\+Right\+Handler}} ()
+\item 
+void \mbox{\hyperlink{class_therapist_menu_manager_a8d8ef67c8ac2b77a7bb1d9c7277e2be7}{move\+Arm\+Rest\+Left\+Handler}} ()
+\item 
 void \mbox{\hyperlink{class_therapist_menu_manager_af3f5132903d47b96b94bd8ec57558f9d}{set\+Patient\+Animated\+Arm}} (bool is\+Left)
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
@@ -48,12 +65,45 @@ List$<$ Canvas\+Group $>$ \mbox{\hyperlink{class_therapist_menu_manager_aebeaa1b
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Class containing handlers for UI elements -\/ Therapist Menu. 
+
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_therapist_menu_manager_ac719a3726be79023dacb38a4a9e2ab1d}\label{class_therapist_menu_manager_ac719a3726be79023dacb38a4a9e2ab1d}} 
 \index{TherapistMenuManager@{TherapistMenuManager}!clearAnimationEndPositionHandler@{clearAnimationEndPositionHandler}}
 \index{clearAnimationEndPositionHandler@{clearAnimationEndPositionHandler}!TherapistMenuManager@{TherapistMenuManager}}
 \doxysubsubsection{\texorpdfstring{clearAnimationEndPositionHandler()}{clearAnimationEndPositionHandler()}}
 {\footnotesize\ttfamily void Therapist\+Menu\+Manager.\+clear\+Animation\+End\+Position\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_therapist_menu_manager_a20d0eff9e9bcbf613e37d09b80e14e98}\label{class_therapist_menu_manager_a20d0eff9e9bcbf613e37d09b80e14e98}} 
+\index{TherapistMenuManager@{TherapistMenuManager}!deleteLastAnimationMovePositionHandler@{deleteLastAnimationMovePositionHandler}}
+\index{deleteLastAnimationMovePositionHandler@{deleteLastAnimationMovePositionHandler}!TherapistMenuManager@{TherapistMenuManager}}
+\doxysubsubsection{\texorpdfstring{deleteLastAnimationMovePositionHandler()}{deleteLastAnimationMovePositionHandler()}}
+{\footnotesize\ttfamily void Therapist\+Menu\+Manager.\+delete\+Last\+Animation\+Move\+Position\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_therapist_menu_manager_a8fc3968b87a71c059c98243a7c2a2d0b}\label{class_therapist_menu_manager_a8fc3968b87a71c059c98243a7c2a2d0b}} 
+\index{TherapistMenuManager@{TherapistMenuManager}!moveArmRestBackwardsHandler@{moveArmRestBackwardsHandler}}
+\index{moveArmRestBackwardsHandler@{moveArmRestBackwardsHandler}!TherapistMenuManager@{TherapistMenuManager}}
+\doxysubsubsection{\texorpdfstring{moveArmRestBackwardsHandler()}{moveArmRestBackwardsHandler()}}
+{\footnotesize\ttfamily void Therapist\+Menu\+Manager.\+move\+Arm\+Rest\+Backwards\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_therapist_menu_manager_a44aa76c7c7a82a68f8252918b95581e4}\label{class_therapist_menu_manager_a44aa76c7c7a82a68f8252918b95581e4}} 
+\index{TherapistMenuManager@{TherapistMenuManager}!moveArmRestForwardHandler@{moveArmRestForwardHandler}}
+\index{moveArmRestForwardHandler@{moveArmRestForwardHandler}!TherapistMenuManager@{TherapistMenuManager}}
+\doxysubsubsection{\texorpdfstring{moveArmRestForwardHandler()}{moveArmRestForwardHandler()}}
+{\footnotesize\ttfamily void Therapist\+Menu\+Manager.\+move\+Arm\+Rest\+Forward\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_therapist_menu_manager_a8d8ef67c8ac2b77a7bb1d9c7277e2be7}\label{class_therapist_menu_manager_a8d8ef67c8ac2b77a7bb1d9c7277e2be7}} 
+\index{TherapistMenuManager@{TherapistMenuManager}!moveArmRestLeftHandler@{moveArmRestLeftHandler}}
+\index{moveArmRestLeftHandler@{moveArmRestLeftHandler}!TherapistMenuManager@{TherapistMenuManager}}
+\doxysubsubsection{\texorpdfstring{moveArmRestLeftHandler()}{moveArmRestLeftHandler()}}
+{\footnotesize\ttfamily void Therapist\+Menu\+Manager.\+move\+Arm\+Rest\+Left\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_therapist_menu_manager_a02ab207968c7409c530391e281c77bba}\label{class_therapist_menu_manager_a02ab207968c7409c530391e281c77bba}} 
+\index{TherapistMenuManager@{TherapistMenuManager}!moveArmRestRightHandler@{moveArmRestRightHandler}}
+\index{moveArmRestRightHandler@{moveArmRestRightHandler}!TherapistMenuManager@{TherapistMenuManager}}
+\doxysubsubsection{\texorpdfstring{moveArmRestRightHandler()}{moveArmRestRightHandler()}}
+{\footnotesize\ttfamily void Therapist\+Menu\+Manager.\+move\+Arm\+Rest\+Right\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{class_therapist_menu_manager_aa85c4c93fa02d8abd213ccd85cf184e0}\label{class_therapist_menu_manager_aa85c4c93fa02d8abd213ccd85cf184e0}} 
 \index{TherapistMenuManager@{TherapistMenuManager}!movePatientBackwardsHandler@{movePatientBackwardsHandler}}
@@ -103,11 +153,11 @@ List$<$ Canvas\+Group $>$ \mbox{\hyperlink{class_therapist_menu_manager_aebeaa1b
 \doxysubsubsection{\texorpdfstring{playAnimationShowcaseHandler()}{playAnimationShowcaseHandler()}}
 {\footnotesize\ttfamily void Therapist\+Menu\+Manager.\+play\+Animation\+Showcase\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{class_therapist_menu_manager_a1f3cc967ece033a601fa58682b663694}\label{class_therapist_menu_manager_a1f3cc967ece033a601fa58682b663694}} 
-\index{TherapistMenuManager@{TherapistMenuManager}!setAnimationEndPositionHandler@{setAnimationEndPositionHandler}}
-\index{setAnimationEndPositionHandler@{setAnimationEndPositionHandler}!TherapistMenuManager@{TherapistMenuManager}}
-\doxysubsubsection{\texorpdfstring{setAnimationEndPositionHandler()}{setAnimationEndPositionHandler()}}
-{\footnotesize\ttfamily void Therapist\+Menu\+Manager.\+set\+Animation\+End\+Position\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{class_therapist_menu_manager_a4beb324f8c9ddf2913dc999f4118500a}\label{class_therapist_menu_manager_a4beb324f8c9ddf2913dc999f4118500a}} 
+\index{TherapistMenuManager@{TherapistMenuManager}!setAnimationMovePositionHandler@{setAnimationMovePositionHandler}}
+\index{setAnimationMovePositionHandler@{setAnimationMovePositionHandler}!TherapistMenuManager@{TherapistMenuManager}}
+\doxysubsubsection{\texorpdfstring{setAnimationMovePositionHandler()}{setAnimationMovePositionHandler()}}
+{\footnotesize\ttfamily void Therapist\+Menu\+Manager.\+set\+Animation\+Move\+Position\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{class_therapist_menu_manager_a3bea38ef6021b0fa9fc5fe8da3086b03}\label{class_therapist_menu_manager_a3bea38ef6021b0fa9fc5fe8da3086b03}} 
 \index{TherapistMenuManager@{TherapistMenuManager}!setAnimationStartPositionHandler@{setAnimationStartPositionHandler}}
@@ -138,6 +188,12 @@ List$<$ Canvas\+Group $>$ \mbox{\hyperlink{class_therapist_menu_manager_aebeaa1b
 \index{sitPatientHandler@{sitPatientHandler}!TherapistMenuManager@{TherapistMenuManager}}
 \doxysubsubsection{\texorpdfstring{sitPatientHandler()}{sitPatientHandler()}}
 {\footnotesize\ttfamily void Therapist\+Menu\+Manager.\+sit\+Patient\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_therapist_menu_manager_a80eec31c467366a015de73e0a26a79a0}\label{class_therapist_menu_manager_a80eec31c467366a015de73e0a26a79a0}} 
+\index{TherapistMenuManager@{TherapistMenuManager}!startTrainingHandler@{startTrainingHandler}}
+\index{startTrainingHandler@{startTrainingHandler}!TherapistMenuManager@{TherapistMenuManager}}
+\doxysubsubsection{\texorpdfstring{startTrainingHandler()}{startTrainingHandler()}}
+{\footnotesize\ttfamily void Therapist\+Menu\+Manager.\+start\+Training\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{class_therapist_menu_manager_a2e6da205a8faa07ae3e16523725a51f6}\label{class_therapist_menu_manager_a2e6da205a8faa07ae3e16523725a51f6}} 
 \index{TherapistMenuManager@{TherapistMenuManager}!stopAnimationHandler@{stopAnimationHandler}}

@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class ObjectListMember : MonoBehaviour
-{
+/// <summary>
+/// Component used to register to ObjectManager. Uses specific name or GameObject name if not specified.
+/// </summary>
+public class ObjectListMember : MonoBehaviour {
 	[SerializeField] private string objectName;
 
 	void Awake() {

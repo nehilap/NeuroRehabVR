@@ -1,5 +1,10 @@
 \hypertarget{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{}\doxysection{Neuro\+Rehab.\+Mappings.\+Pos\+Rot\+Mapping Class Reference}
 \label{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}\index{NeuroRehab.Mappings.PosRotMapping@{NeuroRehab.Mappings.PosRotMapping}}
+
+
+Custom class used to transfer two vectors together. NOT nullable when sent over network, due to Custom\+Read\+Write\+Functions restrictions. If it is needed then Serialization functions need to be changed. Can be null when using only locally.  
+
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -28,6 +33,9 @@ Vector3 \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping_ad7d
 Quaternion \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping_ac0a25f28f488e52104964501e09ecc07}{Reflect\+Rotation}} (Quaternion source, Vector3 normal)
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Custom class used to transfer two vectors together. NOT nullable when sent over network, due to Custom\+Read\+Write\+Functions restrictions. If it is needed then Serialization functions need to be changed. Can be null when using only locally. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping_a51e028898c1bf713d4c4130a73818f0b}\label{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping_a51e028898c1bf713d4c4130a73818f0b}} 

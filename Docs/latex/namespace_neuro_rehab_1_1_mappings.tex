@@ -4,10 +4,10 @@
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_animation_mapping}{Animation\+Mapping}}
-\item 
+\begin{DoxyCompactList}\small\item\em Component used to hold all animations mappings used in animations. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_custom_read_write_functions}{Custom\+Read\+Write\+Functions}}
 \begin{DoxyCompactList}\small\item\em Custom Serialization methods for more complex objects, needed because we use it in Sync\+List and Mirror doesn\textquotesingle{}t know how to do it by itself. This makes Pos\+Rot\+Mapping objects NOT nullable, at least when they are being sent over network. Refer to \href{https://mirror-networking.gitbook.io/docs/guides/serialization}{\texttt{ https\+://mirror-\/networking.\+gitbook.\+io/docs/guides/serialization}} for more details. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_pos_rot_mapping}{Pos\+Rot\+Mapping}}
-\item 
+\begin{DoxyCompactList}\small\item\em Custom class used to transfer two vectors together. NOT nullable when sent over network, due to Custom\+Read\+Write\+Functions restrictions. If it is needed then Serialization functions need to be changed. Can be null when using only locally. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{class_neuro_rehab_1_1_mappings_1_1_target_mapping_group}{Target\+Mapping\+Group}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Contains mapping positioning for hand for animations. Does not contain move positions, only starting Pos\+Rot\+Mapping. \end{DoxyCompactList}\end{DoxyCompactItemize}

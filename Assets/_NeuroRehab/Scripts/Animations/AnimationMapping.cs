@@ -1,8 +1,11 @@
 using Enums;
 using UnityEngine;
 
-namespace NeuroRehab.Mappings
-{
+namespace NeuroRehab.Mappings {
+
+	/// <summary>
+	/// Component used to hold all animations mappings used in animations.
+	/// </summary>
 	[System.Serializable]
 	public class AnimationMapping {
 

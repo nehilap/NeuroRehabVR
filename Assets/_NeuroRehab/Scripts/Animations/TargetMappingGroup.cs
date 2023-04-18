@@ -3,7 +3,9 @@ using UnityEngine;
 
 namespace NeuroRehab.Mappings {
 
-	// Contains mapping positioning for hand for certain animation
+	/// <summary>
+	/// Contains mapping positioning for hand for animations. Does not contain move positions, only starting PosRotMapping.
+	/// </summary>
 	[System.Serializable]
 	public class TargetMappingGroup {
 		public AnimationType animationType;

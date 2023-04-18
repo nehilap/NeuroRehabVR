@@ -9,7 +9,7 @@ var dir_69cddc0a745d4eabc5885e6bc7faf218 =
     [ "ObjectOffsetting", "dir_71e8e3bbac0af26c5656879ea6f455d5.html", "dir_71e8e3bbac0af26c5656879ea6f455d5" ],
     [ "UI", "dir_b120506e1fb8d0f8936bbec78efc628b.html", "dir_b120506e1fb8d0f8936bbec78efc628b" ],
     [ "Utility", "dir_9a5a9e9466f2962a0f7fdcdf916ac242.html", "dir_9a5a9e9466f2962a0f7fdcdf916ac242" ],
-    [ "CustomXRInteractorLineVisual.cs", "_custom_x_r_interactor_line_visual_8cs.html", "_custom_x_r_interactor_line_visual_8cs" ],
+    [ "XR", "dir_781d5d9a6585a62eb47a53031b2c10dd.html", "dir_781d5d9a6585a62eb47a53031b2c10dd" ],
     [ "Enums.cs", "_enums_8cs.html", "_enums_8cs" ],
     [ "MaskedObject.cs", "_masked_object_8cs.html", "_masked_object_8cs" ],
     [ "RoleBasedVisibility.cs", "_role_based_visibility_8cs.html", "_role_based_visibility_8cs" ],

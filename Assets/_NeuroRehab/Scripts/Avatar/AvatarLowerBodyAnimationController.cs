@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Component that calculates whether user is crouching or not and calculates position for feet.
+/// </summary>
 public class AvatarLowerBodyAnimationController : MonoBehaviour {
 	[SerializeField]
 	private Animator animator;

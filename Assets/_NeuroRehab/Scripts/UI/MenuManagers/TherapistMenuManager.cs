@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 
+/// <summary>
+/// Class containing handlers for UI elements - Therapist Menu
+/// </summary>
 public class TherapistMenuManager : MonoBehaviour {
 	[SerializeField] public List<CanvasGroup> animationCanvases = new List<CanvasGroup>();
 
@@ -10,6 +13,10 @@ public class TherapistMenuManager : MonoBehaviour {
 	}
 
 	public void playAnimationHandler() {
+		NetworkCharacterManager.localNetworkClientInstance.CmdStartAnimation();
+	}
+
+	public void startTrainingHandler() {
 		NetworkCharacterManager.localNetworkClientInstance.CmdStartTraining();
 	}
 
@@ -42,12 +49,16 @@ public class TherapistMenuManager : MonoBehaviour {
 		NetworkCharacterManager.localNetworkClientInstance.CmdSetAnimationStartPosition();
 	}
 
-	public void setAnimationEndPositionHandler() {
+	public void setAnimationMovePositionHandler() {
 		NetworkCharacterManager.localNetworkClientInstance.CmdAddMovePosition();
 	}
 
 	public void clearAnimationEndPositionHandler() {
-		NetworkCharacterManager.localNetworkClientInstance.CmdClearAnimationMovePositions();
+		NetworkCharacterManager.localNetworkClientInstance.CmdClearMovePositions();
+	}
+
+	public void deleteLastAnimationMovePositionHandler() {
+		NetworkCharacterManager.localNetworkClientInstance.CmdDeleteMovePosition();
 	}
 
 	public void moveTableUpHandler() {
@@ -68,7 +79,6 @@ public class TherapistMenuManager : MonoBehaviour {
 		}
 
 		NetworkIdentity patientId = CharacterManager.activePatientInstance.gameObject.GetComponent<NetworkIdentity>();
-
 		NetworkCharacterManager.localNetworkClientInstance.CmdMovePatient(new Vector3(0f, 0f, 0.02f), patientId);
 	}
 
@@ -78,7 +88,6 @@ public class TherapistMenuManager : MonoBehaviour {
 		}
 
 		NetworkIdentity patientId = CharacterManager.activePatientInstance.gameObject.GetComponent<NetworkIdentity>();
-
 		NetworkCharacterManager.localNetworkClientInstance.CmdMovePatient(new Vector3(0f, 0f, -0.02f), patientId);
 	}
 
@@ -88,7 +97,6 @@ public class TherapistMenuManager : MonoBehaviour {
 		}
 
 		NetworkIdentity patientId = CharacterManager.activePatientInstance.gameObject.GetComponent<NetworkIdentity>();
-
 		NetworkCharacterManager.localNetworkClientInstance.CmdMovePatient(new Vector3(0.02f, 0f, 0f), patientId);
 	}
 
@@ -98,9 +106,25 @@ public class TherapistMenuManager : MonoBehaviour {
 		}
 
 		NetworkIdentity patientId = CharacterManager.activePatientInstance.gameObject.GetComponent<NetworkIdentity>();
-
 		NetworkCharacterManager.localNetworkClientInstance.CmdMovePatient(new Vector3(-0.02f, 0f, 0f), patientId);
 	}
+
+	public void moveArmRestForwardHandler() {
+		NetworkCharacterManager.localNetworkClientInstance.CmdMoveArmRest(new Vector3(0f, 0f, 0.02f));
+	}
+
+	public void moveArmRestBackwardsHandler() {
+		NetworkCharacterManager.localNetworkClientInstance.CmdMoveArmRest(new Vector3(0f, 0f, -0.02f));
+	}
+
+	public void moveArmRestRightHandler() {
+		NetworkCharacterManager.localNetworkClientInstance.CmdMoveArmRest(new Vector3(0.02f, 0f, 0f));
+	}
+
+	public void moveArmRestLeftHandler() {
+		NetworkCharacterManager.localNetworkClientInstance.CmdMoveArmRest(new Vector3(-0.02f, 0f, 0f));
+	}
+
 
 	public void setPatientAnimatedArm(bool isLeft) {
 		if (CharacterManager.activePatientInstance == null) {

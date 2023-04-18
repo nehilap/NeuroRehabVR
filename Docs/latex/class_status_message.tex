@@ -1,0 +1,140 @@
+\hypertarget{class_status_message}{}\doxysection{Status\+Message Class Reference}
+\label{class_status_message}\index{StatusMessage@{StatusMessage}}
+
+
+Component used for Status Message element.  
+
+
+Inheritance diagram for Status\+Message\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_status_message}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_status_message_afd643bca0c6822a274eacb7b30320edc}{show\+Message}} (string message, \mbox{\hyperlink{namespace_enums_a8f5cd57359c31a81e43f2555cdaa5474}{Message\+Type}} message\+Type)
+\item 
+void \mbox{\hyperlink{class_status_message_a70f8b1711ed23161b911fafe13878b40}{hide\+Message}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_status_message_a25df95e0777ed26f9a9d63aeea6cae9e}{Start}} ()
+\item 
+IEnumerator \mbox{\hyperlink{class_status_message_a840ec1fed43a372416cf63adf60df763}{status\+Message\+Coroutine}} (string message)
+\item 
+void \mbox{\hyperlink{class_status_message_acb9f00064f9f9c17dea49bb545a4b57f}{hide\+Backgrounds}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+TMP\+\_\+\+Text \mbox{\hyperlink{class_status_message_a42e3f84d0ac5dff9119c8ef7e054774f}{text\+Field}}
+\item 
+Image \mbox{\hyperlink{class_status_message_a81a6101ddb753f0ec6d46dbfe28294a8}{ok\+Background}}
+\item 
+Image \mbox{\hyperlink{class_status_message_ae60830edb43a465699037d4faf8ab358}{warning\+Background}}
+\item 
+Image \mbox{\hyperlink{class_status_message_a972e37e004f5cbf589b4bde2fbe24a0f}{normal\+Background}}
+\item 
+float \mbox{\hyperlink{class_status_message_a705b11c2bd5a37b3ea007c66f2db676c}{fade\+Duration}} = 0.\+5f
+\item 
+float \mbox{\hyperlink{class_status_message_a773277a8e2fbf5a2423b48ad2309fc62}{message\+Duration}} = 4f
+\item 
+Coroutine \mbox{\hyperlink{class_status_message_a54e18a712623352ae3b9b6357c848247}{coroutine}}
+\item 
+\mbox{\hyperlink{class_fadeable}{Fadeable}} \mbox{\hyperlink{class_status_message_adb94b04290874b7eac375bdd3d54a29a}{fadeable}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Component used for Status Message element. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_status_message_acb9f00064f9f9c17dea49bb545a4b57f}\label{class_status_message_acb9f00064f9f9c17dea49bb545a4b57f}} 
+\index{StatusMessage@{StatusMessage}!hideBackgrounds@{hideBackgrounds}}
+\index{hideBackgrounds@{hideBackgrounds}!StatusMessage@{StatusMessage}}
+\doxysubsubsection{\texorpdfstring{hideBackgrounds()}{hideBackgrounds()}}
+{\footnotesize\ttfamily void Status\+Message.\+hide\+Backgrounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_status_message_a70f8b1711ed23161b911fafe13878b40}\label{class_status_message_a70f8b1711ed23161b911fafe13878b40}} 
+\index{StatusMessage@{StatusMessage}!hideMessage@{hideMessage}}
+\index{hideMessage@{hideMessage}!StatusMessage@{StatusMessage}}
+\doxysubsubsection{\texorpdfstring{hideMessage()}{hideMessage()}}
+{\footnotesize\ttfamily void Status\+Message.\+hide\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_status_message_afd643bca0c6822a274eacb7b30320edc}\label{class_status_message_afd643bca0c6822a274eacb7b30320edc}} 
+\index{StatusMessage@{StatusMessage}!showMessage@{showMessage}}
+\index{showMessage@{showMessage}!StatusMessage@{StatusMessage}}
+\doxysubsubsection{\texorpdfstring{showMessage()}{showMessage()}}
+{\footnotesize\ttfamily void Status\+Message.\+show\+Message (\begin{DoxyParamCaption}\item[{string}]{message,  }\item[{\mbox{\hyperlink{namespace_enums_a8f5cd57359c31a81e43f2555cdaa5474}{Message\+Type}}}]{message\+Type }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_status_message_a25df95e0777ed26f9a9d63aeea6cae9e}\label{class_status_message_a25df95e0777ed26f9a9d63aeea6cae9e}} 
+\index{StatusMessage@{StatusMessage}!Start@{Start}}
+\index{Start@{Start}!StatusMessage@{StatusMessage}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void Status\+Message.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_status_message_a840ec1fed43a372416cf63adf60df763}\label{class_status_message_a840ec1fed43a372416cf63adf60df763}} 
+\index{StatusMessage@{StatusMessage}!statusMessageCoroutine@{statusMessageCoroutine}}
+\index{statusMessageCoroutine@{statusMessageCoroutine}!StatusMessage@{StatusMessage}}
+\doxysubsubsection{\texorpdfstring{statusMessageCoroutine()}{statusMessageCoroutine()}}
+{\footnotesize\ttfamily IEnumerator Status\+Message.\+status\+Message\+Coroutine (\begin{DoxyParamCaption}\item[{string}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_status_message_a54e18a712623352ae3b9b6357c848247}\label{class_status_message_a54e18a712623352ae3b9b6357c848247}} 
+\index{StatusMessage@{StatusMessage}!coroutine@{coroutine}}
+\index{coroutine@{coroutine}!StatusMessage@{StatusMessage}}
+\doxysubsubsection{\texorpdfstring{coroutine}{coroutine}}
+{\footnotesize\ttfamily Coroutine Status\+Message.\+coroutine\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_status_message_adb94b04290874b7eac375bdd3d54a29a}\label{class_status_message_adb94b04290874b7eac375bdd3d54a29a}} 
+\index{StatusMessage@{StatusMessage}!fadeable@{fadeable}}
+\index{fadeable@{fadeable}!StatusMessage@{StatusMessage}}
+\doxysubsubsection{\texorpdfstring{fadeable}{fadeable}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_fadeable}{Fadeable}} Status\+Message.\+fadeable\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_status_message_a705b11c2bd5a37b3ea007c66f2db676c}\label{class_status_message_a705b11c2bd5a37b3ea007c66f2db676c}} 
+\index{StatusMessage@{StatusMessage}!fadeDuration@{fadeDuration}}
+\index{fadeDuration@{fadeDuration}!StatusMessage@{StatusMessage}}
+\doxysubsubsection{\texorpdfstring{fadeDuration}{fadeDuration}}
+{\footnotesize\ttfamily float Status\+Message.\+fade\+Duration = 0.\+5f\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_status_message_a773277a8e2fbf5a2423b48ad2309fc62}\label{class_status_message_a773277a8e2fbf5a2423b48ad2309fc62}} 
+\index{StatusMessage@{StatusMessage}!messageDuration@{messageDuration}}
+\index{messageDuration@{messageDuration}!StatusMessage@{StatusMessage}}
+\doxysubsubsection{\texorpdfstring{messageDuration}{messageDuration}}
+{\footnotesize\ttfamily float Status\+Message.\+message\+Duration = 4f\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_status_message_a972e37e004f5cbf589b4bde2fbe24a0f}\label{class_status_message_a972e37e004f5cbf589b4bde2fbe24a0f}} 
+\index{StatusMessage@{StatusMessage}!normalBackground@{normalBackground}}
+\index{normalBackground@{normalBackground}!StatusMessage@{StatusMessage}}
+\doxysubsubsection{\texorpdfstring{normalBackground}{normalBackground}}
+{\footnotesize\ttfamily Image Status\+Message.\+normal\+Background\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_status_message_a81a6101ddb753f0ec6d46dbfe28294a8}\label{class_status_message_a81a6101ddb753f0ec6d46dbfe28294a8}} 
+\index{StatusMessage@{StatusMessage}!okBackground@{okBackground}}
+\index{okBackground@{okBackground}!StatusMessage@{StatusMessage}}
+\doxysubsubsection{\texorpdfstring{okBackground}{okBackground}}
+{\footnotesize\ttfamily Image Status\+Message.\+ok\+Background\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_status_message_a42e3f84d0ac5dff9119c8ef7e054774f}\label{class_status_message_a42e3f84d0ac5dff9119c8ef7e054774f}} 
+\index{StatusMessage@{StatusMessage}!textField@{textField}}
+\index{textField@{textField}!StatusMessage@{StatusMessage}}
+\doxysubsubsection{\texorpdfstring{textField}{textField}}
+{\footnotesize\ttfamily TMP\+\_\+\+Text Status\+Message.\+text\+Field\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_status_message_ae60830edb43a465699037d4faf8ab358}\label{class_status_message_ae60830edb43a465699037d4faf8ab358}} 
+\index{StatusMessage@{StatusMessage}!warningBackground@{warningBackground}}
+\index{warningBackground@{warningBackground}!StatusMessage@{StatusMessage}}
+\doxysubsubsection{\texorpdfstring{warningBackground}{warningBackground}}
+{\footnotesize\ttfamily Image Status\+Message.\+warning\+Background\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Unity/\+Unity\+Projects/\+Masters\+Thesis/\+Assets/\+\_\+\+Neuro\+Rehab/\+Scripts/\+UI/\mbox{\hyperlink{_status_message_8cs}{Status\+Message.\+cs}}\end{DoxyCompactItemize}

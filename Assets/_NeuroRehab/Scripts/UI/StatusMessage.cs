@@ -4,7 +4,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StatusMessageManager : MonoBehaviour {
+/// <summary>
+/// Component used for Status Message element
+/// </summary>
+public class StatusMessage : MonoBehaviour {
 
 	[SerializeField] private TMP_Text textField;
 	[Header("Backgrounds")]
@@ -12,8 +15,8 @@ public class StatusMessageManager : MonoBehaviour {
 	[SerializeField] private Image warningBackground;
 	[SerializeField] private Image normalBackground;
 
-	[SerializeField] private float fadeDuration = 0.5f;
-	[SerializeField] private float messageDuration = 3f;
+	private float fadeDuration = 0.5f;
+	private float messageDuration = 4f;
 
 	private Coroutine coroutine;
 	private Fadeable fadeable;

@@ -98,13 +98,16 @@ $(document).ready(function(){initNavTree('class_x_r_character_manager.html','');
   <div class="headertitle"><div class="title">XRCharacterManager Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Custom implementation of '<a class="el" href="class_character_manager.html" title="Abstract parent class for Multiplayer Character manager. Setups starting components - enables/disable...">CharacterManager</a>' for XR client. Used both in traditional and simulated XR/VR.  
+ <a href="class_x_r_character_manager.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for XRCharacterManager:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_x_r_character_manager.png" usemap="#XRCharacterManager_map" alt=""/>
   <map id="XRCharacterManager_map" name="XRCharacterManager_map">
-<area href="class_character_manager.html" alt="CharacterManager" shape="rect" coords="0,56,137,80"/>
+<area href="class_character_manager.html" title="Abstract parent class for Multiplayer Character manager. Setups starting components - enables/disable..." alt="CharacterManager" shape="rect" coords="0,56,137,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -126,7 +129,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a0d50706631cca6a3eb94d40daf8bfa04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handler method for changing active animated arm.  <br /></td></tr>
 <tr class="separator:a0d50706631cca6a3eb94d40daf8bfa04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac118d3178e65504fb18e8677a893480f"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_r_character_manager.html#ac118d3178e65504fb18e8677a893480f">teleportCharacter</a> (Transform targetPosition, Transform lookTarget=null)</td></tr>
-<tr class="memdesc:ac118d3178e65504fb18e8677a893480f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Teleports character to specific location and rotates it to look in the direction of targetPosition transform. LokTarget is ignored on <a class="el" href="class_x_r_character_manager.html">XRCharacterManager</a>.  <br /></td></tr>
+<tr class="memdesc:ac118d3178e65504fb18e8677a893480f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Teleports character to specific location and rotates it to look in the direction of targetPosition transform. LokTarget is ignored on <a class="el" href="class_x_r_character_manager.html" title="Custom implementation of &#39;CharacterManager&#39; for XR client. Used both in traditional and simulated XR/...">XRCharacterManager</a>.  <br /></td></tr>
 <tr class="separator:ac118d3178e65504fb18e8677a893480f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_character_manager"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_character_manager')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_character_manager.html">CharacterManager</a></td></tr>
 <tr class="memitem:a99818278a7a213f4a706666700ca6214 inherit pub_methods_class_character_manager"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_manager.html#a99818278a7a213f4a706666700ca6214">OnStartLocalPlayer</a> ()</td></tr>
@@ -196,6 +199,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a95956c48b43ca4abfbd193794cfdaba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3da70c6e55547793c0ac765dd0f9900"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_r_character_manager.html#ae3da70c6e55547793c0ac765dd0f9900">xrDeviceSimulator</a></td></tr>
 <tr class="separator:ae3da70c6e55547793c0ac765dd0f9900"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6add0707be00e62d123782dbef97810e"><td class="memItemLeft" align="right" valign="top">Transform&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_r_character_manager.html#a6add0707be00e62d123782dbef97810e">headCollider</a></td></tr>
+<tr class="separator:a6add0707be00e62d123782dbef97810e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb2202e7a00b8d5a050ae81e9745113b"><td class="memItemLeft" align="right" valign="top">XROrigin&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_r_character_manager.html#abb2202e7a00b8d5a050ae81e9745113b">xrOrigin</a></td></tr>
 <tr class="separator:abb2202e7a00b8d5a050ae81e9745113b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b0c2f613dd1eb8aac6c9543049036ce"><td class="memItemLeft" align="right" valign="top">CharacterController&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_r_character_manager.html#a6b0c2f613dd1eb8aac6c9543049036ce">characterController</a></td></tr>
@@ -215,7 +220,9 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a5dc9a76779f0e30e0eec573789306392 inherit properties_class_character_manager"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_manager.html#a5dc9a76779f0e30e0eec573789306392">activeArmRangeMarker</a><code> [get, set]</code></td></tr>
 <tr class="separator:a5dc9a76779f0e30e0eec573789306392 inherit properties_class_character_manager"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Custom implementation of '<a class="el" href="class_character_manager.html" title="Abstract parent class for Multiplayer Character manager. Setups starting components - enables/disable...">CharacterManager</a>' for XR client. Used both in traditional and simulated XR/VR. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a0d50706631cca6a3eb94d40daf8bfa04" name="a0d50706631cca6a3eb94d40daf8bfa04"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0d50706631cca6a3eb94d40daf8bfa04">&#9670;&#160;</a></span>changeAnimatedArm()</h2>
 
@@ -526,7 +533,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Teleports character to specific location and rotates it to look in the direction of targetPosition transform. LokTarget is ignored on <a class="el" href="class_x_r_character_manager.html">XRCharacterManager</a>. </p>
+<p>Teleports character to specific location and rotates it to look in the direction of targetPosition transform. LokTarget is ignored on <a class="el" href="class_x_r_character_manager.html" title="Custom implementation of &#39;CharacterManager&#39; for XR client. Used both in traditional and simulated XR/...">XRCharacterManager</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">targetPosition</td><td></td></tr>
@@ -572,6 +579,28 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname"><a class="el" href="namespace_enums.html#afc9dc20ef762f0c310a514f76ba4aca5">ControllerType</a> XRCharacterManager.controllerType</td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6add0707be00e62d123782dbef97810e" name="a6add0707be00e62d123782dbef97810e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6add0707be00e62d123782dbef97810e">&#9670;&#160;</a></span>headCollider</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Transform XRCharacterManager.headCollider</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

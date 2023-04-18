@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e32f4711edaf30e44b83054103d1500c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: -0.08, y: 0, z: -0.08}
+  offset: {x: -0.15, y: 0, z: -0.15}
   objectCollider: {fileID: 7688392913833302695}
   useWorldPos: 0
   offsetObject: {fileID: 0}
@@ -354,6 +354,7 @@ GameObject:
   - component: {fileID: 540417149059474995}
   - component: {fileID: 912039167970662770}
   - component: {fileID: 846800557913894834}
+  - component: {fileID: 2001816014666824020}
   - component: {fileID: 8023084159090429393}
   - component: {fileID: 1878698789788651943}
   - component: {fileID: 1878698789788651961}
@@ -424,7 +425,7 @@ MonoBehaviour:
   target: {fileID: 1878698789788651942}
   clientAuthority: 0
   onlySyncOnChange: 1
-  bufferResetMultiplier: 5
+  bufferResetMultiplier: 4
   positionSensitivity: 0.01
   rotationSensitivity: 0.01
   scaleSensitivity: 0.01
@@ -452,7 +453,7 @@ MonoBehaviour:
   target: {fileID: 1878698787931433296}
   clientAuthority: 0
   onlySyncOnChange: 1
-  bufferResetMultiplier: 1
+  bufferResetMultiplier: 4
   positionSensitivity: 0.01
   rotationSensitivity: 0.01
   scaleSensitivity: 0.01
@@ -569,6 +570,34 @@ MonoBehaviour:
   rotationSensitivity: 0.01
   scaleSensitivity: 0.01
   syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+--- !u!114 &2001816014666824020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878698789788651940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 8086902766099728958}
+  clientAuthority: 0
+  onlySyncOnChange: 1
+  bufferResetMultiplier: 5
+  positionSensitivity: 0.05
+  rotationSensitivity: 0.05
+  scaleSensitivity: 0.05
+  syncPosition: 0
   syncRotation: 1
   syncScale: 0
   showGizmos: 0
@@ -699,6 +728,7 @@ MonoBehaviour:
   - {fileID: 8494623748677677882}
   inputActionManager: {fileID: 1878698789788651961}
   xrDeviceSimulator: {fileID: 8340094899192376777, guid: 86e973d90f672ba44a87b64c5146a8bf, type: 3}
+  headCollider: {fileID: 8086902766099728958}
 --- !u!114 &7898726773472306906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -715,18 +745,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   animSettingsManager: {fileID: 0}
-  targetPrefabs:
-  - {fileID: 4585951089911290167, guid: 187b5e0706a658c41807f396198c9070, type: 3}
-  - {fileID: 2118952973532061121, guid: 83818a48cdb0cc24b9dadcdf5207209b, type: 3}
-  - {fileID: 1241488487069944307, guid: 40fe8f4a9268b7a4ebe31233411b94ed, type: 3}
-  - {fileID: 1241488487069944307, guid: 5145697b12375a144ae28480da9c0102, type: 3}
-  - {fileID: 1241488487069944307, guid: 2b1054fd8afd78b4f980e73bcf87e511, type: 3}
-  - {fileID: 1241488487069944307, guid: 6477a5d14e4c74a45af9a46af6181bdc, type: 3}
-  - {fileID: 1241488487069944307, guid: 60e5cf70978117c48abdabd14b958b8b, type: 3}
-  - {fileID: 1241488487069944307, guid: d7a3c662cec7e6e489fd5832e9f712d9, type: 3}
-  - {fileID: 7931688326429741820, guid: 7b67e2b558688d347b3ed4e6326978e5, type: 3}
-  - {fileID: 7931688326429741820, guid: 8fe8e02833c01e045b0b18417050b41f, type: 3}
-  spawnArea: {fileID: 0}
   countdownManagers: []
   therapistMenuManagers: []
 --- !u!114 &5704176413575433497
@@ -1483,7 +1501,7 @@ GameObject:
   - component: {fileID: 1654942606819142059}
   - component: {fileID: 7025946778575185180}
   - component: {fileID: 2838357159193414244}
-  - component: {fileID: 5946842632047914314}
+  - component: {fileID: 8183893387922489964}
   m_Layer: 0
   m_Name: Locomotion
   m_TagString: Untagged
@@ -1615,7 +1633,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -6493913391331992944, guid: c348712bda248c246b8c49b3db54643f, type: 3}
---- !u!114 &5946842632047914314
+--- !u!114 &8183893387922489964
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1624,12 +1642,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6891543328459119718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af6bf904e410ee8479f9093d8830d1f8, type: 3}
+  m_Script: {fileID: 11500000, guid: a0546cc627a308f45b3c8488acac111b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_LocomotionProvider: {fileID: 7025946778575185180}
   m_MinHeight: 1
   m_MaxHeight: 2
+  headCollider: {fileID: 8086902766099728958}
 --- !u!1 &7655767333837358686
 GameObject:
   m_ObjectHideFlags: 0
@@ -1868,6 +1887,10 @@ PrefabInstance:
     - target: {fileID: 5320752503591782335, guid: b91fac11c333f274ca15b1834e69e3d4, type: 3}
       propertyPath: menuNameToShow
       value: TherapistMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320752503591782335, guid: b91fac11c333f274ca15b1834e69e3d4, type: 3}
+      propertyPath: positionOffset.y
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 5320752503591782335, guid: b91fac11c333f274ca15b1834e69e3d4, type: 3}
       propertyPath: miniMenuVisibilityManager
@@ -2313,7 +2336,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7456554362324290176, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
       propertyPath: positionOffset.y
-      value: 0
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7456554362324290176, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
       propertyPath: miniMenuVisibilityManager

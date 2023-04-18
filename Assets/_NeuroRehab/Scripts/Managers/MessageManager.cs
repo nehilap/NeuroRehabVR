@@ -3,6 +3,9 @@ using Mirror;
 using System.Collections.Generic;
 using Enums;
 
+/// <summary>
+/// Message manager that contains list of all statusMessage objects, used to show/hide messages.
+/// </summary>
 public class MessageManager : NetworkBehaviour {
 
 	private static MessageManager _instance;
@@ -15,13 +18,13 @@ public class MessageManager : NetworkBehaviour {
 		}
 	}
 
-	[SerializeField] private List<StatusMessageManager> statusMessageManagers = new List<StatusMessageManager>();
+	[SerializeField] private List<StatusMessage> statusMessageElements = new List<StatusMessage>();
 
 	private void Start() {
 		List<GameObject> statusMessageObjects = ObjectManager.Instance.getObjectsByName("StatusMessage");
 		foreach (GameObject statusMessageObject in statusMessageObjects) {
-			if (statusMessageObject.TryGetComponent<StatusMessageManager>(out StatusMessageManager smm)) {
-				statusMessageManagers.Add(smm);
+			if (statusMessageObject.TryGetComponent<StatusMessage>(out StatusMessage smm)) {
+				statusMessageElements.Add(smm);
 			}
 		}
 	}
@@ -33,14 +36,14 @@ public class MessageManager : NetworkBehaviour {
 
 	[Client]
 	public void showMessage(string message, MessageType messageType) {
-		foreach (StatusMessageManager statusMessageManager in statusMessageManagers) {
+		foreach (StatusMessage statusMessageManager in statusMessageElements) {
 			statusMessageManager.showMessage(message, messageType);
 		}
 	}
 
 	[Client]
 	public void hideMessage() {
-		foreach (StatusMessageManager statusMessageManager in statusMessageManagers) {
+		foreach (StatusMessage statusMessageManager in statusMessageElements) {
 			statusMessageManager.hideMessage();
 		}
 	}

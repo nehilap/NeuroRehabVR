@@ -2,6 +2,9 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Same as 'AvatarWalkingController', but used to sync walking value over network, so that we can animate avatars on 'nonLocalPlayer'.
+/// </summary>
 public class NetworkAvatarWalkingController : NetworkBehaviour {
 
 	[SerializeField] private AvatarModelManager avatarModelManager;

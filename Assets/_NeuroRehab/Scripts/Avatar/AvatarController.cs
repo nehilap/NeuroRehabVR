@@ -1,6 +1,9 @@
 using NeuroRehab.Mappings;
 using UnityEngine;
 
+/// <summary>
+/// Class used to align IK target with VR targets in Avatar (hands, head).
+/// </summary>
 [System.Serializable]
 public class MapTransforms {
 	public bool followVRTarget = true;
@@ -48,6 +51,9 @@ public class MapTransforms {
 	}
 }
 
+/// <summary>
+/// Used for positioning avatar and IK targets. Calculates scale and applies them to offsets.
+/// </summary>
 public class AvatarController : MonoBehaviour {
 
 	[SerializeField] public GameObject rightArmRangeMarker;

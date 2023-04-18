@@ -13,7 +13,7 @@ var searchData=
   ['controllerprefabs_10',['controllerPrefabs',['../class_x_r_status_manager.html#adcfc8ec5851b3d447b916da70912a567',1,'XRStatusManager']]],
   ['controllersetupmenu_11',['controllerSetupMenu',['../class_x_r_status_manager.html#aa6a0a9ec042768d2af56845fc530882a',1,'XRStatusManager']]],
   ['controllertype_12',['controllerType',['../class_x_r_character_manager.html#a5ee1a7bd6823e69b5b8d262c2979fd5e',1,'XRCharacterManager.controllerType()'],['../class_x_r_status_manager.html#a1440152f15661ef32fbc616c11b2e976',1,'XRStatusManager.controllerType()'],['../struct_structs_1_1_character_message.html#aa33a8c377ead39615f4675669e199462',1,'Structs.CharacterMessage.controllerType()']]],
-  ['coroutine_13',['coroutine',['../class_countdown_manager.html#a5ac471db0b0a86d643472b128d722bc2',1,'CountdownManager.coroutine()'],['../class_status_message_manager.html#a172b175627d0ce0f1e182a3853bd744e',1,'StatusMessageManager.coroutine()']]],
+  ['coroutine_13',['coroutine',['../class_countdown_manager.html#a5ac471db0b0a86d643472b128d722bc2',1,'CountdownManager.coroutine()'],['../class_status_message.html#a54e18a712623352ae3b9b6357c848247',1,'StatusMessage.coroutine()']]],
   ['countdownimage_14',['countdownImage',['../class_countdown_manager.html#a640a90097972f389b0d43176c0178714',1,'CountdownManager']]],
   ['countdownmanagers_15',['countdownManagers',['../class_network_character_manager.html#a657b6ee4fc4320ad78bd8e53c9374d08',1,'NetworkCharacterManager']]],
   ['cubesetup_16',['cubeSetup',['../class_animation_settings_manager.html#ad49addaf184e73926d2360f524807f5f',1,'AnimationSettingsManager']]],

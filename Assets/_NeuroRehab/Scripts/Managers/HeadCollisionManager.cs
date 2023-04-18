@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Contains events for HeadCollider when using XR origin. When Collision happened pushes whole user away from the point of 'impact'.
+/// </summary>
 public class HeadCollisionManager : MonoBehaviour {
 
 	[SerializeField]

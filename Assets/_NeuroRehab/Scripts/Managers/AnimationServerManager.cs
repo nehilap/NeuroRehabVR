@@ -21,7 +21,7 @@ public class AnimationServerManager : NetworkBehaviour {
 		}
 	}
 
-	private bool isTrainingRunning = false;
+	public bool isTrainingRunning = false;
 	private bool isAnimationTriggered = false;
 	private DateTime lastAnimationTrigger;
 	private int currentRepetitions = 0;
@@ -137,15 +137,23 @@ public class AnimationServerManager : NetworkBehaviour {
 	[Server]
 	private bool canTrainingStart() {
 		if (CharacterManager.activePatientInstance == null) {
+			Debug.LogError("No patient present! Can't start training.");
 			MessageManager.Instance.RpcInformClients("No patient present! Can't start training.", MessageType.WARNING);
 			return false;
 		}
 		if (isTrainingRunning) {
 			DateTime currentTime = DateTime.Now;
 			if ((currentTime - lastAnimationTrigger).TotalSeconds <= animSettingsManager.waitDuration) {
+				Debug.LogError("Training already started! Can't start new training.");
 				MessageManager.Instance.RpcInformClients("Training already started! Can't start new training.", MessageType.WARNING);
 				return false;
 			}
+		}
+
+		if (animSettingsManager.animType == AnimationType.Off) {
+			Debug.LogError("No animationy type chosen! Can't start training.");
+			MessageManager.Instance.RpcInformClients("No animationy type chosen! Can't start training.", MessageType.WARNING);
+			return false;
 		}
 
 		SyncList<PosRotMapping> currentAnimationSetup = animSettingsManager.getCurrentAnimationSetup();
@@ -191,8 +199,8 @@ public class AnimationServerManager : NetworkBehaviour {
 
 	[ClientRpc]
 	public void RpcStartActualAnimation(bool isShowcase, string extraText) {
-		// Debug.Log(CharacterManager.activePatientInstance);
 		if (CharacterManager.activePatientInstance == null) {
+			MessageManager.Instance.showMessage("No active patient", MessageType.WARNING);
 			return;
 		}
 		bool animationResult = CharacterManager.activePatientInstance.activeArmAnimationController.startAnimation(isShowcase);

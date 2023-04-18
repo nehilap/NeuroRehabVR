@@ -3,6 +3,9 @@ using UnityEngine;
 using System.Collections.Generic;
 using Wolf3D.ReadyPlayerMe.AvatarSDK;
 
+/// <summary>
+/// Abstract parent class for Multiplayer Character manager. Setups starting components - enables/disables components that would otherwise create conflicts in the scene.
+/// </summary>
 public abstract class CharacterManager : NetworkBehaviour {
 
 	public static CharacterManager localClientInstance { get; private set; }

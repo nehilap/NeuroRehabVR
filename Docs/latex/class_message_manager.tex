@@ -1,5 +1,10 @@
 \hypertarget{class_message_manager}{}\doxysection{Message\+Manager Class Reference}
 \label{class_message_manager}\index{MessageManager@{MessageManager}}
+
+
+Message manager that contains list of all status\+Message objects, used to show/hide messages.  
+
+
 Inheritance diagram for Message\+Manager\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -28,7 +33,7 @@ void \mbox{\hyperlink{class_message_manager_a6971d21fcca10e2d55ce3170f55dc9f1}{S
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-List$<$ \mbox{\hyperlink{class_status_message_manager}{Status\+Message\+Manager}} $>$ \mbox{\hyperlink{class_message_manager_a5e0f825a211d047c82733c97a03ea3b0}{status\+Message\+Managers}} = new List$<$\mbox{\hyperlink{class_status_message_manager}{Status\+Message\+Manager}}$>$()
+List$<$ \mbox{\hyperlink{class_status_message}{Status\+Message}} $>$ \mbox{\hyperlink{class_message_manager_a2747a2d223b1773ae23feff0101f87f8}{status\+Message\+Elements}} = new List$<$\mbox{\hyperlink{class_status_message}{Status\+Message}}$>$()
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Private Attributes}
 \begin{DoxyCompactItemize}
@@ -36,6 +41,9 @@ List$<$ \mbox{\hyperlink{class_status_message_manager}{Status\+Message\+Manager}
 static \mbox{\hyperlink{class_message_manager}{Message\+Manager}} \mbox{\hyperlink{class_message_manager_ab1c1f3f7cdf59232b2169b4e91ec1a4b}{\+\_\+instance}}
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Message manager that contains list of all status\+Message objects, used to show/hide messages. 
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_message_manager_a586e0e0320c3d7f85a3d065bd7f9eb54}\label{class_message_manager_a586e0e0320c3d7f85a3d065bd7f9eb54}} 
@@ -71,11 +79,11 @@ static \mbox{\hyperlink{class_message_manager}{Message\+Manager}} \mbox{\hyperli
 \doxysubsubsection{\texorpdfstring{\_instance}{\_instance}}
 {\footnotesize\ttfamily \mbox{\hyperlink{class_message_manager}{Message\+Manager}} Message\+Manager.\+\_\+instance\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
 
-\mbox{\Hypertarget{class_message_manager_a5e0f825a211d047c82733c97a03ea3b0}\label{class_message_manager_a5e0f825a211d047c82733c97a03ea3b0}} 
-\index{MessageManager@{MessageManager}!statusMessageManagers@{statusMessageManagers}}
-\index{statusMessageManagers@{statusMessageManagers}!MessageManager@{MessageManager}}
-\doxysubsubsection{\texorpdfstring{statusMessageManagers}{statusMessageManagers}}
-{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_status_message_manager}{Status\+Message\+Manager}}$>$ Message\+Manager.\+status\+Message\+Managers = new List$<$\mbox{\hyperlink{class_status_message_manager}{Status\+Message\+Manager}}$>$()\hspace{0.3cm}{\ttfamily [private]}}
+\mbox{\Hypertarget{class_message_manager_a2747a2d223b1773ae23feff0101f87f8}\label{class_message_manager_a2747a2d223b1773ae23feff0101f87f8}} 
+\index{MessageManager@{MessageManager}!statusMessageElements@{statusMessageElements}}
+\index{statusMessageElements@{statusMessageElements}!MessageManager@{MessageManager}}
+\doxysubsubsection{\texorpdfstring{statusMessageElements}{statusMessageElements}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_status_message}{Status\+Message}}$>$ Message\+Manager.\+status\+Message\+Elements = new List$<$\mbox{\hyperlink{class_status_message}{Status\+Message}}$>$()\hspace{0.3cm}{\ttfamily [private]}}
 
 
 

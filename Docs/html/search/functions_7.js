@@ -9,7 +9,7 @@ var searchData=
   ['initobjects_6',['initObjects',['../class_x_r_status_manager.html#a25587457b912c947c611e570da9aeeda',1,'XRStatusManager']]],
   ['initstatustext_7',['InitStatusText',['../class_status_text_manager.html#a58e0cd18b064e9efb77c9cd32eee7bd0',1,'StatusTextManager']]],
   ['ismenushowing_8',['isMenuShowing',['../class_mini_menu_visibility_manager.html#ae3fe6d18d54465c087a09f079ed72275',1,'MiniMenuVisibilityManager.isMenuShowing()'],['../class_mini_menu_visibility_manager.html#a65a89d50c3946904f800dea6ea1b55db',1,'MiniMenuVisibilityManager.isMenuShowing(MiniMenuManager _miniMenuManager)']]],
-  ['istargetinbounds_9',['isTargetInBounds',['../class_network_character_manager.html#a297c5c9b71ded4a4397efa7248460981',1,'NetworkCharacterManager']]],
+  ['istargetinbounds_9',['isTargetInBounds',['../class_animation_settings_manager.html#a9ef920a24eac1945289eebdddf65b56c',1,'AnimationSettingsManager']]],
   ['istargetinrange_10',['isTargetInRange',['../class_arm_animation_controller.html#ae5ae3ec22a7c6447c3835afb9d4f9efe',1,'ArmAnimationController']]],
   ['itempickup_11',['itemPickUp',['../class_x_r_character_manager.html#adaa930788ff5a1c9d70b74ca004403ea',1,'XRCharacterManager']]],
   ['itemrelease_12',['itemRelease',['../class_x_r_character_manager.html#ad3fc07eef77b44f7e7059b89b20fd341',1,'XRCharacterManager']]]

@@ -26,13 +26,14 @@ var searchData=
   ['isleft_23',['isLeft',['../class_arm_animation_controller.html#a8066094223647bae67d86463a5179674',1,'ArmAnimationController']]],
   ['isleftarmanimated_24',['isLeftArmAnimated',['../class_character_manager.html#add6ac97611e77c115f1e79b190fbd3f6',1,'CharacterManager']]],
   ['islefthandcontroller_25',['isLeftHandController',['../class_neuro_rehab_1_1_utility_1_1_x_r_controller_utility.html#abee7febdd46abd257fd0cb49f700dde6',1,'NeuroRehab::Utility::XRControllerUtility']]],
-  ['ismenushowing_26',['isMenuShowing',['../class_mini_menu_manager.html#a5b789e91576c6449d4f65867fbb48fe4',1,'MiniMenuManager.isMenuShowing()'],['../class_static_menu_manager.html#a042309396631153aa70d160676a345bc',1,'StaticMenuManager.isMenuShowing()']]],
-  ['ismenushowinglist_27',['isMenuShowingList',['../class_mini_menu_visibility_manager.html#a5d79e5fc74e9f73cc103b0d80c45a254',1,'MiniMenuVisibilityManager']]],
-  ['ispatient_28',['isPatient',['../class_character_manager.html#a61654587be1976175a27904a7f2a3bef',1,'CharacterManager']]],
-  ['isstickyparent_29',['isStickyParent',['../class_mini_menu_manager.html#a3d05be16d480ced2e91e7edc210ca580',1,'MiniMenuManager']]],
-  ['isstrafing_30',['isStrafing',['../class_network_avatar_walking_controller.html#ab6b26d3b2410ac26cca27786e9cf7d93',1,'NetworkAvatarWalkingController']]],
-  ['istrainingrunning_31',['isTrainingRunning',['../class_animation_server_manager.html#a955ba6b128ff2a72e2b84150be1d8946',1,'AnimationServerManager']]],
-  ['iswalking_32',['isWalking',['../class_network_avatar_walking_controller.html#a497a75e90fcf47dcbd34de6e19315a92',1,'NetworkAvatarWalkingController']]],
-  ['isxractive_33',['isXRActive',['../class_x_r_status_manager.html#a8ed1a365b73a1e57dd977c7939f7050f',1,'XRStatusManager.isXRActive()'],['../struct_structs_1_1_character_message.html#adb546178662a2404a47d867b63fb6824',1,'Structs.CharacterMessage.isXRActive()']]],
-  ['itemstoactivate_34',['itemsToActivate',['../class_character_manager.html#ac76e4677f139f27c22ec5e706ee15e4a',1,'CharacterManager']]]
+  ['islogenabled_26',['isLogEnabled',['../class_settings_manager.html#a180b606b20a81b0c92de5514bf3f1763',1,'SettingsManager']]],
+  ['ismenushowing_27',['isMenuShowing',['../class_mini_menu_manager.html#a5b789e91576c6449d4f65867fbb48fe4',1,'MiniMenuManager.isMenuShowing()'],['../class_static_menu_manager.html#a042309396631153aa70d160676a345bc',1,'StaticMenuManager.isMenuShowing()']]],
+  ['ismenushowinglist_28',['isMenuShowingList',['../class_mini_menu_visibility_manager.html#a5d79e5fc74e9f73cc103b0d80c45a254',1,'MiniMenuVisibilityManager']]],
+  ['ispatient_29',['isPatient',['../class_character_manager.html#a61654587be1976175a27904a7f2a3bef',1,'CharacterManager']]],
+  ['isstickyparent_30',['isStickyParent',['../class_mini_menu_manager.html#a3d05be16d480ced2e91e7edc210ca580',1,'MiniMenuManager']]],
+  ['isstrafing_31',['isStrafing',['../class_network_avatar_walking_controller.html#ab6b26d3b2410ac26cca27786e9cf7d93',1,'NetworkAvatarWalkingController']]],
+  ['istrainingrunning_32',['isTrainingRunning',['../class_animation_server_manager.html#a955ba6b128ff2a72e2b84150be1d8946',1,'AnimationServerManager']]],
+  ['iswalking_33',['isWalking',['../class_network_avatar_walking_controller.html#a497a75e90fcf47dcbd34de6e19315a92',1,'NetworkAvatarWalkingController']]],
+  ['isxractive_34',['isXRActive',['../class_x_r_status_manager.html#a8ed1a365b73a1e57dd977c7939f7050f',1,'XRStatusManager.isXRActive()'],['../struct_structs_1_1_character_message.html#adb546178662a2404a47d867b63fb6824',1,'Structs.CharacterMessage.isXRActive()']]],
+  ['itemstoactivate_35',['itemsToActivate',['../class_character_manager.html#ac76e4677f139f27c22ec5e706ee15e4a',1,'CharacterManager']]]
 ];

@@ -20,14 +20,14 @@ public class CountdownManager : MonoBehaviour {
 		float timePassed = 0f;
 		float lastTime = 0f;
 
-		textField.text = "" + (int) (duration - timePassed);
+		textField.text = $"{(int) (duration - lastTime)}";
 		while (timePassed < duration) {
 			countdownImage.fillAmount = 1f - (timePassed / duration);
 			timePassed += Time.deltaTime;
 
 			if (timePassed - lastTime >= 1f) {
 				lastTime++;
-				textField.text = "" + (int) (duration - lastTime);
+				textField.text = $"{(int) (duration - lastTime)}";
 			}
 
 			yield return null;

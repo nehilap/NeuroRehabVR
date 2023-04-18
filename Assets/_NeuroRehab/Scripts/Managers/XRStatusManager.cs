@@ -7,8 +7,10 @@ using Enums;
 using UnityEngine.XR.OpenXR;
 using Unity.XR.MockHMD;
 using UnityEngine.SceneManagement;
-using UnityEditor;
 
+/// <summary>
+/// Similar to SettingsManager, but specific for only XR settings. Used for turning XR On/Off. Attempts to use OpenXR first, and then starts MockHMD.
+/// </summary>
 public class XRStatusManager : MonoBehaviour {
 
 	private static XRStatusManager _instance;

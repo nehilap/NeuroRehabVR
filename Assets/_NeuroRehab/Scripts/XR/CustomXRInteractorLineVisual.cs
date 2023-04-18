@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
+/// <summary>
+/// Custom class that we use to make better Reticle, that is scaled depending on distance of your camera from reticle.
+/// </summary>
 public class CustomXRInteractorLineVisual : XRInteractorLineVisual {
 	[SerializeField] private bool scaleReticleWithDistance;
 	[SerializeField] private float scaleFactor = 10;
@@ -25,7 +28,7 @@ public class CustomXRInteractorLineVisual : XRInteractorLineVisual {
 	// https://forum.unity.com/threads/reticle-crosshair.374076/
 	// https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@2.2/api/UnityEngine.XR.Interaction.Toolkit.XRRayInteractor.html#UnityEngine_XR_Interaction_Toolkit_XRRayInteractor_TryGetCurrent3DRaycastHit_UnityEngine_RaycastHit__
 	/// <summary>
-	/// We have to implement our own scaling
+	/// We have to implement our own scaling for reticle
 	/// </summary>
 	private void Update() {
 		if (scaleReticleWithDistance && XRRayInteractor != null) {
@@ -33,7 +36,7 @@ public class CustomXRInteractorLineVisual : XRInteractorLineVisual {
 			int _positionInLine;
 			bool _isValidTarget;
 
-			bool isHit =  XRRayInteractor.TryGetHitInfo(out _position, out _normal, out _positionInLine, out _isValidTarget);
+			bool isHit = XRRayInteractor.TryGetHitInfo(out _position, out _normal, out _positionInLine, out _isValidTarget);
 			if (isHit) {
 				if (_camera != null) {
 					distance = Vector3.Distance(_camera.position, _position);

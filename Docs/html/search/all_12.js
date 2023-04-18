@@ -51,7 +51,7 @@ var searchData=
   ['rotationdiff_48',['rotationDiff',['../class_follow_object.html#a548e4c4ff8defd3ea1a8493fd68aeeeb',1,'FollowObject']]],
   ['rotationoffset_49',['rotationOffset',['../class_map_transforms.html#aaa57f3cae530dff671889dfc98304775',1,'MapTransforms']]],
   ['rpcinformclients_50',['RpcInformClients',['../class_message_manager.html#aebbaa8ec85bcf1120ff71ba86e472129',1,'MessageManager']]],
-  ['rpcspawncorrecttarget_51',['RpcSpawnCorrectTarget',['../class_network_character_manager.html#a86f008a4ab1ecb68fa258d35d5bf54c9',1,'NetworkCharacterManager']]],
+  ['rpcspawncorrecttarget_51',['RpcSpawnCorrectTarget',['../class_animation_settings_manager.html#a200617d83264e38f9d9328fbdd54e35c',1,'AnimationSettingsManager']]],
   ['rpcstartactualanimation_52',['RpcStartActualAnimation',['../class_animation_server_manager.html#a4c7e9db80c3bae8c2eddc9fe577443e4',1,'AnimationServerManager']]],
   ['rpcstartcountdown_53',['RpcStartCountdown',['../class_animation_server_manager.html#a022338e0433e3bdc2b7ca7366e3853fd',1,'AnimationServerManager']]],
   ['rpcstarttraining_54',['RpcStartTraining',['../class_animation_server_manager.html#a529635ea18cfb16590b08fed7574f19c',1,'AnimationServerManager']]],

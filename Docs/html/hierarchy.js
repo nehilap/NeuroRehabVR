@@ -3,6 +3,9 @@ var hierarchy =
     [ "NeuroRehab.Mappings.AnimationMapping", "class_neuro_rehab_1_1_mappings_1_1_animation_mapping.html", null ],
     [ "AudioSettings", "class_audio_settings.html", null ],
     [ "AvatarSettings", "class_avatar_settings.html", null ],
+    [ "CharacterControllerDriver", null, [
+      [ "CustomCharacterControllerDriver", "class_custom_character_controller_driver.html", null ]
+    ] ],
     [ "CustomAudioSource", "class_custom_audio_source.html", null ],
     [ "NeuroRehab.Mappings.CustomReadWriteFunctions", "class_neuro_rehab_1_1_mappings_1_1_custom_read_write_functions.html", null ],
     [ "DesktopInputControls.DesktopActions", "struct_desktop_input_controls_1_1_desktop_actions.html", null ],
@@ -56,6 +59,7 @@ var hierarchy =
       [ "HeadCollisionManager", "class_head_collision_manager.html", null ],
       [ "InputBindingText", "class_input_binding_text.html", null ],
       [ "LockMouseClickable", "class_lock_mouse_clickable.html", null ],
+      [ "MarkerNumber", "class_marker_number.html", null ],
       [ "MaskedObject", "class_masked_object.html", null ],
       [ "MiniMenuManager", "class_mini_menu_manager.html", null ],
       [ "MiniMenuVisibilityManager", "class_mini_menu_visibility_manager.html", null ],
@@ -74,7 +78,7 @@ var hierarchy =
       [ "SimpleObjectListManager", "class_simple_object_list_manager.html", null ],
       [ "SimpleRigManager", "class_simple_rig_manager.html", null ],
       [ "StaticMenuManager", "class_static_menu_manager.html", null ],
-      [ "StatusMessageManager", "class_status_message_manager.html", null ],
+      [ "StatusMessage", "class_status_message.html", null ],
       [ "StatusTextManager", "class_status_text_manager.html", null ],
       [ "TabGroup", "class_tab_group.html", null ],
       [ "TabGroupButton", "class_tab_group_button.html", null ],

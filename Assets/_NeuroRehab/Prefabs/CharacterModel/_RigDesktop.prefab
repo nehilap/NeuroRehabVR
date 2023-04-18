@@ -491,6 +491,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5308743743746186655}
     - target: {fileID: 7634075933599394607, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
+      propertyPath: head.positionOffset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634075933599394607, guid: 74deaf631dc629f45b36e2df29288be7, type: 3}
       propertyPath: leftHand.followVRTarget
       value: 0
       objectReference: {fileID: 0}
@@ -618,11 +622,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4287621437376485675, guid: 390a6df766e42374689a00f4a7c236b7, type: 3}
       propertyPath: scale.x
-      value: 350
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 4287621437376485675, guid: 390a6df766e42374689a00f4a7c236b7, type: 3}
       propertyPath: scale.y
-      value: 350
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 4287621437376485675, guid: 390a6df766e42374689a00f4a7c236b7, type: 3}
       propertyPath: menuNameToShow
@@ -630,11 +634,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4287621437376485675, guid: 390a6df766e42374689a00f4a7c236b7, type: 3}
       propertyPath: offsetByHeight
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4287621437376485675, guid: 390a6df766e42374689a00f4a7c236b7, type: 3}
       propertyPath: positionOffset.y
-      value: -425
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5932472227890620300, guid: 390a6df766e42374689a00f4a7c236b7, type: 3}
       propertyPath: m_Camera
@@ -701,6 +705,10 @@ PrefabInstance:
       propertyPath: headSpine.vrTarget
       value: 
       objectReference: {fileID: 5308743743746186655}
+    - target: {fileID: 1094835895749396996, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
+      propertyPath: head.positionOffset.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1094835895749396996, guid: 950e1948ca80622448e07a928401d8d5, type: 3}
       propertyPath: leftHand.followVRTarget
       value: 0

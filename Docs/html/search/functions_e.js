@@ -18,7 +18,7 @@ var searchData=
   ['reversedualriglerp_15',['reverseDualRigLerp',['../class_arm_animation_controller.html#a7f1fcfd3db701d2097367571bbae9cba',1,'ArmAnimationController']]],
   ['riglerp_16',['RigLerp',['../class_rig_lerp.html#ac4d844bcf67aedd8791159f63b48fe71',1,'RigLerp']]],
   ['rpcinformclients_17',['RpcInformClients',['../class_message_manager.html#aebbaa8ec85bcf1120ff71ba86e472129',1,'MessageManager']]],
-  ['rpcspawncorrecttarget_18',['RpcSpawnCorrectTarget',['../class_network_character_manager.html#a86f008a4ab1ecb68fa258d35d5bf54c9',1,'NetworkCharacterManager']]],
+  ['rpcspawncorrecttarget_18',['RpcSpawnCorrectTarget',['../class_animation_settings_manager.html#a200617d83264e38f9d9328fbdd54e35c',1,'AnimationSettingsManager']]],
   ['rpcstartactualanimation_19',['RpcStartActualAnimation',['../class_animation_server_manager.html#a4c7e9db80c3bae8c2eddc9fe577443e4',1,'AnimationServerManager']]],
   ['rpcstartcountdown_20',['RpcStartCountdown',['../class_animation_server_manager.html#a022338e0433e3bdc2b7ca7366e3853fd',1,'AnimationServerManager']]],
   ['rpcstarttraining_21',['RpcStartTraining',['../class_animation_server_manager.html#a529635ea18cfb16590b08fed7574f19c',1,'AnimationServerManager']]],

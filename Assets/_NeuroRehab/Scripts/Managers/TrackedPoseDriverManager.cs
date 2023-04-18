@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 
+/// <summary>
+/// Manager used to swap On/Off TrackedPoseDriver. Not used anymore.
+/// </summary>
 public class TrackedPoseDriverManager : MonoBehaviour {
 	public CharacterManager characterManager;
 	void Start() {

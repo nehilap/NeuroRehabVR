@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+/// <summary>
+/// Components used to change meshes and armature to fit current object.
+/// </summary>
 public class AvatarSetup : MonoBehaviour {
 
 	[SerializeField]

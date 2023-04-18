@@ -1,5 +1,8 @@
 using UnityEngine.Animations.Rigging;
 
+/// <summary>
+/// Helper class for lerping Rigs. We can use this when we want to lerp multiple rigs at the same time.
+/// </summary>
 public class RigLerp {
 	public Rig rig;
 	public float startValue;

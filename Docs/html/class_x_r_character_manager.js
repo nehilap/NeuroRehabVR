@@ -12,6 +12,7 @@ var class_x_r_character_manager =
     [ "teleportCharacter", "class_x_r_character_manager.html#ac118d3178e65504fb18e8677a893480f", null ],
     [ "characterController", "class_x_r_character_manager.html#a6b0c2f613dd1eb8aac6c9543049036ce", null ],
     [ "controllerType", "class_x_r_character_manager.html#a5ee1a7bd6823e69b5b8d262c2979fd5e", null ],
+    [ "headCollider", "class_x_r_character_manager.html#a6add0707be00e62d123782dbef97810e", null ],
     [ "hmdType", "class_x_r_character_manager.html#a1497c51ec4484ed741d2e6a51620ee98", null ],
     [ "inputActionManager", "class_x_r_character_manager.html#a95956c48b43ca4abfbd193794cfdaba6", null ],
     [ "XRControllers", "class_x_r_character_manager.html#a36cd03968024292c7654a508c38412b3", null ],

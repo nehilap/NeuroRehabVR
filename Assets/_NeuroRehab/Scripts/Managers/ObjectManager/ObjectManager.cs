@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Custom implementation so that we don't have to use 'GameObject.Find("")', instead we use custom Dictionary. Objects can self register to this list using custom name.
+/// </summary>
 public class ObjectManager : MonoBehaviour {
 
 	private static ObjectManager _instance;

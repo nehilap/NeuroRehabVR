@@ -1,5 +1,10 @@
 \hypertarget{class_rest_request_handler}{}\doxysection{Rest\+Request\+Handler Class Reference}
 \label{class_rest_request_handler}\index{RestRequestHandler@{RestRequestHandler}}
+
+
+Contains Rest Requests Handler methods.  
+
+
 Inheritance diagram for Rest\+Request\+Handler\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,16 +14,68 @@ Inheritance diagram for Rest\+Request\+Handler\+:\begin{figure}[H]
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{class_rest_request_handler_a2b7888d667337bcdc35a4867eda216e8}{Post\+Raw\+String\+Endpoint}} (Http\+Listener\+Context context)
+void \mbox{\hyperlink{class_rest_request_handler_a184489af9147c6322429a63741d85356}{Post\+Training\+Move\+Endpoint}} (Http\+Listener\+Context context)
+\item 
+void \mbox{\hyperlink{class_rest_request_handler_a61575729c2aecacbcaf474e933eb2241}{Post\+Move\+Endpoint}} (Http\+Listener\+Context context)
+\item 
+void \mbox{\hyperlink{class_rest_request_handler_aa26c258a88e3a48e0faae95bb4bbe590}{Post\+Resting\+Endpoint}} (Http\+Listener\+Context context)
+\item 
+void \mbox{\hyperlink{class_rest_request_handler_ad22d39c85af38399daca35704aba2945}{Post\+Spawn\+Endpoint}} (Http\+Listener\+Context context)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_rest_request_handler_af6f30dd667442f45085a4a158297502a}{Start}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_animation_settings_manager}{Animation\+Settings\+Manager}} \mbox{\hyperlink{class_rest_request_handler_a359d4e12f12bc6d6471c3e230c2e8850}{anim\+Settings\+Manager}}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Contains Rest Requests Handler methods. 
+
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_rest_request_handler_a2b7888d667337bcdc35a4867eda216e8}\label{class_rest_request_handler_a2b7888d667337bcdc35a4867eda216e8}} 
-\index{RestRequestHandler@{RestRequestHandler}!PostRawStringEndpoint@{PostRawStringEndpoint}}
-\index{PostRawStringEndpoint@{PostRawStringEndpoint}!RestRequestHandler@{RestRequestHandler}}
-\doxysubsubsection{\texorpdfstring{PostRawStringEndpoint()}{PostRawStringEndpoint()}}
-{\footnotesize\ttfamily void Rest\+Request\+Handler.\+Post\+Raw\+String\+Endpoint (\begin{DoxyParamCaption}\item[{Http\+Listener\+Context}]{context }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{class_rest_request_handler_a61575729c2aecacbcaf474e933eb2241}\label{class_rest_request_handler_a61575729c2aecacbcaf474e933eb2241}} 
+\index{RestRequestHandler@{RestRequestHandler}!PostMoveEndpoint@{PostMoveEndpoint}}
+\index{PostMoveEndpoint@{PostMoveEndpoint}!RestRequestHandler@{RestRequestHandler}}
+\doxysubsubsection{\texorpdfstring{PostMoveEndpoint()}{PostMoveEndpoint()}}
+{\footnotesize\ttfamily void Rest\+Request\+Handler.\+Post\+Move\+Endpoint (\begin{DoxyParamCaption}\item[{Http\+Listener\+Context}]{context }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_rest_request_handler_aa26c258a88e3a48e0faae95bb4bbe590}\label{class_rest_request_handler_aa26c258a88e3a48e0faae95bb4bbe590}} 
+\index{RestRequestHandler@{RestRequestHandler}!PostRestingEndpoint@{PostRestingEndpoint}}
+\index{PostRestingEndpoint@{PostRestingEndpoint}!RestRequestHandler@{RestRequestHandler}}
+\doxysubsubsection{\texorpdfstring{PostRestingEndpoint()}{PostRestingEndpoint()}}
+{\footnotesize\ttfamily void Rest\+Request\+Handler.\+Post\+Resting\+Endpoint (\begin{DoxyParamCaption}\item[{Http\+Listener\+Context}]{context }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_rest_request_handler_ad22d39c85af38399daca35704aba2945}\label{class_rest_request_handler_ad22d39c85af38399daca35704aba2945}} 
+\index{RestRequestHandler@{RestRequestHandler}!PostSpawnEndpoint@{PostSpawnEndpoint}}
+\index{PostSpawnEndpoint@{PostSpawnEndpoint}!RestRequestHandler@{RestRequestHandler}}
+\doxysubsubsection{\texorpdfstring{PostSpawnEndpoint()}{PostSpawnEndpoint()}}
+{\footnotesize\ttfamily void Rest\+Request\+Handler.\+Post\+Spawn\+Endpoint (\begin{DoxyParamCaption}\item[{Http\+Listener\+Context}]{context }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_rest_request_handler_a184489af9147c6322429a63741d85356}\label{class_rest_request_handler_a184489af9147c6322429a63741d85356}} 
+\index{RestRequestHandler@{RestRequestHandler}!PostTrainingMoveEndpoint@{PostTrainingMoveEndpoint}}
+\index{PostTrainingMoveEndpoint@{PostTrainingMoveEndpoint}!RestRequestHandler@{RestRequestHandler}}
+\doxysubsubsection{\texorpdfstring{PostTrainingMoveEndpoint()}{PostTrainingMoveEndpoint()}}
+{\footnotesize\ttfamily void Rest\+Request\+Handler.\+Post\+Training\+Move\+Endpoint (\begin{DoxyParamCaption}\item[{Http\+Listener\+Context}]{context }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_rest_request_handler_af6f30dd667442f45085a4a158297502a}\label{class_rest_request_handler_af6f30dd667442f45085a4a158297502a}} 
+\index{RestRequestHandler@{RestRequestHandler}!Start@{Start}}
+\index{Start@{Start}!RestRequestHandler@{RestRequestHandler}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void Rest\+Request\+Handler.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_rest_request_handler_a359d4e12f12bc6d6471c3e230c2e8850}\label{class_rest_request_handler_a359d4e12f12bc6d6471c3e230c2e8850}} 
+\index{RestRequestHandler@{RestRequestHandler}!animSettingsManager@{animSettingsManager}}
+\index{animSettingsManager@{animSettingsManager}!RestRequestHandler@{RestRequestHandler}}
+\doxysubsubsection{\texorpdfstring{animSettingsManager}{animSettingsManager}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_animation_settings_manager}{Animation\+Settings\+Manager}} Rest\+Request\+Handler.\+anim\+Settings\+Manager\hspace{0.3cm}{\ttfamily [private]}}
 
 
 

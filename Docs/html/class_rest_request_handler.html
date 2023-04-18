@@ -91,10 +91,15 @@ $(document).ready(function(){initNavTree('class_rest_request_handler.html',''); 
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_rest_request_handler-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">RestRequestHandler Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Contains Rest Requests Handler methods.  
+ <a href="class_rest_request_handler.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for RestRequestHandler:</div>
 <div class="dyncontent">
@@ -104,24 +109,144 @@ Inheritance diagram for RestRequestHandler:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2b7888d667337bcdc35a4867eda216e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rest_request_handler.html#a2b7888d667337bcdc35a4867eda216e8">PostRawStringEndpoint</a> (HttpListenerContext context)</td></tr>
-<tr class="separator:a2b7888d667337bcdc35a4867eda216e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a184489af9147c6322429a63741d85356"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rest_request_handler.html#a184489af9147c6322429a63741d85356">PostTrainingMoveEndpoint</a> (HttpListenerContext context)</td></tr>
+<tr class="separator:a184489af9147c6322429a63741d85356"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61575729c2aecacbcaf474e933eb2241"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rest_request_handler.html#a61575729c2aecacbcaf474e933eb2241">PostMoveEndpoint</a> (HttpListenerContext context)</td></tr>
+<tr class="separator:a61575729c2aecacbcaf474e933eb2241"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa26c258a88e3a48e0faae95bb4bbe590"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rest_request_handler.html#aa26c258a88e3a48e0faae95bb4bbe590">PostRestingEndpoint</a> (HttpListenerContext context)</td></tr>
+<tr class="separator:aa26c258a88e3a48e0faae95bb4bbe590"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad22d39c85af38399daca35704aba2945"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rest_request_handler.html#ad22d39c85af38399daca35704aba2945">PostSpawnEndpoint</a> (HttpListenerContext context)</td></tr>
+<tr class="separator:ad22d39c85af38399daca35704aba2945"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:af6f30dd667442f45085a4a158297502a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rest_request_handler.html#af6f30dd667442f45085a4a158297502a">Start</a> ()</td></tr>
+<tr class="separator:af6f30dd667442f45085a4a158297502a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a359d4e12f12bc6d6471c3e230c2e8850"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_animation_settings_manager.html">AnimationSettingsManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rest_request_handler.html#a359d4e12f12bc6d6471c3e230c2e8850">animSettingsManager</a></td></tr>
+<tr class="separator:a359d4e12f12bc6d6471c3e230c2e8850"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a2b7888d667337bcdc35a4867eda216e8" name="a2b7888d667337bcdc35a4867eda216e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b7888d667337bcdc35a4867eda216e8">&#9670;&#160;</a></span>PostRawStringEndpoint()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Contains Rest Requests Handler methods. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a61575729c2aecacbcaf474e933eb2241" name="a61575729c2aecacbcaf474e933eb2241"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61575729c2aecacbcaf474e933eb2241">&#9670;&#160;</a></span>PostMoveEndpoint()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void RestRequestHandler.PostRawStringEndpoint </td>
+          <td class="memname">void RestRequestHandler.PostMoveEndpoint </td>
           <td>(</td>
           <td class="paramtype">HttpListenerContext&#160;</td>
           <td class="paramname"><em>context</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa26c258a88e3a48e0faae95bb4bbe590" name="aa26c258a88e3a48e0faae95bb4bbe590"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa26c258a88e3a48e0faae95bb4bbe590">&#9670;&#160;</a></span>PostRestingEndpoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RestRequestHandler.PostRestingEndpoint </td>
+          <td>(</td>
+          <td class="paramtype">HttpListenerContext&#160;</td>
+          <td class="paramname"><em>context</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad22d39c85af38399daca35704aba2945" name="ad22d39c85af38399daca35704aba2945"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad22d39c85af38399daca35704aba2945">&#9670;&#160;</a></span>PostSpawnEndpoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RestRequestHandler.PostSpawnEndpoint </td>
+          <td>(</td>
+          <td class="paramtype">HttpListenerContext&#160;</td>
+          <td class="paramname"><em>context</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a184489af9147c6322429a63741d85356" name="a184489af9147c6322429a63741d85356"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a184489af9147c6322429a63741d85356">&#9670;&#160;</a></span>PostTrainingMoveEndpoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RestRequestHandler.PostTrainingMoveEndpoint </td>
+          <td>(</td>
+          <td class="paramtype">HttpListenerContext&#160;</td>
+          <td class="paramname"><em>context</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af6f30dd667442f45085a4a158297502a" name="af6f30dd667442f45085a4a158297502a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6f30dd667442f45085a4a158297502a">&#9670;&#160;</a></span>Start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RestRequestHandler.Start </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a359d4e12f12bc6d6471c3e230c2e8850" name="a359d4e12f12bc6d6471c3e230c2e8850"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a359d4e12f12bc6d6471c3e230c2e8850">&#9670;&#160;</a></span>animSettingsManager</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_animation_settings_manager.html">AnimationSettingsManager</a> RestRequestHandler.animSettingsManager</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

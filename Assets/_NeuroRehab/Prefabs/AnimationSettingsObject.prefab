@@ -55,6 +55,7 @@ MonoBehaviour:
   moveDuration: 1.5
   repetitions: 5
   animType: 3
+  prevAnimType: -1
   armMoveTextValue: {fileID: 0}
   armMoveSlider: {fileID: 0}
   handMoveTextValue: {fileID: 0}
@@ -72,6 +73,18 @@ MonoBehaviour:
   - {fileID: 8717787728135219662, guid: 8ea946d07ad592c4eaa66162d6e3293a, type: 3}
   markerParent: {fileID: 0}
   spawnedMarkers: []
+  spawnArea: {fileID: 0}
+  targetPrefabs:
+  - {fileID: 4585951089911290167, guid: 187b5e0706a658c41807f396198c9070, type: 3}
+  - {fileID: 2118952973532061121, guid: 83818a48cdb0cc24b9dadcdf5207209b, type: 3}
+  - {fileID: 1241488487069944307, guid: 40fe8f4a9268b7a4ebe31233411b94ed, type: 3}
+  - {fileID: 1241488487069944307, guid: 5145697b12375a144ae28480da9c0102, type: 3}
+  - {fileID: 1241488487069944307, guid: 2b1054fd8afd78b4f980e73bcf87e511, type: 3}
+  - {fileID: 1241488487069944307, guid: 6477a5d14e4c74a45af9a46af6181bdc, type: 3}
+  - {fileID: 1241488487069944307, guid: 60e5cf70978117c48abdabd14b958b8b, type: 3}
+  - {fileID: 1241488487069944307, guid: d7a3c662cec7e6e489fd5832e9f712d9, type: 3}
+  - {fileID: 7931688326429741820, guid: 7b67e2b558688d347b3ed4e6326978e5, type: 3}
+  - {fileID: 7931688326429741820, guid: 8fe8e02833c01e045b0b18417050b41f, type: 3}
 --- !u!114 &7884393307366862121
 MonoBehaviour:
   m_ObjectHideFlags: 0

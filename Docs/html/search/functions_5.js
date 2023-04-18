@@ -12,6 +12,6 @@ var searchData=
   ['getmenustatus_9',['getMenuStatus',['../class_mini_menu_visibility_manager.html#a298ee107b6895715932bf92f9b6d041e',1,'MiniMenuVisibilityManager']]],
   ['getobjectlist_10',['getObjectList',['../class_object_manager.html#a78aaa0b5a7d443cac5f606cd5284e861',1,'ObjectManager']]],
   ['getobjectsbyname_11',['getObjectsByName',['../class_object_manager.html#aa3e208549f8516671471b61aa4bc9107',1,'ObjectManager']]],
-  ['getposrotfromcurrentobject_12',['getPosRotFromCurrentObject',['../class_network_character_manager.html#afd0bd6669b184d3fc60b6a56c2aa2561',1,'NetworkCharacterManager']]],
+  ['getposrotfromcurrentobject_12',['getPosRotFromCurrentObject',['../class_animation_settings_manager.html#a0520061ac867c92caed1efdce112d7dd',1,'AnimationSettingsManager']]],
   ['gettargetmappingbytype_13',['getTargetMappingByType',['../class_neuro_rehab_1_1_mappings_1_1_animation_mapping.html#a3953b99d7de8b6087e325f321ce9e08f',1,'NeuroRehab::Mappings::AnimationMapping']]]
 ];

@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuAction: {fileID: -7804725512957425204, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   cameraTransform: {fileID: 0}
-  menuOffset: 1.25
+  menuOffset: 1
   isMenuShowing: 0
 --- !u!114 &3483727520419222571
 MonoBehaviour:

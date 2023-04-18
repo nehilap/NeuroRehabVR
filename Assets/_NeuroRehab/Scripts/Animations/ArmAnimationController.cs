@@ -7,6 +7,9 @@ using Enums;
 using NeuroRehab.Mappings;
 using NeuroRehab.Utility;
 
+/// <summary>
+/// Main Patient Arm Animation component. Contains methods for animating arms, switching active arms, lerps, etc.
+/// </summary>
 public class ArmAnimationController : MonoBehaviour {
 	private Enums.AnimationState animState = Enums.AnimationState.Stopped;
 	// private AnimationPart animPart;
@@ -439,7 +442,7 @@ public class ArmAnimationController : MonoBehaviour {
 
 	public bool startAnimation(bool isFakeAnimation) {
 		if(animSettingsManager.animType == AnimationType.Off) {
-			Debug.LogError("No animation type specified");
+			Debug.LogWarning("No animation type specified");
 			return false;
 		}
 		if(animState == Enums.AnimationState.Playing) {
@@ -467,7 +470,7 @@ public class ArmAnimationController : MonoBehaviour {
 		// Initial starting position HAS to be in arm range
 		if (!isTargetInRange(currentAnimationSetup[0].position)) {
 			float targetDistance = Vector3.Distance(currentAnimationSetup[0].position, armRangeMesh.transform.position);
-			string errorMessage = "Arm cannot grab object, too far away: '" + targetDistance + "m > " + armLength + "m'; cancelling training!";
+			string errorMessage = "Arm cannot grab object, too far away: '" + targetDistance + "m > " + armLength + "m'. Cancelling training!";
 			Debug.LogWarning(errorMessage);
 			MessageManager.Instance.showMessage(errorMessage, MessageType.WARNING);
 			return false;

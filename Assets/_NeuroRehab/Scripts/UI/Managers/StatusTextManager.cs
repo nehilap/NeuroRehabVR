@@ -2,6 +2,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.XR;
 
+/// <summary>
+/// Component used for status text message - message containing information about device used, XR status etc
+/// </summary>
 public class StatusTextManager : MonoBehaviour {
 
 	private static StatusTextManager _instance;
@@ -20,8 +23,8 @@ public class StatusTextManager : MonoBehaviour {
 
 	public void InitStatusText() {
 		if(!this.gameObject.scene.isLoaded) return;
-		
-		GetComponent<TMP_Text>().text = "Platform: '" + Application.platform.ToString() 
+
+		GetComponent<TMP_Text>().text = "Platform: '" + Application.platform.ToString()
 			+ "', HMD type: '" + XRStatusManager.Instance.hmdType.ToString()
 			+ "', Device: '" + XRSettings.loadedDeviceName + "'";
 	}

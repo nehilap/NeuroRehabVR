@@ -1,9 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Component that handles Drag and Drop on Desktop.
+/// </summary>
 public class DragAndDrop : MonoBehaviour {
 	[SerializeField] private InputActionReference mouseClick;
 	[SerializeField] private MiniMenuManager miniMenuManager;

@@ -1,10 +1,10 @@
 var searchData=
 [
   ['fadeable_0',['Fadeable',['../class_fadeable.html',1,'']]],
-  ['fadeable_1',['fadeable',['../class_countdown_manager.html#a3e3eb0056659bfd0a2165cf330f717a7',1,'CountdownManager.fadeable()'],['../class_status_message_manager.html#ac1126d60da4bf8bdf961cac57dd4187b',1,'StatusMessageManager.fadeable()']]],
+  ['fadeable_1',['fadeable',['../class_countdown_manager.html#a3e3eb0056659bfd0a2165cf330f717a7',1,'CountdownManager.fadeable()'],['../class_status_message.html#adb94b04290874b7eac375bdd3d54a29a',1,'StatusMessage.fadeable()']]],
   ['fadeable_2ecs_2',['Fadeable.cs',['../_fadeable_8cs.html',1,'']]],
   ['fadealpha_3',['fadeAlpha',['../class_fadeable.html#a60b3ffaf7e20ac1ee78674b7d7999f8b',1,'Fadeable']]],
-  ['fadeduration_4',['fadeDuration',['../class_status_message_manager.html#a7dc01544fc17e942e0c503d6562f12fd',1,'StatusMessageManager']]],
+  ['fadeduration_4',['fadeDuration',['../class_status_message.html#a705b11c2bd5a37b3ea007c66f2db676c',1,'StatusMessage']]],
   ['fakearmobjects_5',['fakeArmObjects',['../class_arm_animation_controller.html#aea918b1f66ec30c59bdd02b6bb50d60c',1,'ArmAnimationController']]],
   ['femaleanimator_6',['femaleAnimator',['../class_network_avatar_walking_controller.html#abba50e1a09f28f11dcb2b96cf53be698',1,'NetworkAvatarWalkingController']]],
   ['findaction_7',['FindAction',['../class_desktop_input_controls.html#ae02a992dcaf0932a0d63dd276fcc97ec',1,'DesktopInputControls']]],

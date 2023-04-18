@@ -20,7 +20,7 @@ var searchData=
   ['menunametoshow_17',['menuNameToShow',['../class_mini_menu_manager.html#a96874fe6313d6ba2841ae21cabf08c09',1,'MiniMenuManager']]],
   ['menuoffset_18',['menuOffset',['../class_static_menu_manager.html#a84bcf45a4739a901ec440e31b9fbf7c7',1,'StaticMenuManager']]],
   ['menutoshow_19',['menuToShow',['../class_mini_menu_manager.html#a8a32eefcbeee90fa357faeba8db9fb48',1,'MiniMenuManager']]],
-  ['messageduration_20',['messageDuration',['../class_status_message_manager.html#a08f9aca77340831bf60d726966c39732',1,'StatusMessageManager']]],
+  ['messageduration_20',['messageDuration',['../class_status_message.html#a773277a8e2fbf5a2423b48ad2309fc62',1,'StatusMessage']]],
   ['middlechainik_5ftarget_5fhelper_21',['MiddleChainIK_target_helper',['../class_neuro_rehab_1_1_utility_1_1_target_utility.html#a3fec05eb8601c47483b1eaa409174c6d',1,'NeuroRehab::Utility::TargetUtility']]],
   ['middlemapping_22',['middleMapping',['../class_neuro_rehab_1_1_mappings_1_1_target_mapping_group.html#ad93a72c0fc4f8586197bfb66601587d7',1,'NeuroRehab::Mappings::TargetMappingGroup']]],
   ['middletarget_23',['middleTarget',['../class_targets_helper.html#a83f206661bf0b377a4def5a172fe34d5',1,'TargetsHelper']]],

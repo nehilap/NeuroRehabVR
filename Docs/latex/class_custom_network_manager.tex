@@ -1,5 +1,10 @@
 \hypertarget{class_custom_network_manager}{}\doxysection{Custom\+Network\+Manager Class Reference}
 \label{class_custom_network_manager}\index{CustomNetworkManager@{CustomNetworkManager}}
+
+
+Class overriding default Network\+Manager from Mirror. Used for spawning custom character models and when character disconnects.  
+
+
 Inheritance diagram for Custom\+Network\+Manager\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -10,7 +15,7 @@ Inheritance diagram for Custom\+Network\+Manager\+:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 override void \mbox{\hyperlink{class_custom_network_manager_abe9b7bd2a559f77077de76dc6fbe10c6}{Start}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em In case you still need to use \mbox{\hyperlink{class_custom_network_manager_abe9b7bd2a559f77077de76dc6fbe10c6}{Start()}}, don\textquotesingle{}t forget to call \textquotesingle{}base.\+Start();\textquotesingle{}. The reason is because Network\+Manager (parent class) already starts server if this is server build. \end{DoxyCompactList}\item 
 override void \mbox{\hyperlink{class_custom_network_manager_af75fa730e3bb03d286f82f7600d70b1d}{On\+Start\+Server}} ()
 \item 
 override void \mbox{\hyperlink{class_custom_network_manager_aaea77f6cd00492d8b52b6224d2b1f7a0}{On\+Client\+Connect}} ()
@@ -21,7 +26,7 @@ override void \mbox{\hyperlink{class_custom_network_manager_aee5e7964dfbf1c3c0dc
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{class_custom_network_manager_a6b81745b79f67b65bace776d26945249}{On\+Create\+Character}} (Network\+Connection\+To\+Client conn, \mbox{\hyperlink{struct_structs_1_1_character_message}{Character\+Message}} message)
-\begin{DoxyCompactList}\small\item\em Custom Character spawner. We use Character\+Message to determine what data to use. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Custom Character spawner. We use Character\+Message to determine what data to use. Refer to \href{https://mirror-networking.gitbook.io/docs/guides/gameobjects/custom-character-spawning}{\texttt{ https\+://mirror-\/networking.\+gitbook.\+io/docs/guides/gameobjects/custom-\/character-\/spawning}} for more information. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -30,6 +35,9 @@ Game\+Object \mbox{\hyperlink{class_custom_network_manager_a594df5d47dea0d1e6bd0
 Game\+Object \mbox{\hyperlink{class_custom_network_manager_a715a73b98707ef011a4d646e8bb31518}{online\+Desktop\+Prefab}}
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Class overriding default Network\+Manager from Mirror. Used for spawning custom character models and when character disconnects. 
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_custom_network_manager_aaea77f6cd00492d8b52b6224d2b1f7a0}\label{class_custom_network_manager_aaea77f6cd00492d8b52b6224d2b1f7a0}} 
@@ -46,7 +54,7 @@ Game\+Object \mbox{\hyperlink{class_custom_network_manager_a715a73b98707ef011a4d
 
 
 
-Custom Character spawner. We use Character\+Message to determine what data to use. 
+Custom Character spawner. We use Character\+Message to determine what data to use. Refer to \href{https://mirror-networking.gitbook.io/docs/guides/gameobjects/custom-character-spawning}{\texttt{ https\+://mirror-\/networking.\+gitbook.\+io/docs/guides/gameobjects/custom-\/character-\/spawning}} for more information. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -81,6 +89,10 @@ When client disconnects, we clear all client authorities besides Avatar, because
 \index{Start@{Start}!CustomNetworkManager@{CustomNetworkManager}}
 \doxysubsubsection{\texorpdfstring{Start()}{Start()}}
 {\footnotesize\ttfamily override void Custom\+Network\+Manager.\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+In case you still need to use \mbox{\hyperlink{class_custom_network_manager_abe9b7bd2a559f77077de76dc6fbe10c6}{Start()}}, don\textquotesingle{}t forget to call \textquotesingle{}base.\+Start();\textquotesingle{}. The reason is because Network\+Manager (parent class) already starts server if this is server build. 
 
 
 

@@ -4,6 +4,9 @@ using UnityEngine;
 [System.Serializable]
 public class TargetsHelper {
 
+	/// <summary>
+	/// Component containing targets for out Arm/Hand objects. Targets in this case are objects used by 'AnimationRigging' package.
+	/// </summary>
 	[Header("Arm rest targets")]
 	public GameObject armRestTarget;
 

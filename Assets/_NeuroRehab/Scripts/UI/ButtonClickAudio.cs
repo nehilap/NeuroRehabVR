@@ -2,9 +2,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Class that can be used to add Click Audio to elements when interacting with them.
+/// </summary>
 public class ButtonClickAudio : MonoBehaviour {
 
-	[SerializeField] private float buttonAudioRate = 0.3f;
+	private float buttonAudioRate = 0.2f;
 	private AudioSourceManager audioSourceManager;
 
 	private float audioPlayed = 0f;

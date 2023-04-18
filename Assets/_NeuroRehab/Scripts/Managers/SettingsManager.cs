@@ -32,6 +32,9 @@ public class GeneralSettings {
 	public string fpsCounterFilePath;
 }
 
+/// <summary>
+/// Contains various settings - RoleSettings, AvatarSettings, AudioSettings, GeneralSettings
+/// </summary>
 public class SettingsManager : MonoBehaviour {
 
 	private static SettingsManager _instance;
@@ -45,6 +48,7 @@ public class SettingsManager : MonoBehaviour {
 	[SerializeField] public AudioSettings audioSettings = new AudioSettings();
 	[SerializeField] public GeneralSettings generalSettings = new GeneralSettings();
 	[SerializeField] public RoleSettings roleSettings = new RoleSettings();
+	[SerializeField] public bool isLogEnabled = true;
 
 	void Awake() {
 		{
@@ -58,6 +62,10 @@ public class SettingsManager : MonoBehaviour {
 		}
 
 		generalSettings.fpsCounterFilePath = Application.persistentDataPath + "/fps.txt";
+
+		// fast solution, would be better to rework it to use custom logger, so that we can control better what is / isn't logged
+		// https://gamedevbeginner.com/how-to-use-debug-log-in-unity-without-affecting-performance/
+		Debug.unityLogger.logEnabled = isLogEnabled;
 	}
 
 	void Start() {

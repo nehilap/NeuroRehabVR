@@ -22,6 +22,7 @@ public class TabGroup : MonoBehaviour {
 			if (tabButton.tabMenu.TryGetComponent<Canvas>(out Canvas canvas) && tabButton.tabMenu.TryGetComponent<CanvasGroup>(out CanvasGroup canvasGroup) ) {
 				canvas.enabled = false;
 				canvasGroup.interactable = false;
+				canvasGroup.blocksRaycasts = false;
 			} else {
 				tabButton.tabMenu.SetActive(false);
 			}
@@ -53,6 +54,7 @@ public class TabGroup : MonoBehaviour {
 				if (tabObjects[i].TryGetComponent<Canvas>(out Canvas canvas) && tabObjects[i].TryGetComponent<CanvasGroup>(out CanvasGroup canvasGroup) ) {
 					canvas.enabled = true;
 					canvasGroup.interactable = true;
+					canvasGroup.blocksRaycasts = true;
 				} else {
 					tabObjects[i].SetActive(true);
 				}
@@ -60,6 +62,7 @@ public class TabGroup : MonoBehaviour {
 				if (tabObjects[i].TryGetComponent<Canvas>(out Canvas canvas) && tabObjects[i].TryGetComponent<CanvasGroup>(out CanvasGroup canvasGroup) ) {
 					canvas.enabled = false;
 					canvasGroup.interactable = false;
+					canvasGroup.blocksRaycasts = false;
 				} else {
 					tabObjects[i].SetActive(false);
 				}

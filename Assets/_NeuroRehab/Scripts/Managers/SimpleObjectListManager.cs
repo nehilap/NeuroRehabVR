@@ -7,7 +7,6 @@ public class SimpleObjectListMember {
 	public GameObject gameObject;
 }
 
-public class SimpleObjectListManager : MonoBehaviour
-{
+public class SimpleObjectListManager : MonoBehaviour {
 	[NonReorderable] [SerializeField] public List<SimpleObjectListMember> objectList = new List<SimpleObjectListMember>();
 }

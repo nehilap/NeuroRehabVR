@@ -1,0 +1,53 @@
+\hypertarget{class_custom_character_controller_driver}{}\doxysection{Custom\+Character\+Controller\+Driver Class Reference}
+\label{class_custom_character_controller_driver}\index{CustomCharacterControllerDriver@{CustomCharacterControllerDriver}}
+
+
+Custom character controller, that allows us to offset character controller, because default implementation does not allow that. We use head\+Collider, which is offset based on camera rotation. We use this workaround, since you can move camera and xr\+Origin independently.  
+
+
+Inheritance diagram for Custom\+Character\+Controller\+Driver\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_custom_character_controller_driver}
+\end{center}
+\end{figure}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \mbox{\hyperlink{class_custom_character_controller_driver_a58548595e8edfd5734e283f36426b78d}{Update\+Character\+Controller}} ()
+\begin{DoxyCompactList}\small\item\em Used to correctly move center of character controller, based on camera rotation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Transform \mbox{\hyperlink{class_custom_character_controller_driver_a6566900e689a374c6e0237033e407a95}{head\+Collider}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Custom character controller, that allows us to offset character controller, because default implementation does not allow that. We use head\+Collider, which is offset based on camera rotation. We use this workaround, since you can move camera and xr\+Origin independently. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_custom_character_controller_driver_a58548595e8edfd5734e283f36426b78d}\label{class_custom_character_controller_driver_a58548595e8edfd5734e283f36426b78d}} 
+\index{CustomCharacterControllerDriver@{CustomCharacterControllerDriver}!UpdateCharacterController@{UpdateCharacterController}}
+\index{UpdateCharacterController@{UpdateCharacterController}!CustomCharacterControllerDriver@{CustomCharacterControllerDriver}}
+\doxysubsubsection{\texorpdfstring{UpdateCharacterController()}{UpdateCharacterController()}}
+{\footnotesize\ttfamily override void Custom\+Character\+Controller\+Driver.\+Update\+Character\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Used to correctly move center of character controller, based on camera rotation. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_custom_character_controller_driver_a6566900e689a374c6e0237033e407a95}\label{class_custom_character_controller_driver_a6566900e689a374c6e0237033e407a95}} 
+\index{CustomCharacterControllerDriver@{CustomCharacterControllerDriver}!headCollider@{headCollider}}
+\index{headCollider@{headCollider}!CustomCharacterControllerDriver@{CustomCharacterControllerDriver}}
+\doxysubsubsection{\texorpdfstring{headCollider}{headCollider}}
+{\footnotesize\ttfamily Transform Custom\+Character\+Controller\+Driver.\+head\+Collider\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Unity/\+Unity\+Projects/\+Masters\+Thesis/\+Assets/\+\_\+\+Neuro\+Rehab/\+Scripts/\+XR/\mbox{\hyperlink{_custom_character_controller_driver_8cs}{Custom\+Character\+Controller\+Driver.\+cs}}\end{DoxyCompactItemize}

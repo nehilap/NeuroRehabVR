@@ -8,6 +8,9 @@ using Enums;
 using Unity.XR.CoreUtils;
 using NeuroRehab.Utility;
 
+/// <summary>
+/// Custom implementation of 'CharacterManager' for XR client. Used both in traditional and simulated XR/VR.
+/// </summary>
 public class XRCharacterManager : CharacterManager {
 
 	//[Header("Run sync vars")]
@@ -28,6 +31,8 @@ public class XRCharacterManager : CharacterManager {
 	[SerializeField] private InputActionManager inputActionManager;
 
 	[SerializeField] private GameObject xrDeviceSimulator;
+
+	[SerializeField] private Transform headCollider;
 
 	private XROrigin xrOrigin;
 	private CharacterController characterController;
@@ -75,8 +80,11 @@ public class XRCharacterManager : CharacterManager {
 		changeControllerType(controllerType, controllerType);
 
 		// if non local character prefab is loaded we have to disable components such as camera, etc. otherwise Multiplayer aspect wouldn't work properly
-		if (!isLocalPlayer)	{
-			if(cameraObject.GetComponents<TrackedPoseDriver>() != null) {
+		if (!isLocalPlayer) {
+			if (headCollider.TryGetComponent<FreezeObjectRotation>(out var freezeObjectRotation)) {
+				freezeObjectRotation.enabled = false;
+			}
+			if (cameraObject.GetComponents<TrackedPoseDriver>() != null) {
 				foreach (TrackedPoseDriver item in cameraObject.GetComponents<TrackedPoseDriver>())	{
 					item.enabled = false;
 				}
@@ -93,6 +101,9 @@ public class XRCharacterManager : CharacterManager {
 	private void LateUpdate() {
 		if (!isLocalPlayer) {
 			Vector3 center = xrOrigin.CameraInOriginSpacePos;
+			if (headCollider) {
+				center = characterController.transform.InverseTransformPoint(headCollider.TransformPoint(headCollider.GetComponent<CapsuleCollider>().center));
+			}
 			center.y = xrOrigin.CameraInOriginSpaceHeight / 2f + characterController.skinWidth;
 
 			characterController.height = xrOrigin.CameraInOriginSpaceHeight;

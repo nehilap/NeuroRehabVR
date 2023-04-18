@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Used for XR Rigs in Offline setup, where we don't need to setup all elements.
+/// </summary>
 public class SimpleRigManager : MonoBehaviour {
 	[SerializeField] private Transform offset;
 

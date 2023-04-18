@@ -3,7 +3,9 @@ using UnityEngine;
 
 namespace NeuroRehab.Mappings {
 
-	// custom class used to transfer two vectors together
+	/// <summary>
+	/// Custom class used to transfer two vectors together. NOT nullable when sent over network, due to CustomReadWriteFunctions restrictions. If it is needed then Serialization functions need to be changed. Can be null when using only locally.
+	/// </summary>
 	[System.Serializable]
 	public class PosRotMapping {
 		public Vector3 position;

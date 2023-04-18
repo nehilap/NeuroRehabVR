@@ -301,7 +301,7 @@ MonoBehaviour:
   warningBackground: {fileID: 8268756393290488891}
   normalBackground: {fileID: 8746976041797869886}
   fadeDuration: 0.5
-  messageDuration: 3
+  messageDuration: 4
 --- !u!223 &4544426112898232759
 Canvas:
   m_ObjectHideFlags: 0

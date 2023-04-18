@@ -8,7 +8,7 @@ var searchData=
   ['waitforfixedupdate_5',['waitForFixedUpdate',['../class_drag_and_drop.html#ade439c1ab0b7d503e86b3b27544d0360',1,'DragAndDrop']]],
   ['walkingspeed_6',['walkingSpeed',['../class_network_avatar_walking_controller.html#a65c428ed7cd00bc16a10b8cc7a6e1e9f',1,'NetworkAvatarWalkingController']]],
   ['warning_7',['WARNING',['../namespace_enums.html#a8f5cd57359c31a81e43f2555cdaa5474a059e9861e0400dfbe05c98a841f3f96b',1,'Enums']]],
-  ['warningbackground_8',['warningBackground',['../class_status_message_manager.html#ad38713c03a6a8903ab551579c20a6b61',1,'StatusMessageManager']]],
+  ['warningbackground_8',['warningBackground',['../class_status_message.html#ae60830edb43a465699037d4faf8ab358',1,'StatusMessage']]],
   ['writefps_9',['writeFps',['../class_general_settings.html#a282d8bd3037dfb01b8190f29ef09c341',1,'GeneralSettings.writeFps()'],['../class_f_p_s_counter_manager.html#a6169c156d87cbedfcfbfd6405ccfdade',1,'FPSCounterManager.writeFps()']]],
   ['writeposrotmapping_10',['WritePosRotMapping',['../class_neuro_rehab_1_1_mappings_1_1_custom_read_write_functions.html#a98b42eebb558acfed3d0b02e2fafebd5',1,'NeuroRehab::Mappings::CustomReadWriteFunctions']]]
 ];

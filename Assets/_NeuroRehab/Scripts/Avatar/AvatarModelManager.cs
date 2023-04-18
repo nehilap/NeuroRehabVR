@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Contains methods for changing models.
+/// </summary>
 public class AvatarModelManager : MonoBehaviour {
 	[SerializeField]
 	private GameObject avatarFemale;

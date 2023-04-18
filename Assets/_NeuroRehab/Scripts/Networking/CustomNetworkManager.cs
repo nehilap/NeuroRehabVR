@@ -3,19 +3,17 @@ using Mirror;
 using Structs;
 using Enums;
 
-// Class overriding default NetworkManager from Mirror
-// used for spawning custom character models
+/// <summary>
+/// Class overriding default NetworkManager from Mirror. Used for spawning custom character models and when character disconnects.
+/// </summary>
 public class CustomNetworkManager : NetworkManager {
-	// public bool isServer;
-	// usable prefabs for character (first non-simulated, then simulated prefabs)
-
 	[Header("Prefabs for character")]
 	[SerializeField] private GameObject onlineXRPrefab;
 	[SerializeField] private GameObject onlineDesktopPrefab;
 
-	// the reason is because NetworkManager (parent class) already starts server if this is server build
-	// in case you still need to use Start(), don't forget to call base.Start();
-
+	/// <summary>
+	/// In case you still need to use Start(), don't forget to call 'base.Start();'. The reason is because NetworkManager (parent class) already starts server if this is server build.
+	/// </summary>
 	public override void Start() {
 		string[] args = System.Environment.GetCommandLineArgs ();
 		string input = "";
@@ -64,9 +62,8 @@ public class CustomNetworkManager : NetworkManager {
 		NetworkClient.Send(characterMessage);
 	}
 
-	// https://mirror-networking.gitbook.io/docs/guides/gameobjects/custom-character-spawning
 	/// <summary>
-	/// Custom Character spawner. We use CharacterMessage to determine what data to use
+	/// Custom Character spawner. We use CharacterMessage to determine what data to use. Refer to https://mirror-networking.gitbook.io/docs/guides/gameobjects/custom-character-spawning for more information.
 	/// </summary>
 	/// <param name="conn"></param>
 	/// <param name="message"></param>

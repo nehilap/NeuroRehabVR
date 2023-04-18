@@ -1,6 +1,9 @@
 using UnityEngine.InputSystem;
 using UnityEngine;
 
+/// <summary>
+/// Component used to animate avatar using premade animations. Supports both keyboard/controller input and head movements. Prioritizes direct input over head movement.
+/// </summary>
 public class AvatarWalkingController : MonoBehaviour {
 	[SerializeField] private Animator animator;
 
