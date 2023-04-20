@@ -236,7 +236,7 @@ public class XRStatusManager : MonoBehaviour {
 			mockXRControls?.SetActive(false);
 		}
 
-		StatusTextManager.Instance.InitStatusText();
+		PlatformText.Instance.InitStatusText();
 	}
 
 	private void initObjects() {

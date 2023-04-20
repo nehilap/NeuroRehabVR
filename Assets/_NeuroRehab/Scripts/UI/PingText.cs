@@ -2,7 +2,7 @@ using Mirror;
 using TMPro;
 using UnityEngine;
 
-public class PingTextManager : MonoBehaviour {
+public class PingText : MonoBehaviour {
 
 	private TMP_Text textField;
 

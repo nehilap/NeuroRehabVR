@@ -17,11 +17,11 @@ GameObject:
   - component: {fileID: 928540360929397223}
   - component: {fileID: 7718914668586964949}
   - component: {fileID: 4064739466295004778}
-  - component: {fileID: 812953604696496144}
   - component: {fileID: 8351724715148979628}
   - component: {fileID: 4308045679610666501}
   - component: {fileID: 6339621406385160040}
   - component: {fileID: 2234496647517100547}
+  - component: {fileID: 8286135763758158340}
   m_Layer: 7
   m_Name: RigOnlineDesktop
   m_TagString: Untagged
@@ -194,6 +194,7 @@ MonoBehaviour:
   activeAvatarObject: {fileID: 0}
   activeArmAnimationController: {fileID: 0}
   offsetObject: {fileID: 6787573859773515368}
+  cameraObject: {fileID: 5308743743746186654}
   avatarMalePrefabs:
   - {fileID: 113542620659459055, guid: 062e2fbf6c1dad04ca6d5f9061cadf55, type: 3}
   - {fileID: 113542620659459055, guid: 9e6551be2b6bcc049b424db75ba29bf8, type: 3}
@@ -207,8 +208,7 @@ MonoBehaviour:
   avatarWalkingControllers:
   - {fileID: 6953298347185884907}
   - {fileID: 3394416713058309900}
-  networkAvatarWalkingController: {fileID: 812953604696496144}
-  cameraObject: {fileID: 5308743743746186654}
+  networkAvatarWalkingController: {fileID: 8286135763758158340}
   objectsToCull:
   - {fileID: 3073549861044050268}
   - {fileID: 1775930784046112159}
@@ -268,34 +268,6 @@ MonoBehaviour:
   avatarFemale: {fileID: 1452895424448039944}
   avatarMale: {fileID: 2223494747928096785}
   isFemale: 0
---- !u!114 &812953604696496144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5308743742952482155}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0400cc0ce13a8824486808737122b459, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0.1
-  avatarModelManager: {fileID: 4064739466295004778}
-  cameraTransform: {fileID: 0}
-  headMove: {fileID: 0}
-  move: {fileID: 3377828608154732254, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
-  maleAnimator: {fileID: 2223494747928096786}
-  femaleAnimator: {fileID: 5460448283200388019}
-  animator: {fileID: 0}
-  isWalking: 0
-  walkingSpeed: 0
-  isStrafing: 0
-  strafeDirection: 0
-  headMoveDuration: 0.7
-  headMoveTreshold: 0.07
 --- !u!114 &8351724715148979628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,6 +341,34 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 13696
   rayLength: 10
+--- !u!114 &8286135763758158340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5308743742952482155}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0400cc0ce13a8824486808737122b459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
+  avatarModelManager: {fileID: 4064739466295004778}
+  cameraTransform: {fileID: 0}
+  headMove: {fileID: 0}
+  move: {fileID: 3377828608154732254, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
+  maleAnimator: {fileID: 2223494747928096786}
+  femaleAnimator: {fileID: 5460448283200388019}
+  animator: {fileID: 0}
+  isWalking: 0
+  walkingSpeed: 0
+  isStrafing: 0
+  strafeDirection: 0
+  headMoveDuration: 0.7
+  headMoveTreshold: 0.07
 --- !u!1 &5308743743746186654
 GameObject:
   m_ObjectHideFlags: 0

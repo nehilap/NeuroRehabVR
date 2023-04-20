@@ -26,6 +26,7 @@ public abstract class CharacterManager : NetworkBehaviour {
 	[SerializeField] public GameObject activeAvatarObject;
 	[SerializeField] public ArmAnimationController activeArmAnimationController;
 	[SerializeField] public Transform offsetObject;
+	[SerializeField] public GameObject cameraObject;
 
 	[Header("Avatars prefabs used")]
 	[SerializeField] private List<GameObject> avatarMalePrefabs = new List<GameObject>();
@@ -36,8 +37,6 @@ public abstract class CharacterManager : NetworkBehaviour {
 	[SerializeField] private GameObject[] itemsToActivate;
 	[SerializeField] private AvatarWalkingController[] avatarWalkingControllers;
 	[SerializeField] private NetworkAvatarWalkingController networkAvatarWalkingController;
-
-	[SerializeField] public GameObject cameraObject;
 
 	[Header("Camera culling and objects to disable")]
 	[SerializeField] private GameObject[] objectsToCull;
@@ -126,6 +125,16 @@ public abstract class CharacterManager : NetworkBehaviour {
 		}
 
 		networkAvatarWalkingController.enabled = true;
+		/*
+		// Network Animators from Mirror do not work for Female avatars (dunno why)
+		if (isFemale) {
+			maleNetworkAnimator.enabled = false;
+			femaleNetworkAnimator.enabled = true;
+		} else {
+			maleNetworkAnimator.enabled = true;
+			femaleNetworkAnimator.enabled = false;
+		}
+		*/
 
 		// if non local character prefab is loaded we have to disable components such as camera, etc. otherwise Multiplayer aspect wouldn't work properly
 		if (!isLocalPlayer) {

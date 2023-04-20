@@ -361,8 +361,8 @@ GameObject:
   - component: {fileID: 217987416441878893}
   - component: {fileID: 7898726773472306906}
   - component: {fileID: 5704176413575433497}
-  - component: {fileID: 3311737012697809089}
   - component: {fileID: 1828743430781379336}
+  - component: {fileID: 2957122858104263176}
   m_Layer: 7
   m_Name: RigOnlineXR
   m_TagString: Untagged
@@ -677,6 +677,7 @@ MonoBehaviour:
   activeAvatarObject: {fileID: 0}
   activeArmAnimationController: {fileID: 0}
   offsetObject: {fileID: 436356087230740168}
+  cameraObject: {fileID: 1878698787931433297}
   avatarMalePrefabs:
   - {fileID: 113542620659459055, guid: 062e2fbf6c1dad04ca6d5f9061cadf55, type: 3}
   - {fileID: 113542620659459055, guid: 9e6551be2b6bcc049b424db75ba29bf8, type: 3}
@@ -692,8 +693,7 @@ MonoBehaviour:
   avatarWalkingControllers:
   - {fileID: 5655778486102450752}
   - {fileID: 7251238349547129769}
-  networkAvatarWalkingController: {fileID: 3311737012697809089}
-  cameraObject: {fileID: 1878698787931433297}
+  networkAvatarWalkingController: {fileID: 2957122858104263176}
   objectsToCull:
   - {fileID: 334737246450546167}
   - {fileID: 3938141908873933108}
@@ -762,7 +762,20 @@ MonoBehaviour:
   avatarFemale: {fileID: 4191707899220304035}
   avatarMale: {fileID: 6152346352656084148}
   isFemale: 0
---- !u!114 &3311737012697809089
+--- !u!114 &1828743430781379336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878698789788651940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e56d5342549212f4681fed238f189008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMenuShowingList: 
+--- !u!114 &2957122858104263176
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -789,20 +802,7 @@ MonoBehaviour:
   isStrafing: 0
   strafeDirection: 0
   headMoveDuration: 0.7
-  headMoveTreshold: 0.12
---- !u!114 &1828743430781379336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1878698789788651940}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e56d5342549212f4681fed238f189008, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isMenuShowingList: 
+  headMoveTreshold: 0.07
 --- !u!1 &1878698789848746001
 GameObject:
   m_ObjectHideFlags: 0

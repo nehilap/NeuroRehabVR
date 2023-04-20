@@ -5,10 +5,10 @@ using UnityEngine.XR;
 /// <summary>
 /// Component used for status text message - message containing information about device used, XR status etc
 /// </summary>
-public class StatusTextManager : MonoBehaviour {
+public class PlatformText : MonoBehaviour {
 
-	private static StatusTextManager _instance;
-	public static StatusTextManager Instance { get { return _instance; } }
+	private static PlatformText _instance;
+	public static PlatformText Instance { get { return _instance; } }
 
 	private void Awake() {
 		if (_instance != null && _instance != this) {
