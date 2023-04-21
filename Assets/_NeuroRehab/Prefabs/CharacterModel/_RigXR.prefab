@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e32f4711edaf30e44b83054103d1500c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: -0.15, y: 0, z: -0.15}
+  offset: {x: -0.1, y: 0, z: -0.1}
   objectCollider: {fileID: 4780519034791358179}
   useWorldPos: 0
   offsetObject: {fileID: 0}

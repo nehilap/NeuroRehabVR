@@ -818,7 +818,7 @@ MonoBehaviour:
   applyTurn: 1
   turnSmoothness: 2
   headTarget: {fileID: 4862001591054997950}
-  originHeadOffset: {x: -0.15, y: -1.7154, z: -0.15}
+  originHeadOffset: {x: -0.1, y: -1.7154, z: -0.1}
   referenceHeight: 1.725
   debug: 0
   sizeMultiplier: 0
