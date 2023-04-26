@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3181847150506068708}
   - component: {fileID: 3181847150506068731}
   - component: {fileID: 3181847150506068730}
-  - component: {fileID: 3181847150506068729}
   m_Layer: 0
   m_Name: ServerManager
   m_TagString: Untagged
@@ -131,19 +130,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17867f6b58b9b0e41b5af7f4f110abee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3181847150506068729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3181847150506068705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78e3d6245ca1fa444b21fe08853f6e10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0.1
-  isTrainingRunning: 0

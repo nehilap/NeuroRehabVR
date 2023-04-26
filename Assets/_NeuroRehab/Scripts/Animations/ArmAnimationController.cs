@@ -11,7 +11,9 @@ using NeuroRehab.Utility;
 /// Main Patient Arm Animation component. Contains methods for animating arms, switching active arms, lerps, etc.
 /// </summary>
 public class ArmAnimationController : MonoBehaviour {
-	private Enums.AnimationState animState = Enums.AnimationState.Stopped;
+	public Enums.AnimationState animState {
+		get; private set;
+	}
 	// private AnimationPart animPart;
 	[SerializeField] public bool isLeft;
 
@@ -50,7 +52,9 @@ public class ArmAnimationController : MonoBehaviour {
 	private bool initialized = false;
 
 	void Start() {
-		initElements();
+		animState = Enums.AnimationState.Stopped;
+
+		initialize();
 
 		if (animSettingsManager == null) {
 			Debug.LogError("Failed to initialize ArmAnimationController - 'AnimationSettingsManager' not found");
@@ -98,7 +102,7 @@ public class ArmAnimationController : MonoBehaviour {
 		}
 	}
 
-	public void initElements() {
+	public void initialize() {
 		if (!animSettingsManager)
 			animSettingsManager = ObjectManager.Instance.getFirstObjectByName("AnimationSettingsManager")?.GetComponent<AnimationSettingsManager>();
 		if (!armRestHelperObject)
@@ -109,6 +113,14 @@ public class ArmAnimationController : MonoBehaviour {
 			avatarController = gameObject.GetComponent<AvatarController>();
 
 		armLength = calculateArmLength();
+	}
+
+	/// <summary>
+	/// Wrapper method used to set animState. Usable only on server!!
+	/// </summary>
+	[Server]
+	public void setAnimState(Enums.AnimationState animationState) {
+		animState = animationState;
 	}
 
 	/// <summary>
@@ -148,7 +160,7 @@ public class ArmAnimationController : MonoBehaviour {
 				// we ask server to grant us authority over target object
 				NetworkIdentity targetObjectIdentity = targetObject.GetComponent<NetworkIdentity>();
 				if (!targetObjectIdentity.isOwned) {
-					NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(targetObjectIdentity, CharacterManager.localClientInstance.GetComponent<NetworkIdentity>());
+					NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(targetObjectIdentity);
 				}
 			}
 
@@ -222,6 +234,11 @@ public class ArmAnimationController : MonoBehaviour {
 			if (targetObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
 				rb.useGravity = true;
 		}
+
+		animState = Enums.AnimationState.Stopped;
+		if (SettingsManager.Instance.roleSettings.characterRole == UserRole.Patient) {
+			NetworkCharacterManager.localNetworkClientInstance.CmdSetAnimationState(animState);
+		}
 	}
 
 	private IEnumerator restArmStartAnimation() {
@@ -272,26 +289,6 @@ public class ArmAnimationController : MonoBehaviour {
 		}
 		// lerp never reaches endValue, that is why we have to set it manually
 		rig.weight = endLerpValue;
-	}
-
-	// not used anymore, replaced with superior multiRigLerp; kept just for reference
-	private IEnumerator reverseDualRigLerp(Rig rigToStart, Rig rigToStop, float lerpDuration, float startLerpValue, float endLerpValue) {
-		float lerpTimeElapsed = 0f;
-
-		while (lerpTimeElapsed < lerpDuration) {
-			// despite the fact lerp should be linear, we use calculation to manipulate it, the movement then looks more natural
-			float t = lerpTimeElapsed / lerpDuration;
-			t = t * t * t * (t * (6f* t - 15f) + 10f); // https://chicounity3d.wordpress.com/2014/05/23/how-to-lerp-like-a-pro/
-			float lerpValue = Mathf.Lerp(startLerpValue, endLerpValue, t);
-			rigToStart.weight = lerpValue;
-			rigToStop.weight = Mathf.Abs(endLerpValue - lerpValue);
-
-			lerpTimeElapsed += Time.deltaTime;
-			yield return null;
-		}
-		// lerp never reaches endValue, that is why we have to set it manually
-		rigToStart.weight = endLerpValue;
-		rigToStop.weight = startLerpValue;
 	}
 
 	/// <summary>
@@ -450,35 +447,14 @@ public class ArmAnimationController : MonoBehaviour {
 			return false;
 		}
 
+		if (!canAnimationStart()) {
+			return false;
+		}
+
 		string targetObjectName = animSettingsManager.animType.ToString();
-
-		SyncList<PosRotMapping> currentAnimationSetup = animSettingsManager.getCurrentAnimationSetup();
-
-		if (currentAnimationSetup.Count < 1) {
-			string errorMessage = "Too few animation positions set: '" + currentAnimationSetup.Count + "'!";
-			Debug.LogError(errorMessage);
-			MessageManager.Instance.showMessage(errorMessage, MessageType.WARNING);
-			return false;
-		}
-		if (animSettingsManager.animType == AnimationType.Key && currentAnimationSetup.Count != 2) {
-			string errorMessage = "Too few animation positions set for 'Key': '" + currentAnimationSetup.Count + "'!";
-			Debug.LogError(errorMessage);
-			MessageManager.Instance.showMessage(errorMessage, MessageType.WARNING);
-			return false;
-		}
-
-		// Initial starting position HAS to be in arm range
-		if (!isTargetInRange(currentAnimationSetup[0].position)) {
-			float targetDistance = Vector3.Distance(currentAnimationSetup[0].position, armRangeMesh.transform.position);
-			string errorMessage = "Arm cannot grab object, too far away: '" + targetDistance + "m > " + armLength + "m'. Cancelling training!";
-			Debug.LogWarning(errorMessage);
-			MessageManager.Instance.showMessage(errorMessage, MessageType.WARNING);
-			return false;
-		}
-
 		targetObject = ObjectManager.Instance.getFirstObjectByName(targetObjectName + (isFakeAnimation ? "_fake" : ""));
 		if (targetObject == null) {
-			Debug.LogError("Failed to find object: '" + targetObjectName + (isFakeAnimation ? "_fake" : "") + "'");
+			Debug.LogError($"Failed to find object: '{targetObjectName + (isFakeAnimation ? "_fake" : "")}'");
 			return false;
 		}
 
@@ -499,13 +475,7 @@ public class ArmAnimationController : MonoBehaviour {
 		}
 
 		if (targetObject.TryGetComponent<TargetUtility>(out TargetUtility targetUtility)) {
-			// helper target objects, children of our target object
-			targetsHelperObject.armTargetTemplate = targetUtility.ArmIK_target_helper;
-			targetsHelperObject.thumbTargetTemplate = targetUtility.ThumbIK_target_helper;
-			targetsHelperObject.indexTargetTemplate = targetUtility.IndexChainIK_target_helper;
-			targetsHelperObject.middleTargetTemplate = targetUtility.MiddleChainIK_target_helper;
-			targetsHelperObject.ringTargetTemplate = targetUtility.RingChainIK_target_helper;
-			targetsHelperObject.pinkyTargetTemplate = targetUtility.PinkyChainIK_target_helper;
+			targetsHelperObject.setHelperObjects(targetUtility);
 		} else {
 			Debug.LogError("Failed to retrieve target helper objects from Target - " + targetObjectName);
 			return false;
@@ -518,6 +488,9 @@ public class ArmAnimationController : MonoBehaviour {
 			col.enabled = false;
 
 		animState = Enums.AnimationState.Playing;
+		if (SettingsManager.Instance.roleSettings.characterRole == UserRole.Patient) {
+			NetworkCharacterManager.localNetworkClientInstance.CmdSetAnimationState(animState);
+		}
 		//animPart = AnimationPart.Arm;
 		// https://gamedevbeginner.com/coroutines-in-unity-when-and-how-to-use-them/
 		StartCoroutine(armStartAnimationLerp(isFakeAnimation));
@@ -532,12 +505,37 @@ public class ArmAnimationController : MonoBehaviour {
 		// We don't have to set the positions of targets here, because we're simply releasing the hand grip + moving arm to relaxed position
 		// all the movements are done using rig weights
 
-		animState = Enums.AnimationState.Stopped;
 		StartCoroutine(armStopAnimationLerp(informServer));
 	}
 
+	private bool canAnimationStart() {
+		SyncList<PosRotMapping> currentAnimationSetup = animSettingsManager.getCurrentAnimationSetup();
+		if (currentAnimationSetup.Count < 1) {
+			string errorMessage = $"Too few animation positions set: '{currentAnimationSetup.Count}'!";
+			Debug.LogError(errorMessage);
+			MessageManager.Instance.showMessage(errorMessage, MessageType.WARNING);
+			return false;
+		}
+		if (animSettingsManager.animType == AnimationType.Key && currentAnimationSetup.Count != 2) {
+			string errorMessage = $"Too few animation positions set for 'Key': '{currentAnimationSetup.Count}'!";
+			Debug.LogError(errorMessage);
+			MessageManager.Instance.showMessage(errorMessage, MessageType.WARNING);
+			return false;
+		}
+		// Initial starting position HAS to be in arm range
+		if (!isTargetInRange(currentAnimationSetup[0].position)) {
+			float targetDistance = Vector3.Distance(currentAnimationSetup[0].position, armRangeMesh.transform.position);
+			string errorMessage = $"Arm cannot grab object, too far away: '{targetDistance}m > {armLength}m'. Cancelling training!";
+			Debug.LogWarning(errorMessage);
+			MessageManager.Instance.showMessage(errorMessage, MessageType.WARNING);
+			return false;
+		}
+
+		return true;
+	}
+
 	public void setArmRestPosition(bool _isArmResting) {
-		initElements();
+		initialize();
 
 		isArmResting = _isArmResting;
 

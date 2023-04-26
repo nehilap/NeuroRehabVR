@@ -123,16 +123,11 @@ public class XRCharacterManager : CharacterManager {
 	/// </summary>
 	/// <param name="args">Info about object grabbed</param>
 	private void itemPickUp(SelectEnterEventArgs args) {
-		// we get net identity from current object of character
-		NetworkIdentity identity = base.GetComponent<NetworkIdentity>();
-
-		if (identity == null) return;
-
 		if (isOwned) {
 			// if not server, we ask server to grant us authority
 			NetworkIdentity itemNetIdentity = args.interactableObject.transform.GetComponent<NetworkIdentity>();
 			if (!isServer && !itemNetIdentity.isOwned){
-				NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(itemNetIdentity, identity);
+				NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(itemNetIdentity);
 			}
 
 			args.interactableObject.transform.transform.TryGetComponent<DragInterface>(out DragInterface dragInterface);

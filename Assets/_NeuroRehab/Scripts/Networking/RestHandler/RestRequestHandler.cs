@@ -10,12 +10,18 @@ using Enums;
 /// <summary>
 /// Contains Rest Requests Handler methods.
 /// </summary>
-public class RestRequestHandler : MonoBehaviour {
+public class RestRequestHandler : NetworkBehaviour {
 
 	private AnimationSettingsManager animSettingsManager;
 
 	private void Start() {
 		animSettingsManager = ObjectManager.Instance.getFirstObjectByName("AnimationSettingsManager")?.GetComponent<AnimationSettingsManager>();
+
+		if (gameObject.TryGetComponent<SimpleEventServerScript>(out SimpleEventServerScript serverScript)) {
+			if (isServer) {
+				serverScript.enabled = true;
+			}
+		}
 	}
 
 	[Server][SimpleEventServerRouting(HttpConstants.MethodPost, "/training/move")]
@@ -52,12 +58,12 @@ public class RestRequestHandler : MonoBehaviour {
 		if (AnimationServerManager.Instance.isTrainingRunning) {
 			returnVal = false;
 		} else {
-			animSettingsManager.prevAnimType = animSettingsManager.animType;
-			animSettingsManager.animType = AnimationType.Off;
-			returnVal = true;
+			if (animSettingsManager.setAnimType(animSettingsManager.animType, AnimationType.Off)) {
+				returnVal = true;
 
-			animSettingsManager.spawnCorrectTarget(animSettingsManager.prevAnimType, animSettingsManager.animType);
-			animSettingsManager.RpcSpawnCorrectTarget(animSettingsManager.prevAnimType, animSettingsManager.animType);
+				animSettingsManager.spawnCorrectTarget(animSettingsManager.prevAnimType, animSettingsManager.animType);
+				animSettingsManager.RpcSpawnCorrectTarget(animSettingsManager.prevAnimType, animSettingsManager.animType);
+			}
 		}
 
 		context.Response.JsonResponse(new JObject() {
@@ -68,16 +74,17 @@ public class RestRequestHandler : MonoBehaviour {
 	[Server][SimpleEventServerRouting(HttpConstants.MethodPost, "/spawn")]
 	public void PostSpawnEndpoint(HttpListenerContext context) {
 		bool returnVal = false;
-		AnimationType _oldAnimType = animSettingsManager.animType;
 
 		if (AnimationServerManager.Instance.isTrainingRunning) {
 			returnVal = false;
 		} else {
-			animSettingsManager.animType = animSettingsManager.prevAnimType;
-			returnVal = true;
+			AnimationType _oldAnimType = animSettingsManager.animType;
+			if (animSettingsManager.setAnimType(animSettingsManager.animType, animSettingsManager.prevAnimType)) {
+				returnVal = true;
 
-			animSettingsManager.spawnCorrectTarget(_oldAnimType, animSettingsManager.animType);
-			animSettingsManager.RpcSpawnCorrectTarget(_oldAnimType, animSettingsManager.animType);
+				animSettingsManager.spawnCorrectTarget(_oldAnimType, animSettingsManager.animType);
+				animSettingsManager.RpcSpawnCorrectTarget(_oldAnimType, animSettingsManager.animType);
+			}
 		}
 
 		context.Response.JsonResponse(new JObject() {

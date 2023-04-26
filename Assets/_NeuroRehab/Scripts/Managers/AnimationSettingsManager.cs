@@ -6,6 +6,8 @@ using Enums;
 using System.Collections.Generic;
 using NeuroRehab.Mappings;
 using NeuroRehab.Utility;
+using System;
+using System.Linq;
 
 [System.Serializable]
 public class AnimationSettingsManager : NetworkBehaviour {
@@ -24,8 +26,14 @@ public class AnimationSettingsManager : NetworkBehaviour {
 	[SyncVar(hook = nameof(changeRepetitionsElements))] [Range(1, 20)]
 	public int repetitions = 5;
 
-	[SyncVar(hook = nameof(changeAnimTypeValue))]
-	public AnimationType animType = AnimationType.Block;
+	[SyncVar(hook = nameof(changeAnimTypeValueHook))]
+	[SerializeField] private AnimationType _animType = AnimationType.Block;
+	public AnimationType animType {
+			get { return _animType; }
+			private set {
+				_animType = value;
+			}
+		}
 
 	public AnimationType prevAnimType;
 
@@ -62,6 +70,8 @@ public class AnimationSettingsManager : NetworkBehaviour {
 
 	[SerializeField] public List<GameObject> targetPrefabs = new List<GameObject>();
 
+	private bool dropdownValuesInitialized = false;
+
 	public void Start() {
 		spawnArea = ObjectManager.Instance.getFirstObjectByName("SpawnArea");
 
@@ -70,12 +80,14 @@ public class AnimationSettingsManager : NetworkBehaviour {
 			return;
 		}
 
-		prevAnimType = animType;
+		initDropdown();
+		animType = AnimationType.Block;
+		prevAnimType = AnimationType.Block;
 
 		if (isClient) {
 			setAllElements();
 
-			if (SettingsManager.Instance.roleSettings.characterRole == Enums.UserRole.Therapist) {
+			if (SettingsManager.Instance.roleSettings.characterRole == UserRole.Therapist) {
 				blockSetup.Callback += onAnimationSetupUpdated;
 				cubeSetup.Callback += onAnimationSetupUpdated;
 				cupSetup.Callback += onAnimationSetupUpdated;
@@ -112,6 +124,15 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		}
 	}
 
+	private void initDropdown() {
+		if (dropdownValuesInitialized) {
+			return;
+		}
+
+		animTypeDropdown.ClearOptions();
+		animTypeDropdown.AddOptions(Enum.GetNames(typeof(AnimationType)).ToList());
+		dropdownValuesInitialized = true;
+	}
 
 	public SyncList<PosRotMapping> getCurrentAnimationSetup() {
 		switch (animType) {
@@ -188,7 +209,11 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		repetitionsSlider.value = repetitions;
 	}
 
-	private void changeAnimTypeValue(AnimationType _old, AnimationType _new) {
+	private void changeAnimTypeValueHook(AnimationType _old, AnimationType _new) {
+		if (!dropdownValuesInitialized) {
+			initDropdown();
+		}
+
 		prevAnimType = _old;
 		disableObjects(_old);
 
@@ -201,6 +226,44 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		}
 
 		setupMarkers();
+	}
+
+	/// <summary>
+	/// Helper method used for disabling colliders on old object to prevent new spawned to "bump" into them and be offset. This happens due to lag when information is delivered from server.
+	/// </summary>
+	/// <param name="_oldAnimType"></param>
+	private void disableObjects(AnimationType _oldAnimType) {
+		List<GameObject> oldTargetsInScene = ObjectManager.Instance.getObjectsByName(_oldAnimType.ToString());
+		foreach (var item in oldTargetsInScene) {
+			item.GetComponent<Renderer>().enabled = false;
+			item.GetComponent<Collider>().enabled = false;
+		}
+
+		if (_oldAnimType == AnimationType.Key) {
+			oldTargetsInScene = ObjectManager.Instance.getObjectsByName("Lock");
+			foreach (var item in oldTargetsInScene) {
+				item.GetComponent<Renderer>().enabled = false;
+				item.GetComponent<Collider>().enabled = false;
+			}
+		}
+	}
+
+	/// <summary>
+	/// Changes animation type only if possible (activePatient && animation not playing)
+	/// </summary>
+	/// <param name="_old">Previous (current) animation type</param>
+	/// <param name="_new">New animation type</param>
+	/// <returns>Bool value depending on whether animation type was changed or not</returns>
+	[Server]
+	public bool setAnimType(AnimationType _old, AnimationType _new) {
+		if (AnimationServerManager.Instance.isTrainingRunning || (CharacterManager.activePatientInstance != null && CharacterManager.activePatientInstance.activeArmAnimationController.animState == Enums.AnimationState.Playing)) {
+			return false;
+		}
+		if (_old != AnimationType.Off) {
+			prevAnimType = _old;
+		}
+		animType = _new;
+		return true;
 	}
 
 	/// <summary>
@@ -398,6 +461,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		if (isServer) {
 			return;
 		}
+
 		AnimationType tmpAnimType = AnimationType.Off;
 		prevAnimType = animType;
 
@@ -412,27 +476,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 
 		if (NetworkCharacterManager.localNetworkClientInstance != null && prevAnimType != tmpAnimType) {
 			NetworkCharacterManager.localNetworkClientInstance.CmdUpdateAnimType(prevAnimType, tmpAnimType);
-			NetworkCharacterManager.localNetworkClientInstance.CmdSpawnCorrectTarget(prevAnimType, tmpAnimType);
-		}
-	}
-
-	/// <summary>
-	/// Helper method used for disabling colliders on old object to prevent new spawned to "bump" into them and be offset. This happens due to lag when information is delivered from server.
-	/// </summary>
-	/// <param name="_oldAnimType"></param>
-	private void disableObjects(AnimationType _oldAnimType) {
-		List<GameObject> oldTargetsInScene = ObjectManager.Instance.getObjectsByName(_oldAnimType.ToString());
-		foreach (var item in oldTargetsInScene) {
-			item.GetComponent<Renderer>().enabled = false;
-			item.GetComponent<Collider>().enabled = false;
-		}
-
-		if (_oldAnimType == AnimationType.Key) {
-			oldTargetsInScene = ObjectManager.Instance.getObjectsByName("Lock");
-			foreach (var item in oldTargetsInScene) {
-				item.GetComponent<Renderer>().enabled = false;
-				item.GetComponent<Collider>().enabled = false;
-			}
+			// NetworkCharacterManager.localNetworkClientInstance.CmdSpawnCorrectTarget(prevAnimType, tmpAnimType);
 		}
 	}
 

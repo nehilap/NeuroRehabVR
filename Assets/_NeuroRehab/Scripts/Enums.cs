@@ -19,7 +19,7 @@ namespace Enums {
 	/// <summary>
 	/// Patient Arm animation types.
 	/// </summary>
-	public enum AnimationType {Off = -1, Cube = 0, Cup = 1, Key = 2, Block = 3};
+	public enum AnimationType {Off = -1, Block = 0, Cube = 1, Cup = 2, Key = 3};
 
 	/// <summary>
 	/// Animation States.

@@ -15,6 +15,7 @@ public class RoleBasedVisibility : MonoBehaviour {
 			}
 			if (gameObject.TryGetComponent<CanvasGroup>(out CanvasGroup canvasGroup)) {
 				canvasGroup.interactable = false;
+				canvasGroup.blocksRaycasts = false;
 			}
 			if (gameObject.TryGetComponent<Renderer>(out Renderer renderer)) {
 				renderer.enabled = false;

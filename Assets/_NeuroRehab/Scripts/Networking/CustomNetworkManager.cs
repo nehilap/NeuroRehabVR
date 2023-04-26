@@ -68,7 +68,7 @@ public class CustomNetworkManager : NetworkManager {
 	/// <param name="conn"></param>
 	/// <param name="message"></param>
 	void OnCreateCharacter(NetworkConnectionToClient conn, CharacterMessage message) {
-		Debug.Log("New connection requested, Client using: HMD: '" + message.hmdType.ToString() + "'" + ", female: '" + message.isFemale + "', avatarIndex: '" + message.avatarNumber + "', role: '" + message.role + "', XR: '" + message.isXRActive + "'");
+		Debug.Log($"New connection requested, Client using: HMD: '{message.hmdType.ToString()}', female: '{message.isFemale}', avatarIndex: '{message.avatarNumber}', role: '{message.role}', XR: '{message.isXRActive}'");
 
 		GameObject characterPrefab;
 		if (message.role == UserRole.Therapist || message.role == UserRole.Patient) {
@@ -78,7 +78,7 @@ public class CustomNetworkManager : NetworkManager {
 				characterPrefab = onlineDesktopPrefab;
 			}
 		} else {
-			Debug.LogError("Cannot Instantiate character prefab " + message.role.ToString() + " - not found!!");
+			Debug.LogError($"Cannot Instantiate character prefab '{message.role.ToString()}'- not found!!");
 			return;
 		}
 		GameObject newCharacterModel = Instantiate(characterPrefab);
@@ -99,7 +99,7 @@ public class CustomNetworkManager : NetworkManager {
 			((XRCharacterManager) characterManager).changeControllerType(message.controllerType, message.controllerType);
 		}
 
-		Debug.Log("Adding Play for connection: '" + conn.connectionId + "', '" + newCharacterModel + "'");
+		Debug.Log($"New connection: '{conn.connectionId}'");
 		NetworkServer.AddPlayerForConnection(conn, newCharacterModel);
 	}
 
@@ -112,16 +112,16 @@ public class CustomNetworkManager : NetworkManager {
 		conn.owned.CopyTo(ownedObjects);
 
 		int avatarLayer = LayerMask.NameToLayer("Avatar");
-		foreach (NetworkIdentity networkIdentity in ownedObjects) {
-			if (networkIdentity.gameObject.layer == avatarLayer) { // Layer 7 = Avatar
+		foreach (NetworkIdentity objectIdentity in ownedObjects) {
+			if (objectIdentity.gameObject.layer == avatarLayer) { // Layer 7 = Avatar
 				continue;
 			}
-			networkIdentity.gameObject.GetComponent<NetworkTransform>().syncDirection = SyncDirection.ServerToClient;
-			networkIdentity.RemoveClientAuthority();
-			Debug.Log("Object with netID '" + networkIdentity.netId + "' released authority.");
+			objectIdentity.gameObject.GetComponent<NetworkTransform>().syncDirection = SyncDirection.ServerToClient;
+			objectIdentity.RemoveClientAuthority();
+			Debug.Log($"USER'{conn.identity.netId}' - object with netID '{objectIdentity.netId}' released authority.");
 		}
 
-		Debug.Log("User with netID '" + conn.identity.netId + "' disconnected!");
+		Debug.Log($"USER'{conn.identity.netId}' - disconnected!");
 		base.OnServerDisconnect(conn);
 	}
 }

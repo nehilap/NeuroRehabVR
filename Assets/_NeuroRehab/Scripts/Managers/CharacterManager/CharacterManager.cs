@@ -209,7 +209,7 @@ public abstract class CharacterManager : NetworkBehaviour {
 
 		ArmAnimationController[] armAnimationControllers = activeAvatarObject.GetComponents<ArmAnimationController>();
 		foreach (ArmAnimationController armAnimationController in armAnimationControllers) {
-			armAnimationController.initElements();
+			armAnimationController.initialize();
 			if (this.isLeftArmAnimated == armAnimationController.isLeft) { // only if both True, or both False
 				armAnimationController.enabled = true;
 				activeArmAnimationController = armAnimationController;

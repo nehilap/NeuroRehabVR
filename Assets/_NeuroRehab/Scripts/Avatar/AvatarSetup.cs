@@ -78,7 +78,7 @@ public class AvatarSetup : MonoBehaviour {
 		}
 		GameObject.Destroy(modelToUse);
 
-		Debug.Log("Model succesfully changed " + modelToUse.name);
+		Debug.Log($"{transform.root.name} - Model succesfully changed {modelToUse.name}");
 	}
 
 	/// <summary>

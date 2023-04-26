@@ -1,7 +1,6 @@
 using UnityEngine;
 using System;
 using Mirror;
-using ShadowGroveGames.SimpleHttpAndRestServer.Scripts;
 using System.Collections;
 using Enums;
 using NeuroRehab.Mappings;
@@ -27,18 +26,8 @@ public class AnimationServerManager : NetworkBehaviour {
 	private int currentRepetitions = 0;
 	private Coroutine trainingCoroutine;
 
-	private void Start() {
-		if (!isServer) {
-			return;
-		}
-
-		animSettingsManager = ObjectManager.Instance.getFirstObjectByName("AnimationSettingsManager")?.GetComponent<AnimationSettingsManager>();
-
-		if (gameObject.TryGetComponent<SimpleEventServerScript>(out SimpleEventServerScript serverScript)) {
-			if (isServer) {
-				serverScript.enabled = true;
-			}
-		}
+	public override void OnStartServer() {
+		animSettingsManager = gameObject.GetComponent<AnimationSettingsManager>();
 	}
 
 	private IEnumerator waitDurationCoroutine(float duration) {

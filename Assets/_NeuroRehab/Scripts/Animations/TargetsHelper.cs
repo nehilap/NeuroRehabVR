@@ -1,4 +1,5 @@
 using NeuroRehab.Mappings;
+using NeuroRehab.Utility;
 using UnityEngine;
 
 [System.Serializable]
@@ -109,5 +110,15 @@ public class TargetsHelper {
 			setTargetMapping(ringTargetTemplate, currentAnimMapping.ringMapping, false, false, targetObject);
 			setTargetMapping(pinkyTargetTemplate, currentAnimMapping.pinkyMapping, false, false, targetObject);
 		}
+	}
+
+	public void setHelperObjects(TargetUtility targetUtility) {
+		// helper target objects, children of our target object
+		armTargetTemplate = targetUtility.ArmIK_target_helper;
+		thumbTargetTemplate = targetUtility.ThumbIK_target_helper;
+		indexTargetTemplate = targetUtility.IndexChainIK_target_helper;
+		middleTargetTemplate = targetUtility.MiddleChainIK_target_helper;
+		ringTargetTemplate = targetUtility.RingChainIK_target_helper;
+		pinkyTargetTemplate = targetUtility.PinkyChainIK_target_helper;
 	}
 }

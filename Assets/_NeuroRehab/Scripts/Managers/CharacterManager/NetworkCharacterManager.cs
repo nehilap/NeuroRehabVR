@@ -66,21 +66,22 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	/// Command wrapper to change item authority
 	/// </summary>
 	/// <param name="item"></param>
-	/// <param name="newPlayerOwner"></param>
+	/// <param name="sender"></param>
 	[Command]
-	public void CmdSetItemAuthority(NetworkIdentity item, NetworkIdentity newPlayerOwner) {
-		setItemAuthority(item, newPlayerOwner);
+	public void CmdSetItemAuthority(NetworkIdentity item, NetworkConnectionToClient sender = null) {
+		setItemAuthority(item, sender);
 	}
 
-	private void setItemAuthority(NetworkIdentity item, NetworkIdentity newPlayerOwner) {
+	[Server]
+	private void setItemAuthority(NetworkIdentity item, NetworkConnectionToClient sender = null) {
 		// No need to re-assign authority
-		if (newPlayerOwner.connectionToClient.owned.Contains(item)) {
+		if (sender.owned.Contains(item)) {
 			return;
 		}
 		item.gameObject.GetComponent<NetworkTransform>().syncDirection = SyncDirection.ClientToServer;
-		Debug.Log("Granting authority: '" + item.netId + "' to: '" + newPlayerOwner.netId + "'");
+		Debug.Log($"Granting authority: '{item.netId}' to: '{sender.identity.netId}'");
 		item.RemoveClientAuthority();
-		item.AssignClientAuthority(newPlayerOwner.connectionToClient);
+		item.AssignClientAuthority(sender);
 
 	}
 
@@ -125,10 +126,21 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	}
 
 	[Command]
-	public void CmdUpdateAnimType(AnimationType _oldAnimType, AnimationType _newAnimType) {
+	public void CmdUpdateAnimType(AnimationType _oldAnimType, AnimationType _newAnimType, NetworkConnectionToClient sender = null) {
 		if (animSettingsManager.animType == _newAnimType) return;
-		animSettingsManager.prevAnimType = _oldAnimType;
-		animSettingsManager.animType = _newAnimType;
+
+		if (animSettingsManager.setAnimType(_oldAnimType, _newAnimType)) {
+			animSettingsManager.spawnCorrectTarget(_oldAnimType, _newAnimType);
+			animSettingsManager.RpcSpawnCorrectTarget(_oldAnimType, _newAnimType);
+		} else {
+			TargetSetAnimTypeDropdownValue(sender, _oldAnimType);
+			MessageManager.Instance.RpcInformClients("Unable to change animation type at this moment!", MessageType.NORMAL);
+		}
+	}
+
+	[TargetRpc]
+	public void TargetSetAnimTypeDropdownValue(NetworkConnection connection, AnimationType animationType) {
+		animSettingsManager.animTypeDropdown.value = animSettingsManager.animTypeDropdown.options.FindIndex(option => option.text == animationType.ToString());
 	}
 
 	/*
@@ -199,7 +211,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	[Command]
 	public void CmdSpawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType) {
 		if (_newAnimType == _oldAnimType) {
-			Debug.Log("Animation types equal '" + _newAnimType + "'. Cancelling spawn!");
+			Debug.Log($"Animation types equal '{_newAnimType}'. Cancelling spawn!");
 			return;
 		}
 
@@ -244,10 +256,18 @@ public class NetworkCharacterManager : NetworkBehaviour {
 		AnimationServerManager.Instance.progressAnimationStep();
 	}
 
-	// alternates arm resting state SyncVar, which calls hook on clients and causes other events
+	/// <summary>
+	/// Alternates arm resting state SyncVar, which calls hook on clients and causes other events
+	/// </summary>
+	/// <param name="patientIdentity"></param>
 	[Command]
 	public void CmdSetArmRestPosition(NetworkIdentity patientIdentity) {
 		patientIdentity.gameObject.GetComponent<CharacterManager>().isArmResting = !patientIdentity.gameObject.GetComponent<CharacterManager>().isArmResting;
+	}
+
+	[Command]
+	public void CmdSetAnimationState(Enums.AnimationState animationState, NetworkConnectionToClient sender = null) {
+		sender.identity.gameObject.GetComponent<CharacterManager>().activeArmAnimationController.setAnimState(animationState);
 	}
 
 	/*
@@ -282,9 +302,9 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	/// Method to move table up or down. On top of moving table we also have to change ALL markers and target object as well
 	/// </summary>
 	/// <param name="offset"></param>
-	/// <param name="caller"></param>
+	/// <param name="sender"></param>
 	[Command]
-	public void CmdMoveTable(Vector3 offset, NetworkIdentity caller) {
+	public void CmdMoveTable(Vector3 offset, NetworkConnectionToClient sender = null) {
 		List<GameObject> tableObjs = ObjectManager.Instance.getObjectsByName("Table");
 		if (tableObjs.Count == 0) {
 			return;
@@ -308,18 +328,18 @@ public class NetworkCharacterManager : NetworkBehaviour {
 			return;
 		}
 		foreach (var item in targetObjects) {
-			setItemAuthority(item.GetComponent<NetworkIdentity>(), caller);
+			setItemAuthority(item.GetComponent<NetworkIdentity>(), sender);
 		}
 
 		if (animSettingsManager.animType == AnimationType.Key) {
 			List<GameObject> lockObjects = ObjectManager.Instance.getObjectsByName("Lock");
 			foreach (var item in lockObjects) {
-				setItemAuthority(item.GetComponent<NetworkIdentity>(), caller);
+				setItemAuthority(item.GetComponent<NetworkIdentity>(), sender);
 			}
 		}
 
 		// To keep sync direction consistent, we move target objects on caller Client
-		TargetMoveObjects(caller.connectionToClient, offset);
+		TargetMoveObjects(sender, offset);
 	}
 
 	[Command]
@@ -434,7 +454,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	[TargetRpc]
 	public void TargetTransformObject(NetworkConnection connection, PosRotMapping mapping, NetworkIdentity itemId, bool resetStartPost) {
 		if (!itemId.isOwned) {
-			NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(itemId, CharacterManager.localClientInstance.GetComponent<NetworkIdentity>());
+			NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(itemId);
 		}
 
 		itemId.gameObject.transform.position = mapping.position;

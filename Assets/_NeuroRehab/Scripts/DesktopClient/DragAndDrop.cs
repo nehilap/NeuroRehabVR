@@ -65,7 +65,7 @@ public class DragAndDrop : MonoBehaviour {
 
 		if (draggedObject.transform.TryGetComponent<NetworkIdentity>(out NetworkIdentity objectIdentity)) {
 			if (!objectIdentity.isOwned) {
-				NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(objectIdentity, CharacterManager.localClientInstance.GetComponent<NetworkIdentity>());
+				NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(objectIdentity);
 			}
 		}
 
