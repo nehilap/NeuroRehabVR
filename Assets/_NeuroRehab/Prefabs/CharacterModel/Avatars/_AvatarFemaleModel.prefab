@@ -176,7 +176,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105644456279043634}
   m_LocalRotation: {x: -0.69323033, y: 0.049802788, z: -0.6272567, w: 0.35142654}
-  m_LocalPosition: {x: -0.0034380716, y: -0.0016142365, z: -0.00012884363}
+  m_LocalPosition: {x: -0.00358, y: -0.00143, z: 0.00154}
   m_LocalScale: {x: 0.01, y: 0.010000001, z: 0.010000002}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3258,7 +3258,7 @@ MonoBehaviour:
     rotation: {x: 0, y: 0, z: 0}
   animationMapping:
     targetMappingGroups:
-    - animationType: 0
+    - animationType: 1
       armMapping:
         position: {x: -0.023519993, y: -0.034199953, z: 0.07734001}
         rotation: {x: 73.66281, y: 344.50226, z: 357.47412}
@@ -3277,26 +3277,7 @@ MonoBehaviour:
       pinkyMapping:
         position: {x: -0.0291, y: -0.022799969, z: -0.038340002}
         rotation: {x: 0, y: 0, z: 180}
-    - animationType: 3
-      armMapping:
-        position: {x: -0.07235001, y: 0.0025999546, z: 0.042050004}
-        rotation: {x: 0, y: 246.92508, z: 270}
-      thumbMapping:
-        position: {x: 0.0053000003, y: -0.024999976, z: 0.038100004}
-        rotation: {x: 0, y: 0, z: 99.99999}
-      indexMapping:
-        position: {x: 0.031200007, y: -0.017699957, z: -0.028650016}
-        rotation: {x: 0, y: 270, z: 0}
-      middleMapping:
-        position: {x: 0.03365001, y: -0.0015000105, z: -0.0203}
-        rotation: {x: 0, y: 0, z: 350}
-      ringMapping:
-        position: {x: 0.027250007, y: 0.016260028, z: -0.026050001}
-        rotation: {x: 0, y: 0, z: 345}
-      pinkyMapping:
-        position: {x: 0.017100006, y: 0.036200047, z: -0.034449995}
-        rotation: {x: 0, y: 0, z: 44.999996}
-    - animationType: 1
+    - animationType: 0
       armMapping:
         position: {x: -0.07235001, y: 0.0025999546, z: 0.042050004}
         rotation: {x: 0, y: 246.92508, z: 270}
@@ -3316,6 +3297,25 @@ MonoBehaviour:
         position: {x: 0.017100006, y: 0.036200047, z: -0.034449995}
         rotation: {x: 0, y: 0, z: 44.999996}
     - animationType: 2
+      armMapping:
+        position: {x: -0.07235001, y: 0.0025999546, z: 0.042050004}
+        rotation: {x: 0, y: 246.92508, z: 270}
+      thumbMapping:
+        position: {x: 0.0053000003, y: -0.024999976, z: 0.038100004}
+        rotation: {x: 0, y: 0, z: 99.99999}
+      indexMapping:
+        position: {x: 0.031200007, y: -0.017699957, z: -0.028650016}
+        rotation: {x: 0, y: 270, z: 0}
+      middleMapping:
+        position: {x: 0.03365001, y: -0.0015000105, z: -0.0203}
+        rotation: {x: 0, y: 0, z: 350}
+      ringMapping:
+        position: {x: 0.027250007, y: 0.016260028, z: -0.026050001}
+        rotation: {x: 0, y: 0, z: 345}
+      pinkyMapping:
+        position: {x: 0.017100006, y: 0.036200047, z: -0.034449995}
+        rotation: {x: 0, y: 0, z: 44.999996}
+    - animationType: 3
       armMapping:
         position: {x: -0.025000378, y: -0.031199694, z: 0.102}
         rotation: {x: 11.822335, y: 58.547947, z: 82.3402}
@@ -3384,7 +3384,7 @@ MonoBehaviour:
     rotation: {x: 0, y: 0, z: 0}
   animationMapping:
     targetMappingGroups:
-    - animationType: 0
+    - animationType: 1
       armMapping:
         position: {x: -0.023519993, y: -0.034199953, z: 0.07734001}
         rotation: {x: 73.66281, y: 344.50226, z: 357.47412}
@@ -3403,26 +3403,7 @@ MonoBehaviour:
       pinkyMapping:
         position: {x: -0.0291, y: -0.022799969, z: -0.038340002}
         rotation: {x: 0, y: 0, z: 180}
-    - animationType: 3
-      armMapping:
-        position: {x: -0.07235001, y: 0.0025999546, z: 0.042050004}
-        rotation: {x: 0, y: 246.92508, z: 270}
-      thumbMapping:
-        position: {x: 0.0053000003, y: -0.024999976, z: 0.038100004}
-        rotation: {x: 0, y: 0, z: 99.99999}
-      indexMapping:
-        position: {x: 0.031200007, y: -0.017699957, z: -0.028650016}
-        rotation: {x: 0, y: 270, z: 0}
-      middleMapping:
-        position: {x: 0.03365001, y: -0.0015000105, z: -0.0203}
-        rotation: {x: 0, y: 0, z: 350}
-      ringMapping:
-        position: {x: 0.027250007, y: 0.016260028, z: -0.026050001}
-        rotation: {x: 0, y: 0, z: 345}
-      pinkyMapping:
-        position: {x: 0.017100006, y: 0.036200047, z: -0.034449995}
-        rotation: {x: 0, y: 0, z: 44.999996}
-    - animationType: 1
+    - animationType: 0
       armMapping:
         position: {x: -0.07235001, y: 0.0025999546, z: 0.042050004}
         rotation: {x: 0, y: 246.92508, z: 270}
@@ -3442,6 +3423,25 @@ MonoBehaviour:
         position: {x: 0.017100006, y: 0.036200047, z: -0.034449995}
         rotation: {x: 0, y: 0, z: 44.999996}
     - animationType: 2
+      armMapping:
+        position: {x: -0.07235001, y: 0.0025999546, z: 0.042050004}
+        rotation: {x: 0, y: 246.92508, z: 270}
+      thumbMapping:
+        position: {x: 0.0053000003, y: -0.024999976, z: 0.038100004}
+        rotation: {x: 0, y: 0, z: 99.99999}
+      indexMapping:
+        position: {x: 0.031200007, y: -0.017699957, z: -0.028650016}
+        rotation: {x: 0, y: 270, z: 0}
+      middleMapping:
+        position: {x: 0.03365001, y: -0.0015000105, z: -0.0203}
+        rotation: {x: 0, y: 0, z: 350}
+      ringMapping:
+        position: {x: 0.027250007, y: 0.016260028, z: -0.026050001}
+        rotation: {x: 0, y: 0, z: 345}
+      pinkyMapping:
+        position: {x: 0.017100006, y: 0.036200047, z: -0.034449995}
+        rotation: {x: 0, y: 0, z: 44.999996}
+    - animationType: 3
       armMapping:
         position: {x: -0.025000378, y: -0.031199694, z: 0.102}
         rotation: {x: 11.822335, y: 58.547947, z: 82.3402}
@@ -5828,7 +5828,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6382933589449436105}
   m_LocalRotation: {x: 0.69323033, y: 0.04980285, z: -0.6272566, w: -0.35142636}
-  m_LocalPosition: {x: 0.0034380704, y: -0.0016142424, z: -0.00012883829}
+  m_LocalPosition: {x: 0.00363, y: -0.00132, z: 0.00137}
   m_LocalScale: {x: 0.010000002, y: 0.010000004, z: 0.010000003}
   m_ConstrainProportionsScale: 0
   m_Children: []

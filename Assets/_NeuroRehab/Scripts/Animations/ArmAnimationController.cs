@@ -45,11 +45,13 @@ public class ArmAnimationController : MonoBehaviour {
 	[SerializeField] private MeshFilter armRangeMesh;
 	[SerializeField] private float armRangeSlack = 0.01f;
 
-
 	[SerializeField] private Transform _mirror;
 	private float armLength;
 
 	private bool initialized = false;
+
+	private Coroutine armRestCoroutine;
+	private Coroutine armAnimationCoroutine;
 
 	void Start() {
 		animState = Enums.AnimationState.Stopped;
@@ -89,19 +91,6 @@ public class ArmAnimationController : MonoBehaviour {
 		handRig.gameObject.SetActive(false);
 	}
 
-	private void LateUpdate() {
-		alignArmRestTargetWithTable();
-	}
-
-	public void alignArmRestTargetWithTable() {
-		if (isArmResting) {
-			Vector3 endPos = armRestHelperObject.transform.position + armRestOffset;
-
-			targetsHelperObject.armRestTarget.transform.position = endPos;
-			targetsHelperObject.armRestTarget.transform.rotation = armRestHelperObject.transform.rotation;
-		}
-	}
-
 	public void initialize() {
 		if (!animSettingsManager)
 			animSettingsManager = ObjectManager.Instance.getFirstObjectByName("AnimationSettingsManager")?.GetComponent<AnimationSettingsManager>();
@@ -128,7 +117,7 @@ public class ArmAnimationController : MonoBehaviour {
 	/// </summary>
 	/// <param name="isFakeAnimation"></param>
 	/// <returns></returns>
-	private IEnumerator armStartAnimationLerp(bool isFakeAnimation) {
+	private IEnumerator startArmAnimationCoroutine(bool isFakeAnimation) {
 		float waitDuration = 0.5f;
 		float keyTurnDuration = 1f;
 		float cupMoveDuration = animSettingsManager.moveDuration / 2;
@@ -200,7 +189,7 @@ public class ArmAnimationController : MonoBehaviour {
 	/// Coroutine - Animation control for stopping animation
 	/// </summary>
 	/// <returns></returns>
-	private IEnumerator armStopAnimationLerp(bool informServer) {
+	private IEnumerator stopArmAnimationCoroutine(bool informServer) {
 
 		// simply release hand by changing weights
 		yield return StartCoroutine(simpleRigLerp(handRig, animSettingsManager.handMoveDuration, 1, 0));
@@ -241,7 +230,7 @@ public class ArmAnimationController : MonoBehaviour {
 		}
 	}
 
-	private IEnumerator restArmStartAnimation() {
+	private IEnumerator restArmStartCoroutine() {
 		// we use variable to save old rest position - this is used either when holding arm next to your body OR when therapist changes animated arm (and rest position is active)
 		originalArmRestPosRot = new PosRotMapping(targetsHelperObject.armRestTarget.transform);
 
@@ -257,9 +246,21 @@ public class ArmAnimationController : MonoBehaviour {
 		// just to make it clear, armRestTarget is the same object as Right/LeftHandTarget, we simply have it named differently for purpose of animation
 		// the reason is so that we don't need another Rig just for rest animations
 		yield return StartCoroutine(lerpTransform(targetsHelperObject.armRestTarget, startMapping, endMapping, animSettingsManager.armMoveDuration));
+
+		yield return StartCoroutine(alignRestArmCoroutine());
 	}
 
-	private IEnumerator restArmStopAnimation() {
+	private IEnumerator alignRestArmCoroutine() {
+		while (isArmResting) {
+			Vector3 endPos = armRestHelperObject.transform.position + armRestOffset;
+
+			targetsHelperObject.armRestTarget.transform.position = endPos;
+			targetsHelperObject.armRestTarget.transform.rotation = armRestHelperObject.transform.rotation;
+			yield return new WaitForSeconds(0.05f);
+		}
+	}
+
+	private IEnumerator restArmStopCoroutine() {
 		PosRotMapping startMapping = new PosRotMapping(targetsHelperObject.armRestTarget.transform);
 
 		// we simply move arm rest target to it's original position
@@ -493,7 +494,7 @@ public class ArmAnimationController : MonoBehaviour {
 		}
 		//animPart = AnimationPart.Arm;
 		// https://gamedevbeginner.com/coroutines-in-unity-when-and-how-to-use-them/
-		StartCoroutine(armStartAnimationLerp(isFakeAnimation));
+		armAnimationCoroutine = StartCoroutine(startArmAnimationCoroutine(isFakeAnimation));
 		return true;
 	}
 
@@ -504,8 +505,10 @@ public class ArmAnimationController : MonoBehaviour {
 
 		// We don't have to set the positions of targets here, because we're simply releasing the hand grip + moving arm to relaxed position
 		// all the movements are done using rig weights
-
-		StartCoroutine(armStopAnimationLerp(informServer));
+		if (armAnimationCoroutine != null) {
+			StopCoroutine(armAnimationCoroutine);
+		}
+		StartCoroutine(stopArmAnimationCoroutine(informServer));
 	}
 
 	private bool canAnimationStart() {
@@ -540,11 +543,17 @@ public class ArmAnimationController : MonoBehaviour {
 		isArmResting = _isArmResting;
 
 		if (isArmResting) {
-			StartCoroutine(restArmStartAnimation());
+			if (armRestCoroutine != null) {
+				StopCoroutine(armRestCoroutine);
+			}
+			armRestCoroutine = StartCoroutine(restArmStartCoroutine());
 
 			avatarController.applyTurn = false; // when arm is resting, we disable torso and whole body rotation based on Head rotation
 		} else {
-			StartCoroutine(restArmStopAnimation());
+			if (armRestCoroutine != null) {
+				StopCoroutine(armRestCoroutine);
+			}
+			StartCoroutine(restArmStopCoroutine());
 
 			avatarController.applyTurn = true;
 		}
