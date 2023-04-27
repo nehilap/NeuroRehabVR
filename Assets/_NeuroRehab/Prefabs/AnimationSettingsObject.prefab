@@ -55,7 +55,7 @@ MonoBehaviour:
   waitDuration: 10
   moveDuration: 1.5
   repetitions: 5
-  _animType: 3
+  _animType: 0
   prevAnimType: -1
   armMoveTextValue: {fileID: 0}
   armMoveSlider: {fileID: 0}

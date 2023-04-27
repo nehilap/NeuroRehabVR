@@ -1,58 +1,49 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class StaticMenuManager : MonoBehaviour
-{
-	[SerializeField] private InputActionReference menuAction;
-
+public class StaticMenuManager : MiniMenuManager {
 
 	[SerializeField] private Transform cameraTransform;
 
 	[SerializeField] private float menuOffset = 1.25f;
 
-	private FreezeObjectPosition freezeObjectPosition;
-	private FreezeObjectRotation freezeObjectRotation;
-	private MiniMenuManager miniMenuManager;
-
-	[SerializeField] private bool isMenuShowing = false;
-
-	private void OnEnable() {
-		menuAction.action.Enable();
-
-		menuAction.action.performed += triggerMenu;
-
-		initElements();
-		resetMenu();
-	}
-
-	private void OnDisable() {
-		menuAction.action.Disable();
-
-		menuAction.action.performed -= triggerMenu;
-	}
-
-	private void triggerMenu(InputAction.CallbackContext obj) {
-		isMenuShowing = !isMenuShowing;
-
-		transform.localRotation = cameraTransform.localRotation;
+	protected override void Awake() {
+		base.Awake();
 		transform.position = cameraTransform.position + (cameraTransform.forward * menuOffset);
-
-		// first we freeze position + rotation, so that it gets 'saved'
-		freezeObjectPosition.enabled = isMenuShowing;
-		freezeObjectRotation.enabled = isMenuShowing;
+		transform.localRotation = cameraTransform.localRotation;
 	}
 
-	private void resetMenu() {
-		freezeObjectPosition.enabled = false;
-		freezeObjectRotation.enabled = false;
+	protected override void Start() {
+		base.Start();
 	}
 
-	private void initElements() {
-		if (freezeObjectPosition == null) {
-			freezeObjectPosition = gameObject.GetComponent<FreezeObjectPosition>();
+	protected override void renderMenu() {
+		base.renderMenu();
+
+		if (isMenuShowing) {
+			transform.position = cameraTransform.position + (cameraTransform.forward * transformOffset.z);
+			transform.localRotation = cameraTransform.localRotation;
+			transform.SetParent(null);
 		}
-		if (freezeObjectRotation == null) {
-			freezeObjectRotation = gameObject.GetComponent<FreezeObjectRotation>();
-		}
+	}
+
+	public override void offsetRight() {
+		transformOffset += new Vector3(0.05f, 0f, 0f);
+		transform.localPosition += transform.right * 0.05f;
+	}
+
+	public override void offsetLeft() {
+		transformOffset += new Vector3(-0.05f, 0f, 0f);
+		transform.localPosition += transform.right * -0.05f;
+	}
+
+	public override void offsetFwd() {
+		transformOffset += new Vector3(0f, 0f, 0.05f);
+		transform.localPosition += transform.forward * 0.05f;
+	}
+
+	public override void offsetBack() {
+		transformOffset += new Vector3(0f, 0f, -0.05f);
+		transform.localPosition += transform.forward * -0.05f;
 	}
 }

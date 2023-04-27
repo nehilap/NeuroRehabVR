@@ -5,6 +5,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 /// Custom class that we use to make better Reticle, that is scaled depending on distance of your camera from reticle.
 /// </summary>
 public class CustomXRInteractorLineVisual : XRInteractorLineVisual {
+
+	[Header("Custom reticle")]
 	[SerializeField] private bool scaleReticleWithDistance;
 	[SerializeField] private float scaleFactor = 10;
 	[SerializeField] private float distance;

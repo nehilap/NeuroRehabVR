@@ -18,7 +18,6 @@ public class StatusMessage : MonoBehaviour {
 	private float fadeDuration = 0.5f;
 	private float messageDuration = 4f;
 
-	private Coroutine coroutine;
 	private Fadeable fadeable;
 
 	void Start() {
@@ -38,9 +37,8 @@ public class StatusMessage : MonoBehaviour {
 	}
 
 	public void showMessage(string message, MessageType messageType) {
-		if (coroutine != null) {
-			StopCoroutine(coroutine);
-		}
+		StopAllCoroutines();
+
 		hideBackgrounds();
 		switch (messageType) {
 			case MessageType.OK:
@@ -55,7 +53,7 @@ public class StatusMessage : MonoBehaviour {
 			default:
 				break;
 		}
-		coroutine = StartCoroutine(statusMessageCoroutine(message));
+		StartCoroutine(statusMessageCoroutine(message));
 	}
 
 	public void hideMessage() {

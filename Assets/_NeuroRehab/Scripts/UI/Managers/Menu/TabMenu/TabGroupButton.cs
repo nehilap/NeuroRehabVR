@@ -2,8 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class TabGroupButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler {	
-	
+public class TabGroupButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler {
+
 	[SerializeField] private TabGroup tabGroup;
 
 	[SerializeField] public Image background;
@@ -21,13 +21,11 @@ public class TabGroupButton : MonoBehaviour, IPointerEnterHandler, IPointerClick
 		tabGroup.OnTabEnter(this);
 	}
 
-	public void OnPointerClick(PointerEventData eventData)
-	{
+	public void OnPointerClick(PointerEventData eventData) {
 		tabGroup.OnTabSelected(this);
 	}
 
-	public void OnPointerExit(PointerEventData eventData)
-	{
+	public void OnPointerExit(PointerEventData eventData) {
 		tabGroup.OnTabExit(this);
 	}
 }

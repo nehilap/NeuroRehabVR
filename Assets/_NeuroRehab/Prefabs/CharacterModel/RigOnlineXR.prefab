@@ -386,7 +386,7 @@ Transform:
   - {fileID: 1541357954448561744}
   - {fileID: 5286707285097963558}
   - {fileID: 6152346352656084144}
-  - {fileID: 447566541722308088}
+  - {fileID: 4971304707536286702}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -836,7 +836,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7763548501988112917}
+  - {fileID: 2225776627602227349}
   m_Father: {fileID: 1878698788340855186}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1936,16 +1936,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544080020919769869, guid: b91fac11c333f274ca15b1834e69e3d4, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1878698787931433301}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b91fac11c333f274ca15b1834e69e3d4, type: 3}
+--- !u!4 &2225776627602227349 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4299699403285977207, guid: b91fac11c333f274ca15b1834e69e3d4, type: 3}
+  m_PrefabInstance: {fileID: 2686421226326907106}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2638806966627715885 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 132567205436134351, guid: b91fac11c333f274ca15b1834e69e3d4, type: 3}
-  m_PrefabInstance: {fileID: 2686421226326907106}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &7763548501988112917 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5689664696698577655, guid: b91fac11c333f274ca15b1834e69e3d4, type: 3}
   m_PrefabInstance: {fileID: 2686421226326907106}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2987893148506972497
@@ -2258,6 +2262,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1878698789788651942}
     m_Modifications:
+    - target: {fileID: 2246390184681285032, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1878698787931433301}
+    - target: {fileID: 2491105577878802910, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3353136132489632433, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
       propertyPath: objectToFollow
       value: 
@@ -2275,9 +2287,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1878698787931433296}
     - target: {fileID: 6873313555506742889, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
+      propertyPath: menuNameToShow
+      value: TherapistMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 6873313555506742889, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 1878698787931433296}
+    - target: {fileID: 6873313555506742889, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
+      propertyPath: positionOffset.y
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 6873313555506742889, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
       propertyPath: miniMenuVisibilityManager
       value: 
@@ -2344,9 +2364,9 @@ PrefabInstance:
       objectReference: {fileID: 1828743430781379336}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
---- !u!224 &447566541722308088 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6942760054566023112, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
+--- !u!4 &4971304707536286702 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2491105577878802910, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
   m_PrefabInstance: {fileID: 7381311938952208944}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &5266209535321373888 stripped

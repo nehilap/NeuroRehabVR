@@ -105,11 +105,13 @@ public class XRStatusManager : MonoBehaviour {
 	}
 
 	public void stopXR() {
+		bool stoppedXR = false;
 		if (XRGeneralSettings.Instance != null && XRGeneralSettings.Instance.Manager.isInitializationComplete) {
 			XRGeneralSettings.Instance.Manager.StopSubsystems();
 			XRGeneralSettings.Instance.Manager.DeinitializeLoader();
 
 			Debug.Log("Stopped XR...");
+			stoppedXR = true;
 		}
 		if (xrInitialized || activeLoader != null) {
 			activeLoader.Stop();
@@ -118,12 +120,15 @@ public class XRStatusManager : MonoBehaviour {
 			activeLoader = null;
 
 			Debug.Log("Stopped XR...");
+			stoppedXR = true;
 		}
-		isXRActive = false;
-		Application.targetFrameRate = 60;
+		if (stoppedXR) {
+			isXRActive = false;
+			Application.targetFrameRate = 60;
 
-		setupRigs();
-		setupUIAndXRElements();
+			setupRigs();
+			setupUIAndXRElements();
+		}
 	}
 
 	public IEnumerator startXR(bool isOpenXRActive = true) {

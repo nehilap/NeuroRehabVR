@@ -9,7 +9,6 @@ public class CountdownManager : MonoBehaviour {
 	[SerializeField] private TMP_Text textField;
 	[SerializeField] private TMP_Text extraTextField;
 
-	private Coroutine coroutine;
 	private Fadeable fadeable;
 
 	private void Start() {
@@ -38,14 +37,13 @@ public class CountdownManager : MonoBehaviour {
 	}
 
 	public void startCountdown(float duration, string extraText) {
-		if (coroutine != null) {
-			StopCoroutine(coroutine);
-		}
+		StopAllCoroutines();
+
 		if (!Mathf.Approximately(fadeable.canvasGroup.alpha, 1f)) {
 			StartCoroutine(fadeable.fadeAlpha(0f, 1f, 0.5f));
 		}
 		extraTextField.text = extraText;
-		coroutine = StartCoroutine(countdownCoroutine(duration));
+		StartCoroutine(countdownCoroutine(duration));
 	}
 
 	public void stopCountdown(string extraText) {
@@ -54,9 +52,7 @@ public class CountdownManager : MonoBehaviour {
 	}
 
 	public void stopCountdown() {
-		if (coroutine != null) {
-			StopCoroutine(coroutine);
-		}
+		StopAllCoroutines();
 	}
 
 	public void hideCountdown() {

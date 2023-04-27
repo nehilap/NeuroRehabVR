@@ -24,7 +24,6 @@ public class AnimationServerManager : NetworkBehaviour {
 	private bool isAnimationTriggered = false;
 	private DateTime lastAnimationTrigger;
 	private int currentRepetitions = 0;
-	private Coroutine trainingCoroutine;
 
 	public override void OnStartServer() {
 		animSettingsManager = gameObject.GetComponent<AnimationSettingsManager>();
@@ -57,10 +56,8 @@ public class AnimationServerManager : NetworkBehaviour {
 				Debug.Log("Starting arm animation");
 				RpcStartActualAnimation(false, (currentRepetitions + 1) + "/" + animSettingsManager.repetitions);
 				isAnimationTriggered = true;
+				StopAllCoroutines();
 
-				if (trainingCoroutine != null) {
-					StopCoroutine(trainingCoroutine);
-				}
 				return true;
 			} else {
 				isTrainingRunning = false;
@@ -93,7 +90,7 @@ public class AnimationServerManager : NetworkBehaviour {
 			RpcStartCountdown(animSettingsManager.waitDuration, currentRepetitions + "/" + animSettingsManager.repetitions);
 		}
 
-		trainingCoroutine = StartCoroutine(waitDurationCoroutine(animSettingsManager.waitDuration));
+		StartCoroutine(waitDurationCoroutine(animSettingsManager.waitDuration));
 
 		isAnimationTriggered = false;
 	}
@@ -115,10 +112,9 @@ public class AnimationServerManager : NetworkBehaviour {
 		currentRepetitions = 0;
 
 		RpcStartTraining(animSettingsManager.waitDuration, "0/" + animSettingsManager.repetitions);
-		if (trainingCoroutine != null) {
-			StopCoroutine(trainingCoroutine);
-		}
-		trainingCoroutine = StartCoroutine(waitDurationCoroutine(animSettingsManager.waitDuration));
+		StopAllCoroutines();
+
+		StartCoroutine(waitDurationCoroutine(animSettingsManager.waitDuration));
 
 		return true;
 	}

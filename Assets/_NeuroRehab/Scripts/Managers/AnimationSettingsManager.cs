@@ -80,11 +80,11 @@ public class AnimationSettingsManager : NetworkBehaviour {
 			return;
 		}
 
-		initDropdown();
-		animType = AnimationType.Block;
-		prevAnimType = AnimationType.Block;
-
 		if (isClient) {
+			initDropdown();
+			animType = AnimationType.Block;
+			prevAnimType = AnimationType.Block;
+
 			setAllElements();
 
 			if (SettingsManager.Instance.roleSettings.characterRole == UserRole.Therapist) {
@@ -112,6 +112,10 @@ public class AnimationSettingsManager : NetworkBehaviour {
 	}
 
 	public override void OnStartServer() {
+		initDropdown();
+		animType = AnimationType.Block;
+		prevAnimType = AnimationType.Block;
+
 		string animTypeString = animType.ToString();
 		GameObject targetObject = GameObject.Find(animTypeString);
 		if (!targetObject) {

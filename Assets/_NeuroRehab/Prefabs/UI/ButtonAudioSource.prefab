@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonClickAudio:
     audioSource: {fileID: 7619131785802657620}
-    initialVolume: 0.15
+    initialVolume: 0.12
 --- !u!82 &7619131785802657620
 AudioSource:
   m_ObjectHideFlags: 0
@@ -59,7 +59,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ae6188d8b06145a469262b7c0c9cad3b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 01d850d8de90eec40a0f632061353671, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.15
   m_Pitch: 1

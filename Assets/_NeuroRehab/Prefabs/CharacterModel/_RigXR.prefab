@@ -108,7 +108,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4832251952299488577}
+  - {fileID: 3914118159029948353}
   m_Father: {fileID: 5308743743318181213}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -439,7 +439,7 @@ Transform:
   - {fileID: 5909644037636158246}
   - {fileID: 7447934343227788429}
   - {fileID: 2223494747928096789}
-  - {fileID: 8610923334116021840}
+  - {fileID: 3840348965266761798}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1387,11 +1387,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 1.008
       objectReference: {fileID: 0}
+    - target: {fileID: 7544080020919769869, guid: b91fac11c333f274ca15b1834e69e3d4, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 5308743743746186650}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b91fac11c333f274ca15b1834e69e3d4, type: 3}
---- !u!224 &4832251952299488577 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5689664696698577655, guid: b91fac11c333f274ca15b1834e69e3d4, type: 3}
+--- !u!4 &3914118159029948353 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4299699403285977207, guid: b91fac11c333f274ca15b1834e69e3d4, type: 3}
   m_PrefabInstance: {fileID: 1007157503688120246}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1718552455722465688
@@ -1405,6 +1409,18 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 5308743743746186650}
+    - target: {fileID: 2246390184681285032, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 5308743743746186650}
+    - target: {fileID: 2491105577878802910, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2491105577878802910, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.725
+      objectReference: {fileID: 0}
     - target: {fileID: 3353136132489632433, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
       propertyPath: objectToFollow
       value: 
@@ -1417,6 +1433,10 @@ PrefabInstance:
       propertyPath: offsetObject
       value: 
       objectReference: {fileID: 5308743743746186655}
+    - target: {fileID: 6873313555506742889, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
+      propertyPath: menuNameToShow
+      value: LobbyMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 6873313555506742889, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
       propertyPath: cameraTransform
       value: 
@@ -1486,18 +1506,14 @@ PrefabInstance:
       value: LobbyMenu
       objectReference: {fileID: 0}
     - target: {fileID: 7456554362324290176, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
-      propertyPath: positionOffset.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7456554362324290176, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
       propertyPath: miniMenuVisibilityManager
       value: 
       objectReference: {fileID: 7005635507403754549}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
---- !u!224 &8610923334116021840 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6942760054566023112, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
+--- !u!4 &3840348965266761798 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2491105577878802910, guid: 50a362cff6911294aa9ed2d68bd23e01, type: 3}
   m_PrefabInstance: {fileID: 1718552455722465688}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2025332624605001707
