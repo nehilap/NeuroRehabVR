@@ -30,7 +30,7 @@ public class AudioSettings {
 
 [Serializable]
 public class GraphicsSettings {
-	public float renderScale;
+	public float renderScale = 1.1f;
 }
 
 [Serializable]
@@ -100,7 +100,7 @@ public class SettingsManager : MonoBehaviour, ISaveable {
 	/// Settings version string is used to invalidate settings file when reading it, it can be virtually anything.
 	/// Can be used to reset settings to default values.
 	/// </summary>
-	private string settingsVersion = "1";
+	private string settingsVersion = "2";
 
 	void Awake() {
 		{
@@ -115,6 +115,7 @@ public class SettingsManager : MonoBehaviour, ISaveable {
 
 		generalSettings.fpsCounterFilePath = Application.persistentDataPath + "/fps.txt";
 		ipAddress = "localhost";
+		SetRenderScale(graphicsSettings.renderScale);
 
 		// fast solution, would be better to rework it to use custom logger, so that we can control better what is / isn't logged
 		// https://gamedevbeginner.com/how-to-use-debug-log-in-unity-without-affecting-performance/

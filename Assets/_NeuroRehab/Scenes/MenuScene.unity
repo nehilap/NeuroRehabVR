@@ -1113,7 +1113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7233501113216351324, guid: 126fa139ddb5b1a49bcadf280083fc9d, type: 3}
       propertyPath: m_MinValue
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7233501113216351324, guid: 126fa139ddb5b1a49bcadf280083fc9d, type: 3}
       propertyPath: m_WholeNumbers
@@ -2813,7 +2813,7 @@ MonoBehaviour:
   audioSettings:
     UIvolume: 1
   graphicsSettings:
-    renderScale: 0
+    renderScale: 1.1
   generalSettings:
     measureFps: 1
     writeFps: 0
