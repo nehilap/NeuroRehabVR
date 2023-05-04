@@ -5,6 +5,7 @@ public class StaticMenuManager : MiniMenuManager {
 	[SerializeField] private Transform cameraTransform;
 
 	[SerializeField] private float menuOffset = 1.25f;
+	[SerializeField] private float menuOffsetVertical = -0.25f;
 
 	protected override void Awake() {
 		base.Awake();
@@ -30,6 +31,8 @@ public class StaticMenuManager : MiniMenuManager {
 			transform.position = cameraTransform.position + (cameraTransform.forward * transformOffset.z);
 			transform.rotation = Quaternion.LookRotation(transform.position - cameraTransform.position);
 			transform.SetParent(null);
+
+			transform.position += new Vector3(0f, menuOffsetVertical, 0f);
 		}
 	}
 
