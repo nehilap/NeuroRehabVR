@@ -37,20 +37,20 @@ public class AnimationSettingsManager : NetworkBehaviour {
 
 	public AnimationType prevAnimType;
 
-	public TMP_Text armMoveTextValue;
-	public Slider armMoveSlider;
+	[SerializeField] private TMP_Text armMoveTextValue;
+	[SerializeField] private Slider armMoveSlider;
 
-	public TMP_Text handMoveTextValue;
-	public Slider handMoveSlider;
+	[SerializeField] private TMP_Text handMoveTextValue;
+	[SerializeField] private Slider handMoveSlider;
 
-	public TMP_Text waitDurTextValue;
-	public Slider waitDurSlider;
+	[SerializeField] private TMP_Text waitDurTextValue;
+	[SerializeField] private Slider waitDurSlider;
 
-	public TMP_Text moveDurTextValue;
-	public Slider moveDurSlider;
+	[SerializeField] private TMP_Text moveDurTextValue;
+	[SerializeField] private Slider moveDurSlider;
 
-	public TMP_Text repetitionsTextValue;
-	public Slider repetitionsSlider;
+	[SerializeField] private TMP_Text repetitionsTextValue;
+	[SerializeField] private Slider repetitionsSlider;
 
 	[SerializeField] private Button registerMovePositionButton;
 
@@ -109,6 +109,8 @@ public class AnimationSettingsManager : NetworkBehaviour {
 				repetitionsSlider.GetComponent<ButtonClickAudio>().enabled = false;
 			}
 		}
+
+		checkVariables();
 	}
 
 	public override void OnStartServer() {
@@ -126,6 +128,16 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		} else {
 			getCurrentAnimationSetup().Add(new PosRotMapping(targetObject.transform.position, targetObject.transform.rotation.eulerAngles));
 		}
+	}
+
+	private void checkVariables() {
+		if (!armMoveTextValue || !armMoveSlider || !handMoveTextValue || !handMoveSlider || !waitDurTextValue || !waitDurSlider || !moveDurTextValue || !moveDurSlider || !repetitionsTextValue || !repetitionsSlider || !registerMovePositionButton || !animTypeDropdown) {
+			Debug.LogError("Some of the variables are not correctly set!!");
+		}
+	}
+
+	public void setAnimTypeDropdownText(string textValue) {
+		animTypeDropdown.value = animTypeDropdown.options.FindIndex(option => option.text.ToLower().Equals(textValue.ToLower()));
 	}
 
 	private void initDropdown() {
@@ -221,7 +233,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		prevAnimType = _old;
 		disableObjects(_old);
 
-		animTypeDropdown.value = animTypeDropdown.options.FindIndex(option => option.text == animType.ToString());
+		setAnimTypeDropdownText(animType.ToString());
 
 		if (animType == AnimationType.Key) {
 			registerMovePositionButton.interactable = false;
@@ -289,7 +301,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		repetitionsTextValue.text = repetitions + " x";
 		repetitionsSlider.value = repetitions;
 
-		animTypeDropdown.value = animTypeDropdown.options.FindIndex(option => option.text == animType.ToString());
+		setAnimTypeDropdownText(animType.ToString());
 	}
 
 	/// <summary>

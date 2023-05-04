@@ -43,7 +43,7 @@ public class CustomNetworkManager : NetworkManager {
 	public override void OnStartServer() {
 		base.OnStartServer();
 
-		Debug.Log("Server started:" + NetworkManager.singleton.networkAddress);
+		Debug.Log($"Server started: {NetworkManager.singleton.networkAddress}");
 
 
 		NetworkServer.RegisterHandler<CharacterMessage>(OnCreateCharacter);

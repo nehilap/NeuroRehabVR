@@ -103,7 +103,6 @@ public class SettingsManager : MonoBehaviour, ISaveable {
 	private string settingsVersion = "1";
 
 	void Awake() {
-		Debug.Log(Screen.brightness);
 		{
 			if (_instance != null && _instance != this )
 			{

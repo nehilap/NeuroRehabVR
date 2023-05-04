@@ -140,7 +140,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 
 	[TargetRpc]
 	public void TargetSetAnimTypeDropdownValue(NetworkConnection connection, AnimationType animationType) {
-		animSettingsManager.animTypeDropdown.value = animSettingsManager.animTypeDropdown.options.FindIndex(option => option.text == animationType.ToString());
+		animSettingsManager.setAnimTypeDropdownText(animationType.ToString());
 	}
 
 	/*
