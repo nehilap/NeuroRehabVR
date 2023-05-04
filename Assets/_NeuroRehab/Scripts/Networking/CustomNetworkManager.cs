@@ -35,7 +35,7 @@ public class CustomNetworkManager : NetworkManager {
 		}
 
 		#if UNITY_SERVER
-		XRStatusManager.Instance.stopXR();
+		XRSettingsManager.Instance.stopXR();
 		#endif
 
 		base.Start();
