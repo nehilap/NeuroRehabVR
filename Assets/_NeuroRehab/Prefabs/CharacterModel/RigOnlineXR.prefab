@@ -678,14 +678,6 @@ MonoBehaviour:
   activeArmAnimationController: {fileID: 0}
   offsetObject: {fileID: 436356087230740168}
   cameraObject: {fileID: 1878698787931433297}
-  avatarMalePrefabs:
-  - {fileID: 113542620659459055, guid: 062e2fbf6c1dad04ca6d5f9061cadf55, type: 3}
-  - {fileID: 113542620659459055, guid: 9e6551be2b6bcc049b424db75ba29bf8, type: 3}
-  - {fileID: 113542620659459055, guid: 64b8e992ed4c23147a2467cc563d01c5, type: 3}
-  avatarFemalePrefabs:
-  - {fileID: 113542620659459055, guid: a50153c5ccaf04a4c99a6e410195e360, type: 3}
-  - {fileID: 113542620659459055, guid: dea3ce09f4d875947964102386bc5471, type: 3}
-  - {fileID: 113542620659459055, guid: 085ca7f99a401d24099215e6e1ad8905, type: 3}
   itemsToActivate:
   - {fileID: 6891543328459119718}
   - {fileID: 2638806966627715885}

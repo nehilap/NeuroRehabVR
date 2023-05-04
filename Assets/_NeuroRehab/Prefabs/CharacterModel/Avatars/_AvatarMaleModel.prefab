@@ -895,6 +895,7 @@ MonoBehaviour:
   - LeftHandAnimationRig
   - RightArmAnimationRig
   - RightHandAnimationRig
+  avatarController: {fileID: 7634075933599394607}
 --- !u!114 &2582390790784424128
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -194,6 +194,10 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	/// </summary>
 	[Command]
 	public void CmdDeleteMovePosition() {
+		int lastIndex = animSettingsManager.getCurrentAnimationSetup().Count - 1;
+		if (lastIndex < 0 || !(animSettingsManager.getCurrentAnimationSetup().Count > lastIndex)) {
+			return;
+		}
 		animSettingsManager.getCurrentAnimationSetup().RemoveAt(animSettingsManager.getCurrentAnimationSetup().Count - 1);
 	}
 

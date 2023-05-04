@@ -36,7 +36,6 @@ public class AvatarMenuButton : MonoBehaviour {
 		foreach (AvatarModelManager manager in avatarMenuManager.avatarModelManagers) {
 			SettingsManager.Instance.avatarSettings.avatarNumber = avatarNumber;
 			SettingsManager.Instance.avatarSettings.isFemale = isFemale;
-			SettingsManager.Instance.avatarSettings.currentModel = modelToUse;
 
 			manager.changeModel(isFemale, modelToUse);
 		}

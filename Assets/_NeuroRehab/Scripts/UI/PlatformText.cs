@@ -24,8 +24,6 @@ public class PlatformText : MonoBehaviour {
 	public void InitStatusText() {
 		if(!this.gameObject.scene.isLoaded) return;
 
-		GetComponent<TMP_Text>().text = "Platform: '" + Application.platform.ToString()
-			+ "', HMD type: '" + XRStatusManager.Instance.hmdType.ToString()
-			+ "', Device: '" + XRSettings.loadedDeviceName + "'";
+		GetComponent<TMP_Text>().text = $"Platform: '{Application.platform.ToString()}', HMD type: '{XRSettingsManager.Instance.hmdType.ToString()}', Device: '{XRSettings.loadedDeviceName}'";
 	}
 }

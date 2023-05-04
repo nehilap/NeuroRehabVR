@@ -10,12 +10,11 @@ public class AudioMenuManager : MonoBehaviour {
 
 	private void Start() {
 		audioVolumeSlider.value = SettingsManager.Instance.audioSettings.UIvolume * audioVolumeSlider.maxValue / maxAudioVolume;
-
-		audioVolumeTextValue.text = Mathf.Round(audioVolumeSlider.value * maxAudioVolume * 100 / audioVolumeSlider.maxValue) + " %";
+		audioVolumeTextValue.text = $"{Mathf.Round(audioVolumeSlider.value * maxAudioVolume * 100 / audioVolumeSlider.maxValue)} %";
 	}
 
-	public void audioVolumeHandler(float value) {
-		audioVolumeTextValue.text = Mathf.Round(value * maxAudioVolume * 100 / audioVolumeSlider.maxValue) + " %";
+	public void audioVolumeSliderHandler(float value) {
+		audioVolumeTextValue.text = $"{Mathf.Round(value * maxAudioVolume * 100 / audioVolumeSlider.maxValue)} %";
 
 		SettingsManager.Instance.audioSettings.UIvolume = (value * maxAudioVolume) / audioVolumeSlider.maxValue;
 

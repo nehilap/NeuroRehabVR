@@ -1,8 +1,38 @@
+using System.Collections.Generic;
 using Enums;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class SettingsMenuManager : MonoBehaviour {
+
+	[SerializeField] private Toggle measureFpsToggle;
+	[SerializeField] private Toggle writeFpsToggle;
+
+	[SerializeField] private TMP_Text renderScaleTextValue;
+	[SerializeField] private Slider renderScaleSlider;
+
+	[SerializeField] private TMP_Text reticleScaleTextValue;
+	[SerializeField] private Slider reticleScaleSlider;
+
+	[SerializeField] private TMP_Dropdown reticleStyleDropdown;
+
+	private void Start() {
+		measureFpsToggle.isOn = SettingsManager.Instance.generalSettings.measureFps;
+		writeFpsToggle.isOn = SettingsManager.Instance.generalSettings.writeFps;
+
+		renderScaleSlider.value = SettingsManager.Instance.currentRenderScale * 10;
+		renderScaleTextValue.text = $"{SettingsManager.Instance.currentRenderScale}";
+
+		reticleScaleSlider.value = SettingsManager.Instance.generalSettings.reticleScale * 10;
+		reticleScaleTextValue.text = $"{SettingsManager.Instance.generalSettings.reticleScale * 100} %";
+
+		reticleStyleDropdown.value = reticleStyleDropdown.options.FindIndex(option => option.text.ToLower().Equals(SettingsManager.Instance.generalSettings.reticleStyle.ToString().ToLower()));
+		reticleStyleDropdown.onValueChanged.AddListener(delegate {
+			reticleStyleHandler(reticleStyleDropdown);
+		});
+	}
 
 	public void setControllerPrefabs(int controller) {
 		if (!System.Enum.IsDefined(typeof(ControllerType), controller)) {
@@ -13,7 +43,7 @@ public class SettingsMenuManager : MonoBehaviour {
 		GameObject controllerL = null;
 		GameObject controllerR = null;
 
-		foreach (GameObject item in XRStatusManager.Instance.controllerPrefabs) {
+		foreach (GameObject item in XRSettingsManager.Instance.controllerPrefabs) {
 			if (item.name.Contains(((ControllerType) controller).ToString())) {
 				if (item.name.Contains("Left")) {
 					controllerL = item;
@@ -23,7 +53,7 @@ public class SettingsMenuManager : MonoBehaviour {
 			}
 		}
 
-		XRStatusManager.Instance.controllerType = (ControllerType) controller;
+		XRSettingsManager.Instance.controllerType = (ControllerType) controller;
 
 		XRBaseController rightC = GameObject.Find("RightHand Controller").GetComponent<XRBaseController>();
 		XRBaseController leftC = GameObject.Find("LeftHand Controller").GetComponent<XRBaseController>();
@@ -45,18 +75,61 @@ public class SettingsMenuManager : MonoBehaviour {
 	}
 
 	public void startXR() {
-		StartCoroutine(XRStatusManager.Instance.startXR());
+		StartCoroutine(XRSettingsManager.Instance.startXR());
 	}
 
 	public void stopXR() {
-		XRStatusManager.Instance.stopXR();
+		XRSettingsManager.Instance.stopXR();
 	}
 
 	public void toggleFps(bool value) {
-		SettingsManager.Instance.generalSettings.showFps = value;
+		SettingsManager.Instance.generalSettings.measureFps = value;
+
+		List<GameObject> counters = ObjectManager.Instance.getObjectsByName("FPSCounter");
+		foreach (var counter in counters) {
+			counter.GetComponent<FPSCounterManager>().enabled = value;
+		}
 	}
 
 	public void toggleFpsWrite(bool value) {
 		SettingsManager.Instance.generalSettings.writeFps = value;
+
+		if (value) {
+			SettingsManager.Instance.generalSettings.measureFps = true;
+			measureFpsToggle.isOn = true;
+		}
+	}
+
+	public void renderScaleSliderHandler(float value) {
+		SettingsManager.Instance.SetRenderScale(value / 10);
+		renderScaleTextValue.text = $"{value / 10}";
+	}
+
+	public void reticleScaleSliderHandler(float value) {
+		SettingsManager.Instance.generalSettings.reticleScale = (value / 10);
+		reticleScaleTextValue.text = $"{value * 10} %";
+
+		foreach (var reticle in ObjectManager.Instance.getObjectsByName("Reticle")) {
+			if (reticle.TryGetComponent<DesktopReticleManager>(out DesktopReticleManager desktopReticleManager)) {
+				desktopReticleManager.updateReticleScale();
+			}
+		}
+	}
+
+	public void reticleStyleHandler(TMP_Dropdown dropdown) {
+		switch (dropdown.options[dropdown.value].text) {
+			case "Filled": SettingsManager.Instance.generalSettings.reticleStyle = ReticleStyle.FILLED; break;
+			case "Empty": SettingsManager.Instance.generalSettings.reticleStyle = ReticleStyle.EMPTY; break;
+			default: return;
+		}
+
+		foreach (var reticle in ObjectManager.Instance.getObjectsByName("Reticle")) {
+			if (reticle.TryGetComponent<DesktopReticleManager>(out DesktopReticleManager desktopReticleManager)) {
+				desktopReticleManager.updateReticleStyle();
+			}
+			if (reticle.TryGetComponent<CustomXRInteractorLineVisual>(out CustomXRInteractorLineVisual xrReticle)) {
+				xrReticle.updateReticleStyle();
+			}
+		}
 	}
 }

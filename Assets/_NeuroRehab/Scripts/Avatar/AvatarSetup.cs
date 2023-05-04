@@ -6,19 +6,18 @@ using System.Collections.Generic;
 /// </summary>
 public class AvatarSetup : MonoBehaviour {
 
-	[SerializeField]
-	private GameObject modelToUse;
+	[SerializeField] private GameObject modelToUse;
 
-	[SerializeField]
-	private List<Transform> currentAvatarObjects = new List<Transform>();
+	[SerializeField] private List<Transform> currentAvatarObjects = new List<Transform>();
 
-	[SerializeField]
-	private Transform rootBone;
+	[SerializeField] private Transform rootBone;
 
-	[SerializeField]
-	private string[] excludedNames;
+	[SerializeField] private string[] excludedNames;
+
+	[SerializeField] private AvatarController avatarController;
 
 	private Dictionary<string, Transform> allBones;
+
 
 	void Awake() {
 		setupAvatarParts();
@@ -77,6 +76,8 @@ public class AvatarSetup : MonoBehaviour {
 			}
 		}
 		GameObject.Destroy(modelToUse);
+
+		avatarController.rotateAvatar();
 
 		Debug.Log($"{transform.root.name} - Model succesfully changed {modelToUse.name}");
 	}

@@ -35,4 +35,6 @@ namespace Enums {
 	/// Message Types used for differentiating what color background to use.
 	/// </summary>
 	public enum MessageType {OK, WARNING, NORMAL};
+
+	public enum ReticleStyle {FILLED, EMPTY};
 }

@@ -45,7 +45,7 @@ public class XRCharacterManager : CharacterManager {
 		inputActionManager.enabled = true;
 
 		// We look for Device simulator and setup the local player camera transform to camera transform
-		if (hmdType == HMDType.Mock && XRStatusManager.Instance.isXRActive) {
+		if (hmdType == HMDType.Mock && XRSettingsManager.Instance.isXRActive) {
 			GameObject deviceSimulator = Instantiate(xrDeviceSimulator);
 
 			deviceSimulator.GetComponent<XRDeviceSimulator>().cameraTransform = cameraObject.transform;
@@ -173,7 +173,7 @@ public class XRCharacterManager : CharacterManager {
 			return;
 		}
 
-		foreach (GameObject item in XRStatusManager.Instance.controllerPrefabs) {
+		foreach (GameObject item in XRSettingsManager.Instance.controllerPrefabs) {
 			if (item.name.Contains(_new.ToString())) {
 				if (item.name.Contains("Left")) {
 					leftC.modelPrefab = item.transform;

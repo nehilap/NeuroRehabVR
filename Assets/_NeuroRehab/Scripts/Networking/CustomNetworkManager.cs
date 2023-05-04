@@ -2,6 +2,8 @@ using UnityEngine;
 using Mirror;
 using Structs;
 using Enums;
+using System.Collections.Generic;
+using VRStandardAssets.Utils;
 
 /// <summary>
 /// Class overriding default NetworkManager from Mirror. Used for spawning custom character models and when character disconnects.
@@ -25,9 +27,14 @@ public class CustomNetworkManager : NetworkManager {
 				break;
 			}
 		}
-#if UNITY_SERVER
+
+		if (!SettingsManager.Instance.settingsInitializedFromFile) {
+			SettingsManager.Instance.ipAddress = NetworkManager.singleton.networkAddress;
+		}
+
+		#if UNITY_SERVER
 		XRStatusManager.Instance.stopXR();
-#endif
+		#endif
 
 		base.Start();
 	}
@@ -42,24 +49,59 @@ public class CustomNetworkManager : NetworkManager {
 		NetworkServer.RegisterHandler<CharacterMessage>(OnCreateCharacter);
 	}
 
-	// Called on CLIENT only when CLIENT connects
+	/// <summary>
+	/// Called on CLIENT only when CLIENT connects
+	/// </summary>
 	public override void OnClientConnect() {
 		base.OnClientConnect();
 
 		// you can send the message here
-		CharacterMessage characterMessage = new CharacterMessage
-		{
+		CharacterMessage characterMessage = new CharacterMessage {
 			role = SettingsManager.Instance.roleSettings.characterRole,
-			hmdType = XRStatusManager.Instance.hmdType,
-			controllerType = XRStatusManager.Instance.controllerType,
+			hmdType = XRSettingsManager.Instance.hmdType,
+			controllerType = XRSettingsManager.Instance.controllerType,
 			isFemale = SettingsManager.Instance.avatarSettings.isFemale,
 			avatarNumber = SettingsManager.Instance.avatarSettings.avatarNumber,
 			sizeMultiplier = SettingsManager.Instance.avatarSettings.sizeMultiplier,
 			offsetDistance = SettingsManager.Instance.avatarSettings.offsetDistance,
-			isXRActive = XRStatusManager.Instance.isXRActive,
+			isXRActive = XRSettingsManager.Instance.isXRActive,
 		};
 
 		NetworkClient.Send(characterMessage);
+	}
+
+	// https://mirror-networking.gitbook.io/docs/manual/guides/communications/networkmanager-callbacks
+	public override void OnClientChangeScene(string newSceneName, SceneOperation sceneOperation, bool customHandling) {
+		base.OnClientChangeScene(newSceneName, sceneOperation, customHandling);
+
+		List<GameObject> ls = ObjectManager.Instance.getObjectsByName("LoadingScreen");
+		foreach (GameObject item in ls) {
+			if (!item.activeInHierarchy)
+				continue;
+
+			item.GetComponent<Canvas>().enabled = true;
+
+			if (item.TryGetComponent<VRCameraFade>(out VRCameraFade vrCameraFade)) {
+				vrCameraFade.FadeOut(false);
+			}
+		}
+	}
+
+	// https://mirror-networking.gitbook.io/docs/manual/guides/communications/networkmanager-callbacks
+	public override void OnClientSceneChanged() {
+		base.OnClientSceneChanged();
+
+		List<GameObject> ls = ObjectManager.Instance.getObjectsByName("LoadingScreen");
+		foreach (GameObject item in ls) {
+			if (!item.activeInHierarchy)
+				continue;
+
+			item.GetComponent<Canvas>().enabled = false;
+
+			if (item.TryGetComponent<VRCameraFade>(out VRCameraFade vrCameraFade)) {
+				vrCameraFade.FadeIn(false);
+			}
+		}
 	}
 
 	/// <summary>

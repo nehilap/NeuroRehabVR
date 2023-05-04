@@ -86,6 +86,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4272764720347454575}
   - component: {fileID: 307851260368642317}
+  - component: {fileID: 4997702899132277574}
+  - component: {fileID: 6456681420003576471}
+  - component: {fileID: 3654478926446981466}
   m_Layer: 6
   m_Name: Circle
   m_TagString: Untagged
@@ -165,6 +168,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4997702899132277574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4015664084965902266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06f2c521b9a42404eb8bcd9fe2885aa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6456681420003576471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4015664084965902266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83be284ef4640ca4a88123afcbc77699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectName: Reticle
+--- !u!222 &3654478926446981466
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4015664084965902266}
+  m_CullTransparentMesh: 1
 --- !u!1 &4552375521623962094
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,7 +278,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 6
+  m_PixelsPerUnitMultiplier: 10
 --- !u!114 &464489537984494390
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -21,3 +21,7 @@
 ## Testing
 
 For testing locally with multiple instances running, create clones using ParrelSync package and run Server and Clients separately.
+
+## Useful links
+
+- [VR sample scripts](https://github.com/OSVR/Unity-VR-Samples)

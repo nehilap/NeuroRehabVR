@@ -13,7 +13,9 @@ public class MiniMenuManager : MonoBehaviour {
 	[SerializeField] private string menuNameToShow;
 
 	protected Vector3 transformOffset;
-	protected Vector3 initTransformOffset;
+	protected Vector3 initialTransformOffset;
+
+	protected float offsetLimit = 0.7f;
 
 	[SerializeField] private Vector3 positionOffset;
 	[SerializeField] private Vector3 scale;
@@ -30,17 +32,18 @@ public class MiniMenuManager : MonoBehaviour {
 	[SerializeField] private Sprite activeOffsetControlsButton;
 	[SerializeField] private Sprite inactiveOffsetControlsButton;
 
-	private Vector3 originalMenuPosition;
-	private Vector3 originalMenuScale;
-	private Transform originalMenuParent;
+	protected Vector3 originalMenuPosition;
+	protected Vector3 originalMenuScale;
+	protected Transform originalMenuParent;
 
 	public bool isMenuShowing = false;
-	private bool menuInitialized = false;
+	protected bool menuInitialized = false;
 
 	protected virtual void Awake() {
 		if (miniMenuVisibilityManager != null) {
 			miniMenuVisibilityManager.registerMiniMenuManager(this);
 		}
+		initialTransformOffset = transform.localPosition;
 	}
 
 	protected virtual void Start() {
@@ -64,10 +67,24 @@ public class MiniMenuManager : MonoBehaviour {
 		originalMenuScale = menuToShow.transform.localScale;
 		originalMenuParent = menuToShow.transform.parent;
 
-		transformOffset = transform.localPosition;
-		initTransformOffset = transformOffset;
+
+		if (offsetControls) {
+			initOffset();
+		}
 
 		menuInitialized = true;
+	}
+
+	protected virtual void initOffset() {
+		if (SettingsManager.Instance.offsetSettings.miniMenusOffsetSettingsInitialized) {
+			transformOffset = SettingsManager.Instance.offsetSettings.miniMenuTransformOffset;
+
+			transform.localPosition = transformOffset;
+		} else {
+			transformOffset = transform.localPosition;
+			saveOffsetSettings();
+			SettingsManager.Instance.offsetSettings.miniMenusOffsetSettingsInitialized = true;
+		}
 	}
 
 	private void OnEnable() {
@@ -105,7 +122,7 @@ public class MiniMenuManager : MonoBehaviour {
 
 		if (miniMenuVisibilityManager != null) {
 			if (miniMenuVisibilityManager.isMenuShowing(this)) {
-				yield return null;
+				yield break;
 			}
 			isMenuShowing = miniMenuVisibilityManager.triggerMenu(this);
 		} else {
@@ -117,7 +134,7 @@ public class MiniMenuManager : MonoBehaviour {
 				menuToShow.transform.SetParent(menuHolder);
 			}
 
-			renderMenu();
+			setupMenuPositining();
 
 			if (reticle) {
 				reticle.SetActive(false);
@@ -137,7 +154,7 @@ public class MiniMenuManager : MonoBehaviour {
 		menuHolder.GetComponent<Canvas>().enabled = isMenuShowing;
 	}
 
-	protected virtual void renderMenu() {
+	protected virtual void setupMenuPositining() {
 		menuToShow.transform.localScale = scale;
 		menuToShow.transform.localRotation = Quaternion.identity;
 
@@ -170,23 +187,45 @@ public class MiniMenuManager : MonoBehaviour {
 	}
 
 	public virtual void offsetRight() {
+		if (Mathf.Abs(initialTransformOffset.x - transformOffset.x) >= offsetLimit) {
+			return;
+		}
+
 		transformOffset += new Vector3(0.05f, 0f, 0f);
 		transform.localPosition = new Vector3(transform.localPosition.x + 0.05f, transform.localPosition.y, transform.localPosition.z);
+
+		saveOffsetSettings();
 	}
 
 	public virtual void offsetLeft() {
+		if (Mathf.Abs(initialTransformOffset.x - transformOffset.x) >= offsetLimit) {
+			return;
+		}
 		transformOffset += new Vector3(-0.05f, 0f, 0f);
 		transform.localPosition = new Vector3(transform.localPosition.x - 0.05f, transform.localPosition.y, transform.localPosition.z);
+
+		saveOffsetSettings();
 	}
 
 	public virtual void offsetFwd() {
+		if (Mathf.Abs(initialTransformOffset.z - transformOffset.z) >= offsetLimit) {
+			return;
+		}
 		transformOffset += new Vector3(0f, 0f, 0.05f);
 		transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 0.05f);
+
+		saveOffsetSettings();
 	}
 
 	public virtual void offsetBack() {
+		if (Mathf.Abs(initialTransformOffset.z - transformOffset.z) >= offsetLimit) {
+			return;
+		}
+
 		transformOffset += new Vector3(0f, 0f, -0.05f);
 		transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z - 0.05f);
+
+		saveOffsetSettings();
 	}
 
 	public void triggerOffset() {
@@ -200,8 +239,14 @@ public class MiniMenuManager : MonoBehaviour {
 	}
 
 	public void resetOffset() {
-		transformOffset = initTransformOffset;
+		transformOffset = initialTransformOffset;
 		transform.localPosition = transformOffset;
-		renderMenu();
+		setupMenuPositining();
+
+		saveOffsetSettings();
+	}
+
+	protected virtual void saveOffsetSettings() {
+		SettingsManager.Instance.offsetSettings.miniMenuTransformOffset = transformOffset;
 	}
 }

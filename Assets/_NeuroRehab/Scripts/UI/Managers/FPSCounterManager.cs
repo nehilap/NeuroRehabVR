@@ -18,9 +18,17 @@ public class FPSCounterManager : MonoBehaviour {
 	void Start() {
 		textField = GetComponent<TMP_Text>();
 
+		if (!SettingsManager.Instance.generalSettings.measureFps) {
+			this.enabled = false;
+		}
+
 		StreamWriter writer = new StreamWriter(SettingsManager.Instance.generalSettings.fpsCounterFilePath, false);
 		writer.WriteLine("");
 		writer.Close();
+	}
+
+	private void OnDisable() {
+		textField.text = "";
 	}
 
 	private void Update() {
@@ -35,8 +43,8 @@ public class FPSCounterManager : MonoBehaviour {
 	}
 
 	protected void OnGUI() {
-		if (XRStatusManager.Instance.isXRActive) return;
-		if (!SettingsManager.Instance.generalSettings.showFps) return;
+		if (XRSettingsManager.Instance.isXRActive) return;
+		if (!SettingsManager.Instance.generalSettings.measureFps) return;
 
 		GUIStyle style = new();
 		style.normal.textColor = Color.black;

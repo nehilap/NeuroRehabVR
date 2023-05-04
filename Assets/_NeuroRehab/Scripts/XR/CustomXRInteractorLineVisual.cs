@@ -13,6 +13,9 @@ public class CustomXRInteractorLineVisual : XRInteractorLineVisual {
 	[SerializeField] private XRRayInteractor XRRayInteractor;
 	[SerializeField] private Transform _camera;
 
+	[SerializeField] private GameObject reticleFilled;
+	[SerializeField] private GameObject reticleEmpty;
+
 	new protected void Awake() {
 		base.Awake();
 
@@ -21,9 +24,24 @@ public class CustomXRInteractorLineVisual : XRInteractorLineVisual {
 		}
 	}
 
+	new protected void OnEnable() {
+		base.OnEnable();
+
+		updateReticleStyle();
+	}
+
 	protected void OnDestroy() {
 		if (reticle != null) {
 			Destroy(base.reticle);
+		}
+	}
+
+	public void updateReticleStyle() {
+		Destroy(base.reticle);
+		if (SettingsManager.Instance.generalSettings.reticleStyle == Enums.ReticleStyle.FILLED) {
+			reticle = reticleFilled;
+		} else if (SettingsManager.Instance.generalSettings.reticleStyle == Enums.ReticleStyle.EMPTY) {
+			reticle = reticleEmpty;
 		}
 	}
 
@@ -46,7 +64,7 @@ public class CustomXRInteractorLineVisual : XRInteractorLineVisual {
 					distance = Vector3.Distance(transform.position, _position);
 				}
 
-				base.reticle.transform.localScale = Vector3.one * distance * scaleFactor;
+				base.reticle.transform.localScale = Vector3.one * distance * (scaleFactor * SettingsManager.Instance.generalSettings.reticleScale);
 			}
 		}
 	}

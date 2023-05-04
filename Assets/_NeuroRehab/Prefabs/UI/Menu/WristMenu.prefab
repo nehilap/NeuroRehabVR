@@ -959,9 +959,21 @@ PrefabInstance:
       value: 0.83214664
       objectReference: {fileID: 0}
     - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5320752503591782335}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: resetOffset
@@ -969,6 +981,10 @@ PrefabInstance:
     - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: MiniMenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2080255694761835515, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_text
@@ -1109,9 +1125,21 @@ PrefabInstance:
       value: 0.83214664
       objectReference: {fileID: 0}
     - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5320752503591782335}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: offsetFwd
@@ -1119,6 +1147,10 @@ PrefabInstance:
     - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: MiniMenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2080255694761835515, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_text
@@ -1259,9 +1291,21 @@ PrefabInstance:
       value: 0.83214664
       objectReference: {fileID: 0}
     - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5320752503591782335}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: offsetLeft
@@ -1269,6 +1313,10 @@ PrefabInstance:
     - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: MiniMenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2080255694761835515, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_text
@@ -1409,9 +1457,21 @@ PrefabInstance:
       value: 0.83214664
       objectReference: {fileID: 0}
     - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5320752503591782335}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: offsetRight
@@ -1419,6 +1479,10 @@ PrefabInstance:
     - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: MiniMenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2080255694761835515, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_text
@@ -1559,9 +1623,21 @@ PrefabInstance:
       value: 0.83214664
       objectReference: {fileID: 0}
     - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5320752503591782335}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: offsetBack
@@ -1569,6 +1645,10 @@ PrefabInstance:
     - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: MiniMenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2080255694761835515, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_text
@@ -1709,9 +1789,21 @@ PrefabInstance:
       value: 0.83214664
       objectReference: {fileID: 0}
     - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5320752503591782335}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: triggerOffset
@@ -1719,6 +1811,10 @@ PrefabInstance:
     - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: MiniMenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080255694575462443, guid: 83638f1211723e14da4dcbc281571133, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2080255694761835515, guid: 83638f1211723e14da4dcbc281571133, type: 3}
       propertyPath: m_text

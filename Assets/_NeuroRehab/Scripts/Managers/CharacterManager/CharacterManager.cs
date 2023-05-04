@@ -28,10 +28,6 @@ public abstract class CharacterManager : NetworkBehaviour {
 	[SerializeField] public Transform offsetObject;
 	[SerializeField] public GameObject cameraObject;
 
-	[Header("Avatars prefabs used")]
-	[SerializeField] private List<GameObject> avatarMalePrefabs = new List<GameObject>();
-	[SerializeField] private List<GameObject> avatarFemalePrefabs = new List<GameObject>();
-
 	[Header("Activated objects based on 'authority'")]
 	// Items is array of components that may need to be enabled / activated  only locally
 	[SerializeField] private GameObject[] itemsToActivate;
@@ -103,9 +99,9 @@ public abstract class CharacterManager : NetworkBehaviour {
 		// Setting correct avatar, based on which one was chosen in the lobby
 		GameObject avatar;
 		if (isFemale) {
-			avatar = avatarFemalePrefabs[avatarNumber % avatarFemalePrefabs.Count];
+			avatar = SettingsManager.Instance.avatarFemalePrefabs[avatarNumber % SettingsManager.Instance.avatarFemalePrefabs.Count];
 		} else {
-			avatar = avatarMalePrefabs[avatarNumber % avatarMalePrefabs.Count];
+			avatar = SettingsManager.Instance.avatarMalePrefabs[avatarNumber % SettingsManager.Instance.avatarMalePrefabs.Count];
 		}
 
 		activeAvatarObject = transform.GetComponent<AvatarModelManager>().changeModel(isFemale, avatar, avatarSizeMultiplier, avatarOffsetDistance);

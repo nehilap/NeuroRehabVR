@@ -14,7 +14,7 @@ public class MarkerNumber : MonoBehaviour {
 
 	private void LateUpdate() {
 		if (CharacterManager.localClientInstance) {
-			textField.transform.LookAt(textField.transform.position + CharacterManager.localClientInstance.cameraObject.transform.rotation * Vector3.forward, CharacterManager.localClientInstance.cameraObject.transform.rotation * Vector3.up);
+			textField.transform.rotation = Quaternion.LookRotation(textField.transform.position - CharacterManager.localClientInstance.cameraObject.transform.position);
 		}
 	}
 }

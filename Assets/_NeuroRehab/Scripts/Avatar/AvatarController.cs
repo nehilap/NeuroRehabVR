@@ -104,7 +104,7 @@ public class AvatarController : MonoBehaviour {
 		transform.position = headTarget.position + new Vector3(0, headOffset.y, 0);
 		transform.position += new Vector3(transform.forward.x * headOffset.x, 0, transform.forward.z * headOffset.z);
 
-		transform.forward = headTarget.forward;
+		transform.forward = Vector3.ProjectOnPlane(headTarget.forward, Vector3.up).normalized;
 
 		gameObject.GetComponent<AvatarLowerBodyAnimationController>().enabled = true;
 	}
@@ -154,6 +154,12 @@ public class AvatarController : MonoBehaviour {
 			leftHand.mapTransforms();
 			rightHand.mapTransforms();
 		}
+	}
+
+	public void rotateAvatar() {
+		transform.rotation = Quaternion.Euler(0, 0, 0);
+
+		transform.forward = Vector3.ProjectOnPlane(head.vrTarget.forward, Vector3.up).normalized;
 	}
 
 	public float calculateSizeMultiplier() {

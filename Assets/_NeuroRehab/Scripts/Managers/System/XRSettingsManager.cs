@@ -11,11 +11,11 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// Similar to SettingsManager, but specific for only XR settings. Used for turning XR On/Off. Attempts to use OpenXR first, and then starts MockHMD.
 /// </summary>
-public class XRStatusManager : MonoBehaviour {
+public class XRSettingsManager : MonoBehaviour {
 
-	private static XRStatusManager _instance;
+	private static XRSettingsManager _instance;
 
-	public static XRStatusManager Instance {
+	public static XRSettingsManager Instance {
 		get {
 			return _instance;
 		}
@@ -182,7 +182,7 @@ public class XRStatusManager : MonoBehaviour {
 		if(hmdType == HMDType.Mock){
 			XRSettings.gameViewRenderMode = GameViewRenderMode.LeftEye;
 
-			XRSettings.eyeTextureResolutionScale = 1.6f;
+			XRSettings.eyeTextureResolutionScale = 1.5f;
 		}
 	}
 
