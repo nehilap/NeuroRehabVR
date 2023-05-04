@@ -28,7 +28,9 @@ public class CustomNetworkManager : NetworkManager {
 			}
 		}
 
-		if (!SettingsManager.Instance.settingsInitializedFromFile) {
+		if (SettingsManager.Instance.settingsInitializedFromFile) {
+			networkAddress = SettingsManager.Instance.ipAddress;
+		} else {
 			SettingsManager.Instance.ipAddress = NetworkManager.singleton.networkAddress;
 		}
 

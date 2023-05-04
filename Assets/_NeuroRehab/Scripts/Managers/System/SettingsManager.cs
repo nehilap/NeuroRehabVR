@@ -100,7 +100,7 @@ public class SettingsManager : MonoBehaviour, ISaveable {
 	/// Settings version string is used to invalidate settings file when reading it, it can be virtually anything.
 	/// Can be used to reset settings to default values.
 	/// </summary>
-	private string settingsVersion = "2";
+	private string settingsVersion = "1";
 
 	void Awake() {
 		{
@@ -120,12 +120,12 @@ public class SettingsManager : MonoBehaviour, ISaveable {
 		// fast solution, would be better to rework it to use custom logger, so that we can control better what is / isn't logged
 		// https://gamedevbeginner.com/how-to-use-debug-log-in-unity-without-affecting-performance/
 		Debug.unityLogger.logEnabled = isLogEnabled;
+
+		loadSettings();
 	}
 
 	void Start() {
 		Application.targetFrameRate = 60;
-
-		loadSettings();
 	}
 
 	void OnApplicationQuit() {
@@ -152,16 +152,9 @@ public class SettingsManager : MonoBehaviour, ISaveable {
 				Instance.LoadFromSaveData(sd);
 				Debug.Log("Settings sucesfully initialized");
 				settingsInitializedFromFile = true;
-
-				initializeSettings();
 			}
-
+			SetRenderScale(graphicsSettings.renderScale);
 		}
-	}
-
-	private void initializeSettings() {
-		SetRenderScale(graphicsSettings.renderScale);
-		NetworkManager.singleton.networkAddress = ipAddress;
 	}
 
 	public void PopulateSaveData(SaveData saveData) {
