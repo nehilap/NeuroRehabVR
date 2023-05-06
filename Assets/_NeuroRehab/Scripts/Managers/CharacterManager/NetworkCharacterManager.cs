@@ -83,6 +83,8 @@ public class NetworkCharacterManager : NetworkBehaviour {
 		item.RemoveClientAuthority();
 		item.AssignClientAuthority(sender);
 
+		// force reset snapshots, new client does not have the correct knowledge of previous snapshots
+		item.gameObject.GetComponent<NetworkTransform>().Reset();
 	}
 
 	/*
@@ -155,8 +157,8 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	}
 
 	/// <summary>
-	/// Adds new move position at the end of synclist
-	/// /// </summary>
+	/// Adds new move position at the end of synclist. Currently server assigns the value. In case there is an issue with correct position (server jitter), we could send the value over network from client.
+	/// </summary>
 	[Command]
 	public void CmdAddMovePosition() {
 		if (animSettingsManager.getCurrentAnimationSetup().Count >= 10) {

@@ -123,6 +123,7 @@ MonoBehaviour:
   - {fileID: 3796970163881969186, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
   - {fileID: -3781283977073091197, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
   activeTriggers: 0
+  shortcutMarkerManager: {fileID: 8895087246664707546}
 --- !u!114 &8351724715148979628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -895,10 +896,18 @@ PrefabInstance:
       propertyPath: positionOffset.y
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 5675424094028207899, guid: 390a6df766e42374689a00f4a7c236b7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 5932472227890620300, guid: 390a6df766e42374689a00f4a7c236b7, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 5308743743746186650}
+    - target: {fileID: 5932472227890620300, guid: 390a6df766e42374689a00f4a7c236b7, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6929373336953213078, guid: 390a6df766e42374689a00f4a7c236b7, type: 3}
       propertyPath: m_Name
       value: CameraMenu
@@ -921,6 +930,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1626116079738220342, guid: 390a6df766e42374689a00f4a7c236b7, type: 3}
   m_PrefabInstance: {fileID: 2862242479484392402}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8895087246664707546 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6685884906636967432, guid: 390a6df766e42374689a00f4a7c236b7, type: 3}
+  m_PrefabInstance: {fileID: 2862242479484392402}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd885f752e7aa1148a69c8f18fb90ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3635807595672682337
 PrefabInstance:
   m_ObjectHideFlags: 0

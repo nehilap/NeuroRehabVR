@@ -195,14 +195,6 @@ MonoBehaviour:
   activeArmAnimationController: {fileID: 0}
   offsetObject: {fileID: 6787573859773515368}
   cameraObject: {fileID: 5308743743746186654}
-  avatarMalePrefabs:
-  - {fileID: 113542620659459055, guid: 062e2fbf6c1dad04ca6d5f9061cadf55, type: 3}
-  - {fileID: 113542620659459055, guid: 9e6551be2b6bcc049b424db75ba29bf8, type: 3}
-  - {fileID: 113542620659459055, guid: 64b8e992ed4c23147a2467cc563d01c5, type: 3}
-  avatarFemalePrefabs:
-  - {fileID: 113542620659459055, guid: a50153c5ccaf04a4c99a6e410195e360, type: 3}
-  - {fileID: 113542620659459055, guid: dea3ce09f4d875947964102386bc5471, type: 3}
-  - {fileID: 113542620659459055, guid: 085ca7f99a401d24099215e6e1ad8905, type: 3}
   itemsToActivate:
   - {fileID: 4407383298804560811}
   avatarWalkingControllers:
@@ -302,6 +294,7 @@ MonoBehaviour:
   - {fileID: 3796970163881969186, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
   - {fileID: -3781283977073091197, guid: 075c6a7b87429d143a4a23bb1d3448a7, type: 3}
   activeTriggers: 0
+  shortcutMarkerManager: {fileID: 128695028568104245}
 --- !u!114 &6339621406385160040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1062,6 +1055,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 390a6df766e42374689a00f4a7c236b7, type: 3}
+--- !u!114 &128695028568104245 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6685884906636967432, guid: 390a6df766e42374689a00f4a7c236b7, type: 3}
+  m_PrefabInstance: {fileID: 6701426152077321021}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd885f752e7aa1148a69c8f18fb90ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4407383298804560811 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6929373336953213078, guid: 390a6df766e42374689a00f4a7c236b7, type: 3}

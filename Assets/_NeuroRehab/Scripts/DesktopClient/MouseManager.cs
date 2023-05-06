@@ -7,8 +7,9 @@ using UnityEngine.InputSystem;
 public class MouseManager : MonoBehaviour {
 
 	[SerializeField] private InputActionReference[] mouseVisibilityTriggers;
-
 	[SerializeField] public int activeTriggers = 0;
+
+	[SerializeField] private ShortcutMarkerManager shortcutMarkerManager;
 
 	private void Awake() {
 		activeTriggers = 0;
@@ -31,6 +32,10 @@ public class MouseManager : MonoBehaviour {
 		for (int i = 0; i < mouseVisibilityTriggers.Length; i++) {
 			if (mouseVisibilityTriggers[i].action == obj.action) {
 				activeTriggers = activeTriggers ^ (int) Mathf.Pow(2, i);
+
+				if (shortcutMarkerManager) {
+					shortcutMarkerManager.triggerMarker(obj.action.name);
+				}
 				break;
 			}
 		}

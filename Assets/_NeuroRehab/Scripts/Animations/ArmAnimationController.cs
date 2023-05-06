@@ -165,9 +165,7 @@ public class ArmAnimationController : MonoBehaviour {
 				if (!isTargetInRange(currentAnimSetup[i].position)) {
 					continue;
 				}
-
 				yield return StartCoroutine(lerpTransform(targetObject, previousMapping, currentAnimSetup[i], animSettingsManager.moveDuration, true));
-
 				// Cup animation also moves object up by 0.20m
 				if (animSettingsManager.animType == AnimationType.Cup) {
 					yield return StartCoroutine(moveCupUpAndDown(currentAnimSetup[i], waitDuration, cupMoveDuration));
@@ -208,6 +206,14 @@ public class ArmAnimationController : MonoBehaviour {
 		// alternative check - (CharacterManager.localClientInstance.GetInstanceID() == CharacterManager.activePatientInstance.GetInstanceID())
 		if (informServer && SettingsManager.Instance.roleSettings.characterRole == UserRole.Patient) {
 			NetworkCharacterManager.localNetworkClientInstance.CmdProgressAnimationStep();
+		}
+
+		// hopefully this solves the issue with target object clipping through table at the end of animation and falling
+		if (targetObject.TryGetComponent<NetworkIdentity>(out NetworkIdentity itemNetworkIdentity)) {
+			if (itemNetworkIdentity.isOwned) {
+				float minimalOffset = targetObject.GetComponent<NetworkTransform>().positionSensitivity;
+				targetObject.transform.position += new Vector3(0, minimalOffset, 0);
+			}
 		}
 
 		// if this is a fake animation, we have to hide the fake object

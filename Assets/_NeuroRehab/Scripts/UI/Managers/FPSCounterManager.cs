@@ -10,7 +10,7 @@ public class FPSCounterManager : MonoBehaviour {
 	public int frameRate { get; private set; }
 
 	void OnApplicationQuit() {
-		if (SettingsManager.Instance.generalSettings.writeFps && Application.platform != RuntimePlatform.Android) {
+		if (SettingsManager.Instance.generalSettings.measureFps && SettingsManager.Instance.generalSettings.writeFps && Application.platform != RuntimePlatform.Android) {
 			System.Diagnostics.Process.Start(SettingsManager.Instance.generalSettings.fpsCounterFilePath);
 		}
 	}
