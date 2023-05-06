@@ -252,11 +252,10 @@ public class ArmAnimationController : MonoBehaviour {
 
 	private IEnumerator alignRestArmCoroutine() {
 		while (isArmResting) {
-			Vector3 endPos = armRestHelperObject.transform.position + armRestOffset;
-
-			targetsHelperObject.armRestTarget.transform.position = endPos;
+			targetsHelperObject.armRestTarget.transform.position = armRestHelperObject.transform.position + armRestOffset;
 			targetsHelperObject.armRestTarget.transform.rotation = armRestHelperObject.transform.rotation;
-			yield return new WaitForSeconds(0.05f);
+
+			yield return null;
 		}
 	}
 

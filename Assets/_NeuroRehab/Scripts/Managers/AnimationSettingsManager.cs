@@ -72,6 +72,8 @@ public class AnimationSettingsManager : NetworkBehaviour {
 
 	private bool dropdownValuesInitialized = false;
 
+	private float maxRaycastDistance = 20f;
+
 	public void Start() {
 		spawnArea = ObjectManager.Instance.getFirstObjectByName("SpawnArea");
 
@@ -121,10 +123,10 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		string animTypeString = animType.ToString();
 		GameObject targetObject = GameObject.Find(animTypeString);
 		if (!targetObject) {
-			targetObject = GameObject.Find(animTypeString + "(Clone)");
+			targetObject = GameObject.Find($"{animTypeString}(Clone)");
 		}
 		if (!targetObject) {
-			Debug.LogError("Failed to find object: " + animTypeString);
+			Debug.LogError($"Failed to find object: {animTypeString}");
 		} else {
 			getCurrentAnimationSetup().Add(new PosRotMapping(targetObject.transform.position, targetObject.transform.rotation.eulerAngles));
 		}
@@ -198,30 +200,25 @@ public class AnimationSettingsManager : NetworkBehaviour {
 
 	private void changeArmMoveDurationElements(float _old, float _new) {
 		armMoveTextValue.text = (Mathf.Round(armMoveDuration * 10) / 10).ToString("F1") + " s";
-
 		armMoveSlider.value = (int) (armMoveDuration * 2);
 	}
 
 	private void changeHandMoveDurationElements(float _old, float _new) {
 		handMoveTextValue.text = (Mathf.Round(handMoveDuration * 10) / 10).ToString("F1") + " s";
-
 		handMoveSlider.value = (int) (handMoveDuration * 2);
 	}
 
 	private void changeWaitDurationElements(float _old, float _new) {
 		waitDurTextValue.text = (Mathf.Round(waitDuration * 10) / 10).ToString("F1") + " s";
-
 		waitDurSlider.value = (int) (waitDuration * 2);
 	}
 	private void changeMoveDurationElements(float _old, float _new) {
 		moveDurTextValue.text = (Mathf.Round(moveDuration * 10) / 10).ToString("F1") + " s";
-
 		moveDurSlider.value = (int) (moveDuration * 2);
 	}
 
 	private void changeRepetitionsElements(int _old, int _new) {
 		repetitionsTextValue.text = repetitions + " x";
-
 		repetitionsSlider.value = repetitions;
 	}
 
@@ -422,7 +419,6 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		if (isServer) {
 			return;
 		}
-
 		armMoveDuration = value / 2f;
 
 		changeArmMoveDurationElements(value, value);
@@ -433,7 +429,6 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		if (isServer) {
 			return;
 		}
-
 		handMoveDuration = value / 2f;
 
 		changeHandMoveDurationElements(value, value);
@@ -444,7 +439,6 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		if (isServer) {
 			return;
 		}
-
 		waitDuration = value / 2f;
 
 		changeWaitDurationElements(value, value);
@@ -455,7 +449,6 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		if (isServer) {
 			return;
 		}
-
 		moveDuration = value / 2f;
 
 		changeMoveDurationElements(value, value);
@@ -466,7 +459,6 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		if (isServer) {
 			return;
 		}
-
 		repetitions = (int) value;
 
 		changeRepetitionsElements((int) value, (int) value);
@@ -477,7 +469,6 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		if (isServer) {
 			return;
 		}
-
 		AnimationType tmpAnimType = AnimationType.Off;
 		prevAnimType = animType;
 
@@ -508,7 +499,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 	/// <param name="_newAnimType"></param>
 	[Server]
 	public void spawnCorrectTarget(AnimationType _oldAnimType, AnimationType _newAnimType) {
-		Debug.Log("Spawning object: '" + _newAnimType + "', old object: '" + _oldAnimType + "'");
+		Debug.Log($"Spawning object: '{_newAnimType}', old object: '{_oldAnimType}'");
 
 		// destroy old objects
 		List<GameObject> oldTargetsInScene = ObjectManager.Instance.getObjectsByName(_oldAnimType.ToString());
@@ -579,7 +570,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 	[Client]
 	public void spawnCorrectTargetFakes(AnimationType _oldAnimType, AnimationType _newAnimType) {
 		// We destroy fake objects here on client
-		List<GameObject> oldTargetsInScene = ObjectManager.Instance.getObjectsByName(_oldAnimType.ToString() + "_fake");
+		List<GameObject> oldTargetsInScene = ObjectManager.Instance.getObjectsByName($"{_oldAnimType.ToString()}_fake");
 		foreach (var item in oldTargetsInScene) {
 			Destroy(item);
 		}
@@ -596,7 +587,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 			return;
 		}
 
-		GameObject targetObject = targetPrefabs.Find((x) => x.name.Equals(_newAnimType.ToString() + "_fake"));
+		GameObject targetObject = targetPrefabs.Find((x) => x.name.Equals($"{_newAnimType.ToString()}_fake"));
 		if (targetObject == null) {
 			return;
 		}
@@ -630,7 +621,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		}
 
 		if (!isTargetInBounds(targetPosRotMapping)) {
-			Debug.LogWarning("Cannot set target position - Out of range of Arm");
+			Debug.LogWarning("Cannot set target position - 'target object' not in bounds");
 			return;
 		}
 
@@ -661,7 +652,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		}
 
 		if (!isTargetInBounds(targetPosRotMapping)) {
-			Debug.LogWarning("Cannot set target position - Out of range of Arm");
+			Debug.LogWarning("Cannot set target position - 'target object' not in bounds");
 			return;
 		}
 
@@ -690,7 +681,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		}
 
 		if (!isTargetInBounds(lockTargetPosRot)) {
-			Debug.LogWarning("Cannot set Lock position - Out of range of Arm");
+			Debug.LogWarning("Cannot set lock position - not in bounds");
 			return;
 		}
 
@@ -715,7 +706,8 @@ public class AnimationSettingsManager : NetworkBehaviour {
 			return false;
 		}
 
-		RaycastHit[] hits = Physics.RaycastAll(targetPosRotMapping.position, Vector3.down, targetPosRotMapping.position.y);
+		// we set max raycast distance due to optimization reasons
+		RaycastHit[] hits = Physics.RaycastAll(targetPosRotMapping.position, Vector3.down, maxRaycastDistance);
 		bool isAboveTable = false;
 		foreach (RaycastHit hit in hits) {
 			if (hit.collider.gameObject.Equals(tableObject)) {
@@ -724,7 +716,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 			}
 		}
 		if (!isAboveTable) {
-			Debug.LogWarning("Target Object not above Table");
+			Debug.LogWarning("Target object not above Table");
 			return false;
 		}
 
@@ -733,7 +725,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 				float armLength = CharacterManager.activePatientInstance.activeArmAnimationController.getArmLength() + CharacterManager.activePatientInstance.activeArmAnimationController.getArmRangeSlack();
 				float targetDistance = Vector3.Distance(targetPosRotMapping.position, CharacterManager.activePatientInstance.activeArmAnimationController.getArmRangePosition());
 
-				Debug.LogWarning("Arm cannot reach object, too far away: " + targetDistance + "m > " + armLength + "m");
+				Debug.LogWarning($"Arm cannot reach object, too far away: {targetDistance}m > {armLength}m");
 				return false;
 			}
 		}

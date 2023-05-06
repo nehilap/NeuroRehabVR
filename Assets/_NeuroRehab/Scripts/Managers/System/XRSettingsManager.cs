@@ -30,7 +30,7 @@ public class XRSettingsManager : MonoBehaviour {
 	public bool isXRActive;
 	private bool foundHMD = false;
 
-	[SerializeField] private string offlineSceneName;
+	[SerializeField] private int offlineSceneID = 0;
 
 	[SerializeField] private ActiveBarGroupsManager activeXRButton;
 	[SerializeField] private ActiveBarGroupsManager inactiveXRButton;
@@ -72,10 +72,10 @@ public class XRSettingsManager : MonoBehaviour {
 	void Start() {
 		SceneManager.activeSceneChanged += changedActiveScene;
 
-		initialize();
+		initializeXRSettings();
 	}
 
-	private void initialize() {
+	private void initializeXRSettings() {
 		initHMD();
 
 		initObjects();
@@ -98,9 +98,8 @@ public class XRSettingsManager : MonoBehaviour {
 
 	private void changedActiveScene(Scene current, Scene next) {
 		// Debug.Log("New Scene: " + next.name);
-
-		if (next.name.Equals(offlineSceneName)) {
-			initialize();
+		if (next.buildIndex == offlineSceneID) {
+			initializeXRSettings();
 		}
 	}
 

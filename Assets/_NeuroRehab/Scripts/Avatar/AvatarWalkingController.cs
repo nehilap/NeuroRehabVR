@@ -13,8 +13,8 @@ public class AvatarWalkingController : MonoBehaviour {
 	[Header("Head movement")]
 	[SerializeField] private InputActionReference headMove;
 	[SerializeField] private Transform cameraTransform;
-	[Range(0.1f, 4f)] [SerializeField] private float headMoveDuration = 0.7f;
-	[Range(0.001f, 0.4f)] [SerializeField] private float headMoveTreshold = 0.12f;
+	[Range(0.1f, 4f)] private float headMoveDuration = 0.7f;
+	[Range(0.001f, 0.4f)] private float headMoveTreshold = 0.15f;
 
 	private bool isAnimatingLegs = false;
 	private bool isAnimatingHead = false;
@@ -55,6 +55,9 @@ public class AvatarWalkingController : MonoBehaviour {
 	}
 
 	private void animateHeadMovement(InputAction.CallbackContext obj) {
+		if (CharacterManager.localClientInstance != null && CharacterManager.localClientInstance.isArmResting) {
+			return;
+		}
 		if (isAnimatingLegs) {
 			return;
 		}

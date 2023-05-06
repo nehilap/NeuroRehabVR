@@ -168,7 +168,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 			return;
 		}
 		if (!animSettingsManager.isTargetInBounds(movePosRotMapping)) {
-			Debug.LogWarning("Cannot set target position - Out of range of Arm");
+			Debug.LogWarning("Cannot set target position - 'target object' not in bounds");
 			return;
 		}
 		animSettingsManager.getCurrentAnimationSetup().Add(movePosRotMapping);
@@ -313,10 +313,18 @@ public class NetworkCharacterManager : NetworkBehaviour {
 		if (tableObjs.Count == 0) {
 			return;
 		}
-		foreach (var item in tableObjs) {
-			item.transform.position += offset;
+		int tableObjsMoved = 0;
+		foreach (var tableObj in tableObjs) {
+			if ((tableObj.transform.position.y + offset.y) <= -0.5f || (tableObj.transform.position.y + offset.y) > 0.8f) {
+				continue;
+			}
+			tableObj.transform.position += offset;
+			tableObjsMoved++;
 		}
 
+		if (tableObjsMoved == 0) {
+			return;
+		}
 		// we have to completely change object holding position, otherwise it won't be synced to clients
 		// Refer to https://mirror-networking.gitbook.io/docs/manual/guides/synchronization/synclists for more details
 		List<SyncList<PosRotMapping>> allSetups = animSettingsManager.getAllAnimationSetups();

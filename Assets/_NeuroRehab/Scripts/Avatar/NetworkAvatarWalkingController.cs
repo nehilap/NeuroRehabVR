@@ -99,7 +99,9 @@ public class NetworkAvatarWalkingController : NetworkBehaviour {
 	}
 
 	private void animateHeadMovement(InputAction.CallbackContext obj) {
-		// Debug.Log( headMove.action.ReadValue<Vector3>());
+		if (CharacterManager.localClientInstance != null && CharacterManager.localClientInstance.isArmResting) {
+			return;
+		}
 		if (isAnimatingLegs) {
 			return;
 		}
