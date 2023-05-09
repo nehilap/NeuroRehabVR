@@ -16590,6 +16590,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1495127789}
     m_Modifications:
+    - target: {fileID: 418817835360992786, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000009536743
+      objectReference: {fileID: 0}
+    - target: {fileID: 418817835405335742, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 418817835405335742, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 418817835405335742, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 418817836036673655, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 418817836036673655, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 418817836036673655, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 418817836457014892, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -16674,9 +16702,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 418817836457014893, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[0].m_Image
+      value: 
+      objectReference: {fileID: 21300000, guid: 40bf3178dc87ab643a2315cb49a8e0cb, type: 3}
+    - target: {fileID: 418817836457014893, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[1].m_Image
+      value: 
+      objectReference: {fileID: 21300000, guid: f1ee08ffbf419bf4f88c443dbaa2b97a, type: 3}
+    - target: {fileID: 418817836457014893, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[2].m_Image
+      value: 
+      objectReference: {fileID: 21300000, guid: a5ac4947319479b43a9ea2289f2f970b, type: 3}
+    - target: {fileID: 418817836457014893, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[3].m_Image
+      value: 
+      objectReference: {fileID: 21300000, guid: 04853dc4fc3efd64b8392fc8436dd60b, type: 3}
     - target: {fileID: 418817836457014895, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}
       propertyPath: m_Name
       value: AnimationTypeDropdown
+      objectReference: {fileID: 0}
+    - target: {fileID: 2888348121868584422, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 40bf3178dc87ab643a2315cb49a8e0cb, type: 3}
+    - target: {fileID: 2888348121868584422, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}

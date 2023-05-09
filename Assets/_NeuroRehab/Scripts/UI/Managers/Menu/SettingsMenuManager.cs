@@ -25,10 +25,10 @@ public class SettingsMenuManager : MonoBehaviour {
 		renderScaleSlider.value = SettingsManager.Instance.currentRenderScale * 10;
 		renderScaleTextValue.text = $"{SettingsManager.Instance.currentRenderScale}";
 
-		reticleScaleSlider.value = SettingsManager.Instance.generalSettings.reticleScale * 10;
-		reticleScaleTextValue.text = $"{SettingsManager.Instance.generalSettings.reticleScale * 100} %";
+		reticleScaleSlider.value = SettingsManager.Instance.generalSettings.ReticleScale * 10;
+		reticleScaleTextValue.text = $"{SettingsManager.Instance.generalSettings.ReticleScale * 100} %";
 
-		reticleStyleDropdown.value = reticleStyleDropdown.options.FindIndex(option => option.text.ToLower().Equals(SettingsManager.Instance.generalSettings.reticleStyle.ToString().ToLower()));
+		reticleStyleDropdown.value = reticleStyleDropdown.options.FindIndex(option => option.text.ToLower().Equals(SettingsManager.Instance.generalSettings.ReticleStyle.ToString().ToLower()));
 		reticleStyleDropdown.onValueChanged.AddListener(delegate {
 			reticleStyleHandler(reticleStyleDropdown);
 		});
@@ -106,7 +106,7 @@ public class SettingsMenuManager : MonoBehaviour {
 	}
 
 	public void reticleScaleSliderHandler(float value) {
-		SettingsManager.Instance.generalSettings.reticleScale = (value / 10);
+		SettingsManager.Instance.generalSettings.ReticleScale = (value / 10);
 		reticleScaleTextValue.text = $"{value * 10} %";
 
 		foreach (var reticle in ObjectManager.Instance.getObjectsByName("Reticle")) {
@@ -118,18 +118,18 @@ public class SettingsMenuManager : MonoBehaviour {
 
 	public void reticleStyleHandler(TMP_Dropdown dropdown) {
 		switch (dropdown.options[dropdown.value].text) {
-			case "Filled": SettingsManager.Instance.generalSettings.reticleStyle = ReticleStyle.FILLED; break;
-			case "Empty": SettingsManager.Instance.generalSettings.reticleStyle = ReticleStyle.EMPTY; break;
+			case "Filled": SettingsManager.Instance.generalSettings.ReticleStyle = ReticleStyle.FILLED; break;
+			case "Empty": SettingsManager.Instance.generalSettings.ReticleStyle = ReticleStyle.EMPTY; break;
 			default: return;
 		}
 
-		foreach (var reticle in ObjectManager.Instance.getObjectsByName("Reticle")) {
+		/*foreach (var reticle in ObjectManager.Instance.getObjectsByName("Reticle")) {
 			if (reticle.TryGetComponent<DesktopReticleManager>(out DesktopReticleManager desktopReticleManager)) {
 				desktopReticleManager.updateReticleStyle();
 			}
 			if (reticle.TryGetComponent<CustomXRInteractorLineVisual>(out CustomXRInteractorLineVisual xrReticle)) {
 				xrReticle.updateReticleStyle();
 			}
-		}
+		}*/
 	}
 }

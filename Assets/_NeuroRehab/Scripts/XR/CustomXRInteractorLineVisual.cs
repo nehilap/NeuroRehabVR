@@ -28,21 +28,28 @@ public class CustomXRInteractorLineVisual : XRInteractorLineVisual {
 		base.OnEnable();
 
 		updateReticleStyle();
+		if (SettingsManager.Instance) {
+			SettingsManager.Instance.generalSettings.OnReticleChange += updateReticleStyle;
+		}
 	}
 
 	protected void OnDestroy() {
 		if (reticle != null) {
 			Destroy(base.reticle);
 		}
+		if (SettingsManager.Instance) {
+			SettingsManager.Instance.generalSettings.OnReticleChange -= updateReticleStyle;
+		}
 	}
 
-	public void updateReticleStyle() {
+	private void updateReticleStyle() {
 		Destroy(base.reticle);
-		if (SettingsManager.Instance.generalSettings.reticleStyle == Enums.ReticleStyle.FILLED) {
+		if (SettingsManager.Instance.generalSettings.ReticleStyle == Enums.ReticleStyle.FILLED) {
 			reticle = reticleFilled;
-		} else if (SettingsManager.Instance.generalSettings.reticleStyle == Enums.ReticleStyle.EMPTY) {
+		} else if (SettingsManager.Instance.generalSettings.ReticleStyle == Enums.ReticleStyle.EMPTY) {
 			reticle = reticleEmpty;
 		}
+		reticle.GetComponentInChildren<SpriteRenderer>().color = SettingsManager.Instance.generalSettings.ReticleColor;
 	}
 
 	// https://forum.unity.com/threads/reticle-crosshair.374076/
@@ -64,7 +71,7 @@ public class CustomXRInteractorLineVisual : XRInteractorLineVisual {
 					distance = Vector3.Distance(transform.position, _position);
 				}
 
-				base.reticle.transform.localScale = Vector3.one * distance * (scaleFactor * SettingsManager.Instance.generalSettings.reticleScale);
+				base.reticle.transform.localScale = Vector3.one * distance * (scaleFactor * SettingsManager.Instance.generalSettings.ReticleScale);
 			}
 		}
 	}

@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using NeuroRehab.Mappings;
 using NeuroRehab.Utility;
 using System;
-using System.Linq;
 
 [System.Serializable]
 public class AnimationSettingsManager : NetworkBehaviour {
@@ -54,7 +53,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 
 	[SerializeField] private Button registerMovePositionButton;
 
-	public TMP_Dropdown animTypeDropdown;
+	[SerializeField] private TMP_Dropdown animTypeDropdown;
 
 	// https://mirror-networking.gitbook.io/docs/guides/synchronization/synclists
 	public readonly SyncList<PosRotMapping> blockSetup = new SyncList<PosRotMapping>();
@@ -70,7 +69,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 
 	[SerializeField] public List<GameObject> targetPrefabs = new List<GameObject>();
 
-	private bool dropdownValuesInitialized = false;
+	//private bool dropdownValuesInitialized = false;
 
 	private float maxRaycastDistance = 20f;
 
@@ -83,8 +82,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		}
 
 		if (isClient) {
-			initDropdown();
-			animType = AnimationType.Block;
+			//initDropdown();
 			prevAnimType = AnimationType.Block;
 
 			setAllElements();
@@ -116,7 +114,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 	}
 
 	public override void OnStartServer() {
-		initDropdown();
+		//initDropdown();
 		animType = AnimationType.Block;
 		prevAnimType = AnimationType.Block;
 
@@ -138,11 +136,15 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Function that can be used to set value of animType dropdown, does not trigger onValueChange event
+	/// </summary>
+	/// <param name="textValue"></param>
 	public void setAnimTypeDropdownText(string textValue) {
 		animTypeDropdown.value = animTypeDropdown.options.FindIndex(option => option.text.ToLower().Equals(textValue.ToLower()));
 	}
 
-	private void initDropdown() {
+	/*private void initDropdown() {
 		if (dropdownValuesInitialized) {
 			return;
 		}
@@ -150,7 +152,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 		animTypeDropdown.ClearOptions();
 		animTypeDropdown.AddOptions(Enum.GetNames(typeof(AnimationType)).ToList());
 		dropdownValuesInitialized = true;
-	}
+	}*/
 
 	public SyncList<PosRotMapping> getCurrentAnimationSetup() {
 		switch (animType) {
@@ -223,9 +225,9 @@ public class AnimationSettingsManager : NetworkBehaviour {
 	}
 
 	private void changeAnimTypeValueHook(AnimationType _old, AnimationType _new) {
-		if (!dropdownValuesInitialized) {
+		/*if (!dropdownValuesInitialized) {
 			initDropdown();
-		}
+		}*/
 
 		prevAnimType = _old;
 		disableObjects(_old);

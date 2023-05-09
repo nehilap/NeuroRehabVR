@@ -39,9 +39,32 @@ public class GeneralSettings {
 	public bool writeFps = false;
 	public string fpsCounterFilePath;
 
-	public float reticleScale = 1f;
+	[SerializeField] private float reticleScale = 1f;
+	public float ReticleScale { get => reticleScale; set {
+			reticleScale = value;
+			if (OnReticleChange != null)
+				OnReticleChange();
+		}
+	}
 
-	public ReticleStyle reticleStyle = ReticleStyle.EMPTY;
+	[SerializeField] private Color reticleColor = Color.white;
+	public Color ReticleColor { get => reticleColor; set {
+			reticleColor = value;
+			if (OnReticleChange != null)
+				OnReticleChange();
+		}
+	}
+
+	[SerializeField] private ReticleStyle reticleStyle = ReticleStyle.EMPTY;
+	public ReticleStyle ReticleStyle { get => reticleStyle;	set {
+			reticleStyle = value;
+			if (OnReticleChange != null)
+				OnReticleChange();
+		}
+	}
+
+	public delegate void OnReticleChangeDelegate();
+	public event OnReticleChangeDelegate OnReticleChange;
 }
 
 [Serializable]
@@ -98,9 +121,9 @@ public class SettingsManager : MonoBehaviour, ISaveable {
 
 	/// <summary>
 	/// Settings version string is used to invalidate settings file when reading it, it can be virtually anything.
-	/// Can be used to reset settings to default values.
+	/// Can be used to reset settings to default values. When pushing new version to git with changes to structure it's good to change version, so that other devs will also update settings file when running the game.
 	/// </summary>
-	private string settingsVersion = "1";
+	private string settingsVersion = "1a";
 
 	void Awake() {
 		{
