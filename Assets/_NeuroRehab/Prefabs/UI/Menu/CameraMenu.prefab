@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 6456681420003576471}
   - component: {fileID: 3654478926446981466}
   m_Layer: 6
-  m_Name: Circle
+  m_Name: Reticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

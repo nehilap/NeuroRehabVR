@@ -2770,7 +2770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reticleSpriteFilled: {fileID: 21300000, guid: 15eaa6cd27aa7a64eaa8e8d7dd546a79, type: 3}
-  reticleSpriteEmpty: {fileID: 21300000, guid: ad318430d6a51ca4dadf40efdb3b7304, type: 3}
+  reticleSpriteEmpty: {fileID: 21300000, guid: 40c2319274cb7e64b956f2bf495a823e, type: 3}
   avatarMalePrefabs:
   - {fileID: 113542620659459055, guid: 062e2fbf6c1dad04ca6d5f9061cadf55, type: 3}
   - {fileID: 113542620659459055, guid: 9e6551be2b6bcc049b424db75ba29bf8, type: 3}
@@ -23619,7 +23619,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 80253364489463627, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 418817835243827477, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}
       propertyPath: m_text
@@ -23627,7 +23627,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 418817835360992786, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.0000019073486
       objectReference: {fileID: 0}
     - target: {fileID: 418817835405335742, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}
       propertyPath: m_AnchorMax.x
@@ -23655,7 +23655,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 418817836036673655, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.8133334
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 418817836201468470, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}
       propertyPath: m_Sprite
