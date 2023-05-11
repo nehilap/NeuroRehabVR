@@ -49,8 +49,7 @@ public class DragAndDrop : MonoBehaviour {
 		RaycastHit hit;
 
 		if (Physics.Raycast(ray, out hit, rayLength, layerMask:~(layersToIgnore))) {
-			if (hit.collider != null && (hit.collider.gameObject.CompareTag("Draggable") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Target")
-			|| hit.collider.gameObject.GetComponent<DragInterface>() != null)) {
+			if (hit.collider != null && (hit.collider.gameObject.CompareTag("Draggable"))) {
 				StartCoroutine(dragUpdate(hit.collider.gameObject));
 			}
 		}
@@ -58,15 +57,12 @@ public class DragAndDrop : MonoBehaviour {
 
 	private IEnumerator dragUpdate(GameObject draggedObject) {
 		Quaternion initRotation = draggedObject.transform.rotation;
-		draggedObject.transform.TryGetComponent<DragInterface>(out DragInterface dragInterface);
-
-		dragInterface?.OnStartDrag();
-		dragInterface?.OnShowDragRange();
 
 		if (draggedObject.transform.TryGetComponent<NetworkIdentity>(out NetworkIdentity objectIdentity)) {
 			if (!objectIdentity.isOwned) {
 				NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(objectIdentity);
 			}
+			StartCoroutine(CharacterManager.localClientInstance.itemPickedUp(objectIdentity));
 		}
 
 		float initDistance = Vector3.Distance(draggedObject.transform.position, mainCamera.transform.position);
@@ -85,7 +81,9 @@ public class DragAndDrop : MonoBehaviour {
 			}
 		}
 
-		dragInterface?.OnStopDrag();
-		dragInterface?.OnHideDragRange();
+		// this shouldn't happen, but just in case, since we can't call [Command] without authority
+		if (objectIdentity && objectIdentity.isOwned) {
+			CharacterManager.localClientInstance.itemReleased(objectIdentity);
+		}
 	}
 }

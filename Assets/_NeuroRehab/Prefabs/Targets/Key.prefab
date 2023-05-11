@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 9155965548309921204}
   m_Layer: 14
   m_Name: Key
-  m_TagString: Untagged
+  m_TagString: Draggable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -329,6 +329,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 616b575f497e66d4798211a8fc519d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
+  itemPicked: 0
 --- !u!114 &9155965548309921204
 MonoBehaviour:
   m_ObjectHideFlags: 0

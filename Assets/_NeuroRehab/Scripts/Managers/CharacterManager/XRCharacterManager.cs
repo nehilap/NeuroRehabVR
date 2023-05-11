@@ -123,16 +123,17 @@ public class XRCharacterManager : CharacterManager {
 	/// </summary>
 	/// <param name="args">Info about object grabbed</param>
 	private void itemPickUp(SelectEnterEventArgs args) {
-		if (isOwned) {
-			// if not server, we ask server to grant us authority
-			NetworkIdentity itemNetIdentity = args.interactableObject.transform.GetComponent<NetworkIdentity>();
-			if (!isServer && !itemNetIdentity.isOwned){
-				NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(itemNetIdentity);
-			}
-
-			args.interactableObject.transform.transform.TryGetComponent<DragInterface>(out DragInterface dragInterface);
-			dragInterface?.OnShowDragRange();
+		if (!isOwned) {
+			return;
 		}
+
+		// if not server, we ask server to grant us authority
+		NetworkIdentity itemNetIdentity = args.interactableObject.transform.GetComponent<NetworkIdentity>();
+		if (!isServer && !itemNetIdentity.isOwned){
+			NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(itemNetIdentity);
+		}
+
+		StartCoroutine(itemPickedUp(itemNetIdentity));
 	}
 
 	/// <summary>
@@ -141,9 +142,22 @@ public class XRCharacterManager : CharacterManager {
 	/// <param name="args"></param>
 	private void itemRelease(SelectExitEventArgs args) {
 		if (isOwned) {
-			args.interactableObject.transform.transform.TryGetComponent<DragInterface>(out DragInterface dragInterface);
-			dragInterface?.OnHideDragRange();
+			NetworkIdentity itemNetIdentity = args.interactableObject.transform.GetComponent<NetworkIdentity>();
+			// this shouldn't happen, but just in case, since we can't call [Command] without authority
+			if (!itemNetIdentity.isOwned) {
+				return;
+			}
+			itemReleased(itemNetIdentity);
 		}
+	}
+
+	public override void itemReleased(NetworkIdentity itemNetIdentity) {
+		itemNetIdentity.TryGetComponent<DragInterface>(out DragInterface dragInterface);
+
+		dragInterface?.OnHideDragRange();
+
+		itemNetIdentity.TryGetComponent<TargetDisableInterface>(out TargetDisableInterface targetDisableInterface);
+		targetDisableInterface?.CmdEnableDrag();
 	}
 
 	/// <summary>

@@ -79,7 +79,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 			return;
 		}
 		item.gameObject.GetComponent<NetworkTransform>().syncDirection = SyncDirection.ClientToServer;
-		Debug.Log($"Granting authority: '{item.netId}' to: '{sender.identity.netId}'");
+		Debug.Log($"Granting authority: OBJECT '{item.netId}' to: USER '{sender.identity.netId}'");
 		item.RemoveClientAuthority();
 		item.AssignClientAuthority(sender);
 

@@ -14,8 +14,8 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: Peter Nehila
   productName: NeuroRehabVR
-  defaultCursor: {fileID: 0}
-  cursorHotspot: {x: 0, y: 0}
+  defaultCursor: {fileID: 2800000, guid: 3aee3cc24ac40714fa395c05d6e44170, type: 3}
+  cursorHotspot: {x: 6, y: 6}
   m_SplashScreenBackgroundColor: {r: 0.17254902, g: 0.18039216, b: 0.20784314, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1

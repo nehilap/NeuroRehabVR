@@ -2,6 +2,7 @@ using Mirror;
 using UnityEngine;
 using System.Collections.Generic;
 using Wolf3D.ReadyPlayerMe.AvatarSDK;
+using System.Collections;
 
 /// <summary>
 /// Abstract parent class for Multiplayer Character manager. Setups starting components - enables/disables components that would otherwise create conflicts in the scene.
@@ -158,6 +159,34 @@ public abstract class CharacterManager : NetworkBehaviour {
 		foreach (MonoBehaviour component in componentsToEnable) {
 			component.enabled = true;
 		}
+	}
+
+	public virtual IEnumerator itemPickedUp(NetworkIdentity itemNetIdentity) {
+		yield return new WaitUntil(() => itemNetIdentity.isOwned);
+
+		itemNetIdentity.TryGetComponent<DragInterface>(out DragInterface dragInterface);
+		dragInterface?.OnStartDrag();
+		dragInterface?.OnShowDragRange();
+
+		itemNetIdentity.TryGetComponent<TargetDisableInterface>(out TargetDisableInterface targetDisableInterface);
+		targetDisableInterface?.CmdDisableDrag();
+	}
+
+	public virtual IEnumerator itemStartDrag(NetworkIdentity itemNetIdentity) {
+		yield return new WaitUntil(() => itemNetIdentity.isOwned);
+
+		itemNetIdentity.TryGetComponent<TargetDisableInterface>(out TargetDisableInterface targetDisableInterface);
+		targetDisableInterface?.CmdDisableDrag();
+	}
+
+	public virtual void itemReleased(NetworkIdentity itemNetIdentity) {
+		itemNetIdentity.TryGetComponent<DragInterface>(out DragInterface dragInterface);
+
+		dragInterface?.OnStopDrag();
+		dragInterface?.OnHideDragRange();
+
+		itemNetIdentity.TryGetComponent<TargetDisableInterface>(out TargetDisableInterface targetDisableInterface);
+		targetDisableInterface?.CmdEnableDrag();
 	}
 
 	/// <summary>

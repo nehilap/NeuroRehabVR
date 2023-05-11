@@ -151,6 +151,8 @@ public class ArmAnimationController : MonoBehaviour {
 				if (!targetObjectIdentity.isOwned) {
 					NetworkCharacterManager.localNetworkClientInstance.CmdSetItemAuthority(targetObjectIdentity);
 				}
+
+				StartCoroutine(CharacterManager.localClientInstance.itemStartDrag(targetObjectIdentity));
 			}
 
 			// Cup animation also moves object up by 0.20m
@@ -188,7 +190,6 @@ public class ArmAnimationController : MonoBehaviour {
 	/// </summary>
 	/// <returns></returns>
 	private IEnumerator stopArmAnimationCoroutine(bool informServer) {
-
 		// simply release hand by changing weights
 		yield return StartCoroutine(simpleRigLerp(handRig, animSettingsManager.handMoveDuration, 1, 0));
 		// moving hand to relaxed position by changing weights on multiple rigs at once
@@ -213,6 +214,9 @@ public class ArmAnimationController : MonoBehaviour {
 			if (itemNetworkIdentity.isOwned) {
 				float minimalOffset = targetObject.GetComponent<NetworkTransform>().positionSensitivity;
 				targetObject.transform.position += new Vector3(0, minimalOffset, 0);
+
+				itemNetworkIdentity.TryGetComponent<TargetDisableInterface>(out TargetDisableInterface targetDisableInterface);
+				targetDisableInterface?.CmdEnableDrag();
 			}
 		}
 
@@ -224,8 +228,6 @@ public class ArmAnimationController : MonoBehaviour {
 				}
 			}
 		} else {
-			if (targetObject.TryGetComponent<Collider>(out Collider col))
-				col.enabled = true;
 			if (targetObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
 				rb.useGravity = true;
 		}
@@ -487,11 +489,9 @@ public class ArmAnimationController : MonoBehaviour {
 			return false;
 		}
 
-		// We have to disable Gravity and Collider for the objects, so that they don't collide with stuff (for example key + lock)
+		// We have to disable Gravity for the objects
 		if (targetObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
 			rb.useGravity = false;
-		if (targetObject.TryGetComponent<Collider>(out Collider col))
-			col.enabled = false;
 
 		animState = Enums.AnimationState.Playing;
 		if (SettingsManager.Instance.roleSettings.characterRole == UserRole.Patient) {

@@ -160,6 +160,12 @@ public class CustomNetworkManager : NetworkManager {
 			if (objectIdentity.gameObject.layer == avatarLayer) { // Layer 7 = Avatar
 				continue;
 			}
+
+			if (objectIdentity.TryGetComponent<TargetDraggable>(out TargetDraggable targetDraggable)) {
+				if (targetDraggable.itemPickedUp) { // this should not happen, but just in case
+					targetDraggable.enableDragWrapper();
+				}
+			}
 			objectIdentity.gameObject.GetComponent<NetworkTransform>().syncDirection = SyncDirection.ServerToClient;
 			objectIdentity.RemoveClientAuthority();
 			Debug.Log($"USER'{conn.identity.netId}' - object with netID '{objectIdentity.netId}' released authority.");
