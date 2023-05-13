@@ -671,40 +671,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7486010947304740947, guid: 49e93be813758064bae95cda1c20444e, type: 3}
   m_PrefabInstance: {fileID: 35038257}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &45916455
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1766033108}
-    m_Modifications:
-    - target: {fileID: 7619131785802657622, guid: c9d2292ff4709cb419d6530afdf37534, type: 3}
-      propertyPath: m_Name
-      value: ButtonAudioSource
-      objectReference: {fileID: 0}
-    - target: {fileID: 7619131785802657623, guid: c9d2292ff4709cb419d6530afdf37534, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7619131785802657623, guid: c9d2292ff4709cb419d6530afdf37534, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7619131785802657623, guid: c9d2292ff4709cb419d6530afdf37534, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7619131785802657623, guid: c9d2292ff4709cb419d6530afdf37534, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c9d2292ff4709cb419d6530afdf37534, type: 3}
---- !u!4 &45916456 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7619131785802657623, guid: c9d2292ff4709cb419d6530afdf37534, type: 3}
-  m_PrefabInstance: {fileID: 45916455}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &60773681
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1567,7 +1533,7 @@ Transform:
   - {fileID: 1734297701}
   - {fileID: 813480491}
   m_Father: {fileID: 1766033108}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1001 &221855017
 PrefabInstance:
@@ -11461,7 +11427,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 45916456}
   - {fileID: 193290044}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -14997,7 +14962,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 418817835360992786, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000009536743
+      value: -0.000020980835
       objectReference: {fileID: 0}
     - target: {fileID: 418817835405335742, guid: 950e1324f3de7fb44a92e5df55ddaf42, type: 3}
       propertyPath: m_AnchorMax.x

@@ -4,7 +4,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation;
 using UnityEngine.InputSystem.XR;
-using Enums;
+using NeuroRehab.Enums;
 using Unity.XR.CoreUtils;
 using NeuroRehab.Utility;
 

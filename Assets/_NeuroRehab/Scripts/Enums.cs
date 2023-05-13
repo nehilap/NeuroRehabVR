@@ -1,5 +1,5 @@
 // namespace with all enums used
-namespace Enums {
+namespace NeuroRehab.Enums {
 
 	/// <summary>
 	/// Role enum, can be extended for more Roles.

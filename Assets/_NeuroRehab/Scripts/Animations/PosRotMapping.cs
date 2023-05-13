@@ -11,9 +11,6 @@ namespace NeuroRehab.Mappings {
 		public Vector3 position;
 		public Vector3 rotation;
 
-		public PosRotMapping() {
-		}
-
 		public PosRotMapping(Vector3 _position, Vector3 _rotation) {
 			position = _position;
 			rotation = _rotation;

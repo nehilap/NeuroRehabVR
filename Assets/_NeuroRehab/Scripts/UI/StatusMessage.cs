@@ -1,5 +1,5 @@
 using System.Collections;
-using Enums;
+using NeuroRehab.Enums;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

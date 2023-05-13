@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Enums;
+using NeuroRehab.Enums;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,8 +22,8 @@ public class SettingsMenuManager : MonoBehaviour {
 		measureFpsToggle.isOn = SettingsManager.Instance.generalSettings.measureFps;
 		writeFpsToggle.isOn = SettingsManager.Instance.generalSettings.writeFps;
 
-		renderScaleSlider.value = SettingsManager.Instance.currentRenderScale * 10;
-		renderScaleTextValue.text = $"{SettingsManager.Instance.currentRenderScale}";
+		renderScaleSlider.value = SettingsManager.Instance.graphicsSettings.currentRenderScale * 10;
+		renderScaleTextValue.text = $"{SettingsManager.Instance.graphicsSettings.currentRenderScale}";
 
 		reticleScaleSlider.value = SettingsManager.Instance.generalSettings.ReticleScale * 10;
 		reticleScaleTextValue.text = $"{SettingsManager.Instance.generalSettings.ReticleScale * 100} %";
@@ -101,7 +101,7 @@ public class SettingsMenuManager : MonoBehaviour {
 	}
 
 	public void renderScaleSliderHandler(float value) {
-		SettingsManager.Instance.SetRenderScale(value / 10);
+		SettingsManager.Instance.graphicsSettings.SetRenderScale(value / 10);
 		renderScaleTextValue.text = $"{value / 10}";
 	}
 

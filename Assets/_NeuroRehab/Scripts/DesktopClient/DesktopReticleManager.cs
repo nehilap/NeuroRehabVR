@@ -29,9 +29,9 @@ public class DesktopReticleManager : MonoBehaviour {
 	}
 
 	private void updateReticleStyle() {
-		if (SettingsManager.Instance.generalSettings.ReticleStyle == Enums.ReticleStyle.FILLED) {
+		if (SettingsManager.Instance.generalSettings.ReticleStyle == NeuroRehab.Enums.ReticleStyle.FILLED) {
 			spriteRenderer.sprite = SettingsManager.Instance.reticleSpriteFilled;
-		} else if (SettingsManager.Instance.generalSettings.ReticleStyle == Enums.ReticleStyle.EMPTY) {
+		} else if (SettingsManager.Instance.generalSettings.ReticleStyle == NeuroRehab.Enums.ReticleStyle.EMPTY) {
 			spriteRenderer.sprite = SettingsManager.Instance.reticleSpriteEmpty;
 		}
 

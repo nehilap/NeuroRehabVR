@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Enums;
+using NeuroRehab.Enums;
 using NeuroRehab.Mappings;
 using Mirror;
 using UnityEngine;
@@ -272,7 +272,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 	}
 
 	[Command]
-	public void CmdSetAnimationState(Enums.AnimationState animationState, NetworkConnectionToClient sender = null) {
+	public void CmdSetAnimationState(NeuroRehab.Enums.AnimationState animationState, NetworkConnectionToClient sender = null) {
 		sender.identity.gameObject.GetComponent<CharacterManager>().activeArmAnimationController.setAnimState(animationState);
 	}
 

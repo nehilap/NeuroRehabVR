@@ -1,7 +1,7 @@
 using UnityEngine;
 using Mirror;
 using System.Collections.Generic;
-using Enums;
+using NeuroRehab.Enums;
 
 /// <summary>
 /// Message manager that contains list of all statusMessage objects, used to show/hide messages.

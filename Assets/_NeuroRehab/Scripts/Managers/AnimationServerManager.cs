@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using Mirror;
 using System.Collections;
-using Enums;
+using NeuroRehab.Enums;
 using NeuroRehab.Mappings;
 
 public class AnimationServerManager : NetworkBehaviour {

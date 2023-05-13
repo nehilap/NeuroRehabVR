@@ -1,4 +1,4 @@
-using Enums;
+using NeuroRehab.Enums;
 using Mirror;
 
 namespace Structs {

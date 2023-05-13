@@ -44,9 +44,9 @@ public class CustomXRInteractorLineVisual : XRInteractorLineVisual {
 
 	private void updateReticleStyle() {
 		Destroy(base.reticle);
-		if (SettingsManager.Instance.generalSettings.ReticleStyle == Enums.ReticleStyle.FILLED) {
+		if (SettingsManager.Instance.generalSettings.ReticleStyle == NeuroRehab.Enums.ReticleStyle.FILLED) {
 			reticle = reticleFilled;
-		} else if (SettingsManager.Instance.generalSettings.ReticleStyle == Enums.ReticleStyle.EMPTY) {
+		} else if (SettingsManager.Instance.generalSettings.ReticleStyle == NeuroRehab.Enums.ReticleStyle.EMPTY) {
 			reticle = reticleEmpty;
 		}
 		reticle.GetComponentInChildren<SpriteRenderer>().color = SettingsManager.Instance.generalSettings.ReticleColor;

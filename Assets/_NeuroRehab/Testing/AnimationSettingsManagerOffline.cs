@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Enums;
+using NeuroRehab.Enums;
 using System.Collections.Generic;
 using NeuroRehab.Mappings;
 using NeuroRehab.Utility;

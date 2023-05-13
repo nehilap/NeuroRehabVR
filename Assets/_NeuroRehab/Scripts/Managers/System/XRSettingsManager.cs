@@ -3,7 +3,7 @@ using UnityEngine.XR;
 using UnityEngine.XR.Management;
 using System.Collections;
 using System.Collections.Generic;
-using Enums;
+using NeuroRehab.Enums;
 using UnityEngine.XR.OpenXR;
 using Unity.XR.MockHMD;
 using UnityEngine.SceneManagement;

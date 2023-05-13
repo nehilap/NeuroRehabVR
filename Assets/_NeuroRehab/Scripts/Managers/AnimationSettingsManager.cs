@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Mirror;
-using Enums;
+using NeuroRehab.Enums;
 using System.Collections.Generic;
 using NeuroRehab.Mappings;
 using NeuroRehab.Utility;
@@ -271,7 +271,7 @@ public class AnimationSettingsManager : NetworkBehaviour {
 	/// <returns>Bool value depending on whether animation type was changed or not</returns>
 	[Server]
 	public bool setAnimType(AnimationType _old, AnimationType _new) {
-		if (AnimationServerManager.Instance.isTrainingRunning || (CharacterManager.activePatientInstance != null && CharacterManager.activePatientInstance.activeArmAnimationController.animState == Enums.AnimationState.Playing)) {
+		if (AnimationServerManager.Instance.isTrainingRunning || (CharacterManager.activePatientInstance != null && CharacterManager.activePatientInstance.activeArmAnimationController.animState == NeuroRehab.Enums.AnimationState.Playing)) {
 			return false;
 		}
 		if (_old != AnimationType.Off) {

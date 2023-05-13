@@ -5,7 +5,7 @@ using ShadowGroveGames.SimpleHttpAndRestServer.Scripts.Server.Extensions;
 using System.Net;
 using UnityEngine;
 using Mirror;
-using Enums;
+using NeuroRehab.Enums;
 
 /// <summary>
 /// Contains Rest Requests Handler methods.

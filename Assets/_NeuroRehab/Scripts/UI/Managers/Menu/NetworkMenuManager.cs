@@ -1,6 +1,6 @@
 using UnityEngine;
 using Mirror;
-using Enums;
+using NeuroRehab.Enums;
 
 public class NetworkMenuManager : MonoBehaviour {
 	private JoinManager joinManager = new JoinManager();

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Enums;
+using NeuroRehab.Enums;
 
 /// <summary>
 /// Hides object if not in the list of allowed roles. Does not deactivate object, only hides it.

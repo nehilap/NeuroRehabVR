@@ -3,7 +3,7 @@ using Mirror;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
-using Enums;
+using NeuroRehab.Enums;
 using NeuroRehab.Mappings;
 using NeuroRehab.Utility;
 
@@ -11,7 +11,7 @@ using NeuroRehab.Utility;
 /// Main Patient Arm Animation component. Contains methods for animating arms, switching active arms, lerps, etc.
 /// </summary>
 public class ArmAnimationController : MonoBehaviour {
-	public Enums.AnimationState animState {
+	public NeuroRehab.Enums.AnimationState animState {
 		get; private set;
 	}
 	// private AnimationPart animPart;
@@ -54,7 +54,7 @@ public class ArmAnimationController : MonoBehaviour {
 	private Coroutine armAnimationCoroutine;
 
 	void Start() {
-		animState = Enums.AnimationState.Stopped;
+		animState = NeuroRehab.Enums.AnimationState.Stopped;
 
 		initialize();
 
@@ -108,7 +108,7 @@ public class ArmAnimationController : MonoBehaviour {
 	/// Wrapper method used to set animState. Usable only on server!!
 	/// </summary>
 	[Server]
-	public void setAnimState(Enums.AnimationState animationState) {
+	public void setAnimState(NeuroRehab.Enums.AnimationState animationState) {
 		animState = animationState;
 	}
 
@@ -232,7 +232,7 @@ public class ArmAnimationController : MonoBehaviour {
 				rb.useGravity = true;
 		}
 
-		animState = Enums.AnimationState.Stopped;
+		animState = NeuroRehab.Enums.AnimationState.Stopped;
 		if (SettingsManager.Instance.roleSettings.characterRole == UserRole.Patient) {
 			NetworkCharacterManager.localNetworkClientInstance.CmdSetAnimationState(animState);
 		}
@@ -450,7 +450,7 @@ public class ArmAnimationController : MonoBehaviour {
 			Debug.LogWarning("No animation type specified");
 			return false;
 		}
-		if(animState == Enums.AnimationState.Playing) {
+		if(animState == NeuroRehab.Enums.AnimationState.Playing) {
 			Debug.LogError("There is an animation running already");
 			return false;
 		}
@@ -493,7 +493,7 @@ public class ArmAnimationController : MonoBehaviour {
 		if (targetObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
 			rb.useGravity = false;
 
-		animState = Enums.AnimationState.Playing;
+		animState = NeuroRehab.Enums.AnimationState.Playing;
 		if (SettingsManager.Instance.roleSettings.characterRole == UserRole.Patient) {
 			NetworkCharacterManager.localNetworkClientInstance.CmdSetAnimationState(animState);
 		}
@@ -504,7 +504,7 @@ public class ArmAnimationController : MonoBehaviour {
 	}
 
 	public void stopAnimation(bool informServer = false) {
-		if(animState == Enums.AnimationState.Stopped) {
+		if(animState == NeuroRehab.Enums.AnimationState.Stopped) {
 			return;
 		}
 

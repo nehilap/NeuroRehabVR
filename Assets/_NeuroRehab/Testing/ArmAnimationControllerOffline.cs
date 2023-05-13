@@ -2,13 +2,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
-using Enums;
+using NeuroRehab.Enums;
 using NeuroRehab.Mappings;
 using NeuroRehab.Utility;
 using System.Collections.Generic;
 
 public class ArmAnimationControllerOffline : MonoBehaviour {
-	private Enums.AnimationState animState = Enums.AnimationState.Stopped;
+	private NeuroRehab.Enums.AnimationState animState = NeuroRehab.Enums.AnimationState.Stopped;
 	[SerializeField] public bool isLeft;
 
 	[Header("Rigs")]
@@ -289,7 +289,7 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 			Debug.LogError("No animation type specified");
 			return;
 		}
-		if(animState == Enums.AnimationState.Playing) {
+		if(animState == NeuroRehab.Enums.AnimationState.Playing) {
 			Debug.LogError("There is an animation running already");
 			return;
 		}
@@ -405,21 +405,21 @@ public class ArmAnimationControllerOffline : MonoBehaviour {
 			return;
 		}
 
-		animState = Enums.AnimationState.Playing;
+		animState = NeuroRehab.Enums.AnimationState.Playing;
 
 		// https://gamedevbeginner.com/coroutines-in-unity-when-and-how-to-use-them/
 		StartCoroutine(armStartAnimationLerp(isFakeAnimation));
 	}
 
 	public void stopAnimation() {
-		if(animState == Enums.AnimationState.Stopped) {
+		if(animState == NeuroRehab.Enums.AnimationState.Stopped) {
 			return;
 		}
 
 		// We don't have to set the positions of targets here, because we're simply releasing the hand grip + moving arm to relaxed position
 
 		StartCoroutine(armStopAnimationLerp());
-		animState = Enums.AnimationState.Stopped;
+		animState = NeuroRehab.Enums.AnimationState.Stopped;
 	}
 
 	public void setArmRestPosition() {

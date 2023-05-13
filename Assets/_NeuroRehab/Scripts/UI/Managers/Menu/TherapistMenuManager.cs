@@ -17,8 +17,8 @@ public class TherapistMenuManager : MonoBehaviour {
 	}
 
 	public void startTrainingHandler() {
-		if (CharacterManager.activePatientInstance && CharacterManager.activePatientInstance.activeArmAnimationController.animState == Enums.AnimationState.Playing) {
-			MessageManager.Instance.showMessage("Animation already running", Enums.MessageType.WARNING);
+		if (CharacterManager.activePatientInstance && CharacterManager.activePatientInstance.activeArmAnimationController.animState == NeuroRehab.Enums.AnimationState.Playing) {
+			MessageManager.Instance.showMessage("Animation already running", NeuroRehab.Enums.MessageType.WARNING);
 			return;
 		}
 

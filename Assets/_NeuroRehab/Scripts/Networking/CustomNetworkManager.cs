@@ -1,7 +1,7 @@
 using UnityEngine;
 using Mirror;
 using Structs;
-using Enums;
+using NeuroRehab.Enums;
 using System.Collections.Generic;
 using VRStandardAssets.Utils;
 
@@ -28,7 +28,7 @@ public class CustomNetworkManager : NetworkManager {
 			}
 		}
 
-		if (SettingsManager.Instance.settingsInitializedFromFile) {
+		if (SettingsManager.Instance.initializedFromFile) {
 			networkAddress = SettingsManager.Instance.ipAddress;
 		} else {
 			SettingsManager.Instance.ipAddress = NetworkManager.singleton.networkAddress;

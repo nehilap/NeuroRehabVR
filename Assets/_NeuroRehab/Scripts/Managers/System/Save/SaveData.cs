@@ -1,4 +1,5 @@
 using UnityEngine;
+using NeuroRehab.Settings;
 
 /// <summary>
 /// https://www.youtube.com/watch?v=uD7y4T4PVk0
@@ -6,7 +7,7 @@ using UnityEngine;
 [System.Serializable]
 public class SaveData {
 	[SerializeField] private AvatarSettings avatarSettings;
-	[SerializeField] private AudioSettings audioSettings;
+	[SerializeField] private AudioSettingsSerialized audioSettings;
 	[SerializeField] private GraphicsSettings graphicsSettings;
 	[SerializeField] private GeneralSettings generalSettings;
 	[SerializeField] private RoleSettings roleSettings;
@@ -15,7 +16,7 @@ public class SaveData {
 
 	[SerializeField] private string settingsVersion;
 
-	public AudioSettings AudioSettings { get => audioSettings; set => audioSettings = value; }
+	public AudioSettingsSerialized AudioSettings { get => audioSettings; set => audioSettings = value; }
 	public AvatarSettings AvatarSettings { get => avatarSettings; set => avatarSettings = value; }
 	public GraphicsSettings GraphicsSettings { get => graphicsSettings; set => graphicsSettings = value; }
 	public RoleSettings RoleSettings { get => roleSettings; set => roleSettings = value; }
