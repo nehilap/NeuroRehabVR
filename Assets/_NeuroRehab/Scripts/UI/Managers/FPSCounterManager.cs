@@ -28,7 +28,9 @@ public class FPSCounterManager : MonoBehaviour {
 	}
 
 	private void OnDisable() {
-		textField.text = "";
+		if (textField) {
+			textField.text = "";
+		}
 	}
 
 	private void Update() {

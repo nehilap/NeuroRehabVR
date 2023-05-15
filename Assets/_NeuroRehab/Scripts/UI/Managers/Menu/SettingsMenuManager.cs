@@ -7,11 +7,13 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class SettingsMenuManager : MonoBehaviour {
 
-	[SerializeField] private Toggle measureFpsToggle;
-	[SerializeField] private Toggle writeFpsToggle;
-
+	[Header("Graphic settings objects")]
 	[SerializeField] private TMP_Text renderScaleTextValue;
 	[SerializeField] private Slider renderScaleSlider;
+
+	[Header("General settings objects")]
+	[SerializeField] private Toggle measureFpsToggle;
+	[SerializeField] private Toggle writeFpsToggle;
 
 	[SerializeField] private TMP_Text reticleScaleTextValue;
 	[SerializeField] private Slider reticleScaleSlider;

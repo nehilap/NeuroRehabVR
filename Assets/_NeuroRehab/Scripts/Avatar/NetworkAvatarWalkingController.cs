@@ -65,7 +65,7 @@ public class NetworkAvatarWalkingController : NetworkBehaviour {
 		move.action.canceled -= updateStopAnimation;
 
 		if (headMove) {
-			headMove.action.performed += animateHeadMovement;
+			headMove.action.performed -= animateHeadMovement;
 		}
 	}
 

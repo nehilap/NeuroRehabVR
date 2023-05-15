@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 namespace NeuroRehab.Settings {
 	[Serializable]
 	public class AudioSettings {
-		private AudioMixer mixer;
+		[SerializeField] private AudioMixer mixer;
 		[SerializeField] private float _UIvolume = 1f;
 
 		public float UIvolume { get => _UIvolume; set {

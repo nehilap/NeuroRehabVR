@@ -54,15 +54,8 @@ public class ColorPickerManager : MonoBehaviour, IPointerClickHandler {
 	}
 
 	private void setColorPaletteVisibility() {
-		if (isShowing) {
-			foreach (GameObject colorPaletteObject in colorPaletteObjects) {
-				colorPaletteObject.SetActive(true);
-			}
-		} else {
-			foreach (GameObject colorPaletteObject in colorPaletteObjects) {
-				colorPaletteObject.SetActive(false);
-			}
+		foreach (GameObject colorPaletteObject in colorPaletteObjects) {
+			colorPaletteObject.SetActive(isShowing);
 		}
 	}
-
 }

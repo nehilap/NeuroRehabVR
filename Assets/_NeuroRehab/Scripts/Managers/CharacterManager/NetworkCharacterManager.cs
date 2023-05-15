@@ -25,7 +25,7 @@ public class NetworkCharacterManager : NetworkBehaviour {
 			}
 		}
 
-		List<GameObject> therapistMenuObjects = ObjectManager.Instance.getObjectsByName("TherapistMenu");
+		List<GameObject> therapistMenuObjects = ObjectManager.Instance.getObjectsByName("MainMenu");
 		foreach (GameObject therapistMenuObject in therapistMenuObjects) {
 			if (therapistMenuObject.TryGetComponent<TherapistMenuManager>(out TherapistMenuManager tmm)) {
 				therapistMenuManagers.Add(tmm);
