@@ -1,10 +1,19 @@
 # VRArm-Unity - Neurorehabilitation in Collaborative VR
 
+Software intented to be used by patients and therapists to help ease pain and potentially even cure arm movement impairment.
+
 ## Authors
 
 - Peter Nehila (nehila.peter@gmail.com)
 
-## Packages used
+## Tech used
+
+- Unity
+- OpenXR
+
+Software works both on VR devices and on Desktop. Primarily optimized for use on Oculus Quest 2.
+
+# Packages used
 
 - [XR Interaction Toolkit](https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@2.2/manual/index.html)
 - [OpenXR](https://docs.unity3d.com/Packages/com.unity.xr.openxr@1.6/manual/index.html)
